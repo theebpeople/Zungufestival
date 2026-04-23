@@ -5,7 +5,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 // From address — update to a verified Resend sender domain once DNS is confirmed
 const FROM = 'Zungu Festival <onboarding@resend.dev>';
-const TEAM_EMAIL = 'access@zungufestival.com';
+const TEAM_EMAIL = 'partnership@zungufestival.com';
 
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
