@@ -231,6 +231,8 @@ function CTATab() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const interests = [
     { id: 'stage-sponsor', title: 'Stage Partner', desc: 'Brand association with one of the three stages. Naming rights, on-site presence, programming input on your stage. Year 1 opportunity — the founding mythology version.' },
@@ -243,9 +245,25 @@ function CTATab() {
     setSelected(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
+    setError('');
+    setLoading(true);
+    const selectedTitles = interests.filter(i => selected.includes(i.id)).map(i => i.title);
+    try {
+      const res = await fetch('/api/partner-interest', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, org, email, message, selected: selectedTitles }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Something went wrong.');
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to send. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   }
 
   const inputStyle: React.CSSProperties = {
@@ -332,18 +350,25 @@ function CTATab() {
                 }}
               />
             </div>
+            {error && (
+              <div style={{ fontSize: '12px', color: '#E05252', letterSpacing: '0.05em', lineHeight: 1.6 }}>
+                {error}
+              </div>
+            )}
             <button
               type="submit"
+              disabled={loading}
               style={{
                 width: '100%', padding: '14px',
                 fontFamily: "'Space Mono', monospace",
                 fontSize: '10px', letterSpacing: '0.35em',
                 textTransform: 'uppercase', fontWeight: 700,
-                background: TEAL, color: BG,
-                border: 'none', cursor: 'pointer',
+                background: loading ? 'rgba(74,175,160,0.4)' : TEAL,
+                color: BG,
+                border: 'none', cursor: loading ? 'not-allowed' : 'pointer',
               }}
             >
-              Send →
+              {loading ? 'Sending...' : 'Send →'}
             </button>
           </form>
         )}

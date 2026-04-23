@@ -1,4 +1,4 @@
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
+import { clerkMiddleware, createRouteMatcher, clerkClient } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
 
 const isInvestorRoute = createRouteMatcher(['/deck(.*)']);
@@ -26,7 +26,6 @@ export default clerkMiddleware(async (auth, req) => {
   }
   // ── END BYPASS ───────────────────────────────────────────────────
 
-  // Clerk session — userId only, no role metadata required
   const { userId } = await auth();
 
   if (isInvestorRoute(req) && !userId) {
@@ -35,6 +34,25 @@ export default clerkMiddleware(async (auth, req) => {
   if (isPartnerRoute(req) && !userId) {
     return NextResponse.redirect(new URL('/sign-in?role=partner', req.url));
   }
+
+  // ── EMAIL ALLOWLIST ───────────────────────────────────────────────
+  // If ALLOWED_EMAILS is set, only those addresses may access protected routes.
+  // Leave ALLOWED_EMAILS unset to allow any authenticated Clerk user through.
+  const allowedRaw = process.env.ALLOWED_EMAILS;
+  if (userId && allowedRaw && isProtectedRoute(req)) {
+    const allowlist = allowedRaw.split(',').map(e => e.trim().toLowerCase()).filter(Boolean);
+    if (allowlist.length > 0) {
+      const client = await clerkClient();
+      const user = await client.users.getUser(userId);
+      const primaryEmail = user.emailAddresses
+        .find(e => e.id === user.primaryEmailAddressId)
+        ?.emailAddress?.toLowerCase();
+      if (!primaryEmail || !allowlist.includes(primaryEmail)) {
+        return NextResponse.redirect(new URL('/not-authorized', req.url));
+      }
+    }
+  }
+  // ── END ALLOWLIST ─────────────────────────────────────────────────
 });
 
 export const config = {
