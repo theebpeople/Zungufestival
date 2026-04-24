@@ -32,3 +32,88 @@ body::after {
 
 button { border-radius: 0 !important; }
 input, textarea, select { border-radius: 0 !important; }
+
+/* ── RESPONSIVE UTILITIES ───────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+
+  /* Grids collapse to single column */
+  .z-grid-2,
+  .z-grid-3 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Section padding — tighter on mobile */
+  .z-section {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+    padding-left: 6vw !important;
+    padding-right: 6vw !important;
+  }
+
+  /* Stat rows — 2-up grid instead of horizontal line */
+  .z-stat-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .z-stat-row > * {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(200,168,75,0.08) !important;
+    padding: 20px 12px !important;
+  }
+
+  /* Cards — less padding on mobile */
+  .z-card {
+    padding: 24px 18px !important;
+  }
+
+  /* Top nav: hide the tab buttons, keep logo + exit */
+  .z-nav-tab {
+    display: none !important;
+  }
+
+  /* Home hero: less bottom padding */
+  .z-hero-content {
+    padding-bottom: 80px !important;
+  }
+
+  /* Home stats bar: 2-column grid */
+  .z-home-stats {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .z-home-stats > * {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(200,168,75,0.08) !important;
+    padding: 20px 14px !important;
+  }
+
+  /* Numbered large hero on partner/deck tabs */
+  .z-big-number {
+    font-size: 48px !important;
+  }
+
+  /* Quote block */
+  .z-quote {
+    padding: 16px 20px !important;
+  }
+
+  /* Inline flex rows that should wrap */
+  .z-flex-wrap-mobile {
+    flex-wrap: wrap !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Even smaller — single column stays, but reduce gap */
+  .z-grid-2,
+  .z-grid-3 {
+    gap: 6px !important;
+  }
+
+  /* Home logo */
+  .z-home-logo {
+    width: 80px !important;
+    height: 80px !important;
+  }
+}

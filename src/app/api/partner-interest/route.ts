@@ -1,8 +1,9 @@
 import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
 
-// From address — update to a verified Resend sender domain once DNS is confirmed
-const FROM = 'Zungu Festival <onboarding@resend.dev>';
+// FROM uses RESEND_FROM env var once zungufestival.com is verified in Resend.
+// Until then, set RESEND_FROM=onboarding@resend.dev (Resend sandbox).
+const FROM = process.env.RESEND_FROM ?? 'Zungu Festival <onboarding@resend.dev>';
 const TEAM_EMAIL = 'partnership@zungufestival.com';
 
 export async function POST(req: NextRequest) {

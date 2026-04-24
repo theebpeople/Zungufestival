@@ -67,7 +67,7 @@ function SLabel({ children, color }: { children: React.ReactNode; color?: string
 
 function CardGrid({ cols, children }: { cols: 2 | 3; children: React.ReactNode }) {
   return (
-    <div style={{
+    <div className={cols === 2 ? 'z-grid-2' : 'z-grid-3'} style={{
       display: 'grid', gap: '2px',
       gridTemplateColumns: cols === 2 ? '1fr 1fr' : 'repeat(3,1fr)',
     }}>
@@ -79,7 +79,7 @@ function CardGrid({ cols, children }: { cols: 2 | 3; children: React.ReactNode }
 function HomeTab({ onCTA }: { onCTA: () => void }) {
   return (
     <>
-      <div style={{ ...section, paddingTop: '80px', background: `linear-gradient(to bottom, rgba(13,32,24,0.6) 0%, ${BG} 100%)` }}>
+      <div className="z-section" style={{ ...section, paddingTop: '80px', background: `linear-gradient(to bottom, rgba(13,32,24,0.6) 0%, ${BG} 100%)` }}>
         <div style={{ fontSize: '11px', letterSpacing: '0.4em', color: TEAL, textTransform: 'uppercase', marginBottom: '16px' }}>Partner Portal</div>
         <h1 style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 'clamp(52px,8vw,96px)', fontWeight: 900, lineHeight: 0.92, letterSpacing: '-0.03em', color: CREAM, marginBottom: '0' }}>
           Welcome<br />to the
@@ -115,7 +115,7 @@ function HomeTab({ onCTA }: { onCTA: () => void }) {
         </div>
       </div>
 
-      <div style={section}>
+      <div className="z-section" style={section}>
         <SLabel>What Partners Get</SLabel>
         <CardGrid cols={3}>
           {[
@@ -123,7 +123,7 @@ function HomeTab({ onCTA }: { onCTA: () => void }) {
             { title: "An audience that actually notices", body: "Electronic festival audiences are unusually aware of who is and isn't part of the events they care about. A brand that's genuinely integrated — not slapped on — gets more ROI from this crowd than almost any other live context." },
             { title: "The island does the selling", body: "Your product on a private Caribbean island during a world-class festival weekend — that's the content. Not a brand activation. An actual place your audience will remember and talk about. We just need to agree on how you show up." },
           ].map(c => (
-            <div key={c.title} style={cardBase}>
+            <div key={c.title} className="z-card" style={cardBase}>
               <div style={{ ...cardTitle, color: TEAL }}>{c.title}</div>
               <div style={cardBody}>{c.body}</div>
             </div>
@@ -137,14 +137,14 @@ function HomeTab({ onCTA }: { onCTA: () => void }) {
 function BrandTab() {
   return (
     <>
-      <div style={{ ...section, paddingTop: '60px' }}>
+      <div className="z-section" style={{ ...section, paddingTop: '60px' }}>
         <SLabel>02 — Brand &amp; Concept</SLabel>
         <div style={sTitle}>A new festival.<br /><span style={{ color: GOLD }}>An extraordinary island.</span></div>
         <p style={bodyText}>We are a new entrant in the electronic music festival scene. We know that. The way you win entering late is not by doing what everyone else does slightly better — it&apos;s by having something nobody else has. We have a 64-acre private island in the Caribbean, five minutes by boat from Port Antonio, Jamaica. No existing festival has that.</p>
         <p style={bodyText}>The music is the reason people come. The island is the reason they never forget it. Jamaica&apos;s sonic history — from dub and sound system culture to dancehall and reggae — is context that makes the whole thing richer. It&apos;s not the pitch. The island is the pitch.</p>
       </div>
 
-      <div style={{ ...section, paddingTop: 0 }}>
+      <div className="z-section" style={{ ...section, paddingTop: 0 }}>
         <SLabel>The Commissioning Model</SLabel>
         <div style={sTitle}>IP that <span style={{ color: GOLD }}>lives beyond</span> the weekend.</div>
         <p style={bodyText}>Every edition of Zungu commissions original collaborations between Jamaican producers and international artists. The resulting tracks are released on Zungu&apos;s label. The festival owns the publishing, the artists retain performance rights, and every partner associated with the commission is credited in the release.</p>
@@ -166,24 +166,24 @@ function BrandTab() {
 function StagesTab() {
   return (
     <>
-      <div style={{ ...section, paddingTop: '60px' }}>
+      <div className="z-section" style={{ ...section, paddingTop: '60px' }}>
         <SLabel>03 — Stage Architecture</SLabel>
         <div style={sTitle}>Three stages.<br /><span style={{ color: GOLD }}>One island.</span></div>
         <p style={bodyText}>Navy Island is 64 acres. Stages face the sea, away from Port Antonio town. Each stage is assigned to one of four Jamaican production companies. The production consortium model distributes operational risk and brings specialist crews and equipment per stage.</p>
       </div>
-      <div style={{ ...section, paddingTop: 0 }}>
+      <div className="z-section" style={{ ...section, paddingTop: 0 }}>
         <CardGrid cols={3}>
-          <div style={cardBase}>
+          <div className="z-card" style={cardBase}>
             <div style={{ ...cardTitle, color: CREAM }}>Origins</div>
             <div style={cardSub}>Stage I · Heritage Electronic</div>
             <div style={cardBody}>Jamaican artists, sound system culture, dub and roots electronic. The cultural argument made audible. Equiknoxx, Kode9, Shy FX territory.</div>
           </div>
-          <div style={cardBase}>
+          <div className="z-card" style={cardBase}>
             <div style={{ ...cardTitle, color: CREAM }}>Zungu Main</div>
             <div style={cardSub}>Stage II · Headline</div>
             <div style={cardBody}>Afro-house, melodic techno, headline international acts. Shimza, Black Coffee, Bontan. The centrepiece. Faces the open sea.</div>
           </div>
-          <div style={cardBase}>
+          <div className="z-card" style={cardBase}>
             <div style={{ ...cardTitle, color: CREAM }}>Rebirth</div>
             <div style={cardSub}>Stage III · Future Sounds</div>
             <div style={cardBody}>Emerging Jamaican and Caribbean electronic artists. Commissioned acts premiere here. The stage that proves the cultural investment is real.</div>
@@ -204,15 +204,15 @@ function ActivitiesTab() {
 
   return (
     <>
-      <div style={{ ...section, paddingTop: '60px' }}>
+      <div className="z-section" style={{ ...section, paddingTop: '60px' }}>
         <SLabel>04 — Activity Programme</SLabel>
         <div style={sTitle}>Beyond the music.<br /><span style={{ color: GOLD }}>The full island.</span></div>
         <p style={bodyText}>64 acres of island. Open water. A cultural thesis. The activity programme uses all of it — and every activity is a potential partnership touchpoint.</p>
       </div>
-      <div style={{ ...section, paddingTop: 0 }}>
+      <div className="z-section" style={{ ...section, paddingTop: 0 }}>
         <CardGrid cols={2}>
           {activities.map(a => (
-            <div key={a.title} style={cardBase}>
+            <div key={a.title} className="z-card" style={cardBase}>
               <div style={{ ...cardTitle, color: TEAL }}>{a.title}</div>
               <div style={cardSub}>{a.sub}</div>
               <div style={cardBody}>{a.body}</div>
@@ -281,15 +281,15 @@ function CTATab() {
 
   return (
     <>
-      <div style={{ ...section, paddingTop: '60px' }}>
+      <div className="z-section" style={{ ...section, paddingTop: '60px' }}>
         <SLabel color={TEAL}>05 — Confirm Interest</SLabel>
         <div style={sTitle}>First edition.<br /><span style={{ color: GOLD }}>One conversation.</span></div>
         <p style={bodyText}>We&apos;re not running an open sponsorship process. We&apos;re talking to a small number of brands who fit — and fitting means understanding what the island, the audience, and the moment actually are. If you&apos;re here, you probably get it. Tell us where you see yourself.</p>
       </div>
 
-      <div style={section}>
+      <div className="z-section" style={section}>
         <SLabel>What kind of partnership?</SLabel>
-        <div style={{ display: 'grid', gap: '2px', gridTemplateColumns: '1fr 1fr' }}>
+        <div className="z-grid-2" style={{ display: 'grid', gap: '2px', gridTemplateColumns: '1fr 1fr' }}>
           {interests.map(int => (
             <div
               key={int.id}
@@ -315,7 +315,7 @@ function CTATab() {
         </div>
       </div>
 
-      <div style={{ ...section, paddingTop: 0 }}>
+      <div className="z-section" style={{ ...section, paddingTop: 0 }}>
         <SLabel>Your Details</SLabel>
         {submitted ? (
           <div style={{ padding: '28px', border: '1px solid rgba(74,175,160,0.3)', background: 'rgba(74,175,160,0.05)' }}>
@@ -410,6 +410,7 @@ export default function PartnerPage() {
           {TABS.map(t => (
             <button
               key={t.id}
+              className="z-nav-tab"
               onClick={() => setActiveTab(t.id)}
               style={{
                 fontSize: '9px', letterSpacing: '0.4em',

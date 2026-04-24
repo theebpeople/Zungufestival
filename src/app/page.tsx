@@ -40,7 +40,7 @@ export default function LandingPage() {
 
       {/* Hero content */}
       <div style={{ position: 'relative', zIndex: 10, minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 8vw 0' }}>
-        <div style={{ paddingBottom: '180px' }}>
+        <div style={{ paddingBottom: '180px' }} className="z-hero-content">
           <p style={{
             fontSize: '11px', letterSpacing: '0.5em', textTransform: 'uppercase',
             color: 'rgba(242,235,217,0.5)', marginBottom: '36px',
@@ -53,6 +53,7 @@ export default function LandingPage() {
             alt="Zungu"
             width={120}
             height={120}
+            className="z-home-logo"
             style={{ marginBottom: '28px', filter: 'drop-shadow(0 0 24px rgba(200,168,75,0.4))' }}
           />
 
@@ -118,7 +119,7 @@ export default function LandingPage() {
       </div>
 
       {/* Stats bar */}
-      <div style={{
+      <div className="z-home-stats" style={{
         position: 'relative', zIndex: 10,
         display: 'flex', borderTop: '1px solid rgba(200,168,75,0.12)',
         backgroundColor: 'rgba(4,8,10,0.95)',

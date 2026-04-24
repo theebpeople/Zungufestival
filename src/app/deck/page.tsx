@@ -81,7 +81,7 @@ function SLabel({ children }: { children: React.ReactNode }) {
 
 function StatRow({ stats }: { stats: { num: string; label: string }[] }) {
   return (
-    <div style={{ display: 'flex', border: '1px solid rgba(200,168,75,0.12)', margin: '28px 0' }}>
+    <div className="z-stat-row" style={{ display: 'flex', border: '1px solid rgba(200,168,75,0.12)', margin: '28px 0' }}>
       {stats.map((s, i) => (
         <div key={i} style={{
           flex: 1, padding: '28px 24px', textAlign: 'center',
@@ -97,7 +97,7 @@ function StatRow({ stats }: { stats: { num: string; label: string }[] }) {
 
 function CardGrid({ cols, children }: { cols: 2 | 3; children: React.ReactNode }) {
   return (
-    <div style={{
+    <div className={cols === 2 ? 'z-grid-2' : 'z-grid-3'} style={{
       display: 'grid', gap: '2px',
       gridTemplateColumns: cols === 2 ? '1fr 1fr' : 'repeat(3,1fr)',
     }}>
@@ -108,7 +108,7 @@ function CardGrid({ cols, children }: { cols: 2 | 3; children: React.ReactNode }
 
 function Card({ title, sub, body, titleColor }: { title: string; sub?: string; body: string; titleColor?: string }) {
   return (
-    <div style={cardBase}>
+    <div className="z-card" style={cardBase}>
       <div style={{ ...cardTitle, color: titleColor ?? GOLD }}>{title}</div>
       {sub && <div style={cardSub}>{sub}</div>}
       <div style={cardBody}>{body}</div>
@@ -135,7 +135,7 @@ function QuoteBlock({ text, attr }: { text: string; attr: string }) {
 function HomeTab() {
   return (
     <>
-      <div style={{ ...section, paddingTop: '80px', background: `linear-gradient(to bottom, ${GREEN} 0%, ${BG} 100%)` }}>
+      <div className="z-section" style={{ ...section, paddingTop: '80px', background: `linear-gradient(to bottom, ${GREEN} 0%, ${BG} 100%)` }}>
         <div style={{ fontSize: '11px', letterSpacing: '0.4em', color: GOLD, textTransform: 'uppercase', marginBottom: '16px' }}>Investor Portal</div>
         <h1 style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 'clamp(52px,8vw,96px)', fontWeight: 900, lineHeight: 0.92, letterSpacing: '-0.03em', color: CREAM, marginBottom: '0' }}>
           Welcome<br />to the
@@ -156,7 +156,7 @@ function HomeTab() {
         </div>
       </div>
 
-      <div style={section}>
+      <div className="z-section" style={section}>
         <SLabel>At a Glance</SLabel>
         <StatRow stats={[
           { num: '64', label: 'Acres · Navy Island' },
@@ -167,7 +167,7 @@ function HomeTab() {
         ]} />
       </div>
 
-      <div style={section}>
+      <div className="z-section" style={section}>
         <SLabel>The Open Gates</SLabel>
         <div style={sTitle}>Five decisions that<br /><span style={{ color: GOLD }}>unlock everything else</span>.</div>
         <CardGrid cols={2}>
@@ -178,7 +178,7 @@ function HomeTab() {
         </CardGrid>
       </div>
 
-      <div style={section}>
+      <div className="z-section" style={section}>
         <QuoteBlock
           text={'"Zamna\'s founding mythology was built on delivery, not declaration. The mandate is the same: do not announce what Zungu will be. Build what it is."'}
           attr="Strategic Framework"
@@ -191,16 +191,16 @@ function HomeTab() {
 function BrandTab() {
   return (
     <>
-      <div style={{ ...section, paddingTop: '60px' }}>
+      <div className="z-section" style={{ ...section, paddingTop: '60px' }}>
         <SLabel>02 — Brand &amp; Concept</SLabel>
         <div style={sTitle}>A new festival.<br /><span style={{ color: GOLD }}>An extraordinary island.</span></div>
         <p style={bodyText}>We are a new entrant in the electronic music festival scene. We know that. The way you win entering late is not by doing what everyone else does slightly better — it&apos;s by having something nobody else has. We have a 64-acre private island in the Caribbean, five minutes by boat from Port Antonio, Jamaica. No existing festival has that.</p>
         <p style={bodyText}>The music is the reason people come. The island is the reason they never forget it. Jamaica&apos;s sonic history — from dub and sound system culture to dancehall and reggae — is context that makes the whole thing richer. It&apos;s not the pitch. The island is the pitch.</p>
       </div>
 
-      <div style={{ padding: '70px 8vw 0', borderTop: '1px solid rgba(200,168,75,0.15)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '28px' }}>
-          <div style={{ fontFamily: "'Unbounded', sans-serif", fontSize: '90px', fontWeight: 900, color: 'rgba(200,168,75,0.15)', lineHeight: 1, flexShrink: 0 }}>01</div>
+      <div className="z-section" style={{ padding: '70px 8vw 0', borderTop: '1px solid rgba(200,168,75,0.15)' }}>
+        <div className="z-flex-wrap-mobile" style={{ display: 'flex', alignItems: 'center', gap: '28px' }}>
+          <div className="z-big-number" style={{ fontFamily: "'Unbounded', sans-serif", fontSize: '90px', fontWeight: 900, color: 'rgba(200,168,75,0.15)', lineHeight: 1, flexShrink: 0 }}>01</div>
           <div>
             <div style={{ fontSize: '10px', letterSpacing: '0.6em', color: GOLD, textTransform: 'uppercase', marginBottom: '8px' }}>The Thesis</div>
             <div style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 'clamp(26px,4vw,50px)', fontWeight: 700, color: '#fff', lineHeight: 1.1, letterSpacing: '-0.02em' }}>The lineage.</div>
@@ -209,7 +209,7 @@ function BrandTab() {
         </div>
       </div>
 
-      <div style={section}>
+      <div className="z-section" style={section}>
         <CardGrid cols={3}>
           <Card title="Origins Stage" sub="Stage I · Heritage Electronic" body="Where the argument starts. Jamaican artists, sound system culture, dub and roots electronic. The booking that generates the Resident Advisor interview. Equiknoxx, Kode9, Shy FX." />
           <Card title="Zungu Main" sub="Stage II · Headline" body="The centrepiece. Afro-house, melodic techno, the international electronic acts with curatorial credibility. Shimza, Black Coffee, Bontan. Not mainstream — correct." />
@@ -217,7 +217,7 @@ function BrandTab() {
         </CardGrid>
       </div>
 
-      <div style={section}>
+      <div className="z-section" style={section}>
         <SLabel>What Makes This Work</SLabel>
         <div style={sTitle}>Three things nobody <span style={{ color: GOLD }}>else has</span>.</div>
         <CardGrid cols={3}>
@@ -263,13 +263,13 @@ function StagesTab() {
 
   return (
     <>
-      <div style={{ ...section, paddingTop: '60px' }}>
+      <div className="z-section" style={{ ...section, paddingTop: '60px' }}>
         <SLabel>03 — Stage Architecture</SLabel>
         <div style={sTitle}>Three stages.<br /><span style={{ color: GOLD }}>One island.</span></div>
         <p style={bodyText}>Navy Island is 64 acres. Stages face the sea, away from Port Antonio town — this addresses both acoustics toward the community and the fundamental visual of every attendee facing open water. Each stage is assigned to one of four Jamaican production companies under an MOU structure.</p>
       </div>
 
-      <div style={{ ...section, paddingTop: 0 }}>
+      <div className="z-section" style={{ ...section, paddingTop: 0 }}>
         {stages.map(stage => (
           <div key={stage.id} style={{ border: '1px solid rgba(200,168,75,0.12)', marginBottom: '2px' }}>
             <div
@@ -325,12 +325,12 @@ function ActivitiesTab() {
 
   return (
     <>
-      <div style={{ ...section, paddingTop: '60px' }}>
+      <div className="z-section" style={{ ...section, paddingTop: '60px' }}>
         <SLabel>04 — Activity Programme</SLabel>
         <div style={sTitle}>Beyond the music.<br /><span style={{ color: GOLD }}>The full experience.</span></div>
         <p style={bodyText}>Zungu is not a park-and-listen festival. The island context demands a programme that uses the 64 acres, the water, and the cultural thesis. Every activity is either a cultural argument or a revenue line — ideally both.</p>
       </div>
-      <div style={{ ...section, paddingTop: 0 }}>
+      <div className="z-section" style={{ ...section, paddingTop: 0 }}>
         <CardGrid cols={2}>
           {activities.map(a => <Card key={a.title} title={a.title} sub={a.sub} body={a.body} />)}
         </CardGrid>
@@ -348,20 +348,20 @@ function MarketingTab() {
 
   return (
     <>
-      <div style={{ ...section, paddingTop: '60px' }}>
+      <div className="z-section" style={{ ...section, paddingTop: '60px' }}>
         <SLabel>05 — Marketing &amp; Promotion</SLabel>
         <div style={sTitle}>Sell the feeling first.<br /><span style={{ color: GOLD }}>Then the names.</span></div>
         <p style={bodyText}>Tomorrowland doesn&apos;t open with a lineup announcement. It opens with a world. Zamna&apos;s first image was a jungle, not a DJ. The feeling — the place, the atmosphere, the sense that you&apos;re somewhere you&apos;ve never been — that lands before any artist name means anything. We run the same sequence.</p>
       </div>
 
-      <div style={{ ...section, paddingTop: 0 }}>
+      <div className="z-section" style={{ ...section, paddingTop: 0 }}>
         <SLabel>Story Arc</SLabel>
         <CardGrid cols={3}>
           {phases.map(p => <Card key={p.title} title={p.title} sub={p.sub} body={p.body} />)}
         </CardGrid>
       </div>
 
-      <div style={{ ...section, paddingTop: 0 }}>
+      <div className="z-section" style={{ ...section, paddingTop: 0 }}>
         <SLabel>Target Audience</SLabel>
         <div style={sTitle}>Someone who has<br /><span style={{ color: GOLD }}>already been to Belgium</span>.</div>
         <p style={bodyText}>Our primary audience has been to Tomorrowland. Or Zamna. Or Dekmantel. They plan their summers around festivals. They spend real money on experiences — flights, accommodation, tickets — without much persuasion, because they&apos;ve done it before and they know what a good one feels like.</p>
@@ -373,7 +373,7 @@ function MarketingTab() {
         ]} />
       </div>
 
-      <div style={{ ...section, paddingTop: 0 }}>
+      <div className="z-section" style={{ ...section, paddingTop: 0 }}>
         <SLabel>Media Targets</SLabel>
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
           {['Resident Advisor', 'Mixmag', 'Pitchfork', 'Jamaica Gleaner', 'Jamaica Observer', 'Loop Jamaica', 'RBMA', 'Boiler Room'].map(m => (
@@ -413,13 +413,13 @@ function BudgetTab() {
 
   return (
     <>
-      <div style={{ ...section, paddingTop: '60px' }}>
+      <div className="z-section" style={{ ...section, paddingTop: '60px' }}>
         <SLabel>06 — Budget &amp; Investment</SLabel>
         <div style={sTitle}>The numbers.<br /><span style={{ color: GOLD }}>No decoration.</span></div>
         <p style={bodyText}>The financial model is structurally honest and more transparent than most festival proposals at this stage. It acknowledges Year 1 losses, models downside scenarios, and explains the working capital bridge clearly.</p>
       </div>
 
-      <div style={{ ...section, paddingTop: 0 }}>
+      <div className="z-section" style={{ ...section, paddingTop: 0 }}>
         <SLabel>Seed Capital Floor</SLabel>
         <StatRow stats={[
           { num: '$518K', label: 'Seed Capital Required' },
@@ -429,7 +429,7 @@ function BudgetTab() {
         ]} />
       </div>
 
-      <div style={{ ...section, paddingTop: 0 }}>
+      <div className="z-section" style={{ ...section, paddingTop: 0 }}>
         <SLabel>Cost Structure</SLabel>
         <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid rgba(200,168,75,0.12)' }}>
           <thead>
@@ -456,7 +456,7 @@ function BudgetTab() {
         </table>
       </div>
 
-      <div style={{ ...section, paddingTop: 0 }}>
+      <div className="z-section" style={{ ...section, paddingTop: 0 }}>
         <SLabel>Revenue Model</SLabel>
         <CardGrid cols={3}>
           <Card title="Ticket Revenue" sub="Primary" body="2,000 tickets across three tiers. GA at $350–$450, VIP at $600–$800, Glamping at $1,200–$1,800 (7-day pass, accommodation included). Blended average target: ~$650 per ticket." />
@@ -465,7 +465,7 @@ function BudgetTab() {
         </CardGrid>
       </div>
 
-      <div style={section}>
+      <div className="z-section" style={section}>
         <QuoteBlock
           text={"\"The festival that executes flawlessly at 2,000 people on a private island in June 2027 has something no amount of money can buy in Year 3: a founding story. You can't retro-fit that. You're either in the room when it starts, or you're not.\""}
           attr="Investment Thesis"
@@ -514,6 +514,7 @@ export default function DeckPage() {
           {TABS.map(t => (
             <button
               key={t.id}
+              className="z-nav-tab"
               onClick={() => setActiveTab(t.id)}
               style={{
                 fontSize: '9px', letterSpacing: '0.4em',
