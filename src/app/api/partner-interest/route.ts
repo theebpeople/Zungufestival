@@ -1,13 +1,12 @@
 import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // From address — update to a verified Resend sender domain once DNS is confirmed
 const FROM = 'Zungu Festival <onboarding@resend.dev>';
 const TEAM_EMAIL = 'partnership@zungufestival.com';
 
 export async function POST(req: NextRequest) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
   const body = await req.json().catch(() => null);
   if (!body) return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
 
