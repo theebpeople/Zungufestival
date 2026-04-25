@@ -37,12 +37,17 @@ function SignInContent() {
 
         /* ── KILL ALL DEFAULT CLERK STYLES ── */
 
-        /* Hide header — "Sign in to My Application" */
+        /* Hide header — attribute selectors survive Clerk class renames */
+        [class*="cl-header"],
+        [class*="cl-cardHeader"],
         .cl-headerTitle,
         .cl-headerSubtitle,
         .cl-header { display: none !important; }
 
-        /* Hide social login buttons — GitHub, Google, Vercel */
+        /* Hide social login buttons + divider */
+        [class*="cl-socialButton"],
+        [class*="cl-socialButtons"],
+        [class*="cl-divider"],
         .cl-socialButtonsBlockButton,
         .cl-socialButtonsBlockButtonText,
         .cl-socialButtonsBlockButtonArrow,
@@ -52,12 +57,16 @@ function SignInContent() {
         .cl-dividerText,
         .cl-dividerLine { display: none !important; }
 
-        /* Hide "Sign up" footer and "Secured by Clerk" */
+        /* Hide "Sign up" footer */
+        [class*="cl-footer"],
+        [class*="cl-footerAction"],
         .cl-footer,
         .cl-footerPages,
         .cl-footerPagesLink { display: none !important; }
 
         /* Hide "Development mode" banner */
+        [class*="cl-badge"],
+        [class*="cl-devMode"],
         .cl-internal-wjdkne,
         .cl-badge,
         [data-localization-key="badge__devMode"] { display: none !important; }
@@ -206,7 +215,7 @@ function SignInContent() {
           // {isPartner ? 'Partner' : 'Investor'} Access
         </div>
 
-        {/* Clerk form — fully overridden above */}
+        {/* Clerk form — header hidden via CSS + appearance; text set in ClerkProvider localization */}
         <SignIn
           routing="hash"
           forceRedirectUrl={isPartner ? '/partner' : '/deck'}
@@ -226,13 +235,17 @@ function SignInContent() {
             elements: {
               rootBox: { width: '100%' },
               card: 'cl-card',
+              cardHeader: { display: 'none' },
+              header: { display: 'none' },
               headerTitle: { display: 'none' },
               headerSubtitle: { display: 'none' },
-              header: { display: 'none' },
-              socialButtonsBlockButton: { display: 'none' },
               socialButtonsRoot: { display: 'none' },
+              socialButtonsBlockButton: { display: 'none' },
               dividerRow: { display: 'none' },
+              dividerLine: { display: 'none' },
               footer: { display: 'none' },
+              footerAction: { display: 'none' },
+              footerPages: { display: 'none' },
             },
             layout: {
               logoPlacement: 'none',
@@ -255,10 +268,10 @@ function SignInContent() {
         }}>
           By invitation only &nbsp;·&nbsp;{' '}
           <a
-            href="mailto:access@zungufestival.com"
+            href="mailto:partnership@zungufestival.com"
             style={{ color: 'rgba(200,168,75,0.35)', textDecoration: 'none' }}
           >
-            access@zungufestival.com
+            partnership@zungufestival.com
           </a>
         </p>
 
