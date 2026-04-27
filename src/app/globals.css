@@ -19,6 +19,17 @@ body {
   box-shadow: none !important;
   border: none !important;
 }
+
+/* Kill header, social buttons, divider, footer, dev badge via attribute selectors */
+[class*="cl-header"],
+[class*="cl-cardHeader"] { display: none !important; }
+[class*="cl-socialButtons"],
+[class*="cl-divider"] { display: none !important; }
+[class*="cl-footer"],
+[class*="cl-footerAction"] { display: none !important; }
+[class*="cl-badge"],
+[data-localization-key="badge__devMode"] { display: none !important; }
+
 .cl-headerTitle,
 .cl-headerSubtitle,
 .cl-socialButtonsBlockButtonText,
