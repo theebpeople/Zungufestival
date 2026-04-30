@@ -84,7 +84,7 @@ body {
 }
 .hero-bg {
   position:absolute; inset:0;
-  background-image: url('/mnt/user-data/uploads/Screenshot_2026-03-04_at_3_15_52_PM.png');
+  background-image: url('/photos/princess-island-portantonio.jpg');
   background-size:cover; background-position:center 35%;
 }
 .hero-bg::after {
@@ -397,6 +397,14 @@ body {
 @media(max-width:768px){
   .ham{display:flex;}
 }
+.photo-break{position:relative;overflow:hidden;}
+.pb-img{position:absolute;inset:0;background-size:cover;background-position:center;background-attachment:fixed;}
+.pb-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(4,8,10,0.85) 0%,rgba(4,8,10,0.3) 60%,rgba(4,8,10,0.15) 100%);}
+.pb-text{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:60px 8vw;height:100%;}
+.pb-label{font-size:8px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.pb-title{font-family:'Unbounded',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;color:var(--cream);line-height:1.1;}
+.pb-title em{color:var(--gold);font-style:normal;}
+@media(max-width:700px){.pb-img{background-attachment:scroll;}}
 </style>
 </head>
 <body>
@@ -450,6 +458,16 @@ body {
     </div>
   </div>
 </section>
+
+<!-- PHOTO BREAK: Boston Bay -->
+<div class="photo-break" style="height:55vh">
+  <div class="pb-img" style="background-image:url('/photos/boston-bay.jpg');background-position:center 45%;"></div>
+  <div class="pb-ov"></div>
+  <div class="pb-text">
+    <div class="pb-label">Boston Bay · Portland Parish · Jamaica</div>
+    <div class="pb-title">Birthplace of<br><em>jerk cuisine.</em></div>
+  </div>
+</div>
 
 <!-- CHAPTER 01 -->
 <div class="chapter" id="philosophy-chapter">
@@ -858,6 +876,16 @@ body {
       <div class="tg-time">1:00pm</div>
       <div class="tg-cell" style="grid-column:2/-1;"><span class="act-name">Ferry Departures Begin</span><span class="act-detail">Staggered exits from 1pm. Final ferry 6pm. Island restoration begins immediately after last guest departs.</span></div>
     </div>
+  </div>
+</div>
+
+<!-- PHOTO BREAK: Blue Lagoon -->
+<div class="photo-break" style="height:58vh">
+  <div class="pb-img" style="background-image:url('/photos/blue-lagoon-port-antonio.jpg');background-position:center 50%;"></div>
+  <div class="pb-ov" style="background:linear-gradient(to top,rgba(4,8,10,0.8) 0%,rgba(4,8,10,0.2) 70%,transparent 100%);"></div>
+  <div class="pb-text">
+    <div class="pb-label">Blue Lagoon · Port Antonio · Jamaica</div>
+    <div class="pb-title">Spring-fed. <em>Bottomless.</em></div>
   </div>
 </div>
 
