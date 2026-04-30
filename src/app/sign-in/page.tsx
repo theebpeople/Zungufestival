@@ -105,14 +105,6 @@ function SignInContent() {
         <SignIn
           routing="hash"
           forceRedirectUrl={isPartner ? '/partner' : '/deck'}
-          localization={{
-            signIn: {
-              start: {
-                title: isPartner ? 'Partner Access' : 'Investor Access',
-                subtitle: ' ',
-              },
-            },
-          }}
           appearance={{
             variables: {
               colorPrimary: gold,
