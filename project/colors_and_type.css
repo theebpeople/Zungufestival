@@ -1,0 +1,262 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   ZUNGU FESTIVAL · DESIGN TOKENS
+   Dark editorial luxury · Navy Island, Port Antonio, Jamaica · MMXXVII
+   ───────────────────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  /* ── Core palette (canonical from src/app/globals.css + handoff) ─────── */
+  --bg:        #04080A;            /* near-black — primary surface       */
+  --bg-alt:    #060808;            /* near-black — Next.js variant       */
+  --green:     #0D2018;            /* deep forest green — section bg     */
+  --gold:      #C8A84B;            /* signature amber gold — primary acc */
+  --cream:     #F2EBD9;            /* warm white — text                  */
+  --white:     #F7F3EC;            /* slightly cooler cream — headings   */
+  --rust:      #C45A2A;            /* burnt orange — accent diamonds     */
+  --teal:      #4AAFA0;            /* partner accent (legacy portal)     */
+  --muted:     #6B6355;            /* labels / metadata                  */
+  --muted-cream: rgba(242, 235, 217, 0.45);  /* alt muted (cream-tinted) */
+  --dim:       rgba(242, 235, 217, 0.18);    /* dimmest legible cream    */
+
+  /* ── Stage / night accent colors ─────────────────────────────────────── */
+  --origins:   #D4722A;            /* sunrise / east  · jungle           */
+  --rebirth:   #9B5FC0;            /* sunset / west   · house            */
+  --night-2:   #4A8FBD;            /* the spread      · global south     */
+  --night-3:   #3AAF7A;            /* the return      · afro-house       */
+
+  /* ── Foreground roles (semantic) ─────────────────────────────────────── */
+  --fg-1:      var(--white);                   /* primary heading       */
+  --fg-2:      var(--cream);                   /* body                  */
+  --fg-3:      rgba(242, 235, 217, 0.65);      /* secondary             */
+  --fg-4:      rgba(242, 235, 217, 0.40);      /* tertiary / muted      */
+  --fg-5:      var(--muted);                   /* labels                */
+  --fg-accent: var(--gold);                    /* gold accent text      */
+
+  /* ── Border / hairline system ────────────────────────────────────────── */
+  --border:        rgba(200,168,75, 0.07);     /* default hairline      */
+  --border-strong: rgba(200,168,75, 0.20);     /* emphasized            */
+  --border-soft:   rgba(255,255,255, 0.05);    /* neutral panel edge    */
+  --border-input:  rgba(255,255,255, 0.10);    /* form inputs           */
+
+  /* ── Surfaces / overlays ─────────────────────────────────────────────── */
+  --surface-card:    rgba(255,255,255, 0.02);  /* feature card          */
+  --surface-input:   rgba(255,255,255, 0.05);  /* input fill            */
+  --surface-gold-tint: rgba(200,168,75, 0.04); /* gold-tinted block     */
+  --overlay-nav:     rgba(4,8,10, 0.85);       /* sticky nav backdrop   */
+
+  /* ── Type families ───────────────────────────────────────────────────── */
+  --font-display: 'Unbounded', 'Helvetica Neue', sans-serif;   /* 900 / 700 / 300 */
+  --font-mono:    'Space Mono', ui-monospace, monospace;       /* 400 / 700 + italic */
+
+  /* ── Type ramp (semantic) ────────────────────────────────────────────── */
+  --h1-size: clamp(3rem, 11vw, 9rem);     /* hero          · Unbounded 900 */
+  --h2-size: clamp(2rem, 5vw, 4.8rem);    /* stage names   · Unbounded 900 */
+  --h3-size: clamp(1.6rem, 3.5vw, 2.8rem);/* chapter title · Unbounded 700 */
+  --h4-size: 1.25rem;                     /* card title    · Unbounded 900 */
+  --h5-size: 0.9375rem;                   /* sub-headline                  */
+
+  --body-size:   14px;                    /* body          · Space Mono   */
+  --small-size:  13px;                    /* secondary body               */
+  --label-size:  11px;                    /* uppercase labels             */
+  --micro-size:  9px;                     /* caps eyebrows / tracking     */
+  --nano-size:   8px;                     /* finest tracked eyebrows      */
+
+  /* ── Tracking presets ────────────────────────────────────────────────── */
+  --tr-tight:  -0.05em;          /* display headings        */
+  --tr-snug:   -0.02em;          /* large display           */
+  --tr-normal: 0;
+  --tr-wide:   0.15em;           /* button labels           */
+  --tr-wider:  0.25em;           /* form labels             */
+  --tr-widest: 0.35em;           /* eyebrow labels          */
+  --tr-mega:   0.50em;           /* hero meta lines         */
+  --tr-ultra:  0.60em;           /* footer location strip   */
+
+  /* ── Spacing scale (8-pt + display jumps) ────────────────────────────── */
+  --s-1: 4px;   --s-2: 8px;   --s-3: 12px; --s-4: 16px;  --s-5: 24px;
+  --s-6: 32px;  --s-7: 48px;  --s-8: 64px; --s-9: 96px;  --s-10: 128px;
+
+  /* page gutters */
+  --gutter:        8vw;
+  --gutter-mobile: 5vw;
+
+  /* ── Radius — ALWAYS ZERO ────────────────────────────────────────────── */
+  --radius: 0;
+
+  /* ── Motion ──────────────────────────────────────────────────────────── */
+  --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:   150ms;
+  --dur-base:   300ms;
+  --dur-slow:   600ms;
+
+  /* ── Cursor (universal) ─────────────────────────────────────────────── */
+  --cursor: crosshair;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   SEMANTIC ELEMENT STYLES
+   Drop colors_and_type.css into a page and these defaults take effect.
+   ───────────────────────────────────────────────────────────────────────── */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: var(--font-mono);
+  font-size: var(--body-size);
+  line-height: 1.7;
+  cursor: var(--cursor);
+  overflow-x: hidden;
+}
+
+::selection { background: var(--gold); color: var(--bg); }
+
+/* Headings — Unbounded, near-uppercase */
+h1, .h1 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--h1-size);
+  line-height: 0.88;
+  letter-spacing: var(--tr-tight);
+  color: var(--white);
+  text-transform: uppercase;
+}
+h2, .h2 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--h2-size);
+  line-height: 0.9;
+  letter-spacing: var(--tr-snug);
+  color: var(--white);
+  text-transform: uppercase;
+}
+h3, .h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--h3-size);
+  line-height: 1.1;
+  letter-spacing: var(--tr-snug);
+  color: var(--cream);
+}
+h4, .h4 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--h4-size);
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: var(--tr-snug);
+  color: var(--white);
+}
+
+/* Body */
+p, .body {
+  font-family: var(--font-mono);
+  font-size: var(--body-size);
+  line-height: 1.85;
+  color: var(--fg-3);
+}
+p strong { color: var(--cream); font-weight: 700; }
+
+/* Eyebrow / caps label */
+.eyebrow, .label {
+  font-family: var(--font-mono);
+  font-size: var(--micro-size);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tr-widest);
+  color: var(--gold);
+}
+
+/* Eyebrow with leading hairline */
+.eyebrow-hair {
+  font-family: var(--font-mono);
+  font-size: var(--micro-size);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tr-widest);
+  color: var(--gold);
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.eyebrow-hair::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: rgba(200,168,75,0.5);
+}
+
+/* Italic comment-style label (// ACCESS AUTHORIZATION REQUIRED) */
+.comment-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: var(--tr-widest);
+  color: var(--muted);
+}
+
+/* Tabular figures for time tables */
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* Accent diamond — paired with eyebrow text */
+.diamond {
+  display: inline-block;
+  width: 4px; height: 4px;
+  transform: rotate(45deg);
+  background: var(--rust);
+}
+
+/* Accent block — small filled square */
+.block-mark {
+  display: inline-block;
+  width: 8px; height: 8px;
+  background: var(--gold);
+}
+
+/* Hairline divider */
+.hairline { border: 0; border-top: 1px solid var(--border); }
+
+/* ─── UTILITY CLASSES ─────────────────────────────────────────────────── */
+
+/* Display headline — applied to <h1> or <div> for hero copy */
+.display {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 0.87;
+  color: var(--cream);
+  text-transform: uppercase;
+}
+
+/* Body utility (alternative to <p>) */
+.body-text {
+  font-family: var(--font-mono);
+  font-size: var(--body-size);
+  line-height: 1.9;
+  color: var(--muted-cream);
+}
+
+/* Section label — SIGNATURE pattern. Always preceded by 26px gold rule. */
+.s-label {
+  font-family: var(--font-mono);
+  font-size: var(--micro-size);
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+}
+.s-label::before {
+  content: '';
+  width: 26px;
+  height: 1px;
+  background: var(--gold);
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 14px;
+}

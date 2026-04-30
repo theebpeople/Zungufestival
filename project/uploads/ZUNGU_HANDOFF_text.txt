@@ -1,0 +1,165 @@
+ZUNGU — Claude Code Handoff
+From: Claude (claude.ai chat session)
+To: Claude Code agent
+Date: March 17, 2026
+INSTRUCTION
+Discard the current build entirely. Do not salvage any existing files.
+Start fresh using the single source-of-truth file described below.
+THE FILE
+The canonical version of the Zungu portal is a single self-contained HTML file.
+Filename: zungu-portal-full.html Size: ~319KB / ~1,566 lines MD5:
+1d9992b5affb60bb6231de95cdc6ebd9
+This file is available as a download from the claude.ai chat session that produced it. The
+user will need to download it from the outputs panel and place it in the project root, or you
+can fetch it if the user provides the path.
+WHAT THE FILE IS
+A fully self-contained single-page application with no external dependencies except Google
+Fonts. No framework. No build step. Opens directly in a browser.
+It contains:
+Pages (JS-routed, no page reloads)
+
+-- 1 of 6 --
+
+Page ID 	Description
+page-landing 	Hero — Navy Island aerial, gold Z logo, two CTA buttons
+page-signin 	Auth — split panel, role-aware (investor vs partner)
+page-redirect 	Loading state — 2.2s animation then routes to portal
+page-investor 	6-tab investor portal
+page-partner 	5-tab partner portal
+Investor tabs
+1. Home — Jamaica manifesto, key stats, 5 open gates
+2. Brand & Concept — festival positioning, 3 things nobody else has
+3. Stages — expandable accordion cards for all 4 zones
+4. Activities — 6 programme cards
+5. Marketing — story arc, audience, media targets
+6. Budget & Investment — full cost table, tiered pricing, revenue model
+Partner tabs
+1. Home — island-first pitch, what partners get
+2. Brand & Concept — commissioning model
+3. Stages — stage overview
+4. Activities — partnership touchpoints per activity
+5. Confirm Interest — selectable interest types + contact form
+JS functions
+showPage , goSignin , switchRole , updateSigninPanel , handleSignin , investorTab ,
+partnerTab , toggleStage , selectInterest , submitCTA
+DESIGN SYSTEM
+
+-- 2 of 6 --
+
+--bg: 	#04080A 	/* near-black */
+--green: #0D2018 	/* deep forest green */
+--gold: 	#C8A84B 	/* signature amber gold */
+--teal: 	#4AAFA0 	/* partner accent */
+--cream: #F2EBD9 	/* warm white */
+--muted: rgba(242,235,217,0.4)
+Fonts: Unbounded (900/700/300) + Space Mono — loaded from Google Fonts
+Logo: Gold Z mark (transparent PNG) — base64 embedded
+Hero image: Port Antonio aerial — base64 embedded
+Cursor: crosshair
+Border radius: 0px everywhere — sharp edges only
+Grain overlay: SVG feTurbulence fixed to body
+KEY DECISIONS ALREADY MADE — DO NOT CHANGE
+Capacity: 2,000 tickets. One authoritative number. Not “2,000–2,500”, not “capacity”.
+Tickets sold.
+Dates: June 17–23, 2027. 7 days, 6 nights.
+Tiered pricing: GA $350–450 / VIP $600–800 / Glamping $1,200–1,800
+Island lease: ~$44K (7 days at ~1M JMD/day)
+Stage peak crowds: Origins ~800 / Zungu Main ~1,200 / Rebirth ~500 — all within the
+2,000 ticket base
+Glamping is a ticket tier, not separate headcount — same model as Tomorrowland
+Dreamville
+No “cultural movement” framing. The island is the pitch. Jamaica’s sonic history is
+context, not the argument.
+Investor accent: gold. Partner accent: teal. Sign-in panel switches dynamically.
+WHAT TO BUILD NEXT
+The user wants this running as a proper Next.js application with real Clerk authentication.
+Structure
+
+-- 3 of 6 --
+
+app/
+page.js 	← Landing (currently page-landing)
+sign-in/
+page.js 	← Auth (currently page-signin)
+deck/
+page.js 	← Investor portal (currently page-investor)
+partner/
+page.js 	← Partner portal (currently page-partner)
+middleware.js 	← Role-based protection
+public/
+logo-z.png 	← Extract from HTML base64
+hero-port-antonio.jpg ← Extract from HTML base64
+Auth logic
+Clerk handles authentication
+After sign-in, read user.publicMetadata.role
+role: "investor" → routes to /deck
+role: "partner" → routes to /partner
+Middleware blocks cross-access (investor can’t reach /partner, partner can’t reach
+/deck)
+Sign-in page reads ?role=investor or ?role=partner from URL params to set panel
+context
+Clerk appearance variables
+{
+colorPrimary: '#C8A84B', 	// gold for investor
+colorBackground: 'transparent',
+colorText: '#F2EBD9',
+colorInputBackground: 'rgba(4,8,10,0.95)',
+fontFamily: 'Space Mono, monospace',
+borderRadius: '0px',
+}
+// For partner, swap colorPrimary to '#4AAFA0'
+To extract embedded assets from the HTML
+# Extract logo (search for logo img src, copy base64, decode)
+
+-- 4 of 6 --
+
+CONVERSATION CONTEXT
+This portal was built across a long session covering:
+Brand strategy for Zungu Festival 2027
+Navy Island, Port Antonio, Jamaica
+2,000 ticket holders, June 17–23, 2027
+Electronic music festival — new entrant, island as the pitch
+Investors routed to brand strategy + financial model
+Partners routed to operational deck + CTA form
+The full brand strategy document ( zungu-brand-strategy.html ) also exists as a separate
+2,300-line file and contains: Leaflet.js maps, master schedule (15-month timeline), financial
+triggers table, stage placement maps, and the full operational plan.
+python3 -c "
+import re, base64
+with open('zungu-portal-full.html') as f:
+html = f.read()
+# Logo is in: <img src=\"data:image/png;base64,...\" class=\"hero-logo\"
+match = re.search(r'class=\"hero-logo\"[^>]*src=\"data:image/png;base64,([^\"]+)\"', html)
+if not match:
+match = re.search(r'src=\"data:image/png;base64,([^\"]+)\"[^>]*class=\"hero-logo\"', html
+if not match:
+match = re.search(r'class=\"nav-logo\"[^>]*src=\"data:image/png;base64,([^\"]+)\"', html)
+with open('public/logo-z.png', 'wb') as f:
+f.write(base64.b64decode(match.group(1)))
+print('Logo extracted')
+"
+# Extract hero image
+python3 -c "
+import re, base64
+with open('zungu-portal-full.html') as f:
+html = f.read()
+match = re.search(r'background-image:\s*url\(\'data:image/jpeg;base64,([^\']+)\'', html)
+with open('public/hero-port-antonio.jpg', 'wb') as f:
+f.write(base64.b64decode(match.group(1)))
+print('Hero extracted')
+"
+
+-- 5 of 6 --
+
+IMMEDIATE NEXT STEP FOR CLAUDE CODE
+1. Confirm the user has placed zungu-portal-full.html in the project root
+2. Run: python3 -c "import re; html=open('zungu-portal-full.html').read();
+print('OK' if 'submitCTA' in html and '2,000' in html else 'WRONG FILE')" to
+verify it’s the right file
+3. Ask the user whether they want: (a) static HTML served as-is, (b) Next.js conversion, or
+(c) Webflow/Framer export
+4. Proceed accordingly
+Handoff prepared by Claude (claude.ai) · Zungu Festival project · March 17, 2026
+
+-- 6 of 6 --
+
