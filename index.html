@@ -3,422 +3,507 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ZUNGU 2027 — Access</title>
+  <title>ZUNGU 2027 — Navy Island, Jamaica</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            unbounded: ['Unbounded', 'sans-serif'],
-            mono: ['Space Mono', 'monospace'],
-          },
-        },
-      },
-    };
-  </script>
-  <!-- React + ReactDOM (UMD) -->
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-  <!-- Babel standalone — transforms JSX in the browser -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <style>
-    body { background-color: #060808; cursor: crosshair; margin: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #060808;
+      color: #F7F3EC;
+      font-family: 'Space Mono', monospace;
+      cursor: crosshair;
+      overflow-x: hidden;
+    }
     ::selection { background: #C8A84B; color: #060808; }
-    * { box-sizing: border-box; }
-    /* whitespace:pre-wrap for multi-line headings */
-    .pre-wrap { white-space: pre-wrap; }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('/photos/navy-island-aerial.jpg');
+      background-size: cover;
+      background-position: center 38%;
+      transition: opacity 1.2s ease;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(6,8,8,0.25) 0%,
+        rgba(6,8,8,0.55) 55%,
+        rgba(6,8,8,0.92) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      width: 100%;
+    }
+
+    /* ── Logo mark ── */
+    .mark {
+      width: 68px;
+      height: 68px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2.25rem;
+    }
+    .mark-diamond {
+      position: absolute;
+      inset: 0;
+      transform: rotate(45deg);
+      border: 1px solid rgba(200,168,75,0.25);
+    }
+    .mark-inner {
+      width: 40px;
+      height: 40px;
+      border: 2px solid #C8A84B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mark-dot { width: 7px; height: 7px; background: #C8A84B; }
+
+    /* ── Wordmark ── */
+    h1.wordmark {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(4.5rem, 17vw, 11rem);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      color: #F7F3EC;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    /* ── Location line ── */
+    .location {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      color: #C8A84B;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .location-dot { width: 4px; height: 4px; background: #C45A2A; transform: rotate(45deg); flex-shrink: 0; }
+
+    /* ── Sub-label ── */
+    .sub-label {
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-style: italic;
+      color: rgba(107,99,85,0.75);
+      margin-bottom: 3rem;
+    }
+
+    /* ── CTA buttons ── */
+    .cta-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      width: 100%;
+      max-width: 300px;
+    }
+    .btn {
+      display: block;
+      padding: 0.95rem 1.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      text-align: center;
+      border: 1px solid;
+      transition: background 0.25s, color 0.25s, border-color 0.25s;
+      cursor: crosshair;
+    }
+    .btn-primary {
+      background: transparent;
+      border-color: rgba(200,168,75,0.5);
+      color: #C8A84B;
+    }
+    .btn-primary:hover {
+      background: #C8A84B;
+      border-color: #C8A84B;
+      color: #060808;
+    }
+    .btn-secondary {
+      background: transparent;
+      border-color: rgba(247,243,236,0.15);
+      color: #F7F3EC;
+    }
+    .btn-secondary:hover { border-color: rgba(247,243,236,0.45); }
+
+    /* ── Scroll cue ── */
+    .scroll-cue {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(107,99,85,0.6);
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(200,168,75,0.5), transparent);
+    }
+
+    /* ── Photo break ── */
+    .photo-break {
+      position: relative;
+      height: 65vh;
+      min-height: 400px;
+      overflow: hidden;
+    }
+    .pb-img {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    .pb-ov {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(6,8,8,0.82) 0%,
+        rgba(6,8,8,0.4) 55%,
+        rgba(6,8,8,0.55) 100%
+      );
+    }
+    .pb-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 3rem max(3rem, 7vw);
+    }
+    .pb-label {
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #C8A84B;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+    .pb-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(2rem, 5.5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.05;
+      color: #F7F3EC;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      max-width: 520px;
+    }
+    .pb-title em { font-style: normal; color: #C8A84B; }
+
+    /* ── Intro strip ── */
+    .intro {
+      padding: 6rem max(2rem, 7vw);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .intro-label {
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #C8A84B;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .intro-label::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: rgba(200,168,75,0.4);
+    }
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .intro-heading {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      color: #F7F3EC;
+      text-transform: uppercase;
+    }
+    .intro-heading em { font-style: normal; color: #C8A84B; }
+    .intro-body {
+      font-size: 13px;
+      line-height: 1.85;
+      color: #6B6355;
+    }
+    .intro-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 2rem;
+    }
+    .stat-num {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: #C8A84B;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #6B6355;
+      font-weight: 700;
+    }
+
+    /* ── Second photo break ── */
+    .divider-line {
+      height: 1px;
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* ── Access section ── */
+    .access-section {
+      padding: 6rem max(2rem, 7vw);
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .access-heading {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      color: #F7F3EC;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .access-sub {
+      font-size: 12px;
+      color: #6B6355;
+      letter-spacing: 0.1em;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+    }
+    .access-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .access-btns .btn { min-width: 200px; }
+
+    /* ── Footer ── */
+    footer {
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-logo {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: #F7F3EC;
+      margin-bottom: 0.5rem;
+    }
+    .footer-location {
+      font-size: 10px;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: #6B6355;
+      margin-bottom: 1.5rem;
+    }
+    .footer-contact {
+      font-size: 11px;
+      color: #6B6355;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+    .footer-contact a { color: #C8A84B; text-decoration: none; }
+    .footer-contact a:hover { text-decoration: underline; }
+
+    /* ── Mobile ── */
+    @media (max-width: 700px) {
+      .intro-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .pb-img { background-attachment: scroll; }
+      .access-btns .btn { min-width: 100%; max-width: 300px; }
+    }
   </style>
 </head>
 <body>
-  <div id="root"></div>
 
-  <script type="text/babel" data-presets="react">
-    const { useState } = React;
-    const { createRoot } = ReactDOM;
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
 
-    // Inline SVG icons (replaces lucide-react dependency)
-    const ArrowRight   = ({ size=24, style }) => <svg width={size} height={size} style={style} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>;
-    const X            = ({ size=24, style }) => <svg width={size} height={size} style={style} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>;
-    const Compass      = ({ size=24, style }) => <svg width={size} height={size} style={style} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>;
-    const ChevronRight = ({ size=24, style }) => <svg width={size} height={size} style={style} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>;
-    const Target       = ({ size=24, style }) => <svg width={size} height={size} style={style} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>;
-    const BarChart3    = ({ size=24, style }) => <svg width={size} height={size} style={style} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>;
+    <div class="hero-content">
+      <div class="mark">
+        <div class="mark-diamond"></div>
+        <div class="mark-inner"><div class="mark-dot"></div></div>
+      </div>
 
-    // --- Design Tokens ---
-    const C = {
-      black: "#060808",
-      gold:  "#C8A84B",
-      cream: "#F2EBD9",
-      rust:  "#C45A2A",
-      muted: "#6B6355",
-      white: "#F7F3EC",
-    };
+      <h1 class="wordmark">ZUNGU</h1>
 
-    // --- Button ---
-    function Button({ children, onClick, variant = "primary", className = "" }) {
-      const base = "relative px-8 py-4 font-bold transition-all duration-300 uppercase tracking-[0.15em] text-xs flex items-center justify-center gap-3 border font-mono cursor-crosshair";
-      const styleMap = {
-        primary:   { color: C.gold,  borderColor: `${C.gold}55`, backgroundColor: "transparent" },
-        secondary: { color: C.white, borderColor: "rgba(255,255,255,0.2)", backgroundColor: "transparent" },
-        gold:      { color: C.black, borderColor: C.gold, backgroundColor: C.gold },
-      };
-      const hoverIn = {
-        primary:   e => { e.currentTarget.style.backgroundColor = C.gold;  e.currentTarget.style.color = C.black; },
-        secondary: e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.7)"; },
-        gold:      e => { e.currentTarget.style.filter = "brightness(1.1)"; },
-      };
-      const hoverOut = {
-        primary:   e => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = C.gold; },
-        secondary: e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)"; },
-        gold:      e => { e.currentTarget.style.filter = ""; },
-      };
-      return (
-        <button
-          onClick={onClick}
-          className={`${base} ${className}`}
-          style={styleMap[variant]}
-          onMouseEnter={hoverIn[variant]}
-          onMouseLeave={hoverOut[variant]}
-        >
-          {children}
-        </button>
-      );
-    }
+      <div class="location">
+        <span>Navy Island</span>
+        <div class="location-dot"></div>
+        <span>MMXXVII</span>
+      </div>
 
-    // --- Input ---
-    function InputField({ label, type = "text", placeholder, options }) {
-      return (
-        <div className="flex flex-col gap-2 mb-8">
-          <div className="flex justify-between items-center">
-            <label className="text-xs font-mono uppercase tracking-[0.25em] font-bold" style={{ color: C.gold }}>{label}</label>
-            <span className="text-[10px] font-mono" style={{ color: C.muted }}>[REQUIRED]</span>
+      <p class="sub-label">// By invitation only</p>
+
+      <div class="cta-group">
+        <a href="/sign-in" class="btn btn-primary">Investor Access</a>
+        <a href="/sign-in?role=partner" class="btn btn-secondary">Partner Access</a>
+      </div>
+    </div>
+
+    <div class="scroll-cue">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ── Photo break 1 ── -->
+  <div class="photo-break">
+    <div class="pb-img" style="background-image: url('/photos/navy-island-port-antonio.jpeg'); background-position: center 55%;"></div>
+    <div class="pb-ov"></div>
+    <div class="pb-text">
+      <div class="pb-label">Navy Island · Port Antonio · Jamaica</div>
+      <div class="pb-title">You arrive<br><em>over water.</em></div>
+    </div>
+  </div>
+
+  <!-- ── Intro ── -->
+  <section class="intro">
+    <p class="intro-label">Zungu Festival 2027</p>
+    <div class="intro-grid">
+      <div>
+        <h2 class="intro-heading">A private island.<br><em>Seven days.</em><br>Five hundred guests.</h2>
+      </div>
+      <div>
+        <p class="intro-body">
+          Zungu is a boutique electronic music festival staged on Navy Island in Portland Parish, Jamaica.
+          Fifty-two commissioned artists. A single private island accessible only by boat.
+          The most intentional music event ever staged in the Caribbean.
+        </p>
+        <p class="intro-body" style="margin-top: 1.25rem;">
+          Not a corporate festival. Not a beach club. A cultural institution built to last.
+        </p>
+        <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:1.5rem; margin-top:2.5rem;">
+          <div class="intro-stat">
+            <span class="stat-num">52</span>
+            <span class="stat-label">Artists</span>
           </div>
-          {type === "select" ? (
-            <div className="relative">
-              <select
-                className="w-full p-4 font-mono text-xs focus:outline-none appearance-none cursor-pointer uppercase tracking-wider"
-                style={{ backgroundColor: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: C.white }}
-              >
-                {options.map(opt => (
-                  <option key={opt} value={opt} style={{ backgroundColor: C.black, color: C.cream }}>{opt}</option>
-                ))}
-              </select>
-              <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" style={{ color: `${C.gold}55` }}>
-                <ChevronRight size={14} style={{ transform: "rotate(90deg)" }} />
-              </div>
-            </div>
-          ) : (
-            <input
-              type={type}
-              placeholder={placeholder}
-              className="p-4 font-mono text-xs focus:outline-none uppercase tracking-wider"
-              style={{ backgroundColor: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: C.white }}
-              onFocus={e  => { e.target.style.borderColor = C.gold; }}
-              onBlur={e   => { e.target.style.borderColor = "rgba(255,255,255,0.1)"; }}
-            />
-          )}
-        </div>
-      );
-    }
-
-    // --- Gate View ---
-    function GateView({ onRole }) {
-      return (
-        <div
-          className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden px-8 text-center font-mono"
-          style={{ backgroundColor: C.black }}
-        >
-          {/* Radial glow */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{ background: "radial-gradient(circle at center, rgba(200,168,75,0.06) 0%, transparent 70%)" }}
-          />
-
-          {/* Logo mark */}
-          <div className="relative z-10 mb-16 flex flex-col items-center">
-            <div className="w-20 h-20 mb-12 relative flex items-center justify-center">
-              <div className="absolute inset-0 rotate-45" style={{ border: `1px solid ${C.gold}33` }} />
-              <div className="w-12 h-12 flex items-center justify-center" style={{ border: `2px solid ${C.gold}` }}>
-                <div className="w-2 h-2" style={{ backgroundColor: C.gold }} />
-              </div>
-            </div>
-            <h1
-              className="text-6xl md:text-9xl font-black tracking-[-0.05em] uppercase font-unbounded mb-2"
-              style={{ color: C.white }}
-            >
-              ZUNGU
-            </h1>
-            <div className="flex items-center gap-6 uppercase font-bold text-[11px]" style={{ color: C.gold, letterSpacing: "0.4em" }}>
-              <span>Navy Island</span>
-              <div className="w-1 h-1 rotate-45" style={{ backgroundColor: C.rust }} />
-              <span>MMXXVII</span>
-            </div>
+          <div class="intro-stat">
+            <span class="stat-num">7</span>
+            <span class="stat-label">Days</span>
           </div>
-
-          {/* CTA block */}
-          <div className="relative z-10 max-w-lg w-full">
-            <p className="text-xs uppercase tracking-[0.35em] mb-12 font-bold italic" style={{ color: C.muted }}>
-              // ACCESS AUTHORIZATION REQUIRED
-            </p>
-            <div className="grid grid-cols-1 gap-4 max-w-xs mx-auto">
-              <Button onClick={() => onRole("investor")}  variant="primary">Investor Entrance</Button>
-              <Button onClick={() => onRole("supplier")}  variant="secondary">Production &amp; Logistics</Button>
-              <Button onClick={() => onRole("attendee")}  variant="secondary">General Admission</Button>
-            </div>
-            <button
-              onClick={() => onRole("attendee")}
-              className="mt-20 text-xs uppercase tracking-[0.35em] transition-all flex items-center justify-center gap-4 w-full"
-              style={{ color: C.muted }}
-              onMouseEnter={e => { e.currentTarget.style.color = C.gold; }}
-              onMouseLeave={e => { e.currentTarget.style.color = C.muted; }}
-            >
-              View Strategic Vision <ArrowRight size={12} />
-            </button>
+          <div class="intro-stat">
+            <span class="stat-num">500</span>
+            <span class="stat-label">Guests</span>
           </div>
         </div>
-      );
-    }
+      </div>
+    </div>
+  </section>
 
-    // --- Form View ---
-    function FormView({ type, onBack, onSubmit }) {
-      return (
-        <div
-          className="min-h-screen w-full flex items-center justify-center p-6 font-mono"
-          style={{ backgroundColor: C.black }}
-        >
-          <div
-            className="max-w-2xl w-full p-12 md:p-20 shadow-2xl relative"
-            style={{ backgroundColor: C.black, border: "1px solid rgba(255,255,255,0.05)" }}
-          >
-            <button
-              onClick={onBack}
-              className="absolute top-10 right-10 transition-colors"
-              style={{ color: C.muted }}
-              onMouseEnter={e => { e.currentTarget.style.color = C.gold; }}
-              onMouseLeave={e => { e.currentTarget.style.color = C.muted; }}
-            >
-              <X size={20} />
-            </button>
+  <div class="divider-line"></div>
 
-            <div className="mb-16">
-              <div className="inline-block px-3 py-1 mb-8" style={{ border: `1px solid ${C.rust}66` }}>
-                <h3 className="text-xs uppercase tracking-[0.35em] font-bold" style={{ color: C.rust }}>
-                  {type === "investor" ? "STRATEGIC PARTNER" : "PRODUCTION UNIT"}
-                </h3>
-              </div>
-              <h2
-                className="text-4xl font-black uppercase font-unbounded leading-tight tracking-tighter mb-6 pre-wrap"
-                style={{ color: C.white }}
-              >
-                {type === "investor" ? "Patient\nCapital." : "Technical\nStandard."}
-              </h2>
-              <p className="text-sm leading-relaxed max-w-sm uppercase tracking-wider font-bold" style={{ color: C.muted }}>
-                {type === "investor"
-                  ? "Securing long-term equity in the Portland Parish cultural revitalization project."
-                  : "Registering credentials for the 2027 infrastructure build-out."}
-              </p>
-            </div>
+  <!-- ── Photo break 2 ── -->
+  <div class="photo-break" style="height:55vh;">
+    <div class="pb-img" style="background-image: url('/photos/port-antonio.jpg'); background-position: center 50%;"></div>
+    <div class="pb-ov" style="background: linear-gradient(to top, rgba(6,8,8,0.9) 0%, rgba(6,8,8,0.35) 100%);"></div>
+    <div class="pb-text" style="align-items:center; justify-content:flex-end; padding-bottom:3.5rem; text-align:center; max-width:100%;">
+      <div class="pb-label">Portland Parish · Jamaica</div>
+      <div class="pb-title" style="font-size:clamp(1.5rem,4vw,2.75rem); max-width:600px;">The most beautiful<br><em>town in Jamaica.</em></div>
+    </div>
+  </div>
 
-            <form onSubmit={onSubmit}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10">
-                <InputField label="Entity Name"  placeholder="ENTER IDENTIFIER" />
-                <InputField label="Secure Email" placeholder="CONTACT@ZUNGU.COM" type="email" />
-                {type === "investor" ? (
-                  <>
-                    <InputField label="Capital Tier"  type="select" options={["$50K – $250K", "$250K – $1M", "$1M+"]} />
-                    <InputField label="Investor Type" type="select" options={["Strategic", "Individual", "VC", "Corporate"]} />
-                  </>
-                ) : (
-                  <>
-                    <InputField label="Specialization"       type="select" options={["Stage Craft", "Sound Eng", "Lighting", "Talent", "Logistics"]} />
-                    <InputField label="Reference / Portfolio" placeholder="HTTPS://" />
-                  </>
-                )}
-              </div>
-              <Button variant="gold" className="w-full mt-12 py-6" onClick={onSubmit}>
-                Submit Credentials
-              </Button>
-            </form>
-          </div>
-        </div>
-      );
-    }
+  <!-- ── Access ── -->
+  <section class="access-section">
+    <p class="intro-label" style="justify-content:center;">Access</p>
+    <h2 class="access-heading">Request access<br>to the full deck.</h2>
+    <p class="access-sub">
+      The investor deck covers the site, the financial model, the commissioning strategy,
+      and the partnership structures available for 2027.
+    </p>
+    <div class="access-btns">
+      <a href="/sign-in" class="btn btn-primary">Investor Deck</a>
+      <a href="/sign-in?role=partner" class="btn btn-secondary">Partner Portal</a>
+    </div>
+    <p style="margin-top:2.5rem; font-size:10px; color:#6B6355; letter-spacing:0.2em; text-transform:uppercase;">
+      Access by invitation only ·
+      <a href="mailto:partnership@zungufestival.com" style="color:#C8A84B; text-decoration:none;">partnership@zungufestival.com</a>
+    </p>
+  </section>
 
-    // --- Shared label style helper ---
-    const SectionLabel = ({ children }) => (
-      <p className="text-xs uppercase tracking-[0.4em] font-bold mb-3 flex items-center gap-3" style={{ color: C.gold }}>
-        <span style={{ display:"inline-block", width:28, height:1, backgroundColor:`${C.gold}66` }} />
-        {children}
-      </p>
-    );
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="footer-logo">ZUNGU</div>
+    <p class="footer-location">Port Antonio · Jamaica · 2027</p>
+    <p class="footer-contact">
+      <a href="mailto:partnership@zungufestival.com">partnership@zungufestival.com</a>
+    </p>
+  </footer>
 
-    // --- Dashboard View ---
-    function DashboardView({ role, onReset }) {
-      const navLinks = [
-        { label: "Vision",      href: "#vision" },
-        { label: "Stages",      href: "stages.html" },
-        { label: "Activities",  href: "activities.html" },
-      ];
-      const goals = [
-        { icon: <Target size={22} style={{ color: C.rust }} />,   num: "01", title: "Cultural Anchor", body: "Establishing Jamaica as the global destination for high-net-worth electronic music pilgrimage." },
-        { icon: <BarChart3 size={22} style={{ color: C.gold }} />, num: "02", title: "Tourism Yield",   body: "Transitioning from low-yield mass tourism to high-margin, low-impact boutique experiences." },
-        { icon: <Compass size={22} style={{ color: C.rust }} />,   num: "03", title: "Local Equity",    body: "Direct economic integration with Portland Parish labor and supply chains." },
-      ];
-      const pages = [
-        { label: "Stage Architecture", sub: "4 stages · Navy Island layout · sound specs", href: "stages.html",     accent: C.gold },
-        { label: "Activity Programme", sub: "Forest · water · wellness · cultural tours",  href: "activities.html", accent: C.rust },
-      ];
-
-      return (
-        <div className="min-h-screen font-mono" style={{ backgroundColor: C.black, color: C.white }}>
-
-          {/* ── Nav ── */}
-          <nav
-            className="flex justify-between items-center px-6 md:px-12 py-6 sticky top-0 z-50 backdrop-blur-xl"
-            style={{ borderBottom: "1px solid rgba(255,255,255,0.06)", backgroundColor: "rgba(6,8,8,0.92)" }}
-          >
-            <div className="text-xl font-black tracking-tighter font-unbounded" style={{ color: C.white }}>ZUNGU</div>
-            <div className="hidden md:flex gap-10" style={{ color: C.muted }}>
-              {navLinks.map(({ label, href }) => (
-                <a key={label} href={href}
-                  className="text-xs uppercase tracking-[0.25em] font-bold transition-colors"
-                  style={{ color: C.muted, textDecoration: "none" }}
-                  onMouseEnter={e => { e.target.style.color = C.gold; }}
-                  onMouseLeave={e => { e.target.style.color = C.muted; }}
-                >{label}</a>
-              ))}
-            </div>
-            <div className="text-[11px] px-3 py-1.5 uppercase tracking-widest font-bold" style={{ border: `1px solid ${C.gold}55`, color: C.gold }}>
-              {role}
-            </div>
-          </nav>
-
-          {/* ── Hero ── */}
-          <header id="vision"
-            className="relative flex items-center justify-center text-center px-6 md:px-12"
-            style={{ minHeight: "88vh", borderBottom: "1px solid rgba(255,255,255,0.06)" }}
-          >
-            <div className="absolute inset-0 z-0 overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1549413242-2b281f621764?auto=format&fit=crop&q=80&w=2000"
-                className="w-full h-full object-cover"
-                style={{ opacity: 0.18, filter: "grayscale(1) brightness(0.5)" }}
-                alt=""
-              />
-              <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.black} 0%, rgba(6,8,8,0.5) 50%, transparent 100%)` }} />
-            </div>
-
-            <div className="relative z-10 max-w-4xl w-full">
-              <div className="flex items-center justify-center gap-4 mb-10">
-                <div style={{ width: 32, height: 1, backgroundColor: C.gold }} />
-                <span className="text-xs uppercase tracking-[0.5em] font-bold" style={{ color: C.gold }}>
-                  Established 2027 &bull; Port Antonio
-                </span>
-                <div style={{ width: 32, height: 1, backgroundColor: C.gold }} />
-              </div>
-
-              <h1
-                className="font-black uppercase font-unbounded tracking-tighter leading-[0.88] mb-10 pre-wrap"
-                style={{ fontSize: "clamp(3rem,11vw,9rem)", color: C.white }}
-              >
-                {role === "investor" ? "PATIENT\nCAPITAL" : "BRUTAL\nLUXURY"}
-              </h1>
-
-              <p className="mx-auto text-sm leading-relaxed tracking-widest uppercase max-w-lg font-bold" style={{ color: C.muted }}>
-                {role === "investor"
-                  ? "A strategic argument for the revitalization of Navy Island through institutional cultural assets."
-                  : "A greenfield destination experience defined by raw textures and refined architecture."}
-              </p>
-            </div>
-          </header>
-
-          {/* ── Section: Strategic Goals ── */}
-          <section className="py-20 px-6 md:px-16 max-w-7xl mx-auto">
-            <SectionLabel>Strategic Goals</SectionLabel>
-            <h2 className="text-2xl md:text-3xl font-black font-unbounded uppercase tracking-tighter mb-12" style={{ color: C.white }}>
-              Why Zungu
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ backgroundColor: "rgba(255,255,255,0.05)" }}>
-              {goals.map(({ icon, num, title, body }) => (
-                <div key={num} className="p-10" style={{ backgroundColor: C.black, border: "1px solid rgba(255,255,255,0.05)" }}>
-                  <div className="mb-6">{icon}</div>
-                  <p className="text-xs uppercase tracking-[0.35em] font-bold mb-3" style={{ color: C.muted }}>Goal {num}</p>
-                  <h3 className="text-lg font-unbounded font-black uppercase mb-4 tracking-tight" style={{ color: C.white }}>{title}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: C.muted }}>{body}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* ── Section: Explore the Festival ── */}
-          <section className="py-20 px-6 md:px-16 max-w-7xl mx-auto" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-            <SectionLabel>Explore the Festival</SectionLabel>
-            <h2 className="text-2xl md:text-3xl font-black font-unbounded uppercase tracking-tighter mb-12" style={{ color: C.white }}>
-              Programme &amp; Venues
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {pages.map(({ label, sub, href, accent }) => (
-                <a
-                  key={href}
-                  href={href}
-                  className="group block p-10 transition-all"
-                  style={{ border: `1px solid ${accent}22`, backgroundColor: "rgba(255,255,255,0.02)", textDecoration: "none" }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = `${accent}66`; e.currentTarget.style.backgroundColor = `${accent}08`; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = `${accent}22`; e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.02)"; }}
-                >
-                  <p className="text-xs uppercase tracking-[0.3em] font-bold mb-3" style={{ color: accent }}>{sub}</p>
-                  <h3 className="text-xl font-unbounded font-black uppercase tracking-tight mb-4" style={{ color: C.white }}>{label}</h3>
-                  <div className="flex items-center gap-2 text-xs uppercase tracking-widest font-bold" style={{ color: accent }}>
-                    View details <ArrowRight size={13} />
-                  </div>
-                </a>
-              ))}
-            </div>
-          </section>
-
-          {/* ── Footer ── */}
-          <footer className="py-20 text-center" style={{ borderTop: "1px solid rgba(255,255,255,0.05)", backgroundColor: C.black }}>
-            <div className="text-2xl font-black font-unbounded tracking-tighter mb-3" style={{ color: C.white }}>ZUNGU</div>
-            <p className="text-xs tracking-[0.6em] uppercase mb-10" style={{ color: C.muted }}>
-              Port Antonio &middot; Jamaica &middot; 2027
-            </p>
-            <button
-              onClick={onReset}
-              className="text-xs uppercase tracking-widest font-bold pb-1"
-              style={{ color: C.gold, borderBottom: `1px solid ${C.gold}33` }}
-            >
-              ← Reset Session
-            </button>
-          </footer>
-        </div>
-      );
-    }
-
-    // --- App ---
-    function App() {
-      const [stage, setStage] = useState("gate");
-      const [role,  setRole]  = useState(null);
-
-      const handleRole = r => {
-        setRole(r);
-        setStage(r === "attendee" ? "dashboard" : "form");
-      };
-      const handleSubmit = e => { e.preventDefault(); setStage("dashboard"); };
-
-      return (
-        <>
-          {stage === "gate"      && <GateView onRole={handleRole} />}
-          {stage === "form"      && <FormView type={role} onBack={() => setStage("gate")} onSubmit={handleSubmit} />}
-          {stage === "dashboard" && <DashboardView role={role} onReset={() => { setRole(null); setStage("gate"); }} />}
-        </>
-      );
-    }
-
-    createRoot(document.getElementById("root")).render(<App />);
+  <script>
+    const bg = document.getElementById('heroBg');
+    const img = new Image();
+    img.onload = () => { bg.style.backgroundImage = "url('/photos/navy-island-aerial.jpg')"; };
+    img.src = '/photos/navy-island-aerial.jpg';
   </script>
+
 </body>
 </html>
