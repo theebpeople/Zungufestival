@@ -10,11 +10,11 @@ function b64url(buf: ArrayBuffer): string {
   return btoa(str).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
 }
 
-function fromb64url(s: string): Uint8Array {
+function fromb64url(s: string): Uint8Array<ArrayBuffer> {
   const padded = s.replace(/-/g, '+').replace(/_/g, '/');
   const padLen = (4 - (padded.length % 4)) % 4;
   const bin = atob(padded + '='.repeat(padLen));
-  const out = new Uint8Array(bin.length);
+  const out = new Uint8Array(new ArrayBuffer(bin.length));
   for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
   return out;
 }
