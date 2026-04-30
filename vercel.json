@@ -1,6 +1,7 @@
 {
   "framework": "nextjs",
   "rewrites": [
+    { "source": "/deck", "destination": "/deck.html" },
     { "source": "/brand", "destination": "/brand.html" },
     { "source": "/stages", "destination": "/stages.html" },
     { "source": "/activities", "destination": "/activities.html" }

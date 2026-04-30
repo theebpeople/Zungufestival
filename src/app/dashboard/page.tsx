@@ -108,6 +108,10 @@ function RoleSelectView({ onRole }: { onRole: (r: Role) => void }) {
       className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden px-8 text-center"
       style={{ backgroundColor: C.black }}
     >
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <Image src="/photos/navy-island-aerial.jpg" fill className="object-cover" style={{ opacity: 0.22, filter: 'saturate(0.6) brightness(0.45)' }} alt="" />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(6,8,8,1) 0%, rgba(6,8,8,0.6) 50%, rgba(6,8,8,0.4) 100%)' }} />
+      </div>
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(circle at center, rgba(200,168,75,0.06) 0%, transparent 70%)' }} />
 
       <div className="relative z-10 mb-16 flex flex-col items-center">
