@@ -19,73 +19,68 @@ export default function GatePage() {
       className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden px-8 text-center"
       style={{ backgroundColor: '#060808', fontFamily: "'Space Mono', monospace" }}
     >
-      {/* Navy Island background */}
+      {/* Navy Island background — visible but not overwhelming */}
       <div
         className="absolute inset-0"
         style={{
           backgroundImage: "url('/photos/navy-island-aerial.jpg')",
           backgroundSize: 'cover',
           backgroundPosition: 'center 38%',
-          filter: 'saturate(0.7) brightness(0.45)',
-          opacity: 0.35,
+          filter: 'saturate(0.6) brightness(0.55)',
+          opacity: 0.65,
         }}
       />
-      {/* Gradient overlay */}
+      {/* Gradient — heavier at bottom so form is readable */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'linear-gradient(to top, rgba(6,8,8,1) 0%, rgba(6,8,8,0.75) 25%, rgba(6,8,8,0.1) 55%, rgba(6,8,8,0.4) 100%)' }}
+        style={{ background: 'linear-gradient(to top, rgba(6,8,8,1) 0%, rgba(6,8,8,0.85) 30%, rgba(6,8,8,0.3) 60%, rgba(6,8,8,0.5) 100%)' }}
       />
-      {/* Radial glow */}
+      {/* Gold radial glow */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(circle at center, rgba(200,168,75,0.06) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle at 50% 40%, rgba(200,168,75,0.07) 0%, transparent 65%)' }}
       />
 
       {/* Location eyebrow */}
       <p
-        className="relative z-10 text-[9px] font-bold uppercase flex items-center gap-3 mb-10"
-        style={{ color: '#C8A84B', letterSpacing: '0.6em' }}
+        className="relative z-10 text-[9px] font-bold uppercase flex items-center gap-3 mb-8"
+        style={{ color: '#C8A84B', letterSpacing: '0.55em' }}
       >
         <span style={{ display: 'inline-block', width: 28, height: 1, background: '#C8A84B' }} />
         Navy Island &nbsp;·&nbsp; Port Antonio &nbsp;·&nbsp; Jamaica &nbsp;·&nbsp; June 17–23, 2027
         <span style={{ display: 'inline-block', width: 28, height: 1, background: '#C8A84B' }} />
       </p>
 
-      {/* Logo */}
-      <div className="relative z-10 mb-12 flex flex-col items-center">
-        <div className="w-20 h-20 mb-10 relative flex items-center justify-center">
-          <div className="absolute inset-0 rotate-45" style={{ border: '1px solid rgba(200,168,75,0.2)' }} />
-          <div className="w-12 h-12 flex items-center justify-center" style={{ border: '2px solid #C8A84B' }}>
-            <div className="w-2 h-2" style={{ backgroundColor: '#C8A84B' }} />
-          </div>
-        </div>
-
+      {/* Logo — ZUNGU white / FESTIVAL gold / MMXXVII dim */}
+      <div className="relative z-10 mb-10 flex flex-col items-center">
         <h1
-          className="font-black tracking-tighter uppercase mb-2"
+          className="font-black tracking-tighter uppercase text-center"
           style={{
             fontFamily: "'Unbounded', sans-serif",
             fontSize: 'clamp(3.5rem, 10vw, 7rem)',
-            color: '#F7F3EC',
-            lineHeight: 1,
+            lineHeight: 0.9,
+            letterSpacing: '-0.03em',
           }}
         >
-          ZUNGU
+          <span style={{ color: '#F7F3EC', display: 'block' }}>ZUNGU</span>
+          <span style={{ color: '#C8A84B', display: 'block' }}>FESTIVAL</span>
         </h1>
-
-        <div
-          className="flex items-center gap-5 uppercase font-bold text-[11px]"
-          style={{ color: '#C8A84B', letterSpacing: '0.4em' }}
+        <p
+          className="mt-3 font-light uppercase tracking-[0.35em]"
+          style={{
+            fontFamily: "'Unbounded', sans-serif",
+            fontSize: 'clamp(0.65rem, 1.2vw, 0.9rem)',
+            color: 'rgba(247,243,236,0.3)',
+          }}
         >
-          <span>Navy Island</span>
-          <div className="w-1 h-1 rotate-45" style={{ backgroundColor: '#C45A2A' }} />
-          <span>MMXXVII</span>
-        </div>
+          MMXXVII
+        </p>
       </div>
 
       {/* Access label */}
       <p
         className="relative z-10 text-[10px] uppercase font-bold italic mb-8"
-        style={{ color: '#6B6355', letterSpacing: '0.35em' }}
+        style={{ color: 'rgba(107,99,85,0.85)', letterSpacing: '0.35em' }}
       >
         // ACCESS AUTHORIZATION REQUIRED
       </p>
