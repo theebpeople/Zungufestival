@@ -266,7 +266,7 @@ function MainDashboard({ role, onReset }: { role: Role; onReset: () => void }) {
 
       <header id="vision" className="relative flex items-center justify-center text-center px-6 md:px-12" style={{ minHeight: '88vh', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <Image src="https://images.unsplash.com/photo-1549413242-2b281f621764?auto=format&fit=crop&q=80&w=2000" fill className="object-cover" style={{ opacity: 0.18, filter: 'grayscale(1) brightness(0.5)' }} alt="" />
+          <Image src="/photos/navy-island-aerial.jpg" fill className="object-cover" style={{ opacity: 0.18, filter: 'grayscale(1) brightness(0.5)' }} alt="" />
           <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.black} 0%, rgba(6,8,8,0.5) 50%, transparent 100%)` }} />
         </div>
         <div className="relative z-10 max-w-4xl w-full">

@@ -19,11 +19,37 @@ export default function GatePage() {
       className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden px-8 text-center"
       style={{ backgroundColor: '#060808', fontFamily: "'Space Mono', monospace" }}
     >
+      {/* Navy Island background */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: "url('/photos/navy-island-aerial.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center 38%',
+          filter: 'saturate(0.7) brightness(0.45)',
+          opacity: 0.35,
+        }}
+      />
+      {/* Gradient overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'linear-gradient(to top, rgba(6,8,8,1) 0%, rgba(6,8,8,0.75) 25%, rgba(6,8,8,0.1) 55%, rgba(6,8,8,0.4) 100%)' }}
+      />
       {/* Radial glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{ background: 'radial-gradient(circle at center, rgba(200,168,75,0.06) 0%, transparent 70%)' }}
       />
+
+      {/* Location eyebrow */}
+      <p
+        className="relative z-10 text-[9px] font-bold uppercase flex items-center gap-3 mb-10"
+        style={{ color: '#C8A84B', letterSpacing: '0.6em' }}
+      >
+        <span style={{ display: 'inline-block', width: 28, height: 1, background: '#C8A84B' }} />
+        Navy Island &nbsp;·&nbsp; Port Antonio &nbsp;·&nbsp; Jamaica &nbsp;·&nbsp; June 17–23, 2027
+        <span style={{ display: 'inline-block', width: 28, height: 1, background: '#C8A84B' }} />
+      </p>
 
       {/* Logo */}
       <div className="relative z-10 mb-12 flex flex-col items-center">
