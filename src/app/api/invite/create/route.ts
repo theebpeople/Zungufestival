@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
-import { Redis } from '@upstash/redis';
+import { neon } from '@neondatabase/serverless';
 import { sign } from '@/lib/invite-token';
 
 function shortCode(): string {
@@ -10,6 +10,20 @@ function shortCode(): string {
   crypto.getRandomValues(arr);
   for (const b of arr) code += chars[b % chars.length];
   return code;
+}
+
+async function getDb() {
+  const url = process.env.DATABASE_URL ?? process.env.POSTGRES_URL;
+  if (!url) throw new Error('No Neon DATABASE_URL env var found');
+  const sql = neon(url);
+  await sql`
+    CREATE TABLE IF NOT EXISTS invite_codes (
+      code      VARCHAR(8) PRIMARY KEY,
+      token     TEXT        NOT NULL,
+      expires_at TIMESTAMPTZ NOT NULL
+    )
+  `;
+  return sql;
 }
 
 export async function POST(req: Request) {
@@ -22,10 +36,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'INVITE_SECRET env var is not set' }, { status: 500 });
   }
 
-  if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
-    return NextResponse.json({ error: 'Redis not configured — create an Upstash Redis store in Vercel Storage' }, { status: 500 });
-  }
-
   const body = await req.json() as { email?: string };
   const email = body.email?.trim().toLowerCase();
   if (!email) {
@@ -35,17 +45,16 @@ export async function POST(req: Request) {
   try {
     const token = await sign(email);
     const code = shortCode();
-    const redis = new Redis({
-      url: process.env.UPSTASH_REDIS_REST_URL,
-      token: process.env.UPSTASH_REDIS_REST_TOKEN,
-    });
-    // Store for 31 days (token expires in 30)
-    await redis.set(`invite:${code}`, token, { ex: 31 * 24 * 60 * 60 });
+    const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+    const sql = await getDb();
+    await sql`
+      INSERT INTO invite_codes (code, token, expires_at)
+      VALUES (${code}, ${token}, ${expiresAt.toISOString()})
+    `;
     const base = process.env.NEXT_PUBLIC_APP_URL ?? 'https://zungufestival.com';
-    const url = `${base}/i/${code}`;
-    return NextResponse.json({ url });
+    return NextResponse.json({ url: `${base}/i/${code}` });
   } catch (e: unknown) {
-    const msg = e instanceof Error ? e.message : 'Failed to sign token';
+    const msg = e instanceof Error ? e.message : 'Failed';
     return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
