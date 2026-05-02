@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
 import { sign } from '@/lib/invite-token';
 
 function shortCode(): string {
@@ -19,7 +19,11 @@ export async function POST(req: Request) {
   }
 
   if (!process.env.INVITE_SECRET) {
-    return NextResponse.json({ error: 'INVITE_SECRET env var is not set — add it in Vercel project settings' }, { status: 500 });
+    return NextResponse.json({ error: 'INVITE_SECRET env var is not set' }, { status: 500 });
+  }
+
+  if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
+    return NextResponse.json({ error: 'Redis not configured — create an Upstash Redis store in Vercel Storage' }, { status: 500 });
   }
 
   const body = await req.json() as { email?: string };
@@ -31,8 +35,12 @@ export async function POST(req: Request) {
   try {
     const token = await sign(email);
     const code = shortCode();
+    const redis = new Redis({
+      url: process.env.UPSTASH_REDIS_REST_URL,
+      token: process.env.UPSTASH_REDIS_REST_TOKEN,
+    });
     // Store for 31 days (token expires in 30)
-    await kv.set(`invite:${code}`, token, { ex: 31 * 24 * 60 * 60 });
+    await redis.set(`invite:${code}`, token, { ex: 31 * 24 * 60 * 60 });
     const base = process.env.NEXT_PUBLIC_APP_URL ?? 'https://zungufestival.com';
     const url = `${base}/i/${code}`;
     return NextResponse.json({ url });
