@@ -37,6 +37,11 @@ function SignInContent() {
         [class*="cl-socialButtons"],[class*="cl-divider"] { display: none !important; }
         [class*="cl-badge"],[data-localization-key="badge__devMode"] { display: none !important; }
         [class*="cl-internal-b3fm6y"] { display: none !important; }
+        /* Hide development mode banner */
+        [class*="cl-devBrowser"],[class*="cl-development"],[id*="clerk-dev"],
+        [class*="cl-unstyled"] + div, iframe[src*="clerk"] { display: none !important; }
+        div[data-clerk-component="development-mode-notice"] { display: none !important; }
+        .cl-rootBox ~ div { display: none !important; }
 
         /* Form field labels */
         [class*="cl-formFieldLabel"],[class*="cl-label"] {

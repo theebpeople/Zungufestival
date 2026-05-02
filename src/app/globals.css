@@ -13,3 +13,7 @@ html, body {
 
 ::selection { background: #C8A84B; color: #060808; }
 .pre-wrap { white-space: pre-wrap; }
+
+/* Hide Clerk dev mode banner globally */
+[class*="cl-badge"],[data-localization-key="badge__devMode"],
+[class*="cl-devBrowser"],[class*="cl-internal-b3fm6y"] { display: none !important; }
