@@ -9,7 +9,7 @@ const C = {
   gold: '#C8A84B',
   cream: '#F2EBD9',
   rust: '#C45A2A',
-  muted: '#6B6355',
+  muted: 'rgba(242,235,217,0.45)',
   white: '#F7F3EC',
 };
 
@@ -160,8 +160,12 @@ function FormView({ type, onBack, onSubmit }: { type: Role; onBack: () => void; 
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center p-6" style={{ backgroundColor: C.black, fontFamily: "'Space Mono', monospace" }}>
-      <div className="max-w-2xl w-full p-12 md:p-20 relative" style={{ border: '1px solid rgba(255,255,255,0.05)' }}>
+    <div className="relative min-h-screen w-full flex items-center justify-center p-6 overflow-hidden" style={{ backgroundColor: C.black, fontFamily: "'Space Mono', monospace" }}>
+      <div className="absolute inset-0 z-0">
+        <Image src="/photos/navy-island-aerial.jpg" fill className="object-cover" style={{ opacity: 0.3, filter: 'saturate(0.6) brightness(0.4)' }} alt="" />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(6,8,8,0.7) 0%, rgba(6,8,8,0.85) 100%)' }} />
+      </div>
+      <div className="relative z-10 max-w-2xl w-full p-12 md:p-20" style={{ border: '1px solid rgba(200,168,75,0.12)', backgroundColor: 'rgba(6,8,8,0.75)', backdropFilter: 'blur(12px)' }}>
         <button
           onClick={onBack}
           className="absolute top-10 right-10 transition-colors text-[10px] uppercase tracking-widest font-bold"
@@ -270,8 +274,8 @@ function MainDashboard({ role, onReset }: { role: Role; onReset: () => void }) {
 
       <header id="vision" className="relative flex items-center justify-center text-center px-6 md:px-12" style={{ minHeight: '88vh', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <Image src="/photos/navy-island-aerial.jpg" fill className="object-cover" style={{ opacity: 0.18, filter: 'grayscale(1) brightness(0.5)' }} alt="" />
-          <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.black} 0%, rgba(6,8,8,0.5) 50%, transparent 100%)` }} />
+          <Image src="/photos/navy-island-aerial.jpg" fill className="object-cover" style={{ opacity: 0.55, filter: 'saturate(0.8) brightness(0.48)' }} alt="" />
+          <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.black} 0%, rgba(6,8,8,0.55) 45%, rgba(6,8,8,0.15) 100%)` }} />
         </div>
         <div className="relative z-10 max-w-4xl w-full">
           <div className="flex items-center justify-center gap-4 mb-10">

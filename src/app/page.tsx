@@ -26,14 +26,14 @@ export default function GatePage() {
           backgroundImage: "url('/photos/navy-island-aerial.jpg')",
           backgroundSize: 'cover',
           backgroundPosition: 'center 38%',
-          filter: 'saturate(0.6) brightness(0.55)',
-          opacity: 0.65,
+          filter: 'saturate(0.85) brightness(0.52)',
+          opacity: 0.9,
         }}
       />
-      {/* Gradient — heavier at bottom so form is readable */}
+      {/* Gradient — lighter so the island reads */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'linear-gradient(to top, rgba(6,8,8,1) 0%, rgba(6,8,8,0.85) 30%, rgba(6,8,8,0.3) 60%, rgba(6,8,8,0.5) 100%)' }}
+        style={{ background: 'linear-gradient(to top, rgba(6,8,8,1) 0%, rgba(6,8,8,0.75) 30%, rgba(6,8,8,0.2) 65%, rgba(6,8,8,0.35) 100%)' }}
       />
       {/* Gold radial glow */}
       <div
@@ -80,7 +80,7 @@ export default function GatePage() {
       {/* Access label */}
       <p
         className="relative z-10 text-[10px] uppercase font-bold italic mb-8"
-        style={{ color: 'rgba(107,99,85,0.85)', letterSpacing: '0.35em' }}
+        style={{ color: 'rgba(242,235,217,0.45)', letterSpacing: '0.35em' }}
       >
         // ACCESS AUTHORIZATION REQUIRED
       </p>
