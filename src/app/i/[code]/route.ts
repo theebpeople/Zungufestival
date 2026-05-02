@@ -1,5 +1,6 @@
 import { neon } from '@neondatabase/serverless';
 import { NextResponse } from 'next/server';
+import { verify } from '@/lib/invite-token';
 
 const base = process.env.NEXT_PUBLIC_APP_URL ?? 'https://zungufestival.com';
 
@@ -24,7 +25,11 @@ export async function GET(
       return NextResponse.redirect(new URL('/?expired=1', base));
     }
 
-    return NextResponse.redirect(new URL(`/deck?invite=${rows[0].token}`, base));
+    const token = rows[0].token as string;
+    const data = await verify(token);
+    const role = data?.role ?? 'investor';
+
+    return NextResponse.redirect(new URL(`/deck?invite=${token}&role=${role}`, base));
   } catch {
     return NextResponse.redirect(new URL('/?expired=1', base));
   }

@@ -54,6 +54,8 @@ export default clerkMiddleware(async (auth, req) => {
 
   const { userId } = await auth();
   if (!userId) {
+    // /deck handles its own auth modal — let unauthenticated users through
+    if (url.pathname.startsWith('/deck')) return NextResponse.next();
     const signInUrl = new URL('/sign-in', req.url);
     signInUrl.searchParams.set('role', url.pathname.startsWith('/partner') ? 'partner' : 'investor');
     return NextResponse.redirect(signInUrl);

@@ -94,7 +94,7 @@ export default function LandingPage() {
           className="font-bold italic uppercase mb-12"
           style={{ fontSize: 11, letterSpacing: '0.3em', color: 'rgba(242,235,217,0.42)' }}
         >
-          An island festival. By invitation only.
+          An Electronic Music Oasis
         </p>
 
         {/* CTAs */}

@@ -36,14 +36,15 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'INVITE_SECRET env var is not set' }, { status: 500 });
   }
 
-  const body = await req.json() as { email?: string };
+  const body = await req.json() as { email?: string; role?: string };
   const email = body.email?.trim().toLowerCase();
+  const role = body.role?.trim() ?? 'investor';
   if (!email) {
     return NextResponse.json({ error: 'Email required' }, { status: 400 });
   }
 
   try {
-    const token = await sign(email);
+    const token = await sign(email, role);
     const code = shortCode();
     const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
     const sql = await getDb();
