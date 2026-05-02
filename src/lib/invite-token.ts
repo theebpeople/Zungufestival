@@ -29,18 +29,18 @@ async function getKey(secret: string): Promise<CryptoKey> {
   );
 }
 
-export async function sign(email: string, expiryDays = 30): Promise<string> {
+export async function sign(email: string, role = 'investor', expiryDays = 30): Promise<string> {
   const secret = process.env.INVITE_SECRET;
   if (!secret) throw new Error('INVITE_SECRET not configured');
   const exp = Math.floor(Date.now() / 1000) + expiryDays * 86400;
-  const payloadBytes = ENC.encode(JSON.stringify({ email, exp }));
+  const payloadBytes = ENC.encode(JSON.stringify({ email, role, exp }));
   const payload = b64url(payloadBytes.buffer as ArrayBuffer);
   const key = await getKey(secret);
   const sig = await crypto.subtle.sign('HMAC', key, ENC.encode(payload));
   return `${payload}.${b64url(sig)}`;
 }
 
-export async function verify(token: string): Promise<{ email: string } | null> {
+export async function verify(token: string): Promise<{ email: string; role: string } | null> {
   const secret = process.env.INVITE_SECRET;
   if (!secret) return null;
   const dot = token.lastIndexOf('.');
@@ -53,7 +53,7 @@ export async function verify(token: string): Promise<{ email: string } | null> {
     if (!valid) return null;
     const data = JSON.parse(DEC.decode(fromb64url(payload)));
     if (!data.email || !data.exp || data.exp < Math.floor(Date.now() / 1000)) return null;
-    return { email: data.email as string };
+    return { email: data.email as string, role: (data.role as string) ?? 'investor' };
   } catch {
     return null;
   }

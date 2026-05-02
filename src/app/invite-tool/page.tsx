@@ -7,8 +7,16 @@ const black = '#060808';
 const white = '#F7F3EC';
 const muted = '#6B6355';
 
+const ROLES = [
+  { value: 'investor', label: 'Investor' },
+  { value: 'partner', label: 'Production Partner' },
+  { value: 'supplier', label: 'Supplier' },
+  { value: 'press', label: 'Press' },
+];
+
 export default function InviteTool() {
   const [email, setEmail] = useState('');
+  const [role, setRole] = useState('investor');
   const [url, setUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -23,7 +31,7 @@ export default function InviteTool() {
       const res = await fetch('/api/invite/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, role }),
       });
       const data = await res.json() as { url?: string; error?: string };
       if (!res.ok) throw new Error(data.error ?? 'Failed');
@@ -92,6 +100,35 @@ export default function InviteTool() {
           />
         </div>
 
+        <div style={{ marginBottom: '1rem' }}>
+          <label style={{ display: 'block', fontSize: 10, color: gold, letterSpacing: '0.25em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '0.5rem' }}>
+            Access Role
+          </label>
+          <select
+            value={role}
+            onChange={e => setRole(e.target.value)}
+            style={{
+              width: '100%',
+              padding: '0.875rem 1rem',
+              background: 'rgba(255,255,255,0.05)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              color: white,
+              fontFamily: "'Space Mono', monospace",
+              fontSize: 12,
+              outline: 'none',
+              boxSizing: 'border-box',
+              cursor: 'pointer',
+              appearance: 'none',
+            }}
+          >
+            {ROLES.map(r => (
+              <option key={r.value} value={r.value} style={{ background: black, color: white }}>
+                {r.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <button
           onClick={generate}
           disabled={!email || loading}
@@ -120,7 +157,7 @@ export default function InviteTool() {
         {url && (
           <div style={{ marginTop: '1.5rem', padding: '1.25rem', border: '1px solid rgba(200,168,75,0.25)', background: 'rgba(200,168,75,0.04)' }}>
             <p style={{ fontSize: 10, color: gold, letterSpacing: '0.3em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '0.75rem' }}>
-              Invite Link · Valid 30 Days
+              {ROLES.find(r => r.value === role)?.label ?? 'Invite'} · Valid 30 Days
             </p>
             <p style={{ fontSize: 11, color: white, wordBreak: 'break-all', lineHeight: 1.6, marginBottom: '1rem' }}>
               {url}
