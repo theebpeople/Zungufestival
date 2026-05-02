@@ -1,77 +1,19 @@
 @import "tailwindcss";
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
+
+html, body {
   background-color: #060808;
   color: #F7F3EC;
   font-family: 'Space Mono', monospace;
   cursor: crosshair;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
+
 ::selection { background: #C8A84B; color: #060808; }
 .pre-wrap { white-space: pre-wrap; }
 
-/* Clerk component overrides — match site palette */
-.cl-rootBox { width: 100%; }
-.cl-card {
-  background: transparent !important;
-  box-shadow: none !important;
-  border: none !important;
-}
-
-/* Kill header, social buttons, divider, footer, dev badge via attribute selectors */
-[class*="cl-header"],
-[class*="cl-cardHeader"] { display: none !important; }
-[class*="cl-socialButtons"],
-[class*="cl-divider"] { display: none !important; }
-[class*="cl-footer"],
-[class*="cl-footerAction"] { display: none !important; }
-[class*="cl-badge"],
-[data-localization-key="badge__devMode"] { display: none !important; }
-
-.cl-headerTitle,
-.cl-headerSubtitle,
-.cl-socialButtonsBlockButtonText,
-.cl-formFieldLabel,
-.cl-footerActionText { color: #F7F3EC !important; }
-.cl-formFieldInput {
-  background: rgba(255,255,255,0.05) !important;
-  border: 1px solid rgba(255,255,255,0.1) !important;
-  color: #F7F3EC !important;
-  font-family: var(--font-space-mono), monospace !important;
-  font-size: 12px !important;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-.cl-formFieldInput:focus {
-  border-color: #C8A84B !important;
-  outline: none !important;
-  box-shadow: none !important;
-}
-.cl-formButtonPrimary {
-  background: transparent !important;
-  border: 1px solid rgba(200,168,75,0.4) !important;
-  color: #C8A84B !important;
-  font-family: var(--font-space-mono), monospace !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.15em !important;
-  transition: all 0.3s !important;
-}
-.cl-formButtonPrimary:hover {
-  background: #C8A84B !important;
-  color: #060808 !important;
-}
-.cl-footerActionLink { color: #C8A84B !important; }
-.cl-dividerLine { background: rgba(255,255,255,0.08) !important; }
-.cl-dividerText { color: rgba(107,99,85,0.8) !important; }
-.cl-socialButtonsBlockButton {
-  border: 1px solid rgba(255,255,255,0.1) !important;
-  background: transparent !important;
-  color: #F7F3EC !important;
-}
-.cl-socialButtonsBlockButton:hover {
-  border-color: rgba(255,255,255,0.3) !important;
-}
+/* Hide Clerk dev mode banner globally */
+[class*="cl-badge"],[data-localization-key="badge__devMode"],
+[class*="cl-devBrowser"],[class*="cl-internal-b3fm6y"] { display: none !important; }

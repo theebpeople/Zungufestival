@@ -32,23 +32,121 @@ function SignInContent() {
       }}
     >
       <style>{`
-        [class*="cl-header"],
-        [class*="cl-cardHeader"] { display: none !important; }
-        [class*="cl-socialButtons"],
-        [class*="cl-divider"] { display: none !important; }
-        [class*="cl-footer"],
-        [class*="cl-footerAction"] { display: none !important; }
-        [class*="cl-badge"],
-        [data-localization-key="badge__devMode"] { display: none !important; }
+        /* Hide Clerk chrome */
+        [class*="cl-header"],[class*="cl-cardHeader"] { display: none !important; }
+        [class*="cl-socialButtons"],[class*="cl-divider"] { display: none !important; }
+        [class*="cl-badge"],[data-localization-key="badge__devMode"] { display: none !important; }
+        [class*="cl-internal-b3fm6y"] { display: none !important; }
+        /* Hide development mode banner */
+        [class*="cl-devBrowser"],[class*="cl-development"],[id*="clerk-dev"],
+        [class*="cl-unstyled"] + div, iframe[src*="clerk"] { display: none !important; }
+        div[data-clerk-component="development-mode-notice"] { display: none !important; }
+        .cl-rootBox ~ div { display: none !important; }
+
+        /* Form field labels */
+        [class*="cl-formFieldLabel"],[class*="cl-label"] {
+          font-family: 'Space Mono', monospace !important;
+          font-size: 9px !important;
+          letter-spacing: 0.3em !important;
+          text-transform: uppercase !important;
+          color: #C8A84B !important;
+          font-weight: 700 !important;
+        }
+
+        /* Inputs */
+        [class*="cl-formFieldInput"] {
+          background: rgba(6,8,8,0.95) !important;
+          border: 1px solid rgba(200,168,75,0.22) !important;
+          color: #F7F3EC !important;
+          font-family: 'Space Mono', monospace !important;
+          font-size: 11px !important;
+          border-radius: 0 !important;
+          box-shadow: none !important;
+        }
+        [class*="cl-formFieldInput"]:focus {
+          border-color: #C8A84B !important;
+          outline: none !important;
+          box-shadow: none !important;
+        }
+
+        /* Submit button */
+        [class*="cl-formButtonPrimary"] {
+          background: #C8A84B !important;
+          color: #060808 !important;
+          font-family: 'Space Mono', monospace !important;
+          font-size: 9px !important;
+          font-weight: 700 !important;
+          letter-spacing: 0.35em !important;
+          text-transform: uppercase !important;
+          border-radius: 0 !important;
+          box-shadow: none !important;
+        }
+        [class*="cl-formButtonPrimary"]:hover {
+          background: #dab84e !important;
+          box-shadow: none !important;
+        }
+
+        /* Any remaining text in the Clerk widget */
+        [class*="cl-rootBox"] * {
+          font-family: 'Space Mono', monospace !important;
+        }
+        [class*="cl-card"] {
+          background: transparent !important;
+          box-shadow: none !important;
+          border: none !important;
+        }
+
+        /* Error/hint text */
+        [class*="cl-formFieldHintText"],[class*="cl-formFieldErrorText"] {
+          font-family: 'Space Mono', monospace !important;
+          font-size: 9px !important;
+          color: #C45A2A !important;
+        }
+
+        /* Footer — sign up link */
+        [class*="cl-footer"] {
+          background: transparent !important;
+          border: none !important;
+          padding-top: 1.5rem !important;
+        }
+        [class*="cl-footerActionText"] {
+          font-family: 'Space Mono', monospace !important;
+          font-size: 9px !important;
+          color: rgba(242,235,217,0.35) !important;
+          letter-spacing: 0.15em !important;
+        }
+        [class*="cl-footerActionLink"] {
+          font-family: 'Space Mono', monospace !important;
+          font-size: 9px !important;
+          color: #C8A84B !important;
+          font-weight: 700 !important;
+          letter-spacing: 0.15em !important;
+          text-decoration: none !important;
+        }
+        [class*="cl-footerActionLink"]:hover {
+          color: #dab84e !important;
+        }
       `}</style>
 
-      {/* Radial glow */}
+      {/* HQ aerial background — very dim */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: "url('/photos/NAVY%20ISLAND%20AERIAL.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center 38%',
+          filter: 'saturate(0.6) brightness(0.18)',
+          opacity: 0.85,
+        }}
+      />
+      {/* Dark vignette */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
           pointerEvents: 'none',
-          background: 'radial-gradient(circle at center, rgba(200,168,75,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse at center, rgba(6,8,8,0.55) 0%, rgba(6,8,8,0.92) 75%)',
         }}
       />
 
@@ -126,9 +224,6 @@ function SignInContent() {
               socialButtonsBlockButton: { display: 'none' },
               dividerRow: { display: 'none' },
               dividerLine: { display: 'none' },
-              footer: { display: 'none' },
-              footerAction: { display: 'none' },
-              footerPages: { display: 'none' },
             },
           }}
         />

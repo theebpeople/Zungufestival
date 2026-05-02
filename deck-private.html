@@ -163,7 +163,7 @@ section.green{background:var(--green);}
 <div class="dots" id="dots"></div>
 <section id="s-hero" data-dot style="padding:0;border:none;height:100vh;">
 <div id="hero">
-  <div class="hero-bg" id="heroBg" style="background-image:url('/photos/navy-island-aerial.jpg');"></div>
+  <div class="hero-bg" id="heroBg" style="background-image:url('/photos/NAVY%20ISLAND%20AERIAL.png');"></div>
   <div class="hero-ov"></div>
   <div class="hero-content">
     <p class="hero-eye">Navy Island &nbsp;·&nbsp; Port Antonio &nbsp;·&nbsp; Jamaica &nbsp;·&nbsp; June 17–23, 2027</p>
@@ -270,10 +270,25 @@ section.green{background:var(--green);}
       <div style="font-size:8px;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;">~5 min from Errol Flynn Marina</div>
     </div>
   </div>
+  <!-- Actual map assets -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:2px;">
+    <figure style="margin:0;position:relative;overflow:hidden;height:280px;">
+      <img src="/photos/NAVY%20ISLAND%20STAGE%20AND%20PATHWAY%20MAP.png" alt="Stage and Pathway Map" style="width:100%;height:100%;object-fit:cover;filter:brightness(.82);display:block;">
+      <figcaption style="position:absolute;bottom:0;left:0;right:0;padding:12px 16px;background:linear-gradient(to top,rgba(6,8,8,.9),transparent);font-size:8px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;">Stage &amp; Pathway Map</figcaption>
+    </figure>
+    <figure style="margin:0;position:relative;overflow:hidden;height:280px;">
+      <img src="/photos/NAVY%20ISLAND%20-%20SATELITE%20.png" alt="Satellite View" style="width:100%;height:100%;object-fit:cover;filter:brightness(.82);display:block;">
+      <figcaption style="position:absolute;bottom:0;left:0;right:0;padding:12px 16px;background:linear-gradient(to top,rgba(6,8,8,.9),transparent);font-size:8px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;">Satellite View</figcaption>
+    </figure>
+  </div>
+  <figure style="margin:2px 0 0;position:relative;overflow:hidden;height:180px;">
+    <img src="/photos/REFERENCE%20FOR%20MAP%20-%20CROSSING%20.png" alt="Marina Crossing Reference" style="width:100%;height:100%;object-fit:cover;filter:brightness(.75);display:block;">
+    <figcaption style="position:absolute;bottom:0;left:0;right:0;padding:12px 16px;background:linear-gradient(to top,rgba(6,8,8,.9),transparent);font-size:8px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;">Marina Crossing Reference &nbsp;·&nbsp; ~320m &nbsp;·&nbsp; Errol Flynn Marina → Main Dock</figcaption>
+  </figure>
 </section>
 
 <div class="photo-break" style="height:72vh;">
-  <div class="pb-img" style="background-image:url('/photos/navy-island-aerial.jpg');background-position:center 42%;"></div>
+  <div class="pb-img" style="background-image:url('/photos/NAVY%20ISLAND%20-%20FROM%20%20tHE%20TOWN%20.png');background-position:center 42%;"></div>
   <div class="pb-ov"></div>
   <div class="pb-text">
     <div class="pb-label">Navy Island · Portland Parish · Jamaica</div>
@@ -664,20 +679,34 @@ function sub(){
 document.addEventListener('DOMContentLoaded',()=>{
   const gi=L.divIcon({html:'<div style="width:14px;height:14px;background:#C8A84B;border-radius:50%;border:2px solid #F2EBD9;box-shadow:0 0 12px rgba(200,168,75,.8);"></div>',iconSize:[14,14],iconAnchor:[7,7],className:''});
   const wi=L.divIcon({html:'<div style="width:10px;height:10px;background:#F2EBD9;border-radius:50%;border:2px solid rgba(200,168,75,.5);"></div>',iconSize:[10,10],iconAnchor:[5,5],className:''});
-  const m1=L.map('map-main',{zoomControl:true,scrollWheelZoom:false}).setView([18.177,-76.449],14);
+  // m1 — Crossing overview: Errol Flynn Marina → Navy Island Main Dock
+  const m1=L.map('map-main',{zoomControl:true,scrollWheelZoom:false}).setView([18.185,-76.453],16);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:19}).addTo(m1);
-  L.marker([18.1780,-76.4500],{icon:gi}).addTo(m1).bindPopup('<div style="font-family:Space Mono,monospace;font-size:11px;background:#0D2018;color:#C8A84B;border:1px solid rgba(200,168,75,.3);padding:8px 12px;border-radius:0;">⚑ Navy Island<br><span style="color:rgba(242,235,217,.5);font-size:9px;">64 Acres · Festival Site</span></div>');
-  L.marker([18.1735,-76.4440],{icon:wi}).addTo(m1).bindPopup('<div style="font-family:Space Mono,monospace;font-size:11px;background:#0D2018;color:#F2EBD9;border:1px solid rgba(200,168,75,.3);padding:8px 12px;border-radius:0;">Errol Flynn Marina<br><span style="color:rgba(242,235,217,.5);font-size:9px;">Departure · ~5 min crossing</span></div>');
-  L.polyline([[18.1735,-76.4440],[18.1780,-76.4500]],{color:'#C8A84B',weight:1.5,opacity:.6,dashArray:'4 6'}).addTo(m1);
-  const m2=L.map('map-island',{zoomControl:true,scrollWheelZoom:false}).setView([18.1780,-76.4510],16);
+  L.marker([18.1874,-76.4540],{icon:gi}).addTo(m1).bindPopup('<div style="font-family:Space Mono,monospace;font-size:11px;background:#0D2018;color:#C8A84B;border:1px solid rgba(200,168,75,.3);padding:8px 12px;border-radius:0;">⚑ Navy Island<br><span style="color:rgba(242,235,217,.5);font-size:9px;">64 Acres · Festival Site</span></div>');
+  L.marker([18.18272,-76.45366],{icon:wi}).addTo(m1).bindPopup('<div style="font-family:Space Mono,monospace;font-size:11px;background:#0D2018;color:#F2EBD9;border:1px solid rgba(200,168,75,.3);padding:8px 12px;border-radius:0;">Errol Flynn Marina<br><span style="color:rgba(242,235,217,.5);font-size:9px;">Departure · ~5 min crossing</span></div>');
+  L.polyline([[18.18272,-76.45366],[18.18541,-76.45473]],{color:'#C8A84B',weight:2,opacity:.7,dashArray:'5 7'}).addTo(m1);
+  // m2 — Island stage detail: all GPS-verified positions on Navy Island
+  const m2=L.map('map-island',{zoomControl:true,scrollWheelZoom:false}).setView([18.1874,-76.454],17);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:19}).addTo(m2);
-  const mk=(c,l,s)=>L.divIcon({html:`<div style="background:rgba(6,8,8,.92);border:1px solid ${c};padding:6px 10px;font-family:Space Mono,monospace;white-space:nowrap;"><div style="font-size:9px;font-weight:700;color:${c};letter-spacing:.1em;">${l}</div><div style="font-size:8px;color:rgba(242,235,217,.4);">${s}</div></div>`,iconSize:[130,40],iconAnchor:[0,20],className:''});
-  L.marker([18.1820,-76.4480],{icon:mk('#C8A84B','ZUNGU MAIN','Stage II · Headline')}).addTo(m2);
-  L.marker([18.1800,-76.4460],{icon:mk('#4AAFA0','ORIGINS','Stage I · Heritage')}).addTo(m2);
-  L.marker([18.1760,-76.4540],{icon:mk('#C45A2A','REBIRTH','Stage III · Future')}).addTo(m2);
-  L.marker([18.1790,-76.4490],{icon:mk('#C8A84B','GLAMPING','On-Island · Accommodation')}).addTo(m2);
-  L.marker([18.1740,-76.4500],{icon:mk('rgba(242,235,217,.5)','ARRIVAL','~5 min from Marina')}).addTo(m2);
-  [[18.1820,-76.4485,'#C8A84B'],[18.1800,-76.4465,'#4AAFA0'],[18.1760,-76.4540,'#C45A2A'],[18.1790,-76.4495,'#C8A84B'],[18.1740,-76.4500,'rgba(242,235,217,.4)']].forEach(([lat,lng,col])=>{L.circleMarker([lat,lng],{radius:6,fillColor:col,fillOpacity:1,color:'#fff',weight:1.5}).addTo(m2);});
+  const mk=(c,l,s)=>L.divIcon({html:`<div style="background:rgba(6,8,8,.92);border:1px solid ${c};padding:6px 10px;font-family:Space Mono,monospace;white-space:nowrap;"><div style="font-size:9px;font-weight:700;color:${c};letter-spacing:.1em;">${l}</div><div style="font-size:8px;color:rgba(242,235,217,.4);">${s}</div></div>`,iconSize:[140,40],iconAnchor:[0,20],className:''});
+  // Stages
+  L.marker([18.18717,-76.45356],{icon:mk('#C8A84B','ZUNGU MAIN','Stage II · Headline')}).addTo(m2);
+  L.marker([18.18803,-76.45134],{icon:mk('#4AAFA0','ORIGINS','Stage I · Heritage')}).addTo(m2);
+  L.marker([18.18677,-76.45592],{icon:mk('#C45A2A','REBIRTH','Stage III · Future')}).addTo(m2);
+  // Arrival & water
+  L.marker([18.18541,-76.45473],{icon:mk('rgba(242,235,217,.75)','MAIN DOCK','Welcome Centre · Arrival')}).addTo(m2);
+  L.marker([18.18745,-76.45646],{icon:mk('#4AAFA0','BEACH 1','West Shore')}).addTo(m2);
+  L.marker([18.18895,-76.45252],{icon:mk('#4AAFA0','BEACH 2','North Shore')}).addTo(m2);
+  // Glamping tiers
+  L.marker([18.18713,-76.45464],{icon:mk('rgba(200,168,75,.65)','GLAMPING T1','On-Island · Premium')}).addTo(m2);
+  L.marker([18.18689,-76.45204],{icon:mk('rgba(200,168,75,.65)','GLAMPING T2','On-Island · Standard')}).addTo(m2);
+  L.marker([18.18876,-76.45151],{icon:mk('rgba(200,168,75,.65)','GLAMPING T3','On-Island · Boutique')}).addTo(m2);
+  // Departure point (marina, outside island)
+  L.marker([18.18272,-76.45366],{icon:mk('rgba(242,235,217,.45)','DEPARTURE','Errol Flynn Marina')}).addTo(m2);
+  // Crossing line
+  L.polyline([[18.18272,-76.45366],[18.18541,-76.45473]],{color:'#C8A84B',weight:2,opacity:.6,dashArray:'5 7'}).addTo(m2);
+  // Circle dots for all points
+  [[18.18717,-76.45356,'#C8A84B'],[18.18803,-76.45134,'#4AAFA0'],[18.18677,-76.45592,'#C45A2A'],[18.18541,-76.45473,'rgba(242,235,217,.8)'],[18.18745,-76.45646,'#4AAFA0'],[18.18895,-76.45252,'#4AAFA0'],[18.18713,-76.45464,'rgba(200,168,75,.7)'],[18.18689,-76.45204,'rgba(200,168,75,.7)'],[18.18876,-76.45151,'rgba(200,168,75,.7)'],[18.18272,-76.45366,'rgba(242,235,217,.4)']].forEach(([lat,lng,col])=>{L.circleMarker([lat,lng],{radius:6,fillColor:col,fillOpacity:1,color:'rgba(255,255,255,0.6)',weight:1.5}).addTo(m2);});
 });
 </script>
 </body>

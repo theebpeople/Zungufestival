@@ -9,13 +9,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  async rewrites() {
-    return {
-      beforeFiles: [
-        { source: '/', destination: '/deck.html' },
-      ],
-    };
-  },
 };
 
 export default nextConfig;
