@@ -46,7 +46,7 @@ export default function DeckPage() {
 
       {loaded && (
         <iframe
-          src="/zungu-deck-v3.html"
+          src="/api/deck-html"
           style={{ flex: 1, border: 'none', width: '100%', minHeight: 'calc(100vh - 57px)' }}
           title="Zungu Festival Investor Deck"
         />
