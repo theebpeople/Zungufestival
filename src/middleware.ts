@@ -10,9 +10,6 @@ const isClerkProtectedRoute = createRouteMatcher([
   '/partner(.*)',
   '/deck(.*)',
   '/dashboard(.*)',
-  '/stages.html',
-  '/activities.html',
-  '/brand.html',
 ]);
 
 const isEmailProtectedRoute = createRouteMatcher(['/partner(.*)', '/deck(.*)']);
@@ -86,8 +83,5 @@ export default clerkMiddleware(async (auth, req) => {
 export const config = {
   matcher: [
     '/((?!_next/static|_next/image|favicon.ico).*)',
-    '/stages.html',
-    '/activities.html',
-    '/brand.html',
   ],
 };
