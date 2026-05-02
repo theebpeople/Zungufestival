@@ -1,6 +1,16 @@
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
+import { kv } from '@vercel/kv';
 import { sign } from '@/lib/invite-token';
+
+function shortCode(): string {
+  const chars = 'abcdefghjkmnpqrstuvwxyz23456789';
+  let code = '';
+  const arr = new Uint8Array(8);
+  crypto.getRandomValues(arr);
+  for (const b of arr) code += chars[b % chars.length];
+  return code;
+}
 
 export async function POST(req: Request) {
   const cookieStore = await cookies();
@@ -20,8 +30,11 @@ export async function POST(req: Request) {
 
   try {
     const token = await sign(email);
+    const code = shortCode();
+    // Store for 31 days (token expires in 30)
+    await kv.set(`invite:${code}`, token, { ex: 31 * 24 * 60 * 60 });
     const base = process.env.NEXT_PUBLIC_APP_URL ?? 'https://zungufestival.com';
-    const url = `${base}/deck?invite=${token}`;
+    const url = `${base}/i/${code}`;
     return NextResponse.json({ url });
   } catch (e: unknown) {
     const msg = e instanceof Error ? e.message : 'Failed to sign token';

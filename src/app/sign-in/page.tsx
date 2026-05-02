@@ -35,7 +35,6 @@ function SignInContent() {
         /* Hide Clerk chrome */
         [class*="cl-header"],[class*="cl-cardHeader"] { display: none !important; }
         [class*="cl-socialButtons"],[class*="cl-divider"] { display: none !important; }
-        [class*="cl-footer"],[class*="cl-footerAction"],[class*="cl-footerPages"] { display: none !important; }
         [class*="cl-badge"],[data-localization-key="badge__devMode"] { display: none !important; }
         [class*="cl-internal-b3fm6y"] { display: none !important; }
 
@@ -97,6 +96,30 @@ function SignInContent() {
           font-family: 'Space Mono', monospace !important;
           font-size: 9px !important;
           color: #C45A2A !important;
+        }
+
+        /* Footer — sign up link */
+        [class*="cl-footer"] {
+          background: transparent !important;
+          border: none !important;
+          padding-top: 1.5rem !important;
+        }
+        [class*="cl-footerActionText"] {
+          font-family: 'Space Mono', monospace !important;
+          font-size: 9px !important;
+          color: rgba(242,235,217,0.35) !important;
+          letter-spacing: 0.15em !important;
+        }
+        [class*="cl-footerActionLink"] {
+          font-family: 'Space Mono', monospace !important;
+          font-size: 9px !important;
+          color: #C8A84B !important;
+          font-weight: 700 !important;
+          letter-spacing: 0.15em !important;
+          text-decoration: none !important;
+        }
+        [class*="cl-footerActionLink"]:hover {
+          color: #dab84e !important;
         }
       `}</style>
 
@@ -196,9 +219,6 @@ function SignInContent() {
               socialButtonsBlockButton: { display: 'none' },
               dividerRow: { display: 'none' },
               dividerLine: { display: 'none' },
-              footer: { display: 'none' },
-              footerAction: { display: 'none' },
-              footerPages: { display: 'none' },
             },
           }}
         />
