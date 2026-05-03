@@ -1,6 +1,6 @@
 'use client';
 
-import { SignIn } from '@clerk/nextjs';
+import { SignIn, SignUp } from '@clerk/nextjs';
 import { useAuth, useClerk, useUser } from '@clerk/nextjs';
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
@@ -231,6 +231,8 @@ function DeckContent() {
           text-decoration: none !important;
         }
         [class*="cl-footerActionLink"]:hover { color: #dab84e !important; }
+        [class*="cl-formFieldInput"]::placeholder { color: rgba(242,235,217,0.28) !important; opacity: 1 !important; }
+        [class*="cl-alternativeMethodsBlockButton"],[class*="cl-alternativeMethods"] { display: none !important; }
       `}</style>
 
       {/* Role-specific background photo */}
@@ -256,8 +258,8 @@ function DeckContent() {
       />
 
       {/* Logo mark */}
-      <div style={{ position: 'relative', zIndex: 10, marginBottom: '3rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ width: 80, height: 80, marginBottom: '2.5rem', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ position: 'relative', zIndex: 10, marginBottom: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ width: 80, height: 80, marginBottom: '1.5rem', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ position: 'absolute', inset: 0, transform: 'rotate(45deg)', border: '1px solid rgba(200,168,75,0.2)' }} />
           <div style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', border: `2px solid ${gold}` }}>
             <div style={{ width: 8, height: 8, backgroundColor: gold }} />
@@ -287,7 +289,7 @@ function DeckContent() {
       </div>
 
       {/* Role badge + copy */}
-      <div style={{ position: 'relative', zIndex: 10, marginBottom: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+      <div style={{ position: 'relative', zIndex: 10, marginBottom: '1.25rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem' }}>
         <span
           style={{
             fontSize: 9,
@@ -315,12 +317,40 @@ function DeckContent() {
         </p>
       </div>
 
-      {/* Clerk sign-in */}
+      {/* Clerk auth — SignUp primary (invitees are new users), SignIn for returning users */}
       <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 384 }}>
+        <SignUp
+          routing="hash"
+          signInUrl="#"
+          forceRedirectUrl={`/deck?role=${role}`}
+          appearance={{
+            variables: {
+              colorPrimary: gold,
+              colorText: white,
+              colorBackground: black,
+              colorInputBackground: 'rgba(255,255,255,0.05)',
+              colorInputText: white,
+              fontFamily: "'Space Mono', monospace",
+              borderRadius: '0px',
+            },
+            elements: {
+              rootBox: { width: '100%' },
+              card: { background: 'transparent', border: 'none', boxShadow: 'none', padding: 0 },
+              cardHeader: { display: 'none' },
+              header: { display: 'none' },
+              headerTitle: { display: 'none' },
+              headerSubtitle: { display: 'none' },
+              socialButtonsRoot: { display: 'none' },
+              socialButtonsBlockButton: { display: 'none' },
+              dividerRow: { display: 'none' },
+              dividerLine: { display: 'none' },
+            },
+          }}
+        />
         <SignIn
           routing="hash"
+          signUpUrl="#"
           forceRedirectUrl={`/deck?role=${role}`}
-          signUpForceRedirectUrl={`/deck?role=${role}`}
           appearance={{
             variables: {
               colorPrimary: gold,
