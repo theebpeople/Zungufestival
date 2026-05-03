@@ -21,10 +21,17 @@ export default clerkMiddleware(async (auth, req) => {
   const cookies = req.cookies;
 
   if (url.searchParams.get('access') === GUEST_TOKEN) {
+    const cookieOpts = { httpOnly: true, path: '/', maxAge: 30 * 24 * 60 * 60 } as const;
+    if (isInviteToolRoute(req)) {
+      // Already on invite-tool — pass through directly, no redirect needed
+      const res = NextResponse.next();
+      res.cookies.set(GUEST_COOKIE, '1', cookieOpts);
+      return res;
+    }
     const clean = new URL(url.pathname, req.url);
     url.searchParams.forEach((v, k) => { if (k !== 'access') clean.searchParams.set(k, v); });
     const res = NextResponse.redirect(clean);
-    res.cookies.set(GUEST_COOKIE, '1', { httpOnly: true, path: '/', maxAge: 30 * 24 * 60 * 60 });
+    res.cookies.set(GUEST_COOKIE, '1', cookieOpts);
     return res;
   }
 
