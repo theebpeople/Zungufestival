@@ -1,6 +1,6 @@
 'use client';
 
-import { SignIn, SignUp } from '@clerk/nextjs';
+import { SignUp } from '@clerk/nextjs';
 import { useAuth, useClerk, useUser } from '@clerk/nextjs';
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
@@ -170,69 +170,54 @@ function DeckContent() {
       }}
     >
       <style>{`
-        [class*="cl-header"],[class*="cl-cardHeader"] { display: none !important; }
-        [class*="cl-socialButtons"],[class*="cl-divider"] { display: none !important; }
-        [class*="cl-badge"],[data-localization-key="badge__devMode"] { display: none !important; }
-        [class*="cl-internal-b3fm6y"],[class*="cl-devBrowser"] { display: none !important; }
+        /* Hide all Clerk chrome we don't want */
+        [class*="cl-header"],[class*="cl-cardHeader"],
+        [class*="cl-socialButtons"],[class*="cl-divider"],
+        [class*="cl-badge"],[data-localization-key="badge__devMode"],
+        [class*="cl-internal-b3fm6y"],[class*="cl-devBrowser"],
+        [class*="cl-alternativeMethods"],
+        [class*="cl-formFieldAction"],
+        [class*="cl-footerPages"],
+        [class*="cl-powered"],
+        [data-localization-key*="signIn.start.actionLink__use"],
+        [data-localization-key*="footer.poweredBy"]
+        { display: none !important; }
+
         [class*="cl-formFieldLabel"],[class*="cl-label"] {
           font-family: 'Space Mono', monospace !important;
-          font-size: 9px !important;
-          letter-spacing: 0.3em !important;
-          text-transform: uppercase !important;
-          color: #C8A84B !important;
-          font-weight: 700 !important;
+          font-size: 9px !important; letter-spacing: 0.3em !important;
+          text-transform: uppercase !important; color: #C8A84B !important; font-weight: 700 !important;
         }
         [class*="cl-formFieldInput"] {
           background: rgba(6,8,8,0.95) !important;
           border: 1px solid rgba(200,168,75,0.22) !important;
-          color: #F7F3EC !important;
-          font-family: 'Space Mono', monospace !important;
-          font-size: 11px !important;
-          border-radius: 0 !important;
-          box-shadow: none !important;
+          color: #F7F3EC !important; font-family: 'Space Mono', monospace !important;
+          font-size: 11px !important; border-radius: 0 !important; box-shadow: none !important;
         }
-        [class*="cl-formFieldInput"]:focus {
-          border-color: #C8A84B !important;
-          outline: none !important;
-          box-shadow: none !important;
-        }
+        [class*="cl-formFieldInput"]:focus { border-color: #C8A84B !important; outline: none !important; box-shadow: none !important; }
+        [class*="cl-formFieldInput"]::placeholder { color: rgba(242,235,217,0.28) !important; opacity: 1 !important; }
         [class*="cl-formButtonPrimary"] {
-          background: #C8A84B !important;
-          color: #060808 !important;
-          font-family: 'Space Mono', monospace !important;
-          font-size: 9px !important;
-          font-weight: 700 !important;
-          letter-spacing: 0.35em !important;
-          text-transform: uppercase !important;
-          border-radius: 0 !important;
-          box-shadow: none !important;
+          background: #C8A84B !important; color: #060808 !important;
+          font-family: 'Space Mono', monospace !important; font-size: 9px !important;
+          font-weight: 700 !important; letter-spacing: 0.35em !important;
+          text-transform: uppercase !important; border-radius: 0 !important; box-shadow: none !important;
         }
         [class*="cl-formButtonPrimary"]:hover { background: #dab84e !important; box-shadow: none !important; }
         [class*="cl-rootBox"] * { font-family: 'Space Mono', monospace !important; }
         [class*="cl-card"] { background: transparent !important; box-shadow: none !important; border: none !important; }
         [class*="cl-formFieldHintText"],[class*="cl-formFieldErrorText"] {
-          font-family: 'Space Mono', monospace !important;
-          font-size: 9px !important;
-          color: #C45A2A !important;
+          font-family: 'Space Mono', monospace !important; font-size: 9px !important; color: #C45A2A !important;
         }
-        [class*="cl-footer"] { background: transparent !important; border: none !important; padding-top: 1.5rem !important; }
+        [class*="cl-footer"] { background: transparent !important; border: none !important; padding-top: 1rem !important; }
         [class*="cl-footerActionText"] {
-          font-family: 'Space Mono', monospace !important;
-          font-size: 9px !important;
-          color: rgba(242,235,217,0.35) !important;
-          letter-spacing: 0.15em !important;
+          font-family: 'Space Mono', monospace !important; font-size: 9px !important;
+          color: rgba(242,235,217,0.35) !important; letter-spacing: 0.15em !important;
         }
         [class*="cl-footerActionLink"] {
-          font-family: 'Space Mono', monospace !important;
-          font-size: 9px !important;
-          color: #C8A84B !important;
-          font-weight: 700 !important;
-          letter-spacing: 0.15em !important;
-          text-decoration: none !important;
+          font-family: 'Space Mono', monospace !important; font-size: 9px !important;
+          color: #C8A84B !important; font-weight: 700 !important; letter-spacing: 0.15em !important; text-decoration: none !important;
         }
         [class*="cl-footerActionLink"]:hover { color: #dab84e !important; }
-        [class*="cl-formFieldInput"]::placeholder { color: rgba(242,235,217,0.28) !important; opacity: 1 !important; }
-        [class*="cl-alternativeMethodsBlockButton"],[class*="cl-alternativeMethods"] { display: none !important; }
       `}</style>
 
       {/* Role-specific background photo */}
@@ -257,19 +242,12 @@ function DeckContent() {
         }}
       />
 
-      {/* Logo mark */}
-      <div style={{ position: 'relative', zIndex: 10, marginBottom: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ width: 80, height: 80, marginBottom: '1.5rem', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div style={{ position: 'absolute', inset: 0, transform: 'rotate(45deg)', border: '1px solid rgba(200,168,75,0.2)' }} />
-          <div style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', border: `2px solid ${gold}` }}>
-            <div style={{ width: 8, height: 8, backgroundColor: gold }} />
-          </div>
-        </div>
-
+      {/* Branding */}
+      <div style={{ position: 'relative', zIndex: 10, marginBottom: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <h1
           style={{
             fontFamily: "'Unbounded', sans-serif",
-            fontSize: 'clamp(3.5rem, 10vw, 7rem)',
+            fontSize: 'clamp(3rem, 9vw, 5.5rem)',
             color: white,
             lineHeight: 1,
             fontWeight: 900,
@@ -281,7 +259,7 @@ function DeckContent() {
           ZUNGU
         </h1>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', color: gold, fontSize: 11, letterSpacing: '0.4em', fontWeight: 700, textTransform: 'uppercase' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', color: gold, fontSize: 10, letterSpacing: '0.4em', fontWeight: 700, textTransform: 'uppercase' }}>
           <span>Navy Island</span>
           <div style={{ width: 4, height: 4, transform: 'rotate(45deg)', backgroundColor: rust }} />
           <span>MMXXVII</span>
@@ -317,39 +295,11 @@ function DeckContent() {
         </p>
       </div>
 
-      {/* Clerk auth — SignUp primary (invitees are new users), SignIn for returning users */}
-      <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 384 }}>
+      {/* Clerk sign-up — inline, no redirect */}
+      <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 360 }}>
         <SignUp
           routing="hash"
-          signInUrl="#"
-          forceRedirectUrl={`/deck?role=${role}`}
-          appearance={{
-            variables: {
-              colorPrimary: gold,
-              colorText: white,
-              colorBackground: black,
-              colorInputBackground: 'rgba(255,255,255,0.05)',
-              colorInputText: white,
-              fontFamily: "'Space Mono', monospace",
-              borderRadius: '0px',
-            },
-            elements: {
-              rootBox: { width: '100%' },
-              card: { background: 'transparent', border: 'none', boxShadow: 'none', padding: 0 },
-              cardHeader: { display: 'none' },
-              header: { display: 'none' },
-              headerTitle: { display: 'none' },
-              headerSubtitle: { display: 'none' },
-              socialButtonsRoot: { display: 'none' },
-              socialButtonsBlockButton: { display: 'none' },
-              dividerRow: { display: 'none' },
-              dividerLine: { display: 'none' },
-            },
-          }}
-        />
-        <SignIn
-          routing="hash"
-          signUpUrl="#"
+          signInUrl="/sign-in"
           forceRedirectUrl={`/deck?role=${role}`}
           appearance={{
             variables: {
