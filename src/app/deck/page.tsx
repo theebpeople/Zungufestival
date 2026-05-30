@@ -115,35 +115,10 @@ function DeckContent() {
   if (isSignedIn) {
     return (
       <div style={{ minHeight: '100vh', backgroundColor: black, fontFamily: "'Space Mono', monospace", display: 'flex', flexDirection: 'column' }}>
-        <nav
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            padding: '1rem 2rem',
-            borderBottom: '1px solid rgba(255,255,255,0.06)',
-            backgroundColor: 'rgba(6,8,8,0.95)',
-            flexShrink: 0,
-          }}
-        >
-          <div style={{ fontFamily: "'Unbounded', sans-serif", fontSize: '1rem', fontWeight: 900, letterSpacing: '-0.02em', color: white }}>ZUNGU</div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-            <span style={{ fontSize: 11, color: gold, border: `1px solid rgba(200,168,75,0.4)`, padding: '0.2rem 0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
-              {navLabel}
-            </span>
-            <button
-              onClick={() => signOut({ redirectUrl: '/' })}
-              style={{ fontSize: 10, color: muted, background: 'none', border: 'none', cursor: 'pointer', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 700, fontFamily: "'Space Mono', monospace" }}
-            >
-              Sign Out
-            </button>
-          </div>
-        </nav>
-
         {loaded && (
           <iframe
             src="/api/deck-html"
-            style={{ flex: 1, border: 'none', width: '100%', minHeight: 'calc(100vh - 57px)' }}
+            style={{ flex: 1, border: 'none', width: '100%', minHeight: '100vh' }}
             title="Zungu Festival Deck"
           />
         )}
@@ -218,6 +193,24 @@ function DeckContent() {
           color: #C8A84B !important; font-weight: 700 !important; letter-spacing: 0.15em !important; text-decoration: none !important;
         }
         [class*="cl-footerActionLink"]:hover { color: #dab84e !important; }
+        [class*="cl-footerActionText"] { color: rgba(242,235,217,0.65) !important; }
+
+        [class*="cl-otpCodeFieldInput"] {
+          background: rgba(6,8,8,0.95) !important; border: 1px solid rgba(200,168,75,0.4) !important;
+          color: #F7F3EC !important; border-radius: 0 !important; box-shadow: none !important; caret-color: #C8A84B !important;
+        }
+        [class*="cl-otpCodeFieldInput"]:focus { border-color: #C8A84B !important; outline: none !important; }
+        [class*="cl-otpCodeField"] * { color: #F7F3EC !important; }
+        [class*="cl-formResendCodeLink"] * { font-family: 'Space Mono',monospace !important; font-size: 9px !important; color: rgba(242,235,217,0.55) !important; }
+        [class*="cl-formResendCodeLink"] button,[class*="cl-formResendCodeLink"] a { color: #C8A84B !important; font-weight: 700 !important; }
+        [class*="cl-backLink"],[class*="cl-alternativeMethodsBlockButton"],[class*="cl-identityPreviewEditButton"] {
+          font-family: 'Space Mono',monospace !important; font-size: 9px !important;
+          color: rgba(242,235,217,0.55) !important; letter-spacing: 0.15em !important;
+          text-transform: uppercase !important; background: transparent !important; border: none !important;
+        }
+        [class*="cl-backLink"]:hover,[class*="cl-alternativeMethodsBlockButton"]:hover { color: #C8A84B !important; }
+        [class*="cl-footer"] span,[class*="cl-poweredBy"],[class*="cl-footer"] a { color: rgba(242,235,217,0.45) !important; font-size: 9px !important; }
+        [class*="cl-rootBox"] p,[class*="cl-rootBox"] span:not([class*="cl-formButtonPrimary"] *) { color: rgba(242,235,217,0.7) !important; }
       `}</style>
 
       {/* Role-specific background photo */}
