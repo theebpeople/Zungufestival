@@ -859,7 +859,7 @@ export default function DeckContent() {
       {/* Map 1: Overview */}
       <Section>
         <SectionHead label="Marina → Island Crossing Overview" title="The crossing." />
-        <div style={{ maxWidth: 900 }}>
+        <div style={{ maxWidth: 580 }}>
           <IslandOverviewMap />
         </div>
       </Section>
@@ -873,7 +873,7 @@ export default function DeckContent() {
         </BodyText>
 
         {/* Map 2: Stage map */}
-        <div style={{ maxWidth: 1000, marginBottom: 32 }}>
+        <div style={{ maxWidth: 680, marginBottom: 32 }}>
           <StageMap />
         </div>
 
@@ -932,7 +932,7 @@ export default function DeckContent() {
         </div>
 
         {/* Stacked map images */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 20, maxWidth: 900 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 20, maxWidth: 680 }}>
           <img
             src="/photos/NAVY%20ISLAND%20STAGE%20AND%20PATHWAY%20MAP.png"
             style={{ width: '100%', display: 'block', border: `1px solid ${dim}` }}
