@@ -3,7 +3,8 @@
 import { SignUp } from '@clerk/nextjs';
 import { useAuth, useClerk, useUser } from '@clerk/nextjs';
 import { useSearchParams } from 'next/navigation';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useState } from 'react';
+import DeckContentComponent from './DeckContent';
 
 const gold = '#C8A84B';
 const rust = '#C45A2A';
@@ -47,7 +48,7 @@ const NAV_LABELS: Record<string, string> = {
   press: 'Press Materials',
 };
 
-function DeckContent() {
+function DeckGate() {
   const { isLoaded, isSignedIn } = useAuth();
   const { user } = useUser();
   const { signOut } = useClerk();
@@ -55,14 +56,11 @@ function DeckContent() {
   const role = searchParams.get('role') ?? 'investor';
   const cfg = ROLE_CONFIG[role] ?? DEFAULT_CONFIG;
   const navLabel = NAV_LABELS[role] ?? 'Investor Deck';
-  const [loaded, setLoaded] = useState(false);
   const [notAuthorized] = useState(false);
 
-  useEffect(() => {
-    if (isLoaded && isSignedIn) {
-      setLoaded(true);
-    }
-  }, [isLoaded, isSignedIn]);
+  // Suppress unused-variable warning — user available for future role checks
+  void user;
+  void navLabel;
 
   if (!isLoaded) return null;
 
@@ -113,17 +111,7 @@ function DeckContent() {
 
   // ── State B: Signed in ───────────────────────────────────────────────────
   if (isSignedIn) {
-    return (
-      <div style={{ minHeight: '100vh', backgroundColor: black, fontFamily: "'Space Mono', monospace", display: 'flex', flexDirection: 'column' }}>
-        {loaded && (
-          <iframe
-            src="/api/deck-html"
-            style={{ flex: 1, border: 'none', width: '100%', minHeight: '100vh' }}
-            title="Zungu Festival Deck"
-          />
-        )}
-      </div>
-    );
+    return <DeckContentComponent />;
   }
 
   // ── State A: Auth modal ──────────────────────────────────────────────────
@@ -344,7 +332,7 @@ function DeckContent() {
 export default function DeckPage() {
   return (
     <Suspense>
-      <DeckContent />
+      <DeckGate />
     </Suspense>
   );
 }
