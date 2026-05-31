@@ -560,7 +560,7 @@ export default function ActivitiesPage() {
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: "url('/photos/hero-activities.jpg')",
+            backgroundImage: "url('/photos/stage-beach-activities.png')",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}

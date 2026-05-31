@@ -966,9 +966,11 @@ export default function DeckContent() {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             {[
-              { src: '/photos/island-stages-aerial.jpg', label: 'ISLAND OVERVIEW — Three stages. One island.', sub: 'Wide aerial concept · Navy Island' },
-              { src: '/photos/stage-origins-ground.jpg', label: 'ORIGINS STAGE — Heritage architecture', sub: 'Stage I · Natural materials · Canopy structure' },
-              { src: '/photos/stage-beach-aerial.jpg', label: 'BEACH STAGE — Water\'s edge', sub: 'Stage II · Beach access · Open water surround' },
+              { src: '/photos/island-stages-aerial.png', label: 'ISLAND OVERVIEW — Three stages. One island.', sub: 'Wide aerial concept · Navy Island' },
+              { src: '/photos/stage-zungu-aerial.png', label: 'ZUNGU MAIN — Headline stage', sub: 'Stage II · North clearing · Canopy facing sea' },
+              { src: '/photos/stage-origins-ground.png', label: 'ORIGINS — Heritage architecture', sub: 'Stage I · Bamboo structure · Natural canopy' },
+              { src: '/photos/stage-rebirth-aerial.png', label: 'REBIRTH — Future sounds', sub: 'Stage III · East point · Open horizon' },
+              { src: '/photos/stage-beach-aerial.png', label: 'BEACH STAGE — Water\'s edge', sub: 'South shore · Open water surround' },
             ].map(({ src, label, sub }) => (
               <div key={src} style={{ position: 'relative' }}>
                 <img
@@ -1387,7 +1389,7 @@ export default function DeckContent() {
 
       {/* Photo break 5 */}
       <PhotoBreak
-        src="/photos/origins-stage.jpg"
+        src="/photos/stage-origins-ground.png"
         quote="The crowd. The canopy. The sea."
         label="The Stage Experience · Zungu 2027"
         height="68vh"
