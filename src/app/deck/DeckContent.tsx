@@ -117,13 +117,13 @@ function ChapterDivider({ num, eye, title, sub }: ChapterProps) {
       style={{
         width: '100%',
         boxSizing: 'border-box',
-        padding: '80px 8vw 60px',
         backgroundColor: bg,
         borderTop: `1px solid ${dim}`,
         position: 'relative',
         overflow: 'hidden',
       }}
     >
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(60px,6vw,80px) clamp(24px,6vw,96px)', boxSizing: 'border-box', position: 'relative' }}>
       <div
         style={{
           position: 'absolute',
@@ -178,6 +178,7 @@ function ChapterDivider({ num, eye, title, sub }: ChapterProps) {
           {sub}
         </p>
       </div>
+      </div>
     </div>
   );
 }
@@ -197,12 +198,13 @@ function Section({ id, children, dark, style }: SectionProps) {
       style={{
         width: '100%',
         boxSizing: 'border-box',
-        padding: '80px 8vw',
         backgroundColor: dark ? green : bg,
         ...style,
       }}
     >
-      {children}
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '80px clamp(24px, 6vw, 96px)', boxSizing: 'border-box' }}>
+        {children}
+      </div>
     </section>
   );
 }
@@ -450,10 +452,11 @@ export default function DeckContent() {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: 'clamp(12px, 2.5vw, 28px)',
-            flexWrap: 'wrap',
+            gap: 'clamp(10px, 2vw, 24px)',
+            flexWrap: 'nowrap',
             justifyContent: 'center',
             flex: 1,
+            overflow: 'hidden',
           }}
         >
           {(
@@ -493,15 +496,9 @@ export default function DeckContent() {
             Request Briefing →
           </button>
 
-          <a
-            href="/activities"
-            style={{ ...navLinkStyle, display: 'inline-block' }}
-          >
-            Activities
-          </a>
         </div>
 
-        {/* Right: badge + sign out */}
+        {/* Right: activities + badge + sign out */}
         <div
           style={{
             display: 'flex',
@@ -510,6 +507,12 @@ export default function DeckContent() {
             flexShrink: 0,
           }}
         >
+          <a
+            href="/activities"
+            style={{ ...navLinkStyle, display: 'inline-block', whiteSpace: 'nowrap' }}
+          >
+            Activities
+          </a>
           <span
             style={{
               fontFamily: fontMono,
