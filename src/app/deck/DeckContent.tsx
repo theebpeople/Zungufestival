@@ -50,7 +50,8 @@ function PhotoBreak({ src, quote, label, height = '70vh' }: PhotoBreakProps) {
         height,
         overflow: 'hidden',
         display: 'flex',
-        alignItems: 'flex-end',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
       <motion.div
@@ -60,43 +61,44 @@ function PhotoBreak({ src, quote, label, height = '70vh' }: PhotoBreakProps) {
           backgroundImage: `url('${src}')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          filter: 'saturate(0.65) brightness(0.38)',
+          filter: 'saturate(0.7) brightness(0.35)',
           y: bgY,
         }}
       />
+      {/* gradient — bottom fade */}
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(6,8,8,0.7) 0%, rgba(6,8,8,0) 50%)', zIndex: 1 }} />
       <div
         style={{
           position: 'relative',
           zIndex: 2,
-          padding: '0 8vw 52px',
+          textAlign: 'center',
+          padding: '0 clamp(24px, 8vw, 120px)',
           width: '100%',
         }}
       >
-        <div style={{ width: 28, height: 1, background: gold, marginBottom: 18 }} />
-        <p
-          style={{
-            fontFamily: fontDisplay,
-            fontSize: 'clamp(20px, 3.5vw, 40px)',
-            fontWeight: 700,
-            color: cream,
-            lineHeight: 1.15,
-            marginBottom: 16,
-            maxWidth: 600,
-          }}
-        >
-          {quote}
-        </p>
         <p
           style={{
             fontFamily: fontMono,
             fontSize: 9,
-            letterSpacing: '0.4em',
+            letterSpacing: '0.45em',
             textTransform: 'uppercase',
             color: gold,
             fontWeight: 700,
+            marginBottom: 20,
           }}
         >
           {label}
+        </p>
+        <p
+          style={{
+            fontFamily: fontDisplay,
+            fontSize: 'clamp(32px, 5.5vw, 72px)',
+            fontWeight: 900,
+            color: cream,
+            lineHeight: 1.05,
+          }}
+        >
+          {quote}
         </p>
       </div>
     </div>
@@ -277,37 +279,42 @@ interface SectionHeadProps {
   label?: string;
   title: string;
   titleColor?: string;
+  goldLine?: string;
 }
 
-function SectionHead({ label, title, titleColor = cream }: SectionHeadProps) {
+function SectionHead({ label, title, titleColor = cream, goldLine }: SectionHeadProps) {
   return (
-    <div style={{ marginBottom: 40 }}>
+    <div style={{ marginBottom: 48 }}>
       {label && (
-        <p
-          style={{
-            fontFamily: fontMono,
-            fontSize: 9,
-            letterSpacing: '0.45em',
-            textTransform: 'uppercase',
-            color: gold,
-            fontWeight: 700,
-            marginBottom: 14,
-          }}
-        >
-          // {label}
-        </p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20 }}>
+          <div style={{ width: 28, height: 1, background: gold, flexShrink: 0 }} />
+          <p
+            style={{
+              fontFamily: fontMono,
+              fontSize: 9,
+              letterSpacing: '0.45em',
+              textTransform: 'uppercase',
+              color: gold,
+              fontWeight: 700,
+            }}
+          >
+            {label}
+          </p>
+        </div>
       )}
       <h3
         style={{
           fontFamily: fontDisplay,
-          fontSize: 'clamp(24px, 4vw, 52px)',
+          fontSize: 'clamp(32px, 5.5vw, 68px)',
           fontWeight: 900,
           color: titleColor,
-          lineHeight: 1.1,
-          maxWidth: 820,
+          lineHeight: 1.05,
         }}
       >
         {title}
+        {goldLine && (
+          <><br /><span style={{ color: gold }}>{goldLine}</span></>
+        )}
       </h3>
     </div>
   );
@@ -841,13 +848,17 @@ export default function DeckContent() {
       {/* Photo break 2 */}
       <PhotoBreak
         src="/photos/port-antonio.jpg"
-        quote="The most beautiful town in Jamaica."
-        label="Port Antonio Harbour · Blue Mountains"
+        quote="Island. Water. Isolation."
+        label="Portland Parish · Caribbean"
       />
 
       {/* Section: Geographic Context */}
       <Section>
-        <SectionHead label="Port Antonio" title="Undiscovered at this scale." />
+        <SectionHead
+          label="Port Antonio"
+          title="The most beautiful town in Jamaica."
+          goldLine="Undiscovered at this scale."
+        />
         <BodyText>
           Port Antonio was where Errol Flynn docked his yacht and never left. It was Ian Fleming&rsquo;s Jamaica.
           It was where the banana boats left for Europe. The Blue Lagoon is 4km from the festival site.
