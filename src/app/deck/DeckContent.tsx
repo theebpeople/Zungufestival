@@ -125,7 +125,7 @@ function ChapterDivider({ num, eye, title, sub }: ChapterProps) {
         overflow: 'hidden',
       }}
     >
-      <div style={{ padding: 'clamp(60px,6vw,80px) 4vw', boxSizing: 'border-box', position: 'relative' }}>
+      <div style={{ padding: '72px 8vw 0', boxSizing: 'border-box', position: 'relative' }}>
       <div
         style={{
           position: 'absolute',
@@ -159,10 +159,11 @@ function ChapterDivider({ num, eye, title, sub }: ChapterProps) {
         <h2
           style={{
             fontFamily: fontDisplay,
-            fontSize: 'clamp(32px, 5.5vw, 68px)',
-            fontWeight: 900,
+            fontSize: 'clamp(24px, 4vw, 48px)',
+            fontWeight: 700,
             color: cream,
             lineHeight: 1.05,
+            letterSpacing: '-0.02em',
             marginBottom: 20,
           }}
         >
@@ -204,7 +205,7 @@ function Section({ id, children, dark, style }: SectionProps) {
         ...style,
       }}
     >
-      <div style={{ padding: '80px 4vw', boxSizing: 'border-box' }}>
+      <div style={{ padding: '88px 8vw', boxSizing: 'border-box' }}>
         {children}
       </div>
     </section>
@@ -265,8 +266,8 @@ function BodyText({ children }: { children: React.ReactNode }) {
         fontSize: 13,
         color: muted,
         lineHeight: 1.9,
-        maxWidth: 720,
-        marginBottom: 24,
+        maxWidth: 680,
+        marginBottom: 18,
       }}
     >
       {children}
@@ -284,9 +285,9 @@ interface SectionHeadProps {
 
 function SectionHead({ label, title, titleColor = cream, goldLine }: SectionHeadProps) {
   return (
-    <div style={{ marginBottom: 48 }}>
+    <div style={{ marginBottom: 36 }}>
       {label && (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 36 }}>
           <div style={{ width: 28, height: 1, background: gold, flexShrink: 0 }} />
           <p
             style={{
@@ -305,11 +306,12 @@ function SectionHead({ label, title, titleColor = cream, goldLine }: SectionHead
       <h3
         style={{
           fontFamily: fontDisplay,
-          fontSize: 'clamp(32px, 5.5vw, 68px)',
-          fontWeight: 900,
+          fontSize: 'clamp(24px, 4vw, 54px)',
+          fontWeight: 700,
           color: titleColor,
-          lineHeight: 1.05,
-          maxWidth: 720,
+          lineHeight: 1.02,
+          letterSpacing: '-0.025em',
+          marginBottom: 28,
         }}
       >
         {title}
@@ -322,7 +324,7 @@ function SectionHead({ label, title, titleColor = cream, goldLine }: SectionHead
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
-export default function DeckContent() {
+export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?: string }) {
   // Refs for section scroll targets
   const sectionRefs: Record<SectionId, React.RefObject<HTMLElement | null>> = {
     island: useRef<HTMLElement>(null),
@@ -522,7 +524,7 @@ export default function DeckContent() {
               whiteSpace: 'nowrap',
             }}
           >
-            INVESTOR DECK
+            {navLabel.toUpperCase()}
           </span>
           <a
             href="/sign-out"
