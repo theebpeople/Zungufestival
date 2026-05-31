@@ -44,6 +44,8 @@ function PhotoBreak({ src, quote, label, height = '70vh' }: PhotoBreakProps) {
     <div
       ref={ref}
       style={{
+        width: '100%',
+        boxSizing: 'border-box',
         position: 'relative',
         height,
         overflow: 'hidden',
@@ -113,6 +115,8 @@ function ChapterDivider({ num, eye, title, sub }: ChapterProps) {
   return (
     <div
       style={{
+        width: '100%',
+        boxSizing: 'border-box',
         padding: '80px 8vw 60px',
         backgroundColor: bg,
         borderTop: `1px solid ${dim}`,
@@ -191,6 +195,8 @@ function Section({ id, children, dark, style }: SectionProps) {
     <section
       id={id}
       style={{
+        width: '100%',
+        boxSizing: 'border-box',
         padding: '80px 8vw',
         backgroundColor: dark ? green : bg,
         ...style,
@@ -393,7 +399,7 @@ export default function DeckContent() {
   };
 
   return (
-    <div style={{ backgroundColor: bg, color: cream, fontFamily: fontMono, position: 'relative' }}>
+    <div style={{ backgroundColor: bg, color: cream, fontFamily: fontMono, position: 'relative', width: '100%', minHeight: '100vh' }}>
 
       {/* ── Scroll progress bar ──────────────────────────────────────────── */}
       <motion.div
@@ -574,6 +580,8 @@ export default function DeckContent() {
       ═══════════════════════════════════════════════════════════════════ */}
       <section
         style={{
+          width: '100%',
+          boxSizing: 'border-box',
           position: 'relative',
           height: '100vh',
           minHeight: 600,
