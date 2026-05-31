@@ -273,64 +273,50 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 }
 
 // ── Chapter divider ────────────────────────────────────────────────────────────
-function ChapterDivider({ num, title, light = false }: { num: string; title: string; light?: boolean }) {
+function ChapterDivider({ num, title, prefix = '', light = false }: { num: string; title: string; prefix?: string; light?: boolean }) {
   const bg = light ? '#F0EAD8' : BG;
   const textColor = light ? '#04080A' : CREAM;
-  const mutedColor = light ? 'rgba(4,8,10,0.45)' : MUTED;
   const lineColor = light ? 'rgba(4,8,10,0.12)' : BORDER_MID;
+  const goldColor = light ? '#8B6E1F' : GOLD;
 
   return (
     <div
       style={{
+        width: '100%',
+        boxSizing: 'border-box',
         backgroundColor: bg,
-        padding: '4rem 2rem',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '2rem',
+        padding: '4rem clamp(24px, 8vw, 112px)',
         borderTop: `1px solid ${lineColor}`,
-        borderBottom: `1px solid ${lineColor}`,
       }}
     >
-      <span
-        style={{
-          fontFamily: MONO,
-          fontSize: 9,
-          letterSpacing: '0.35em',
-          color: GOLD,
-          textTransform: 'uppercase' as const,
-          fontWeight: 700,
-          whiteSpace: 'nowrap' as const,
-        }}
-      >
-        Chapter {num}
-      </span>
-      <div style={{ flex: 1, height: 1, backgroundColor: lineColor }} />
-      <span
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+        <div style={{ width: 24, height: 1, backgroundColor: goldColor, flexShrink: 0 }} />
+        <span
+          style={{
+            fontFamily: MONO,
+            fontSize: 9,
+            letterSpacing: '0.4em',
+            color: goldColor,
+            textTransform: 'uppercase' as const,
+            fontWeight: 700,
+          }}
+        >
+          Chapter {num}
+        </span>
+      </div>
+      <h2
         style={{
           fontFamily: DISPLAY,
-          fontSize: 'clamp(1.1rem, 3vw, 1.75rem)',
+          fontSize: 'clamp(2rem, 5vw, 4rem)',
           color: textColor,
           fontWeight: 900,
-          letterSpacing: '-0.02em',
-          textTransform: 'uppercase' as const,
-          whiteSpace: 'nowrap' as const,
+          letterSpacing: '-0.03em',
+          lineHeight: 1.05,
         }}
       >
-        {title}
-      </span>
-      <div style={{ flex: 1, height: 1, backgroundColor: lineColor }} />
-      <span
-        style={{
-          fontFamily: MONO,
-          fontSize: 9,
-          letterSpacing: '0.35em',
-          color: mutedColor,
-          textTransform: 'uppercase' as const,
-          whiteSpace: 'nowrap' as const,
-        }}
-      >
-        Zungu 2027
-      </span>
+        {prefix && <>{prefix} </>}
+        <span style={{ color: goldColor }}>{title}</span>
+      </h2>
     </div>
   );
 }
@@ -548,7 +534,7 @@ export default function ActivitiesPage() {
           minHeight: '100vh',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
+          alignItems: 'flex-start',
           justifyContent: 'flex-end',
           paddingBottom: '8rem',
           paddingTop: 56,
@@ -586,7 +572,7 @@ export default function ActivitiesPage() {
         />
 
         {/* Content */}
-        <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', maxWidth: 900, padding: '0 2rem' }}>
+        <div style={{ position: 'relative', zIndex: 10, textAlign: 'left', width: '100%', padding: '0 clamp(24px, 8vw, 112px)' }}>
           <p
             style={{
               fontFamily: MONO,
@@ -634,13 +620,11 @@ export default function ActivitiesPage() {
           {/* Stats grid */}
           <div
             style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
+              display: 'inline-grid',
+              gridTemplateColumns: 'repeat(4, auto)',
               gap: '1px',
               backgroundColor: BORDER_MID,
               border: `1px solid ${BORDER_MID}`,
-              maxWidth: 720,
-              margin: '0 auto',
             }}
           >
             {[
@@ -664,12 +648,12 @@ export default function ActivitiesPage() {
       </section>
 
       {/* ── Chapter 01 ── */}
-      <ChapterDivider num="01" title="Philosophy" />
+      <ChapterDivider num="01" prefix="The Programme" title="Philosophy" />
 
       {/* ═══════════════════════════════════════════════════════════════════════
           PHILOSOPHY
       ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="philosophy" style={{ backgroundColor: BG, padding: '6rem 2rem' }}>
+      <section id="philosophy" style={{ backgroundColor: BG, padding: '5rem clamp(24px, 8vw, 112px)' }}>
         <div
           style={{
             maxWidth: 1200,
@@ -758,12 +742,12 @@ export default function ActivitiesPage() {
       </section>
 
       {/* ── Chapter 02 ── */}
-      <ChapterDivider num="02" title="Activity Zones" />
+      <ChapterDivider num="02" prefix="Activity" title="Zones" />
 
       {/* ═══════════════════════════════════════════════════════════════════════
           ZONES
       ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="zones" style={{ backgroundColor: BG, padding: '6rem 2rem' }}>
+      <section id="zones" style={{ backgroundColor: BG, padding: '5rem clamp(24px, 8vw, 112px)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div
             style={{
@@ -784,12 +768,12 @@ export default function ActivitiesPage() {
       </section>
 
       {/* ── Chapter 03 (light) ── */}
-      <ChapterDivider num="03" title="Schedule" light />
+      <ChapterDivider num="03" prefix="The Daily" title="Schedule" light />
 
       {/* ═══════════════════════════════════════════════════════════════════════
           SCHEDULE
       ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="schedule" style={{ backgroundColor: '#F0EAD8', padding: '6rem 2rem' }}>
+      <section id="schedule" style={{ backgroundColor: '#F0EAD8', padding: '5rem clamp(24px, 8vw, 112px)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
 
           {/* Hard rule cards */}
@@ -992,12 +976,12 @@ export default function ActivitiesPage() {
       </section>
 
       {/* ── Chapter 04 ── */}
-      <ChapterDivider num="04" title="Wellness & Recovery" />
+      <ChapterDivider num="04" prefix="Wellness &" title="Recovery" />
 
       {/* ═══════════════════════════════════════════════════════════════════════
           WELLNESS
       ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="wellness" style={{ backgroundColor: BG, padding: '6rem 2rem' }}>
+      <section id="wellness" style={{ backgroundColor: BG, padding: '5rem clamp(24px, 8vw, 112px)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div
             style={{
@@ -1018,12 +1002,12 @@ export default function ActivitiesPage() {
       </section>
 
       {/* ── Chapter 05 ── */}
-      <ChapterDivider num="05" title="VIP Tiers" />
+      <ChapterDivider num="05" prefix="VIP" title="Tiers" />
 
       {/* ═══════════════════════════════════════════════════════════════════════
           VIP
       ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="vip" style={{ backgroundColor: BG, padding: '6rem 2rem' }}>
+      <section id="vip" style={{ backgroundColor: BG, padding: '5rem clamp(24px, 8vw, 112px)' }}>
         <div
           style={{
             maxWidth: 1100,
@@ -1090,12 +1074,12 @@ export default function ActivitiesPage() {
       </section>
 
       {/* ── Chapter 06 ── */}
-      <ChapterDivider num="06" title="Sustainability" />
+      <ChapterDivider num="06" prefix="Our" title="Sustainability" />
 
       {/* ═══════════════════════════════════════════════════════════════════════
           SUSTAINABILITY
       ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="sustainability" style={{ backgroundColor: BG, padding: '6rem 2rem' }}>
+      <section id="sustainability" style={{ backgroundColor: BG, padding: '5rem clamp(24px, 8vw, 112px)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <div
             style={{
