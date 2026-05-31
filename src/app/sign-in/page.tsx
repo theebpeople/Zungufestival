@@ -126,6 +126,64 @@ function SignInContent() {
         [class*="cl-footerActionLink"]:hover {
           color: #dab84e !important;
         }
+        [class*="cl-footerActionText"] {
+          color: rgba(242,235,217,0.65) !important;
+        }
+
+        /* OTP code entry boxes */
+        [class*="cl-otpCodeFieldInput"] {
+          background: rgba(6,8,8,0.95) !important;
+          border: 1px solid rgba(200,168,75,0.4) !important;
+          color: #F7F3EC !important;
+          border-radius: 0 !important;
+          box-shadow: none !important;
+          caret-color: #C8A84B !important;
+        }
+        [class*="cl-otpCodeFieldInput"]:focus {
+          border-color: #C8A84B !important;
+          outline: none !important;
+          box-shadow: none !important;
+        }
+        [class*="cl-otpCodeField"] * { color: #F7F3EC !important; }
+
+        /* "Resend code" */
+        [class*="cl-formResendCodeLink"] * {
+          font-family: 'Space Mono', monospace !important;
+          font-size: 9px !important;
+          color: rgba(242,235,217,0.55) !important;
+        }
+        [class*="cl-formResendCodeLink"] button,
+        [class*="cl-formResendCodeLink"] a { color: #C8A84B !important; font-weight: 700 !important; }
+
+        /* "Back", "Use another method" */
+        [class*="cl-backLink"],
+        [class*="cl-alternativeMethodsBlockButton"],
+        [class*="cl-identityPreviewEditButton"] {
+          font-family: 'Space Mono', monospace !important;
+          font-size: 9px !important;
+          color: rgba(242,235,217,0.55) !important;
+          letter-spacing: 0.15em !important;
+          text-transform: uppercase !important;
+          background: transparent !important;
+          border: none !important;
+        }
+        [class*="cl-backLink"]:hover,
+        [class*="cl-alternativeMethodsBlockButton"]:hover { color: #C8A84B !important; }
+
+        /* "Secured by Clerk" */
+        [class*="cl-footer"] span,
+        [class*="cl-poweredBy"],
+        [class*="cl-footer"] a {
+          color: rgba(242,235,217,0.45) !important;
+          font-family: 'Space Mono', monospace !important;
+          font-size: 9px !important;
+        }
+
+        /* Catch-all for remaining dark-on-dark text */
+        [class*="cl-rootBox"] p,
+        [class*="cl-rootBox"] span:not([class*="cl-formButtonPrimary"] *) {
+          color: rgba(242,235,217,0.7) !important;
+        }
       `}</style>
 
       {/* HQ aerial background — very dim */}
@@ -136,7 +194,7 @@ function SignInContent() {
           backgroundImage: "url('/photos/NAVY%20ISLAND%20AERIAL.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center 38%',
-          filter: 'saturate(0.6) brightness(0.18)',
+          filter: 'saturate(0.7) brightness(0.30)',
           opacity: 0.85,
         }}
       />
@@ -152,12 +210,7 @@ function SignInContent() {
 
       {/* Logo mark */}
       <div style={{ position: 'relative', zIndex: 10, marginBottom: '3rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ width: 80, height: 80, marginBottom: '2.5rem', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div style={{ position: 'absolute', inset: 0, transform: 'rotate(45deg)', border: '1px solid rgba(200,168,75,0.2)' }} />
-          <div style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', border: `2px solid ${gold}` }}>
-            <div style={{ width: 8, height: 8, backgroundColor: gold }} />
-          </div>
-        </div>
+        <img src="/zungu-z-mark.png" alt="Zungu" style={{ width: 80, height: 80, marginBottom: '2.5rem', objectFit: 'contain' }} />
 
         <h1
           style={{

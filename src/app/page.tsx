@@ -83,7 +83,7 @@ export default function LandingPage() {
         </div>
         <p
           className="font-light uppercase tracking-[0.35em] mb-14"
-          style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 'clamp(0.6rem, 1.1vw, 0.85rem)', color: 'rgba(247,243,236,0.18)' }}
+          style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 'clamp(0.6rem, 1.1vw, 0.85rem)', color: 'rgba(247,243,236,0.55)' }}
         >
           MMXXVII
         </p>
@@ -92,17 +92,17 @@ export default function LandingPage() {
 
         <p
           className="font-bold italic uppercase mb-12"
-          style={{ fontSize: 11, letterSpacing: '0.3em', color: 'rgba(242,235,217,0.42)' }}
+          style={{ fontSize: 11, letterSpacing: '0.3em', color: 'rgba(242,235,217,0.42)', marginBottom: '4rem' }}
         >
           An Electronic Music Oasis
         </p>
 
         {/* CTAs */}
-        <div className="flex gap-4 flex-wrap justify-center">
+        <div className="flex gap-6 flex-wrap justify-center">
           <button
             onClick={() => setModal(true)}
             className="font-bold uppercase transition-all duration-200"
-            style={{ fontFamily: "'Space Mono', monospace", fontSize: 9, letterSpacing: '0.4em', padding: '14px 28px', border: `1px solid rgba(200,168,75,0.5)`, color: GOLD, background: 'transparent', cursor: 'pointer' }}
+            style={{ fontFamily: "'Space Mono', monospace", fontSize: 9, letterSpacing: '0.4em', padding: '16px 36px', border: `1px solid rgba(200,168,75,0.5)`, color: GOLD, background: 'transparent', cursor: 'pointer' }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(200,168,75,0.08)'; (e.currentTarget as HTMLElement).style.borderColor = GOLD; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(200,168,75,0.5)'; }}
           >
@@ -111,7 +111,7 @@ export default function LandingPage() {
           <a
             href="/sign-in"
             className="font-bold uppercase transition-all duration-200"
-            style={{ fontFamily: "'Space Mono', monospace", fontSize: 9, letterSpacing: '0.4em', padding: '14px 28px', backgroundColor: GOLD, color: BLACK, textDecoration: 'none', display: 'inline-block' }}
+            style={{ fontFamily: "'Space Mono', monospace", fontSize: 9, letterSpacing: '0.4em', padding: '16px 36px', backgroundColor: GOLD, color: BLACK, textDecoration: 'none', display: 'inline-block' }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = '#dab84e'; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = GOLD; }}
           >
