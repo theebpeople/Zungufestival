@@ -460,10 +460,9 @@ export default function DeckContent() {
             display: 'flex',
             alignItems: 'center',
             gap: 'clamp(10px, 2vw, 24px)',
-            flexWrap: 'nowrap',
+            flexWrap: 'wrap',
             justifyContent: 'center',
             flex: 1,
-            overflow: 'hidden',
           }}
         >
           {(
@@ -848,16 +847,15 @@ export default function DeckContent() {
       {/* Photo break 2 */}
       <PhotoBreak
         src="/photos/port-antonio.jpg"
-        quote="Island. Water. Isolation."
-        label="Portland Parish · Caribbean"
+        quote="The most beautiful town in Jamaica."
+        label="Port Antonio Harbour · Blue Mountains"
       />
 
       {/* Section: Geographic Context */}
       <Section>
         <SectionHead
           label="Port Antonio"
-          title="The most beautiful town in Jamaica."
-          goldLine="Undiscovered at this scale."
+          title="Undiscovered at this scale."
         />
         <BodyText>
           Port Antonio was where Errol Flynn docked his yacht and never left. It was Ian Fleming&rsquo;s Jamaica.
