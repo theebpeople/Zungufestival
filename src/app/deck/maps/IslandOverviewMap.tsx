@@ -25,7 +25,7 @@ const errolFlynnMarina: [number, number] = [18.18272, -76.45366];
 
 export default function IslandOverviewMap() {
   return (
-    <div style={{ width: '100%', height: 420, overflow: 'hidden', border: '1px solid rgba(200,168,75,0.2)' }}>
+    <div style={{ width: '100%', height: 500, overflow: 'hidden', border: '1px solid rgba(200,168,75,0.2)' }}>
       <MapContainer
         center={[18.185, -76.454]}
         zoom={15}

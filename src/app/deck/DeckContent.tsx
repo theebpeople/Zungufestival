@@ -120,67 +120,39 @@ function ChapterDivider({ num, eye, title, sub }: ChapterProps) {
         width: '100%',
         boxSizing: 'border-box',
         backgroundColor: bg,
-        borderTop: `1px solid ${dim}`,
-        position: 'relative',
-        overflow: 'hidden',
+        borderTop: `1px solid rgba(200,168,75,0.15)`,
       }}
     >
-      <div style={{ padding: '72px 8vw 0', boxSizing: 'border-box', position: 'relative' }}>
-      <div
-        style={{
-          position: 'absolute',
-          top: -20,
-          left: '4vw',
-          fontFamily: fontDisplay,
-          fontSize: 'clamp(100px, 18vw, 220px)',
-          fontWeight: 900,
-          color: 'rgba(200,168,75,0.04)',
-          lineHeight: 1,
-          userSelect: 'none',
-          pointerEvents: 'none',
-        }}
-      >
-        {num}
-      </div>
-      <div style={{ position: 'relative', zIndex: 1 }}>
-        <p
-          style={{
-            fontFamily: fontMono,
-            fontSize: 9,
-            letterSpacing: '0.45em',
-            textTransform: 'uppercase',
-            color: gold,
-            fontWeight: 700,
-            marginBottom: 16,
-          }}
-        >
-          {eye}
-        </p>
-        <h2
-          style={{
-            fontFamily: fontDisplay,
-            fontSize: 'clamp(24px, 4vw, 48px)',
-            fontWeight: 700,
-            color: cream,
-            lineHeight: 1.05,
-            letterSpacing: '-0.02em',
-            marginBottom: 20,
-          }}
-        >
-          {title}
-        </h2>
-        <p
-          style={{
-            fontFamily: fontMono,
-            fontSize: 13,
-            color: muted,
-            lineHeight: 1.8,
-            maxWidth: 640,
-          }}
-        >
-          {sub}
-        </p>
-      </div>
+      <div style={{ padding: '72px 8vw 0', boxSizing: 'border-box' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
+          {/* Ghost number — flex item matching .ch-n */}
+          <div
+            style={{
+              fontFamily: fontDisplay,
+              fontSize: 88,
+              fontWeight: 900,
+              color: 'rgba(200,168,75,0.08)',
+              lineHeight: 1,
+              flexShrink: 0,
+              userSelect: 'none',
+              pointerEvents: 'none',
+            }}
+          >
+            {num}
+          </div>
+          {/* Text content */}
+          <div>
+            <p style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.6em', color: gold, textTransform: 'uppercase', marginBottom: 8 }}>
+              {eye}
+            </p>
+            <h2 style={{ fontFamily: fontDisplay, fontSize: 'clamp(24px, 4vw, 48px)', fontWeight: 700, color: cream, lineHeight: 1.05, letterSpacing: '-0.02em' }}>
+              {title}
+            </h2>
+            <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, marginTop: 10, lineHeight: 1.7, maxWidth: 540 }}>
+              {sub}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -444,7 +416,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: '0 4vw',
+          padding: '0 6vw',
           gap: 16,
         }}
       >
