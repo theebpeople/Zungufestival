@@ -58,9 +58,7 @@ function DeckGate() {
   const navLabel = NAV_LABELS[role] ?? 'Investor Deck';
   const [notAuthorized] = useState(false);
 
-  // Suppress unused-variable warning — user available for future role checks
   void user;
-  void navLabel;
 
   if (!isLoaded) return null;
 
@@ -111,7 +109,7 @@ function DeckGate() {
 
   // ── State B: Signed in ───────────────────────────────────────────────────
   if (isSignedIn) {
-    return <DeckContentComponent />;
+    return <DeckContentComponent navLabel={navLabel} />;
   }
 
   // ── State A: Auth modal ──────────────────────────────────────────────────
