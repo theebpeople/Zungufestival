@@ -17,3 +17,17 @@ html, body {
 /* Hide Clerk dev mode banner globally */
 [class*="cl-badge"],[data-localization-key="badge__devMode"],
 [class*="cl-devBrowser"],[class*="cl-internal-b3fm6y"] { display: none !important; }
+
+/* Deck nav chapter links — hide on portrait tablet and below */
+.deck-chapter-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 2vw, 24px);
+  flex-wrap: nowrap;
+  overflow: hidden;
+  flex: 1;
+  justify-content: center;
+}
+@media (max-width: 900px) {
+  .deck-chapter-links { display: none; }
+}
