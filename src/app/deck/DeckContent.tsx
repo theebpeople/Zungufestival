@@ -125,7 +125,7 @@ function ChapterDivider({ num, eye, title, sub }: ChapterProps) {
         overflow: 'hidden',
       }}
     >
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(60px,6vw,80px) clamp(24px,6vw,96px)', boxSizing: 'border-box', position: 'relative' }}>
+      <div style={{ padding: 'clamp(60px,6vw,80px) 4vw', boxSizing: 'border-box', position: 'relative' }}>
       <div
         style={{
           position: 'absolute',
@@ -204,7 +204,7 @@ function Section({ id, children, dark, style }: SectionProps) {
         ...style,
       }}
     >
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '80px clamp(24px, 6vw, 96px)', boxSizing: 'border-box' }}>
+      <div style={{ padding: '80px 4vw', boxSizing: 'border-box' }}>
         {children}
       </div>
     </section>
@@ -454,17 +454,8 @@ export default function DeckContent() {
           />
         </div>
 
-        {/* Center: nav links */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'clamp(10px, 2vw, 24px)',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            flex: 1,
-          }}
-        >
+        {/* Center: nav links — hidden on portrait tablet via CSS */}
+        <div className="deck-chapter-links">
           {(
             [
               ['The Island', 'island'],
@@ -482,7 +473,17 @@ export default function DeckContent() {
               {label}
             </button>
           ))}
+        </div>
 
+        {/* Right: CTA + activities + badge + sign out */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 16,
+            flexShrink: 0,
+          }}
+        >
           <button
             onClick={scrollToCta}
             style={{
@@ -501,18 +502,6 @@ export default function DeckContent() {
           >
             Request Briefing →
           </button>
-
-        </div>
-
-        {/* Right: activities + badge + sign out */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 16,
-            flexShrink: 0,
-          }}
-        >
           <a
             href="/activities"
             style={{ ...navLinkStyle, display: 'inline-block', whiteSpace: 'nowrap' }}
@@ -855,7 +844,8 @@ export default function DeckContent() {
       <Section>
         <SectionHead
           label="Port Antonio"
-          title="Undiscovered at this scale."
+          title="The most beautiful town in Jamaica."
+          goldLine="Undiscovered at this scale."
         />
         <BodyText>
           Port Antonio was where Errol Flynn docked his yacht and never left. It was Ian Fleming&rsquo;s Jamaica.
