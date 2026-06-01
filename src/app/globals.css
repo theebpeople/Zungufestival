@@ -3,6 +3,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
+  font-size: 14px;
   background-color: #060808;
   color: #F7F3EC;
   font-family: 'Space Mono', monospace;
@@ -11,9 +12,37 @@ html, body {
   scroll-behavior: smooth;
 }
 
+/* Analog grain texture — matches body::before in HTML mockups */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  mix-blend-mode: overlay;
+}
+
 ::selection { background: #C8A84B; color: #060808; }
 .pre-wrap { white-space: pre-wrap; }
 
 /* Hide Clerk dev mode banner globally */
 [class*="cl-badge"],[data-localization-key="badge__devMode"],
 [class*="cl-devBrowser"],[class*="cl-internal-b3fm6y"] { display: none !important; }
+
+/* Deck nav chapter links — hide on portrait tablet and below */
+.deck-chapter-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 2vw, 24px);
+  flex-wrap: nowrap;
+  overflow: hidden;
+  flex: 1;
+  justify-content: center;
+}
+@media (max-width: 900px) {
+  .deck-chapter-links { display: none; }
+}

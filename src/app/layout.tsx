@@ -5,6 +5,11 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'ZUNGU 2027 — Access',
   description: 'Navy Island · MMXXVII',
+  icons: {
+    icon: '/zungu-z-mark.png',
+    apple: '/zungu-z-mark.png',
+    shortcut: '/zungu-z-mark.png',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

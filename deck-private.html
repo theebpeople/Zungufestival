@@ -158,6 +158,11 @@ section.green{background:var(--green);}
     <button class="nav-link" onclick="ss('s-model')">The Model</button>
     <button class="nav-link" onclick="ss('s-numbers')">Numbers</button>
     <button class="nav-link" onclick="ss('s-cta')" style="color:var(--gold);">Request Briefing →</button>
+    <a href="/activities" target="_top" class="nav-link">Activities</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:1.5rem;flex-shrink:0;">
+    <span style="font-size:9px;letter-spacing:.25em;color:var(--gold);border:1px solid rgba(200,168,75,.4);padding:.2rem .65rem;text-transform:uppercase;font-family:'Space Mono',monospace;">INVESTOR DECK</span>
+    <a href="/sign-out" target="_top" style="font-size:9px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;text-decoration:none;font-family:'Space Mono',monospace;">SIGN OUT</a>
   </div>
 </nav>
 <div class="dots" id="dots"></div>
@@ -215,7 +220,6 @@ section.green{background:var(--green);}
     <div class="pb-title">Island. <em>Water. Isolation.</em></div>
   </div>
 </div>
-
 <section>
   <div class="s-label">Port Antonio</div>
   <div class="s-title">The most beautiful town in Jamaica.<br><span class="gold">Undiscovered at this scale.</span></div>
@@ -234,7 +238,6 @@ section.green{background:var(--green);}
     <div class="pb-title">The most beautiful town <em>in Jamaica.</em></div>
   </div>
 </div>
-
 <section>
   <div class="s-label">Geographic Context · Navy Island</div>
   <div class="s-title">Five minutes <span class="gold">from the mainland.</span></div>
@@ -271,30 +274,21 @@ section.green{background:var(--green);}
     </div>
   </div>
   <!-- Actual map assets -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:2px;">
-    <figure style="margin:0;position:relative;overflow:hidden;height:280px;">
-      <img src="/photos/NAVY%20ISLAND%20STAGE%20AND%20PATHWAY%20MAP.png" alt="Stage and Pathway Map" style="width:100%;height:100%;object-fit:cover;filter:brightness(.82);display:block;">
+  <div style="display:flex;flex-direction:column;gap:12px;margin-top:20px;">
+    <figure style="margin:0;position:relative;overflow:hidden;">
+      <img src="/photos/NAVY%20ISLAND%20STAGE%20AND%20PATHWAY%20MAP.png" alt="Stage and Pathway Map" style="width:100%;height:auto;display:block;filter:brightness(.82);">
       <figcaption style="position:absolute;bottom:0;left:0;right:0;padding:12px 16px;background:linear-gradient(to top,rgba(6,8,8,.9),transparent);font-size:8px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;">Stage &amp; Pathway Map</figcaption>
     </figure>
-    <figure style="margin:0;position:relative;overflow:hidden;height:280px;">
-      <img src="/photos/NAVY%20ISLAND%20-%20SATELITE%20.png" alt="Satellite View" style="width:100%;height:100%;object-fit:cover;filter:brightness(.82);display:block;">
+    <figure style="margin:0;position:relative;overflow:hidden;">
+      <img src="/photos/NAVY%20ISLAND%20-%20SATELITE%20.png" alt="Satellite View" style="width:100%;height:auto;display:block;filter:brightness(.82);">
       <figcaption style="position:absolute;bottom:0;left:0;right:0;padding:12px 16px;background:linear-gradient(to top,rgba(6,8,8,.9),transparent);font-size:8px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;">Satellite View</figcaption>
     </figure>
+    <figure style="margin:0;position:relative;overflow:hidden;">
+      <img src="/photos/REFERENCE%20FOR%20MAP%20-%20CROSSING%20.png" alt="Marina Crossing Reference" style="width:100%;height:auto;display:block;filter:brightness(.75);">
+      <figcaption style="position:absolute;bottom:0;left:0;right:0;padding:12px 16px;background:linear-gradient(to top,rgba(6,8,8,.9),transparent);font-size:8px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;">Marina Crossing Reference &nbsp;·&nbsp; ~320m &nbsp;·&nbsp; Errol Flynn Marina → Main Dock</figcaption>
+    </figure>
   </div>
-  <figure style="margin:2px 0 0;position:relative;overflow:hidden;height:180px;">
-    <img src="/photos/REFERENCE%20FOR%20MAP%20-%20CROSSING%20.png" alt="Marina Crossing Reference" style="width:100%;height:100%;object-fit:cover;filter:brightness(.75);display:block;">
-    <figcaption style="position:absolute;bottom:0;left:0;right:0;padding:12px 16px;background:linear-gradient(to top,rgba(6,8,8,.9),transparent);font-size:8px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;">Marina Crossing Reference &nbsp;·&nbsp; ~320m &nbsp;·&nbsp; Errol Flynn Marina → Main Dock</figcaption>
-  </figure>
 </section>
-
-<div class="photo-break" style="height:72vh;">
-  <div class="pb-img" style="background-image:url('/photos/NAVY%20ISLAND%20-%20FROM%20%20tHE%20TOWN%20.png');background-position:center 42%;"></div>
-  <div class="pb-ov"></div>
-  <div class="pb-text">
-    <div class="pb-label">Navy Island · Portland Parish · Jamaica</div>
-    <div class="pb-title">Three stages.<br><em>One island.</em></div>
-  </div>
-</div>
 
 <div class="photo-break">
   <div class="pb-img" style="background-image:url('/photos/navy-island-port-antonio.jpeg');"></div>
@@ -333,7 +327,6 @@ section.green{background:var(--green);}
     <div class="pb-title">The water <em>that shaped the sound.</em></div>
   </div>
 </div>
-
 <section class="green">
   <div class="s-label">The Lineage</div>
   <div class="s-title">Documented. Traceable.<br><span class="gold">Defensible.</span></div>
@@ -431,8 +424,7 @@ section.green{background:var(--green);}
     <div class="pb-label">The Stage Experience · Zungu 2027</div>
     <div class="pb-title">The crowd.<br><em>The canopy. The sea.</em></div>
   </div>
-</div>
-<section class="green">
+</div><section class="green">
   <div class="s-label">The Commissioning Model</div>
   <div class="s-title">Music made on the island.<br><span class="gold">IP that outlives the weekend.</span></div>
   <p class="body-text">Every edition of Zungu commissions original collaborations between Jamaican producers and international artists. Recorded on Navy Island. Released on Zungu's label. The festival owns the publishing, artists retain performance rights, every partner credited on the release.</p>
@@ -688,7 +680,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   // m2 — Island stage detail: all GPS-verified positions on Navy Island
   const m2=L.map('map-island',{zoomControl:true,scrollWheelZoom:false}).setView([18.1874,-76.454],17);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:19}).addTo(m2);
-  const mk=(c,l,s)=>L.divIcon({html:`<div style="background:rgba(6,8,8,.92);border:1px solid ${c};padding:6px 10px;font-family:Space Mono,monospace;white-space:nowrap;"><div style="font-size:9px;font-weight:700;color:${c};letter-spacing:.1em;">${l}</div><div style="font-size:8px;color:rgba(242,235,217,.4);">${s}</div></div>`,iconSize:[140,40],iconAnchor:[0,20],className:''});
+  const mk=(c,l,s)=>L.divIcon({html:`<div style="background:rgba(6,8,8,.92);border:1px solid ${c};padding:6px 10px;font-family:Space Mono,monospace;width:155px;overflow:hidden;"><div style="font-size:9px;font-weight:700;color:${c};letter-spacing:.1em;">${l}</div><div style="font-size:8px;color:rgba(242,235,217,.4);">${s}</div></div>`,iconSize:[155,44],iconAnchor:[0,22],className:''});
   // Stages
   L.marker([18.18717,-76.45356],{icon:mk('#C8A84B','ZUNGU MAIN','Stage II · Headline')}).addTo(m2);
   L.marker([18.18803,-76.45134],{icon:mk('#4AAFA0','ORIGINS','Stage I · Heritage')}).addTo(m2);

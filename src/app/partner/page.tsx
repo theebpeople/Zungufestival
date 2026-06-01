@@ -10,9 +10,9 @@ const muted = '#6B6355';
 
 const links = [
   { label: 'Investor Deck', sub: 'Full festival proposal & financials', href: '/deck' },
-  { label: 'Stage Architecture', sub: '4 stages · Navy Island layout · sound specs', href: '/stages.html', accent: rust },
-  { label: 'Activity Programme', sub: 'Forest · water · wellness · cultural tours', href: '/activities.html' },
-  { label: 'Brand Strategy', sub: 'Visual identity · positioning · market analysis', href: '/brand.html' },
+  { label: 'Stage Architecture', sub: '4 stages · Navy Island layout · sound specs', href: '/stages', accent: rust },
+  { label: 'Activity Programme', sub: 'Forest · water · wellness · cultural tours', href: '/activities' },
+  { label: 'Brand Strategy', sub: 'Visual identity · positioning · market analysis', href: '/brand' },
 ];
 
 export default function PartnerPage() {
@@ -34,9 +34,12 @@ export default function PartnerPage() {
           backdropFilter: 'blur(12px)',
         }}
       >
-        <div style={{ fontFamily: "'Unbounded', sans-serif", fontSize: '1.25rem', fontWeight: 900, letterSpacing: '-0.02em' }}>ZUNGU</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <img src="/zungu-z-mark.png" alt="Zungu" style={{ height: 32, width: 32, objectFit: 'contain' }} />
+          <span style={{ fontFamily: "'Unbounded', sans-serif", fontSize: '1.1rem', fontWeight: 900, letterSpacing: '-0.02em' }}>ZUNGU</span>
+        </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-          <span style={{ fontSize: 11, color: gold, border: `1px solid rgba(200,168,75,0.4)`, padding: '0.25rem 0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+          <span style={{ fontSize: 10, color: gold, border: `1px solid rgba(200,168,75,0.4)`, padding: '0.3rem 0.85rem', letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 700 }}>
             Partner
           </span>
           <button
@@ -49,7 +52,7 @@ export default function PartnerPage() {
       </nav>
 
       <main style={{ maxWidth: 800, margin: '0 auto', padding: '4rem 2rem' }}>
-        <p style={{ fontSize: 10, color: gold, letterSpacing: '0.4em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '1rem' }}>
+        <p style={{ fontSize: 12, color: gold, letterSpacing: '0.35em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '1rem' }}>
           // PARTNER ACCESS
         </p>
         <h1 style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 'clamp(2rem, 6vw, 4rem)', fontWeight: 900, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: 1, marginBottom: '3rem' }}>
@@ -81,8 +84,8 @@ export default function PartnerPage() {
                 el.style.backgroundColor = black;
               }}
             >
-              <p style={{ fontSize: 10, color: accent ?? muted, letterSpacing: '0.25em', textTransform: 'uppercase', marginBottom: '0.4rem' }}>{sub}</p>
-              <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontSize: '1rem', fontWeight: 700, letterSpacing: '-0.01em', textTransform: 'uppercase' }}>{label}</h2>
+              <p style={{ fontSize: 10, color: accent ?? muted, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>{sub}</p>
+              <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontSize: '1.1rem', fontWeight: 700, letterSpacing: '-0.01em', textTransform: 'uppercase' }}>{label}</h2>
             </a>
           ))}
         </div>

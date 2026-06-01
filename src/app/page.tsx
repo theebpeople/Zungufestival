@@ -37,7 +37,7 @@ export default function LandingPage() {
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: "url('/photos/NAVY%20ISLAND%20AERIAL.png')",
+          backgroundImage: "url('/photos/navy-island-aerial-hq.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center 42%',
           filter: 'saturate(0.8) brightness(0.48)',
@@ -58,8 +58,8 @@ export default function LandingPage() {
       <div className="relative z-10 flex flex-col items-center text-center px-8">
         {/* Eyebrow */}
         <p
-          className="flex items-center gap-3 mb-12 font-bold uppercase"
-          style={{ fontSize: 9, letterSpacing: '0.55em', color: GOLD }}
+          className="flex items-center gap-3 mb-10 font-bold uppercase"
+          style={{ fontSize: 9, letterSpacing: '0.4em', color: GOLD }}
         >
           <span style={{ display: 'inline-block', width: 28, height: 1, background: GOLD }} />
           Navy Island &nbsp;·&nbsp; Port Antonio &nbsp;·&nbsp; Jamaica &nbsp;·&nbsp; June 17–23, 2027
@@ -68,6 +68,12 @@ export default function LandingPage() {
 
         {/* Logotype */}
         <div className="flex flex-col items-center mb-2">
+          {/* Z-mark */}
+          <img
+            src="/zungu-z-mark.png"
+            alt="Zungu"
+            style={{ width: 'clamp(48px, 6vw, 80px)', height: 'clamp(48px, 6vw, 80px)', objectFit: 'contain', marginBottom: '1.5rem', filter: 'drop-shadow(0 0 24px rgba(200,168,75,0.25))' }}
+          />
           <h1
             className="font-black uppercase leading-none tracking-tighter"
             style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 'clamp(4rem, 12vw, 9rem)', color: CREAM, letterSpacing: '-0.03em' }}
@@ -82,8 +88,8 @@ export default function LandingPage() {
           </h2>
         </div>
         <p
-          className="font-light uppercase tracking-[0.35em] mb-14"
-          style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 'clamp(0.6rem, 1.1vw, 0.85rem)', color: 'rgba(247,243,236,0.18)' }}
+          className="font-light uppercase tracking-[0.35em] mb-10"
+          style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 'clamp(0.7rem, 1.2vw, 0.9rem)', color: 'rgba(247,243,236,0.55)' }}
         >
           MMXXVII
         </p>
@@ -92,13 +98,13 @@ export default function LandingPage() {
 
         <p
           className="font-bold italic uppercase mb-12"
-          style={{ fontSize: 11, letterSpacing: '0.3em', color: 'rgba(242,235,217,0.42)' }}
+          style={{ fontSize: 13, letterSpacing: '0.25em', color: 'rgba(242,235,217,0.42)', marginBottom: '3.5rem' }}
         >
           An Electronic Music Oasis
         </p>
 
         {/* CTAs */}
-        <div className="flex gap-4 flex-wrap justify-center">
+        <div className="flex gap-6 flex-wrap justify-center">
           <button
             onClick={() => setModal(true)}
             className="font-bold uppercase transition-all duration-200"
@@ -121,7 +127,7 @@ export default function LandingPage() {
       </div>
 
       {/* Bottom contact */}
-      <div className="absolute bottom-8 left-0 right-0 text-center" style={{ fontSize: 9, letterSpacing: '0.3em', color: 'rgba(200,168,75,0.5)' }}>
+      <div className="absolute bottom-8 left-0 right-0 text-center" style={{ fontSize: 9, letterSpacing: '0.25em', color: 'rgba(200,168,75,0.5)' }}>
         {EMAIL}
       </div>
 
@@ -145,10 +151,10 @@ export default function LandingPage() {
             </button>
 
             <div style={{ width: 32, height: 1, background: GOLD, marginBottom: 24 }} />
-            <p style={{ fontSize: 8, letterSpacing: '0.5em', color: GOLD, textTransform: 'uppercase', fontWeight: 700, marginBottom: 20 }}>
+            <p style={{ fontSize: 8, letterSpacing: '0.4em', color: GOLD, textTransform: 'uppercase', fontWeight: 700, marginBottom: 20 }}>
               Partnership Enquiries
             </p>
-            <p style={{ fontSize: 11, color: 'rgba(242,235,217,0.55)', letterSpacing: '0.15em', marginBottom: 32, lineHeight: 1.8, textTransform: 'uppercase' }}>
+            <p style={{ fontSize: 11, color: 'rgba(242,235,217,0.55)', letterSpacing: '0.1em', marginBottom: 32, lineHeight: 1.8, textTransform: 'uppercase' }}>
               Investor and production partner access is by invitation. Send your enquiry and we will respond within 48 hours.
             </p>
 
@@ -164,10 +170,10 @@ export default function LandingPage() {
                 justifyContent: 'space-between',
               }}
             >
-              <span style={{ fontSize: 10, letterSpacing: '0.1em', color: CREAM }}>{EMAIL}</span>
+              <span style={{ fontSize: 12, letterSpacing: '0.1em', color: CREAM }}>{EMAIL}</span>
               <button
                 onClick={copyEmail}
-                style={{ fontFamily: "'Space Mono', monospace", fontSize: 8, letterSpacing: '0.3em', color: copied ? '#5aaf7a' : GOLD, background: 'none', border: 'none', cursor: 'pointer', textTransform: 'uppercase', fontWeight: 700, whiteSpace: 'nowrap' }}
+                style={{ fontFamily: "'Space Mono', monospace", fontSize: 8, letterSpacing: '0.25em', color: copied ? '#5aaf7a' : GOLD, background: 'none', border: 'none', cursor: 'pointer', textTransform: 'uppercase', fontWeight: 700, whiteSpace: 'nowrap' }}
               >
                 {copied ? 'Copied ✓' : 'Copy'}
               </button>
