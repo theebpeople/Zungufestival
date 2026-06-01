@@ -1446,67 +1446,76 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-            gap: 20,
+            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+            gap: 2,
             marginTop: 48,
           }}
         >
           {[
             {
               name: 'Black Coffee',
-              role: 'Headline / Co-Curator',
-              tags: ['Grammy Winner', 'Soulistic Music', 'Hï Ibiza', '7 Seasons'],
-              highlight: true,
+              tags: 'GRAMMY WINNER · SOULISTIC MUSIC · HÏ IBIZA · 7 SEASONS',
+              bio: 'South African DJ, Grammy-winning artist, festival curator. Runs his own event — the Black Coffee Weekender. Plays the Dominican Republic and Caribbean markets regularly. His Afro-house sound — deep percussion, emotional tension, Afropolitan register — is the exact fit for a Caribbean island at night.',
+              why: 'The co-curation angle: he already curates festivals, has a documented relationship with the Caribbean market, and brings a global audience that does not require explanation.',
+              headline: true,
             },
             {
               name: 'Shimza',
-              role: 'Featured Artist',
-              tags: ['Soulistic Music', 'Hï Ibiza', 'Zamna Tulum'],
-              highlight: false,
+              tags: 'SOULISTIC MUSIC · HÏ IBIZA · ZAMNA TULUM',
+              bio: 'South African DJ, signed to Black Coffee\'s Soulistic Music. Performed at the opening of Black Coffee\'s Hï Ibiza residency. Regular at Zamna Tulum, Ibiza Club Chinois, New York, Tokyo. The African-Caribbean sonic connection is a documentable curatorial argument — Shimza at Zungu is not a stretch. It is the thesis.',
+              why: 'Natural extension of the Black Coffee conversation. The label connection makes outreach a single thread, not two separate negotiations.',
+              headline: true,
             },
             {
               name: 'Keinemusik',
-              role: 'Collective',
-              tags: ['&ME', 'Rampa', 'Adam Port', 'Global Circuit'],
-              highlight: false,
+              tags: '&ME · RAMPA · ADAM PORT · GLOBAL CIRCUIT',
+              bio: 'Berlin collective — &ME, Rampa, Adam Port. Operate their own label. Known for extended, narrative DJ sets. Represent the European boutique festival circuit at its most credible. A Keinemusik presence signals curatorial seriousness to a European audience.',
+              why: 'The European credibility anchor. Their booking signals to the Dekmantel, Melt, and Fusion crowd that Zungu is a serious curatorial event, not a Caribbean holiday with DJs.',
+              headline: false,
             },
             {
               name: 'Diplo',
-              role: 'Featured Artist',
-              tags: ['Port Antonio Resident', 'Major Lazer', 'Grammy Collaborator'],
-              highlight: false,
+              tags: 'PORT ANTONIO RESIDENT · MAJOR LAZER · GRAMMY COLLABORATOR',
+              bio: 'Has a home in Port Antonio. Has spoken publicly about Jamaica as a creative base. The only globally recognised DJ with a documented personal connection to the exact location of the festival. His involvement is not a booking — it is a homecoming.',
+              why: 'The press story writes itself. "Diplo plays the island five minutes from his house." That sentence reaches every entertainment outlet on earth.',
+              headline: false,
             },
-          ].map(({ name, role, tags, highlight }) => (
+          ].map(({ name, tags, bio, why, headline }) => (
             <div
               key={name}
               style={{
-                border: `1px solid ${highlight ? gold : dim}`,
-                padding: 24,
-                background: highlight ? 'rgba(200,168,75,0.05)' : 'transparent',
+                border: `1px solid ${headline ? 'rgba(200,168,75,0.25)' : dim}`,
+                padding: '36px 32px',
+                background: 'rgba(13,31,20,0.4)',
+                position: 'relative',
               }}
             >
-              {highlight && (
+              {headline && (
                 <div
                   style={{
+                    position: 'absolute',
+                    top: 18,
+                    right: 18,
                     fontFamily: fontMono,
                     fontSize: 8,
-                    letterSpacing: '0.4em',
+                    letterSpacing: '0.3em',
                     textTransform: 'uppercase',
                     color: gold,
                     fontWeight: 700,
-                    marginBottom: 12,
+                    border: `1px solid rgba(200,168,75,0.3)`,
+                    padding: '3px 8px',
                   }}
                 >
-                  ★ HEADLINE
+                  HEADLINE
                 </div>
               )}
               <div
                 style={{
                   fontFamily: fontDisplay,
-                  fontSize: 20,
+                  fontSize: 'clamp(18px, 2.5vw, 28px)',
                   fontWeight: 900,
-                  color: highlight ? gold : cream,
-                  marginBottom: 6,
+                  color: headline ? gold : cream,
+                  marginBottom: 8,
                   lineHeight: 1.1,
                 }}
               >
@@ -1516,32 +1525,31 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
                 style={{
                   fontFamily: fontMono,
                   fontSize: 9,
-                  letterSpacing: '0.25em',
+                  letterSpacing: '0.3em',
                   textTransform: 'uppercase',
-                  color: muted,
+                  color: gold,
                   marginBottom: 16,
                 }}
               >
-                {role}
+                {tags}
               </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                {tags.map((tag) => (
-                  <span
-                    key={tag}
-                    style={{
-                      fontFamily: fontMono,
-                      fontSize: 8,
-                      letterSpacing: '0.2em',
-                      textTransform: 'uppercase',
-                      color: gold,
-                      border: `1px solid rgba(200,168,75,0.3)`,
-                      padding: '3px 8px',
-                    }}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              <p style={{ fontFamily: fontMono, fontSize: 12, color: muted, lineHeight: 1.75, marginBottom: 16 }}>
+                {bio}
+              </p>
+              <p
+                style={{
+                  fontFamily: fontMono,
+                  fontSize: 11,
+                  color: muted,
+                  lineHeight: 1.7,
+                  fontStyle: 'italic',
+                  borderTop: `1px solid rgba(200,168,75,0.1)`,
+                  paddingTop: 16,
+                  marginTop: 16,
+                }}
+              >
+                {why}
+              </p>
             </div>
           ))}
         </div>
@@ -1641,46 +1649,51 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
-            gap: 20,
+            gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+            gap: 2,
             marginTop: 40,
           }}
         >
           {[
             {
               tier: 'GA',
-              price: '$350–450',
-              count: '3,200 tickets',
-              desc: 'Full festival access. Marine transfer included. No accommodation.',
+              sub: 'GENERAL ADMISSION · 3,200 TICKETS',
+              desc: 'Full festival access. Off-island accommodation in Port Antonio. Still an extraordinary experience — the island, the stages, the water, the music.',
+              price: '$350 – 450',
+              priceLabel: '7-DAY PASS',
               color: cream,
             },
             {
               tier: 'VIP',
-              price: '$600–800',
-              count: '1,200 tickets',
-              desc: 'Dedicated zones, priority boarding, private beach access. No accommodation.',
+              sub: 'PREMIUM ACCESS · 1,200 TICKETS',
+              desc: 'Festival access plus premium viewing, dedicated bar service, artist access zones. A materially different on-island experience from GA.',
+              price: '$600 – 800',
+              priceLabel: '7-DAY PASS',
               color: gold,
             },
             {
               tier: 'GLAMPING',
-              price: '$1,200–1,800',
-              count: '600 tickets',
-              desc: 'All-in. On-island accommodation included. Boutique pod setup, full-service.',
+              sub: 'ON-ISLAND IMMERSION · 600 TICKETS',
+              desc: 'Full festival access plus on-island accommodation. You sleep on the island. You wake up on the island. For seven days, Navy Island is your entire world.',
+              price: '$1,200 – 1,800',
+              priceLabel: '7-DAY PASS · ACCOMMODATION INCLUDED',
               color: teal,
             },
-          ].map(({ tier, price, count, desc, color }) => (
+          ].map(({ tier, sub, desc, price, priceLabel, color }) => (
             <div
               key={tier}
               style={{
-                border: `1px solid ${color === gold ? gold : dim}`,
-                padding: 28,
-                position: 'relative',
+                border: `1px solid ${color === gold ? 'rgba(200,168,75,0.25)' : dim}`,
+                padding: '34px 30px',
+                background: 'rgba(13,31,20,0.5)',
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
               <div
                 style={{
                   fontFamily: fontDisplay,
-                  fontSize: 28,
+                  fontSize: 'clamp(22px, 3vw, 36px)',
                   fontWeight: 900,
                   color,
                   lineHeight: 1,
@@ -1691,31 +1704,44 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               </div>
               <div
                 style={{
-                  fontFamily: fontDisplay,
-                  fontSize: 18,
-                  fontWeight: 700,
-                  color: cream,
-                  marginBottom: 6,
-                }}
-              >
-                {price}
-              </div>
-              <div
-                style={{
                   fontFamily: fontMono,
-                  fontSize: 9,
+                  fontSize: 8,
                   letterSpacing: '0.3em',
                   textTransform: 'uppercase',
-                  color,
-                  fontWeight: 700,
+                  color: muted,
                   marginBottom: 16,
                 }}
               >
-                {count}
+                {sub}
               </div>
-              <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, lineHeight: 1.7 }}>
+              <p style={{ fontFamily: fontMono, fontSize: 12, color: muted, lineHeight: 1.8, flex: 1 }}>
                 {desc}
               </p>
+              <div style={{ marginTop: 24, paddingTop: 20, borderTop: `1px solid rgba(200,168,75,0.1)` }}>
+                <div
+                  style={{
+                    fontFamily: fontDisplay,
+                    fontSize: 'clamp(20px, 2.5vw, 32px)',
+                    fontWeight: 700,
+                    color,
+                    lineHeight: 1,
+                    marginBottom: 6,
+                  }}
+                >
+                  {price}
+                </div>
+                <div
+                  style={{
+                    fontFamily: fontMono,
+                    fontSize: 8,
+                    letterSpacing: '0.25em',
+                    textTransform: 'uppercase',
+                    color: muted,
+                  }}
+                >
+                  {priceLabel}
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -2012,47 +2038,48 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-            gap: 20,
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gap: 2,
             marginBottom: 48,
           }}
         >
           {[
             {
-              value: '$518K',
-              label: 'Seed Capital Floor',
-              desc: 'Minimum required before pre-sale opens. Covers site, permits, initial production deposits.',
+              value: '$518K Seed Capital Floor',
+              sub: 'BEFORE TICKET SALES OPEN',
+              desc: 'Artist deposits (40%), infrastructure deposits (25%), insurance and legal. Cannot open ticket sales without this confirmed.',
             },
             {
-              value: '70%',
-              label: 'Presale Trigger',
-              desc: 'Artist contracts confirmed only after 70% of ticket inventory is presold.',
+              value: '70% Presale Trigger',
+              sub: 'HARD GO/NO-GO — FEB 5, 2027',
+              desc: 'Full cost commitment does not proceed below 70% presale. Non-negotiable. Protects every party in the structure.',
             },
             {
-              value: '40%',
-              label: 'Artist Deposits',
-              desc: 'No deposit paid until presale trigger is met. Eliminates sunk-cost exposure on cancellation.',
+              value: '40% Artist Deposits',
+              sub: 'AFTER INSURANCE IS BOUND ONLY',
+              desc: 'Artist contracts activate only after insurance is secured and production contracts are signed. No speculative bookings for optics.',
             },
             {
-              value: '15%',
-              label: 'Contingency',
-              desc: 'Held separately. Released only on board sign-off. Island-specific risk premium.',
+              value: '15% Contingency',
+              sub: 'RING-FENCED FROM DAY ONE',
+              desc: 'Island event risk premium. Built into the model from the start. Not released without production coordinator approval.',
             },
-          ].map(({ value, label, desc }) => (
+          ].map(({ value, sub, desc }) => (
             <div
-              key={label}
+              key={value}
               style={{
                 border: `1px solid ${dim}`,
-                padding: 24,
+                padding: '34px 30px',
+                background: 'rgba(13,31,20,0.5)',
               }}
             >
               <div
                 style={{
                   fontFamily: fontDisplay,
-                  fontSize: 30,
-                  fontWeight: 900,
+                  fontSize: 'clamp(15px, 1.8vw, 22px)',
+                  fontWeight: 700,
                   color: gold,
-                  lineHeight: 1,
+                  lineHeight: 1.2,
                   marginBottom: 8,
                 }}
               >
@@ -2061,17 +2088,17 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               <div
                 style={{
                   fontFamily: fontMono,
-                  fontSize: 9,
+                  fontSize: 8,
                   letterSpacing: '0.3em',
                   textTransform: 'uppercase',
-                  color: cream,
+                  color: muted,
                   fontWeight: 700,
-                  marginBottom: 12,
+                  marginBottom: 14,
                 }}
               >
-                {label}
+                {sub}
               </div>
-              <p style={{ fontFamily: fontMono, fontSize: 10, color: muted, lineHeight: 1.7 }}>
+              <p style={{ fontFamily: fontMono, fontSize: 12, color: muted, lineHeight: 1.75 }}>
                 {desc}
               </p>
             </div>
