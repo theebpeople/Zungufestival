@@ -37,7 +37,7 @@ export default function LandingPage() {
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: "url('/photos/NAVY%20ISLAND%20AERIAL.png')",
+          backgroundImage: "url('/photos/navy-island-aerial-hq.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center 42%',
           filter: 'saturate(0.8) brightness(0.48)',

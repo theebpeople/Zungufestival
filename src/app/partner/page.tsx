@@ -10,9 +10,9 @@ const muted = '#6B6355';
 
 const links = [
   { label: 'Investor Deck', sub: 'Full festival proposal & financials', href: '/deck' },
-  { label: 'Stage Architecture', sub: '4 stages · Navy Island layout · sound specs', href: '/stages.html', accent: rust },
+  { label: 'Stage Architecture', sub: '4 stages · Navy Island layout · sound specs', href: '/stages', accent: rust },
   { label: 'Activity Programme', sub: 'Forest · water · wellness · cultural tours', href: '/activities' },
-  { label: 'Brand Strategy', sub: 'Visual identity · positioning · market analysis', href: '/brand.html' },
+  { label: 'Brand Strategy', sub: 'Visual identity · positioning · market analysis', href: '/brand' },
 ];
 
 export default function PartnerPage() {

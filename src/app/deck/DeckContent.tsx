@@ -324,6 +324,9 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
   // Active dot nav
   const [activeSection, setActiveSection] = useState<SectionId>('island');
 
+  // Mobile nav
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   // CTA form state
   const [selectedInterest, setSelectedInterest] = useState<string | null>(null);
   const [formName, setFormName] = useState('');
@@ -331,6 +334,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
   const [formEmail, setFormEmail] = useState('');
   const [formMessage, setFormMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [formError, setFormError] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
   // Hero scale animation
@@ -451,7 +455,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           ))}
         </div>
 
-        {/* Right: CTA + activities + badge + sign out */}
+        {/* Right: CTA + activities + badge + sign out (desktop) */}
         <div
           style={{
             display: 'flex',
@@ -462,6 +466,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         >
           <button
             onClick={scrollToCta}
+            className="deck-nav-desktop"
             style={{
               fontFamily: fontMono,
               fontSize: 11,
@@ -480,11 +485,13 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           </button>
           <a
             href="/activities"
+            className="deck-nav-desktop"
             style={{ ...navLinkStyle, display: 'inline-block', whiteSpace: 'nowrap' }}
           >
             Activities
           </a>
           <span
+            className="deck-nav-desktop"
             style={{
               fontFamily: fontMono,
               fontSize: 10,
@@ -501,6 +508,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           </span>
           <a
             href="/sign-out"
+            className="deck-nav-desktop"
             style={{
               fontFamily: fontMono,
               fontSize: 11,
@@ -513,8 +521,161 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           >
             Sign Out
           </a>
+
+          {/* Hamburger — mobile only */}
+          <button
+            className="deck-hamburger"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open menu"
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              gap: 5,
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '4px 2px',
+            }}
+          >
+            {[0, 1, 2].map((i) => (
+              <span
+                key={i}
+                style={{ display: 'block', width: 22, height: 2, background: muted, borderRadius: 0 }}
+              />
+            ))}
+          </button>
         </div>
       </nav>
+
+      {/* ── Mobile full-screen menu ──────────────────────────────────────── */}
+      <style>{`
+        @media (min-width: 901px) {
+          .deck-hamburger { display: none !important; }
+        }
+        @media (max-width: 900px) {
+          .deck-nav-desktop { display: none !important; }
+        }
+      `}</style>
+
+      {mobileMenuOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 950,
+            backgroundColor: 'rgba(6,8,8,0.97)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '2rem',
+            gap: 0,
+          }}
+        >
+          {/* Close */}
+          <button
+            onClick={() => setMobileMenuOpen(false)}
+            style={{
+              position: 'absolute',
+              top: 20,
+              right: 24,
+              background: 'none',
+              border: 'none',
+              color: muted,
+              fontSize: 22,
+              cursor: 'pointer',
+              fontFamily: fontMono,
+            }}
+          >
+            ✕
+          </button>
+
+          {/* Logo */}
+          <img
+            src="/zungu-z-mark.png"
+            alt="Zungu"
+            style={{ width: 48, height: 48, objectFit: 'contain', marginBottom: 40, filter: 'drop-shadow(0 0 16px rgba(200,168,75,0.3))' }}
+          />
+
+          {/* Chapter links */}
+          <nav style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, width: '100%', marginBottom: 40 }}>
+            {(
+              [
+                ['The Island', 'island'],
+                ['Why Now', 'why'],
+                ['Artists', 'artists'],
+                ['The Model', 'model'],
+                ['Numbers', 'numbers'],
+              ] as [string, SectionId][]
+            ).map(([label, id]) => (
+              <button
+                key={id}
+                onClick={() => { scrollToSection(id); setMobileMenuOpen(false); }}
+                style={{
+                  fontFamily: fontDisplay,
+                  fontSize: 'clamp(1.4rem, 7vw, 2.2rem)',
+                  fontWeight: 900,
+                  textTransform: 'uppercase',
+                  letterSpacing: '-0.02em',
+                  color: cream,
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: '10px 0',
+                  width: '100%',
+                  textAlign: 'center',
+                  borderBottom: `1px solid ${dim}`,
+                  transition: 'color 0.2s',
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = gold; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = cream; }}
+              >
+                {label}
+              </button>
+            ))}
+          </nav>
+
+          {/* CTA */}
+          <button
+            onClick={() => { scrollToCta(); setMobileMenuOpen(false); }}
+            style={{
+              fontFamily: fontMono,
+              fontSize: 12,
+              letterSpacing: '0.25em',
+              textTransform: 'uppercase',
+              fontWeight: 700,
+              padding: '14px 32px',
+              background: gold,
+              color: bg,
+              border: 'none',
+              cursor: 'pointer',
+              width: '100%',
+              maxWidth: 320,
+              marginBottom: 16,
+            }}
+          >
+            Request Briefing →
+          </button>
+
+          <div style={{ display: 'flex', gap: 32, marginTop: 8 }}>
+            <a
+              href="/activities"
+              style={{ fontFamily: fontMono, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: muted, textDecoration: 'none', fontWeight: 700 }}
+            >
+              Activities
+            </a>
+            <a
+              href="/sign-out"
+              style={{ fontFamily: fontMono, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: muted, textDecoration: 'none', fontWeight: 700 }}
+            >
+              Sign Out
+            </a>
+          </div>
+        </div>
+      )}
 
       {/* ── Side dots ───────────────────────────────────────────────────── */}
       <div
@@ -570,7 +731,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: `url('/photos/NAVY%20ISLAND%20AERIAL.png')`,
+            backgroundImage: `url('/photos/navy-island-aerial-hq.png')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             filter: 'saturate(0.7) brightness(0.45)',
@@ -912,17 +1073,17 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         {/* Stacked map images */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
           <img
-            src="/photos/NAVY%20ISLAND%20STAGE%20AND%20PATHWAY%20MAP.png"
+            src="/photos/navy-island-stage-map.png"
             style={{ width: '100%', display: 'block', border: `1px solid ${dim}` }}
             alt="Navy Island Stage and Pathway Map"
           />
           <img
-            src="/photos/NAVY%20ISLAND%20-%20SATELITE%20.png"
+            src="/photos/navy-island-satellite.png"
             style={{ width: '100%', display: 'block', border: `1px solid ${dim}` }}
             alt="Navy Island Satellite"
           />
           <img
-            src="/photos/REFERENCE%20FOR%20MAP%20-%20CROSSING%20.png"
+            src="/photos/reference-for-map-crossing.png"
             style={{ width: '100%', display: 'block', border: `1px solid ${dim}` }}
             alt="Reference Map - Crossing"
           />
@@ -2145,8 +2306,9 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               onClick={async () => {
                 if (!formName || !formEmail) return;
                 setSubmitting(true);
+                setFormError('');
                 try {
-                  await fetch('/api/partner-interest', {
+                  const res = await fetch('/api/partner-interest', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -2155,26 +2317,34 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
                       details: `Organisation: ${formOrg}\nInterest type: ${selectedInterest ?? 'Not specified'}\n\n${formMessage}`,
                     }),
                   });
+                  if (!res.ok) throw new Error('send_failed');
+                  setSubmitted(true);
+                } catch {
+                  setFormError('Something went wrong. Please email us directly at partnership@zungufestival.com');
                 } finally {
                   setSubmitting(false);
-                  setSubmitted(true);
                 }
               }}
               style={{
                 fontFamily: fontMono,
-                fontSize: 10,
-                letterSpacing: '0.35em',
+                fontSize: 12,
+                letterSpacing: '0.3em',
                 textTransform: 'uppercase',
                 fontWeight: 700,
                 padding: '14px 32px',
-                background: gold,
+                background: submitting ? 'rgba(200,168,75,0.5)' : gold,
                 color: bg,
                 border: 'none',
-                cursor: 'pointer',
+                cursor: submitting ? 'not-allowed' : 'pointer',
               }}
             >
-              Send →
+              {submitting ? 'Sending…' : 'Send →'}
             </button>
+            {formError && (
+              <p style={{ fontFamily: fontMono, fontSize: 12, color: rust, marginTop: 12, lineHeight: 1.6 }}>
+                {formError}
+              </p>
+            )}
           </div>
         )}
       </Section>

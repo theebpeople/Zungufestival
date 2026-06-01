@@ -46,7 +46,7 @@ function SignInContent() {
         /* Form field labels */
         [class*="cl-formFieldLabel"],[class*="cl-label"] {
           font-family: 'Space Mono', monospace !important;
-          font-size: 9px !important;
+          font-size: 12px !important;
           letter-spacing: 0.3em !important;
           text-transform: uppercase !important;
           color: #C8A84B !important;
@@ -59,7 +59,7 @@ function SignInContent() {
           border: 1px solid rgba(200,168,75,0.22) !important;
           color: #F7F3EC !important;
           font-family: 'Space Mono', monospace !important;
-          font-size: 11px !important;
+          font-size: 14px !important;
           border-radius: 0 !important;
           box-shadow: none !important;
         }
@@ -74,7 +74,7 @@ function SignInContent() {
           background: #C8A84B !important;
           color: #060808 !important;
           font-family: 'Space Mono', monospace !important;
-          font-size: 9px !important;
+          font-size: 12px !important;
           font-weight: 700 !important;
           letter-spacing: 0.35em !important;
           text-transform: uppercase !important;
@@ -99,7 +99,7 @@ function SignInContent() {
         /* Error/hint text */
         [class*="cl-formFieldHintText"],[class*="cl-formFieldErrorText"] {
           font-family: 'Space Mono', monospace !important;
-          font-size: 9px !important;
+          font-size: 12px !important;
           color: #C45A2A !important;
         }
 
@@ -111,13 +111,13 @@ function SignInContent() {
         }
         [class*="cl-footerActionText"] {
           font-family: 'Space Mono', monospace !important;
-          font-size: 9px !important;
+          font-size: 12px !important;
           color: rgba(242,235,217,0.35) !important;
           letter-spacing: 0.15em !important;
         }
         [class*="cl-footerActionLink"] {
           font-family: 'Space Mono', monospace !important;
-          font-size: 9px !important;
+          font-size: 12px !important;
           color: #C8A84B !important;
           font-weight: 700 !important;
           letter-spacing: 0.15em !important;
@@ -149,7 +149,7 @@ function SignInContent() {
         /* "Resend code" */
         [class*="cl-formResendCodeLink"] * {
           font-family: 'Space Mono', monospace !important;
-          font-size: 9px !important;
+          font-size: 12px !important;
           color: rgba(242,235,217,0.55) !important;
         }
         [class*="cl-formResendCodeLink"] button,
@@ -160,7 +160,7 @@ function SignInContent() {
         [class*="cl-alternativeMethodsBlockButton"],
         [class*="cl-identityPreviewEditButton"] {
           font-family: 'Space Mono', monospace !important;
-          font-size: 9px !important;
+          font-size: 12px !important;
           color: rgba(242,235,217,0.55) !important;
           letter-spacing: 0.15em !important;
           text-transform: uppercase !important;
@@ -176,7 +176,7 @@ function SignInContent() {
         [class*="cl-footer"] a {
           color: rgba(242,235,217,0.45) !important;
           font-family: 'Space Mono', monospace !important;
-          font-size: 9px !important;
+          font-size: 12px !important;
         }
 
         /* Catch-all for remaining dark-on-dark text */
@@ -191,7 +191,7 @@ function SignInContent() {
         style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: "url('/photos/NAVY%20ISLAND%20AERIAL.png')",
+          backgroundImage: "url('/photos/navy-island-aerial-hq.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center 38%',
           filter: 'saturate(0.7) brightness(0.30)',
@@ -239,13 +239,13 @@ function SignInContent() {
         style={{
           position: 'relative',
           zIndex: 10,
-          fontSize: 10,
+          fontSize: 13,
           textTransform: 'uppercase',
           fontWeight: 700,
           fontStyle: 'italic',
           marginBottom: '2rem',
           color: isPartner ? gold : muted,
-          letterSpacing: '0.35em',
+          letterSpacing: '0.3em',
         }}
       >
         {isPartner ? '// PARTNER ACCESS' : '// INVESTOR ACCESS'}
@@ -288,9 +288,9 @@ function SignInContent() {
           position: 'relative',
           zIndex: 10,
           marginTop: '2rem',
-          fontSize: 10,
+          fontSize: 13,
           textTransform: 'uppercase',
-          letterSpacing: '0.2em',
+          letterSpacing: '0.15em',
           color: muted,
         }}
       >

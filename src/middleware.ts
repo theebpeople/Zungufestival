@@ -11,9 +11,11 @@ const isClerkProtectedRoute = createRouteMatcher([
   '/deck(.*)',
   '/dashboard(.*)',
   '/activities(.*)',
+  '/brand(.*)',
+  '/stages(.*)',
 ]);
 
-const isEmailProtectedRoute = createRouteMatcher(['/partner(.*)', '/deck(.*)', '/activities(.*)']);
+const isEmailProtectedRoute = createRouteMatcher(['/partner(.*)', '/deck(.*)', '/activities(.*)', '/brand(.*)', '/stages(.*)']);
 
 const isInviteToolRoute = createRouteMatcher(['/invite-tool(.*)']);
 

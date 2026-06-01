@@ -413,20 +413,20 @@ export default function ActivitiesPage() {
         <button
           onClick={() => scrollTo('hero')}
           style={{
-            fontFamily: DISPLAY,
-            fontSize: 12,
-            fontWeight: 900,
-            letterSpacing: '0.1em',
-            color: CREAM,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10,
             background: 'none',
             border: 'none',
             cursor: 'pointer',
-            textTransform: 'uppercase',
-            whiteSpace: 'nowrap',
             padding: 0,
+            whiteSpace: 'nowrap',
           }}
         >
-          Zungu 2027
+          <img src="/zungu-z-mark.png" alt="Zungu" style={{ height: 28, width: 28, objectFit: 'contain' }} />
+          <span style={{ fontFamily: DISPLAY, fontSize: 13, fontWeight: 900, letterSpacing: '0.08em', color: CREAM, textTransform: 'uppercase' }}>
+            Zungu 2027
+          </span>
         </button>
 
         {/* Nav links */}
@@ -437,8 +437,8 @@ export default function ActivitiesPage() {
               onClick={() => scrollTo(l.id)}
               style={{
                 fontFamily: MONO,
-                fontSize: 9,
-                letterSpacing: '0.3em',
+                fontSize: 11,
+                letterSpacing: '0.2em',
                 textTransform: 'uppercase',
                 color: MUTED,
                 background: 'none',
@@ -461,8 +461,8 @@ export default function ActivitiesPage() {
           <span
             style={{
               fontFamily: MONO,
-              fontSize: 8,
-              letterSpacing: '0.35em',
+              fontSize: 10,
+              letterSpacing: '0.25em',
               textTransform: 'uppercase',
               color: GOLD,
               border: `1px solid ${GOLD_DIM}`,
@@ -476,8 +476,8 @@ export default function ActivitiesPage() {
             href="/sign-out"
             style={{
               fontFamily: MONO,
-              fontSize: 9,
-              letterSpacing: '0.25em',
+              fontSize: 11,
+              letterSpacing: '0.2em',
               textTransform: 'uppercase',
               color: MUTED,
               textDecoration: 'none',
