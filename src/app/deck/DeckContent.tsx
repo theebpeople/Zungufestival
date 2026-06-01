@@ -723,7 +723,8 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'flex-end',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         {/* Background */}
@@ -744,16 +745,21 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           style={{
             position: 'absolute',
             inset: 0,
-            background: `linear-gradient(to top, ${bg} 0%, rgba(6,8,8,0.6) 40%, rgba(6,8,8,0.1) 100%)`,
+            background: `linear-gradient(to top, ${bg} 0%, rgba(6,8,8,0.55) 40%, rgba(6,8,8,0.1) 100%)`,
           }}
         />
 
-        {/* Hero content */}
+        {/* Hero content — centered */}
         <div
           style={{
             position: 'relative',
             zIndex: 2,
-            padding: '0 8vw 100px',
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            padding: '52px 8vw 120px',
+            width: '100%',
           }}
         >
           {/* Eyebrow */}
@@ -771,6 +777,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             >
               Navy Island · Port Antonio · Jamaica · Target Window: June 17–23, 2027
             </p>
+            <div style={{ width: 32, height: 1, background: gold }} />
           </div>
 
           {/* Z-mark */}
@@ -837,7 +844,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           </p>
 
           {/* CTAs */}
-          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 56 }}>
+          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
             <button
               onClick={scrollToCta}
               style={{
@@ -873,18 +880,24 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               Explore ↓
             </button>
           </div>
+        </div>
 
-          {/* Stats bar */}
-          <div
-            style={{
-              borderTop: `1px solid ${dim}`,
-              paddingTop: 24,
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '24px 48px',
-            }}
-          >
-            {[
+        {/* Stats bar — absolutely pinned to hero bottom */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            zIndex: 3,
+            padding: '20px 8vw',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            borderTop: `1px solid rgba(200,168,75,0.08)`,
+          }}
+        >
+          {[
               ['64', 'Acres', 'Private Island'],
               ['5,000', 'Tickets', 'Year 1'],
               ['7', 'Days', '6 Nights'],
@@ -931,7 +944,6 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
                 </span>
               </div>
             ))}
-          </div>
         </div>
       </section>
 
