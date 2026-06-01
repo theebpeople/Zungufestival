@@ -79,8 +79,8 @@ function PhotoBreak({ src, quote, label, height = '70vh' }: PhotoBreakProps) {
         <p
           style={{
             fontFamily: fontMono,
-            fontSize: 9,
-            letterSpacing: '0.45em',
+            fontSize: 11,
+            letterSpacing: '0.35em',
             textTransform: 'uppercase',
             color: gold,
             fontWeight: 700,
@@ -142,13 +142,13 @@ function ChapterDivider({ num, eye, title, sub }: ChapterProps) {
           </div>
           {/* Text content */}
           <div>
-            <p style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.6em', color: gold, textTransform: 'uppercase', marginBottom: 8 }}>
+            <p style={{ fontFamily: fontMono, fontSize: 11, letterSpacing: '0.45em', color: gold, textTransform: 'uppercase', marginBottom: 10 }}>
               {eye}
             </p>
             <h2 style={{ fontFamily: fontDisplay, fontSize: 'clamp(24px, 4vw, 48px)', fontWeight: 700, color: cream, lineHeight: 1.05, letterSpacing: '-0.02em' }}>
               {title}
             </h2>
-            <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, marginTop: 10, lineHeight: 1.7, maxWidth: 540 }}>
+            <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, marginTop: 10, lineHeight: 1.7, maxWidth: 540 }}>
               {sub}
             </p>
           </div>
@@ -216,8 +216,8 @@ function QuoteBlock({ quote, attr }: QuoteBlockProps) {
       <p
         style={{
           fontFamily: fontMono,
-          fontSize: 9,
-          letterSpacing: '0.35em',
+          fontSize: 11,
+          letterSpacing: '0.25em',
           textTransform: 'uppercase',
           color: gold,
           fontWeight: 700,
@@ -264,8 +264,8 @@ function SectionHead({ label, title, titleColor = cream, goldLine }: SectionHead
           <p
             style={{
               fontFamily: fontMono,
-              fontSize: 9,
-              letterSpacing: '0.45em',
+              fontSize: 11,
+              letterSpacing: '0.35em',
               textTransform: 'uppercase',
               color: gold,
               fontWeight: 700,
@@ -331,6 +331,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
   const [formEmail, setFormEmail] = useState('');
   const [formMessage, setFormMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   // Hero scale animation
   const [heroScale, setHeroScale] = useState(1.05);
@@ -369,8 +370,8 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
 
   const navLinkStyle: React.CSSProperties = {
     fontFamily: fontMono,
-    fontSize: 9,
-    letterSpacing: '0.3em',
+    fontSize: 11,
+    letterSpacing: '0.2em',
     textTransform: 'uppercase',
     color: muted,
     fontWeight: 700,
@@ -463,11 +464,11 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             onClick={scrollToCta}
             style={{
               fontFamily: fontMono,
-              fontSize: 9,
-              letterSpacing: '0.3em',
+              fontSize: 11,
+              letterSpacing: '0.2em',
               textTransform: 'uppercase',
               fontWeight: 700,
-              padding: '7px 16px',
+              padding: '8px 18px',
               background: gold,
               color: bg,
               border: 'none',
@@ -486,13 +487,13 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           <span
             style={{
               fontFamily: fontMono,
-              fontSize: 8,
-              letterSpacing: '0.4em',
+              fontSize: 10,
+              letterSpacing: '0.3em',
               textTransform: 'uppercase',
               fontWeight: 700,
               color: gold,
               border: `1px solid rgba(200,168,75,0.35)`,
-              padding: '3px 10px',
+              padding: '4px 10px',
               whiteSpace: 'nowrap',
             }}
           >
@@ -502,15 +503,15 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             href="/sign-out"
             style={{
               fontFamily: fontMono,
-              fontSize: 9,
-              letterSpacing: '0.25em',
+              fontSize: 11,
+              letterSpacing: '0.2em',
               textTransform: 'uppercase',
               fontWeight: 700,
               color: muted,
               textDecoration: 'none',
             }}
           >
-            SIGN OUT
+            Sign Out
           </a>
         </div>
       </nav>
@@ -2140,8 +2141,24 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             </div>
 
             <button
-              onClick={() => {
-                if (formName && formEmail) setSubmitted(true);
+              disabled={submitting}
+              onClick={async () => {
+                if (!formName || !formEmail) return;
+                setSubmitting(true);
+                try {
+                  await fetch('/api/partner-interest', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      name: formName,
+                      email: formEmail,
+                      details: `Organisation: ${formOrg}\nInterest type: ${selectedInterest ?? 'Not specified'}\n\n${formMessage}`,
+                    }),
+                  });
+                } finally {
+                  setSubmitting(false);
+                  setSubmitted(true);
+                }
               }}
               style={{
                 fontFamily: fontMono,
