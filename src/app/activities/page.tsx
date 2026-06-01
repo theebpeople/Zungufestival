@@ -400,8 +400,8 @@ export default function ActivitiesPage() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: '0 2rem',
-          height: 56,
+          padding: '0 8vw',
+          height: 52,
           backgroundColor: navScrolled ? 'rgba(4,8,10,0.97)' : 'rgba(4,8,10,0.85)',
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
@@ -437,8 +437,8 @@ export default function ActivitiesPage() {
               onClick={() => scrollTo(l.id)}
               style={{
                 fontFamily: MONO,
-                fontSize: 11,
-                letterSpacing: '0.2em',
+                fontSize: 9,
+                letterSpacing: '0.4em',
                 textTransform: 'uppercase',
                 color: MUTED,
                 background: 'none',
@@ -461,8 +461,8 @@ export default function ActivitiesPage() {
           <span
             style={{
               fontFamily: MONO,
-              fontSize: 10,
-              letterSpacing: '0.25em',
+              fontSize: 8,
+              letterSpacing: '0.35em',
               textTransform: 'uppercase',
               color: GOLD,
               border: `1px solid ${GOLD_DIM}`,
@@ -476,8 +476,8 @@ export default function ActivitiesPage() {
             href="/sign-out"
             style={{
               fontFamily: MONO,
-              fontSize: 11,
-              letterSpacing: '0.2em',
+              fontSize: 9,
+              letterSpacing: '0.4em',
               textTransform: 'uppercase',
               color: MUTED,
               textDecoration: 'none',
@@ -590,7 +590,7 @@ export default function ActivitiesPage() {
           <h1
             style={{
               fontFamily: DISPLAY,
-              fontSize: 'clamp(2.5rem, 8vw, 6rem)',
+              fontSize: 'clamp(3.5rem, 9vw, 8.5rem)',
               fontWeight: 900,
               lineHeight: 1.0,
               letterSpacing: '-0.03em',

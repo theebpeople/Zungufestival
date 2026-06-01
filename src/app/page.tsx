@@ -59,7 +59,7 @@ export default function LandingPage() {
         {/* Eyebrow */}
         <p
           className="flex items-center gap-3 mb-10 font-bold uppercase"
-          style={{ fontSize: 11, letterSpacing: '0.4em', color: GOLD }}
+          style={{ fontSize: 9, letterSpacing: '0.4em', color: GOLD }}
         >
           <span style={{ display: 'inline-block', width: 28, height: 1, background: GOLD }} />
           Navy Island &nbsp;·&nbsp; Port Antonio &nbsp;·&nbsp; Jamaica &nbsp;·&nbsp; June 17–23, 2027
@@ -108,7 +108,7 @@ export default function LandingPage() {
           <button
             onClick={() => setModal(true)}
             className="font-bold uppercase transition-all duration-200"
-            style={{ fontFamily: "'Space Mono', monospace", fontSize: 12, letterSpacing: '0.3em', padding: '16px 36px', border: `1px solid rgba(200,168,75,0.5)`, color: GOLD, background: 'transparent', cursor: 'pointer' }}
+            style={{ fontFamily: "'Space Mono', monospace", fontSize: 9, letterSpacing: '0.4em', padding: '14px 28px', border: `1px solid rgba(200,168,75,0.5)`, color: GOLD, background: 'transparent', cursor: 'pointer' }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(200,168,75,0.08)'; (e.currentTarget as HTMLElement).style.borderColor = GOLD; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(200,168,75,0.5)'; }}
           >
@@ -117,7 +117,7 @@ export default function LandingPage() {
           <a
             href="/sign-in"
             className="font-bold uppercase transition-all duration-200"
-            style={{ fontFamily: "'Space Mono', monospace", fontSize: 12, letterSpacing: '0.3em', padding: '16px 36px', backgroundColor: GOLD, color: BLACK, textDecoration: 'none', display: 'inline-block' }}
+            style={{ fontFamily: "'Space Mono', monospace", fontSize: 9, letterSpacing: '0.4em', padding: '14px 28px', backgroundColor: GOLD, color: BLACK, textDecoration: 'none', display: 'inline-block' }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = '#dab84e'; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = GOLD; }}
           >
@@ -127,7 +127,7 @@ export default function LandingPage() {
       </div>
 
       {/* Bottom contact */}
-      <div className="absolute bottom-8 left-0 right-0 text-center" style={{ fontSize: 12, letterSpacing: '0.25em', color: 'rgba(200,168,75,0.5)' }}>
+      <div className="absolute bottom-8 left-0 right-0 text-center" style={{ fontSize: 9, letterSpacing: '0.25em', color: 'rgba(200,168,75,0.5)' }}>
         {EMAIL}
       </div>
 
@@ -151,10 +151,10 @@ export default function LandingPage() {
             </button>
 
             <div style={{ width: 32, height: 1, background: GOLD, marginBottom: 24 }} />
-            <p style={{ fontSize: 11, letterSpacing: '0.4em', color: GOLD, textTransform: 'uppercase', fontWeight: 700, marginBottom: 20 }}>
+            <p style={{ fontSize: 8, letterSpacing: '0.4em', color: GOLD, textTransform: 'uppercase', fontWeight: 700, marginBottom: 20 }}>
               Partnership Enquiries
             </p>
-            <p style={{ fontSize: 13, color: 'rgba(242,235,217,0.55)', letterSpacing: '0.1em', marginBottom: 32, lineHeight: 1.8, textTransform: 'uppercase' }}>
+            <p style={{ fontSize: 11, color: 'rgba(242,235,217,0.55)', letterSpacing: '0.1em', marginBottom: 32, lineHeight: 1.8, textTransform: 'uppercase' }}>
               Investor and production partner access is by invitation. Send your enquiry and we will respond within 48 hours.
             </p>
 
@@ -173,7 +173,7 @@ export default function LandingPage() {
               <span style={{ fontSize: 12, letterSpacing: '0.1em', color: CREAM }}>{EMAIL}</span>
               <button
                 onClick={copyEmail}
-                style={{ fontFamily: "'Space Mono', monospace", fontSize: 11, letterSpacing: '0.25em', color: copied ? '#5aaf7a' : GOLD, background: 'none', border: 'none', cursor: 'pointer', textTransform: 'uppercase', fontWeight: 700, whiteSpace: 'nowrap' }}
+                style={{ fontFamily: "'Space Mono', monospace", fontSize: 8, letterSpacing: '0.25em', color: copied ? '#5aaf7a' : GOLD, background: 'none', border: 'none', cursor: 'pointer', textTransform: 'uppercase', fontWeight: 700, whiteSpace: 'nowrap' }}
               >
                 {copied ? 'Copied ✓' : 'Copy'}
               </button>
@@ -181,7 +181,7 @@ export default function LandingPage() {
 
             <a
               href={`mailto:${EMAIL}?subject=ZUNGU%20Festival%20%E2%80%94%20Partnership%20Enquiry`}
-              style={{ fontFamily: "'Space Mono', monospace", fontSize: 12, letterSpacing: '0.3em', padding: '12px 24px', backgroundColor: GOLD, color: BLACK, textDecoration: 'none', display: 'inline-block', fontWeight: 700, textTransform: 'uppercase' }}
+              style={{ fontFamily: "'Space Mono', monospace", fontSize: 8, letterSpacing: '0.4em', padding: '12px 24px', backgroundColor: GOLD, color: BLACK, textDecoration: 'none', display: 'inline-block', fontWeight: 700, textTransform: 'uppercase' }}
             >
               Open Email App →
             </a>

@@ -79,8 +79,8 @@ function PhotoBreak({ src, quote, label, height = '70vh' }: PhotoBreakProps) {
         <p
           style={{
             fontFamily: fontMono,
-            fontSize: 11,
-            letterSpacing: '0.35em',
+            fontSize: 8,
+            letterSpacing: '0.6em',
             textTransform: 'uppercase',
             color: gold,
             fontWeight: 700,
@@ -142,7 +142,7 @@ function ChapterDivider({ num, eye, title, sub }: ChapterProps) {
           </div>
           {/* Text content */}
           <div>
-            <p style={{ fontFamily: fontMono, fontSize: 11, letterSpacing: '0.45em', color: gold, textTransform: 'uppercase', marginBottom: 10 }}>
+            <p style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.6em', color: gold, textTransform: 'uppercase', marginBottom: 10 }}>
               {eye}
             </p>
             <h2 style={{ fontFamily: fontDisplay, fontSize: 'clamp(24px, 4vw, 48px)', fontWeight: 700, color: cream, lineHeight: 1.05, letterSpacing: '-0.02em' }}>
@@ -216,8 +216,8 @@ function QuoteBlock({ quote, attr }: QuoteBlockProps) {
       <p
         style={{
           fontFamily: fontMono,
-          fontSize: 11,
-          letterSpacing: '0.25em',
+          fontSize: 8,
+          letterSpacing: '0.4em',
           textTransform: 'uppercase',
           color: gold,
           fontWeight: 700,
@@ -264,8 +264,8 @@ function SectionHead({ label, title, titleColor = cream, goldLine }: SectionHead
           <p
             style={{
               fontFamily: fontMono,
-              fontSize: 11,
-              letterSpacing: '0.35em',
+              fontSize: 9,
+              letterSpacing: '0.6em',
               textTransform: 'uppercase',
               color: gold,
               fontWeight: 700,
@@ -374,8 +374,8 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
 
   const navLinkStyle: React.CSSProperties = {
     fontFamily: fontMono,
-    fontSize: 11,
-    letterSpacing: '0.2em',
+    fontSize: 9,
+    letterSpacing: '0.4em',
     textTransform: 'uppercase',
     color: muted,
     fontWeight: 700,
@@ -469,8 +469,8 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             className="deck-nav-desktop"
             style={{
               fontFamily: fontMono,
-              fontSize: 11,
-              letterSpacing: '0.2em',
+              fontSize: 9,
+              letterSpacing: '0.4em',
               textTransform: 'uppercase',
               fontWeight: 700,
               padding: '8px 18px',
@@ -511,8 +511,8 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             className="deck-nav-desktop"
             style={{
               fontFamily: fontMono,
-              fontSize: 11,
-              letterSpacing: '0.2em',
+              fontSize: 9,
+              letterSpacing: '0.4em',
               textTransform: 'uppercase',
               fontWeight: 700,
               color: muted,
@@ -663,13 +663,13 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           <div style={{ display: 'flex', gap: 32, marginTop: 8 }}>
             <a
               href="/activities"
-              style={{ fontFamily: fontMono, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: muted, textDecoration: 'none', fontWeight: 700 }}
+              style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: muted, textDecoration: 'none', fontWeight: 700 }}
             >
               Activities
             </a>
             <a
               href="/sign-out"
-              style={{ fontFamily: fontMono, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: muted, textDecoration: 'none', fontWeight: 700 }}
+              style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: muted, textDecoration: 'none', fontWeight: 700 }}
             >
               Sign Out
             </a>

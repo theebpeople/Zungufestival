@@ -23,7 +23,7 @@ export default function NotAuthorizedPage() {
         alt="Zungu"
         style={{ width: 48, height: 48, objectFit: 'contain', marginBottom: '2rem', opacity: 0.5 }}
       />
-      <p style={{ fontSize: 12, color: muted, letterSpacing: '0.4em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '1rem' }}>
+      <p style={{ fontSize: 9, color: muted, letterSpacing: '0.4em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '1rem' }}>
         // Access Denied
       </p>
       <h1
@@ -40,10 +40,10 @@ export default function NotAuthorizedPage() {
       >
         Not<br />Authorized
       </h1>
-      <p style={{ fontSize: 14, color: muted, maxWidth: 360, lineHeight: 1.8, marginBottom: '2rem' }}>
+      <p style={{ fontSize: 11, color: muted, maxWidth: 360, lineHeight: 1.8, marginBottom: '2rem' }}>
         Your email address is not on the access list. If you received an invite, ensure you are signing in with the exact email the link was generated for.
       </p>
-      <p style={{ fontSize: 13, color: muted, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '2rem' }}>
+      <p style={{ fontSize: 10, color: muted, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '2rem' }}>
         Contact{' '}
         <a href="mailto:partnership@zungufestival.com" style={{ color: gold, textDecoration: 'none' }}>
           partnership@zungufestival.com

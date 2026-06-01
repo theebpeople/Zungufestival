@@ -39,12 +39,12 @@ export default function PartnerPage() {
           <span style={{ fontFamily: "'Unbounded', sans-serif", fontSize: '1.1rem', fontWeight: 900, letterSpacing: '-0.02em' }}>ZUNGU</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-          <span style={{ fontSize: 12, color: gold, border: `1px solid rgba(200,168,75,0.4)`, padding: '0.3rem 0.85rem', letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 700 }}>
+          <span style={{ fontSize: 10, color: gold, border: `1px solid rgba(200,168,75,0.4)`, padding: '0.3rem 0.85rem', letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 700 }}>
             Partner
           </span>
           <button
             onClick={() => signOut({ redirectUrl: '/' })}
-            style={{ fontSize: 12, color: muted, background: 'none', border: 'none', cursor: 'pointer', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 700, fontFamily: "'Space Mono', monospace" }}
+            style={{ fontSize: 10, color: muted, background: 'none', border: 'none', cursor: 'pointer', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 700, fontFamily: "'Space Mono', monospace" }}
           >
             Sign Out
           </button>
@@ -84,7 +84,7 @@ export default function PartnerPage() {
                 el.style.backgroundColor = black;
               }}
             >
-              <p style={{ fontSize: 12, color: accent ?? muted, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>{sub}</p>
+              <p style={{ fontSize: 10, color: accent ?? muted, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>{sub}</p>
               <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontSize: '1.1rem', fontWeight: 700, letterSpacing: '-0.01em', textTransform: 'uppercase' }}>{label}</h2>
             </a>
           ))}
