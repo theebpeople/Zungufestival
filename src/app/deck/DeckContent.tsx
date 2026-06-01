@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import dynamic from 'next/dynamic';
 import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
@@ -148,7 +149,7 @@ function ChapterDivider({ num, eye, title, sub }: ChapterProps) {
             <h2 style={{ fontFamily: fontDisplay, fontSize: 'clamp(24px, 4vw, 48px)', fontWeight: 700, color: cream, lineHeight: 1.05, letterSpacing: '-0.02em' }}>
               {title}
             </h2>
-            <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, marginTop: 10, lineHeight: 1.7, maxWidth: 540 }}>
+            <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, marginTop: 10, lineHeight: 1.7, maxWidth: 540 }}>
               {sub}
             </p>
           </div>
@@ -194,7 +195,7 @@ function QuoteBlock({ quote, attr }: QuoteBlockProps) {
   return (
     <div
       style={{
-        borderLeft: `2px solid ${gold}`,
+        borderLeft: `3px solid ${gold}`,
         paddingLeft: 28,
         margin: '48px 0',
         maxWidth: 680,
@@ -902,47 +903,52 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               ['5,000', 'Tickets', 'Year 1'],
               ['7', 'Days', '6 Nights'],
               ['Jun 17', 'Opens', '2027'],
-            ].map(([num, label, sub]) => (
-              <div key={label}>
-                <span
-                  style={{
-                    fontFamily: fontDisplay,
-                    fontSize: 22,
-                    fontWeight: 900,
-                    color: gold,
-                    display: 'block',
-                    lineHeight: 1,
-                  }}
-                >
-                  {num}
-                </span>
-                <span
-                  style={{
-                    fontFamily: fontMono,
-                    fontSize: 9,
-                    letterSpacing: '0.35em',
-                    textTransform: 'uppercase',
-                    color: cream,
-                    fontWeight: 700,
-                    display: 'block',
-                    marginTop: 4,
-                  }}
-                >
-                  {label}
-                </span>
-                <span
-                  style={{
-                    fontFamily: fontMono,
-                    fontSize: 8,
-                    letterSpacing: '0.2em',
-                    textTransform: 'uppercase',
-                    color: muted,
-                    display: 'block',
-                  }}
-                >
-                  {sub}
-                </span>
-              </div>
+            ].map(([num, label, sub], i, arr) => (
+              <React.Fragment key={label}>
+                <div>
+                  <span
+                    style={{
+                      fontFamily: fontDisplay,
+                      fontSize: 'clamp(14px, 2vw, 24px)',
+                      fontWeight: 900,
+                      color: gold,
+                      display: 'block',
+                      lineHeight: 1,
+                    }}
+                  >
+                    {num}
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: fontMono,
+                      fontSize: 9,
+                      letterSpacing: '0.35em',
+                      textTransform: 'uppercase',
+                      color: cream,
+                      fontWeight: 700,
+                      display: 'block',
+                      marginTop: 4,
+                    }}
+                  >
+                    {label}
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: fontMono,
+                      fontSize: 8,
+                      letterSpacing: '0.2em',
+                      textTransform: 'uppercase',
+                      color: muted,
+                      display: 'block',
+                    }}
+                  >
+                    {sub}
+                  </span>
+                </div>
+                {i < arr.length - 1 && (
+                  <div style={{ width: 1, height: 32, background: 'rgba(200,168,75,0.1)', flexShrink: 0 }} />
+                )}
+              </React.Fragment>
             ))}
         </div>
       </section>
@@ -1192,30 +1198,32 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         <div
           style={{
             display: 'flex',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '24px 0',
-            marginTop: 48,
-            borderTop: `1px solid ${dim}`,
-            paddingTop: 36,
-            width: '100%',
+            border: `1px solid rgba(200,168,75,0.12)`,
+            margin: '28px 0',
           }}
         >
           {[
             ['0', 'World-class electronic festivals in Jamaica'],
             ['$7.4B', 'Global electronic music market 2024'],
             ['2027', 'The timing window'],
-          ].map(([num, label]) => (
-            <div key={label}>
+          ].map(([num, label], i, arr) => (
+            <div
+              key={label}
+              style={{
+                flex: 1,
+                padding: '28px 22px',
+                borderRight: i < arr.length - 1 ? `1px solid rgba(200,168,75,0.08)` : 'none',
+                textAlign: 'center',
+              }}
+            >
               <span
                 style={{
                   fontFamily: fontDisplay,
-                  fontSize: 32,
-                  fontWeight: 900,
+                  fontSize: 'clamp(22px, 3.5vw, 42px)',
+                  fontWeight: 700,
                   color: gold,
                   display: 'block',
                   lineHeight: 1,
-                  marginBottom: 8,
                 }}
               >
                 {num}
@@ -1223,13 +1231,12 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               <span
                 style={{
                   fontFamily: fontMono,
-                  fontSize: 10,
-                  color: muted,
-                  letterSpacing: '0.15em',
+                  fontSize: 8,
+                  letterSpacing: '0.25em',
                   textTransform: 'uppercase',
-                  maxWidth: 200,
+                  color: muted,
                   display: 'block',
-                  lineHeight: 1.5,
+                  marginTop: 6,
                 }}
               >
                 {label}
@@ -1949,13 +1956,8 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         <div
           style={{
             display: 'flex',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '24px 0',
-            marginTop: 48,
-            borderTop: `1px solid ${dim}`,
-            paddingTop: 32,
-            width: '100%',
+            border: `1px solid rgba(200,168,75,0.12)`,
+            margin: '28px 0',
           }}
         >
           {[
@@ -1963,17 +1965,24 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             ['$2.96M', 'Costs'],
             ['$920', 'Blended avg'],
             ['65%', 'Breakeven occupancy'],
-          ].map(([num, label]) => (
-            <div key={label}>
+          ].map(([num, label], i, arr) => (
+            <div
+              key={label}
+              style={{
+                flex: 1,
+                padding: '28px 22px',
+                borderRight: i < arr.length - 1 ? `1px solid rgba(200,168,75,0.08)` : 'none',
+                textAlign: 'center',
+              }}
+            >
               <span
                 style={{
                   fontFamily: fontDisplay,
-                  fontSize: 26,
-                  fontWeight: 900,
+                  fontSize: 'clamp(22px, 3.5vw, 42px)',
+                  fontWeight: 700,
                   color: gold,
                   display: 'block',
                   lineHeight: 1,
-                  marginBottom: 6,
                 }}
               >
                 {num}
@@ -1981,10 +1990,12 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               <span
                 style={{
                   fontFamily: fontMono,
-                  fontSize: 9,
-                  color: muted,
+                  fontSize: 8,
                   letterSpacing: '0.25em',
                   textTransform: 'uppercase',
+                  color: muted,
+                  display: 'block',
+                  marginTop: 6,
                 }}
               >
                 {label}
