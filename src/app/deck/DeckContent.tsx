@@ -1192,11 +1192,13 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         <div
           style={{
             display: 'flex',
+            justifyContent: 'space-between',
             flexWrap: 'wrap',
-            gap: '28px 60px',
+            gap: '24px 0',
             marginTop: 48,
             borderTop: `1px solid ${dim}`,
             paddingTop: 36,
+            width: '100%',
           }}
         >
           {[
@@ -1947,11 +1949,13 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         <div
           style={{
             display: 'flex',
+            justifyContent: 'space-between',
             flexWrap: 'wrap',
-            gap: '24px 48px',
+            gap: '24px 0',
             marginTop: 48,
             borderTop: `1px solid ${dim}`,
             paddingTop: 32,
+            width: '100%',
           }}
         >
           {[

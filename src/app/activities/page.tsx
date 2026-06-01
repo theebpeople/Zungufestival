@@ -534,10 +534,8 @@ export default function ActivitiesPage() {
           minHeight: '100vh',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'flex-start',
-          justifyContent: 'flex-end',
-          paddingBottom: '8rem',
-          paddingTop: 56,
+          alignItems: 'center',
+          justifyContent: 'center',
           overflow: 'hidden',
         }}
       >
@@ -571,21 +569,25 @@ export default function ActivitiesPage() {
           }}
         />
 
-        {/* Content */}
-        <div style={{ position: 'relative', zIndex: 10, textAlign: 'left', width: '100%', padding: '0 clamp(24px, 8vw, 112px)' }}>
-          <p
-            style={{
-              fontFamily: MONO,
-              fontSize: 10,
-              letterSpacing: '0.45em',
-              color: GOLD,
-              textTransform: 'uppercase',
-              fontWeight: 700,
-              marginBottom: '2rem',
-            }}
-          >
-            Activity Programme · Navy Island · June 2027
-          </p>
+        {/* Content — centered */}
+        <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', width: '100%', padding: '52px clamp(24px, 8vw, 112px) 120px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          {/* Eyebrow with symmetric rules */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: '2rem' }}>
+            <div style={{ width: 28, height: 1, background: GOLD, flexShrink: 0 }} />
+            <p
+              style={{
+                fontFamily: MONO,
+                fontSize: 9,
+                letterSpacing: '0.45em',
+                color: GOLD,
+                textTransform: 'uppercase',
+                fontWeight: 700,
+              }}
+            >
+              Activity Programme · Navy Island · June 2027
+            </p>
+            <div style={{ width: 28, height: 1, background: GOLD, flexShrink: 0 }} />
+          </div>
 
           <h1
             style={{
@@ -610,40 +612,43 @@ export default function ActivitiesPage() {
               fontSize: 'clamp(11px, 1.5vw, 14px)',
               color: MUTED,
               lineHeight: 1.9,
-              maxWidth: 680,
-              margin: '0 auto 3rem',
+              maxWidth: 600,
+              marginBottom: 0,
             }}
           >
             Six am to four am. Every zone running simultaneously. Nobody waiting. Nobody bored. Nobody doing the same thing as everyone else.
           </p>
+        </div>
 
-          {/* Stats grid */}
-          <div
-            style={{
-              display: 'inline-grid',
-              gridTemplateColumns: 'repeat(4, auto)',
-              gap: '1px',
-              backgroundColor: BORDER_MID,
-              border: `1px solid ${BORDER_MID}`,
-            }}
-          >
-            {[
-              { label: 'Location', value: '64 Acres, Navy Island' },
-              { label: 'Format', value: '8 Simultaneous Zones' },
-              { label: 'June 2027', value: '13–16 June · 4 Days' },
-              { label: 'Capacity', value: '2,000–2,500 · 18+' },
-            ].map((s) => (
-              <div
-                key={s.label}
-                style={{ backgroundColor: 'rgba(4,8,10,0.85)', padding: '1.25rem 1rem', textAlign: 'center' }}
-              >
-                <p style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.35em', color: GOLD, textTransform: 'uppercase', marginBottom: 6 }}>
-                  {s.label}
-                </p>
-                <p style={{ fontFamily: MONO, fontSize: 11, color: CREAM, fontWeight: 700 }}>{s.value}</p>
-              </div>
-            ))}
-          </div>
+        {/* Stats bar — pinned to bottom */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            zIndex: 10,
+            padding: '20px 8vw',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            borderTop: `1px solid ${BORDER_MID}`,
+            backgroundColor: 'rgba(4,8,10,0.6)',
+          }}
+        >
+          {[
+            { label: 'Location', value: '64 Acres, Navy Island' },
+            { label: 'Format', value: '8 Simultaneous Zones' },
+            { label: 'Dates', value: '13–16 June 2027' },
+            { label: 'Capacity', value: '2,000–2,500 · 18+' },
+          ].map((s) => (
+            <div key={s.label} style={{ textAlign: 'center' }}>
+              <p style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.35em', color: GOLD_DIM, textTransform: 'uppercase', marginBottom: 4 }}>
+                {s.label}
+              </p>
+              <p style={{ fontFamily: MONO, fontSize: 11, color: CREAM, fontWeight: 700 }}>{s.value}</p>
+            </div>
+          ))}
         </div>
       </section>
 
