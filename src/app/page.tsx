@@ -2,7 +2,7 @@
 
 import { useAuth } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 const EMAIL = 'partnership@zungufestival.com';
 const GOLD = '#C8A84B';
@@ -28,18 +28,64 @@ export default function LandingPage() {
     });
   }
 
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    let rafId: number;
+    let lastTime: number | null = null;
+
+    function step(now: number) {
+      if (lastTime === null) lastTime = now;
+      const delta = (now - lastTime) / 1000;
+      lastTime = now;
+      if (video!.duration) {
+        video!.currentTime = video!.currentTime - delta;
+        if (video!.currentTime <= 0) video!.currentTime = video!.duration;
+      }
+      rafId = requestAnimationFrame(step);
+    }
+
+    function startLoop() {
+      video!.pause();
+      lastTime = null;
+      rafId = requestAnimationFrame(step);
+    }
+
+    if (video.readyState >= 1 && video.duration) {
+      video.currentTime = video.duration;
+      startLoop();
+    } else {
+      video.addEventListener('loadedmetadata', () => {
+        video!.currentTime = video!.duration;
+        startLoop();
+      }, { once: true });
+    }
+
+    return () => cancelAnimationFrame(rafId);
+  }, []);
+
   return (
     <div
       className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden"
       style={{ backgroundColor: BLACK, fontFamily: "'Space Mono', monospace" }}
     >
-      {/* HQ aerial background */}
-      <div
-        className="absolute inset-0"
+      {/* Reverse video hero */}
+      <video
+        ref={videoRef}
+        src="/photos/aerial-view-from-navy-island-to-port-antonio-town-2026-01-21-22-41-54-utc.mp4"
+        muted
+        playsInline
+        preload="auto"
+        poster="/photos/navy-island-aerial-hq.png"
         style={{
-          backgroundImage: "url('/photos/navy-island-aerial-hq.png')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center 42%',
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: 'center 42%',
           filter: 'saturate(0.8) brightness(0.48)',
           opacity: 0.9,
         }}

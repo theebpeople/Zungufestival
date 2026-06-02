@@ -15,19 +15,19 @@ const PORTALS = [
     role: 'investor',
     label: 'Investor',
     sub: 'Fund deck · financials · equity structure',
-    photo: '/photos/navy-island-aerial-hq.png',
+    photo: '/photos/port-antonio-aerial.jpeg',
   },
   {
     role: 'partner',
     label: 'Production Partner',
     sub: 'Staging · logistics · production brief',
-    photo: '/photos/NAVY%20ISLAND%20STAGE%20AND%20PATHWAY%20MAP.png',
+    photo: '/photos/zungu-beach-stage-aerial.png',
   },
   {
     role: 'supplier',
     label: 'Supplier',
     sub: 'Equipment · procurement · vendor brief',
-    photo: '/photos/NAVY%20ISLAND%20WIDE%20.png',
+    photo: '/photos/zungu-beach-stage-small.png',
   },
   {
     role: 'press',

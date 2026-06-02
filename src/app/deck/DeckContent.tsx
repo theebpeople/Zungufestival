@@ -1135,8 +1135,8 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               { src: '/photos/island-stages-aerial.png', label: 'ISLAND OVERVIEW — Three stages. One island.', sub: 'Wide aerial concept · Navy Island' },
               { src: '/photos/stage-zungu-aerial.png', label: 'ZUNGU MAIN — Headline stage', sub: 'Stage II · North clearing · Canopy facing sea' },
               { src: '/photos/stage-origins-ground.png', label: 'ORIGINS — Heritage architecture', sub: 'Stage I · Bamboo structure · Natural canopy' },
-              { src: '/photos/stage-rebirth-aerial.png', label: 'REBIRTH — Future sounds', sub: 'Stage III · East point · Open horizon' },
-              { src: '/photos/stage-beach-aerial.png', label: 'BEACH STAGE — Water\'s edge', sub: 'South shore · Open water surround' },
+              { src: '/photos/zungu-rebirth-stage.png', label: 'REBIRTH — Future sounds', sub: 'Stage III · East point · Open horizon' },
+              { src: '/photos/zungu-beach-stage-concept.png', label: 'BEACH STAGE — Concept render', sub: 'South shore · Open water surround' },
             ].map(({ src, label, sub }) => (
               <div key={src} style={{ position: 'relative' }}>
                 <img
@@ -1747,6 +1747,13 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           ))}
         </div>
       </Section>
+
+      <PhotoBreak
+        src="/photos/zungu-glamping-pods.png"
+        quote="You wake up on the island."
+        label="On-Island Accommodation · Glamping Village"
+        height="65vh"
+      />
 
       {/* Section: The Audience */}
       <Section dark>
