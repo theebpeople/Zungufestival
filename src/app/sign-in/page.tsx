@@ -203,6 +203,12 @@ function PortalChooser({ onSelect }: { onSelect: (role: string) => void }) {
             />
           </p>
 
+          <img
+            src="/zungu-z-mark.png"
+            alt="Zungu"
+            style={{ width: 'min(80px,16vw)', height: 'auto', marginBottom: '1.75rem', filter: 'drop-shadow(0 0 28px rgba(200,168,75,0.45))' }}
+          />
+
           <h1
             style={{
               fontFamily: "'Unbounded', sans-serif",
@@ -231,12 +237,6 @@ function PortalChooser({ onSelect }: { onSelect: (role: string) => void }) {
           >
             FESTIVAL
           </h2>
-
-          <img
-            src="/zungu-z-mark.png"
-            alt="Zungu"
-            style={{ width: 'min(80px,16vw)', height: 'auto', marginBottom: '1.75rem', filter: 'drop-shadow(0 0 28px rgba(200,168,75,0.45))' }}
-          />
           <div
             style={{ width: 48, height: 1, background: gold, margin: '0 auto 2rem' }}
           />
@@ -493,7 +493,7 @@ function SignInForm({ role }: { role: string }) {
           fontWeight: 700,
           fontStyle: 'italic',
           marginBottom: '2rem',
-          color: isPartner ? gold : muted,
+          color: gold,
           letterSpacing: '0.4em',
         }}
       >
