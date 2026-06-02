@@ -76,6 +76,8 @@ const ZONES = [
     name: 'THE COVE',
     sub: 'Beach & Water Activation',
     desc: 'The western beach. Where the Caribbean sea and the festival intersect. Every water activity curated by local Portland guides. No motorised watercraft near the reef.',
+    image: '/photos/stage-beach-aerial.png',
+    imageLabel: 'The Cove · South Beach · Navy Island',
     activities: [
       'Dawn paddle: SUP at 6am, guided, max 12 people',
       'Reef snorkel — marine biologist-led, 90 mins, ecology brief',
@@ -1300,6 +1302,19 @@ function ZoneCard({ zone }: { zone: Zone }) {
       >
         {zone.tag}
       </span>
+      {zone.image && (
+        <div style={{ position: 'relative', overflow: 'hidden', margin: '0.75rem -2rem -2rem' }}>
+          <img
+            src={zone.image}
+            alt={zone.imageLabel || zone.name}
+            loading="lazy"
+            style={{ width: '100%', height: 200, objectFit: 'cover', display: 'block', filter: 'brightness(0.75) saturate(0.85)' }}
+          />
+          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '14px 12px 8px', background: 'linear-gradient(transparent, rgba(4,8,10,0.9))', fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.7)' }}>
+            {zone.imageLabel}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -230,6 +230,19 @@ export default function StagesPage() {
           ))}
         </div>
 
+        {/* Stage zones aerial */}
+        <div style={{ marginTop: 3, position: 'relative', overflow: 'hidden' }}>
+          <img
+            src="/photos/island-stages-aerial.png"
+            alt="Navy Island — Stage Zones Aerial"
+            loading="lazy"
+            style={{ width: '100%', height: 320, objectFit: 'cover', display: 'block', filter: 'brightness(0.8) saturate(0.85)' }}
+          />
+          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '20px 16px 12px', background: 'linear-gradient(transparent, rgba(4,8,10,0.85))', fontFamily: MONO, fontSize: 8, letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.7)' }}>
+            Stage Zones · Aerial · Navy Island · Port Antonio
+          </div>
+        </div>
+
         {/* Quote block */}
         <div style={{ margin: '40px 0', padding: '24px 28px', borderLeft: `3px solid ${GOLD}`, background: 'rgba(200,168,75,0.03)' }}>
           <p style={{ fontFamily: DISPLAY, fontSize: 'clamp(0.9rem, 2vw, 1.3rem)', fontWeight: 300, color: CREAM, lineHeight: 1.5 }}>
@@ -449,6 +462,18 @@ export default function StagesPage() {
                     <span style={{ fontSize: 5, color: GOLD, opacity: 0.4 }}>●</span>{p}
                   </span>
                 ))}
+              </div>
+            </div>
+            {/* Rebirth stage aerial */}
+            <div style={{ position: 'relative', overflow: 'hidden' }}>
+              <img
+                src="/photos/stage-rebirth-aerial.png"
+                alt="Rebirth Stage — Aerial Concept"
+                loading="lazy"
+                style={{ width: '100%', height: 280, objectFit: 'cover', display: 'block', filter: 'brightness(0.75) saturate(0.9)' }}
+              />
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '16px 16px 10px', background: 'linear-gradient(transparent, rgba(14,6,24,0.9))', fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: REBIRTH_C }}>
+                Rebirth Stage · West End · Sunset · 800 Cap
               </div>
             </div>
           </div>
