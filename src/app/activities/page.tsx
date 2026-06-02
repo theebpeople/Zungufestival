@@ -552,6 +552,23 @@ export default function ActivitiesPage() {
 
         {/* Badge + Sign Out */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', whiteSpace: 'nowrap' }}>
+          <a
+            href="/deck"
+            style={{
+              fontFamily: MONO,
+              fontSize: 9,
+              letterSpacing: '0.4em',
+              textTransform: 'uppercase',
+              color: MUTED,
+              textDecoration: 'none',
+              fontWeight: 700,
+              transition: 'color 0.2s',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = CREAM)}
+            onMouseLeave={(e) => (e.currentTarget.style.color = MUTED)}
+          >
+            ← Deck
+          </a>
           <span
             style={{
               fontFamily: MONO,

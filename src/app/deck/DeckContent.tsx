@@ -491,6 +491,13 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           >
             Activities
           </a>
+          <a
+            href="/stages"
+            className="deck-nav-desktop"
+            style={{ ...navLinkStyle, display: 'inline-block', whiteSpace: 'nowrap' }}
+          >
+            Stages
+          </a>
           <span
             className="deck-nav-desktop"
             style={{
@@ -667,6 +674,12 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: muted, textDecoration: 'none', fontWeight: 700 }}
             >
               Activities
+            </a>
+            <a
+              href="/stages"
+              style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: muted, textDecoration: 'none', fontWeight: 700 }}
+            >
+              Stages
             </a>
             <a
               href="/sign-out"
@@ -996,19 +1009,11 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         </div>
       </Section>
 
-      {/* Photo break 2 */}
-      <PhotoBreak
-        src="/photos/port-antonio.jpg"
-        quote="The most beautiful town in Jamaica."
-        label="Port Antonio Harbour · Blue Mountains"
-      />
-
       {/* Section: Geographic Context */}
       <Section>
         <SectionHead
           label="Port Antonio"
-          title="The most beautiful town in Jamaica."
-          goldLine="Undiscovered at this scale."
+          title="Undiscovered at this scale."
         />
         <BodyText>
           Port Antonio sits outside Jamaica&rsquo;s mass tourism corridor. No cruise ships. No all-inclusives. No package holiday energy. The town is known by those who seek it — which is exactly the audience Zungu is built for.
@@ -1109,11 +1114,6 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             style={{ width: '100%', display: 'block', border: `1px solid ${dim}` }}
             alt="Navy Island Satellite"
           />
-          <img
-            src="/photos/reference-for-map-crossing.png"
-            style={{ width: '100%', display: 'block', border: `1px solid ${dim}` }}
-            alt="Reference Map - Crossing"
-          />
         </div>
 
         {/* Stage concept images */}
@@ -1164,6 +1164,33 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Link to full stages breakdown */}
+        <div style={{ marginTop: 40, paddingTop: 32, borderTop: `1px solid ${dim}` }}>
+          <a
+            href="/stages"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 12,
+              fontFamily: fontMono,
+              fontSize: 10,
+              letterSpacing: '0.35em',
+              textTransform: 'uppercase',
+              fontWeight: 700,
+              color: gold,
+              textDecoration: 'none',
+              border: `1px solid rgba(200,168,75,0.3)`,
+              padding: '12px 24px',
+              transition: 'border-color 0.2s',
+            }}
+          >
+            Full Stage Breakdown →
+          </a>
+          <p style={{ fontFamily: fontMono, fontSize: 10, color: muted, marginTop: 12, letterSpacing: '0.1em' }}>
+            Origins · Rebirth · Zungu Main — stage architecture, schedules, and nightly programming
+          </p>
         </div>
       </Section>
 
@@ -1577,7 +1604,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+            gridTemplateColumns: 'repeat(3, 1fr)',
             gap: 20,
             marginTop: 28,
           }}
@@ -1644,7 +1671,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+            gridTemplateColumns: 'repeat(3, 1fr)',
             gap: 2,
             marginTop: 28,
           }}
@@ -1768,7 +1795,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
+            gridTemplateColumns: 'repeat(3, 1fr)',
             gap: 20,
             marginTop: 28,
           }}
@@ -2114,7 +2141,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+            gridTemplateColumns: 'repeat(3, 1fr)',
             gap: 2,
             marginTop: 8,
           }}
