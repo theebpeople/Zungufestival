@@ -1,5 +1,90 @@
 @import "tailwindcss";
 
+/* ─── Design tokens ───────────────────────────────────────────────────────── */
+:root {
+  /* Core palette */
+  --bg:        #04080A;
+  --bg-alt:    #060808;
+  --green:     #0D2018;
+  --gold:      #C8A84B;
+  --cream:     #F2EBD9;
+  --white:     #F7F3EC;
+  --rust:      #C45A2A;
+  --teal:      #4AAFA0;
+  --muted:     #6B6355;
+  --muted-cream: rgba(242,235,217,0.45);
+  --dim:       rgba(242,235,217,0.18);
+
+  /* Stage / night accents */
+  --origins:  #D4722A;
+  --rebirth:  #9B5FC0;
+  --night-2:  #4A8FBD;
+  --night-3:  #3AAF7A;
+
+  /* Foreground roles */
+  --fg-1:      var(--white);
+  --fg-2:      var(--cream);
+  --fg-3:      rgba(242,235,217,0.65);
+  --fg-4:      rgba(242,235,217,0.40);
+  --fg-5:      var(--muted);
+  --fg-accent: var(--gold);
+
+  /* Border / hairline */
+  --border:        rgba(200,168,75,0.07);
+  --border-strong: rgba(200,168,75,0.20);
+  --border-soft:   rgba(255,255,255,0.05);
+  --border-input:  rgba(255,255,255,0.10);
+
+  /* Surfaces */
+  --surface-card:      rgba(255,255,255,0.02);
+  --surface-input:     rgba(255,255,255,0.05);
+  --surface-gold-tint: rgba(200,168,75,0.04);
+  --overlay-nav:       rgba(4,8,10,0.85);
+
+  /* Type */
+  --font-display: 'Unbounded', 'Helvetica Neue', sans-serif;
+  --font-mono:    'Space Mono', ui-monospace, monospace;
+
+  /* Type ramp */
+  --h1-size: clamp(3rem,11vw,9rem);
+  --h2-size: clamp(2rem,5vw,4.8rem);
+  --h3-size: clamp(1.6rem,3.5vw,2.8rem);
+  --h4-size: 1.25rem;
+  --h5-size: 0.9375rem;
+  --body-size:  14px;
+  --small-size: 13px;
+  --label-size: 11px;
+  --micro-size: 9px;
+  --nano-size:  8px;
+
+  /* Tracking */
+  --tr-tight:  -0.05em;
+  --tr-snug:   -0.02em;
+  --tr-normal:  0;
+  --tr-wide:    0.15em;
+  --tr-wider:   0.25em;
+  --tr-widest:  0.35em;
+  --tr-mega:    0.50em;
+  --tr-ultra:   0.60em;
+
+  /* Spacing (8-pt) */
+  --s-1:4px;  --s-2:8px;   --s-3:12px; --s-4:16px; --s-5:24px;
+  --s-6:32px; --s-7:48px;  --s-8:64px; --s-9:96px; --s-10:128px;
+  --gutter: 8vw;
+  --gutter-mobile: 5vw;
+
+  /* Radius — always zero */
+  --radius: 0;
+
+  /* Motion */
+  --ease-out:    cubic-bezier(0.22,1,0.36,1);
+  --ease-in-out: cubic-bezier(0.65,0,0.35,1);
+  --dur-fast:  150ms;
+  --dur-base:  300ms;
+  --dur-slow:  600ms;
+}
+
+/* ─── Global reset ────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
@@ -29,7 +114,20 @@ body::before {
 ::selection { background: #C8A84B; color: #060808; }
 .pre-wrap { white-space: pre-wrap; }
 
-/* Hide Clerk dev mode banner globally */
+/* ─── Grain overlay (brand-required texture) ──────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/></filter><rect width='200' height='200' filter='url(%23g)'/></svg>");
+  background-size: 180px 180px;
+}
+
+/* ─── Hide Clerk dev mode badges ──────────────────────────────────────────── */
 [class*="cl-badge"],[data-localization-key="badge__devMode"],
 [class*="cl-devBrowser"],[class*="cl-internal-b3fm6y"] { display: none !important; }
 

@@ -12,12 +12,12 @@
    Unbounded (display) + Space Mono (UI/labels)
 ═══════════════════════════════════════════════════════════════ */
 :root {
-  --bg:         #060808;
+  --bg:         #04080A;
   --green:      #0D2018;
   --gold:       #C8A84B;
   --gold-dim:   rgba(200,168,75,0.45);
   --gold-faint: rgba(200,168,75,0.08);
-  --cream:      #F7F3EC;
+  --cream:      #F2EBD9;
   --muted:      rgba(242,235,217,0.45);
   --border:     rgba(200,168,75,0.07);
   --border-mid: rgba(200,168,75,0.12);
@@ -113,7 +113,7 @@ body {
 }
 .hero-title .g { color:var(--gold); }
 .hero-sub {
-  font-size:14px; line-height:1.8; color:var(--muted); letter-spacing:0.05em;
+  font-size:11px; line-height:1.8; color:var(--muted); letter-spacing:0.05em;
   max-width:520px; margin-bottom:3rem;
 }
 .hero-stats { display:flex; gap:0; border:1px solid var(--border-mid); width:fit-content; flex-wrap:wrap; }
@@ -147,7 +147,7 @@ body {
 }
 .chapter-title .g { color:var(--gold); }
 .chapter-body {
-  font-size:14px; line-height:1.8; color:var(--muted);
+  font-size:11px; line-height:1.8; color:var(--muted);
   max-width:560px; margin-top:1rem; letter-spacing:0.02em;
 }
 
@@ -172,7 +172,7 @@ body {
 .principle-title {
   font-size:9px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:0.35rem;
 }
-.principle-text { font-size:13px; color:var(--muted); line-height:1.6; }
+.principle-text { font-size:10px; color:var(--muted); line-height:1.6; }
 
 /* ── HARD RULE CALLOUT ── */
 .hard-rule-grid {
@@ -189,11 +189,11 @@ body {
   font-family:'Unbounded',sans-serif; font-weight:700;
   font-size:clamp(1rem,2.5vw,1.6rem); color:var(--gold); line-height:1.1; margin-bottom:0.8rem;
 }
-.hard-rule-body { font-size:13px; color:var(--muted); line-height:1.7; }
+.hard-rule-body { font-size:10px; color:var(--muted); line-height:1.7; }
 .hard-rule-body strong { color:var(--cream); }
 .day-shape-row { display:flex; gap:1.5rem; align-items:baseline; margin-bottom:0.4rem; }
 .day-shape-time { font-size:9px; color:var(--gold-dim); min-width:90px; }
-.day-shape-text { font-size:13px; color:var(--muted); }
+.day-shape-text { font-size:10px; color:var(--muted); }
 .day-shape-text.key { color:var(--cream); font-weight:700; }
 
 /* ── DAY TABS ── */
@@ -226,19 +226,19 @@ body {
   display:flex; align-items:flex-start; font-weight:700;
 }
 .tg-cell {
-  padding:0.7rem 0.8rem; font-size:13px; color:var(--muted);
+  padding:0.7rem 0.8rem; font-size:10px; color:var(--muted);
   background:var(--bg); line-height:1.4;
 }
 .tg-cell.highlight { background:var(--gold-faint); }
 .tg-cell.empty { color:rgba(242,235,217,0.12); text-align:center; display:flex; align-items:center; justify-content:center; }
 .tg-cell.stage-block { background:rgba(13,32,24,0.5); border-left:2px solid rgba(200,168,75,0.3); }
-.act-name { display:block; font-size:13px; color:var(--cream); margin-bottom:0.2rem; font-weight:700; }
-.act-detail { display:block; font-size:12px; color:rgba(242,235,217,0.4); line-height:1.35; }
+.act-name { display:block; font-size:10px; color:var(--cream); margin-bottom:0.2rem; font-weight:700; }
+.act-detail { display:block; font-size:9px; color:rgba(242,235,217,0.4); line-height:1.35; }
 
 /* ── ZONES ── */
 .zones-sec { background:var(--bg); padding:80px 8vw; border-top:1px solid var(--border); }
 .zones-intro {
-  font-size:14px; line-height:1.85; color:var(--muted); max-width:560px; margin-bottom:3.5rem; letter-spacing:0.02em;
+  font-size:11px; line-height:1.85; color:var(--muted); max-width:560px; margin-bottom:3.5rem; letter-spacing:0.02em;
 }
 .zones-grid {
   display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border);
@@ -266,8 +266,8 @@ body {
   letter-spacing:-0.01em; line-height:1.1; margin-bottom:0.4rem;
 }
 .zone-subtitle { font-size:8px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:1rem; }
-.zone-desc { font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:1rem; }
-.zone-activities { font-size:12px; color:rgba(242,235,217,0.4); line-height:1.8; padding-left:1rem; }
+.zone-desc { font-size:10px; color:var(--muted); line-height:1.7; margin-bottom:1rem; }
+.zone-activities { font-size:9px; color:rgba(242,235,217,0.4); line-height:1.8; padding-left:1rem; }
 .zone-activities li { border-bottom:1px solid var(--border); padding:0.2rem 0; }
 .zone-tag {
   display:inline-block; margin-top:1.2rem; font-size:8px; letter-spacing:0.2em;
@@ -307,7 +307,7 @@ body {
 .wellness-sec {
   background:var(--wellness-bg); padding:80px 8vw; border-top:1px solid var(--border);
 }
-.wellness-intro { font-size:14px; line-height:1.85; color:var(--muted); max-width:620px; margin-bottom:3.5rem; letter-spacing:0.02em; }
+.wellness-intro { font-size:11px; line-height:1.85; color:var(--muted); max-width:620px; margin-bottom:3.5rem; letter-spacing:0.02em; }
 .wellness-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); }
 .wellness-card {
   background:var(--bg); padding:2rem 1.5rem; position:relative; overflow:hidden;
@@ -318,11 +318,11 @@ body {
 }
 .wellness-time { font-size:8px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:0.6rem; }
 .wellness-name { font-family:'Unbounded',sans-serif; font-weight:700; font-size:0.95rem; color:var(--cream); letter-spacing:-0.01em; margin-bottom:0.6rem; line-height:1.2; }
-.wellness-desc { font-size:13px; color:var(--muted); line-height:1.65; }
+.wellness-desc { font-size:10px; color:var(--muted); line-height:1.65; }
 
 /* ── VIP ── */
 .vip-sec { background:var(--bg); padding:80px 8vw; border-top:1px solid var(--border); }
-.vip-intro { font-size:14px; line-height:1.85; color:var(--muted); max-width:560px; margin-bottom:3.5rem; letter-spacing:0.02em; }
+.vip-intro { font-size:11px; line-height:1.85; color:var(--muted); max-width:560px; margin-bottom:3.5rem; letter-spacing:0.02em; }
 .vip-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); }
 .vip-tier { background:var(--bg); padding:2.5rem; position:relative; }
 .vip-tier.obsidian { background:var(--green); }
@@ -336,7 +336,7 @@ body {
   color:var(--cream); letter-spacing:-0.02em; line-height:0.9; margin-bottom:0.5rem;
 }
 .tier-price { font-size:9px; letter-spacing:0.1em; color:var(--gold-dim); margin-bottom:1.5rem; line-height:1.5; }
-.tier-benefits { font-size:13px; color:var(--muted); line-height:1.8; padding-left:1rem; }
+.tier-benefits { font-size:10px; color:var(--muted); line-height:1.8; padding-left:1rem; }
 .tier-benefits li { border-bottom:1px solid var(--border); padding:0.25rem 0; }
 .tier-benefits li:last-child { border-bottom:none; }
 
@@ -348,8 +348,8 @@ body {
   font-family:'Unbounded',sans-serif; font-weight:900;
   font-size:2.5rem; color:rgba(200,168,75,0.08); line-height:1; margin-bottom:0.6rem; letter-spacing:-0.04em;
 }
-.sustain-title { font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--cream); margin-bottom:0.6rem; }
-.sustain-text  { font-size:13px; color:var(--muted); line-height:1.7; }
+.sustain-title { font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--cream); margin-bottom:0.6rem; }
+.sustain-text  { font-size:10px; color:var(--muted); line-height:1.7; }
 
 /* ── FOOTER ── */
 .doc-footer {
@@ -368,34 +368,14 @@ body {
   .zones-grid, .wellness-grid, .vip-grid, .sustain-grid { grid-template-columns:1fr 1fr; }
   .philosophy-grid { grid-template-columns:1fr; gap:2rem; }
   .hard-rule-grid  { grid-template-columns:1fr; }
-  .dot-nav { display:none; }
+  .time-grid { grid-template-columns:70px repeat(2,1fr); }
+  .time-grid .tg-header:nth-child(n+4), .time-grid .tg-cell:nth-child(4n), .time-grid .tg-cell:nth-child(4n-0) { display:none; }
+  .dot-nav, .nav-links { display:none; }
   .doc-footer { flex-direction:column; gap:1.5rem; }
   .footer-meta { text-align:left; }
 }
-@media (max-width:768px) {
-  .nav-links{display:none;position:fixed;top:52px;left:0;right:0;background:rgba(4,8,10,.97);flex-direction:column;gap:0;border-bottom:1px solid rgba(200,168,75,.15);padding:0;list-style:none;z-index:899;}
-  .nav-links.open{display:flex;}
-  .nav-links li{border-bottom:1px solid rgba(200,168,75,.07);}
-  .nav-links a{display:block;padding:12px 8vw;height:auto;}
-  .ham{display:flex;}
-  .hero{min-height:100svh;}
-  .hero, .philosophy-sec, .zones-sec, .wellness-sec, .vip-sec, .sustain-sec, .schedule-sec, .chapter { padding:48px 5vw; }
-  .time-grid{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-  .time-grid .tg-header:nth-child(n+4), .time-grid .tg-cell:nth-child(4n), .time-grid .tg-cell:nth-child(4n-0){display:none;}
-}
 @media (max-width:600px) {
   .zones-grid, .wellness-grid, .vip-grid, .sustain-grid { grid-template-columns:1fr; }
-  .hero, .philosophy-sec, .zones-sec, .wellness-sec, .vip-sec, .sustain-sec, .schedule-sec, .chapter { padding:40px 4vw; }
-}
-
-/* ── HAMBURGER ── */
-.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;z-index:1000;}
-.ham span{display:block;width:22px;height:2px;background:var(--gold);transition:all .3s;}
-.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.ham.open span:nth-child(2){opacity:0;}
-.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-@media(max-width:768px){
-  .ham{display:flex;}
 }
 </style>
 </head>
@@ -414,13 +394,6 @@ body {
     <li><a href="#vip">VIP</a></li>
     <li><a href="#sustainability">Commitments</a></li>
   </ul>
-  <div style="display:flex;align-items:center;gap:1.5rem;flex-shrink:0;">
-    <span style="font-size:9px;letter-spacing:.25em;color:var(--gold);border:1px solid rgba(200,168,75,.4);padding:.2rem .65rem;text-transform:uppercase;font-family:'Space Mono',monospace;">Activity Programme</span>
-    <a href="/sign-out" target="_top" style="font-size:9px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;text-decoration:none;font-family:'Space Mono',monospace;">Sign Out</a>
-  </div>
-  <button class="ham" aria-label="Menu" onclick="this.classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open')">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
 
 <div class="dot-nav" id="dotNav">

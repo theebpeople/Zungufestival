@@ -72,7 +72,7 @@ export default function LandingPage() {
           <img
             src="/zungu-z-mark.png"
             alt="Zungu"
-            style={{ width: 'clamp(48px, 6vw, 80px)', height: 'clamp(48px, 6vw, 80px)', objectFit: 'contain', marginBottom: '1.5rem', filter: 'drop-shadow(0 0 24px rgba(200,168,75,0.25))' }}
+            style={{ width: 'min(96px,18vw)', height: 'auto', marginBottom: 28, filter: 'drop-shadow(0 0 32px rgba(200,168,75,0.45))' }}
           />
           <h1
             className="font-black uppercase leading-none tracking-tighter"

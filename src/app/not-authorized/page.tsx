@@ -21,10 +21,10 @@ export default function NotAuthorizedPage() {
       <img
         src="/zungu-z-mark.png"
         alt="Zungu"
-        style={{ width: 48, height: 48, objectFit: 'contain', marginBottom: '2rem', opacity: 0.5 }}
+        style={{ width: 72, height: 'auto', marginBottom: '2rem', filter: 'drop-shadow(0 0 20px rgba(200,168,75,0.35))', opacity: 0.7 }}
       />
-      <p style={{ fontSize: 9, color: muted, letterSpacing: '0.4em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '1rem' }}>
-        // Access Denied
+      <p style={{ fontSize: 10, color: muted, letterSpacing: '0.4em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '1rem' }}>
+        // ACCESS DENIED
       </p>
       <h1
         style={{

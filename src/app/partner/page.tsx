@@ -34,10 +34,7 @@ export default function PartnerPage() {
           backdropFilter: 'blur(12px)',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <img src="/zungu-z-mark.png" alt="Zungu" style={{ height: 32, width: 32, objectFit: 'contain' }} />
-          <span style={{ fontFamily: "'Unbounded', sans-serif", fontSize: '1.1rem', fontWeight: 900, letterSpacing: '-0.02em' }}>ZUNGU</span>
-        </div>
+        <img src="/zungu-z-mark.png" alt="Zungu" style={{ height: 30, width: 'auto', cursor: 'crosshair', filter: 'drop-shadow(0 0 10px rgba(200,168,75,0.3))' }} />
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
           <span style={{ fontSize: 10, color: gold, border: `1px solid rgba(200,168,75,0.4)`, padding: '0.3rem 0.85rem', letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 700 }}>
             Partner
