@@ -286,24 +286,25 @@ export default function StagesPage() {
           ))}
         </div>
 
-        {/* Stage concept mockups */}
+        {/* Stage reference photos */}
         <div style={{ marginTop: 40 }}>
-          <div style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.45em', color: GOLD, textTransform: 'uppercase' as const, marginBottom: 16 }}>// Stage Concept Renders</div>
+          <div style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.45em', color: GOLD, textTransform: 'uppercase' as const, marginBottom: 16 }}>// Stage Reference & Site Photography</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
             {[
-              { src: '/photos/island-stages-aerial.png', label: 'ISLAND OVERVIEW — Three stages. One island.', sub: 'Wide aerial concept · Navy Island' },
-              { src: '/photos/stage-zungu-aerial.png', label: 'ZUNGU MAIN — Headline stage', sub: 'Stage · North clearing · Canopy facing sea' },
-              { src: '/photos/stage-origins-ground.png', label: 'ORIGINS — Heritage architecture', sub: 'Bamboo structure · Natural canopy · East tip' },
-              { src: '/photos/zungu-rebirth-stage.png', label: 'REBIRTH — Future sounds', sub: 'West point · Open horizon · Sunset facing' },
+              { src: '/photos/aerial-island.jpg', label: 'THREE STAGES · ONE ISLAND', sub: 'Full aerial · Three stages visible from above' },
+              { src: '/photos/origins-stage.jpg', label: 'ORIGINS — Bamboo architecture · Cliffside', sub: 'East tip · Sunrise · 500 capacity' },
+              { src: '/photos/stage-beach-aerial.png', label: 'ZUNGU MAIN — Beach stage · Island shore', sub: 'South face · Full production · Faces open water' },
+              { src: '/photos/stage-rebirth-aerial.png', label: 'REBIRTH — Island edge · Water surround', sub: 'West point · Sunset facing · 800 capacity' },
+              { src: '/photos/stage-beach-activities.png', label: 'ISLAND LIFE — The beach between sets', sub: 'Navy Island · Caribbean water · Daytime programme' },
             ].map(({ src, label, sub }) => (
               <div key={src} style={{ position: 'relative' }}>
                 <img
                   src={src}
                   alt={label}
-                  style={{ width: '100%', display: 'block', filter: 'saturate(0.8) brightness(0.88)' }}
+                  style={{ width: '100%', display: 'block', filter: 'saturate(0.88) brightness(0.9)' }}
                   onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
                 />
-                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '32px 18px 14px', background: 'linear-gradient(transparent, rgba(4,8,10,0.82))', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '48px 18px 14px', background: 'linear-gradient(transparent, rgba(4,8,10,0.85))', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
                   <span style={{ fontFamily: MONO, fontSize: 9, color: CREAM, letterSpacing: '0.2em', textTransform: 'uppercase' as const }}>{label}</span>
                   <span style={{ fontFamily: MONO, fontSize: 8, color: MUTED, letterSpacing: '0.12em' }}>{sub}</span>
                 </div>
@@ -323,6 +324,13 @@ export default function StagesPage() {
 
           {/* ZUNGU MAIN */}
           <div style={{ position: 'relative', overflow: 'hidden', borderLeft: `3px solid ${GOLD}`, background: 'linear-gradient(135deg, #080f0b, #040a06)' }}>
+            <div style={{ position: 'relative', height: 420, overflow: 'hidden' }}>
+              <img src="/photos/stage-beach-aerial.png" alt="Zungu Main" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.75) saturate(0.85)', display: 'block' }} />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(8,15,11,0.95) 0%, rgba(8,15,11,0.3) 60%, transparent 100%)' }} />
+              <div style={{ position: 'absolute', bottom: 24, left: 48 }}>
+                <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.6)' }}>Main Stage · South Face · Full Production</span>
+              </div>
+            </div>
             <div style={{ padding: '40px 48px' }}>
               <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, display: 'inline-block', padding: '4px 10px', border: `1px solid rgba(200,168,75,0.3)`, color: GOLD, marginBottom: 16 }}>
                 Main Stage · Full Capacity · 7pm – 6am · All Four Nights
@@ -368,6 +376,13 @@ export default function StagesPage() {
 
           {/* ORIGINS */}
           <div style={{ position: 'relative', overflow: 'hidden', borderLeft: `3px solid ${ORIGINS_C}`, background: 'linear-gradient(135deg, #120800, #0a0500)' }}>
+            <div style={{ position: 'relative', height: 420, overflow: 'hidden' }}>
+              <img src="/photos/origins-stage.jpg" alt="Origins Stage" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', filter: 'brightness(0.75) saturate(0.85)', display: 'block' }} />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(18,8,0,0.95) 0%, rgba(18,8,0,0.3) 60%, transparent 100%)' }} />
+              <div style={{ position: 'absolute', bottom: 24, left: 48 }}>
+                <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: 'rgba(212,114,42,0.6)' }}>Sunrise Stage · East Tip · Bamboo Architecture</span>
+              </div>
+            </div>
             <div style={{ padding: '40px 48px' }}>
               <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, display: 'inline-block', padding: '4px 10px', border: `1px solid rgba(212,114,42,0.3)`, color: ORIGINS_C, marginBottom: 16 }}>
                 Sunrise Stage · 500 Cap · 6am – 10am · Each Morning
@@ -412,6 +427,13 @@ export default function StagesPage() {
 
           {/* REBIRTH */}
           <div style={{ position: 'relative', overflow: 'hidden', borderLeft: `3px solid ${REBIRTH_C}`, background: 'linear-gradient(135deg, #0e0618, #080410)' }}>
+            <div style={{ position: 'relative', height: 420, overflow: 'hidden' }}>
+              <img src="/photos/stage-rebirth-aerial.png" alt="Rebirth Stage" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.75) saturate(0.85)', display: 'block' }} />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(14,6,24,0.95) 0%, rgba(14,6,24,0.3) 60%, transparent 100%)' }} />
+              <div style={{ position: 'absolute', bottom: 24, left: 48 }}>
+                <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: 'rgba(155,95,192,0.6)' }}>Sunset Stage · West Point · Open Water</span>
+              </div>
+            </div>
             <div style={{ padding: '40px 48px' }}>
               <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, display: 'inline-block', padding: '4px 10px', border: `1px solid rgba(155,95,192,0.3)`, color: REBIRTH_C, marginBottom: 16 }}>
                 Sunset Stage · 800 Cap · 4pm – 8pm · Each Evening

@@ -1133,7 +1133,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
 
       {/* Photo break 1 */}
       <PhotoBreak
-        src="/photos/pellew-island.jpg"
+        src="/photos/aerial-island.jpg"
         quote="Island. Water. Isolation."
         label="Portland Parish · Caribbean"
       />
@@ -1287,11 +1287,11 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             {[
-              { src: '/photos/island-stages-aerial.png', label: 'ISLAND OVERVIEW — Three stages. One island.', sub: 'Wide aerial concept · Navy Island' },
-              { src: '/photos/stage-zungu-aerial.png', label: 'ZUNGU MAIN — Headline stage', sub: 'Stage II · North clearing · Canopy facing sea' },
-              { src: '/photos/stage-origins-ground.png', label: 'ORIGINS — Heritage architecture', sub: 'Stage I · Bamboo structure · Natural canopy' },
-              { src: '/photos/zungu-rebirth-stage.png', label: 'REBIRTH — Future sounds', sub: 'Stage III · East point · Open horizon' },
-              { src: '/photos/zungu-beach-stage-concept.png', label: 'BEACH STAGE — Concept render', sub: 'South shore · Open water surround' },
+              { src: '/photos/aerial-island.jpg', label: 'ISLAND OVERVIEW — Three stages. One island.', sub: 'Wide aerial · Three stages visible from above' },
+              { src: '/photos/stage-beach-aerial.png', label: 'ZUNGU MAIN — South face · Open water', sub: 'Full production · Faces the Caribbean' },
+              { src: '/photos/origins-stage.jpg', label: 'ORIGINS — Bamboo architecture', sub: 'East tip · Sunrise · 500 capacity' },
+              { src: '/photos/stage-rebirth-aerial.png', label: 'REBIRTH — Island edge · Water surround', sub: 'West point · Sunset facing · 800 capacity' },
+              { src: '/photos/stage-beach-activities.png', label: 'THE ISLAND BETWEEN SETS', sub: 'Caribbean water · Daytime programme' },
             ].map(({ src, label, sub }) => (
               <div key={src} style={{ position: 'relative' }}>
                 <img
@@ -1740,9 +1740,9 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
 
       {/* Photo break 5 */}
       <PhotoBreak
-        src="/photos/stage-origins-ground.png"
+        src="/photos/origins-stage.jpg"
         quote="The crowd. The canopy. The sea."
-        label="The Stage Experience · Zungu 2027"
+        label="Origins Stage · Zungu 2027"
         height="68vh"
       />
 
