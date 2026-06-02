@@ -206,7 +206,7 @@ function PortalChooser({ onSelect }: { onSelect: (role: string) => void }) {
           <img
             src="/zungu-z-mark.png"
             alt="Zungu"
-            style={{ width: 'min(80px,16vw)', height: 'auto', marginBottom: '1.75rem', filter: 'drop-shadow(0 0 28px rgba(200,168,75,0.45))' }}
+            style={{ width: 'min(80px,16vw)', height: 'auto', marginBottom: '1.75rem', display: 'block', margin: '0 auto 1.75rem', filter: 'drop-shadow(0 0 28px rgba(200,168,75,0.45))' }}
           />
 
           <h1
