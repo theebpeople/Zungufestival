@@ -60,56 +60,122 @@ const ZONES = [
     icon: '🎯',
     name: 'THE AMBUSH',
     sub: 'Forest Combat Zone · Paintball Jamaica',
-    desc: 'Deep in the Navy Island forest. 6 sessions daily. Night sessions with UV paint. Day 3 tournament.',
+    desc: 'Deep in the Navy Island forest. Managed by Paintball Jamaica. Six distinct terrain formats across 4 acres. The only zone where you earn something at the end.',
+    activities: [
+      'Classic woodsball — 6 sessions daily (max 30/session)',
+      'Night sessions with UV phosphorescent paint — 10pm & midnight',
+      'Team tournament — Day 3 bracket, prizes + trophy ceremony',
+      'Speedball arena — smaller court, faster pace, spectator viewing',
+      'Sniper solo challenge — 1v1 timed elimination',
+      'Signature cocktail at the Armoury Bar post-session',
+    ],
     tag: 'Daytime & Night · Ticketed Sessions · 18+',
   },
   {
     icon: '🌊',
     name: 'THE COVE',
     sub: 'Beach & Water Activation',
-    desc: 'Western beach. Dawn paddle SUP 6am (max 12), reef snorkel (marine biologist-led), deep sea fishing charter, kayak exploration, sunset catamaran (live soundsystem), floating DJ set, cliff jump (guided only).',
+    desc: 'The western beach. Where the Caribbean sea and the festival intersect. Every water activity curated by local Portland guides. No motorised watercraft near the reef.',
+    activities: [
+      'Dawn paddle: SUP at 6am, guided, max 12 people',
+      'Reef snorkel — marine biologist-led, 90 mins, ecology brief',
+      'Deep sea fishing charter — private half-day, 8 max',
+      'Kayak exploration — self-guided, mangrove detour option',
+      'Sunset catamaran — live soundsystem, rum punch, 2hr nightly',
+      'Floating DJ set — anchored platform 50m offshore, afternoons',
+      'Cliff jump point — guided only, safety assessment, waiver',
+    ],
     tag: '6am – 11pm Daily · Reef-Safe Zone',
   },
   {
     icon: '🌿',
     name: 'THE SANCTUM',
     sub: 'Wellness, Recovery & Ritual',
-    desc: 'Adults-only. No phones after entrance gate. Sunrise yoga, cold plunge pool (spring-fed), hot/cold contrast therapy, massage pavilion, sound bath chamber, IV hydration lounge, guided ceremony (Day 3 only, max 8).',
+    desc: 'Adults-only wellness precinct. No music above 60 decibels. No phones after the entrance gate. Designed for those who need to recover, reset, or simply be still.',
+    activities: [
+      'Sunrise yoga & breathwork — 5:45am, open air, guided',
+      'Cold plunge pool — spring-fed, open 5am to midnight',
+      'Hot/cold contrast therapy — Nordic protocol',
+      'Massage pavilion — Swedish, deep tissue, sports recovery',
+      'Sound bath chamber — crystal bowls, gongs, 3× daily',
+      'IV hydration lounge — electrolytes, B12, Vitamin C',
+      'Guided ceremony — Day 3 only, pre-register, 8 max',
+    ],
     tag: '5am – Midnight · No Phones · 18+',
   },
   {
     icon: '🏛️',
     name: 'THE YARD',
     sub: 'Culture, Talk & Participation',
-    desc: 'Soundsystem history panels, Patois workshop, vinyl market, rum masterclass, film screening (11pm), poetry & spoken word (2–3:30pm).',
+    desc: 'The cultural anchor of the island. Soundsystem history, Patois workshops, vinyl market, rum masterclass, live debate, open mic. Where the thesis is spoken aloud.',
+    activities: [
+      'Soundsystem history sessions — panels and live demonstration',
+      'Patois workshop — twice daily, interactive, beginner-friendly',
+      'Vinyl market — local selectors bring crates',
+      'Rum masterclass — Jamaican distillery partnership',
+      'Film screening — 11pm nightly, Jamaican cinema archive',
+      'Poetry & spoken word — 2–3:30pm daily, closes before stages',
+    ],
     tag: '8am – 3:30pm Cultural · Evening Film',
   },
   {
     icon: '🎨',
     name: 'THE STUDIO',
     sub: 'Art, Making & Creation',
-    desc: 'Portland Parish artist-in-residence. Live mural. Ceramics, screen printing, darkroom, indigo dyeing, jewellery-making.',
+    desc: 'A working creative space. Portland Parish artist-in-residence. Festival-goers contribute to a live mural. Darkroom, ceramics, screen printing, indigo dyeing — all open.',
+    activities: [
+      'Live mural — Portland artist, festival-goer contribution Day 3',
+      'Ceramics wheel — open sessions, instructor available',
+      'Screen printing — custom t-shirt, limited edition designs',
+      'Darkroom — analogue photography, guided sessions',
+      'Indigo dyeing — traditional Jamaican technique',
+      'Jewellery-making — beads, wire, silver-work workshop',
+    ],
     tag: '7am – 3pm Daily · Walk-In Welcome',
   },
   {
     icon: '🍽️',
     name: 'THE MARKET',
     sub: 'Food, Drink & Portland Vendors',
-    desc: 'All Portland Parish vendors. Boston Bay jerk, seafood raw bar, Blue Mountain coffee (from 5:30am), chef demonstration, rum bar, non-alcoholic programme. 24-hour zone.',
+    desc: 'All Portland Parish vendors. Boston Bay jerk, seafood raw bar, Blue Mountain coffee, rum bar, Jamaican patisserie. The only 24-hour zone on the island.',
+    activities: [
+      'Boston Bay jerk — wood fire, pork and chicken, open all day',
+      'Seafood raw bar — fresh daily, lobster, conch, fish',
+      'Blue Mountain coffee service — from 5:30am',
+      'Chef demonstration — one Portland chef per day, open kitchen',
+      'Rum bar — curated Jamaican rums, bar manager from Portland',
+      'Non-alcoholic programme — Jamaican nutritionist-designed',
+    ],
     tag: '5:30am – 3am Daily · All Local',
   },
   {
     icon: '🌲',
     name: 'THE TRAIL',
     sub: 'Forest Immersion & Hidden Activations',
-    desc: '2km route. Guided forest walk (7am, max 15), hammock forest (40 hammocks), hidden ambient installation, secret bar (unmarked), aerial silks, night trail (lanterns only, midnight).',
+    desc: 'A 2km walking route through the Navy Island forest. Not all of what you find on it is on the map. Some installations are found, not announced — a Burning Man principle.',
+    activities: [
+      'Guided forest walk — ecology and island history, 7am, max 15',
+      'Hammock forest — 40 hammocks, first-come, quiet zone',
+      'Hidden ambient installation — generative sound, deep in forest',
+      'Secret bar — unmarked, discoverable only by full trail walk',
+      'Aerial silks platform — bookable 30-min sessions',
+      'Night trail — lit with lanterns only, guided midnight walk',
+    ],
     tag: 'Dawn to Midnight · Mostly Free',
   },
   {
     icon: '🌙',
     name: 'THE PIER',
     sub: 'Intimate Night Stage · No Announced Lineup',
-    desc: '200-capacity. No lineup posted. Opens midnight. Sunrise set. Private bar. No phones.',
+    desc: '200-capacity. The walk to it is part of it. No lineup posted. You arrive to discover who is playing. Zamna\'s intimacy, transposed to the Caribbean. Opens at midnight.',
+    activities: [
+      '200 maximum — managed by door count, no wristband upgrade',
+      'No lineup published — identity revealed only at the door',
+      'Sunrise set — final DJ plays until 8am on Day 4',
+      'Private bar — Pier guests only, rum-focused, no menu',
+      'No phones policy — enforced at entrance with lens stickers',
+      'Acoustic intermissions — between DJ sets, live only',
+    ],
     tag: 'Midnight – Dawn · 200 Cap · Discovery Only',
   },
 ];
@@ -273,11 +339,12 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 }
 
 // ── Chapter divider ────────────────────────────────────────────────────────────
-function ChapterDivider({ num, title, prefix = '', light = false }: { num: string; title: string; prefix?: string; light?: boolean }) {
+function ChapterDivider({ num, title, prefix = '', light = false, body = '' }: { num: string; title: string; prefix?: string; light?: boolean; body?: string }) {
   const bg = light ? '#F0EAD8' : BG;
   const textColor = light ? '#04080A' : CREAM;
   const lineColor = light ? 'rgba(4,8,10,0.12)' : BORDER_MID;
   const goldColor = light ? '#8B6E1F' : GOLD;
+  const mutedColor = light ? 'rgba(4,8,10,0.5)' : MUTED;
 
   return (
     <div
@@ -285,17 +352,38 @@ function ChapterDivider({ num, title, prefix = '', light = false }: { num: strin
         width: '100%',
         boxSizing: 'border-box',
         backgroundColor: bg,
-        padding: '4rem clamp(24px, 8vw, 112px)',
+        padding: '60px 8vw 40px',
         borderTop: `1px solid ${lineColor}`,
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
-        <div style={{ width: 24, height: 1, backgroundColor: goldColor, flexShrink: 0 }} />
+      {/* Ghost number — absolute top-right */}
+      <div
+        style={{
+          fontFamily: DISPLAY,
+          fontWeight: 900,
+          fontSize: 'clamp(6rem, 18vw, 14rem)',
+          color: 'rgba(200,168,75,0.04)',
+          lineHeight: 1,
+          position: 'absolute',
+          right: '6vw',
+          top: -10,
+          pointerEvents: 'none',
+          letterSpacing: '-0.04em',
+          userSelect: 'none',
+        }}
+      >
+        {num}
+      </div>
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '1rem' }}>
+        <div style={{ width: 24, height: 1, backgroundColor: goldColor, opacity: 0.5, flexShrink: 0 }} />
         <span
           style={{
             fontFamily: MONO,
             fontSize: 9,
-            letterSpacing: '0.4em',
+            letterSpacing: '0.35em',
             color: goldColor,
             textTransform: 'uppercase' as const,
             fontWeight: 700,
@@ -307,16 +395,22 @@ function ChapterDivider({ num, title, prefix = '', light = false }: { num: strin
       <h2
         style={{
           fontFamily: DISPLAY,
-          fontSize: 'clamp(2rem, 5vw, 4rem)',
+          fontSize: 'clamp(1.8rem, 4vw, 3.2rem)',
           color: textColor,
-          fontWeight: 900,
-          letterSpacing: '-0.03em',
-          lineHeight: 1.05,
+          fontWeight: 700,
+          letterSpacing: '-0.02em',
+          lineHeight: 1.1,
+          position: 'relative',
         }}
       >
         {prefix && <>{prefix} </>}
         <span style={{ color: goldColor }}>{title}</span>
       </h2>
+      {body && (
+        <p style={{ fontFamily: MONO, fontSize: 14, lineHeight: 1.8, color: mutedColor, maxWidth: 560, marginTop: '1rem', letterSpacing: '0.02em' }}>
+          {body}
+        </p>
+      )}
     </div>
   );
 }
@@ -534,9 +628,9 @@ export default function ActivitiesPage() {
           minHeight: '100vh',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'flex-end',
           overflow: 'hidden',
+          padding: '80px 8vw',
         }}
       >
         {/* Background image */}
@@ -569,35 +663,22 @@ export default function ActivitiesPage() {
           }}
         />
 
-        {/* Content — centered */}
-        <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', width: '100%', padding: '52px clamp(24px, 8vw, 112px) 120px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          {/* Eyebrow with symmetric rules */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: '2rem' }}>
-            <div style={{ width: 28, height: 1, background: GOLD, flexShrink: 0 }} />
-            <p
-              style={{
-                fontFamily: MONO,
-                fontSize: 9,
-                letterSpacing: '0.45em',
-                color: GOLD,
-                textTransform: 'uppercase',
-                fontWeight: 700,
-              }}
-            >
-              Activity Programme · Navy Island · June 2027
-            </p>
-            <div style={{ width: 28, height: 1, background: GOLD, flexShrink: 0 }} />
+        {/* Hero content — bottom-left anchored */}
+        <div style={{ position: 'relative', zIndex: 10 }}>
+          {/* Eyebrow */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: '1.5rem', fontWeight: 700 }}>
+            <div style={{ width: 32, height: 1, background: GOLD, opacity: 0.6, flexShrink: 0 }} />
+            Activity Programme · Navy Island · June 2027
           </div>
 
           <h1
             style={{
               fontFamily: DISPLAY,
               fontSize: 'clamp(3.5rem, 9vw, 8.5rem)',
-              fontWeight: 900,
-              lineHeight: 1.0,
-              letterSpacing: '-0.03em',
-              textTransform: 'uppercase',
-              marginBottom: '2rem',
+              fontWeight: 700,
+              lineHeight: 0.95,
+              letterSpacing: '-0.02em',
+              marginBottom: '1.5rem',
               color: CREAM,
             }}
           >
@@ -609,46 +690,37 @@ export default function ActivitiesPage() {
           <p
             style={{
               fontFamily: MONO,
-              fontSize: 'clamp(11px, 1.5vw, 14px)',
+              fontSize: 14,
               color: MUTED,
-              lineHeight: 1.9,
-              maxWidth: 600,
-              marginBottom: 0,
+              lineHeight: 1.8,
+              letterSpacing: '0.05em',
+              maxWidth: 520,
+              marginBottom: '3rem',
             }}
           >
             Six am to four am. Every zone running simultaneously. Nobody waiting. Nobody bored. Nobody doing the same thing as everyone else.
           </p>
-        </div>
 
-        {/* Stats bar — pinned to bottom */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            zIndex: 10,
-            padding: '20px 8vw',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            borderTop: `1px solid ${BORDER_MID}`,
-            backgroundColor: 'rgba(4,8,10,0.6)',
-          }}
-        >
-          {[
-            { label: 'Location', value: '64 Acres, Navy Island' },
-            { label: 'Format', value: '8 Simultaneous Zones' },
-            { label: 'Dates', value: '13–16 June 2027' },
-            { label: 'Capacity', value: '2,000–2,500 · 18+' },
-          ].map((s) => (
-            <div key={s.label} style={{ textAlign: 'center' }}>
-              <p style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.35em', color: GOLD_DIM, textTransform: 'uppercase', marginBottom: 4 }}>
-                {s.label}
-              </p>
-              <p style={{ fontFamily: MONO, fontSize: 11, color: CREAM, fontWeight: 700 }}>{s.value}</p>
-            </div>
-          ))}
+          {/* Hero stats — bordered box */}
+          <div style={{ display: 'flex', gap: 0, border: `1px solid ${BORDER_MID}`, width: 'fit-content', flexWrap: 'wrap' }}>
+            {[
+              { label: 'Location', value: '64 Acres, Navy Island' },
+              { label: 'Format', value: '8 Simultaneous Zones' },
+              { label: 'Dates', value: '13–16 June 2027' },
+              { label: 'Capacity', value: '2,000–2,500 · 18+' },
+            ].map((s, i, arr) => (
+              <div
+                key={s.label}
+                style={{
+                  padding: '1.2rem 2rem',
+                  borderRight: i < arr.length - 1 ? `1px solid ${BORDER_MID}` : 'none',
+                }}
+              >
+                <span style={{ display: 'block', fontFamily: MONO, fontSize: 8, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: '0.4rem' }}>{s.label}</span>
+                <span style={{ display: 'block', fontFamily: DISPLAY, fontSize: 13, fontWeight: 400, color: CREAM, letterSpacing: '0.05em' }}>{s.value}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -1172,7 +1244,6 @@ function ZoneCard({ zone }: { zone: Zone }) {
         display: 'flex',
         flexDirection: 'column',
         gap: '0.75rem',
-        minHeight: 260,
         transition: 'background-color 0.3s',
         height: '100%',
         boxSizing: 'border-box',
@@ -1189,7 +1260,14 @@ function ZoneCard({ zone }: { zone: Zone }) {
           {zone.sub}
         </p>
       </div>
-      <p style={{ fontFamily: MONO, fontSize: 11, color: MUTED, lineHeight: 1.9, flex: 1 }}>{zone.desc}</p>
+      <p style={{ fontFamily: MONO, fontSize: 12, color: MUTED, lineHeight: 1.8 }}>{zone.desc}</p>
+      {zone.activities && (
+        <ul style={{ fontFamily: MONO, fontSize: 12, color: 'rgba(242,235,217,0.4)', lineHeight: 1.8, paddingLeft: '1rem', listStyle: 'disc' }}>
+          {zone.activities.map((a) => (
+            <li key={a} style={{ borderBottom: `1px solid ${BORDER}`, padding: '0.2rem 0' }}>{a}</li>
+          ))}
+        </ul>
+      )}
       <span
         style={{
           fontFamily: MONO,
