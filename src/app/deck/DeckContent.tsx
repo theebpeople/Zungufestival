@@ -10,11 +10,11 @@ const StageMap = dynamic(() => import('./maps/StageMap'), { ssr: false });
 
 // ── Design tokens ─────────────────────────────────────────────────────────────
 const bg = '#060808';
-const green = '#0D1F14';
+const green = '#1A3A2A';
 const gold = '#C8A84B';
-const teal = '#4AAFA0';
+const teal = '#1E6B5C';
 const cream = '#F2EBD9';
-const muted = 'rgba(242,235,217,0.45)';
+const muted = 'rgba(107,99,85,0.92)';
 const dim = 'rgba(242,235,217,0.18)';
 const rust = '#C45A2A';
 
@@ -22,7 +22,7 @@ const fontDisplay = "'Unbounded', sans-serif";
 const fontMono = "'Space Mono', monospace";
 
 // ── Section IDs for dot-nav ───────────────────────────────────────────────────
-const SECTIONS = ['island', 'why', 'artists', 'model', 'numbers', 'cta'] as const;
+const SECTIONS = ['brand', 'island', 'why', 'artists', 'model', 'numbers', 'roadmap', 'cta'] as const;
 type SectionId = typeof SECTIONS[number];
 
 // ── Parallax photo break component ───────────────────────────────────────────
@@ -132,7 +132,7 @@ function ChapterDivider({ num, eye, title, sub }: ChapterProps) {
               fontFamily: fontDisplay,
               fontSize: 88,
               fontWeight: 900,
-              color: 'rgba(200,168,75,0.08)',
+              color: 'rgba(200,168,75,0.18)',
               lineHeight: 1,
               flexShrink: 0,
               userSelect: 'none',
@@ -300,21 +300,25 @@ function SectionHead({ label, title, titleColor = cream, goldLine }: SectionHead
 export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?: string }) {
   // Refs for section scroll targets
   const sectionRefs: Record<SectionId, React.RefObject<HTMLElement | null>> = {
+    brand: useRef<HTMLElement>(null),
     island: useRef<HTMLElement>(null),
     why: useRef<HTMLElement>(null),
     artists: useRef<HTMLElement>(null),
     model: useRef<HTMLElement>(null),
     numbers: useRef<HTMLElement>(null),
+    roadmap: useRef<HTMLElement>(null),
     cta: useRef<HTMLElement>(null),
   };
 
   // Nav ref for section scrolls
   const navRefs = {
+    brand: useRef<HTMLDivElement>(null),
     island: useRef<HTMLDivElement>(null),
     why: useRef<HTMLDivElement>(null),
     artists: useRef<HTMLDivElement>(null),
     model: useRef<HTMLDivElement>(null),
     numbers: useRef<HTMLDivElement>(null),
+    roadmap: useRef<HTMLDivElement>(null),
     cta: useRef<HTMLDivElement>(null),
   };
 
@@ -323,7 +327,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   // Active dot nav
-  const [activeSection, setActiveSection] = useState<SectionId>('island');
+  const [activeSection, setActiveSection] = useState<SectionId>('brand');
 
   // Mobile nav
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -439,6 +443,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         <div className="deck-chapter-links">
           {(
             [
+              ['The Brand', 'brand'],
               ['The Island', 'island'],
               ['Why Now', 'why'],
               ['Artists', 'artists'],
@@ -564,6 +569,16 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         @media (max-width: 900px) {
           .deck-nav-desktop { display: none !important; }
         }
+        body { cursor: crosshair; }
+        body::before {
+          content: '';
+          position: fixed;
+          inset: 0;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+          pointer-events: none;
+          z-index: 9999;
+          opacity: 0.5;
+        }
       `}</style>
 
       {mobileMenuOpen && (
@@ -612,6 +627,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           <nav style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, width: '100%', marginBottom: 40 }}>
             {(
               [
+                ['The Brand', 'brand'],
                 ['The Island', 'island'],
                 ['Why Now', 'why'],
                 ['Artists', 'artists'],
@@ -967,11 +983,150 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          CHAPTER 1: THE ISLAND
+          CHAPTER 1: THE BRAND
       ═══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider
         num="01"
         eye="Chapter One"
+        title="The Brand."
+        sub="What Zungu is. What it is not. The mandate, the manifesto, and the positioning that travels into every institutional room."
+      />
+
+      {/* Section: The Mandate */}
+      <Section id="section-brand">
+        <SectionHead label="The Mandate" title="Jamaica shaped the DNA of global electronic music." />
+        <div style={{ maxWidth: 880, marginBottom: 32 }}>
+          {[
+            { text: 'That energy traveled outward.', weight: 300 },
+            { text: 'To London. To Berlin. To Belgium. To New York.', weight: 300 },
+            { text: 'It became house. Techno. Drum & Bass. The culture as we know it.', weight: 300 },
+            { text: 'But the source never positioned itself as the destination.', weight: 400 },
+          ].map(({ text, weight }) => (
+            <p
+              key={text}
+              style={{
+                fontFamily: fontDisplay,
+                fontSize: 'clamp(15px, 2.2vw, 26px)',
+                fontWeight: weight,
+                lineHeight: 1.5,
+                color: cream,
+                marginBottom: 6,
+              }}
+            >
+              {text}
+            </p>
+          ))}
+          <p
+            style={{
+              fontFamily: fontDisplay,
+              fontSize: 'clamp(20px, 3vw, 38px)',
+              fontWeight: 700,
+              lineHeight: 1.3,
+              color: gold,
+              marginTop: 20,
+            }}
+          >
+            Zungu corrects that.
+          </p>
+        </div>
+        <QuoteBlock
+          quote="Jamaica interpreting its own influence — on its own soil — at international production standards."
+          attr="Core Brand Positioning"
+        />
+      </Section>
+
+      {/* Section: What Zungu Is */}
+      <Section dark>
+        <SectionHead label="What Zungu Is" title="Not a festival." goldLine="A position shift." />
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 2,
+          }}
+        >
+          {[
+            {
+              not: 'A reggae festival with EDM acts',
+              is: 'Jamaica reinterpreting its own sonic legacy at world-class scale',
+            },
+            {
+              not: 'A touring circuit stop with a Caribbean backdrop',
+              is: 'A permanently rooted cultural institution with commissioning power',
+            },
+            {
+              not: 'A spectacle designed to trend',
+              is: 'Infrastructure designed to endure — a cultural node built to last, not perform',
+            },
+          ].map(({ not, is }) => (
+            <div
+              key={not}
+              style={{
+                border: `1px solid rgba(200,168,75,0.1)`,
+                padding: '26px 22px',
+                background: 'rgba(14,24,18,0.8)',
+              }}
+            >
+              <div style={{ fontFamily: fontMono, fontSize: 7, letterSpacing: '0.5em', color: rust, textTransform: 'uppercase', marginBottom: 9 }}>Not this</div>
+              <p style={{ fontFamily: fontMono, fontSize: 13, fontStyle: 'italic', color: 'rgba(242,235,217,0.28)', textDecoration: 'line-through', textDecorationColor: rust, marginBottom: 13, lineHeight: 1.6 }}>{not}</p>
+              <div style={{ height: 1, background: 'rgba(200,168,75,0.1)', marginBottom: 13 }} />
+              <div style={{ fontFamily: fontMono, fontSize: 7, letterSpacing: '0.5em', color: teal, textTransform: 'uppercase', marginBottom: 9 }}>But this</div>
+              <p style={{ fontFamily: fontDisplay, fontSize: 14, fontWeight: 700, color: cream, lineHeight: 1.4 }}>{is}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Section: Brand Pillars */}
+      <Section>
+        <SectionHead label="Brand Pillars" title="What every creative decision" goldLine="must answer to." />
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 2,
+          }}
+        >
+          {[
+            {
+              num: '01',
+              title: 'Authorship,\nNot Appropriation',
+              body: 'Every asset must feel made in Jamaica, not imported to it. Visual language, music, storytelling — all originate from Jamaican context and expand outward.',
+            },
+            {
+              num: '02',
+              title: 'Continuity,\nNot Nostalgia',
+              body: 'Zungu honours the past without performing it. Heritage is context, not costume. The visual world must feel contemporary while being undeniably rooted.',
+            },
+            {
+              num: '03',
+              title: 'Discipline,\nNot Volume',
+              body: 'Every decision about scale, about bookings, about partners — must protect the quality of the experience. The thing that makes Zungu worth attending is also the thing most at risk from over-expansion.',
+            },
+          ].map(({ num, title, body }) => (
+            <div
+              key={num}
+              style={{
+                background: 'rgba(255,255,255,0.02)',
+                border: `1px solid rgba(200,168,75,0.11)`,
+                padding: '30px 24px',
+                position: 'relative',
+              }}
+            >
+              <div style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.4em', color: gold, marginBottom: 13, opacity: 0.7 }}>{num}</div>
+              <div style={{ fontFamily: fontDisplay, fontSize: 14, fontWeight: 700, color: cream, marginBottom: 11, lineHeight: 1.25, whiteSpace: 'pre-line' }}>{title}</div>
+              <p style={{ fontFamily: fontMono, fontSize: 13, lineHeight: 1.8, color: 'rgba(242,235,217,0.52)' }}>{body}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          CHAPTER 2: THE ISLAND
+      ═══════════════════════════════════════════════════════════════════ */}
+      <ChapterDivider
+        num="02"
+        eye="Chapter Two"
         title="The Island."
         sub="Navy Island. Port Antonio, Jamaica. 64 acres. The site that makes everything else possible."
       />
@@ -1202,11 +1357,11 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
       />
 
       {/* ═══════════════════════════════════════════════════════════════════
-          CHAPTER 2: WHY NOW
+          CHAPTER 3: WHY NOW
       ═══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider
-        num="02"
-        eye="Chapter Two"
+        num="03"
+        eye="Chapter Three"
         title="Why Now."
         sub="Jamaica shaped the DNA of global electronic music. Zungu is the first festival to stand on that island and prove it."
       />
@@ -1448,11 +1603,11 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
       </Section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          CHAPTER 3: ARTISTS
+          CHAPTER 4: ARTISTS
       ═══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider
-        num="03"
-        eye="Chapter Three"
+        num="04"
+        eye="Chapter Four"
         title="The Artists."
         sub="Not just a lineup. A co-curation conversation. The artists who make the audience fly."
       />
@@ -1648,11 +1803,11 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
       </Section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          CHAPTER 4: THE MODEL
+          CHAPTER 5: THE MODEL
       ═══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider
-        num="04"
-        eye="Chapter Four"
+        num="05"
+        eye="Chapter Five"
         title="The Model."
         sub="5,000 tickets. 7 days. Three tiers. The structure that makes this sustainable from Year 1."
       />
@@ -1839,11 +1994,11 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
       </Section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          CHAPTER 5: NUMBERS
+          CHAPTER 6: NUMBERS
       ═══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider
-        num="05"
-        eye="Chapter Five"
+        num="06"
+        eye="Chapter Six"
         title="The Numbers."
         sub="Conservative assumptions. Separated cost lines. Built to be stress-tested — not to impress."
       />
@@ -2125,11 +2280,109 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
       </Section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          CHAPTER 6: CTA
+          CHAPTER 7: ROADMAP
       ═══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider
-        num="06"
-        eye="Chapter Six"
+        num="07"
+        eye="Chapter Seven"
+        title="The Roadmap."
+        sub="Three phases. Mythology earned through delivery, not declared through marketing."
+      />
+
+      <Section id="section-roadmap">
+        <SectionHead label="Three-Phase Roadmap" title="Boutique → Flagship →" goldLine="Global Node." />
+        <p
+          style={{
+            fontFamily: fontDisplay,
+            fontSize: 13,
+            fontStyle: 'italic',
+            color: gold,
+            fontWeight: 300,
+            marginBottom: 28,
+          }}
+        >
+          Earned mythology through delivery. Not declared through marketing.
+        </p>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 2,
+          }}
+        >
+          {[
+            {
+              year: 'Year 1 – 2',
+              phase: 'Boutique',
+              sub: 'Prove the Model',
+              items: [
+                'Capacity: 3,500–5,000',
+                'Commission 6–8 original tracks',
+                'Establish logistics infrastructure',
+                'Build institutional partnerships',
+                'Document everything',
+              ],
+              active: true,
+            },
+            {
+              year: 'Year 3 – 5',
+              phase: 'Flagship',
+              sub: 'Caribbean Authority',
+              items: [
+                'Expand format & capacity',
+                'Caribbean flagship status',
+                'Growing IP catalog',
+                'EU cultural partnerships active',
+                'Port Antonio permanently associated',
+              ],
+              active: false,
+            },
+            {
+              year: 'Year 5+',
+              phase: 'Global Node',
+              sub: 'Recognized Circuit Position',
+              items: [
+                'Jamaica = curator, not footnote',
+                'Zungu cited as cultural institution',
+                'Commissioning economy established',
+                'Generational creative infrastructure',
+                'Recognized global electronic node',
+              ],
+              active: false,
+            },
+          ].map(({ year, phase, sub, items, active }) => (
+            <div
+              key={phase}
+              style={{
+                background: active ? 'rgba(26,58,42,0.5)' : 'rgba(14,24,18,0.5)',
+                border: `1px solid ${active ? 'rgba(200,168,75,0.4)' : 'rgba(200,168,75,0.1)'}`,
+                padding: '26px 22px',
+                position: 'relative',
+              }}
+            >
+              {active && (
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: gold }} />
+              )}
+              <div style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.4em', color: gold, marginBottom: 11, textTransform: 'uppercase', opacity: 0.85 }}>{year}</div>
+              <div style={{ fontFamily: fontDisplay, fontSize: 20, fontWeight: 700, color: cream, marginBottom: 5 }}>{phase}</div>
+              <div style={{ fontFamily: fontMono, fontSize: 12, fontStyle: 'italic', color: muted, marginBottom: 16 }}>{sub}</div>
+              {items.map((item) => (
+                <div key={item} style={{ display: 'flex', gap: 9, marginBottom: 7 }}>
+                  <span style={{ color: gold, flexShrink: 0 }}>—</span>
+                  <span style={{ fontFamily: fontMono, fontSize: 13, lineHeight: 1.8, color: 'rgba(242,235,217,0.62)' }}>{item}</span>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          CHAPTER 8: CTA
+      ═══════════════════════════════════════════════════════════════════ */}
+      <ChapterDivider
+        num="08"
+        eye="Chapter Eight"
         title="The Ask."
         sub="We are not pitching a dream. We are presenting a model. The next step is a conversation, not a commitment."
       />
