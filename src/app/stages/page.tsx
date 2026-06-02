@@ -215,8 +215,8 @@ export default function StagesPage() {
         <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gridTemplateRows: '360px 240px', gap: 3 }}>
           {[
             { src: '/photos/navy-island-aerial-hq.png', cap: 'Navy Island · Aerial · Port Antonio harbour', tall: true },
-            { src: '/photos/navy-island-satellite.png', cap: '64 acres · Dense forest canopy', tall: false },
-            { src: '/photos/reference-for-map-crossing.png', cap: 'Island perimeter · Stage placement zones', tall: false },
+            { src: '/photos/NAVY%20ISLAND%20-%20FROM%20%20tHE%20TOWN%20.png', cap: 'View from Port Antonio town · 5-min crossing', tall: false },
+            { src: '/photos/pellew-island.jpg', cap: 'Pellew Island · Port Antonio coastline · Context', tall: false },
           ].map(({ src, cap, tall }) => (
             <div key={src} style={{ overflow: 'hidden', position: 'relative', background: GREEN, gridRow: tall ? '1 / 3' : undefined }}>
               <img src={src} alt={cap} style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.8) saturate(0.85)', transition: 'filter 0.5s, transform 0.6s', display: 'block' }}
@@ -292,6 +292,9 @@ export default function StagesPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
             {[
               { src: '/photos/aerial-island.jpg', label: 'THREE STAGES · ONE ISLAND', sub: 'Full aerial · Three stages visible from above' },
+              { src: '/photos/NAVY%20ISLAND%20WIDE%20.png', label: 'NAVY ISLAND — Full Width · Caribbean', sub: 'Island extent · 64 acres · Port Antonio harbour' },
+              { src: '/photos/NAVY%20ISLAND%20-%20SATELITE%20.png', label: 'SATELLITE VIEW — Navy Island · Canopy', sub: 'Dense forest coverage · Stage placement context' },
+              { src: '/photos/NAVY%20ISLAND%20-%20CLOSE%20UP%20.png', label: 'NAVY ISLAND — Northern landing zone', sub: 'Arrival point · 5 min from Errol Flynn Marina' },
               { src: '/photos/origins-stage.jpg', label: 'ORIGINS — Bamboo architecture · Cliffside', sub: 'East tip · Sunrise · 500 capacity' },
               { src: '/photos/stage-beach-aerial.png', label: 'ZUNGU MAIN — Beach stage · Island shore', sub: 'South face · Full production · Faces open water' },
               { src: '/photos/stage-rebirth-aerial.png', label: 'REBIRTH — Island edge · Water surround', sub: 'West point · Sunset facing · 800 capacity' },

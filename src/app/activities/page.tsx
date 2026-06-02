@@ -838,6 +838,16 @@ export default function ActivitiesPage() {
       {/* ── Chapter 02 ── */}
       <ChapterDivider num="02" prefix="Activity" title="Zones" />
 
+      {/* Photo break — Boston Bay */}
+      <div style={{ position: 'relative', height: '55vh', overflow: 'hidden' }}>
+        <img src="/photos/boston-bay.jpg" alt="Boston Bay, Portland Parish" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.65) saturate(0.8)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(4,8,10,0.8) 0%, transparent 60%)' }} />
+        <div style={{ position: 'absolute', bottom: 32, left: 'clamp(24px, 8vw, 112px)', right: 'clamp(24px, 8vw, 112px)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+          <p style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 'clamp(1.1rem, 2.5vw, 2rem)', fontWeight: 300, color: '#F2EBD9', lineHeight: 1.3 }}>Boston Bay. <span style={{ color: GOLD }}>The original yard.</span></p>
+          <span style={{ fontFamily: "'Space Mono', monospace", fontSize: 8, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.55)' }}>Boston Bay · Portland Parish</span>
+        </div>
+      </div>
+
       {/* ═══════════════════════════════════════════════════════════════════════
           ZONES
       ═══════════════════════════════════════════════════════════════════════ */}
@@ -1071,6 +1081,16 @@ export default function ActivitiesPage() {
 
       {/* ── Chapter 04 ── */}
       <ChapterDivider num="04" prefix="Wellness &" title="Recovery" />
+
+      {/* Photo break — Port Antonio */}
+      <div style={{ position: 'relative', height: '50vh', overflow: 'hidden' }}>
+        <img src="/photos/port-antonio.jpg" alt="Port Antonio, Jamaica" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.6) saturate(0.85)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(4,8,10,0.85) 0%, transparent 55%)' }} />
+        <div style={{ position: 'absolute', bottom: 32, left: 'clamp(24px, 8vw, 112px)' }}>
+          <p style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 'clamp(1rem, 2vw, 1.6rem)', fontWeight: 300, color: '#F2EBD9', lineHeight: 1.3 }}>Port Antonio. <span style={{ color: GOLD }}>Still undiscovered at this scale.</span></p>
+          <span style={{ fontFamily: "'Space Mono', monospace", fontSize: 8, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.55)' }}>Port Antonio · Portland Parish · Jamaica</span>
+        </div>
+      </div>
 
       {/* ═══════════════════════════════════════════════════════════════════════
           WELLNESS

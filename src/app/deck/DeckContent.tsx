@@ -1288,6 +1288,10 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             {[
               { src: '/photos/aerial-island.jpg', label: 'ISLAND OVERVIEW — Three stages. One island.', sub: 'Wide aerial · Three stages visible from above' },
+              { src: '/photos/navy-island-wide.png', label: 'NAVY ISLAND — Full extent · Caribbean setting', sub: 'Approached from Port Antonio Marina' },
+              { src: '/photos/princess-island-portantonio.jpg', label: 'PORT ANTONIO — Princess Island · Harbour mouth', sub: 'Context · Portland Parish coastline' },
+              { src: '/photos/NAVY%20ISLAND%20-%20CLOSE%20UP%20.png', label: 'NAVY ISLAND — Landing zone · Northern tip', sub: 'Arrival dock · ~5 min crossing from Errol Flynn Marina' },
+              { src: '/photos/NAVY%20ISLAND%20-%20FROM%20%20tHE%20TOWN%20.png', label: 'NAVY ISLAND — View from Port Antonio', sub: 'The island as attendees first see it' },
               { src: '/photos/stage-beach-aerial.png', label: 'ZUNGU MAIN — South face · Open water', sub: 'Full production · Faces the Caribbean' },
               { src: '/photos/origins-stage.jpg', label: 'ORIGINS — Bamboo architecture', sub: 'East tip · Sunrise · 500 capacity' },
               { src: '/photos/stage-rebirth-aerial.png', label: 'REBIRTH — Island edge · Water surround', sub: 'West point · Sunset facing · 800 capacity' },
@@ -1432,6 +1436,14 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
       </Section>
 
       {/* Photo break 4 */}
+      <PhotoBreak
+        src="/photos/boston-bay.jpg"
+        quote="Boston Bay. The original yard."
+        label="Boston Bay · Portland Parish · Birthplace of Jamaican jerk"
+        height="60vh"
+      />
+
+      {/* Photo break 5 */}
       <PhotoBreak
         src="/photos/blue-lagoon-port-antonio.jpg"
         quote="The water that shaped the sound."
