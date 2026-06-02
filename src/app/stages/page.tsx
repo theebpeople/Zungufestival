@@ -192,7 +192,7 @@ export default function StagesPage() {
               { label: 'Zungu Main', value: 'South face\n7pm – 6am' },
               { label: 'Origins', value: 'East tip\n6am – 10am' },
               { label: 'Rebirth', value: 'West end\n4pm – 8pm' },
-              { label: 'June 2027', value: '13–16 June\n5,000 tickets' },
+              { label: 'June 2027', value: '17–23 June\n5,000 tickets' },
             ].map((s, i, arr) => (
               <div key={s.label} style={{ paddingRight: i < arr.length - 1 ? '2.5rem' : 0, marginRight: i < arr.length - 1 ? '2.5rem' : 0, borderRight: i < arr.length - 1 ? `1px solid ${BORDER_MID}` : 'none' }}>
                 <span style={{ display: 'block', fontFamily: MONO, fontSize: 8, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 6 }}>{s.label}</span>
@@ -466,7 +466,7 @@ export default function StagesPage() {
         {[
           {
             num: '01', bg: '#060600', accent: ORIGINS_C, tagBorder: 'rgba(212,114,42,0.3)',
-            date: 'Saturday · 13 June 2027', tag: 'The Root',
+            date: 'Saturday · 19 June 2027', tag: 'The Root',
             title: 'THE ROOT',
             sub: "Jamaica's percussion DNA to global house. Where it begins. The first night anchors the argument.",
             narr: [
@@ -493,7 +493,7 @@ export default function StagesPage() {
           },
           {
             num: '02', bg: '#040810', accent: N2_C, tagBorder: 'rgba(74,143,189,0.3)',
-            date: 'Sunday · 14 June 2027', tag: 'The Spread',
+            date: 'Sunday · 20 June 2027', tag: 'The Spread',
             title: 'THE SPREAD',
             sub: 'Global south mutation. Brazilian Baile, Afrotech, Latin house. The argument leaves the island and comes back changed.',
             narr: [
@@ -517,7 +517,7 @@ export default function StagesPage() {
           },
           {
             num: '03', bg: '#030e06', accent: N3_C, tagBorder: 'rgba(58,175,122,0.3)',
-            date: 'Monday · 15 June 2027', tag: 'The Return',
+            date: 'Monday · 21 June 2027', tag: 'The Return',
             title: 'THE RETURN',
             sub: 'Afro-house. Africa back to the Caribbean. The DNA completes its journey home. Black Coffee closes. Peak night.',
             narr: [
@@ -542,7 +542,7 @@ export default function StagesPage() {
           },
           {
             num: '04', bg: '#060410', accent: REBIRTH_C, tagBorder: 'rgba(155,95,192,0.3)',
-            date: 'Tuesday · 16 June 2027', tag: 'The Origin',
+            date: 'Tuesday · 22 June 2027', tag: 'The Origin',
             title: 'THE ORIGIN',
             sub: 'Jungle, roots, dub — pure Jamaican. No international headline. The island closes how it opened: in its own voice.',
             narr: [
@@ -711,7 +711,7 @@ export default function StagesPage() {
         <div style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.2em', color: 'rgba(242,235,217,0.12)', textAlign: 'right', lineHeight: 2 }}>
           Stage Architecture · Internal Working Document<br />
           Navy Island · Port Antonio · Jamaica<br />
-          June 13–16, 2027 · 18+ Adults Only · 5,000 Tickets
+          June 17–23, 2027 · 18+ Adults Only · 5,000 Tickets
         </div>
       </footer>
 

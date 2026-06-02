@@ -723,8 +723,8 @@ export default function ActivitiesPage() {
             {[
               { label: 'Location', value: '64 Acres, Navy Island' },
               { label: 'Format', value: '8 Simultaneous Zones' },
-              { label: 'Dates', value: '13–16 June 2027' },
-              { label: 'Capacity', value: '2,000–2,500 · 18+' },
+              { label: 'Dates', value: '17–23 June 2027' },
+              { label: 'Capacity', value: '5,000 · 18+' },
             ].map((s, i, arr) => (
               <div
                 key={s.label}
@@ -769,7 +769,7 @@ export default function ActivitiesPage() {
                 marginBottom: '2rem',
               }}
             >
-              Every zone operates simultaneously. At any given hour, 2,000 adults are choosing their own experience — whether that is deep in the forest with a paintball rifle, suspended in a hammock listening to an ambient installation, sweating in a cold plunge at dawn, or dancing on the main stage at 3am. Nobody is ever waiting. Nobody is ever bored. Nobody is ever doing the same thing as everyone else.
+              Every zone operates simultaneously. At any given hour, 5,000 adults are choosing their own experience — whether that is deep in the forest with a paintball rifle, suspended in a hammock listening to an ambient installation, sweating in a cold plunge at dawn, or dancing on the main stage at 3am. Nobody is ever waiting. Nobody is ever bored. Nobody is ever doing the same thing as everyone else.
             </p>
             <p
               style={{
@@ -1223,7 +1223,7 @@ export default function ActivitiesPage() {
         <div style={{ textAlign: 'right' }}>
           {[
             'Navy Island · Port Antonio · Jamaica',
-            'June 13–16, 2027 · 18+ Adults Only',
+            'June 17–23, 2027 · 18+ Adults Only',
             'Activity Programme · Confidential',
             'Not for Distribution',
           ].map((line) => (
