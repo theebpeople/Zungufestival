@@ -247,65 +247,66 @@ export default function StagesPage() {
       <section id="map" style={{ padding: '60px 8vw', borderBottom: `1px solid ${BORDER}`, backgroundColor: GREEN }}>
         <SLabel>02 — Stage Placement &amp; Site Map</SLabel>
 
-        <div style={{ marginTop: 40, border: `1px solid ${BORDER_MID}`, background: 'rgba(13,32,24,0.5)', padding: 32 }}>
-          <svg viewBox="0 0 820 360" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', maxWidth: 860, margin: '0 auto', display: 'block' }}>
-            <defs>
-              <radialGradient id="ig" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#2d5a3d" stopOpacity=".85" />
-                <stop offset="100%" stopColor="#1a3a2a" stopOpacity=".6" />
-              </radialGradient>
-            </defs>
-            <rect width="820" height="360" fill="#050d10" />
-            <g stroke="rgba(29,74,90,.1)" strokeWidth=".5">
-              <line x1="0" y1="72" x2="820" y2="72" /><line x1="0" y1="144" x2="820" y2="144" />
-              <line x1="0" y1="216" x2="820" y2="216" /><line x1="0" y1="288" x2="820" y2="288" />
-            </g>
-            <path d="M130,195 C118,172 124,148 150,133 C172,120 208,112 255,105 C302,98 355,93 405,91 C455,89 500,92 538,100 C576,108 600,120 618,136 C636,152 640,170 632,186 C624,202 607,213 584,220 C561,227 532,231 500,234 C468,237 432,240 396,243 C360,246 323,249 290,251 C257,253 228,253 205,250 C182,247 160,241 145,231 C132,223 126,208 130,195 Z" fill="url(#ig)" stroke="rgba(200,168,75,.18)" strokeWidth="1.2" />
-            <g fill="#2d5a3d" fillOpacity=".45">
-              <circle cx="260" cy="162" r="8" /><circle cx="300" cy="152" r="6" /><circle cx="345" cy="155" r="9" /><circle cx="385" cy="148" r="7" /><circle cx="320" cy="180" r="6" />
-              <circle cx="360" cy="190" r="7" /><circle cx="278" cy="190" r="5" /><circle cx="420" cy="162" r="7" /><circle cx="460" cy="152" r="8" />
-              <circle cx="440" cy="185" r="6" /><circle cx="488" cy="168" r="7" /><circle cx="400" cy="210" r="5" />
-            </g>
-            <g transform="translate(382,255)">
-              <circle r="20" fill="rgba(200,168,75,.12)" stroke="rgba(200,168,75,.5)" strokeWidth="1.5" />
-              <circle r="9" fill="rgba(200,168,75,.9)" />
-              <line x1="0" y1="20" x2="0" y2="44" stroke="rgba(200,168,75,.3)" strokeWidth="1" strokeDasharray="3,2" />
-              <text y="57" textAnchor="middle" fill="rgba(200,168,75,.85)" fontSize="10" fontFamily="'Space Mono',monospace" letterSpacing="1.5">ZUNGU MAIN</text>
-              <text y="70" textAnchor="middle" fill="rgba(200,168,75,.4)" fontSize="7.5" fontFamily="'Space Mono',monospace">SOUTH · FULL PRODUCTION</text>
-            </g>
-            <g transform="translate(636,178)">
-              <circle r="13" fill="rgba(212,114,42,.12)" stroke="rgba(212,114,42,.5)" strokeWidth="1.5" />
-              <circle r="6" fill="rgba(212,114,42,.9)" />
-              <line x1="13" y1="0" x2="42" y2="0" stroke="rgba(212,114,42,.3)" strokeWidth="1" strokeDasharray="3,2" />
-              <text x="48" y="4" fill="rgba(212,114,42,.85)" fontSize="10" fontFamily="'Space Mono',monospace" letterSpacing="1.5">ORIGINS</text>
-              <text x="48" y="16" fill="rgba(212,114,42,.4)" fontSize="7.5" fontFamily="'Space Mono',monospace">EAST TIP · SUNRISE</text>
-            </g>
-            <g transform="translate(148,188)">
-              <circle r="13" fill="rgba(155,95,192,.12)" stroke="rgba(155,95,192,.5)" strokeWidth="1.5" />
-              <circle r="6" fill="rgba(155,95,192,.9)" />
-              <line x1="-13" y1="0" x2="-42" y2="0" stroke="rgba(155,95,192,.3)" strokeWidth="1" strokeDasharray="3,2" />
-              <text x="-48" y="4" textAnchor="end" fill="rgba(155,95,192,.85)" fontSize="10" fontFamily="'Space Mono',monospace" letterSpacing="1.5">REBIRTH</text>
-              <text x="-48" y="16" textAnchor="end" fill="rgba(155,95,192,.4)" fontSize="7.5" fontFamily="'Space Mono',monospace">WEST · SUNSET</text>
-            </g>
-            <g transform="translate(382,318)">
-              <rect x="-14" y="-5" width="28" height="9" fill="none" stroke="rgba(200,168,75,.2)" strokeWidth="1" />
-              <text y="20" textAnchor="middle" fill="rgba(200,168,75,.2)" fontSize="7" fontFamily="'Space Mono',monospace">FERRY DOCK</text>
-            </g>
-            <path d="M162,200 Q270,235 370,248" stroke="rgba(200,168,75,.12)" strokeWidth="1.5" strokeDasharray="5,4" fill="none" />
-            <text x="755" y="26" fill="rgba(200,168,75,.22)" fontSize="8" fontFamily="'Space Mono',monospace">N ↑</text>
-            <text x="382" y="350" textAnchor="middle" fill="rgba(200,168,75,.1)" fontSize="8" fontFamily="'Space Mono',monospace" letterSpacing={2}>PORT ANTONIO ↓</text>
-          </svg>
+        {/* Island maps — annotated stage map + satellite */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3, marginTop: 40 }}>
+          {[
+            { src: '/photos/navy-island-stage-map.png', label: 'Stage Placement Map · Navy Island', sub: 'Provisional · Subject to site survey' },
+            { src: '/photos/navy-island-satellite.png', label: 'Satellite · 64 Acres', sub: 'Dense forest canopy · Port Antonio harbour' },
+          ].map(({ src, label, sub }) => (
+            <div key={src} style={{ position: 'relative', overflow: 'hidden', background: BG }}>
+              <img
+                src={src}
+                alt={label}
+                style={{ width: '100%', display: 'block', filter: 'brightness(0.88) saturate(0.9)' }}
+                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+              />
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '28px 18px 14px', background: 'linear-gradient(transparent, rgba(4,8,10,0.88))' }}>
+                <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.8)', display: 'block' }}>{label}</span>
+                <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.15em', color: MUTED }}>{sub}</span>
+              </div>
+            </div>
+          ))}
+        </div>
 
-          <div style={{ display: 'flex', gap: 24, marginTop: 20, flexWrap: 'wrap', justifyContent: 'center' }}>
+        {/* Stage legend */}
+        <div style={{ display: 'flex', gap: 32, marginTop: 20, flexWrap: 'wrap' }}>
+          {[
+            { color: GOLD, label: 'Zungu Main', sub: 'South · Full Production' },
+            { color: ORIGINS_C, label: 'Origins', sub: 'East Tip · Sunrise' },
+            { color: REBIRTH_C, label: 'Rebirth', sub: 'West · Sunset' },
+            { color: DIM, label: 'Ferry Dock', sub: '~5 min from Marina' },
+          ].map(({ color, label, sub }) => (
+            <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <div style={{ width: 10, height: 10, borderRadius: '50%', background: color, flexShrink: 0 }} />
+              <div>
+                <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: CREAM, display: 'block' }}>{label}</span>
+                <span style={{ fontFamily: MONO, fontSize: 8, color: MUTED, letterSpacing: '0.1em' }}>{sub}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Stage concept mockups */}
+        <div style={{ marginTop: 40 }}>
+          <div style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.45em', color: GOLD, textTransform: 'uppercase' as const, marginBottom: 16 }}>// Stage Concept Renders</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
             {[
-              { color: 'rgba(200,168,75,0.9)', label: 'Zungu Main · South' },
-              { color: 'rgba(212,114,42,0.9)', label: 'Origins · East · Sunrise' },
-              { color: 'rgba(155,95,192,0.9)', label: 'Rebirth · West · Sunset' },
-              { color: 'rgba(200,168,75,0.3)', label: 'Ferry Dock', bordered: true },
-            ].map(({ color, label, bordered }) => (
-              <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: MONO, fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase' as const, color: MUTED }}>
-                <div style={{ width: 8, height: 8, borderRadius: '50%', background: color, border: bordered ? `1px solid ${color}` : 'none', flexShrink: 0 }} />
-                {label}
+              { src: '/photos/island-stages-aerial.png', label: 'ISLAND OVERVIEW — Three stages. One island.', sub: 'Wide aerial concept · Navy Island' },
+              { src: '/photos/stage-zungu-aerial.png', label: 'ZUNGU MAIN — Headline stage', sub: 'Stage · North clearing · Canopy facing sea' },
+              { src: '/photos/stage-origins-ground.png', label: 'ORIGINS — Heritage architecture', sub: 'Bamboo structure · Natural canopy · East tip' },
+              { src: '/photos/zungu-rebirth-stage.png', label: 'REBIRTH — Future sounds', sub: 'West point · Open horizon · Sunset facing' },
+            ].map(({ src, label, sub }) => (
+              <div key={src} style={{ position: 'relative' }}>
+                <img
+                  src={src}
+                  alt={label}
+                  style={{ width: '100%', display: 'block', filter: 'saturate(0.8) brightness(0.88)' }}
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+                />
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '32px 18px 14px', background: 'linear-gradient(transparent, rgba(4,8,10,0.82))', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                  <span style={{ fontFamily: MONO, fontSize: 9, color: CREAM, letterSpacing: '0.2em', textTransform: 'uppercase' as const }}>{label}</span>
+                  <span style={{ fontFamily: MONO, fontSize: 8, color: MUTED, letterSpacing: '0.12em' }}>{sub}</span>
+                </div>
               </div>
             ))}
           </div>
