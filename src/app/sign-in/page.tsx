@@ -338,17 +338,31 @@ function SignInForm({ role }: { role: string }) {
           color: #C8A84B !important;
           font-weight: 700 !important;
         }
-        [class*="cl-formFieldInput"] {
-          background: rgba(6,8,8,0.95) !important;
-          border: 1px solid rgba(200,168,75,0.22) !important;
+        [class*="cl-formFieldInput"],
+        [class*="cl-formFieldInput"]:not([type="submit"]) {
+          background: rgba(18,24,20,0.97) !important;
+          border: 1px solid rgba(200,168,75,0.45) !important;
           color: #F7F3EC !important;
           font-family: 'Space Mono', monospace !important;
           font-size: 14px !important;
           border-radius: 0 !important;
           box-shadow: none !important;
+          padding: 12px 14px !important;
+          min-height: 46px !important;
         }
-        [class*="cl-formFieldInput"]:focus { border-color: #C8A84B !important; outline: none !important; box-shadow: none !important; }
-        [class*="cl-formFieldInput"]::placeholder { color: rgba(242,235,217,0.28) !important; opacity: 1 !important; }
+        [class*="cl-formFieldInput"]:focus,
+        [class*="cl-formFieldInput"]:focus-within {
+          border-color: #C8A84B !important;
+          outline: none !important;
+          box-shadow: 0 0 0 1px #C8A84B !important;
+        }
+        [class*="cl-formFieldInput"]::placeholder { color: rgba(242,235,217,0.4) !important; opacity: 1 !important; }
+        [class*="cl-formFieldInputGroup"],
+        [class*="cl-fieldInputGroup"] {
+          background: rgba(18,24,20,0.97) !important;
+          border: 1px solid rgba(200,168,75,0.45) !important;
+          border-radius: 0 !important;
+        }
         [class*="cl-formButtonPrimary"] {
           background: #C8A84B !important;
           color: #060808 !important;
@@ -385,6 +399,33 @@ function SignInForm({ role }: { role: string }) {
           color: #C8A84B !important; font-weight: 700 !important; letter-spacing: 0.15em !important; text-decoration: none !important;
         }
         [class*="cl-footerActionLink"]:hover { color: #dab84e !important; }
+
+        /* OTP / verification code inputs */
+        [class*="cl-otpCodeField"] input,
+        [class*="cl-otpCodeFieldInput"],
+        input[data-otp-input] {
+          background: rgba(18,24,20,0.97) !important;
+          border: 1px solid rgba(200,168,75,0.45) !important;
+          color: #F7F3EC !important;
+          border-radius: 0 !important;
+          font-family: 'Unbounded', sans-serif !important;
+          font-weight: 700 !important;
+          font-size: 20px !important;
+          box-shadow: none !important;
+        }
+        [class*="cl-otpCodeField"] input:focus,
+        [class*="cl-otpCodeFieldInput"]:focus {
+          border-color: #C8A84B !important;
+          box-shadow: 0 0 0 1px #C8A84B !important;
+        }
+        /* "Resend" and secondary links */
+        [class*="cl-resendCodeLink"],
+        [class*="cl-resendCodeButton"] {
+          color: rgba(200,168,75,0.7) !important;
+          font-family: 'Space Mono', monospace !important;
+          font-size: 10px !important;
+          letter-spacing: 0.2em !important;
+        }
       `}</style>
 
       {/* Role-specific background */}
@@ -422,7 +463,7 @@ function SignInForm({ role }: { role: string }) {
           cursor: 'pointer',
           fontSize: 9,
           letterSpacing: '0.3em',
-          color: muted,
+          color: 'rgba(242,235,217,0.55)',
           textTransform: 'uppercase',
           fontWeight: 700,
           fontFamily: "'Space Mono', monospace",
@@ -510,7 +551,7 @@ function SignInForm({ role }: { role: string }) {
               colorPrimary: gold,
               colorText: white,
               colorBackground: black,
-              colorInputBackground: 'rgba(255,255,255,0.05)',
+              colorInputBackground: 'rgba(18,24,20,0.97)',
               colorInputText: white,
               fontFamily: "'Space Mono', monospace",
               borderRadius: '0px',
