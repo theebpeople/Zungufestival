@@ -23,91 +23,91 @@ const ZONES = [
     num: '01',
     name: 'THE COVE',
     tag: 'Water + Marine Programming',
-    purpose: 'Water access, premium leisure, and sponsor inventory. The Cove is the island\'s primary daylight activation zone — jet skis, paddleboards, snorkelling, glass-bottom excursions, and coral protocol.',
-    revLogic: 'Paid excursions, premium charter bookings, water activity partner sponsorship, VIP credit redemptions, private boat packages.',
-    operatorModel: 'Licensed marine operators with Zungu-approved safety standards. Zungu controls scheduling, pricing bands, booking system, and capacity windows. Revenue structured as booking commission plus category sponsorship.',
-    partnerOpp: 'Marine equipment sponsors, sunscreen, rum/beverage brands, eco/reef organisations, GoPro-style tech, insurance, tourism board.',
-    opNote: 'Reef-safe protocol mandatory. All operators must hold marine licences. Scheduled windows to prevent overcrowding. No night activity without safety lighting and crew.',
+    purpose: 'The Cove is the island\'s water-facing daylight zone: guided marine activity, reef-safe exploration, private boat windows, and premium leisure.',
+    revLogic: 'Paid excursions, premium charter bookings, water activity partnerships, VIP credit redemptions, private boat packages, and marine sponsor activations.',
+    operatorModel: 'Licensed marine operators deliver approved activities under Zungu scheduling, safety, pricing, and capacity controls.',
+    partnerOpp: 'Marine equipment, reef-safe sunscreen, beverage, eco partners, camera technology, insurance, tourism, and conservation partners.',
+    opNote: 'Reef protocol is mandatory. All activity is subject to marine licensing, operator insurance, environmental approval, weather conditions, and controlled guest windows.',
   },
   {
     num: '02',
     name: 'THE SANCTUM',
     tag: 'Wellness + Recovery',
-    purpose: 'Premium recovery environment for all tiers. Cold plunge, hot tub, massage, yoga, breathwork, IV hydration, and meditation. A core hospitality asset for Glamping and VIP audiences.',
-    revLogic: 'Paid treatments (massage, IV, float), wellness sponsors, VIP and Glamping credit inclusion, premium wellness packages, hospitality add-ons.',
-    operatorModel: 'Professional wellness providers contracted by Zungu. Zungu controls space, scheduling, and pricing. Operators handle delivery. Revenue structured as session fee plus operator commission.',
-    partnerOpp: 'Wellness brands, supplements, skincare, hydration, CBD (subject to legal approval), sleep tech, athletic recovery, luxury hospitality.',
-    opNote: 'No medical claims without licensed practitioners. IV hydration requires qualified medical supervision. All treatments must carry public liability insurance.',
+    purpose: 'The Sanctum is the island\'s recovery environment: quiet, wellness, reset, and premium guest care.',
+    revLogic: 'Paid treatments, wellness packages, VIP and Glamping credits, recovery sponsors, hospitality add-ons, and premium booking windows.',
+    operatorModel: 'Professional wellness providers deliver services under Zungu scheduling, space, pricing, and guest-flow controls.',
+    partnerOpp: 'Hydration, skincare, sleep, athletic recovery, wellness, hospitality, and premium lifestyle partners.',
+    opNote: 'No medical or therapeutic claims should be made without qualified professionals, proper licensing, insurance, and waivers. Medical-grade recovery services only operate where legally approved and professionally supervised.',
   },
   {
     num: '03',
     name: 'THE YARD',
     tag: 'Culture + Sound-System Context',
-    purpose: 'The cultural thesis made physical. Sound-system demonstrations, vinyl market, rum tastings, cultural talks, and Jamaican-rooted programming. The Yard explains why Zungu exists on this island specifically.',
-    revLogic: 'Sponsored talks and panels, rum/beverage partner tastings, vinyl market vendor fees, cultural partner fees, sponsor bar activation.',
-    operatorModel: 'Curated by Zungu with local cultural partners, sound-system operators, and Portland-based artists. Zungu controls programme, timing, and brand presence. Local operators deliver programming.',
-    partnerOpp: 'Rum brands, coffee, sound-system builders, record labels, cultural institutions, tourism board, Jamaican craft and music heritage.',
-    opNote: 'Programming must stay sharp — avoid tourist-performance register. All sound-system operators require permits and sound-level compliance. Alcohol licences for tastings.',
+    purpose: 'The Yard gives the festival its voice in daylight. Sound-system context, vinyl, rum, talks, demonstrations, and Jamaican-rooted programming explain why Zungu belongs here.',
+    revLogic: 'Sponsored talks, partner panels, rum and coffee tastings, vinyl market fees, cultural partner fees, and beverage activations.',
+    operatorModel: 'Curated by Zungu with local cultural partners, sound-system operators, selectors, artists, and Portland-based contributors.',
+    partnerOpp: 'Rum, coffee, record labels, sound-system builders, cultural institutions, tourism, craft, music heritage, and media partners.',
+    opNote: 'The Yard must stay sharp. No tourist-performance register. Programming should feel contemporary, credible, and rooted.',
   },
   {
     num: '04',
     name: 'THE STUDIO',
     tag: 'Art + Making + Artist-in-Residence',
-    purpose: 'Visual culture, guest participation, and commissioned work. Artists-in-residence produce work on the island during the festival week. Workshops, printing, painting, ceramics, and limited-edition collaborations.',
-    revLogic: 'Paid workshops, limited-edition print/object sales, merchandise collaborations, artist commission fees, sponsor-funded residencies.',
-    operatorModel: 'Artist-led, Zungu-curated. Zungu selects artists, controls space, and manages sales and IP. Artists retain creative credit. Revenue split on sales.',
-    partnerOpp: 'Art materials brands, print/production sponsors, luxury goods, fashion, limited-edition retail partners, cultural institutions, collectors.',
-    opNote: 'Only promise confirmed workshops. Do not overload the schedule. IP and ownership rights need to be agreed before the festival opens. Fire/chemical safety for certain media.',
+    purpose: 'The Studio is the visual culture layer of the island: commissioned work, artist residencies, guest participation, print, object, image, and limited collaborations.',
+    revLogic: 'Paid workshops, limited-edition sales, artist collaborations, sponsor-funded residencies, merchandise, prints, and collector items.',
+    operatorModel: 'Artist-led and Zungu-curated. Zungu manages space, sales structure, collaboration rights, and brand fit.',
+    partnerOpp: 'Art materials, print production, fashion, luxury goods, cultural institutions, collectors, and limited-edition retail partners.',
+    opNote: 'Only confirmed workshops should be listed. IP, ownership, revenue splits, and usage rights must be agreed before the festival opens.',
   },
   {
     num: '05',
     name: 'THE MARKET',
     tag: 'Food, Beverage + Vendor Hub',
-    purpose: 'Central food, beverage, retail, and local vendor hub. One of the highest-revenue zones on the island. Structured as a mixed-operator commercial village with Zungu-controlled layout, standards, and payment system.',
-    revLogic: 'Vendor stall fees, sales commission (10–20%), bar revenue, coffee sales, breakfast counter, late-night food, sponsor activations, POS wristband spend.',
-    operatorModel: 'Hybrid. Zungu controls layout, POS/payment system, pricing floors, operating hours, sustainability rules, and vendor approval. Individual operators run stalls under contract. Revenue shared through fee-plus-commission structure.',
-    partnerOpp: 'Rum, coffee, beverage brands, local jerk/seafood vendors, Portland food producers, packaging partners, payment/fintech, local craft brewers.',
-    opNote: 'Requires power, water, sanitation, waste management, cold storage, fire safety, food hygiene permits, vendor onboarding, and POS/wristband integration. One of the most operationally complex zones.',
+    purpose: 'The Market is the island\'s commercial village: food, coffee, bars, local vendors, breakfast, late-night food, retail moments, and sponsor activations.',
+    revLogic: 'Vendor stall fees, sales commission, bar revenue, coffee sales, late-night food, breakfast counters, premium dining, sponsor activations, and wristband spend.',
+    operatorModel: 'Hybrid. Zungu controls the layout, payment system, vendor standards, pricing floors, operating hours, sustainability rules, and approval process. Selected vendors operate individual stalls under contract.',
+    partnerOpp: 'Rum, coffee, beverage brands, Portland food vendors, jerk and seafood operators, local producers, packaging, payment partners, fintech, and hospitality sponsors.',
+    opNote: 'The Market is one of the most operationally complex zones: power, water, sanitation, cold storage, fire safety, waste management, food permits, vendor onboarding, and POS integration must be locked before opening.',
   },
   {
     num: '06',
-    name: 'THE SHOPPE',
+    name: 'THE ZUNGU SHOPPE',
     tag: 'Merchandise + Essentials + Partner Retail',
-    purpose: 'Official Zungu retail and convenience. Merch, limited-edition artist collaborations, festival essentials, local goods, and partner product. Supports both brand IP monetisation and guest convenience.',
-    revLogic: 'Merchandise margin, essentials margin, artist collab revenue, local goods commission, partner retail fees, category exclusivity. One of the cleaner margin lines in the model.',
-    operatorModel: 'Zungu-controlled or managed retail partner. Inventory pre-planned and pre-shipped. Local craft and artist collaborations curated by Zungu. POS integrated with wristband system.',
-    partnerOpp: 'Fashion, streetwear, art, photography, local Jamaican craft, vinyl, zines, sunscreen, hydration tech, charging accessories, rum/coffee gift packaging.',
-    opNote: 'Must plan inventory before festival — no on-demand restocking. Customs/import considerations for Jamaica. Returns policy and surplus storage needed post-event.',
+    purpose: 'The Zungu Shoppe is official retail and guest convenience: merchandise, essentials, artist collaborations, local goods, festival survival items, limited objects, and partner products.',
+    revLogic: 'Merchandise margin, essentials margin, artist-collab revenue, local goods commission, partner retail fees, sponsor product placement, and category exclusivity.',
+    operatorModel: 'Zungu-controlled or managed through a retail partner. Inventory is planned before the festival, integrated into the payment system, and curated to match the brand.',
+    partnerOpp: 'Fashion, streetwear, art, photography, local Jamaican craft, vinyl, zines, sunscreen, hydration tech, charging accessories, coffee, rum, and travel essentials.',
+    opNote: 'Inventory planning must happen early. Customs, import, surplus storage, returns, and post-event fulfilment need to be handled before launch.',
   },
   {
     num: '07',
     name: 'THE SIGNAL',
     tag: 'Zungu Radio + Media Hub',
-    purpose: 'Zungu\'s on-island media and broadcast operation. Artist interviews, Zungu Radio recordings, partner content, press briefings, live field audio, and selected broadcast moments. Makes the festival\'s content value live beyond the event dates.',
-    revLogic: 'Media sponsor fees, branded content partnerships, Zungu Radio streaming sponsorship, captured set licensing, interview content, documentary production fees, post-festival compilation and release.',
-    operatorModel: 'Zungu-controlled. Audio engineer, camera team, producer, press coordinator. Zungu owns all IP unless otherwise contracted. Artist participation requires release forms and rights management.',
-    partnerOpp: 'Telecoms, audio equipment, streaming platforms, tourism board, airline/travel, beverage, media brands, cultural institutions, music press.',
-    opNote: 'All recordings, interviews, and captured sets require artist approvals and signed release forms before broadcast or publication. Rights management is non-negotiable.',
+    purpose: 'The Signal is Zungu\'s media point on the island: Zungu Radio, artist interviews, partner content, press briefings, field audio, live recordings, and selected broadcast moments.',
+    revLogic: 'Media sponsorship, branded content, Zungu Radio sponsorship, captured-set licensing, interviews, documentary material, post-festival content, and release opportunities.',
+    operatorModel: 'Zungu-controlled. Requires a producer, audio engineer, camera team, press coordinator, release management, data uplink, and controlled access.',
+    partnerOpp: 'Telecoms, audio equipment, streaming platforms, tourism, airline and travel, beverage, media brands, cultural institutions, and music press.',
+    opNote: 'All recordings, interviews, and captured sets require artist approval and signed release forms before broadcast, publication, or licensing.',
   },
   {
     num: '08',
     name: 'THE TRAIL',
     tag: 'Forest Route + Discovery',
-    purpose: 'A guided or self-directed route through Navy Island\'s interior. Hidden installations, artist interventions, ecology stops, and scheduled discovery moments. Distributes guests across the island and reduces bottlenecks at stage areas.',
-    revLogic: 'Sponsor-funded installations, premium guided walk bookings, partner brand moments, environmental sponsor activations, photography and press value.',
-    operatorModel: 'Zungu + environmental guides and local operators. Zungu controls installation placement, safety, wayfinding, and guide training. Local operators provide ecological knowledge and community connection.',
-    partnerOpp: 'Outdoor gear, eco brands, environmental organisations, photography, tourism board, paint and installation material sponsors, water brands.',
-    opNote: 'Safety lighting required after dark. Wayfinding and trail markers essential. Staffed access points. Environmental impact assessment required. No trail access without trained guide during high-traffic windows.',
+    purpose: 'The Trail moves guests through Navy Island\'s interior: forest routes, hidden installations, ecology stops, artist interventions, quiet spaces, and scheduled discovery moments.',
+    revLogic: 'Sponsor-funded installations, premium guided walks, environmental activations, partner moments, photography, press value, and low-impact guest distribution.',
+    operatorModel: 'Zungu manages route design, safety, wayfinding, and installation placement. Local guides and environmental partners support interpretation, movement, and guest care.',
+    partnerOpp: 'Outdoor gear, eco brands, environmental organisations, photography, water partners, tourism, installation materials, and conservation partners.',
+    opNote: 'Wayfinding, lighting, staff points, environmental review, and guest limits are essential. High-traffic windows may require guided access only.',
   },
   {
     num: '09',
     name: 'THE PIER',
-    tag: 'Controlled Discovery Format · 200 Cap',
-    purpose: 'Intimate, controlled-access programming environment. 200-cap maximum. Used for sunrise sessions, late-night discovery, VIP priority access moments, and curated micro-events separate from the main stage programme.',
-    revLogic: 'Premium bar revenue, VIP priority access as a tier benefit, sponsor activation (intimate, premium placement), limited-access event add-ons, press/photographer access fees.',
-    operatorModel: 'Zungu-controlled. Access via wristband tier or timed-release queue. Premium bar operated by Zungu or lead partner. Programming curated by Zungu — separate from main stage roster.',
-    partnerOpp: 'Premium spirits, audio equipment, telecoms, fashion, photography, streaming platforms seeking intimate content opportunities.',
-    opNote: 'Do not position as a fourth primary stage. It is a controlled format zone. Structural safety review needed for pier load limits. Marine safety around the pier structure required.',
+    tag: 'Controlled Discovery Environment',
+    purpose: 'The Pier is an intimate controlled-access environment for sunrise sessions, late-night discovery, VIP priority moments, press access, and small-format programming.',
+    revLogic: 'Premium bar revenue, VIP priority access, sponsor activation, timed-release access, limited event add-ons, and media moments.',
+    operatorModel: 'Zungu-controlled. Access managed through wristband tier, timed release, or controlled queue. Programming remains separate from the primary stage system.',
+    partnerOpp: 'Premium spirits, audio equipment, telecoms, fashion, photography, streaming, and intimate content partners.',
+    opNote: 'The Pier is not a fourth primary stage. It is a controlled discovery environment. Structural safety, load limits, lighting, marine safety, and access control must be reviewed before use.',
   },
 ];
 
@@ -273,10 +273,10 @@ export default function ActivitiesPage() {
         <div style={{ position: 'relative', zIndex: 2 }}>
           <p style={{ fontFamily: fontMono, fontSize: 9, color: GOLD, letterSpacing: '0.5em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '1rem' }}>// PROGRAMMING + HOSPITALITY</p>
           <h1 style={{ fontFamily: fontDisplay, fontSize: 'clamp(2.5rem, 8vw, 7rem)', fontWeight: 900, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: 0.95, marginBottom: '1.5rem', color: CREAM }}>
-            NINE ZONES.<br /><span style={{ color: GOLD }}>ONE ISLAND</span><br />SYSTEM.
+            NINE ZONES.<br /><span style={{ color: GOLD }}>ONE ISLAND</span><br />IN RHYTHM.
           </h1>
           <p style={{ fontFamily: fontMono, fontSize: 'clamp(11px, 1.3vw, 14px)', color: MUTED, lineHeight: 1.9, maxWidth: 600, marginBottom: '2rem' }}>
-            The daytime programme is designed as a commercial operating system, not a list of optional extras. Nine zones distribute guests across the island, generate revenue across multiple lines, create sponsor inventory, and support local operator participation — before the stages open.
+            Zungu is not only nighttime music. By day, Navy Island moves through food, water, wellness, art, culture, media, retail, forest routes, and controlled discovery. Nine zones turn the island into a living system before the stages open — creating guest flow, revenue, sponsor value, local operator participation, and a fuller reason to stay.
           </p>
           <div style={{ display: 'flex', gap: '2.5rem', flexWrap: 'wrap' }}>
             {[['9', 'Island Zones'], ['2,500–5,000', 'Planning Range'], ['Jun 17–23', 'Target Window · 2027']].map(([val, label]) => (
@@ -290,14 +290,14 @@ export default function ActivitiesPage() {
       </section>
 
       {/* ── Ch01: Programming Thesis ─────────────────────────────────────── */}
-      <ChapterDivider num="01" eye="Chapter One" title="Programming Thesis." sub="The island is not only the venue. It is the operating system." />
+      <ChapterDivider num="01" eye="Chapter One" title="The island moves before the music starts." sub="The island is not passive. The island performs." />
       <section id="section-thesis" style={{ padding: '88px 8vw', boxSizing: 'border-box', backgroundColor: BLACK }}>
         <div style={{ maxWidth: 800 }}>
           <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 18 }}>
-            The commercial model does not begin at the gate. It begins at the boat, runs through nine island zones across the full day, and continues until the last transfer back to the marina.
+            Zungu begins before the first headline set. The daytime programme gives the island its rhythm: guests move through water, food, wellness, craft, media, culture, retail, and forest discovery before the stages take over at sunset. This is not filler. It is the hospitality layer, the revenue layer, and the guest-flow system working at once.
           </p>
           <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 40 }}>
-            Each zone is designed to serve five functions simultaneously: guest experience, revenue generation, guest-flow distribution, sponsor inventory, and local operator opportunity. The zones are not decorative. They are commercial assets with clear operator models and revenue logic.
+            Every zone serves five purposes: experience, revenue, movement, sponsorship, and local operator opportunity.
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 2 }}>
             {[
@@ -323,7 +323,7 @@ export default function ActivitiesPage() {
       </section>
 
       {/* ── Ch02: Island Zones ───────────────────────────────────────────── */}
-      <ChapterDivider num="02" eye="Chapter Two" title="Island Zones." sub="Nine zones. Each with purpose, revenue logic, operator model, partner opportunity, and operational notes." />
+      <ChapterDivider num="02" eye="Chapter Two" title="Island Zones." sub="Nine zones carry the island through the day. Each zone has a purpose, a revenue logic, an operator model, a partner opportunity, and an operational requirement." />
       <section id="section-zones" style={{ padding: '88px 8vw', boxSizing: 'border-box', backgroundColor: BLACK }}>
         <div style={{ display: 'grid', gap: 2 }}>
           {ZONES.map(zone => <ZoneCard key={zone.num} zone={zone} />)}
@@ -331,10 +331,10 @@ export default function ActivitiesPage() {
       </section>
 
       {/* ── Ch03: Commercial Model ──────────────────────────────────────── */}
-      <ChapterDivider num="03" eye="Chapter Three" title="Commercial Model." sub="Nine revenue categories. Zungu controls the system. Partners and operators deliver within it." />
+      <ChapterDivider num="03" eye="Chapter Three" title="The island economy." sub="Nine revenue categories. Zungu controls the system. Partners and operators deliver within it." />
       <section id="section-commercial" style={{ padding: '88px 8vw', boxSizing: 'border-box', backgroundColor: BLACK }}>
         <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
-          Ticket revenue is the base. The commercial model extends across nine categories — each generating independent revenue lines that compound across the festival window and beyond.
+          Ticket revenue is the base. Zungu's commercial model extends across multiple revenue lines that compound through the festival window and beyond.
         </p>
         <div style={{ display: 'grid', gap: 2, marginBottom: 60 }}>
           {COMMERCIAL_LINES.map(({ cat, items, model }) => (
@@ -378,10 +378,10 @@ export default function ActivitiesPage() {
       </section>
 
       {/* ── Ch04: Mainland Activations ──────────────────────────────────── */}
-      <ChapterDivider num="04" eye="Chapter Four" title="Mainland Activations." sub="Not every Zungu experience belongs on Navy Island. Selected activations route guests through Port Antonio." />
+      <ChapterDivider num="04" eye="Chapter Four" title="Not every Zungu experience belongs on Navy Island." sub="Selected activations route guests through Port Antonio." />
       <section id="section-mainland" style={{ padding: '88px 8vw', boxSizing: 'border-box', backgroundColor: BLACK }}>
         <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
-          Mainland activations serve two purposes: they reduce pressure on the island site and they create additional revenue channels for Port Antonio operators — restaurants, guides, transport, food vendors, and excursion specialists.
+          Selected activations should move through Port Antonio. Mainland programming reduces pressure on the island, creates additional revenue for local operators, gives guests a reason to arrive earlier and stay longer, and makes Port Antonio part of the festival week.
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2 }}>
           {MAINLAND.map(({ name, sub, body }) => (
@@ -395,13 +395,13 @@ export default function ActivitiesPage() {
       </section>
 
       {/* ── Ch05: Port Antonio Benefit ──────────────────────────────────── */}
-      <ChapterDivider num="05" eye="Chapter Five" title="Port Antonio Benefit." sub="Zungu's commercial model is designed to route value through Port Antonio, not isolate it on Navy Island." />
+      <ChapterDivider num="05" eye="Chapter Five" title="The island is the world. Port Antonio is the heartbeat behind it." sub="Zungu's commercial model is designed to route value through Port Antonio, not isolate it on Navy Island." />
       <section id="section-benefit" style={{ padding: '88px 8vw', boxSizing: 'border-box', backgroundColor: BLACK }}>
         <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 16 }}>
-          The island creates the premium anchor. Port Antonio supplies the operating ecosystem: accommodation, marine transport, food, beverage, drivers, guides, vendors, production support, excursions, staff, and post-event services.
+          Zungu is anchored on Navy Island, but the commercial model is designed to route value through Port Antonio. The town supplies the operating ecosystem: accommodation, marine transport, drivers, food, beverage, guides, vendors, production support, wellness providers, artists, mainland activations, and post-event services.
         </p>
         <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
-          This is not a secondary consideration. It is part of what makes Zungu investable and locally defensible.
+          This is not charity language. It is business logic. The stronger Port Antonio is inside the model, the more locally defensible Zungu becomes.
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2, marginBottom: 48 }}>
           {BENEFIT_ITEMS.map(({ cat, items }) => (
@@ -420,10 +420,10 @@ export default function ActivitiesPage() {
       </section>
 
       {/* ── Ch06: Sustainability ─────────────────────────────────────────── */}
-      <ChapterDivider num="06" eye="Chapter Six" title="Sustainability." sub="Sustainability is an operating requirement tied to site access, reef protection, waste removal, local employment, harm reduction, and post-event reporting." />
+      <ChapterDivider num="06" eye="Chapter Six" title="Sustainability is an operating requirement." sub="Environmental and community protocol is not a marketing position. For Zungu, sustainability is tied to site access, reef protection, waste removal, local employment, harm reduction, marine licensing, demobilisation, and post-event reporting." />
       <section id="section-sustainability" style={{ padding: '88px 8vw', boxSizing: 'border-box', backgroundColor: BLACK }}>
         <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
-          Environmental and community protocol is not a marketing position. It is a condition of operating on Navy Island and a requirement of the site access agreement, local authority relations, and marine licensing.
+          Environmental and community protocol is not a marketing position. For Zungu, sustainability is tied to site access, reef protection, waste removal, local employment, harm reduction, marine licensing, demobilisation, and post-event reporting.
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2 }}>
           {SUSTAIN.map(({ label, body }) => (
