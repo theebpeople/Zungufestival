@@ -192,7 +192,7 @@ export default function StagesPage() {
               { label: 'Zungu Main', value: 'South face\n7pm – 6am' },
               { label: 'Origins', value: 'East tip\n6am – 10am' },
               { label: 'Rebirth', value: 'West end\n4pm – 8pm' },
-              { label: 'June 2027', value: '13–16 June\n5,000 tickets' },
+              { label: 'June 2027', value: '17–23 June\n5,000 tickets' },
             ].map((s, i, arr) => (
               <div key={s.label} style={{ paddingRight: i < arr.length - 1 ? '2.5rem' : 0, marginRight: i < arr.length - 1 ? '2.5rem' : 0, borderRight: i < arr.length - 1 ? `1px solid ${BORDER_MID}` : 'none' }}>
                 <span style={{ display: 'block', fontFamily: MONO, fontSize: 8, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 6 }}>{s.label}</span>
@@ -215,8 +215,8 @@ export default function StagesPage() {
         <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gridTemplateRows: '360px 240px', gap: 3 }}>
           {[
             { src: '/photos/navy-island-aerial-hq.png', cap: 'Navy Island · Aerial · Port Antonio harbour', tall: true },
-            { src: '/photos/NAVY%20ISLAND%20-%20FROM%20%20tHE%20TOWN%20.png', cap: 'View from Port Antonio town · 5-min crossing', tall: false },
-            { src: '/photos/pellew-island.jpg', cap: 'Pellew Island · Port Antonio coastline · Context', tall: false },
+            { src: '/photos/navy-island-satellite.png', cap: '64 acres · Dense forest canopy', tall: false },
+            { src: '/photos/reference-for-map-crossing.png', cap: 'Island perimeter · Stage placement zones', tall: false },
           ].map(({ src, cap, tall }) => (
             <div key={src} style={{ overflow: 'hidden', position: 'relative', background: GREEN, gridRow: tall ? '1 / 3' : undefined }}>
               <img src={src} alt={cap} style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.8) saturate(0.85)', transition: 'filter 0.5s, transform 0.6s', display: 'block' }}
@@ -230,12 +230,25 @@ export default function StagesPage() {
           ))}
         </div>
 
+        {/* Stage zones aerial */}
+        <div style={{ marginTop: 3, position: 'relative', overflow: 'hidden' }}>
+          <img
+            src="/photos/island-stages-aerial.png"
+            alt="Navy Island — Stage Zones Aerial"
+            loading="lazy"
+            style={{ width: '100%', height: 320, objectFit: 'cover', display: 'block', filter: 'brightness(0.8) saturate(0.85)' }}
+          />
+          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '20px 16px 12px', background: 'linear-gradient(transparent, rgba(4,8,10,0.85))', fontFamily: MONO, fontSize: 8, letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.7)' }}>
+            Stage Zones · Aerial · Navy Island · Port Antonio
+          </div>
+        </div>
+
         {/* Quote block */}
         <div style={{ margin: '40px 0', padding: '24px 28px', borderLeft: `3px solid ${GOLD}`, background: 'rgba(200,168,75,0.03)' }}>
           <p style={{ fontFamily: DISPLAY, fontSize: 'clamp(0.9rem, 2vw, 1.3rem)', fontWeight: 300, color: CREAM, lineHeight: 1.5 }}>
-            &ldquo;Tomorrowland built a fantasy world. <span style={{ color: GOLD }}>Zungu doesn&rsquo;t need to build anything.</span> The world is already there.&rdquo;
+            &ldquo;<span style={{ color: GOLD }}>The site is the moat.</span> Most festivals build environments. Zungu begins with one.&rdquo;
           </p>
-          <p style={{ marginTop: 10, fontFamily: MONO, fontSize: 8, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.55)' }}>Location Strategy</p>
+          <p style={{ marginTop: 10, fontFamily: MONO, fontSize: 8, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.55)' }}>Site Strategy</p>
         </div>
       </section>
 
@@ -247,70 +260,65 @@ export default function StagesPage() {
       <section id="map" style={{ padding: '60px 8vw', borderBottom: `1px solid ${BORDER}`, backgroundColor: GREEN }}>
         <SLabel>02 — Stage Placement &amp; Site Map</SLabel>
 
-        {/* Island maps — annotated stage map + satellite */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3, marginTop: 40 }}>
-          {[
-            { src: '/photos/navy-island-stage-map.png', label: 'Stage Placement Map · Navy Island', sub: 'Provisional · Subject to site survey' },
-            { src: '/photos/navy-island-satellite.png', label: 'Satellite · 64 Acres', sub: 'Dense forest canopy · Port Antonio harbour' },
-          ].map(({ src, label, sub }) => (
-            <div key={src} style={{ position: 'relative', overflow: 'hidden', background: BG }}>
-              <img
-                src={src}
-                alt={label}
-                style={{ width: '100%', display: 'block', filter: 'brightness(0.88) saturate(0.9)' }}
-                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
-              />
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '28px 18px 14px', background: 'linear-gradient(transparent, rgba(4,8,10,0.88))' }}>
-                <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.8)', display: 'block' }}>{label}</span>
-                <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.15em', color: MUTED }}>{sub}</span>
-              </div>
-            </div>
-          ))}
-        </div>
+        <div style={{ marginTop: 40, border: `1px solid ${BORDER_MID}`, background: 'rgba(13,32,24,0.5)', padding: 32 }}>
+          <svg viewBox="0 0 820 360" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', maxWidth: 860, margin: '0 auto', display: 'block' }}>
+            <defs>
+              <radialGradient id="ig" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#2d5a3d" stopOpacity=".85" />
+                <stop offset="100%" stopColor="#1a3a2a" stopOpacity=".6" />
+              </radialGradient>
+            </defs>
+            <rect width="820" height="360" fill="#050d10" />
+            <g stroke="rgba(29,74,90,.1)" strokeWidth=".5">
+              <line x1="0" y1="72" x2="820" y2="72" /><line x1="0" y1="144" x2="820" y2="144" />
+              <line x1="0" y1="216" x2="820" y2="216" /><line x1="0" y1="288" x2="820" y2="288" />
+            </g>
+            <path d="M130,195 C118,172 124,148 150,133 C172,120 208,112 255,105 C302,98 355,93 405,91 C455,89 500,92 538,100 C576,108 600,120 618,136 C636,152 640,170 632,186 C624,202 607,213 584,220 C561,227 532,231 500,234 C468,237 432,240 396,243 C360,246 323,249 290,251 C257,253 228,253 205,250 C182,247 160,241 145,231 C132,223 126,208 130,195 Z" fill="url(#ig)" stroke="rgba(200,168,75,.18)" strokeWidth="1.2" />
+            <g fill="#2d5a3d" fillOpacity=".45">
+              <circle cx="260" cy="162" r="8" /><circle cx="300" cy="152" r="6" /><circle cx="345" cy="155" r="9" /><circle cx="385" cy="148" r="7" /><circle cx="320" cy="180" r="6" />
+              <circle cx="360" cy="190" r="7" /><circle cx="278" cy="190" r="5" /><circle cx="420" cy="162" r="7" /><circle cx="460" cy="152" r="8" />
+              <circle cx="440" cy="185" r="6" /><circle cx="488" cy="168" r="7" /><circle cx="400" cy="210" r="5" />
+            </g>
+            <g transform="translate(382,255)">
+              <circle r="20" fill="rgba(200,168,75,.12)" stroke="rgba(200,168,75,.5)" strokeWidth="1.5" />
+              <circle r="9" fill="rgba(200,168,75,.9)" />
+              <line x1="0" y1="20" x2="0" y2="44" stroke="rgba(200,168,75,.3)" strokeWidth="1" strokeDasharray="3,2" />
+              <text y="57" textAnchor="middle" fill="rgba(200,168,75,.85)" fontSize="10" fontFamily="'Space Mono',monospace" letterSpacing="1.5">ZUNGU MAIN</text>
+              <text y="70" textAnchor="middle" fill="rgba(200,168,75,.4)" fontSize="7.5" fontFamily="'Space Mono',monospace">SOUTH · FULL PRODUCTION</text>
+            </g>
+            <g transform="translate(636,178)">
+              <circle r="13" fill="rgba(212,114,42,.12)" stroke="rgba(212,114,42,.5)" strokeWidth="1.5" />
+              <circle r="6" fill="rgba(212,114,42,.9)" />
+              <line x1="13" y1="0" x2="42" y2="0" stroke="rgba(212,114,42,.3)" strokeWidth="1" strokeDasharray="3,2" />
+              <text x="48" y="4" fill="rgba(212,114,42,.85)" fontSize="10" fontFamily="'Space Mono',monospace" letterSpacing="1.5">ORIGINS</text>
+              <text x="48" y="16" fill="rgba(212,114,42,.4)" fontSize="7.5" fontFamily="'Space Mono',monospace">EAST TIP · SUNRISE</text>
+            </g>
+            <g transform="translate(148,188)">
+              <circle r="13" fill="rgba(155,95,192,.12)" stroke="rgba(155,95,192,.5)" strokeWidth="1.5" />
+              <circle r="6" fill="rgba(155,95,192,.9)" />
+              <line x1="-13" y1="0" x2="-42" y2="0" stroke="rgba(155,95,192,.3)" strokeWidth="1" strokeDasharray="3,2" />
+              <text x="-48" y="4" textAnchor="end" fill="rgba(155,95,192,.85)" fontSize="10" fontFamily="'Space Mono',monospace" letterSpacing="1.5">REBIRTH</text>
+              <text x="-48" y="16" textAnchor="end" fill="rgba(155,95,192,.4)" fontSize="7.5" fontFamily="'Space Mono',monospace">WEST · SUNSET</text>
+            </g>
+            <g transform="translate(382,318)">
+              <rect x="-14" y="-5" width="28" height="9" fill="none" stroke="rgba(200,168,75,.2)" strokeWidth="1" />
+              <text y="20" textAnchor="middle" fill="rgba(200,168,75,.2)" fontSize="7" fontFamily="'Space Mono',monospace">FERRY DOCK</text>
+            </g>
+            <path d="M162,200 Q270,235 370,248" stroke="rgba(200,168,75,.12)" strokeWidth="1.5" strokeDasharray="5,4" fill="none" />
+            <text x="755" y="26" fill="rgba(200,168,75,.22)" fontSize="8" fontFamily="'Space Mono',monospace">N ↑</text>
+            <text x="382" y="350" textAnchor="middle" fill="rgba(200,168,75,.1)" fontSize="8" fontFamily="'Space Mono',monospace" letterSpacing={2}>PORT ANTONIO ↓</text>
+          </svg>
 
-        {/* Stage legend */}
-        <div style={{ display: 'flex', gap: 32, marginTop: 20, flexWrap: 'wrap' }}>
-          {[
-            { color: GOLD, label: 'Zungu Main', sub: 'South · Full Production' },
-            { color: ORIGINS_C, label: 'Origins', sub: 'East Tip · Sunrise' },
-            { color: REBIRTH_C, label: 'Rebirth', sub: 'West · Sunset' },
-            { color: DIM, label: 'Ferry Dock', sub: '~5 min from Marina' },
-          ].map(({ color, label, sub }) => (
-            <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <div style={{ width: 10, height: 10, borderRadius: '50%', background: color, flexShrink: 0 }} />
-              <div>
-                <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: CREAM, display: 'block' }}>{label}</span>
-                <span style={{ fontFamily: MONO, fontSize: 8, color: MUTED, letterSpacing: '0.1em' }}>{sub}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Stage reference photos */}
-        <div style={{ marginTop: 40 }}>
-          <div style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.45em', color: GOLD, textTransform: 'uppercase' as const, marginBottom: 16 }}>// Stage Reference & Site Photography</div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+          <div style={{ display: 'flex', gap: 24, marginTop: 20, flexWrap: 'wrap', justifyContent: 'center' }}>
             {[
-              { src: '/photos/aerial-island.jpg', label: 'THREE STAGES · ONE ISLAND', sub: 'Full aerial · Three stages visible from above' },
-              { src: '/photos/NAVY%20ISLAND%20WIDE%20.png', label: 'NAVY ISLAND — Full Width · Caribbean', sub: 'Island extent · 64 acres · Port Antonio harbour' },
-              { src: '/photos/NAVY%20ISLAND%20-%20SATELITE%20.png', label: 'SATELLITE VIEW — Navy Island · Canopy', sub: 'Dense forest coverage · Stage placement context' },
-              { src: '/photos/NAVY%20ISLAND%20-%20CLOSE%20UP%20.png', label: 'NAVY ISLAND — Northern landing zone', sub: 'Arrival point · 5 min from Errol Flynn Marina' },
-              { src: '/photos/origins-stage.jpg', label: 'ORIGINS — Bamboo architecture · Cliffside', sub: 'East tip · Sunrise · 500 capacity' },
-              { src: '/photos/stage-beach-aerial.png', label: 'ZUNGU MAIN — Beach stage · Island shore', sub: 'South face · Full production · Faces open water' },
-              { src: '/photos/stage-rebirth-aerial.png', label: 'REBIRTH — Island edge · Water surround', sub: 'West point · Sunset facing · 800 capacity' },
-              { src: '/photos/stage-beach-activities.png', label: 'ISLAND LIFE — The beach between sets', sub: 'Navy Island · Caribbean water · Daytime programme' },
-            ].map(({ src, label, sub }) => (
-              <div key={src} style={{ position: 'relative' }}>
-                <img
-                  src={src}
-                  alt={label}
-                  style={{ width: '100%', display: 'block', filter: 'saturate(0.88) brightness(0.9)' }}
-                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
-                />
-                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '48px 18px 14px', background: 'linear-gradient(transparent, rgba(4,8,10,0.85))', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-                  <span style={{ fontFamily: MONO, fontSize: 9, color: CREAM, letterSpacing: '0.2em', textTransform: 'uppercase' as const }}>{label}</span>
-                  <span style={{ fontFamily: MONO, fontSize: 8, color: MUTED, letterSpacing: '0.12em' }}>{sub}</span>
-                </div>
+              { color: 'rgba(200,168,75,0.9)', label: 'Zungu Main · South' },
+              { color: 'rgba(212,114,42,0.9)', label: 'Origins · East · Sunrise' },
+              { color: 'rgba(155,95,192,0.9)', label: 'Rebirth · West · Sunset' },
+              { color: 'rgba(200,168,75,0.3)', label: 'Ferry Dock', bordered: true },
+            ].map(({ color, label, bordered }) => (
+              <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: MONO, fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase' as const, color: MUTED }}>
+                <div style={{ width: 8, height: 8, borderRadius: '50%', background: color, border: bordered ? `1px solid ${color}` : 'none', flexShrink: 0 }} />
+                {label}
               </div>
             ))}
           </div>
@@ -320,20 +328,13 @@ export default function StagesPage() {
       {/* ══════════════════════════════════════════════════════════════════
           CHAPTER 03 — THREE WORLDS
       ══════════════════════════════════════════════════════════════════ */}
-      <ChapterDivider num="03" title="Three Worlds." goldLine="Zero Overlap." desc="Three stages. Three windows of the day. Three sonic identities. They never compete — they pass the crowd from one to the next, each complete in itself." />
+      <ChapterDivider num="03" title="Three Worlds." goldLine="Zero Overlap." desc="Three stages. Three windows of the day. Three sonic identities. They never compete — they pass the crowd from one to the next, each complete in itself. Stages face open water. Sound directed away from Port Antonio town wherever possible. All staging, capacity, hours, and sound direction remain subject to final site survey, environmental review, marine logistics, safety plan, and production partner assessment." />
 
       <section id="stages" style={{ padding: '60px 8vw', borderBottom: `1px solid ${BORDER}`, backgroundColor: BG }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 3, marginTop: 40 }}>
 
           {/* ZUNGU MAIN */}
           <div style={{ position: 'relative', overflow: 'hidden', borderLeft: `3px solid ${GOLD}`, background: 'linear-gradient(135deg, #080f0b, #040a06)' }}>
-            <div style={{ position: 'relative', height: 420, overflow: 'hidden' }}>
-              <img src="/photos/stage-beach-aerial.png" alt="Zungu Main" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.75) saturate(0.85)', display: 'block' }} />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(8,15,11,0.95) 0%, rgba(8,15,11,0.3) 60%, transparent 100%)' }} />
-              <div style={{ position: 'absolute', bottom: 24, left: 48 }}>
-                <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.6)' }}>Main Stage · South Face · Full Production</span>
-              </div>
-            </div>
             <div style={{ padding: '40px 48px' }}>
               <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, display: 'inline-block', padding: '4px 10px', border: `1px solid rgba(200,168,75,0.3)`, color: GOLD, marginBottom: 16 }}>
                 Main Stage · Full Capacity · 7pm – 6am · All Four Nights
@@ -343,8 +344,8 @@ export default function StagesPage() {
               <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 0.9fr 0.8fr', gap: 40 }}>
                 <div style={{ fontFamily: MONO, fontSize: 14, lineHeight: 1.9, color: MUTED }}>
                   <p>South-facing. Sound travels out to sea, away from Port Antonio. <strong style={{ color: CREAM }}>The stage does not feel built — it feels grown.</strong> Tropical forest frames every sightline. Lush canopy overhead. The Caribbean visible beyond the crowd.</p>
-                  <p style={{ marginTop: 14 }}>Full production at Tomorrowland scale for the space — LED walls, lighting rig, laser, water feature, pyro. But the production serves the environment. <strong style={{ color: CREAM }}>The island is the set design. Technology amplifies it.</strong></p>
-                  <p style={{ marginTop: 14 }}>One concept per night. One headliner per night. When Zungu Main is active, nothing else competes.</p>
+                  <p style={{ marginTop: 14 }}>International festival-grade production, scaled to the island — LED walls, lighting rig, laser, water feature, pyro. The production serves the environment. <strong style={{ color: CREAM }}>The island is the set design. Technology amplifies it.</strong></p>
+                  <p style={{ marginTop: 14 }}>Headline programming concentrated at Zungu Main. No competing primary stage during headline windows. When Zungu Main is active, nothing else competes.</p>
                 </div>
                 <div>
                   {[
@@ -362,7 +363,7 @@ export default function StagesPage() {
                 </div>
                 <div>
                   <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 12 }}>Identity</span>
-                  {['Tomorrowland principle', 'One dominant stage', 'Total commitment', 'Everything else secondary', 'Tropical production design', 'Four distinct nightly concepts'].map((v) => (
+                  {['One dominant stage', 'Total commitment', 'Everything else secondary', 'Tropical production design', 'Stage faces open water', 'Four distinct nightly concepts'].map((v) => (
                     <span key={v} style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase' as const, padding: '5px 10px', border: `1px solid`, borderColor: v.length < 25 ? 'rgba(200,168,75,0.3)' : 'rgba(242,235,217,0.05)', color: v.length < 25 ? GOLD : 'rgba(242,235,217,0.22)', display: 'block', marginBottom: 6, width: 'fit-content' }}>{v}</span>
                   ))}
                 </div>
@@ -379,13 +380,6 @@ export default function StagesPage() {
 
           {/* ORIGINS */}
           <div style={{ position: 'relative', overflow: 'hidden', borderLeft: `3px solid ${ORIGINS_C}`, background: 'linear-gradient(135deg, #120800, #0a0500)' }}>
-            <div style={{ position: 'relative', height: 420, overflow: 'hidden' }}>
-              <img src="/photos/origins-stage.jpg" alt="Origins Stage" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', filter: 'brightness(0.75) saturate(0.85)', display: 'block' }} />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(18,8,0,0.95) 0%, rgba(18,8,0,0.3) 60%, transparent 100%)' }} />
-              <div style={{ position: 'absolute', bottom: 24, left: 48 }}>
-                <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: 'rgba(212,114,42,0.6)' }}>Sunrise Stage · East Tip · Bamboo Architecture</span>
-              </div>
-            </div>
             <div style={{ padding: '40px 48px' }}>
               <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, display: 'inline-block', padding: '4px 10px', border: `1px solid rgba(212,114,42,0.3)`, color: ORIGINS_C, marginBottom: 16 }}>
                 Sunrise Stage · 500 Cap · 6am – 10am · Each Morning
@@ -430,13 +424,6 @@ export default function StagesPage() {
 
           {/* REBIRTH */}
           <div style={{ position: 'relative', overflow: 'hidden', borderLeft: `3px solid ${REBIRTH_C}`, background: 'linear-gradient(135deg, #0e0618, #080410)' }}>
-            <div style={{ position: 'relative', height: 420, overflow: 'hidden' }}>
-              <img src="/photos/stage-rebirth-aerial.png" alt="Rebirth Stage" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.75) saturate(0.85)', display: 'block' }} />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(14,6,24,0.95) 0%, rgba(14,6,24,0.3) 60%, transparent 100%)' }} />
-              <div style={{ position: 'absolute', bottom: 24, left: 48 }}>
-                <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: 'rgba(155,95,192,0.6)' }}>Sunset Stage · West Point · Open Water</span>
-              </div>
-            </div>
             <div style={{ padding: '40px 48px' }}>
               <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, display: 'inline-block', padding: '4px 10px', border: `1px solid rgba(155,95,192,0.3)`, color: REBIRTH_C, marginBottom: 16 }}>
                 Sunset Stage · 800 Cap · 4pm – 8pm · Each Evening
@@ -477,6 +464,18 @@ export default function StagesPage() {
                 ))}
               </div>
             </div>
+            {/* Rebirth stage aerial */}
+            <div style={{ position: 'relative', overflow: 'hidden' }}>
+              <img
+                src="/photos/stage-rebirth-aerial.png"
+                alt="Rebirth Stage — Aerial Concept"
+                loading="lazy"
+                style={{ width: '100%', height: 280, objectFit: 'cover', display: 'block', filter: 'brightness(0.75) saturate(0.9)' }}
+              />
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '16px 16px 10px', background: 'linear-gradient(transparent, rgba(14,6,24,0.9))', fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: REBIRTH_C }}>
+                Rebirth Stage · West End · Sunset · 800 Cap
+              </div>
+            </div>
           </div>
 
         </div>
@@ -492,12 +491,12 @@ export default function StagesPage() {
         {[
           {
             num: '01', bg: '#060600', accent: ORIGINS_C, tagBorder: 'rgba(212,114,42,0.3)',
-            date: 'Saturday · 13 June 2027', tag: 'The Root',
+            date: 'Target Window: June 17–23, 2027', tag: 'The Root',
             title: 'THE ROOT',
-            sub: "Jamaica's percussion DNA to global house. Where it begins. The first night anchors the argument.",
+            sub: "Booking direction: tribal house, deep percussion, Jamaican-rooted electronic influence. Night 1 anchors the argument.",
             narr: [
-              '<strong>Night 1 belongs to the argument itself.</strong> Tribal house. Deep, hypnotic, rooted in percussion lineage that Jamaica planted in global music without ever getting credited for it. Bontan headlines. The crowd arrives not yet knowing what this festival is. Night 1 tells them.',
-              'Origins opens at 6am with a local Portland Parish selector. The island speaks first. Rebirth opens at 4pm. The crowd walks the forest path at 7:45pm. Bontan plays 11pm–2am minimum.',
+              '<strong>Night 1 belongs to the argument itself.</strong> Tribal house. Deep, hypnotic, rooted in percussion lineage that Jamaica planted in global music. The crowd arrives not yet knowing what this festival is. Night 1 tells them.',
+              'Origins opens at 6am with a local Portland Parish selector. The island speaks first. Rebirth opens at 4pm. The crowd walks the forest path at 7:45pm. Headline booking direction: tribal house, deep hypnotic, peak at 11pm minimum.',
               'Production concept: natural materials, organic forms. The stage technology is present but deferential. The forest is the dominant visual.',
             ],
             visual: [
@@ -511,20 +510,20 @@ export default function StagesPage() {
               { t: '4:00pm', n: 'Rebirth Opens', d: 'Warm house. The golden hour begins.', stage: 'Rebirth', sc: 'r', hl: false, handoff: false },
               { t: '7:45pm', n: '→ The Handoff', d: 'Forest path lit. 8–12 minutes. The ritual begins.', stage: '↓', sc: '', hl: false, handoff: true },
               { t: '8:00pm', n: 'Zungu Main Opens', d: 'Portland Parish selector. Opening set.', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
-              { t: '9:30pm', n: 'Support Act', d: 'Tribal house / deep percussion', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
-              { t: '11:00pm', n: 'BONTAN', d: 'Tribal house, deep hypnotic · headline · Night 1 closer', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
+              { t: '9:30pm', n: 'Support Act', d: 'Booking direction: tribal house / deep percussion', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
+              { t: '11:00pm', n: 'HEADLINE (Booking Direction)', d: 'Tribal house, deep hypnotic — bookings in development', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
               { t: '2:00am', n: 'After set', d: 'Extended wind-down.', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
               { t: '3:00am', n: 'Zungu Main Closes', d: 'Night 1 complete.', stage: '—', sc: '', hl: false, handoff: false },
             ],
           },
           {
             num: '02', bg: '#040810', accent: N2_C, tagBorder: 'rgba(74,143,189,0.3)',
-            date: 'Sunday · 14 June 2027', tag: 'The Spread',
+            date: 'Target Window: June 17–23, 2027', tag: 'The Spread',
             title: 'THE SPREAD',
-            sub: 'Global south mutation. Brazilian Baile, Afrotech, Latin house. The argument leaves the island and comes back changed.',
+            sub: 'Booking direction: Afro-tech, Latin house, global south electronic, diaspora mutations. Night 2 follows the music outward.',
             narr: [
-              '<strong>Night 2 follows the music outward.</strong> Jamaica exported its DNA to Brazil, to Lagos, to London. Night 2 plays back what those cities did with it. Afrotech, Baile Funk influences, Latin house, global south mutation.',
-              'Origins plays a harder jungle set morning. Rebirth leans into Afrotech at sunset. Night 2 headliner TBC — Vintage Culture, Themba, or a curated concept night.',
+              '<strong>Night 2 follows the music outward.</strong> Jamaica exported its DNA to Brazil, to Lagos, to London. Night 2 plays back what those cities did with it. Afrotech, Latin house, global south mutation.',
+              'Origins plays a harder jungle set morning. Rebirth leans into Afrotech at sunset. Night 2 headline booking direction: Afrotech, global south electronic, diaspora mutations.',
             ],
             visual: [
               { a: 'Lighting', v: 'Electric blue and deep ocean tones. More production than Night 1.' },
@@ -536,44 +535,44 @@ export default function StagesPage() {
               { t: '6:00am', n: 'Origins: Jungle', d: 'Harder jungle set. The morning is deeper now.', stage: 'Origins', sc: 'o', hl: false, handoff: false },
               { t: '4:00pm', n: 'Rebirth: Afrotech', d: 'Global south energy at golden hour.', stage: 'Rebirth', sc: 'r', hl: false, handoff: false },
               { t: '7:45pm', n: '→ The Handoff', d: 'Forest path. The ritual, second night.', stage: '↓', sc: '', hl: false, handoff: true },
-              { t: '8:00pm', n: 'Zungu Main Opens', d: 'Support: Afrotech / Baile influence', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
-              { t: '11:00pm', n: 'NIGHT 2 HEADLINE', d: 'TBC — Vintage Culture / Themba · Global south mutation', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
+              { t: '8:00pm', n: 'Zungu Main Opens', d: 'Support: Afrotech / global south direction', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
+              { t: '11:00pm', n: 'HEADLINE (Booking Direction)', d: 'Afrotech / global south mutation — bookings in development', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
               { t: '4:00am', n: 'Zungu Main Closes', d: 'Night 2 complete.', stage: '—', sc: '', hl: false, handoff: false },
             ],
           },
           {
             num: '03', bg: '#030e06', accent: N3_C, tagBorder: 'rgba(58,175,122,0.3)',
-            date: 'Monday · 15 June 2027', tag: 'The Return',
+            date: 'Target Window: June 17–23, 2027', tag: 'The Return',
             title: 'THE RETURN',
-            sub: 'Afro-house. Africa back to the Caribbean. The DNA completes its journey home. Black Coffee closes. Peak night.',
+            sub: 'Booking direction: Afro-house, South African house, peak headline programming. Peak night.',
             narr: [
-              '<strong>Night 3 is the peak. The argument resolves.</strong> African house — from South Africa specifically — is the clearest example of Jamaica\'s exported DNA mutating, evolving, and returning home. Black Coffee is the closing statement of that argument, delivered at full production on the island that started it.',
-              'Shimza opens for Black Coffee. The crowd has been through two nights. They know the handoff, the forest path, the ritual. Night 3 converts all of that accumulated experience into something close to catharsis.',
-              'Full production. Full 5am close. The longest night of the festival.',
+              '<strong>Night 3 is the peak. The argument resolves.</strong> Afro-house — the clearest example of Jamaica\'s exported DNA mutating, evolving, and returning home. The closing statement of that argument, delivered at full production on the island that started it.',
+              'Headline booking direction: Afro-house, South African house. Full production. Full 5am close. The longest night of the festival.',
+              'All artist bookings are in development. Names listed elsewhere on this site reflect booking direction only.',
             ],
             visual: [
               { a: 'Lighting', v: 'Deep green and gold. The island reclaims the production.' },
               { a: 'Stage dress', v: 'Tropical maximalism. The most elaborate of the four nights.' },
-              { a: 'LED content', v: 'African continental imagery, migratory patterns, return arc.' },
-              { a: 'Energy arc', v: 'Slowest build to the biggest peak. Black Coffee runs to 5am.' },
+              { a: 'LED content', v: 'Continental imagery, migratory patterns, return arc.' },
+              { a: 'Energy arc', v: 'Slowest build to the biggest peak. Closes at 5am.' },
             ],
             schedule: [
-              { t: '4:00pm', n: 'Rebirth: Afro-house', d: 'Shimza warm-up on Rebirth. Prime the crowd.', stage: 'Rebirth', sc: 'r', hl: false, handoff: false },
+              { t: '4:00pm', n: 'Rebirth: Afro-house', d: 'Booking direction: Afro-house at golden hour.', stage: 'Rebirth', sc: 'r', hl: false, handoff: false },
               { t: '7:45pm', n: '→ The Handoff', d: 'Forest path. The crowd walks with intention.', stage: '↓', sc: '', hl: false, handoff: true },
-              { t: '8:00pm', n: 'Zungu Main Opens', d: 'Support: Afro-house build', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
-              { t: '10:00pm', n: 'SHIMZA', d: 'Afro-house · opens for Black Coffee · the setup', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
-              { t: '12:00am', n: 'BLACK COFFEE', d: 'Afro-house headline · peak night · the argument closes · to 5am', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
+              { t: '8:00pm', n: 'Zungu Main Opens', d: 'Support: Afro-house direction', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
+              { t: '10:00pm', n: 'SUPPORT HEADLINE (Booking Direction)', d: 'Afro-house · setup for peak close', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
+              { t: '12:00am', n: 'PEAK HEADLINE (Booking Direction)', d: 'Afro-house peak — bookings in development · to 5am', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
               { t: '5:00am', n: 'Zungu Main Closes', d: 'The peak has passed. The island is still.', stage: '—', sc: '', hl: false, handoff: false },
             ],
           },
           {
             num: '04', bg: '#060410', accent: REBIRTH_C, tagBorder: 'rgba(155,95,192,0.3)',
-            date: 'Tuesday · 16 June 2027', tag: 'The Origin',
+            date: 'Target Window: June 17–23, 2027', tag: 'The Origin',
             title: 'THE ORIGIN',
-            sub: 'Jungle, roots, dub — pure Jamaican. No international headline. The island closes how it opened: in its own voice.',
+            sub: 'Booking direction: Jamaican electronic, jungle, drum and bass, dub-influenced club music, local selectors. The island closes in its own voice.',
             narr: [
-              '<strong>Night 4 has no international headline.</strong> By design. After three nights of following the DNA across the globe and watching it return, the final night returns to source. Pure Jamaican electronic: Equiknoxx, Kode9 b2b Shy FX, local Portland Parish selectors.',
-              'This is the night that makes RA write the feature. The argument stated plainly, without intermediary, on the island that earned the right to state it. Night 4 is not the biggest night. It is the most important one.',
+              '<strong>Night 4 returns to source.</strong> Pure Jamaican electronic: jungle, drum and bass, dub-influenced club music, local Portland Parish selectors. Booking direction includes Jamaican experimental electronic and UK-Jamaican diaspora acts.',
+              'This is the night that makes the cultural argument plainly, without intermediary, on the island that earned the right to state it. Night 4 is not the biggest night. It is the most important one.',
             ],
             visual: [
               { a: 'Lighting', v: 'Deep purple and amber. Stripped back. Production steps aside.' },
@@ -585,8 +584,8 @@ export default function StagesPage() {
               { t: '4:00pm', n: 'Rebirth: Farewell', d: 'Final Rebirth sunset. The last golden hour.', stage: 'Rebirth', sc: 'r', hl: false, handoff: false },
               { t: '7:45pm', n: '→ Final Handoff', d: 'Last walk through the forest. They go slowly.', stage: '↓', sc: '', hl: false, handoff: true },
               { t: '8:00pm', n: 'Portland Parish Selector', d: 'Local voice opens the final night.', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
-              { t: '10:00pm', n: 'EQUIKNOXX', d: 'Jamaican experimental electronic · the lineage argument in practice', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
-              { t: '12:00am', n: 'KODE9 b2b SHY FX', d: 'UK-Jamaican closing · drum & bass, jungle, grime · diaspora brought home', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
+              { t: '10:00pm', n: 'JAMAICAN ELECTRONIC (Booking Direction)', d: 'Booking direction: Jamaican experimental electronic — bookings in development', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
+              { t: '12:00am', n: 'UK-JAMAICAN CLOSING (Booking Direction)', d: 'Booking direction: jungle, drum and bass, dub — diaspora brought home', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
               { t: '2:00am', n: 'Zungu Main Closes', d: 'The mythology is earned.', stage: '—', sc: '', hl: false, handoff: false },
               { t: '6:00am', n: 'Origins: Final Sunrise', d: 'Local selector. Dawn. The island closes how it opened.', stage: 'Origins', sc: 'o', hl: false, handoff: false },
             ],
@@ -737,7 +736,7 @@ export default function StagesPage() {
         <div style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.2em', color: 'rgba(242,235,217,0.12)', textAlign: 'right', lineHeight: 2 }}>
           Stage Architecture · Internal Working Document<br />
           Navy Island · Port Antonio · Jamaica<br />
-          June 13–16, 2027 · 18+ Adults Only · 5,000 Tickets
+          June 17–23, 2027 · 18+ Adults Only · 5,000 Tickets
         </div>
       </footer>
 
