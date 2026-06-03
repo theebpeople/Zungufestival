@@ -10,7 +10,7 @@ const muted = '#6B6355';
 
 const links = [
   { label: 'Investor Deck', sub: 'Full festival proposal & financials', href: '/deck' },
-  { label: 'Stage Architecture', sub: '4 stages · Navy Island layout · sound specs', href: '/stages', accent: rust },
+  { label: 'Stage Architecture', sub: 'Three primary stages + The Pier · Navy Island layout · sound specs', href: '/stages', accent: rust },
   { label: 'Activity Programme', sub: 'Forest · water · wellness · cultural tours', href: '/activities' },
   { label: 'Brand Strategy', sub: 'Visual identity · positioning · market analysis', href: '/brand' },
 ];

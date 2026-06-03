@@ -40,17 +40,11 @@ export default function NotAuthorizedPage() {
       >
         Not<br />Authorized
       </h1>
-      <p style={{ fontSize: 11, color: muted, maxWidth: 360, lineHeight: 1.8, marginBottom: '2rem' }}>
-        Your email address is not on the access list. If you received an invite, ensure you are signing in with the exact email the link was generated for.
-      </p>
-      <p style={{ fontSize: 10, color: muted, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '2rem' }}>
-        Contact{' '}
-        <a href="mailto:partnership@zungufestival.com" style={{ color: gold, textDecoration: 'none' }}>
-          partnership@zungufestival.com
-        </a>
+      <p style={{ fontSize: 11, color: muted, maxWidth: 400, lineHeight: 1.8, marginBottom: '2rem' }}>
+        Your email address is not authorized for this briefing portal. If you received an invite, sign in with the exact email address assigned to your access link. For access issues, contact partnership@zungufestival.com
       </p>
       <a
-        href="/sign-out"
+        href="/sign-in"
         style={{
           fontFamily: "'Space Mono', monospace",
           fontSize: 12,
@@ -63,7 +57,7 @@ export default function NotAuthorizedPage() {
           border: '1px solid rgba(107,99,85,0.3)',
         }}
       >
-        Sign Out
+        Return to Sign In
       </a>
     </div>
   );

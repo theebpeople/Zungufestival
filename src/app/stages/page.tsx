@@ -246,9 +246,9 @@ export default function StagesPage() {
         {/* Quote block */}
         <div style={{ margin: '40px 0', padding: '24px 28px', borderLeft: `3px solid ${GOLD}`, background: 'rgba(200,168,75,0.03)' }}>
           <p style={{ fontFamily: DISPLAY, fontSize: 'clamp(0.9rem, 2vw, 1.3rem)', fontWeight: 300, color: CREAM, lineHeight: 1.5 }}>
-            &ldquo;Tomorrowland built a fantasy world. <span style={{ color: GOLD }}>Zungu doesn&rsquo;t need to build anything.</span> The world is already there.&rdquo;
+            &ldquo;<span style={{ color: GOLD }}>The site is the moat.</span> Most festivals build environments. Zungu begins with one.&rdquo;
           </p>
-          <p style={{ marginTop: 10, fontFamily: MONO, fontSize: 8, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.55)' }}>Location Strategy</p>
+          <p style={{ marginTop: 10, fontFamily: MONO, fontSize: 8, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.55)' }}>Site Strategy</p>
         </div>
       </section>
 
@@ -328,7 +328,7 @@ export default function StagesPage() {
       {/* ══════════════════════════════════════════════════════════════════
           CHAPTER 03 — THREE WORLDS
       ══════════════════════════════════════════════════════════════════ */}
-      <ChapterDivider num="03" title="Three Worlds." goldLine="Zero Overlap." desc="Three stages. Three windows of the day. Three sonic identities. They never compete — they pass the crowd from one to the next, each complete in itself." />
+      <ChapterDivider num="03" title="Three Worlds." goldLine="Zero Overlap." desc="Three stages. Three windows of the day. Three sonic identities. They never compete — they pass the crowd from one to the next, each complete in itself. Stages face open water. Sound directed away from Port Antonio town wherever possible. All staging, capacity, hours, and sound direction remain subject to final site survey, environmental review, marine logistics, safety plan, and production partner assessment." />
 
       <section id="stages" style={{ padding: '60px 8vw', borderBottom: `1px solid ${BORDER}`, backgroundColor: BG }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 3, marginTop: 40 }}>
@@ -344,8 +344,8 @@ export default function StagesPage() {
               <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 0.9fr 0.8fr', gap: 40 }}>
                 <div style={{ fontFamily: MONO, fontSize: 14, lineHeight: 1.9, color: MUTED }}>
                   <p>South-facing. Sound travels out to sea, away from Port Antonio. <strong style={{ color: CREAM }}>The stage does not feel built — it feels grown.</strong> Tropical forest frames every sightline. Lush canopy overhead. The Caribbean visible beyond the crowd.</p>
-                  <p style={{ marginTop: 14 }}>Full production at Tomorrowland scale for the space — LED walls, lighting rig, laser, water feature, pyro. But the production serves the environment. <strong style={{ color: CREAM }}>The island is the set design. Technology amplifies it.</strong></p>
-                  <p style={{ marginTop: 14 }}>One concept per night. One headliner per night. When Zungu Main is active, nothing else competes.</p>
+                  <p style={{ marginTop: 14 }}>International festival-grade production, scaled to the island — LED walls, lighting rig, laser, water feature, pyro. The production serves the environment. <strong style={{ color: CREAM }}>The island is the set design. Technology amplifies it.</strong></p>
+                  <p style={{ marginTop: 14 }}>Headline programming concentrated at Zungu Main. No competing primary stage during headline windows. When Zungu Main is active, nothing else competes.</p>
                 </div>
                 <div>
                   {[
@@ -363,7 +363,7 @@ export default function StagesPage() {
                 </div>
                 <div>
                   <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 12 }}>Identity</span>
-                  {['Tomorrowland principle', 'One dominant stage', 'Total commitment', 'Everything else secondary', 'Tropical production design', 'Four distinct nightly concepts'].map((v) => (
+                  {['One dominant stage', 'Total commitment', 'Everything else secondary', 'Tropical production design', 'Stage faces open water', 'Four distinct nightly concepts'].map((v) => (
                     <span key={v} style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase' as const, padding: '5px 10px', border: `1px solid`, borderColor: v.length < 25 ? 'rgba(200,168,75,0.3)' : 'rgba(242,235,217,0.05)', color: v.length < 25 ? GOLD : 'rgba(242,235,217,0.22)', display: 'block', marginBottom: 6, width: 'fit-content' }}>{v}</span>
                   ))}
                 </div>
@@ -491,12 +491,12 @@ export default function StagesPage() {
         {[
           {
             num: '01', bg: '#060600', accent: ORIGINS_C, tagBorder: 'rgba(212,114,42,0.3)',
-            date: 'Saturday · 19 June 2027', tag: 'The Root',
+            date: 'Target Window: June 17–23, 2027', tag: 'The Root',
             title: 'THE ROOT',
-            sub: "Jamaica's percussion DNA to global house. Where it begins. The first night anchors the argument.",
+            sub: "Booking direction: tribal house, deep percussion, Jamaican-rooted electronic influence. Night 1 anchors the argument.",
             narr: [
-              '<strong>Night 1 belongs to the argument itself.</strong> Tribal house. Deep, hypnotic, rooted in percussion lineage that Jamaica planted in global music without ever getting credited for it. Bontan headlines. The crowd arrives not yet knowing what this festival is. Night 1 tells them.',
-              'Origins opens at 6am with a local Portland Parish selector. The island speaks first. Rebirth opens at 4pm. The crowd walks the forest path at 7:45pm. Bontan plays 11pm–2am minimum.',
+              '<strong>Night 1 belongs to the argument itself.</strong> Tribal house. Deep, hypnotic, rooted in percussion lineage that Jamaica planted in global music. The crowd arrives not yet knowing what this festival is. Night 1 tells them.',
+              'Origins opens at 6am with a local Portland Parish selector. The island speaks first. Rebirth opens at 4pm. The crowd walks the forest path at 7:45pm. Headline booking direction: tribal house, deep hypnotic, peak at 11pm minimum.',
               'Production concept: natural materials, organic forms. The stage technology is present but deferential. The forest is the dominant visual.',
             ],
             visual: [
@@ -510,20 +510,20 @@ export default function StagesPage() {
               { t: '4:00pm', n: 'Rebirth Opens', d: 'Warm house. The golden hour begins.', stage: 'Rebirth', sc: 'r', hl: false, handoff: false },
               { t: '7:45pm', n: '→ The Handoff', d: 'Forest path lit. 8–12 minutes. The ritual begins.', stage: '↓', sc: '', hl: false, handoff: true },
               { t: '8:00pm', n: 'Zungu Main Opens', d: 'Portland Parish selector. Opening set.', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
-              { t: '9:30pm', n: 'Support Act', d: 'Tribal house / deep percussion', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
-              { t: '11:00pm', n: 'BONTAN', d: 'Tribal house, deep hypnotic · headline · Night 1 closer', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
+              { t: '9:30pm', n: 'Support Act', d: 'Booking direction: tribal house / deep percussion', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
+              { t: '11:00pm', n: 'HEADLINE (Booking Direction)', d: 'Tribal house, deep hypnotic — bookings in development', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
               { t: '2:00am', n: 'After set', d: 'Extended wind-down.', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
               { t: '3:00am', n: 'Zungu Main Closes', d: 'Night 1 complete.', stage: '—', sc: '', hl: false, handoff: false },
             ],
           },
           {
             num: '02', bg: '#040810', accent: N2_C, tagBorder: 'rgba(74,143,189,0.3)',
-            date: 'Sunday · 20 June 2027', tag: 'The Spread',
+            date: 'Target Window: June 17–23, 2027', tag: 'The Spread',
             title: 'THE SPREAD',
-            sub: 'Global south mutation. Brazilian Baile, Afrotech, Latin house. The argument leaves the island and comes back changed.',
+            sub: 'Booking direction: Afro-tech, Latin house, global south electronic, diaspora mutations. Night 2 follows the music outward.',
             narr: [
-              '<strong>Night 2 follows the music outward.</strong> Jamaica exported its DNA to Brazil, to Lagos, to London. Night 2 plays back what those cities did with it. Afrotech, Baile Funk influences, Latin house, global south mutation.',
-              'Origins plays a harder jungle set morning. Rebirth leans into Afrotech at sunset. Night 2 headliner TBC — Vintage Culture, Themba, or a curated concept night.',
+              '<strong>Night 2 follows the music outward.</strong> Jamaica exported its DNA to Brazil, to Lagos, to London. Night 2 plays back what those cities did with it. Afrotech, Latin house, global south mutation.',
+              'Origins plays a harder jungle set morning. Rebirth leans into Afrotech at sunset. Night 2 headline booking direction: Afrotech, global south electronic, diaspora mutations.',
             ],
             visual: [
               { a: 'Lighting', v: 'Electric blue and deep ocean tones. More production than Night 1.' },
@@ -535,44 +535,44 @@ export default function StagesPage() {
               { t: '6:00am', n: 'Origins: Jungle', d: 'Harder jungle set. The morning is deeper now.', stage: 'Origins', sc: 'o', hl: false, handoff: false },
               { t: '4:00pm', n: 'Rebirth: Afrotech', d: 'Global south energy at golden hour.', stage: 'Rebirth', sc: 'r', hl: false, handoff: false },
               { t: '7:45pm', n: '→ The Handoff', d: 'Forest path. The ritual, second night.', stage: '↓', sc: '', hl: false, handoff: true },
-              { t: '8:00pm', n: 'Zungu Main Opens', d: 'Support: Afrotech / Baile influence', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
-              { t: '11:00pm', n: 'NIGHT 2 HEADLINE', d: 'TBC — Vintage Culture / Themba · Global south mutation', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
+              { t: '8:00pm', n: 'Zungu Main Opens', d: 'Support: Afrotech / global south direction', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
+              { t: '11:00pm', n: 'HEADLINE (Booking Direction)', d: 'Afrotech / global south mutation — bookings in development', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
               { t: '4:00am', n: 'Zungu Main Closes', d: 'Night 2 complete.', stage: '—', sc: '', hl: false, handoff: false },
             ],
           },
           {
             num: '03', bg: '#030e06', accent: N3_C, tagBorder: 'rgba(58,175,122,0.3)',
-            date: 'Monday · 21 June 2027', tag: 'The Return',
+            date: 'Target Window: June 17–23, 2027', tag: 'The Return',
             title: 'THE RETURN',
-            sub: 'Afro-house. Africa back to the Caribbean. The DNA completes its journey home. Black Coffee closes. Peak night.',
+            sub: 'Booking direction: Afro-house, South African house, peak headline programming. Peak night.',
             narr: [
-              '<strong>Night 3 is the peak. The argument resolves.</strong> African house — from South Africa specifically — is the clearest example of Jamaica\'s exported DNA mutating, evolving, and returning home. Black Coffee is the closing statement of that argument, delivered at full production on the island that started it.',
-              'Shimza opens for Black Coffee. The crowd has been through two nights. They know the handoff, the forest path, the ritual. Night 3 converts all of that accumulated experience into something close to catharsis.',
-              'Full production. Full 5am close. The longest night of the festival.',
+              '<strong>Night 3 is the peak. The argument resolves.</strong> Afro-house — the clearest example of Jamaica\'s exported DNA mutating, evolving, and returning home. The closing statement of that argument, delivered at full production on the island that started it.',
+              'Headline booking direction: Afro-house, South African house. Full production. Full 5am close. The longest night of the festival.',
+              'All artist bookings are in development. Names listed elsewhere on this site reflect booking direction only.',
             ],
             visual: [
               { a: 'Lighting', v: 'Deep green and gold. The island reclaims the production.' },
               { a: 'Stage dress', v: 'Tropical maximalism. The most elaborate of the four nights.' },
-              { a: 'LED content', v: 'African continental imagery, migratory patterns, return arc.' },
-              { a: 'Energy arc', v: 'Slowest build to the biggest peak. Black Coffee runs to 5am.' },
+              { a: 'LED content', v: 'Continental imagery, migratory patterns, return arc.' },
+              { a: 'Energy arc', v: 'Slowest build to the biggest peak. Closes at 5am.' },
             ],
             schedule: [
-              { t: '4:00pm', n: 'Rebirth: Afro-house', d: 'Shimza warm-up on Rebirth. Prime the crowd.', stage: 'Rebirth', sc: 'r', hl: false, handoff: false },
+              { t: '4:00pm', n: 'Rebirth: Afro-house', d: 'Booking direction: Afro-house at golden hour.', stage: 'Rebirth', sc: 'r', hl: false, handoff: false },
               { t: '7:45pm', n: '→ The Handoff', d: 'Forest path. The crowd walks with intention.', stage: '↓', sc: '', hl: false, handoff: true },
-              { t: '8:00pm', n: 'Zungu Main Opens', d: 'Support: Afro-house build', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
-              { t: '10:00pm', n: 'SHIMZA', d: 'Afro-house · opens for Black Coffee · the setup', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
-              { t: '12:00am', n: 'BLACK COFFEE', d: 'Afro-house headline · peak night · the argument closes · to 5am', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
+              { t: '8:00pm', n: 'Zungu Main Opens', d: 'Support: Afro-house direction', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
+              { t: '10:00pm', n: 'SUPPORT HEADLINE (Booking Direction)', d: 'Afro-house · setup for peak close', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
+              { t: '12:00am', n: 'PEAK HEADLINE (Booking Direction)', d: 'Afro-house peak — bookings in development · to 5am', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
               { t: '5:00am', n: 'Zungu Main Closes', d: 'The peak has passed. The island is still.', stage: '—', sc: '', hl: false, handoff: false },
             ],
           },
           {
             num: '04', bg: '#060410', accent: REBIRTH_C, tagBorder: 'rgba(155,95,192,0.3)',
-            date: 'Tuesday · 22 June 2027', tag: 'The Origin',
+            date: 'Target Window: June 17–23, 2027', tag: 'The Origin',
             title: 'THE ORIGIN',
-            sub: 'Jungle, roots, dub — pure Jamaican. No international headline. The island closes how it opened: in its own voice.',
+            sub: 'Booking direction: Jamaican electronic, jungle, drum and bass, dub-influenced club music, local selectors. The island closes in its own voice.',
             narr: [
-              '<strong>Night 4 has no international headline.</strong> By design. After three nights of following the DNA across the globe and watching it return, the final night returns to source. Pure Jamaican electronic: Equiknoxx, Kode9 b2b Shy FX, local Portland Parish selectors.',
-              'This is the night that makes RA write the feature. The argument stated plainly, without intermediary, on the island that earned the right to state it. Night 4 is not the biggest night. It is the most important one.',
+              '<strong>Night 4 returns to source.</strong> Pure Jamaican electronic: jungle, drum and bass, dub-influenced club music, local Portland Parish selectors. Booking direction includes Jamaican experimental electronic and UK-Jamaican diaspora acts.',
+              'This is the night that makes the cultural argument plainly, without intermediary, on the island that earned the right to state it. Night 4 is not the biggest night. It is the most important one.',
             ],
             visual: [
               { a: 'Lighting', v: 'Deep purple and amber. Stripped back. Production steps aside.' },
@@ -584,8 +584,8 @@ export default function StagesPage() {
               { t: '4:00pm', n: 'Rebirth: Farewell', d: 'Final Rebirth sunset. The last golden hour.', stage: 'Rebirth', sc: 'r', hl: false, handoff: false },
               { t: '7:45pm', n: '→ Final Handoff', d: 'Last walk through the forest. They go slowly.', stage: '↓', sc: '', hl: false, handoff: true },
               { t: '8:00pm', n: 'Portland Parish Selector', d: 'Local voice opens the final night.', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
-              { t: '10:00pm', n: 'EQUIKNOXX', d: 'Jamaican experimental electronic · the lineage argument in practice', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
-              { t: '12:00am', n: 'KODE9 b2b SHY FX', d: 'UK-Jamaican closing · drum & bass, jungle, grime · diaspora brought home', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
+              { t: '10:00pm', n: 'JAMAICAN ELECTRONIC (Booking Direction)', d: 'Booking direction: Jamaican experimental electronic — bookings in development', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
+              { t: '12:00am', n: 'UK-JAMAICAN CLOSING (Booking Direction)', d: 'Booking direction: jungle, drum and bass, dub — diaspora brought home', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
               { t: '2:00am', n: 'Zungu Main Closes', d: 'The mythology is earned.', stage: '—', sc: '', hl: false, handoff: false },
               { t: '6:00am', n: 'Origins: Final Sunrise', d: 'Local selector. Dawn. The island closes how it opened.', stage: 'Origins', sc: 'o', hl: false, handoff: false },
             ],
