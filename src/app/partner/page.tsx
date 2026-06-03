@@ -4,7 +4,7 @@ import { useClerk, useUser } from '@clerk/nextjs';
 
 const gold = '#C8A84B';
 const rust = '#C45A2A';
-const black = '#060808';
+const black = '#04080A';
 const white = '#F7F3EC';
 const muted = '#6B6355';
 
@@ -49,7 +49,7 @@ export default function PartnerPage() {
       </nav>
 
       <main style={{ maxWidth: 800, margin: '0 auto', padding: '4rem 2rem' }}>
-        <p style={{ fontSize: 12, color: gold, letterSpacing: '0.35em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '1rem' }}>
+        <p style={{ fontSize: 15, color: gold, letterSpacing: '0.35em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '1rem' }}>
           // PARTNER ACCESS
         </p>
         <h1 style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 'clamp(2rem, 6vw, 4rem)', fontWeight: 900, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: 1, marginBottom: '3rem' }}>

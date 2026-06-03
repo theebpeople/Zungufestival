@@ -10,11 +10,11 @@ const StageMap = dynamic(() => import('./maps/StageMap'), { ssr: false });
 
 // ── Design tokens ─────────────────────────────────────────────────────────────
 const bg = '#060808';
-const green = '#0D1F14';
+const green = '#1A3A2A';
 const gold = '#C8A84B';
-const teal = '#4AAFA0';
+const teal = '#1E6B5C';
 const cream = '#F2EBD9';
-const muted = 'rgba(242,235,217,0.45)';
+const muted = 'rgba(107,99,85,0.92)';
 const dim = 'rgba(242,235,217,0.18)';
 const rust = '#C45A2A';
 
@@ -22,7 +22,7 @@ const fontDisplay = "'Unbounded', sans-serif";
 const fontMono = "'Space Mono', monospace";
 
 // ── Section IDs for dot-nav ───────────────────────────────────────────────────
-const SECTIONS = ['proposition', 'island', 'port-antonio', 'why', 'experience', 'artists', 'model', 'numbers', 'roadmap', 'cta'] as const;
+const SECTIONS = ['brand', 'island', 'why', 'artists', 'model', 'numbers', 'roadmap', 'cta'] as const;
 type SectionId = typeof SECTIONS[number];
 
 // ── Parallax photo break component ───────────────────────────────────────────
@@ -66,6 +66,7 @@ function PhotoBreak({ src, quote, label, height = '70vh' }: PhotoBreakProps) {
           y: bgY,
         }}
       />
+      {/* gradient — bottom fade */}
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(6,8,8,0.7) 0%, rgba(6,8,8,0) 50%)', zIndex: 1 }} />
       <div
         style={{
@@ -125,12 +126,13 @@ function ChapterDivider({ num, eye, title, sub }: ChapterProps) {
     >
       <div style={{ padding: '72px 8vw 0', boxSizing: 'border-box' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
+          {/* Ghost number — flex item matching .ch-n */}
           <div
             style={{
               fontFamily: fontDisplay,
               fontSize: 88,
               fontWeight: 900,
-              color: 'rgba(200,168,75,0.08)',
+              color: 'rgba(200,168,75,0.18)',
               lineHeight: 1,
               flexShrink: 0,
               userSelect: 'none',
@@ -139,6 +141,7 @@ function ChapterDivider({ num, eye, title, sub }: ChapterProps) {
           >
             {num}
           </div>
+          {/* Text content */}
           <div>
             <p style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.6em', color: gold, textTransform: 'uppercase', marginBottom: 10 }}>
               {eye}
@@ -295,12 +298,11 @@ function SectionHead({ label, title, titleColor = cream, goldLine }: SectionHead
 
 // ── Main component ────────────────────────────────────────────────────────────
 export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?: string }) {
+  // Refs for section scroll targets
   const sectionRefs: Record<SectionId, React.RefObject<HTMLElement | null>> = {
-    proposition: useRef<HTMLElement>(null),
+    brand: useRef<HTMLElement>(null),
     island: useRef<HTMLElement>(null),
-    'port-antonio': useRef<HTMLElement>(null),
     why: useRef<HTMLElement>(null),
-    experience: useRef<HTMLElement>(null),
     artists: useRef<HTMLElement>(null),
     model: useRef<HTMLElement>(null),
     numbers: useRef<HTMLElement>(null),
@@ -308,12 +310,29 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
     cta: useRef<HTMLElement>(null),
   };
 
+  // Nav ref for section scrolls
+  const navRefs = {
+    brand: useRef<HTMLDivElement>(null),
+    island: useRef<HTMLDivElement>(null),
+    why: useRef<HTMLDivElement>(null),
+    artists: useRef<HTMLDivElement>(null),
+    model: useRef<HTMLDivElement>(null),
+    numbers: useRef<HTMLDivElement>(null),
+    roadmap: useRef<HTMLDivElement>(null),
+    cta: useRef<HTMLDivElement>(null),
+  };
+
+  // Scroll progress bar
   const { scrollYProgress } = useScroll();
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
-  const [activeSection, setActiveSection] = useState<SectionId>('proposition');
+  // Active dot nav
+  const [activeSection, setActiveSection] = useState<SectionId>('brand');
+
+  // Mobile nav
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // CTA form state
   const [selectedInterest, setSelectedInterest] = useState<string | null>(null);
   const [formName, setFormName] = useState('');
   const [formOrg, setFormOrg] = useState('');
@@ -323,12 +342,14 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
   const [formError, setFormError] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
+  // Hero scale animation
   const [heroScale, setHeroScale] = useState(1.05);
   useEffect(() => {
     const t = setTimeout(() => setHeroScale(1), 80);
     return () => clearTimeout(t);
   }, []);
 
+  // IntersectionObserver for dot nav
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
     SECTIONS.forEach((id) => {
@@ -409,6 +430,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           gap: 16,
         }}
       >
+        {/* Left: Z-mark */}
         <div style={{ flexShrink: 0 }}>
           <img
             src="/zungu-z-mark.png"
@@ -417,18 +439,16 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           />
         </div>
 
+        {/* Center: nav links — hidden on portrait tablet via CSS */}
         <div className="deck-chapter-links">
           {(
             [
-              ['Proposition', 'proposition'],
-              ['The Site', 'island'],
-              ['Port Antonio', 'port-antonio'],
-              ['Market', 'why'],
-              ['Experience', 'experience'],
-              ['Sound', 'artists'],
-              ['Model', 'model'],
+              ['The Brand', 'brand'],
+              ['The Island', 'island'],
+              ['Why Now', 'why'],
+              ['Artists', 'artists'],
+              ['The Model', 'model'],
               ['Numbers', 'numbers'],
-              ['Roadmap', 'roadmap'],
             ] as [string, SectionId][]
           ).map(([label, id]) => (
             <button
@@ -441,6 +461,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           ))}
         </div>
 
+        {/* Right: CTA + activities + badge + sign out (desktop) */}
         <div
           style={{
             display: 'flex',
@@ -514,6 +535,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             Sign Out
           </a>
 
+          {/* Hamburger — mobile only */}
           <button
             className="deck-hamburger"
             onClick={() => setMobileMenuOpen(true)}
@@ -547,6 +569,16 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         @media (max-width: 900px) {
           .deck-nav-desktop { display: none !important; }
         }
+        body { cursor: crosshair; }
+        body::before {
+          content: '';
+          position: fixed;
+          inset: 0;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+          pointer-events: none;
+          z-index: 9999;
+          opacity: 0.5;
+        }
       `}</style>
 
       {mobileMenuOpen && (
@@ -566,6 +598,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             gap: 0,
           }}
         >
+          {/* Close */}
           <button
             onClick={() => setMobileMenuOpen(false)}
             style={{
@@ -583,24 +616,23 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             ✕
           </button>
 
+          {/* Logo */}
           <img
             src="/zungu-z-mark.png"
             alt="Zungu"
             style={{ width: 48, height: 48, objectFit: 'contain', marginBottom: 40, filter: 'drop-shadow(0 0 16px rgba(200,168,75,0.3))' }}
           />
 
+          {/* Chapter links */}
           <nav style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, width: '100%', marginBottom: 40 }}>
             {(
               [
-                ['Proposition', 'proposition'],
-                ['The Site', 'island'],
-                ['Port Antonio', 'port-antonio'],
-                ['Market', 'why'],
-                ['Experience', 'experience'],
-                ['Sound', 'artists'],
-                ['Model', 'model'],
+                ['The Brand', 'brand'],
+                ['The Island', 'island'],
+                ['Why Now', 'why'],
+                ['Artists', 'artists'],
+                ['The Model', 'model'],
                 ['Numbers', 'numbers'],
-                ['Roadmap', 'roadmap'],
               ] as [string, SectionId][]
             ).map(([label, id]) => (
               <button
@@ -630,6 +662,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             ))}
           </nav>
 
+          {/* CTA */}
           <button
             onClick={() => { scrollToCta(); setMobileMenuOpen(false); }}
             style={{
@@ -724,6 +757,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           justifyContent: 'center',
         }}
       >
+        {/* Background */}
         <div
           style={{
             position: 'absolute',
@@ -736,6 +770,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             transition: 'transform 1.8s cubic-bezier(0.16,1,0.3,1)',
           }}
         />
+        {/* Gradient overlay */}
         <div
           style={{
             position: 'absolute',
@@ -744,6 +779,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           }}
         />
 
+        {/* Hero content — centered */}
         <div
           style={{
             position: 'relative',
@@ -756,6 +792,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             width: '100%',
           }}
         >
+          {/* Eyebrow */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 28 }}>
             <div style={{ width: 32, height: 1, background: gold }} />
             <p
@@ -773,8 +810,10 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             <div style={{ width: 32, height: 1, background: gold }} />
           </div>
 
+          {/* Z-mark */}
           <img src="/zungu-z-mark.png" width={110} style={{ marginBottom: 24, display: 'block' }} alt="Zungu" />
 
+          {/* H1 */}
           <h1
             style={{
               fontFamily: fontDisplay,
@@ -790,6 +829,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             <span style={{ color: gold }}>FESTIVAL</span>
           </h1>
 
+          {/* Year */}
           <p
             style={{
               fontFamily: fontDisplay,
@@ -804,32 +844,36 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             MMXXVII
           </p>
 
+          {/* Tagline */}
           <p
             style={{
               fontFamily: fontMono,
               fontSize: 'clamp(12px, 1.4vw, 16px)',
               color: muted,
               lineHeight: 1.8,
-              maxWidth: 540,
+              maxWidth: 520,
               marginBottom: 8,
             }}
           >
-            A private-island electronic music festival in Port Antonio, Jamaica.
+            A 64-acre private island in the Caribbean.{' '}
+            <strong style={{ color: cream }}>No other festival has this site.</strong>
           </p>
 
+          {/* Sub */}
           <p
             style={{
               fontFamily: fontMono,
               fontSize: 'clamp(11px, 1.2vw, 14px)',
               color: muted,
               lineHeight: 1.8,
-              maxWidth: 520,
+              maxWidth: 480,
               marginBottom: 40,
             }}
           >
-            Navy Island is not the backdrop. It is the operating format: arrival by boat, controlled capacity, three stage territories, hospitality, media capture, and a defensible destination platform.
+            You arrive by boat. Before a note plays, you&rsquo;re already somewhere else.
           </p>
 
+          {/* CTAs */}
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
             <button
               onClick={scrollToCta}
@@ -849,7 +893,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               Request Briefing →
             </button>
             <button
-              onClick={() => scrollToSection('proposition')}
+              onClick={() => scrollToSection('island')}
               style={{
                 fontFamily: fontMono,
                 fontSize: 10,
@@ -868,7 +912,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           </div>
         </div>
 
-        {/* Stats bar */}
+        {/* Stats bar — absolutely pinned to hero bottom */}
         <div
           style={{
             position: 'absolute',
@@ -884,10 +928,10 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           }}
         >
           {[
-              ['64', 'Acres', 'Navy Island'],
-              ['5,000', 'Guests', 'Year One Target'],
+              ['64', 'Acres', 'Private Island'],
+              ['5,000', 'Tickets', 'Year 1'],
               ['7', 'Days', '6 Nights'],
-              ['Jun 17–23', 'Target Window', '2027'],
+              ['Jun 17', 'Opens', '2027'],
             ].map(([num, label, sub], i, arr) => (
               <React.Fragment key={label}>
                 <div>
@@ -939,99 +983,178 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          CHAPTER 1: THE PROPOSITION
+          CHAPTER 1: THE BRAND
       ═══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider
         num="01"
         eye="Chapter One"
-        title="The Proposition."
-        sub="A private-island festival platform built around a market correction: Jamaica helped shape global sound, but has not owned the premium destination category that influence helped create."
+        title="The Brand."
+        sub="What Zungu is. What it is not. The mandate, the manifesto, and the positioning that travels into every institutional room."
       />
 
-      <Section id="section-proposition">
-        <SectionHead label="The Gap" title="The opportunity no one has taken." />
-        <BodyText>
-          Jamaica&rsquo;s influence is embedded in the architecture of global electronic music — in sound-system culture, bass pressure, dub engineering, remix logic, MC culture, and the movement of Caribbean music through London, New York, Berlin, and beyond.
-        </BodyText>
-        <BodyText>
-          That influence has travelled further than the island has commercially captured.
-        </BodyText>
-        <BodyText>
-          Zungu is built around that gap: a destination festival on Jamaican soil, designed to convert Jamaican authorship into premium live experience, tourism value, media capture, and long-term intellectual property.
-        </BodyText>
-
-        <QuoteBlock quote="The category is the opportunity." attr="Zungu — Investment Thesis" />
-
-        <SectionHead label="The Correction" title="What Zungu is." />
-        <BodyText>
-          Zungu is a private-island electronic music festival in Port Antonio, Jamaica.
-        </BodyText>
-        <BodyText>
-          It is designed as a controlled, high-value island experience: 5,000 target guests, three primary stages, daytime programming, hospitality, glamping, partner allocation, media capture, and a long-term expansion path beyond Year One.
-        </BodyText>
-
-        {/* Dossier rows */}
-        <div style={{ marginTop: 40, border: `1px solid rgba(200,168,75,0.12)` }}>
+      {/* Section: The Mandate */}
+      <Section id="section-brand">
+        <SectionHead label="The Mandate" title="Jamaica shaped the DNA of global electronic music." />
+        <div style={{ maxWidth: 880, marginBottom: 32 }}>
           {[
-            { label: 'WHAT', statement: 'Private-island electronic music festival. 5,000 guests. Three stages. Seven days. One controlled destination experience.' },
-            { label: 'WHERE', statement: 'Navy Island, Port Antonio, Jamaica. 64 acres. Five minutes by boat from the Errol Flynn Marina.' },
-            { label: 'FORMAT', statement: 'Controlled capacity. Arrival by boat. Three stage territories. Daytime programming. Night programming. Hospitality layer.' },
-            { label: 'AUDIENCE', statement: 'Investors, production partners, strategic partners, press, artist agencies, and tourism stakeholders.' },
-            { label: 'OUTCOME', statement: 'A destination-festival platform designed for live revenue, hospitality, sponsorship, media capture, and long-term IP.' },
-          ].map(({ label, statement }, i, arr) => (
-            <div
-              key={label}
+            { text: 'That energy traveled outward.', weight: 300 },
+            { text: 'To London. To Berlin. To Belgium. To New York.', weight: 300 },
+            { text: 'It became house. Techno. Drum & Bass. The culture as we know it.', weight: 300 },
+            { text: 'But the source never positioned itself as the destination.', weight: 400 },
+          ].map(({ text, weight }) => (
+            <p
+              key={text}
               style={{
-                display: 'grid',
-                gridTemplateColumns: '120px 1fr',
-                gap: 24,
-                padding: '20px 24px',
-                borderBottom: i < arr.length - 1 ? `1px solid rgba(200,168,75,0.08)` : 'none',
-                alignItems: 'start',
+                fontFamily: fontDisplay,
+                fontSize: 'clamp(15px, 2.2vw, 26px)',
+                fontWeight: weight,
+                lineHeight: 1.5,
+                color: cream,
+                marginBottom: 6,
               }}
             >
-              <span style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: gold, fontWeight: 700, paddingTop: 2 }}>
-                {label}
-              </span>
-              <span style={{ fontFamily: fontMono, fontSize: 12, color: cream, lineHeight: 1.7 }}>
-                {statement}
-              </span>
+              {text}
+            </p>
+          ))}
+          <p
+            style={{
+              fontFamily: fontDisplay,
+              fontSize: 'clamp(20px, 3vw, 38px)',
+              fontWeight: 700,
+              lineHeight: 1.3,
+              color: gold,
+              marginTop: 20,
+            }}
+          >
+            Zungu corrects that.
+          </p>
+        </div>
+        <QuoteBlock
+          quote="Jamaica interpreting its own influence — on its own soil — at international production standards."
+          attr="Core Brand Positioning"
+        />
+      </Section>
+
+      {/* Section: What Zungu Is */}
+      <Section dark>
+        <SectionHead label="What Zungu Is" title="Not a festival." goldLine="A position shift." />
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 2,
+          }}
+        >
+          {[
+            {
+              not: 'A reggae festival with EDM acts',
+              is: 'Jamaica reinterpreting its own sonic legacy at world-class scale',
+            },
+            {
+              not: 'A touring circuit stop with a Caribbean backdrop',
+              is: 'A permanently rooted cultural institution with commissioning power',
+            },
+            {
+              not: 'A spectacle designed to trend',
+              is: 'Infrastructure designed to endure — a cultural node built to last, not perform',
+            },
+          ].map(({ not, is }) => (
+            <div
+              key={not}
+              style={{
+                border: `1px solid rgba(200,168,75,0.1)`,
+                padding: '26px 22px',
+                background: 'rgba(14,24,18,0.8)',
+              }}
+            >
+              <div style={{ fontFamily: fontMono, fontSize: 7, letterSpacing: '0.5em', color: rust, textTransform: 'uppercase', marginBottom: 9 }}>Not this</div>
+              <p style={{ fontFamily: fontMono, fontSize: 13, fontStyle: 'italic', color: 'rgba(242,235,217,0.28)', textDecoration: 'line-through', textDecorationColor: rust, marginBottom: 13, lineHeight: 1.6 }}>{not}</p>
+              <div style={{ height: 1, background: 'rgba(200,168,75,0.1)', marginBottom: 13 }} />
+              <div style={{ fontFamily: fontMono, fontSize: 7, letterSpacing: '0.5em', color: teal, textTransform: 'uppercase', marginBottom: 9 }}>But this</div>
+              <p style={{ fontFamily: fontDisplay, fontSize: 14, fontWeight: 700, color: cream, lineHeight: 1.4 }}>{is}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Section: Brand Pillars */}
+      <Section>
+        <SectionHead label="Brand Pillars" title="What every creative decision" goldLine="must answer to." />
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 2,
+          }}
+        >
+          {[
+            {
+              num: '01',
+              title: 'Authorship,\nNot Appropriation',
+              body: 'Every asset must feel made in Jamaica, not imported to it. Visual language, music, storytelling — all originate from Jamaican context and expand outward.',
+            },
+            {
+              num: '02',
+              title: 'Continuity,\nNot Nostalgia',
+              body: 'Zungu honours the past without performing it. Heritage is context, not costume. The visual world must feel contemporary while being undeniably rooted.',
+            },
+            {
+              num: '03',
+              title: 'Discipline,\nNot Volume',
+              body: 'Every decision about scale, about bookings, about partners — must protect the quality of the experience. The thing that makes Zungu worth attending is also the thing most at risk from over-expansion.',
+            },
+          ].map(({ num, title, body }) => (
+            <div
+              key={num}
+              style={{
+                background: 'rgba(255,255,255,0.02)',
+                border: `1px solid rgba(200,168,75,0.11)`,
+                padding: '30px 24px',
+                position: 'relative',
+              }}
+            >
+              <div style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.4em', color: gold, marginBottom: 13, opacity: 0.7 }}>{num}</div>
+              <div style={{ fontFamily: fontDisplay, fontSize: 14, fontWeight: 700, color: cream, marginBottom: 11, lineHeight: 1.25, whiteSpace: 'pre-line' }}>{title}</div>
+              <p style={{ fontFamily: fontMono, fontSize: 13, lineHeight: 1.8, color: 'rgba(242,235,217,0.52)' }}>{body}</p>
             </div>
           ))}
         </div>
       </Section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          CHAPTER 2: THE SITE ADVANTAGE
+          CHAPTER 2: THE ISLAND
       ═══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider
         num="02"
         eye="Chapter Two"
-        title="The Site Advantage."
+        title="The Island."
         sub="Navy Island. Port Antonio, Jamaica. 64 acres. The site that makes everything else possible."
       />
 
+      {/* Photo break 1 */}
       <PhotoBreak
-        src="/photos/pellew-island.jpg"
-        quote="The site is the moat."
+        src="/photos/aerial-island.jpg"
+        quote="Island. Water. Isolation."
         label="Portland Parish · Caribbean"
       />
 
+      {/* Section: The Site */}
       <Section id="section-island">
-        <SectionHead label="The Site" title="Most festivals build environments. Zungu begins with one." />
+        <SectionHead label="The Site" title="Nobody has done this in the Caribbean. Yet." />
         <BodyText>
           Navy Island sits in Port Antonio&rsquo;s West Harbour. 64 acres. Surrounded by water on every side. The Errol Flynn Marina is the departure point — a five-minute crossing that is the first act of the experience. Before a single artist is announced, you&rsquo;re already arriving somewhere extraordinary.
         </BodyText>
         <BodyText>
-          The crossing is not only logistics. It is guest control, operational pacing, and the beginning of the experience. The island gives Zungu what most festivals spend years trying to manufacture: arrival, privacy, containment, natural drama, and separation from the mainland.
+          Tomorrowland spent millions building a fantasy world. <em>Zungu doesn&rsquo;t need to build one. The world is already there.</em> No other festival in the Caribbean has a site like this. That is not a marketing claim. It is a fact about real estate.
         </BodyText>
 
+        {/* Stat row */}
         <div style={{ display: 'flex', border: `1px solid rgba(200,168,75,0.12)`, margin: '28px 0' }}>
           {[
             ['64', 'Acres · Navy Island'],
             ['~5 min', 'Water crossing from mainland'],
-            ['5,000', 'Year One target capacity'],
-            ['3', 'Stage territories'],
+            ['0', 'Comparable sites in the Caribbean'],
+            ['1M JMD', 'Daily lease (verbally confirmed)'],
           ].map(([num, label], i, arr) => (
             <div key={label} style={{ flex: 1, padding: '28px 22px', borderRight: i < arr.length - 1 ? `1px solid rgba(200,168,75,0.08)` : 'none', textAlign: 'center' }}>
               <span style={{ fontFamily: fontDisplay, fontSize: 'clamp(22px, 3.5vw, 42px)', fontWeight: 700, color: gold, display: 'block', lineHeight: 1 }}>{num}</span>
@@ -1041,23 +1164,25 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         </div>
       </Section>
 
+      {/* Section: Geographic Context */}
       <Section>
         <SectionHead
           label="Port Antonio"
-          title="Outside the mass-tourism corridor."
+          title="Undiscovered at this scale."
         />
         <BodyText>
-          Port Antonio is outside the mass-tourism corridor: known, but not overexposed; premium, but not overbuilt. The town is sought by those who know it — which is exactly the audience Zungu is built for.
+          Port Antonio sits outside Jamaica&rsquo;s mass tourism corridor. No cruise ships. No all-inclusives. No package holiday energy. The town is known by those who seek it — which is exactly the audience Zungu is built for.
         </BodyText>
         <BodyText>
-          The combination of a genuinely undiscovered location and a world-class event creates the conditions for a founding story. The people who attended Zamna in its first year — 800 people in a jungle cenote — still talk about it. <em>Port Antonio in 2027 is that conversation.</em>
+          This is the Tulum 2017 feeling. A genuinely undiscovered location at exactly the moment a world-class event arrives. The people who went to Zamna in its first year — 800 people in a jungle cenote — still talk about it. <em>Port Antonio in 2027 is that conversation.</em>
         </BodyText>
         <QuoteBlock
-          quote="The island is the moat. Most festivals build environments. Zungu begins with one."
+          quote="Tomorrowland built a fantasy world. Zungu doesn't need to build anything. The world is already there."
           attr="Site Strategy"
         />
       </Section>
 
+      {/* Map 1: Overview */}
       <Section>
         <SectionHead label="Marina → Island Crossing Overview" title="The crossing." />
         <div>
@@ -1065,6 +1190,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         </div>
       </Section>
 
+      {/* Section: Stage Placement */}
       <Section id="section-island-stages">
         <SectionHead label="Stage Placement · Navy Island" title="Three stages. One island." />
         <BodyText>
@@ -1072,10 +1198,12 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           Final positioning subject to site survey.
         </BodyText>
 
+        {/* Map 2: Stage map */}
         <div style={{ marginBottom: 32 }}>
           <StageMap />
         </div>
 
+        {/* Stage legend */}
         <div
           style={{
             display: 'flex',
@@ -1129,6 +1257,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           ))}
         </div>
 
+        {/* Stacked map images */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
           <img
             src="/photos/navy-island-stage-map.png"
@@ -1142,6 +1271,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           />
         </div>
 
+        {/* Stage concept images */}
         <div style={{ marginTop: 40 }}>
           <div
             style={{
@@ -1157,11 +1287,15 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             {[
-              { src: '/photos/island-stages-aerial.png', label: 'ISLAND OVERVIEW — Three stages. One island.', sub: 'Wide aerial concept · Navy Island' },
-              { src: '/photos/stage-zungu-aerial.png', label: 'ZUNGU MAIN — Headline stage', sub: 'Stage II · North clearing · Canopy facing sea' },
-              { src: '/photos/stage-origins-ground.png', label: 'ORIGINS — Heritage architecture', sub: 'Stage I · Bamboo structure · Natural canopy' },
-              { src: '/photos/zungu-rebirth-stage.png', label: 'REBIRTH — Future sounds', sub: 'Stage III · East point · Open horizon' },
-              { src: '/photos/zungu-beach-stage-concept.png', label: 'BEACH STAGE — Concept render', sub: 'South shore · Open water surround' },
+              { src: '/photos/aerial-island.jpg', label: 'ISLAND OVERVIEW — Three stages. One island.', sub: 'Wide aerial · Three stages visible from above' },
+              { src: '/photos/navy-island-wide.png', label: 'NAVY ISLAND — Full extent · Caribbean setting', sub: 'Approached from Port Antonio Marina' },
+              { src: '/photos/princess-island-portantonio.jpg', label: 'PORT ANTONIO — Princess Island · Harbour mouth', sub: 'Context · Portland Parish coastline' },
+              { src: '/photos/NAVY%20ISLAND%20-%20CLOSE%20UP%20.png', label: 'NAVY ISLAND — Landing zone · Northern tip', sub: 'Arrival dock · ~5 min crossing from Errol Flynn Marina' },
+              { src: '/photos/NAVY%20ISLAND%20-%20FROM%20%20tHE%20TOWN%20.png', label: 'NAVY ISLAND — View from Port Antonio', sub: 'The island as attendees first see it' },
+              { src: '/photos/stage-beach-aerial.png', label: 'ZUNGU MAIN — South face · Open water', sub: 'Full production · Faces the Caribbean' },
+              { src: '/photos/origins-stage.jpg', label: 'ORIGINS — Bamboo architecture', sub: 'East tip · Sunrise · 500 capacity' },
+              { src: '/photos/stage-rebirth-aerial.png', label: 'REBIRTH — Island edge · Water surround', sub: 'West point · Sunset facing · 800 capacity' },
+              { src: '/photos/stage-beach-activities.png', label: 'THE ISLAND BETWEEN SETS', sub: 'Caribbean water · Daytime programme' },
             ].map(({ src, label, sub }) => (
               <div key={src} style={{ position: 'relative' }}>
                 <img
@@ -1191,6 +1325,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           </div>
         </div>
 
+        {/* Link to full stages breakdown */}
         <div style={{ marginTop: 40, paddingTop: 32, borderTop: `1px solid ${dim}` }}>
           <a
             href="/stages"
@@ -1218,6 +1353,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         </div>
       </Section>
 
+      {/* Photo break 3 */}
       <PhotoBreak
         src="/photos/navy-island-port-antonio.jpeg"
         quote="You arrive over water."
@@ -1225,99 +1361,29 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
       />
 
       {/* ═══════════════════════════════════════════════════════════════════
-          CHAPTER 3: PORT ANTONIO ECONOMIC LOOP
+          CHAPTER 3: WHY NOW
       ═══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider
         num="03"
         eye="Chapter Three"
-        title="Port Antonio Economic Loop."
-        sub="Zungu is anchored on Navy Island, but the operating model is designed to move value through Port Antonio."
+        title="Why Now."
+        sub="Jamaica shaped the DNA of global electronic music. Zungu is the first festival to stand on that island and prove it."
       />
 
-      <Section id="section-port-antonio">
-        <SectionHead label="The Ecosystem" title="The island is the anchor. The town is the system." />
-        <BodyText>
-          Navy Island gives the project its moat. Port Antonio gives it its operating ecosystem.
-        </BodyText>
-        <BodyText>
-          Zungu creates demand for marine transport, drivers, hotels, villas, guest houses, restaurants, bars, guides, vendors, food suppliers, production crew, security, waste management, wellness practitioners, artists, and mainland excursions.
-        </BodyText>
-        <BodyText>
-          The project should not isolate economic value offshore. It should route spend, employment, training, procurement, and visitor movement through Port Antonio before, during, and after the festival window.
-        </BodyText>
-
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: 2,
-            marginTop: 40,
-          }}
-        >
-          {[
-            {
-              title: 'LOCAL EMPLOYMENT',
-              body: 'Paid work across production, build crew, marine transfer, guest services, security, cleaning, artist hospitality, vendor operations, wayfinding, shuttle coordination, stage support, and demobilisation.',
-            },
-            {
-              title: 'VENDOR REVENUE',
-              body: 'Food, beverage, coffee, seafood, fresh produce, jerk vendors, florals, ice, water, printing, rentals, local craft, fashion, wellness services, transport, and waste management.',
-            },
-            {
-              title: 'HOSPITALITY SPEND',
-              body: 'Hotels, villas, guest houses, restaurants, bars, supermarkets, private drivers, taxis, pre-festival arrivals, post-festival stays, and partner dinners.',
-            },
-            {
-              title: 'MAINLAND ACTIVATIONS',
-              body: 'Bookable Port Antonio experiences connected to the festival week: The Ambush, Boston Bay food route, Blue Lagoon ecology route, rafting, Reach Falls, Frenchman\'s Cove, market visits, rum tastings, and cultural programming.',
-            },
-            {
-              title: 'SKILLS TRANSFER',
-              body: 'Training and paid exposure in production logistics, marine operations, guest flow, environmental compliance, artist hospitality, safety, media capture, technical staging, and premium event service.',
-            },
-            {
-              title: 'ENVIRONMENTAL CONTRIBUTION',
-              body: 'Reef protocol, waste removal, reforestation contribution, marine conservation partnerships, and post-event reporting.',
-            },
-          ].map(({ title, body }) => (
-            <div
-              key={title}
-              style={{
-                border: `1px solid ${dim}`,
-                padding: '32px 28px',
-                background: 'rgba(13,31,20,0.3)',
-              }}
-            >
-              <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: gold, fontWeight: 700, marginBottom: 14 }}>
-                {title}
-              </div>
-              <p style={{ fontFamily: fontMono, fontSize: 12, color: muted, lineHeight: 1.8, margin: 0 }}>
-                {body}
-              </p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* ═══════════════════════════════════════════════════════════════════
-          CHAPTER 4: THE MARKET MOMENT
-      ═══════════════════════════════════════════════════════════════════ */}
-      <ChapterDivider
-        num="04"
-        eye="Chapter Four"
-        title="The Market Moment."
-        sub="Destination electronic music has become a global travel category. Jamaica has the influence, geography, and music authority to claim a premium position within it."
-      />
-
+      {/* Section: The Gap */}
       <Section id="section-why">
-        <SectionHead label="The Gap" title="A globally significant music island with no flagship electronic festival." />
+        <SectionHead label="The Gap" title="The most musically significant island on earth. No flagship electronic festival." />
         <BodyText>
-          Jamaica&rsquo;s role in global music is not symbolic. It is structural. Sound-system culture shaped DJ-led performance. Dub engineering helped establish the studio as an instrument. Jamaican diaspora movements influenced UK rave, jungle, drum and bass, dubstep, and bass-led club culture.
+          A country of less than three million people has shaped the sound of every continent. From Bob Marley to Lee Scratch Perry. From Shaka Demus and Pliers to Sister Nancy. The music that came out of Jamaica travelled further and hit harder than almost anything that followed it.
         </BodyText>
         <BodyText>
-          A country of less than three million people has shaped the sound of every continent. <em>That lineage runs straight to every dance floor the bass has ever reached.</em> And yet — no world-class electronic festival has ever stood on that island and made the argument out loud.
+          Sound system culture in Kingston pioneered DJ-led performance — the structural template for every club and festival globally. King Tubby and Lee Scratch Perry invented studio techniques in their yards that became the foundation of electronic music production. The Jamaican diaspora seeded UK rave scenes, directly birthing jungle, drum and bass, and dubstep.
+        </BodyText>
+        <BodyText>
+          <em>That lineage runs straight to every dance floor the bass has ever reached.</em> And yet — no world-class electronic festival has ever stood on that island and made the argument out loud. Not as a lecture. As a party.
         </BodyText>
 
+        {/* Stat row */}
         <div
           style={{
             display: 'flex',
@@ -1369,6 +1435,15 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         </div>
       </Section>
 
+      {/* Photo break 4 */}
+      <PhotoBreak
+        src="/photos/boston-bay.jpg"
+        quote="Boston Bay. The original yard."
+        label="Boston Bay · Portland Parish · Birthplace of Jamaican jerk"
+        height="60vh"
+      />
+
+      {/* Photo break 5 */}
       <PhotoBreak
         src="/photos/blue-lagoon-port-antonio.jpg"
         quote="The water that shaped the sound."
@@ -1376,9 +1451,11 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         height="60vh"
       />
 
+      {/* Section: The Lineage */}
       <Section dark>
         <SectionHead label="The Lineage" title="Documented. Traceable. Defensible." />
 
+        {/* Timeline */}
         <div style={{ marginTop: 40, position: 'relative', maxWidth: 600 }}>
           <div
             style={{
@@ -1458,12 +1535,14 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         </div>
       </Section>
 
+      {/* Section: Competitive Landscape */}
       <Section>
         <SectionHead label="Competitive Landscape" title="Comparable tier. Distinct territory." />
         <BodyText>
-          Zamna sells a jungle you had to find. SXM sells boutique Caribbean luxury. Dekmantel sells curatorial credibility. Zungu sells a private island in Jamaica — with a documented sonic lineage that none of them have.
+          Zamna sells a jungle you had to find. SXM sells boutique Caribbean luxury. Dekmantel sells curatorial credibility. Tomorrowland sells a fantasy world. Zungu sells a private island in Jamaica — with a documented sonic lineage that none of them have.
         </BodyText>
 
+        {/* Comp table */}
         <div style={{ overflowX: 'auto', marginTop: 32, marginBottom: 40 }}>
           <table
             style={{
@@ -1536,124 +1615,29 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
       </Section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          CHAPTER 5: THE EXPERIENCE FORMAT
+          CHAPTER 4: ARTISTS
       ═══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider
-        num="05"
-        eye="Chapter Five"
-        title="The Experience Format."
-        sub="Zungu is designed as movement through terrain, water, hospitality, stage territories, and time of day."
+        num="04"
+        eye="Chapter Four"
+        title="The Artists."
+        sub="Not just a lineup. A co-curation conversation. The artists who make the audience fly."
       />
 
-      <Section id="section-experience">
-        <SectionHead label="The Format" title="Movement, not one crowd facing one stage." />
-        <BodyText>
-          The product is not only the lineup. It is the operating sequence.
-        </BodyText>
-        <BodyText>
-          Guests arrive by boat, move through daytime hospitality and island programming, transition into sunset staging, consolidate at the main stage at night, and return through sunrise programming.
-        </BodyText>
-        <BodyText>
-          The island controls the rhythm: arrival, dispersal, transition, concentration, release.
-        </BodyText>
-
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(5, 1fr)',
-            gap: 2,
-            marginTop: 40,
-          }}
-        >
-          {[
-            {
-              title: 'ARRIVAL',
-              sub: 'Morning',
-              body: 'Boat transfer from Errol Flynn Marina. Controlled boarding schedule. Island check-in, wristband scan, zone orientation.',
-            },
-            {
-              title: 'DAY',
-              sub: 'Daytime',
-              body: 'Eight island zones active: water programming, wellness, culture, food, forest route, studio, market, and broadcast. Guests distributed across terrain.',
-            },
-            {
-              title: 'SUNSET',
-              sub: 'Late Afternoon',
-              body: 'Origins and Rebirth stages open. Smaller-capacity, curated programming. Natural light transitions into stage lighting. The island transitions into night mode.',
-            },
-            {
-              title: 'NIGHT',
-              sub: 'Evening',
-              body: 'Zungu Main opens. Headline programming. All three stages active. Peak capacity across the island. Marine transfer continues through the night.',
-            },
-            {
-              title: 'SUNRISE',
-              sub: 'Dawn',
-              body: 'Selected sunrise programming on The Pier and Cove. Recovery-paced, ambient, water-facing. The island returns to arrival conditions.',
-            },
-          ].map(({ title, sub, body }) => (
-            <div
-              key={title}
-              style={{
-                border: `1px solid ${dim}`,
-                padding: '28px 22px',
-              }}
-            >
-              <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: gold, fontWeight: 700, marginBottom: 6 }}>
-                {title}
-              </div>
-              <div style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase', color: muted, marginBottom: 14 }}>
-                {sub}
-              </div>
-              <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, lineHeight: 1.8, margin: 0 }}>
-                {body}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <div style={{ marginTop: 40, paddingTop: 32, borderTop: `1px solid ${dim}` }}>
-          <a
-            href="/activities"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 12,
-              fontFamily: fontMono,
-              fontSize: 10,
-              letterSpacing: '0.35em',
-              textTransform: 'uppercase',
-              fontWeight: 700,
-              color: gold,
-              textDecoration: 'none',
-              border: `1px solid rgba(200,168,75,0.3)`,
-              padding: '12px 24px',
-            }}
-          >
-            Full Programming & Hospitality Breakdown →
-          </a>
-        </div>
-      </Section>
-
-      {/* ═══════════════════════════════════════════════════════════════════
-          CHAPTER 6: THE SOUND STRATEGY
-      ═══════════════════════════════════════════════════════════════════ */}
-      <ChapterDivider
-        num="06"
-        eye="Chapter Six"
-        title="The Sound Strategy."
-        sub="The artist strategy is built around three lanes: global electronic credibility, Jamaican authorship, and commissioning."
-      />
-
+      {/* Section: Headline Proposition */}
       <Section id="section-artists">
-        <SectionHead label="Booking Direction" title="Target directions. Not confirmed bookings." />
+        <SectionHead label="The Headline Proposition" title="Black Coffee. Not a booking. A co-curator." />
         <BodyText>
-          The artist strategy is built around three lanes: global electronic credibility, Jamaican authorship, and commissioning. Target directions include Afro-house, tribal house, Jamaican electronic, jungle, drum and bass, dub-influenced club music, and curated sunrise/sunset programming.
+          Black Coffee runs his own festival — the Black Coffee Weekender in Cape Town, now in its second edition. He curates lineups, commissions collaborations, and has a Grammy for Best Dance/Electronic Album. His Hï Ibiza residency ran 7 consecutive seasons. He has sold out Madison Square Garden.
         </BodyText>
         <BodyText>
-          All artist names below represent booking direction and outreach targets. No booking is confirmed at this stage. Labels marked accordingly.
+          His label Soulistic Music signed Shimza. They perform back-to-back. They opened Hï Ibiza together. They share an artistic philosophy and a working relationship that makes the outreach sequence logical rather than speculative.
+        </BodyText>
+        <BodyText>
+          The conversation is not: <em>&ldquo;We&rsquo;ll pay your fee.&rdquo;</em> It is: <em>&ldquo;We&rsquo;re building something on a private island in Jamaica — the most musically significant island in the Caribbean. Would you want your name on this from the beginning?&rdquo;</em> A co-curation arrangement — equity and association instead of a guaranteed fee — changes everything about the financial structure.
         </BodyText>
 
+        {/* Artist cards */}
         <div
           style={{
             display: 'grid',
@@ -1701,23 +1685,25 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
                 position: 'relative',
               }}
             >
-              <div
-                style={{
-                  position: 'absolute',
-                  top: 20,
-                  right: 20,
-                  fontFamily: fontMono,
-                  fontSize: 7,
-                  letterSpacing: '0.4em',
-                  textTransform: 'uppercase',
-                  color: muted,
-                  fontWeight: 700,
-                  border: `1px solid rgba(200,168,75,0.2)`,
-                  padding: '3px 8px',
-                }}
-              >
-                Booking Direction
-              </div>
+              {headline && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: 20,
+                    right: 20,
+                    fontFamily: fontMono,
+                    fontSize: 7,
+                    letterSpacing: '0.4em',
+                    textTransform: 'uppercase',
+                    color: gold,
+                    fontWeight: 700,
+                    border: `1px solid rgba(200,168,75,0.4)`,
+                    padding: '3px 8px',
+                  }}
+                >
+                  HEADLINE
+                </div>
+              )}
               <div
                 style={{
                   fontFamily: fontDisplay,
@@ -1764,13 +1750,15 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         </div>
       </Section>
 
+      {/* Photo break 5 */}
       <PhotoBreak
-        src="/photos/stage-origins-ground.png"
+        src="/photos/origins-stage.jpg"
         quote="The crowd. The canopy. The sea."
-        label="The Stage Experience · Zungu 2027"
+        label="Origins Stage · Zungu 2027"
         height="68vh"
       />
 
+      {/* Section: Commissioning Model */}
       <Section dark>
         <SectionHead label="The Commissioning Model" title="Music made on the island. IP that outlives the weekend." />
         <BodyText>
@@ -1802,7 +1790,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             {
               title: 'The Press Story',
               sub: 'Cultural Narrative',
-              body: 'RA, Mixmag, Pitchfork are not covering "festival in Jamaica." They\'re covering "an artist commissioned a track on a private island with a Jamaican producer." That story writes itself.',
+              body: 'RA, Mixmag, Pitchfork are not covering "festival in Jamaica." They\'re covering "Black Coffee and Shimza commissioned a track on a private island with a Jamaican producer." That story writes itself.',
             },
           ].map(({ title, sub, body }) => (
             <div
@@ -1827,28 +1815,30 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
       </Section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          CHAPTER 7: THE OPERATING MODEL
+          CHAPTER 5: THE MODEL
       ═══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider
-        num="07"
-        eye="Chapter Seven"
-        title="The Operating Model."
-        sub="5,000 guests. 7 days. Controlled capacity. The structure that makes this sustainable from Year One."
+        num="05"
+        eye="Chapter Five"
+        title="The Model."
+        sub="5,000 tickets. 7 days. Three tiers. The structure that makes this sustainable from Year 1."
       />
 
+      {/* Section: Ticket Architecture */}
       <Section id="section-model">
-        <SectionHead label="Ticket Architecture" title="5,000 guests. One island. Hard cap." />
+        <SectionHead label="Ticket Architecture" title="5,000 tickets. One island. Hard cap." />
         <BodyText>
-          5,000 is the number that creates urgency without sacrificing the experience. At peak moments, 5,000 people distribute across three stages, the food village, the water, the glamping village. No stage is ever crushingly full. The island breathes. And missing it feels like missing something.
+          5,000 is the number that creates urgency without sacrificing the experience. At peak moments, 5,000 people distribute across three stages, the food village, the water, the glamping village. No stage is ever crushingly full. The island breathes. And missing it feels like missing something — which is the foundation of FOMO.
         </BodyText>
         <BodyText>
-          Glamping is not a separate headcount — it is a ticket tier. One wristband. Different experience levels. Same 5,000 people.
+          Glamping is not a separate headcount — it is a ticket tier, exactly as Tomorrowland&rsquo;s Dreamville operates. One wristband. Different experience levels. Same 5,000 people.
         </BodyText>
 
+        {/* Ticket tier cards */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
+            gridTemplateColumns: 'repeat(3, 1fr)',
             gap: 2,
             marginTop: 28,
           }}
@@ -1856,47 +1846,41 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           {[
             {
               tier: 'GA',
-              sub: 'Festival Access · 18+',
-              desc: 'All stages, island transport. Full festival access. Off-island accommodation in Port Antonio. An extraordinary experience — the island, the stages, the water, the music.',
-              price: 'US$600',
+              sub: 'General Admission · 3,200 tickets',
+              desc: 'Full festival access. Off-island accommodation in Port Antonio. Still an extraordinary experience — the island, the stages, the water, the music.',
+              price: '$350 – 450',
               priceLabel: '7-day pass',
               borderColor: 'rgba(200,168,75,0.2)',
               bgColor: bg,
+              priceColor: gold,
             },
             {
-              tier: 'VIP / Navy',
-              sub: 'Premium Access',
-              desc: 'Dedicated entry, viewing platform, Pier access, concierge service, premium bars. A materially different on-island experience.',
-              price: 'US$1,350',
+              tier: 'VIP',
+              sub: 'Premium Access · 1,200 tickets',
+              desc: 'Festival access plus premium viewing, dedicated bar service, artist access zones. A materially different on-island experience from GA.',
+              price: '$600 – 800',
               priceLabel: '7-day pass',
               borderColor: 'rgba(200,168,75,0.4)',
               bgColor: 'rgba(200,168,75,0.05)',
+              priceColor: gold,
             },
             {
-              tier: 'Glamping / Obsidian',
-              sub: 'On-Island Immersion',
-              desc: 'On-island accommodation, private lounge, Sanctum credit, catamaran access, concierge. You sleep on the island. You wake up on the island.',
-              price: 'US$3,500',
+              tier: 'GLAMPING',
+              sub: 'On-Island Immersion · 600 tickets',
+              desc: 'Full festival access plus on-island accommodation. You sleep on the island. You wake up on the island. For seven days, Navy Island is your entire world.',
+              price: '$1,200 – 1,800',
               priceLabel: '7-day pass · accommodation included',
               borderColor: 'rgba(200,168,75,0.2)',
               bgColor: bg,
+              priceColor: gold,
             },
-            {
-              tier: 'The Thirty',
-              sub: 'Villa-Style · 30 places',
-              desc: 'Personal host, private dining, greenroom access, speedboat transfer, highest tier of island hospitality. 30 places per edition.',
-              price: 'US$12,500',
-              priceLabel: '7-day full experience',
-              borderColor: 'rgba(200,168,75,0.2)',
-              bgColor: bg,
-            },
-          ].map(({ tier, sub, desc, price, priceLabel, borderColor, bgColor }) => (
+          ].map(({ tier, sub, desc, price, priceLabel, borderColor, bgColor, priceColor }) => (
             <div
               key={tier}
               style={{
                 border: `1px solid ${borderColor}`,
                 padding: '34px 30px',
-                background: bgColor ?? bg,
+                background: bgColor,
                 display: 'flex',
                 flexDirection: 'column',
               }}
@@ -1904,7 +1888,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               <div
                 style={{
                   fontFamily: fontDisplay,
-                  fontSize: 18,
+                  fontSize: 22,
                   fontWeight: 700,
                   color: cream,
                   lineHeight: 1,
@@ -1934,7 +1918,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
                     fontFamily: fontDisplay,
                     fontSize: 18,
                     fontWeight: 700,
-                    color: gold,
+                    color: priceColor,
                     lineHeight: 1,
                     marginBottom: 4,
                   }}
@@ -1956,10 +1940,6 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             </div>
           ))}
         </div>
-
-        <p style={{ fontFamily: fontMono, fontSize: 10, color: muted, marginTop: 16, fontStyle: 'italic', lineHeight: 1.7 }}>
-          Planning-stage assumptions. Subject to final production cost, marine logistics assessment, and permit conditions.
-        </p>
       </Section>
 
       <PhotoBreak
@@ -1969,13 +1949,14 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         height="65vh"
       />
 
+      {/* Section: The Audience */}
       <Section dark>
         <SectionHead label="The Audience" title="Someone who has already been to Belgium." />
         <BodyText>
           Our primary audience has been to Tomorrowland, Zamna, or Dekmantel. They plan summers around festivals. They spend real money on experiences without much persuasion — because they know what a good one feels like.
         </BodyText>
         <BodyText>
-          What they haven&rsquo;t done is a world-class electronic festival on a private island in the Caribbean. When that exists and is executed properly, this audience tells each other. <em>The first edition sells itself if the product is right.</em>
+          What they haven&rsquo;t done is a world-class electronic festival on a private island in the Caribbean with Black Coffee as co-curator. When that exists and is executed properly, this audience tells each other. <em>The first edition sells itself if the product is right.</em>
         </BodyText>
 
         <div
@@ -2025,59 +2006,18 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
       </Section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          CHAPTER 8: THE NUMBERS
+          CHAPTER 6: NUMBERS
       ═══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider
-        num="08"
-        eye="Chapter Eight"
+        num="06"
+        eye="Chapter Six"
         title="The Numbers."
-        sub="Planning-stage assumptions. Separated cost lines. Built to be stress-tested — not to impress."
+        sub="Conservative assumptions. Separated cost lines. Built to be stress-tested — not to impress."
       />
 
+      {/* Section: Revenue */}
       <Section id="section-numbers">
-        <SectionHead label="Year One Pricing Architecture" title="The pricing structure." />
-        <BodyText>
-          Benchmarked against premium destination and electronic music festivals, structured around Zungu&rsquo;s private-island operating model.
-        </BodyText>
-
-        <div style={{ overflowX: 'auto', marginBottom: 48 }}>
-          <table
-            style={{
-              width: '100%',
-              borderCollapse: 'collapse',
-              fontFamily: fontMono,
-              fontSize: 12,
-              minWidth: 500,
-              maxWidth: 800,
-            }}
-          >
-            <thead>
-              <tr style={{ borderBottom: `1px solid ${dim}` }}>
-                {['Tier', 'Price', 'Notes'].map(h => (
-                  <th key={h} style={{ padding: '10px 16px', textAlign: 'left', fontSize: 8, letterSpacing: '0.35em', textTransform: 'uppercase', color: gold, fontWeight: 700 }}>
-                    {h}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                ['GA — Festival Access', 'US$600', 'All stages, island transport, 18+'],
-                ['VIP / Navy', 'US$1,350', 'Dedicated entry, viewing platform, Pier access, concierge, bars'],
-                ['Glamping / Obsidian', 'US$3,500', 'Accommodation, private lounge, Sanctum credit, catamaran, concierge'],
-                ['The Thirty', 'US$12,500', 'Villa-style, personal host, private dining, greenroom, speedboat transfer'],
-              ].map(([tier, price, notes]) => (
-                <tr key={tier as string} style={{ borderBottom: `1px solid ${dim}` }}>
-                  <td style={{ padding: '12px 16px', color: cream }}>{tier as string}</td>
-                  <td style={{ padding: '12px 16px', color: gold, fontWeight: 700 }}>{price as string}</td>
-                  <td style={{ padding: '12px 16px', color: muted, fontSize: 10 }}>{notes as string}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <SectionHead label="Year 1 Revenue · 5,000 Capacity" title="Planning assumptions." />
+        <SectionHead label="Year 1 Revenue · 5,000 Capacity" title="The case at 5,000 tickets." />
 
         <div style={{ overflowX: 'auto' }}>
           <table
@@ -2092,34 +2032,207 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           >
             <tbody>
               {[
-                ['Capacity Assumption', '5,000 target (operating range 2,500–5,000)', 'TBD'],
-                ['Average Ticket Yield', 'Blended across all tiers', 'TBD'],
-                ['Gross Ticket Revenue', 'Based on final tier mix', 'TBD'],
-                ['Sponsorship Target', '3–4 cultural brand partners', 'TBD'],
-                ['Hospitality Revenue', 'Glamping, The Thirty, hospitality packages', 'TBD'],
-                ['F&B / Bar Revenue', 'Island vendors and licensed operators', 'TBD'],
-                ['Estimated Production Cost', 'Subject to site survey and partner RFP', 'TBD'],
-                ['Break-Even Attendance', 'Subject to final cost structure', 'TBD'],
-                ['Capital Required', 'Subject to production and booking confirmation', 'TBD'],
+                ['GA Tickets', '3,200 × $400 avg', '$1,280,000'],
+                ['VIP Tickets', '1,200 × $700 avg', '$840,000'],
+                ['Glamping Tier', '600 × $1,500 avg', '$900,000'],
+                ['Sponsorship & Partners', '3–4 cultural brand partners', '$450,000'],
+                ['Food & Bar Revenue', '$200 per head × 5,000', '$1,000,000'],
+                ['Commissioned IP & Merchandise', 'Year 1 catalog + limited edition', '$120,000'],
               ].map(([label, detail, value]) => (
                 <tr key={label as string} style={{ borderBottom: `1px solid ${dim}` }}>
                   <td style={{ padding: '12px 16px', color: cream }}>{label as string}</td>
                   <td style={{ padding: '12px 16px', color: muted, fontSize: 10 }}>{detail as string}</td>
-                  <td style={{ padding: '12px 16px', color: value === 'TBD' ? muted : gold, fontWeight: 700, textAlign: 'right', fontStyle: value === 'TBD' ? 'italic' : 'normal' }}>
+                  <td style={{ padding: '12px 16px', color: gold, fontWeight: 700, textAlign: 'right' }}>
                     {value as string}
                   </td>
                 </tr>
               ))}
+              <tr style={{ borderTop: `1px solid ${gold}` }}>
+                <td
+                  colSpan={2}
+                  style={{
+                    padding: '14px 16px',
+                    color: cream,
+                    fontWeight: 700,
+                    letterSpacing: '0.2em',
+                    textTransform: 'uppercase',
+                    fontSize: 10,
+                  }}
+                >
+                  TOTAL REVENUE · Conservative scenario
+                </td>
+                <td
+                  style={{
+                    padding: '14px 16px',
+                    color: gold,
+                    fontWeight: 700,
+                    fontSize: 18,
+                    textAlign: 'right',
+                  }}
+                >
+                  $4,590,000
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </Section>
+
+      {/* Section: Cost Structure */}
+      <Section dark>
+        <SectionHead label="Year 1 Cost Structure" title="What it costs to do this properly." />
+
+        <div style={{ overflowX: 'auto' }}>
+          <table
+            style={{
+              width: '100%',
+              borderCollapse: 'collapse',
+              fontFamily: fontMono,
+              fontSize: 12,
+              minWidth: 500,
+              maxWidth: 800,
+            }}
+          >
+            <tbody>
+              {[
+                ['Artist Fees', 'All acts across 7 days', '$1,000,000'],
+                ['Production (4 companies)', 'Starlight, Mainevent, Yes Production, Phase Three', '$700,000'],
+                ['Marine Transport', 'Ferry operators, barge schedule', '$180,000'],
+                ['Island Lease (7 days)', '~1M JMD/day × 7 days', '$44,000'],
+                ['Glamping Build', 'Pods, power, sanitation, access paths', '$220,000'],
+                ['Insurance & Legal', 'Island-specific specialist coverage', '$95,000'],
+                ['Medical Infrastructure', 'Field hospital + helipad', '$45,000'],
+                ['Marketing & Press', 'Cultural story first', '$180,000'],
+                ['Operations & Staffing', 'Crew, security, volunteers', '$145,000'],
+                ['Food Village Infrastructure', 'Stalls, power, Portland Parish vendors', '$80,000'],
+                ['Contingency (15%)', 'Island event risk premium', '$266,000'],
+              ].map(([label, detail, value]) => (
+                <tr key={label as string} style={{ borderBottom: `1px solid ${dim}` }}>
+                  <td style={{ padding: '12px 16px', color: cream }}>{label as string}</td>
+                  <td style={{ padding: '12px 16px', color: muted, fontSize: 10 }}>{detail as string}</td>
+                  <td
+                    style={{
+                      padding: '12px 16px',
+                      color: muted,
+                      fontWeight: 700,
+                      textAlign: 'right',
+                    }}
+                  >
+                    {value as string}
+                  </td>
+                </tr>
+              ))}
+              <tr style={{ borderTop: `1px solid ${dim}` }}>
+                <td
+                  colSpan={2}
+                  style={{
+                    padding: '12px 16px',
+                    color: cream,
+                    fontWeight: 700,
+                    letterSpacing: '0.15em',
+                    textTransform: 'uppercase',
+                    fontSize: 10,
+                  }}
+                >
+                  TOTAL COSTS · Base case
+                </td>
+                <td
+                  style={{
+                    padding: '12px 16px',
+                    color: cream,
+                    fontWeight: 700,
+                    fontSize: 16,
+                    textAlign: 'right',
+                  }}
+                >
+                  $2,955,000
+                </td>
+              </tr>
+              <tr style={{ borderTop: `2px solid ${gold}` }}>
+                <td
+                  colSpan={2}
+                  style={{
+                    padding: '14px 16px',
+                    color: cream,
+                    fontWeight: 700,
+                    letterSpacing: '0.15em',
+                    textTransform: 'uppercase',
+                    fontSize: 10,
+                  }}
+                >
+                  YEAR 1 SURPLUS · Before IP revenue
+                </td>
+                <td
+                  style={{
+                    padding: '14px 16px',
+                    color: teal,
+                    fontWeight: 700,
+                    fontSize: 20,
+                    textAlign: 'right',
+                  }}
+                >
+                  $1,635,000
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
 
-        <p style={{ fontFamily: fontMono, fontSize: 10, color: muted, marginTop: 16, fontStyle: 'italic', lineHeight: 1.7 }}>
-          Use of funds: Site access, permits, production deposits, booking deposits, marine logistics, insurance, marketing, staffing, legal, contingency.
-        </p>
+        {/* Stat row */}
+        <div
+          style={{
+            display: 'flex',
+            border: `1px solid rgba(200,168,75,0.12)`,
+            margin: '28px 0',
+          }}
+        >
+          {[
+            ['$4.59M', 'Revenue'],
+            ['$2.96M', 'Costs'],
+            ['$920', 'Blended avg'],
+            ['65%', 'Breakeven occupancy'],
+          ].map(([num, label], i, arr) => (
+            <div
+              key={label}
+              style={{
+                flex: 1,
+                padding: '28px 22px',
+                borderRight: i < arr.length - 1 ? `1px solid rgba(200,168,75,0.08)` : 'none',
+                textAlign: 'center',
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: fontDisplay,
+                  fontSize: 'clamp(22px, 3.5vw, 42px)',
+                  fontWeight: 700,
+                  color: gold,
+                  display: 'block',
+                  lineHeight: 1,
+                }}
+              >
+                {num}
+              </span>
+              <span
+                style={{
+                  fontFamily: fontMono,
+                  fontSize: 8,
+                  letterSpacing: '0.25em',
+                  textTransform: 'uppercase',
+                  color: muted,
+                  display: 'block',
+                  marginTop: 6,
+                }}
+              >
+                {label}
+              </span>
+            </div>
+          ))}
+        </div>
       </Section>
 
-      <Section dark>
+      {/* Section: Financial Discipline */}
+      <Section>
         <SectionHead label="Financial Discipline" title="Hard gates. Money doesn't move until each one is cleared." />
 
         <div
@@ -2132,13 +2245,13 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         >
           {[
             {
-              title: 'Seed Capital Floor',
+              title: '$518K Seed Capital Floor',
               sub: 'Before ticket sales open',
               body: 'Artist deposits (40%), infrastructure deposits (25%), insurance and legal. Cannot open ticket sales without this confirmed.',
             },
             {
               title: '70% Presale Trigger',
-              sub: 'Hard go/no-go gate',
+              sub: 'Hard go/no-go — Feb 5, 2027',
               body: 'Full cost commitment does not proceed below 70% presale. Non-negotiable. Protects every party in the structure.',
             },
             {
@@ -2179,114 +2292,121 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
       </Section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          CHAPTER 9: THE ROADMAP
+          CHAPTER 7: ROADMAP
       ═══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider
-        num="09"
-        eye="Chapter Nine"
+        num="07"
+        eye="Chapter Seven"
         title="The Roadmap."
-        sub="Year One is the proof of concept. The platform is designed to extend."
+        sub="Three phases. Mythology earned through delivery, not declared through marketing."
       />
 
       <Section id="section-roadmap">
-        <SectionHead label="Timeline" title="Four phases. One platform." />
-
-        <div style={{ marginTop: 40, position: 'relative', maxWidth: 700 }}>
-          <div
-            style={{
-              position: 'absolute',
-              left: 7,
-              top: 8,
-              bottom: 0,
-              width: 1,
-              background: `linear-gradient(to bottom, ${gold}, ${dim})`,
-            }}
-          />
+        <SectionHead label="Three-Phase Roadmap" title="Boutique → Flagship →" goldLine="Global Node." />
+        <p
+          style={{
+            fontFamily: fontDisplay,
+            fontSize: 13,
+            fontStyle: 'italic',
+            color: gold,
+            fontWeight: 300,
+            marginBottom: 28,
+          }}
+        >
+          Earned mythology through delivery. Not declared through marketing.
+        </p>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 2,
+          }}
+        >
           {[
             {
-              year: '2025 — Seed',
-              body: 'Site strategy, brand architecture, investor development, partner outreach, early production scoping.',
-              filled: true,
+              year: 'Year 1 – 2',
+              phase: 'Boutique',
+              sub: 'Prove the Model',
+              items: [
+                'Capacity: 3,500–5,000',
+                'Commission 6–8 original tracks',
+                'Establish logistics infrastructure',
+                'Build institutional partnerships',
+                'Document everything',
+              ],
+              active: true,
             },
             {
-              year: '2026 — Build',
-              body: 'Permits, site survey, production partners, marine logistics, sponsor commitments, artist holds.',
-              filled: true,
+              year: 'Year 3 – 5',
+              phase: 'Flagship',
+              sub: 'Caribbean Authority',
+              items: [
+                'Expand format & capacity',
+                'Caribbean flagship status',
+                'Growing IP catalog',
+                'EU cultural partnerships active',
+                'Port Antonio permanently associated',
+              ],
+              active: false,
             },
             {
-              year: '2027 — Launch',
-              body: 'Capital close, production build, festival execution, media capture, post-event reporting.',
-              filled: false,
+              year: 'Year 5+',
+              phase: 'Global Node',
+              sub: 'Recognized Circuit Position',
+              items: [
+                'Jamaica = curator, not footnote',
+                'Zungu cited as cultural institution',
+                'Commissioning economy established',
+                'Generational creative infrastructure',
+                'Recognized global electronic node',
+              ],
+              active: false,
             },
-            {
-              year: '2028 — Expansion',
-              body: 'Year Two optimisation, repeat audience, media/IP monetisation, capacity refinement, regional expansion.',
-              filled: false,
-            },
-          ].map(({ year, body, filled }) => (
+          ].map(({ year, phase, sub, items, active }) => (
             <div
-              key={year}
+              key={phase}
               style={{
-                display: 'flex',
-                alignItems: 'flex-start',
-                gap: 20,
-                marginBottom: 40,
+                background: active ? 'rgba(26,58,42,0.5)' : 'rgba(14,24,18,0.5)',
+                border: `1px solid ${active ? 'rgba(200,168,75,0.4)' : 'rgba(200,168,75,0.1)'}`,
+                padding: '26px 22px',
                 position: 'relative',
               }}
             >
-              <div
-                style={{
-                  width: 14,
-                  height: 14,
-                  borderRadius: '50%',
-                  border: `2px solid ${gold}`,
-                  background: filled ? gold : 'transparent',
-                  flexShrink: 0,
-                  marginTop: 2,
-                  zIndex: 1,
-                }}
-              />
-              <div>
-                <span
-                  style={{
-                    fontFamily: fontMono,
-                    fontSize: 9,
-                    letterSpacing: '0.35em',
-                    textTransform: 'uppercase',
-                    color: gold,
-                    fontWeight: 700,
-                    display: 'block',
-                    marginBottom: 8,
-                  }}
-                >
-                  {year}
-                </span>
-                <p style={{ fontFamily: fontMono, fontSize: 12, color: muted, lineHeight: 1.75, margin: 0 }}>
-                  {body}
-                </p>
-              </div>
+              {active && (
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: gold }} />
+              )}
+              <div style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.4em', color: gold, marginBottom: 11, textTransform: 'uppercase', opacity: 0.85 }}>{year}</div>
+              <div style={{ fontFamily: fontDisplay, fontSize: 20, fontWeight: 700, color: cream, marginBottom: 5 }}>{phase}</div>
+              <div style={{ fontFamily: fontMono, fontSize: 12, fontStyle: 'italic', color: muted, marginBottom: 16 }}>{sub}</div>
+              {items.map((item) => (
+                <div key={item} style={{ display: 'flex', gap: 9, marginBottom: 7 }}>
+                  <span style={{ color: gold, flexShrink: 0 }}>—</span>
+                  <span style={{ fontFamily: fontMono, fontSize: 13, lineHeight: 1.8, color: 'rgba(242,235,217,0.62)' }}>{item}</span>
+                </div>
+              ))}
             </div>
           ))}
         </div>
       </Section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          CHAPTER 10: THE ASK
+          CHAPTER 8: CTA
       ═══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider
-        num="10"
-        eye="Chapter Ten"
+        num="08"
+        eye="Chapter Eight"
         title="The Ask."
         sub="We are not pitching a dream. We are presenting a model. The next step is a conversation, not a commitment."
       />
 
+      {/* Section: Three Conversations */}
       <Section id="section-cta" dark>
-        <SectionHead label="Partner Tracks" title="What Zungu needs. From whom. When." />
+        <SectionHead label="Three Conversations" title="What Zungu needs. From whom. When." />
 
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
+            gridTemplateColumns: 'repeat(3, 1fr)',
             gap: 2,
             marginTop: 8,
           }}
@@ -2294,33 +2414,32 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           {[
             {
               id: '01',
-              title: 'INVESTORS',
-              sub: 'Capital structure · Priority now',
-              body: 'Capital participation in the founding architecture. Financial model, revenue assumptions, risk controls, and long-term expansion. One or two strategic partners who understand the cultural and commercial opportunity — not just the festival, but the IP, the commissioning model, and the long-term brand asset.',
+              title: '01 — Strategic Partner / Lead Investor',
+              sub: 'Priority · Now',
+              body: 'One or two strategic partners who understand the cultural and commercial opportunity — not just the festival, but the IP, the commissioning model, and the long-term brand asset. We are offering a position in the founding architecture.',
+              price: '$800K – $2M',
+              priceLabel: 'Year 1 investment range',
               borderColor: 'rgba(200,168,75,0.3)',
             },
             {
               id: '02',
-              title: 'PRODUCTION PARTNERS',
-              sub: 'RFP by Q1 2026',
-              body: 'Stage architecture, marine logistics, power, lighting, sound, site build, safety, and crowd flow. An experienced production partner with island or remote-venue experience. Not a vendor — a co-architect. In exchange: first right of refusal on Years 2–5 as the event scales.',
+              title: '02 — Cultural Institution / Embassy',
+              sub: 'MOU by Q3 2026',
+              body: '2–3 cultural bodies willing to co-commission original works and provide artist exchange programming. Not a sponsorship. Shared authorship — your institution\'s name on music that outlives the festival.',
+              price: null,
+              priceLabel: null,
               borderColor: dim,
             },
             {
               id: '03',
-              title: 'STRATEGIC PARTNERS',
-              sub: 'MOU by Q3 2026',
-              body: 'Tourism, beverage, telecoms, travel, hospitality, luxury, and media. Cultural brand integration — stage naming, F&B exclusivity, co-commission association. Present at the founding moment.',
+              title: '03 — Production Partner',
+              sub: 'RFP by Q1 2026',
+              body: 'An experienced production partner with island or remote-venue experience. Not a vendor — a co-architect. In exchange: first right of refusal on Years 2–5 as the event scales.',
+              price: null,
+              priceLabel: null,
               borderColor: dim,
             },
-            {
-              id: '04',
-              title: 'PRESS',
-              sub: 'Approved positioning available',
-              body: 'Founder briefing, approved language, image access, destination story, artist strategy. RA, Mixmag, Pitchfork, Caribbean travel, Jamaica tourism. Brief available on request.',
-              borderColor: dim,
-            },
-          ].map(({ id, title, sub, body, borderColor }) => (
+          ].map(({ id, title, sub, body, price, priceLabel, borderColor }) => (
             <div
               key={id}
               style={{
@@ -2329,7 +2448,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
                 background: bg,
               }}
             >
-              <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: gold, fontWeight: 700, marginBottom: 6 }}>
+              <div style={{ fontFamily: fontDisplay, fontSize: 12, fontWeight: 700, color: cream, marginBottom: 6, lineHeight: 1.3 }}>
                 {title}
               </div>
               <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: muted, marginBottom: 14 }}>
@@ -2338,35 +2457,22 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, lineHeight: 1.8 }}>
                 {body}
               </p>
+              {price && (
+                <div style={{ marginTop: 16 }}>
+                  <div style={{ fontFamily: fontDisplay, fontSize: 13, fontWeight: 700, color: gold }}>{price}</div>
+                  <div style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase', color: dim, marginTop: 4 }}>{priceLabel}</div>
+                </div>
+              )}
             </div>
           ))}
         </div>
-
-        {/* Local / Government / Tourism */}
-        <div
-          style={{
-            marginTop: 2,
-            border: `1px solid ${dim}`,
-            padding: '34px 30px',
-            background: bg,
-          }}
-        >
-          <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: gold, fontWeight: 700, marginBottom: 6 }}>
-            LOCAL / GOVERNMENT / TOURISM STAKEHOLDERS
-          </div>
-          <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: muted, marginBottom: 14 }}>
-            Port Antonio · Portland Parish · Jamaica Tourism Board
-          </div>
-          <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, lineHeight: 1.8 }}>
-            Alignment with Port Antonio stakeholders across marine access, hospitality, local employment, vendor participation, environmental protocol, guest movement, and destination positioning.
-          </p>
-        </div>
       </Section>
 
+      {/* Section: Confirm Interest */}
       <Section id="cta-form">
-        <SectionHead label="Request Briefing" title="Start the conversation." />
+        <SectionHead label="Confirm Interest" title="First edition. One conversation." />
         <BodyText>
-          Zungu briefing access is reviewed by role. Submit your enquiry and the team will respond with the appropriate investor, production, supplier, or press material.
+          We&rsquo;re talking to a small number of partners who fit. Tell us where you see yourself.
         </BodyText>
 
         {submitted ? (
@@ -2380,14 +2486,15 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           >
             <div style={{ width: 28, height: 1, background: gold, margin: '0 auto 20px' }} />
             <p style={{ fontFamily: fontDisplay, fontSize: 20, fontWeight: 700, color: gold, marginBottom: 12 }}>
-              Received.
+              Message received.
             </p>
             <p style={{ fontFamily: fontMono, fontSize: 12, color: muted, lineHeight: 1.7 }}>
-              The Zungu team will follow up with the appropriate briefing material.
+              We&rsquo;ll be in touch within 48 hours.
             </p>
           </div>
         ) : (
           <div style={{ maxWidth: 700 }}>
+            {/* i-card interest selector */}
             <div
               style={{
                 display: 'grid',
@@ -2397,10 +2504,10 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               }}
             >
               {[
-                { opt: 'Investor', desc: 'Capital partner in the founding architecture. IP, commissioning model, long-term brand asset. Year 1 status can\'t be replicated in Year 3.' },
+                { opt: 'Strategic Investor', desc: 'Capital partner in the founding architecture. IP, commissioning model, long-term brand asset. Year 1 status can\'t be replicated in Year 3.' },
+                { opt: 'Brand Partner', desc: 'Cultural brand integration — stage naming, F&B exclusivity, co-commission association. Present at the founding moment.' },
                 { opt: 'Production Partner', desc: 'Operational co-architect with island/remote venue experience. First right of refusal on Years 2–5.' },
-                { opt: 'Strategic Partner', desc: 'Cultural brand integration — stage naming, F&B exclusivity, co-commission association. Present at the founding moment.' },
-                { opt: 'Press / Media', desc: 'Approved positioning, founder briefing, imagery, destination story. RA, Mixmag, travel, and tourism media welcome.' },
+                { opt: 'Something Else', desc: 'You have an angle we haven\'t thought of. We\'re genuinely interested. Tell us.' },
               ].map(({ opt, desc }) => (
                 <div
                   key={opt}
@@ -2435,6 +2542,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               ))}
             </div>
 
+            {/* Form fields */}
             {(
               [
                 ['Name', formName, setFormName, 'text'],
@@ -2489,7 +2597,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
                   marginBottom: 6,
                 }}
               >
-                Message (optional)
+                What you have in mind
               </label>
               <textarea
                 value={formMessage}
@@ -2547,7 +2655,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
                 cursor: submitting ? 'not-allowed' : 'pointer',
               }}
             >
-              {submitting ? 'Sending…' : 'Submit Briefing Request →'}
+              {submitting ? 'Sending…' : 'Send →'}
             </button>
             {formError && (
               <p style={{ fontFamily: fontMono, fontSize: 12, color: rust, marginTop: 12, lineHeight: 1.6 }}>
@@ -2557,86 +2665,6 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           </div>
         )}
       </Section>
-
-      {/* ═══════════════════════════════════════════════════════════════════
-          APPENDIX: BRAND SYSTEM
-      ═══════════════════════════════════════════════════════════════════ */}
-      <section
-        id="section-appendix"
-        style={{
-          width: '100%',
-          boxSizing: 'border-box',
-          backgroundColor: green,
-          borderTop: `1px solid rgba(200,168,75,0.15)`,
-        }}
-      >
-        <div style={{ padding: '88px 8vw', boxSizing: 'border-box' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 36 }}>
-            <div style={{ width: 28, height: 1, background: gold, flexShrink: 0 }} />
-            <p style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.6em', textTransform: 'uppercase', color: gold, fontWeight: 700 }}>
-              Appendix
-            </p>
-          </div>
-
-          <h3
-            style={{
-              fontFamily: fontDisplay,
-              fontSize: 'clamp(24px, 4vw, 54px)',
-              fontWeight: 700,
-              color: cream,
-              lineHeight: 1.02,
-              letterSpacing: '-0.025em',
-              marginBottom: 28,
-            }}
-          >
-            Brand System.
-          </h3>
-
-          <BodyText>
-            Zungu&rsquo;s visual identity is built around three elements: the Z-mark, gold on black, and Space Mono. The system is designed to read as institutional, not promotional.
-          </BodyText>
-          <BodyText>
-            Brand guidelines and approved assets are available on request.
-          </BodyText>
-
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
-              gap: 2,
-              marginTop: 40,
-            }}
-          >
-            {[
-              {
-                rule: 'MARK',
-                detail: 'The Z-mark is the primary identifier. Used alone or with ZUNGU wordmark. Never stretched, recoloured, or placed on busy backgrounds.',
-              },
-              {
-                rule: 'COLOUR',
-                detail: 'Gold #C8A84B on Black #060808. Cream #F2EBD9 for body text. Rust #C45A2A for accent only. No bright colours. No gradients except approved overlays.',
-              },
-              {
-                rule: 'TYPOGRAPHY',
-                detail: 'Unbounded for display and headlines. Space Mono for all body, labels, and UI copy. No other typefaces. No italic display type.',
-              },
-              {
-                rule: 'TONE',
-                detail: 'Institutional. Measured. No superlatives. No exclamation marks. No hyperbole. The work is the argument.',
-              },
-            ].map(({ rule, detail }) => (
-              <div key={rule} style={{ border: `1px solid ${dim}`, padding: '28px 24px' }}>
-                <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: gold, fontWeight: 700, marginBottom: 12 }}>
-                  {rule}
-                </div>
-                <p style={{ fontFamily: fontMono, fontSize: 12, color: muted, lineHeight: 1.8, margin: 0 }}>
-                  {detail}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
           FOOTER
