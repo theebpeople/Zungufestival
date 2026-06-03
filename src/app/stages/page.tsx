@@ -183,22 +183,23 @@ export default function StagesPage() {
 
         <div style={{ position: 'relative', zIndex: 2 }}>
           <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 24, fontWeight: 700 }}>
-            Stage Architecture · Navy Island · Port Antonio · Jamaica
+            STAGE ARCHITECTURE · NAVY ISLAND · PORT ANTONIO · JAMAICA
           </div>
           <h1 style={{ fontFamily: DISPLAY, fontSize: 'clamp(3.5rem, 9vw, 8rem)', fontWeight: 900, lineHeight: 0.9, color: CREAM, marginBottom: 8 }}>
             THREE<br /><span style={{ color: GOLD }}>STAGES.</span><br />ONE<br />ISLAND.
           </h1>
           <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.06em', lineHeight: 1.8, marginBottom: 48, maxWidth: 480 }}>
-            Origins catches the sunrise. Rebirth catches the sunset.<br />Zungu Main owns the night. The island determines everything.
+            The island is the scenery. It is where the world of Zungu comes alive and the magic of the experience begins. Origins rises with the sun. Rebirth catches the sunset. Zungu stands at the centre. Three stages. Three energies. One island transformed by sound.
           </p>
 
           {/* Hero stats — bordered box */}
           <div style={{ display: 'flex', gap: 0, borderTop: `1px solid rgba(200,168,75,0.2)`, paddingTop: 24, flexWrap: 'wrap' }}>
             {[
-              { label: 'Zungu Main', value: 'South face\n7pm – 6am' },
-              { label: 'Origins', value: 'East tip\n6am – 10am' },
-              { label: 'Rebirth', value: 'West end\n4pm – 8pm' },
-              { label: 'June 2027', value: '17–23 June\n5,000 tickets' },
+              { label: 'ORIGINS', value: 'Sunrise · Earth sound · Tribal fusion' },
+              { label: 'ZUNGU', value: 'Centre island · Mainstage · Big room' },
+              { label: 'REBIRTH', value: 'Sunset · Tribal · Tech · Underground house' },
+              { label: 'JUN 17–23', value: 'Arrival · Festival nights · Closing events' },
+              { label: '5,000', value: 'Year One target' },
             ].map((s, i, arr) => (
               <div key={s.label} style={{ paddingRight: i < arr.length - 1 ? '2.5rem' : 0, marginRight: i < arr.length - 1 ? '2.5rem' : 0, borderRight: i < arr.length - 1 ? `1px solid ${BORDER_MID}` : 'none' }}>
                 <span style={{ display: 'block', fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 6 }}>{s.label}</span>
@@ -212,10 +213,10 @@ export default function StagesPage() {
       {/* ══════════════════════════════════════════════════════════════════
           CHAPTER 01 — THE LOCATION
       ══════════════════════════════════════════════════════════════════ */}
-      <ChapterDivider num="01" title="The Location" goldLine="Navy Island." desc="Navy Island is not a backdrop. It is the product. The geography does work that no stage design, no production budget, and no marketing spend can replicate." />
+      <ChapterDivider num="01" title="The Location" goldLine="Navy Island is where Zungu begins." desc="Zungu does not begin with a stage design. It begins with Navy Island: forest, shoreline, water, open sky, and the feeling of an entire island becoming something else for one week. The island is the scenery. It is where the world of Zungu comes alive and the magic of the experience begins. Every stage responds to the island. Origins faces the sunrise. Rebirth faces the sunset. Zungu stands in the centre. The geography gives each stage its reason for existing." />
 
       <section id="island" style={{ padding: '60px 8vw', borderBottom: `1px solid ${BORDER}`, backgroundColor: BG }}>
-        <SLabel>01 — Navy Island · Port Antonio</SLabel>
+        <SLabel>// 01 THE LOCATION</SLabel>
 
         {/* Photo grid */}
         <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gridTemplateRows: '360px 240px', gap: 3 }}>
@@ -252,19 +253,19 @@ export default function StagesPage() {
         {/* Quote block */}
         <div style={{ margin: '40px 0', padding: '24px 28px', borderLeft: `3px solid ${GOLD}`, background: 'rgba(200,168,75,0.03)' }}>
           <p style={{ fontFamily: DISPLAY, fontSize: 'clamp(0.9rem, 2vw, 1.3rem)', fontWeight: 300, color: CREAM, lineHeight: 1.5 }}>
-            &ldquo;<span style={{ color: GOLD }}>The site is the moat.</span> Most festivals build environments. Zungu begins with one.&rdquo;
+            &ldquo;<span style={{ color: GOLD }}>For one week, Navy Island becomes Zungu.</span>&rdquo;
           </p>
-          <p style={{ marginTop: 10, fontFamily: MONO, fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.55)' }}>Site Strategy</p>
+          <p style={{ marginTop: 10, fontFamily: MONO, fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.55)' }}>Location Strategy</p>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
           CHAPTER 02 — SITE ARCHITECTURE
       ══════════════════════════════════════════════════════════════════ */}
-      <ChapterDivider num="02" title="Site Architecture" goldLine="Three Stages. One Island." desc="Provisional stage placement across the island's natural terrain. Final positioning subject to site survey." />
+      <ChapterDivider num="02" title="Site Architecture" goldLine="Three stages. Three directions. One island world." desc="The stages are not placed randomly across Navy Island. Each one is tied to a natural moment of the island. Origins belongs to sunrise. Rebirth belongs to sunset. Zungu belongs to the centre. Together, they create the rhythm of the festival: the beginning, the transformation, and the full release." />
 
       <section id="map" style={{ padding: '60px 8vw', borderBottom: `1px solid ${BORDER}`, backgroundColor: GREEN }}>
-        <SLabel>02 — Stage Placement &amp; Site Map</SLabel>
+        <SLabel>// 02 SITE ARCHITECTURE</SLabel>
 
         <div style={{ marginTop: 40, border: `1px solid ${BORDER_MID}`, background: 'rgba(13,32,24,0.5)', padding: 32 }}>
           <svg viewBox="0 0 820 360" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', maxWidth: 860, margin: '0 auto', display: 'block' }}>
@@ -328,13 +329,14 @@ export default function StagesPage() {
               </div>
             ))}
           </div>
+          <p style={{ marginTop: 20, fontFamily: MONO, fontSize: 10, color: MUTED, lineHeight: 1.8, letterSpacing: '0.02em', maxWidth: 720, margin: '20px auto 0' }}>Provisional stage placement across Navy Island&rsquo;s natural terrain. Final positioning, orientation, production layout, access routes, and sound direction remain subject to site survey, environmental review, safety planning, and production partner assessment.</p>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
           CHAPTER 03 — THREE WORLDS
       ══════════════════════════════════════════════════════════════════ */}
-      <ChapterDivider num="03" title="Three Worlds." goldLine="Zero Overlap." desc="Three stages. Three windows of the day. Three sonic identities. They never compete — they pass the crowd from one to the next, each complete in itself. Stages face open water. Sound directed away from Port Antonio town wherever possible. All staging, capacity, hours, and sound direction remain subject to final site survey, environmental review, marine logistics, safety plan, and production partner assessment." />
+      <ChapterDivider num="03" title="The Three Stages." goldLine="Each stage has a reason." desc="Zungu is built around three stage identities. Origins is the opening force: sunrise, earth, rhythm, percussion, and fusion. Zungu is the mainstage: centre island, full production, major acts, big-room energy, and the peak festival moments. Rebirth is the underground pulse: sunset, tribal, tech, house, deeper sounds, and the transition from day into night. Together, they turn Navy Island into a complete electronic music world." />
 
       <section id="stages" style={{ padding: '60px 8vw', borderBottom: `1px solid ${BORDER}`, backgroundColor: BG }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 3, marginTop: 40 }}>
@@ -343,23 +345,20 @@ export default function StagesPage() {
           <div style={{ position: 'relative', overflow: 'hidden', borderLeft: `3px solid ${GOLD}`, background: 'linear-gradient(135deg, #080f0b, #040a06)' }}>
             <div style={{ padding: '40px 48px' }}>
               <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, display: 'inline-block', padding: '4px 10px', border: `1px solid rgba(200,168,75,0.3)`, color: GOLD, marginBottom: 16 }}>
-                Main Stage · Full Capacity · 7pm – 6am · All Four Nights
+                Centre Island · Mainstage · Big Room
               </span>
-              <div style={{ fontFamily: DISPLAY, fontSize: 'clamp(2.2rem, 5vw, 4.8rem)', fontWeight: 900, lineHeight: 0.9, marginBottom: 8, color: GOLD }}>ZUNGU MAIN</div>
-              <div style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.04em', marginBottom: 32, lineHeight: 1.6 }}>Built into the island. The dominant, singular experience. Total theatrical commitment.</div>
+              <div style={{ fontFamily: DISPLAY, fontSize: 'clamp(2.2rem, 5vw, 4.8rem)', fontWeight: 900, lineHeight: 0.9, marginBottom: 8, color: GOLD }}>ZUNGU</div>
+              <div style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.04em', marginBottom: 32, lineHeight: 1.6 }}>Zungu is the heart of the island.</div>
               <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 0.9fr 0.8fr', gap: 40 }}>
                 <div style={{ fontFamily: MONO, fontSize: 14, lineHeight: 1.9, color: MUTED }}>
-                  <p>South-facing. Sound travels out to sea, away from Port Antonio. <strong style={{ color: CREAM }}>The stage does not feel built — it feels grown.</strong> Tropical forest frames every sightline. Lush canopy overhead. The Caribbean visible beyond the crowd.</p>
-                  <p style={{ marginTop: 14 }}>International festival-grade production, scaled to the island — LED walls, lighting rig, laser, water feature, pyro. The production serves the environment. <strong style={{ color: CREAM }}>The island is the set design. Technology amplifies it.</strong></p>
-                  <p style={{ marginTop: 14 }}>Headline programming concentrated at Zungu Main. No competing primary stage during headline windows. When Zungu Main is active, nothing else competes.</p>
+                  <p>Zungu is the mainstage. Positioned at the centre of the island, it is where the largest moments happen: the major acts, the full production, the biggest crowd energy, and the nights people remember. <strong style={{ color: CREAM }}>This is where Zungu becomes massive.</strong> Big room. Mainstage electronic. Global headline energy. Full-scale lighting. Screens. Lasers. Sound. Movement. Release.</p>
+                  <p style={{ marginTop: 14 }}>If Origins is the beginning and Rebirth is the transformation, <strong style={{ color: CREAM }}>Zungu is the centre of gravity.</strong></p>
+                  <p style={{ marginTop: 14 }}>Zungu is the primary stage for major acts, headline sets, opening ceremonies, peak festival nights, closing moments, and large-scale production.</p>
                 </div>
                 <div>
                   {[
-                    { l: 'Position', v: 'South face, centre-island. Faces open water. Sound travels to sea.' },
-                    { l: 'Capacity', v: 'Full festival — 5,000 tickets.' },
-                    { l: 'Hours', v: '7pm – 6am. Doors 7pm. First act 8pm. Headline 11pm–2am min.' },
-                    { l: 'Production', v: 'Full LED wall, main + fill + delay arrays, lighting rig, laser, water feature, pyro.' },
-                    { l: 'Company', v: 'Lead production company. Highest spec of the four.' },
+                    { l: 'Stage Function', v: 'Zungu is the primary stage for major acts, headline sets, opening ceremonies, peak festival nights, closing moments, and large-scale production.' },
+                    { l: 'Production', v: 'Full production / Large-format lighting / LED and visual world-building / Laser and atmospheric effects / Main audio system / Ceremonial moments / Highest stage specification' },
                   ].map(({ l, v }) => (
                     <div key={l} style={{ marginBottom: 16 }}>
                       <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 4 }}>{l}</span>
@@ -368,14 +367,14 @@ export default function StagesPage() {
                   ))}
                 </div>
                 <div>
-                  <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 12 }}>Identity</span>
-                  {['One dominant stage', 'Total commitment', 'Everything else secondary', 'Tropical production design', 'Stage faces open water', 'Four distinct nightly concepts'].map((v) => (
+                  <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 12 }}>Sonic Identity</span>
+                  {['Big room electronic', 'Mainstage house', 'Afro-house headline energy', 'EDM', 'Festival anthems', 'Peak-time electronic', 'Major international acts', 'High-impact local support'].map((v) => (
                     <span key={v} style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase' as const, padding: '5px 10px', border: `1px solid`, borderColor: v.length < 25 ? 'rgba(200,168,75,0.3)' : 'rgba(242,235,217,0.05)', color: v.length < 25 ? GOLD : 'rgba(242,235,217,0.22)', display: 'block', marginBottom: 6, width: 'fit-content' }}>{v}</span>
                   ))}
                 </div>
               </div>
               <div style={{ marginTop: 28, paddingTop: 20, borderTop: '1px solid rgba(242,235,217,0.05)', display: 'flex', gap: 20, flexWrap: 'wrap' }}>
-                {['LED wall — full rear + wings', 'd&b or equiv main array', 'Moving heads + wash + beam', 'Laser system', 'Water feature', 'Pyro capacity', 'Generator redundancy ×2', 'Satellite medical bay'].map((p) => (
+                {['Full production', 'Large-format lighting', 'LED and visual world-building', 'Laser and atmospheric effects', 'Main audio system', 'Ceremonial moments', 'Highest stage specification'].map((p) => (
                   <span key={p} style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.05em', color: 'rgba(242,235,217,0.2)', display: 'flex', alignItems: 'center', gap: 6 }}>
                     <span style={{ fontSize: 5, color: GOLD, opacity: 0.4 }}>●</span>{p}
                   </span>
@@ -388,10 +387,10 @@ export default function StagesPage() {
           <div style={{ position: 'relative', overflow: 'hidden', borderLeft: `3px solid ${ORIGINS_C}`, background: 'linear-gradient(135deg, #120800, #0a0500)' }}>
             <div style={{ padding: '40px 48px' }}>
               <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, display: 'inline-block', padding: '4px 10px', border: `1px solid rgba(212,114,42,0.3)`, color: ORIGINS_C, marginBottom: 16 }}>
-                Sunrise Stage · 500 Cap · 6am – 10am · Each Morning
+                Sunrise Stage · Earth Sound · Tribal Fusion
               </span>
               <div style={{ fontFamily: DISPLAY, fontSize: 'clamp(2.2rem, 5vw, 4.8rem)', fontWeight: 900, lineHeight: 0.9, marginBottom: 8, color: ORIGINS_C }}>ORIGINS</div>
-              <div style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.04em', marginBottom: 32, lineHeight: 1.6 }}>East-facing. The sun rises directly behind the DJ. Jungle. Breakfast. The dawn.</div>
+              <div style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.04em', marginBottom: 32, lineHeight: 1.6 }}>Origins is called Origins because it faces the sunrise.</div>
               <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 0.9fr 0.8fr', gap: 40 }}>
                 <div style={{ fontFamily: MONO, fontSize: 14, lineHeight: 1.9, color: MUTED }}>
                   <p>The eastern tip of the island. The crowd faces west — the forest behind them. <strong style={{ color: CREAM }}>The sun rises directly behind the DJ.</strong> First light through the trees. The silhouette of the selector against the Caribbean dawn.</p>
