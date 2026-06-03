@@ -353,7 +353,6 @@ export default function StagesPage() {
                 <div style={{ fontFamily: MONO, fontSize: 14, lineHeight: 1.9, color: MUTED }}>
                   <p>Zungu is the mainstage. Positioned at the centre of the island, it is where the largest moments happen: the major acts, the full production, the biggest crowd energy, and the nights people remember. <strong style={{ color: CREAM }}>This is where Zungu becomes massive.</strong> Big room. Mainstage electronic. Global headline energy. Full-scale lighting. Screens. Lasers. Sound. Movement. Release.</p>
                   <p style={{ marginTop: 14 }}>If Origins is the beginning and Rebirth is the transformation, <strong style={{ color: CREAM }}>Zungu is the centre of gravity.</strong></p>
-                  <p style={{ marginTop: 14 }}>Zungu is the primary stage for major acts, headline sets, opening ceremonies, peak festival nights, closing moments, and large-scale production.</p>
                 </div>
                 <div>
                   {[
@@ -393,16 +392,12 @@ export default function StagesPage() {
               <div style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.04em', marginBottom: 32, lineHeight: 1.6 }}>Origins is called Origins because it faces the sunrise.</div>
               <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 0.9fr 0.8fr', gap: 40 }}>
                 <div style={{ fontFamily: MONO, fontSize: 14, lineHeight: 1.9, color: MUTED }}>
-                  <p>The eastern tip of the island. The crowd faces west — the forest behind them. <strong style={{ color: CREAM }}>The sun rises directly behind the DJ.</strong> First light through the trees. The silhouette of the selector against the Caribbean dawn.</p>
-                  <p style={{ marginTop: 14 }}>The breakfast party. Jungle, deep percussion, early morning energy. Intimate at 500. <strong style={{ color: CREAM }}>The RA moment.</strong> Equiknoxx, Kode9, Shy FX — the acts that carry the cultural argument, playing at dawn on the island that the argument is about.</p>
-                  <p style={{ marginTop: 14 }}>Origins is where Zungu tells its origin story — through a 6am set in a clearing, with the sun coming up behind it.</p>
+                  <p>Origins is where the day begins. Facing the sunrise, Origins carries the first movement of the island: earth sound, tribal percussion, organic electronic music, fusion, deep drums, and music that feels rooted before it becomes electronic. It is not the mainstage. It is the source stage. Origins gives Zungu its beginning — the feeling of the island waking up in rhythm.</p>
                 </div>
                 <div>
                   {[
-                    { l: 'Position', v: 'Eastern tip. Crowd faces west into forest. Sunrise directly behind the stage.' },
-                    { l: 'Capacity', v: '500 maximum. Intimate. No upgrade wristband.' },
-                    { l: 'Hours', v: '6am – 10am. Closes before noon daytime programme.' },
-                    { l: 'Production', v: 'Quality sound first. Minimal lighting — the sunrise is the light show.' },
+                    { l: 'Stage Function', v: 'Origins is built for sunrise sessions, early-day programming, smaller acts, experimental sounds, local selectors, and fusion sets that connect the festival back to root, rhythm, and land.' },
+                    { l: 'Production', v: 'Natural materials / Warm light / Sound-first production / Low-impact scenic design / The sunrise as the visual moment' },
                   ].map(({ l, v }) => (
                     <div key={l} style={{ marginBottom: 16 }}>
                       <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 4 }}>{l}</span>
@@ -412,13 +407,13 @@ export default function StagesPage() {
                 </div>
                 <div>
                   <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 12 }}>Sonic Identity</span>
-                  {['Jungle · Drum & Bass', 'Jamaican electronic', 'Breakfast party', 'Deep percussion', 'The RA moment', 'Roots & lineage'].map((v, i) => (
+                  {['Earth sound', 'Tribal fusion', 'Organic electronic', 'Deep percussion', 'Afro-rooted rhythms', 'Jamaican electronic influence', 'Sunrise energy', 'Local and emerging selectors'].map((v, i) => (
                     <span key={v} style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase' as const, padding: '5px 10px', border: `1px solid`, borderColor: i < 4 ? 'rgba(212,114,42,0.3)' : 'rgba(242,235,217,0.05)', color: i < 4 ? ORIGINS_C : 'rgba(242,235,217,0.22)', display: 'block', marginBottom: 6, width: 'fit-content' }}>{v}</span>
                   ))}
                 </div>
               </div>
               <div style={{ marginTop: 28, paddingTop: 20, borderTop: '1px solid rgba(242,235,217,0.05)', display: 'flex', gap: 20, flexWrap: 'wrap' }}>
-                {['Funktion-One or equiv', 'Warm amber wash only', 'No LED wall — the sky is the backdrop', 'Elevated platform in natural clearing'].map((p) => (
+                {['Natural materials', 'Warm light', 'Sound-first production', 'Low-impact scenic design', 'The sunrise as the visual moment'].map((p) => (
                   <span key={p} style={{ fontFamily: MONO, fontSize: 9, color: 'rgba(242,235,217,0.2)', display: 'flex', alignItems: 'center', gap: 6 }}>
                     <span style={{ fontSize: 5, color: GOLD, opacity: 0.4 }}>●</span>{p}
                   </span>
@@ -431,22 +426,18 @@ export default function StagesPage() {
           <div style={{ position: 'relative', overflow: 'hidden', borderLeft: `3px solid ${REBIRTH_C}`, background: 'linear-gradient(135deg, #0e0618, #080410)' }}>
             <div style={{ padding: '40px 48px' }}>
               <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, display: 'inline-block', padding: '4px 10px', border: `1px solid rgba(155,95,192,0.3)`, color: REBIRTH_C, marginBottom: 16 }}>
-                Sunset Stage · 800 Cap · 4pm – 8pm · Each Evening
+                Sunset Stage · Tribal · Tech · Underground House
               </span>
               <div style={{ fontFamily: DISPLAY, fontSize: 'clamp(2.2rem, 5vw, 4.8rem)', fontWeight: 900, lineHeight: 0.9, marginBottom: 8, color: REBIRTH_C }}>REBIRTH</div>
-              <div style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.04em', marginBottom: 32, lineHeight: 1.6 }}>West-facing. The sun sets behind the crowd. Sunset house. The golden hour. The bridge into the night.</div>
+              <div style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.04em', marginBottom: 32, lineHeight: 1.6 }}>Rebirth is called Rebirth because it faces the sunset.</div>
               <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 0.9fr 0.8fr', gap: 40 }}>
                 <div style={{ fontFamily: MONO, fontSize: 14, lineHeight: 1.9, color: MUTED }}>
-                  <p>The western end — the widest point of the island. The crowd faces east toward the forest interior. <strong style={{ color: CREAM }}>The sun sets behind them into the open Caribbean.</strong> Everything turns amber. The water glows.</p>
-                  <p style={{ marginTop: 14 }}>Sunset house. Melodic, hypnotic, warm. <strong style={{ color: CREAM }}>The bridge between day and night.</strong> The last act of Rebirth walks the crowd directly into Zungu Main&rsquo;s opening — connected by a lit forest path. 8–12 minutes through the trees.</p>
-                  <p style={{ marginTop: 14 }}>Mid-scale production. 800 capacity. The sunset does the visual work.</p>
+                  <p>Rebirth is the sunset stage. As the island shifts from day to night, Rebirth carries the deeper pulse: tribal house, tech house, underground house, hypnotic grooves, warm percussion, and music built for golden hour. It is the stage where the festival changes temperature. The sun lowers. The rhythm deepens. The island starts to turn.</p>
                 </div>
                 <div>
                   {[
-                    { l: 'Position', v: 'Western end, widest point. Sun sets behind crowd — Caribbean backdrop.' },
-                    { l: 'Capacity', v: '800 maximum. Open entry from 4pm.' },
-                    { l: 'Hours', v: '4pm – 8pm. Last act 7:30pm. Handoff walk at 7:45pm.' },
-                    { l: 'Handoff', v: 'Crowd walks lit forest path to Zungu Main. 8–12 minutes. Staffed and guided.' },
+                    { l: 'Stage Function', v: 'Rebirth is built for sunset sessions, underground programming, smaller and mid-level acts, warm-up journeys, transition sets, and the deeper house community.' },
+                    { l: 'Production', v: 'Warm lighting / Sunset palette / Dusk-calibrated visuals / Immersive but lower-impact production / Sound and atmosphere over spectacle' },
                   ].map(({ l, v }) => (
                     <div key={l} style={{ marginBottom: 16 }}>
                       <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 4 }}>{l}</span>
@@ -456,13 +447,13 @@ export default function StagesPage() {
                 </div>
                 <div>
                   <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 12 }}>Sonic Identity</span>
-                  {['Sunset house', 'Melodic & hypnotic', 'Afrotech · Organic', 'The golden hour', 'Building energy', 'Bridge to Zungu Main'].map((v, i) => (
+                  {['Tribal house', 'Tech house', 'Underground house', 'Afro-tech', 'Organic house', 'Melodic house', 'Hypnotic grooves', 'Sunset percussion'].map((v, i) => (
                     <span key={v} style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase' as const, padding: '5px 10px', border: `1px solid`, borderColor: i < 4 ? 'rgba(155,95,192,0.3)' : 'rgba(242,235,217,0.05)', color: i < 4 ? REBIRTH_C : 'rgba(242,235,217,0.22)', display: 'block', marginBottom: 6, width: 'fit-content' }}>{v}</span>
                   ))}
                 </div>
               </div>
               <div style={{ marginTop: 28, paddingTop: 20, borderTop: '1px solid rgba(242,235,217,0.05)', display: 'flex', gap: 20, flexWrap: 'wrap' }}>
-                {['Mid-scale warm array', 'Dusk-calibrated lighting — amber + coral', 'Small rear LED screen', 'Forest path lighting — this team manages'].map((p) => (
+                {['Warm lighting', 'Sunset palette', 'Dusk-calibrated visuals', 'Immersive but lower-impact production', 'Sound and atmosphere over spectacle'].map((p) => (
                   <span key={p} style={{ fontFamily: MONO, fontSize: 9, color: 'rgba(242,235,217,0.2)', display: 'flex', alignItems: 'center', gap: 6 }}>
                     <span style={{ fontSize: 5, color: GOLD, opacity: 0.4 }}>●</span>{p}
                   </span>
@@ -478,7 +469,7 @@ export default function StagesPage() {
                 style={{ width: '100%', height: 280, objectFit: 'cover', display: 'block', filter: 'brightness(0.75) saturate(0.9)' }}
               />
               <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '16px 16px 10px', background: 'linear-gradient(transparent, rgba(14,6,24,0.9))', fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: REBIRTH_C }}>
-                Rebirth Stage · West End · Sunset · 800 Cap
+                Rebirth Stage · Sunset · Underground
               </div>
             </div>
           </div>
@@ -489,110 +480,87 @@ export default function StagesPage() {
       {/* ══════════════════════════════════════════════════════════════════
           CHAPTER 04 — FOUR NIGHTS
       ══════════════════════════════════════════════════════════════════ */}
-      <ChapterDivider num="04" title="Four Nights." goldLine="One Argument." desc="Each night is a chapter. The root. The spread. The return. The origin. Jamaica's DNA — exported, mutated, and brought home." />
+      <ChapterDivider num="04" title="Festival Week." goldLine="Seven days on the island. Four core festival nights. One final hoorah." desc="Zungu is a seven-day island experience, not a single-night event. The venue opens on June 17 for arrivals, check-in, island orientation, welcome parties, and the first taste of Zungu. The core festival runs from June 18 through the morning of June 21. From June 21 to June 23, the island slows into smaller events, pop-ups, recovery sessions, town dinners, media moments, partner gatherings, and the final hoorah before departure. Production breakdown begins after guests leave and continues through the following week." />
 
       {/* NIGHTS */}
       <div id="nights">
         {[
           {
             num: '01', bg: '#060600', accent: ORIGINS_C, tagBorder: 'rgba(212,114,42,0.3)',
-            date: 'Target Window: June 17–23, 2027', tag: 'The Root',
-            title: 'THE ROOT',
-            sub: "Booking direction: tribal house, deep percussion, Jamaican-rooted electronic influence. Night 1 anchors the argument.",
+            date: 'JUNE 17', tag: 'Arrival Day',
+            title: 'ARRIVAL DAY',
+            sub: "Check-in, accommodation access, island orientation, welcome parties, soft openings, partner receptions.",
             narr: [
-              '<strong>Night 1 belongs to the argument itself.</strong> Tribal house. Deep, hypnotic, rooted in percussion lineage that Jamaica planted in global music. The crowd arrives not yet knowing what this festival is. Night 1 tells them.',
-              'Origins opens at 6am with a local Portland Parish selector. The island speaks first. Rebirth opens at 4pm. The crowd walks the forest path at 7:45pm. Headline booking direction: tribal house, deep hypnotic, peak at 11pm minimum.',
-              'Production concept: natural materials, organic forms. The stage technology is present but deferential. The forest is the dominant visual.',
+              '<strong>June 17 is Arrival Day.</strong> Check-in, accommodation access, island orientation, welcome parties, soft openings, partner receptions.',
             ],
             visual: [
-              { a: 'Lighting', v: 'Warm amber. Low production. Let the forest be visible.' },
-              { a: 'Stage dress', v: 'Natural materials. Woven textures. No chrome or glass.' },
-              { a: 'LED content', v: 'Earthy tones, Jamaican landscape, deep root textures.' },
-              { a: 'Energy arc', v: 'Slow build, deep hold, late peak. Let the crowd settle in.' },
+              { a: 'Arrivals', v: 'Check-in and accommodation access.' },
+              { a: 'Orientation', v: 'Island orientation and welcome.' },
+              { a: 'Welcome', v: 'Welcome parties and soft openings.' },
+              { a: 'Receptions', v: 'Partner receptions and first taste of Zungu.' },
             ],
             schedule: [
-              { t: '6:00am', n: 'Origins Opens', d: 'Portland Parish selector — the island speaks first', stage: 'Origins', sc: 'o', hl: false, handoff: false },
-              { t: '4:00pm', n: 'Rebirth Opens', d: 'Warm house. The golden hour begins.', stage: 'Rebirth', sc: 'r', hl: false, handoff: false },
-              { t: '7:45pm', n: '→ The Handoff', d: 'Forest path lit. 8–12 minutes. The ritual begins.', stage: '↓', sc: '', hl: false, handoff: true },
-              { t: '8:00pm', n: 'Zungu Main Opens', d: 'Portland Parish selector. Opening set.', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
-              { t: '9:30pm', n: 'Support Act', d: 'Booking direction: tribal house / deep percussion', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
-              { t: '11:00pm', n: 'HEADLINE (Booking Direction)', d: 'Tribal house, deep hypnotic — bookings in development', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
-              { t: '2:00am', n: 'After set', d: 'Extended wind-down.', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
-              { t: '3:00am', n: 'Zungu Main Closes', d: 'Night 1 complete.', stage: '—', sc: '', hl: false, handoff: false },
+              { t: 'All day', n: 'Arrival Day', d: 'Check-in, accommodation access, island orientation, welcome parties, soft openings, partner receptions.', stage: 'Island', sc: 'm', hl: false, handoff: false },
             ],
           },
           {
             num: '02', bg: '#040810', accent: N2_C, tagBorder: 'rgba(74,143,189,0.3)',
-            date: 'Target Window: June 17–23, 2027', tag: 'The Spread',
-            title: 'THE SPREAD',
-            sub: 'Booking direction: Afro-tech, Latin house, global south electronic, diaspora mutations. Night 2 follows the music outward.',
+            date: 'JUNE 18', tag: 'Festival Night One',
+            title: 'FESTIVAL NIGHT ONE',
+            sub: 'The first full night. Stages open into the official festival programme.',
             narr: [
-              '<strong>Night 2 follows the music outward.</strong> Jamaica exported its DNA to Brazil, to Lagos, to London. Night 2 plays back what those cities did with it. Afrotech, Latin house, global south mutation.',
-              'Origins plays a harder jungle set morning. Rebirth leans into Afrotech at sunset. Night 2 headline booking direction: Afrotech, global south electronic, diaspora mutations.',
+              '<strong>June 18 is Festival Night One.</strong> The first full night. Stages open into the official festival programme.',
             ],
             visual: [
-              { a: 'Lighting', v: 'Electric blue and deep ocean tones. More production than Night 1.' },
-              { a: 'Stage dress', v: 'Digital / industrial contrast. The music has left the island.' },
-              { a: 'LED content', v: 'Global city imagery, fractal patterns, diaspora movement.' },
-              { a: 'Energy arc', v: 'Harder build than Night 1. The crowd knows the space now.' },
+              { a: 'Programme', v: 'Official festival programme opens.' },
+              { a: 'Stages', v: 'All three stages active.' },
+              { a: 'Energy', v: 'The first full night on the island.' },
+              { a: 'Atmosphere', v: 'The world of Zungu begins.' },
             ],
             schedule: [
-              { t: '6:00am', n: 'Origins: Jungle', d: 'Harder jungle set. The morning is deeper now.', stage: 'Origins', sc: 'o', hl: false, handoff: false },
-              { t: '4:00pm', n: 'Rebirth: Afrotech', d: 'Global south energy at golden hour.', stage: 'Rebirth', sc: 'r', hl: false, handoff: false },
-              { t: '7:45pm', n: '→ The Handoff', d: 'Forest path. The ritual, second night.', stage: '↓', sc: '', hl: false, handoff: true },
-              { t: '8:00pm', n: 'Zungu Main Opens', d: 'Support: Afrotech / global south direction', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
-              { t: '11:00pm', n: 'HEADLINE (Booking Direction)', d: 'Afrotech / global south mutation — bookings in development', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
-              { t: '4:00am', n: 'Zungu Main Closes', d: 'Night 2 complete.', stage: '—', sc: '', hl: false, handoff: false },
+              { t: 'Evening', n: 'Festival Night One', d: 'The first full night. Stages open into the official festival programme.', stage: 'All Stages', sc: 'm', hl: true, handoff: false },
             ],
           },
           {
             num: '03', bg: '#030e06', accent: N3_C, tagBorder: 'rgba(58,175,122,0.3)',
-            date: 'Target Window: June 17–23, 2027', tag: 'The Return',
-            title: 'THE RETURN',
-            sub: 'Booking direction: Afro-house, South African house, peak headline programming. Peak night.',
+            date: 'JUNE 19', tag: 'Festival Night Two',
+            title: 'FESTIVAL NIGHT TWO',
+            sub: 'The island is fully active. Mainstage, underground, sunrise, sunset, and island programming.',
             narr: [
-              '<strong>Night 3 is the peak. The argument resolves.</strong> Afro-house — the clearest example of Jamaica\'s exported DNA mutating, evolving, and returning home. The closing statement of that argument, delivered at full production on the island that started it.',
-              'Headline booking direction: Afro-house, South African house. Full production. Full 5am close. The longest night of the festival.',
-              'All artist bookings are in development. Names listed elsewhere on this site reflect booking direction only.',
+              '<strong>June 19 is Festival Night Two.</strong> The island is fully active. Mainstage, underground, sunrise, sunset, and island programming.',
             ],
             visual: [
-              { a: 'Lighting', v: 'Deep green and gold. The island reclaims the production.' },
-              { a: 'Stage dress', v: 'Tropical maximalism. The most elaborate of the four nights.' },
-              { a: 'LED content', v: 'Continental imagery, migratory patterns, return arc.' },
-              { a: 'Energy arc', v: 'Slowest build to the biggest peak. Closes at 5am.' },
+              { a: 'Mainstage', v: 'Full mainstage programming.' },
+              { a: 'Underground', v: 'Underground and sunset programming.' },
+              { a: 'Sunrise', v: 'Origins sunrise sessions.' },
+              { a: 'Island', v: 'Full island activation.' },
             ],
             schedule: [
-              { t: '4:00pm', n: 'Rebirth: Afro-house', d: 'Booking direction: Afro-house at golden hour.', stage: 'Rebirth', sc: 'r', hl: false, handoff: false },
-              { t: '7:45pm', n: '→ The Handoff', d: 'Forest path. The crowd walks with intention.', stage: '↓', sc: '', hl: false, handoff: true },
-              { t: '8:00pm', n: 'Zungu Main Opens', d: 'Support: Afro-house direction', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
-              { t: '10:00pm', n: 'SUPPORT HEADLINE (Booking Direction)', d: 'Afro-house · setup for peak close', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
-              { t: '12:00am', n: 'PEAK HEADLINE (Booking Direction)', d: 'Afro-house peak — bookings in development · to 5am', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
-              { t: '5:00am', n: 'Zungu Main Closes', d: 'The peak has passed. The island is still.', stage: '—', sc: '', hl: false, handoff: false },
+              { t: 'All day', n: 'Festival Night Two', d: 'The island is fully active. Mainstage, underground, sunrise, sunset, and island programming.', stage: 'All Stages', sc: 'm', hl: true, handoff: false },
             ],
           },
           {
             num: '04', bg: '#060410', accent: REBIRTH_C, tagBorder: 'rgba(155,95,192,0.3)',
-            date: 'Target Window: June 17–23, 2027', tag: 'The Origin',
-            title: 'THE ORIGIN',
-            sub: 'Booking direction: Jamaican electronic, jungle, drum and bass, dub-influenced club music, local selectors. The island closes in its own voice.',
+            date: 'JUNE 20–23', tag: 'Peak Night & Beyond',
+            title: 'PEAK NIGHT & BEYOND',
+            sub: 'June 20: Peak night. Major acts, full production, highest energy. June 21–23: Recovery, pop-ups, and final hoorah.',
             narr: [
-              '<strong>Night 4 returns to source.</strong> Pure Jamaican electronic: jungle, drum and bass, dub-influenced club music, local Portland Parish selectors. Booking direction includes Jamaican experimental electronic and UK-Jamaican diaspora acts.',
-              'This is the night that makes the cultural argument plainly, without intermediary, on the island that earned the right to state it. Night 4 is not the biggest night. It is the most important one.',
+              '<strong>June 20 is Peak Night.</strong> Major acts, full production, highest energy.',
+              '<strong>June 21</strong>: Core festival programme resolves into sunrise, recovery, smaller pop-ups, brunch, wellness, and reduced-scale programming.',
+              '<strong>June 22</strong>: Smaller music moments, partner events, town dinners, media capture, artist sessions, guest departures.',
+              '<strong>June 23</strong>: Closing island moment, final gatherings, check-out, guest departures, and handover to production breakdown.',
             ],
             visual: [
-              { a: 'Lighting', v: 'Deep purple and amber. Stripped back. Production steps aside.' },
-              { a: 'Stage dress', v: 'Minimal. The music is the event.' },
-              { a: 'LED content', v: 'Jamaican flora, roots imagery, slow organic movement.' },
-              { a: 'Energy arc', v: 'Gentle. Respectful. Earned. A close, not a climax.' },
+              { a: 'June 20', v: 'Peak night. Major acts. Full production.' },
+              { a: 'June 21', v: 'Recovery shift. Sunrise. Pop-ups. Wellness.' },
+              { a: 'June 22', v: 'Island pop-ups. Port Antonio events. Town dinners.' },
+              { a: 'June 23', v: 'Final hoorah. Departure. Handover.' },
             ],
             schedule: [
-              { t: '4:00pm', n: 'Rebirth: Farewell', d: 'Final Rebirth sunset. The last golden hour.', stage: 'Rebirth', sc: 'r', hl: false, handoff: false },
-              { t: '7:45pm', n: '→ Final Handoff', d: 'Last walk through the forest. They go slowly.', stage: '↓', sc: '', hl: false, handoff: true },
-              { t: '8:00pm', n: 'Portland Parish Selector', d: 'Local voice opens the final night.', stage: 'Zungu Main', sc: 'm', hl: false, handoff: false },
-              { t: '10:00pm', n: 'JAMAICAN ELECTRONIC (Booking Direction)', d: 'Booking direction: Jamaican experimental electronic — bookings in development', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
-              { t: '12:00am', n: 'UK-JAMAICAN CLOSING (Booking Direction)', d: 'Booking direction: jungle, drum and bass, dub — diaspora brought home', stage: 'Zungu Main', sc: 'm', hl: true, handoff: false },
-              { t: '2:00am', n: 'Zungu Main Closes', d: 'The mythology is earned.', stage: '—', sc: '', hl: false, handoff: false },
-              { t: '6:00am', n: 'Origins: Final Sunrise', d: 'Local selector. Dawn. The island closes how it opened.', stage: 'Origins', sc: 'o', hl: false, handoff: false },
+              { t: 'JUN 20', n: 'Festival Night Three', d: 'Peak night. Major acts, full production, highest energy.', stage: 'All Stages', sc: 'm', hl: true, handoff: false },
+              { t: 'JUN 21', n: 'Festival Morning / Recovery Shift', d: 'Core festival programme resolves into sunrise, recovery, smaller pop-ups, brunch, wellness, and reduced-scale programming.', stage: 'Island', sc: 'o', hl: false, handoff: false },
+              { t: 'JUN 22', n: 'Island Pop-Ups / Port Antonio Events', d: 'Smaller music moments, partner events, town dinners, media capture, artist sessions, guest departures.', stage: 'Island', sc: 'r', hl: false, handoff: false },
+              { t: 'JUN 23', n: 'Final Hoorah / Departure', d: 'Closing island moment, final gatherings, check-out, guest departures, and handover to production breakdown.', stage: '—', sc: '', hl: false, handoff: true },
             ],
           },
         ].map((night) => (
@@ -668,25 +636,19 @@ export default function StagesPage() {
       {/* ══════════════════════════════════════════════════════════════════
           CHAPTER 05 — HANDOFF
       ══════════════════════════════════════════════════════════════════ */}
-      <ChapterDivider num="05" title="No Split" goldLine="Crowd. Ever." desc="Three stages. Three windows. Never competing. The crowd moves as one body. The forest path is not logistics — it is the ritual that ties the day together." />
+      <ChapterDivider num="05" title="Programming Philosophy." goldLine="The stages do not stop the island. They move through it." desc="Zungu is not only a mainstage festival. Music appears across the island in different forms: mainstage moments, sunrise sessions, sunset sets, smaller pop-ups, intimate selectors, radio recordings, brand activations, and unannounced discoveries. The three core stages give Zungu its structure. The smaller pop-ups give the island its surprise." />
 
       <section id="handoff" style={{ padding: '60px 8vw', borderBottom: `1px solid ${BORDER}`, backgroundColor: BG }}>
-        <SLabel>05 — The Handoff Model</SLabel>
+        <SLabel>// 05 PROGRAMMING PHILOSOPHY</SLabel>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, marginTop: 40 }}>
-          {/* Left: Timeline */}
+          {/* Left: Stage roles */}
           <div>
             {[
-              { t: '6:00am', label: 'Origins Opens', body: 'East-facing. 500 cap. Sunrise directly behind the DJ. Jungle. Jamaican electronic.', key: true, color: ORIGINS_C },
-              { t: '8:00am', label: 'Origins Second Act', body: 'Runs until 10am. Closes before the daytime activity programme.', key: false, color: null },
-              { t: '10:00am', label: 'All Stages Dark', body: '10am–4pm. Activities own the island. No music competes with the daytime programme.', key: false, color: null },
-              { t: '4:00pm', label: 'Rebirth Opens', body: 'West-facing. 800 cap. Sunset house. The crowd assembles for the golden hour.', key: true, color: REBIRTH_C },
-              { t: '7:00pm', label: 'Zungu Main Doors', body: 'Gates open. First act 8pm. Rebirth still active — transition begins.', key: false, color: GOLD },
-              { t: '7:45pm', label: 'The Handoff Moment', body: 'Rebirth last act ends. Forest path lit. Staffed. The crowd walks from sunset into night. 8–12 minutes through the trees. This is the ritual. The island pivots.', key: true, color: GOLD, ritual: true },
-              { t: '8:00pm', label: 'Zungu Main: Full Crowd', body: 'No split. Everyone in one place. The night builds from here.', key: false, color: GOLD },
-              { t: '11:00pm', label: 'Headline Set', body: 'Full production. Total theatrical commitment.', key: true, color: GOLD },
-              { t: '12:00am', label: 'The Pier Opens', body: '200 cap only. Discovery. No announced lineup. You find it or you don\'t.', key: false, color: null },
-              { t: '3–5am', label: 'Zungu Main Closes', body: 'Night-dependent. Night 3 to 5am. Night 4 to 2am. The Pier runs to sunrise.', key: true, color: GOLD },
+              { t: 'ORIGINS', label: 'The source stage.', body: 'Sunrise. Earth sound. Tribal fusion. Rooted electronic. Local and emerging selectors.', key: true, color: ORIGINS_C },
+              { t: 'ZUNGU', label: 'The mainstage.', body: 'Big room. Major acts. Full production. Peak festival moments.', key: true, color: GOLD },
+              { t: 'REBIRTH', label: 'The underground stage.', body: 'Sunset. Tribal. Tech. Underground house. Deep transition into night.', key: true, color: REBIRTH_C },
+              { t: 'POP-UPS', label: 'The surprise layer.', body: 'Small music moments across the island: beach sets, forest sessions, Shoppe takeovers, The Signal recordings, partner lounges, pier moments, and late discoveries.', key: false, color: null, ritual: true },
             ].map(({ t, label, body, key, color, ritual }) => (
               <div key={t} style={{ display: 'grid', gridTemplateColumns: '72px 1fr' }}>
                 <div style={{ position: 'relative', padding: '12px 14px 12px 0', textAlign: 'right', borderRight: `1px solid rgba(200,168,75,0.1)` }}>
@@ -701,29 +663,34 @@ export default function StagesPage() {
             ))}
           </div>
 
-          {/* Right: Hard rules + production table */}
+          {/* Right: Pop-up formats + production notes */}
           <div>
             <div style={{ padding: 24, border: `1px solid ${BORDER_MID}`, background: 'rgba(200,168,75,0.025)', marginBottom: 20 }}>
-              <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 16 }}>The Hard Rules</span>
+              <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 16 }}>// 06 Pop-Up Music Moments</span>
+              <p style={{ fontFamily: MONO, fontSize: 13, lineHeight: 1.8, color: 'rgba(242,235,217,0.4)', marginBottom: 14 }}>Some of the best Zungu moments should feel discovered. Small pop-ups happen across the island between the major shows: selectors at The Market, surprise sessions near The Cove, intimate recordings at The Signal, sunset warm-ups, after-hours pier moments, and partner-led sound moments. These do not replace the three main stages. They make the island feel alive.</p>
               {[
-                'Origins and Rebirth <strong>never run simultaneously</strong> with each other or with Zungu Main.',
-                'When Black Coffee is playing, <strong>no other stage exists.</strong> The Pier opens midnight only — after the headline has the crowd.',
-                'The forest path between Rebirth and Zungu Main is <strong>fully lit and staffed</strong> every evening. The walk is part of the experience.',
-                'All activity zones close at 3:30pm. <strong>Rebirth opens 4pm.</strong> The transition is managed, not abrupt.',
-                'The Pier runs midnight to sunrise at 200 cap, <strong>by discovery only</strong>. No wristband upgrade. No announcement. You find it or you don\'t.',
+                'Beach selectors',
+                'Forest listening sessions',
+                'The Signal recordings',
+                'Zungu Radio sets',
+                'Shoppe takeovers',
+                'Partner lounge music',
+                'Pier moments',
+                'Welcome party sets',
+                'Recovery day selectors',
+                'Final hoorah programming',
               ].map((rule, i) => (
-                <div key={i} style={{ fontFamily: MONO, fontSize: 13, lineHeight: 1.7, color: 'rgba(242,235,217,0.4)', paddingLeft: 14, borderLeft: '2px solid rgba(200,168,75,0.2)', marginBottom: 12 }}
-                  dangerouslySetInnerHTML={{ __html: rule.replace(/<strong>/g, `<strong style="color:${CREAM}">`).replace(/<\/strong>/g, '</strong>') }} />
+                <div key={i} style={{ fontFamily: MONO, fontSize: 13, lineHeight: 1.7, color: 'rgba(242,235,217,0.4)', paddingLeft: 14, borderLeft: '2px solid rgba(200,168,75,0.2)', marginBottom: 12 }}>{rule}</div>
               ))}
             </div>
 
-            {/* Production table */}
+            {/* Production notes table */}
             <div style={{ border: '1px solid rgba(242,235,217,0.06)' }}>
               {[
-                { stage: 'Main', color: GOLD, sc: 'm', desc: 'Lead production company. Full LED, lighting, sound, pyro. Generator redundancy ×2.' },
-                { stage: 'Origins', color: ORIGINS_C, sc: 'o', desc: 'Second company. Sound quality first. Warm amber lighting only. Sunrise does the visual work.' },
-                { stage: 'Rebirth', color: REBIRTH_C, sc: 'r', desc: 'Third company. Mid-scale. Dusk-calibrated warm lighting. Manages forest path during handoff.' },
-                { stage: 'The Pier', color: DIM, sc: 'p', desc: 'Fourth company. Minimal. 200 cap. Sound and basic lighting only. The sea is the production.' },
+                { stage: 'Zungu', color: GOLD, sc: 'm', desc: 'The mainstage. Big room. Major acts. Full production. Peak festival moments.' },
+                { stage: 'Origins', color: ORIGINS_C, sc: 'o', desc: 'The source stage. Sunrise. Earth sound. Tribal fusion. Rooted electronic. Local and emerging selectors.' },
+                { stage: 'Rebirth', color: REBIRTH_C, sc: 'r', desc: 'The underground stage. Sunset. Tribal. Tech. Underground house. Deep transition into night.' },
+                { stage: 'Pop-Ups', color: DIM, sc: 'p', desc: 'The surprise layer. Small music moments across the island: beach sets, forest sessions, Shoppe takeovers, The Signal recordings, partner lounges, pier moments, and late discoveries.' },
               ].map(({ stage, color, desc }) => (
                 <div key={stage} style={{ display: 'grid', gridTemplateColumns: '110px 1fr', borderBottom: '1px solid rgba(242,235,217,0.04)' }}>
                   <span style={{ padding: 14, borderRight: '1px solid rgba(242,235,217,0.04)', fontFamily: DISPLAY, fontSize: 9, fontWeight: 700, color, display: 'flex', alignItems: 'center' }}>{stage}</span>
@@ -733,6 +700,21 @@ export default function StagesPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════
+          CHAPTER 07 — WHY THIS STAGE SYSTEM MATTERS
+      ══════════════════════════════════════════════════════════════════ */}
+      <section style={{ padding: '80px 8vw', borderBottom: `1px solid ${BORDER}`, backgroundColor: GREEN }}>
+        <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 24 }}>
+          Zungu is not a field of stages.<br /><span style={{ color: GOLD }}>It is an island in rhythm.</span>
+        </h2>
+        <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 640, marginBottom: 32, letterSpacing: '0.02em' }}>
+          The stage system gives the island shape. Origins gives Zungu its beginning. Rebirth gives Zungu its transformation. Zungu gives the festival its centre. The pop-ups give the island life between the major moments. Together, the stages and smaller sound moments create a complete world: sunrise, sunset, night, discovery, recovery, and return.
+        </p>
+        <p style={{ fontFamily: MONO, fontSize: 11, color: 'rgba(242,235,217,0.25)', lineHeight: 1.9, maxWidth: 680, letterSpacing: '0.02em' }}>
+          All stage locations, orientation, operating hours, production scale, sound direction, artist programming, and pop-up formats remain subject to final site survey, environmental review, permit conditions, safety planning, technical design, and production partner assessment.
+        </p>
       </section>
 
       {/* Footer */}
