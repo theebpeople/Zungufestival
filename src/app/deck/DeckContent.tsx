@@ -30,7 +30,7 @@ const BodyText = ({ text, style }: { text: string; style?: React.CSSProperties }
   </p>
 );
 
-export default function DeckContent() {
+export default function DeckContent({ navLabel }: { navLabel?: string }) {
   const { signOut } = useClerk();
   const { user } = useUser();
   const router = useRouter();
