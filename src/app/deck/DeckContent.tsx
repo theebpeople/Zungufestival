@@ -22,7 +22,7 @@ const fontDisplay = "'Unbounded', sans-serif";
 const fontMono = "'Space Mono', monospace";
 
 // ── Section IDs for dot-nav ───────────────────────────────────────────────────
-const SECTIONS = ['brand', 'island', 'stages', 'experience', 'world', 'signal', 'opportunity', 'cta'] as const;
+const SECTIONS = ['brand', 'island', 'stages', 'artists', 'experience', 'world', 'signal', 'opportunity', 'cta'] as const;
 type SectionId = typeof SECTIONS[number];
 
 // ── Parallax photo break component ───────────────────────────────────────────
@@ -303,6 +303,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
     brand: useRef<HTMLElement>(null),
     island: useRef<HTMLElement>(null),
     stages: useRef<HTMLElement>(null),
+    artists: useRef<HTMLElement>(null),
     experience: useRef<HTMLElement>(null),
     world: useRef<HTMLElement>(null),
     signal: useRef<HTMLElement>(null),
@@ -315,6 +316,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
     brand: useRef<HTMLDivElement>(null),
     island: useRef<HTMLDivElement>(null),
     stages: useRef<HTMLDivElement>(null),
+    artists: useRef<HTMLDivElement>(null),
     experience: useRef<HTMLDivElement>(null),
     world: useRef<HTMLDivElement>(null),
     signal: useRef<HTMLDivElement>(null),
@@ -446,9 +448,9 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               ['What Is Zungu', 'brand'],
               ['The Island', 'island'],
               ['The Stages', 'stages'],
+              ['The Artists', 'artists'],
               ['The Experience', 'experience'],
               ['The World', 'world'],
-              ['The Signal', 'signal'],
             ] as [string, SectionId][]
           ).map(([label, id]) => (
             <button
@@ -630,9 +632,9 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
                 ['What Is Zungu', 'brand'],
                 ['The Island', 'island'],
                 ['The Stages', 'stages'],
+                ['The Artists', 'artists'],
                 ['The Experience', 'experience'],
                 ['The World', 'world'],
-                ['The Signal', 'signal'],
               ] as [string, SectionId][]
             ).map(([label, id]) => (
               <button
@@ -1106,6 +1108,66 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         label="Portland Parish · Caribbean"
       />
 
+      {/* Map sections */}
+      <Section>
+        <SectionHead label="Marina → Island Crossing Overview" title="The crossing." />
+        <div>
+          <IslandOverviewMap />
+        </div>
+      </Section>
+
+      <Section>
+        <SectionHead label="Stage Placement · Navy Island" title="Three stages. One island." />
+        <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 28 }}>
+          Provisional placement across the island&rsquo;s natural terrain. Stages face the sea — not the town. Final positioning subject to site survey.
+        </p>
+        <div style={{ marginBottom: 32 }}>
+          <StageMap />
+        </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px 40px', marginBottom: 48 }}>
+          {[
+            { color: gold, name: 'ZUNGU MAIN', sub: 'Centre Island · Mainstage' },
+            { color: teal, name: 'ORIGINS', sub: 'Sunrise Stage · Earth Sound' },
+            { color: rust, name: 'REBIRTH', sub: 'Sunset Stage · Underground House' },
+            { color: dim, name: 'ARRIVAL DOCK', sub: '~5 min from Errol Flynn Marina' },
+          ].map(({ color, name, sub }) => (
+            <div key={name} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <div style={{ width: 10, height: 10, borderRadius: '50%', background: color, flexShrink: 0 }} />
+              <div>
+                <span style={{ fontFamily: fontMono, fontSize: 9, fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: color === dim ? muted : cream, display: 'block' }}>{name}</span>
+                <span style={{ fontFamily: fontMono, fontSize: 8, color: muted, letterSpacing: '0.15em' }}>{sub}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        {/* Stage concept images */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+          {[
+            { src: 'https://res.cloudinary.com/elektricbangaz/image/upload/v1773236490/NAVY_ISLAND_AERIAL_vaapz1.png', label: 'ISLAND OVERVIEW — Three stages. One island.', sub: 'Wide aerial · Three stages visible from above' },
+            { src: 'https://res.cloudinary.com/elektricbangaz/image/upload/v1780459528/stage-beach-aerial_ra09bb.png', label: 'ZUNGU MAIN — South face · Open water', sub: 'Full production · Faces the Caribbean' },
+            { src: 'https://res.cloudinary.com/elektricbangaz/image/upload/v1780459528/stage-origins-ground_xjpf55.png', label: 'ORIGINS — Earth sound · Sunrise stage', sub: 'East tip · Sunrise · Earth sound' },
+            { src: 'https://res.cloudinary.com/elektricbangaz/image/upload/v1780459512/stage-rebirth-aerial_ruosnd.png', label: 'REBIRTH — Island edge · Sunset facing', sub: 'West point · Sunset · Underground house' },
+            { src: 'https://res.cloudinary.com/elektricbangaz/image/upload/v1780459528/stage-beach-activities_tnmqx6.png', label: 'THE ISLAND BETWEEN SETS', sub: 'Caribbean water · Daytime programme' },
+          ].map(({ src, label, sub }) => (
+            <div key={src} style={{ position: 'relative' }}>
+              <img src={src} style={{ width: '100%', display: 'block', filter: 'saturate(0.75) brightness(0.9)' }} alt={label} />
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '12px 16px', background: 'linear-gradient(to top, rgba(6,8,8,0.85) 0%, rgba(6,8,8,0) 100%)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                <span style={{ fontFamily: fontMono, fontSize: 9, color: cream, letterSpacing: '0.2em', textTransform: 'uppercase' }}>{label}</span>
+                <span style={{ fontFamily: fontMono, fontSize: 8, color: muted, letterSpacing: '0.15em' }}>{sub}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ marginTop: 40, paddingTop: 32, borderTop: `1px solid ${dim}` }}>
+          <a href="/stages" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, fontFamily: fontMono, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', fontWeight: 700, color: gold, textDecoration: 'none', border: `1px solid rgba(200,168,75,0.3)`, padding: '12px 24px' }}>
+            Full Stage Breakdown →
+          </a>
+          <p style={{ fontFamily: fontMono, fontSize: 10, color: muted, marginTop: 12, letterSpacing: '0.1em' }}>
+            Origins · Rebirth · Zungu Main — stage architecture, schedules, and nightly programming
+          </p>
+        </div>
+      </Section>
+
       {/* ═══════════════════════════════════════════════════════════════════
           CHAPTER 3: THE STAGES
       ═══════════════════════════════════════════════════════════════════ */}
@@ -1166,11 +1228,105 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
       />
 
       {/* ═══════════════════════════════════════════════════════════════════
-          CHAPTER 4: THE EXPERIENCE
+          CHAPTER 4: THE ARTISTS
       ═══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider
         num="04"
         eye="Chapter Four"
+        title="The Artists."
+        sub="Not just a lineup. A co-curation conversation. The artists who make the audience fly."
+      />
+
+      <Section id="artists">
+        <SectionHead label="The Headline Proposition" title="Black Coffee. Not a booking. A co-curator." />
+        <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 16 }}>
+          Black Coffee runs his own festival — the Black Coffee Weekender in Cape Town, now in its second edition. He curates lineups, commissions collaborations, and has a Grammy for Best Dance/Electronic Album. His Hï Ibiza residency ran 7 consecutive seasons. He has sold out Madison Square Garden.
+        </p>
+        <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 16 }}>
+          His label Soulistic Music signed Shimza. They perform back-to-back. They opened Hï Ibiza together. They share an artistic philosophy and a working relationship that makes the outreach sequence logical rather than speculative.
+        </p>
+        <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 36 }}>
+          The conversation is not: <em>&ldquo;We&rsquo;ll pay your fee.&rdquo;</em> It is: <em>&ldquo;We&rsquo;re building something on a private island in Jamaica — the most musically significant island in the Caribbean. Would you want your name on this from the beginning?&rdquo;</em>
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2, marginTop: 28 }}>
+          {[
+            {
+              name: 'Black Coffee',
+              tags: 'Grammy Winner · Soulistic Music · Hï Ibiza · 7 Seasons',
+              bio: 'South African DJ, Grammy-winning artist, festival curator. Runs his own event — the Black Coffee Weekender. Plays the Dominican Republic and Caribbean markets regularly. His Afro-house sound — deep percussion, emotional tension, Afropolitan register — is the exact fit for a Caribbean island at night.',
+              why: 'The co-curation angle: he already curates festivals, has a label relationship with Shimza, and collaborated with Diplo on the Grammy album. This is a peer conversation — not a booking form.',
+              headline: true,
+            },
+            {
+              name: 'Shimza',
+              tags: 'Soulistic Music · Hï Ibiza · Zamna Tulum',
+              bio: 'South African DJ, signed to Black Coffee\'s Soulistic Music. Performed at the opening of Black Coffee\'s Hï Ibiza residency. Regular at Zamna Tulum, Ibiza Club Chinois, New York, Tokyo. The African-Caribbean sonic connection is a documentable curatorial argument — Shimza at Zungu is not a stretch. It is the thesis.',
+              why: 'Natural extension of the Black Coffee conversation. The label relationship makes the sequence logical. If Black Coffee is in, Shimza is the next call.',
+              headline: true,
+            },
+            {
+              name: 'Keinemusik',
+              tags: '&ME · Rampa · Adam Port · Global Circuit',
+              bio: 'Currently the single biggest draw in the boutique festival circuit globally. Kloud shows sell out 5,000–10,000 seat venues in New York, Paris, London. Melodic, afro-infused house — exact register for a Caribbean island. Zamna regulars. The audience that follows Keinemusik is looking for the next undiscovered version of what Zamna was in 2017.',
+              why: 'The FOMO booking. "Keinemusik is playing on a private island in Jamaica" moves in the right rooms immediately.',
+              headline: false,
+            },
+            {
+              name: 'Diplo',
+              tags: 'Port Antonio Resident · Major Lazer · Grammy Collaborator',
+              bio: 'Permanent residence in Port Antonio, Jamaica. Hosts "Higher Ground" events drawing international fashion and music crowd. Collaborated with Black Coffee on the Grammy-winning album Subconsciously. Bridges the international electronic circuit and the Jamaican market better than almost anyone alive.',
+              why: 'Not a booking. He lives here. The conversation is neighbour to neighbour — which changes the fee, the association, and the story the press tells.',
+              headline: false,
+            },
+          ].map(({ name, tags, bio, why, headline }) => (
+            <div key={name} style={{ border: `1px solid ${headline ? 'rgba(200,168,75,0.4)' : 'rgba(200,168,75,0.12)'}`, padding: '36px 32px', background: headline ? 'rgba(200,168,75,0.04)' : 'rgba(13,31,20,0.4)', position: 'relative' }}>
+              {headline && (
+                <div style={{ position: 'absolute', top: 20, right: 20, fontFamily: fontMono, fontSize: 7, letterSpacing: '0.4em', textTransform: 'uppercase', color: gold, fontWeight: 700, border: `1px solid rgba(200,168,75,0.4)`, padding: '3px 8px' }}>
+                  HEADLINE
+                </div>
+              )}
+              <div style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 28px)', fontWeight: 900, color: cream, marginBottom: 6, lineHeight: 1.1 }}>{name}</div>
+              <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: gold, marginBottom: 16 }}>{tags}</div>
+              <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.75, marginBottom: 16 }}>{bio}</p>
+              <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, lineHeight: 1.7, fontStyle: 'italic', borderTop: `1px solid rgba(200,168,75,0.1)`, paddingTop: 16, marginTop: 16 }}>{why}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <PhotoBreak
+        src="https://res.cloudinary.com/elektricbangaz/image/upload/v1780459528/stage-beach-aerial_ra09bb.png"
+        quote="The crowd. The canopy. The sea."
+        label="Origins Stage · Zungu 2027"
+        height="68vh"
+      />
+
+      <Section dark>
+        <SectionHead label="The Commissioning Model" title="Music made on the island." goldLine="IP that outlives the weekend." />
+        <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 32 }}>
+          Every edition of Zungu commissions original collaborations between Jamaican producers and international artists. Recorded on Navy Island. Released on Zungu&rsquo;s label. The festival owns the publishing, artists retain performance rights, every partner credited on the release.
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2 }}>
+          {[
+            { title: 'Year 1 Target', sub: 'First Edition', body: '6–8 original commissioned tracks. One Jamaican producer + one international artist per track. Recorded on the island. Released on Zungu Records before or during the festival week.' },
+            { title: 'The IP Value', sub: 'Long-term Asset', body: 'Streaming, licensing, merchandise. A catalog that builds year on year. The festival as record label — generating revenue independent of ticket sales, compounding in value.' },
+            { title: 'The Press Story', sub: 'Cultural Narrative', body: 'RA, Mixmag, Pitchfork are not covering "festival in Jamaica." They\'re covering "Black Coffee and Shimza commissioned a track on a private island with a Jamaican producer." That story writes itself.' },
+          ].map(({ title, sub, body }) => (
+            <div key={title} style={{ border: `1px solid ${dim}`, padding: 24 }}>
+              <div style={{ fontFamily: fontDisplay, fontSize: 14, fontWeight: 700, color: cream, marginBottom: 4 }}>{title}</div>
+              <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: muted, marginBottom: 12 }}>{sub}</div>
+              <p style={{ fontFamily: fontMono, fontSize: 12, color: muted, lineHeight: 1.8 }}>{body}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          CHAPTER 5: THE EXPERIENCE
+      ═══════════════════════════════════════════════════════════════════ */}
+      <ChapterDivider
+        num="05"
+        eye="Chapter Five"
         title="The Experience."
         sub="Zungu is designed as a world guests move through — not a lineup they attend."
       />
