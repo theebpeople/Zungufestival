@@ -1,417 +1,1452 @@
 'use client';
 
-import { useClerk, useUser } from '@clerk/nextjs';
+import React from 'react';
+import dynamic from 'next/dynamic';
+import { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
 
-const BG   = '#04080A';
-const ALT  = '#0D2018';
-const GOLD = '#C8A84B';
-const CREAM = '#F2EBD9';
-const MUTED = 'rgba(242,235,217,0.45)';
-const DIM   = 'rgba(242,235,217,0.18)';
-const RUST  = '#C45A2A';
-const ORIGINS_ACCENT = '#D4722A';
-const REBIRTH_ACCENT = '#9B5FC0';
+const IslandOverviewMap = dynamic(() => import('./maps/IslandOverviewMap'), { ssr: false });
+const StageMap = dynamic(() => import('./maps/StageMap'), { ssr: false });
 
-const display = "'Unbounded', sans-serif";
-const mono    = "'Space Mono', monospace";
+// ── Design tokens ─────────────────────────────────────────────────────────────
+const bg = '#060808';
+const green = '#1A3A2A';
+const gold = '#C8A84B';
+const teal = '#1E6B5C';
+const cream = '#F2EBD9';
+const muted = 'rgba(107,99,85,0.92)';
+const dim = 'rgba(242,235,217,0.18)';
+const rust = '#C45A2A';
 
-const label = (text: string, color = GOLD) => (
-  <p style={{ fontFamily: mono, fontSize: 10, letterSpacing: '0.35em', color, textTransform: 'uppercase', fontWeight: 700, marginBottom: 24 }}>
-    {text}
-  </p>
-);
+const fontDisplay = "'Unbounded', sans-serif";
+const fontMono = "'Space Mono', monospace";
 
-const h2 = (text: string) => (
-  <h2 style={{ fontFamily: display, fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 900, letterSpacing: '-0.03em', color: CREAM, lineHeight: 1.05, textTransform: 'uppercase', margin: '0 0 32px' }}>
-    {text}
-  </h2>
-);
+// ── Section IDs for dot-nav ───────────────────────────────────────────────────
+const SECTIONS = ['brand', 'island', 'stages', 'experience', 'world', 'signal', 'opportunity', 'cta'] as const;
+type SectionId = typeof SECTIONS[number];
 
-const body = (text: string, style?: React.CSSProperties) => (
-  <p style={{ fontFamily: mono, fontSize: 15, color: MUTED, lineHeight: 1.9, margin: '0 0 20px', ...style }}>
-    {text}
-  </p>
-);
+// ── Parallax photo break component ───────────────────────────────────────────
+interface PhotoBreakProps {
+  src: string;
+  quote: string;
+  label: string;
+  height?: string | number;
+}
 
-const divider = () => (
-  <div style={{ width: '100%', height: 1, background: `rgba(200,168,75,0.12)` }} />
-);
-
-export default function DeckContent({ navLabel }: { navLabel?: string }) {
-  const { signOut } = useClerk();
-  const { user } = useUser();
+function PhotoBreak({ src, quote, label, height = '70vh' }: PhotoBreakProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
 
   return (
-    <div style={{ backgroundColor: BG, fontFamily: mono, color: CREAM, minHeight: '100vh' }}>
+    <div
+      ref={ref}
+      style={{
+        width: '100%',
+        boxSizing: 'border-box',
+        position: 'relative',
+        height,
+        overflow: 'hidden',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <motion.div
+        style={{
+          position: 'absolute',
+          inset: '-10%',
+          backgroundImage: `url('${src}')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          filter: 'saturate(0.7) brightness(0.35)',
+          y: bgY,
+        }}
+      />
+      {/* gradient — bottom fade */}
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(6,8,8,0.7) 0%, rgba(6,8,8,0) 50%)', zIndex: 1 }} />
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 2,
+          textAlign: 'center',
+          padding: '0 clamp(24px, 8vw, 120px)',
+          width: '100%',
+        }}
+      >
+        <p
+          style={{
+            fontFamily: fontMono,
+            fontSize: 8,
+            letterSpacing: '0.6em',
+            textTransform: 'uppercase',
+            color: gold,
+            fontWeight: 700,
+            marginBottom: 20,
+          }}
+        >
+          {label}
+        </p>
+        <p
+          style={{
+            fontFamily: fontDisplay,
+            fontSize: 'clamp(32px, 5.5vw, 72px)',
+            fontWeight: 900,
+            color: cream,
+            lineHeight: 1.05,
+          }}
+        >
+          {quote}
+        </p>
+      </div>
+    </div>
+  );
+}
 
-      {/* ── NAV ── */}
-      <nav style={{
-        position: 'sticky', top: 0, zIndex: 100,
-        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        padding: '1.25rem 8vw',
-        backgroundColor: 'rgba(4,8,10,0.92)',
-        backdropFilter: 'blur(12px)',
-        borderBottom: `1px solid ${DIM}`,
-        flexWrap: 'nowrap',
-      }}>
-        <img src="/zungu-z-mark.png" alt="Zungu" style={{ height: 28, filter: `drop-shadow(0 0 8px rgba(200,168,75,0.4))` }} />
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'nowrap' }}>
-          {navLabel && (
-            <span style={{ fontSize: 10, color: GOLD, border: `1px solid rgba(200,168,75,0.4)`, padding: '0.3rem 0.85rem', letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 700, whiteSpace: 'nowrap' }}>
-              {navLabel}
-            </span>
-          )}
-          {user?.primaryEmailAddress?.emailAddress && (
-            <span style={{ fontSize: 10, color: MUTED, letterSpacing: '0.1em', whiteSpace: 'nowrap' }}>
-              {user.primaryEmailAddress.emailAddress}
-            </span>
-          )}
+// ── Chapter divider ───────────────────────────────────────────────────────────
+interface ChapterProps {
+  num: string;
+  eye: string;
+  title: string;
+  sub: string;
+}
+
+function ChapterDivider({ num, eye, title, sub }: ChapterProps) {
+  return (
+    <div
+      style={{
+        width: '100%',
+        boxSizing: 'border-box',
+        backgroundColor: bg,
+        borderTop: `1px solid rgba(200,168,75,0.15)`,
+      }}
+    >
+      <div style={{ padding: '72px 8vw 0', boxSizing: 'border-box' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
+          {/* Ghost number — flex item matching .ch-n */}
+          <div
+            style={{
+              fontFamily: fontDisplay,
+              fontSize: 88,
+              fontWeight: 900,
+              color: 'rgba(200,168,75,0.18)',
+              lineHeight: 1,
+              flexShrink: 0,
+              userSelect: 'none',
+              pointerEvents: 'none',
+            }}
+          >
+            {num}
+          </div>
+          {/* Text content */}
+          <div>
+            <p style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.6em', color: gold, textTransform: 'uppercase', marginBottom: 10 }}>
+              {eye}
+            </p>
+            <h2 style={{ fontFamily: fontDisplay, fontSize: 'clamp(24px, 4vw, 48px)', fontWeight: 700, color: cream, lineHeight: 1.05, letterSpacing: '-0.02em' }}>
+              {title}
+            </h2>
+            <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, marginTop: 10, lineHeight: 1.7, maxWidth: 540 }}>
+              {sub}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Section wrapper ───────────────────────────────────────────────────────────
+interface SectionProps {
+  id?: string;
+  children: React.ReactNode;
+  dark?: boolean;
+  style?: React.CSSProperties;
+}
+
+function Section({ id, children, dark, style }: SectionProps) {
+  return (
+    <section
+      id={id}
+      style={{
+        width: '100%',
+        boxSizing: 'border-box',
+        backgroundColor: dark ? green : bg,
+        ...style,
+      }}
+    >
+      <div style={{ padding: '88px 8vw', boxSizing: 'border-box' }}>
+        {children}
+      </div>
+    </section>
+  );
+}
+
+// ── Quote block ───────────────────────────────────────────────────────────────
+interface QuoteBlockProps {
+  quote: string;
+  attr: string;
+}
+
+function QuoteBlock({ quote, attr }: QuoteBlockProps) {
+  return (
+    <div
+      style={{
+        borderLeft: `3px solid ${gold}`,
+        paddingLeft: 28,
+        margin: '48px 0',
+        maxWidth: 680,
+      }}
+    >
+      <p
+        style={{
+          fontFamily: fontDisplay,
+          fontSize: 'clamp(16px, 2.2vw, 24px)',
+          fontWeight: 600,
+          color: cream,
+          lineHeight: 1.45,
+          marginBottom: 14,
+          fontStyle: 'italic',
+        }}
+      >
+        &ldquo;{quote}&rdquo;
+      </p>
+      <p
+        style={{
+          fontFamily: fontMono,
+          fontSize: 8,
+          letterSpacing: '0.4em',
+          textTransform: 'uppercase',
+          color: gold,
+          fontWeight: 700,
+        }}
+      >
+        — {attr}
+      </p>
+    </div>
+  );
+}
+
+// ── Body text ─────────────────────────────────────────────────────────────────
+function BodyText({ children }: { children: React.ReactNode }) {
+  return (
+    <p
+      style={{
+        fontFamily: fontMono,
+        fontSize: 13,
+        color: muted,
+        lineHeight: 1.9,
+        maxWidth: 680,
+        marginBottom: 18,
+      }}
+    >
+      {children}
+    </p>
+  );
+}
+
+// ── Section label + title ─────────────────────────────────────────────────────
+interface SectionHeadProps {
+  label?: string;
+  title: string;
+  titleColor?: string;
+  goldLine?: string;
+}
+
+function SectionHead({ label, title, titleColor = cream, goldLine }: SectionHeadProps) {
+  return (
+    <div style={{ marginBottom: 36 }}>
+      {label && (
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 36 }}>
+          <div style={{ width: 28, height: 1, background: gold, flexShrink: 0 }} />
+          <p
+            style={{
+              fontFamily: fontMono,
+              fontSize: 9,
+              letterSpacing: '0.6em',
+              textTransform: 'uppercase',
+              color: gold,
+              fontWeight: 700,
+            }}
+          >
+            {label}
+          </p>
+        </div>
+      )}
+      <h3
+        style={{
+          fontFamily: fontDisplay,
+          fontSize: 'clamp(24px, 4vw, 54px)',
+          fontWeight: 700,
+          color: titleColor,
+          lineHeight: 1.02,
+          letterSpacing: '-0.025em',
+          marginBottom: 28,
+        }}
+      >
+        {title}
+        {goldLine && (
+          <><br /><span style={{ color: gold }}>{goldLine}</span></>
+        )}
+      </h3>
+    </div>
+  );
+}
+
+// ── Main component ────────────────────────────────────────────────────────────
+export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?: string }) {
+  // Refs for section scroll targets
+  const sectionRefs: Record<SectionId, React.RefObject<HTMLElement | null>> = {
+    brand: useRef<HTMLElement>(null),
+    island: useRef<HTMLElement>(null),
+    stages: useRef<HTMLElement>(null),
+    experience: useRef<HTMLElement>(null),
+    world: useRef<HTMLElement>(null),
+    signal: useRef<HTMLElement>(null),
+    opportunity: useRef<HTMLElement>(null),
+    cta: useRef<HTMLElement>(null),
+  };
+
+  // Nav ref for section scrolls
+  const navRefs = {
+    brand: useRef<HTMLDivElement>(null),
+    island: useRef<HTMLDivElement>(null),
+    stages: useRef<HTMLDivElement>(null),
+    experience: useRef<HTMLDivElement>(null),
+    world: useRef<HTMLDivElement>(null),
+    signal: useRef<HTMLDivElement>(null),
+    opportunity: useRef<HTMLDivElement>(null),
+    cta: useRef<HTMLDivElement>(null),
+  };
+
+  // Scroll progress bar
+  const { scrollYProgress } = useScroll();
+  const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
+  // Active dot nav
+  const [activeSection, setActiveSection] = useState<SectionId>('brand');
+
+  // Mobile nav
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // CTA form state
+  const [selectedInterest, setSelectedInterest] = useState<string | null>(null);
+  const [formName, setFormName] = useState('');
+  const [formOrg, setFormOrg] = useState('');
+  const [formEmail, setFormEmail] = useState('');
+  const [formMessage, setFormMessage] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const [formError, setFormError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+
+  // Hero scale animation
+  const [heroScale, setHeroScale] = useState(1.05);
+  useEffect(() => {
+    const t = setTimeout(() => setHeroScale(1), 80);
+    return () => clearTimeout(t);
+  }, []);
+
+  // IntersectionObserver for dot nav
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    SECTIONS.forEach((id) => {
+      const el = document.getElementById(`section-${id}`);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id);
+        },
+        { threshold: 0.3 }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
+  function scrollToSection(id: SectionId) {
+    const el = document.getElementById(`section-${id}`);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function scrollToCta() {
+    const el = document.getElementById('section-cta');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  const navLinkStyle: React.CSSProperties = {
+    fontFamily: fontMono,
+    fontSize: 9,
+    letterSpacing: '0.4em',
+    textTransform: 'uppercase',
+    color: muted,
+    fontWeight: 700,
+    background: 'none',
+    border: 'none',
+    cursor: 'pointer',
+    padding: '4px 0',
+    textDecoration: 'none',
+    transition: 'color 0.2s',
+  };
+
+  return (
+    <div style={{ backgroundColor: bg, color: cream, fontFamily: fontMono, position: 'relative', width: '100%', minHeight: '100vh' }}>
+
+      {/* ── Scroll progress bar ──────────────────────────────────────────── */}
+      <motion.div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 2,
+          background: gold,
+          scaleX,
+          transformOrigin: 'left',
+          zIndex: 1000,
+        }}
+      />
+
+      {/* ── Nav ─────────────────────────────────────────────────────────── */}
+      <nav
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 52,
+          zIndex: 900,
+          backgroundColor: 'rgba(6,8,8,0.85)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          borderBottom: `1px solid ${dim}`,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '0 6vw',
+          gap: 16,
+        }}
+      >
+        {/* Left: Z-mark */}
+        <div style={{ flexShrink: 0 }}>
+          <img
+            src="/zungu-z-mark.png"
+            style={{ height: 30, filter: 'drop-shadow(0 0 10px rgba(200,168,75,.3))', display: 'block' }}
+            alt="Zungu"
+          />
+        </div>
+
+        {/* Center: nav links — hidden on portrait tablet via CSS */}
+        <div className="deck-chapter-links">
+          {(
+            [
+              ['What Is Zungu', 'brand'],
+              ['The Island', 'island'],
+              ['The Stages', 'stages'],
+              ['The Experience', 'experience'],
+              ['The World', 'world'],
+              ['The Signal', 'signal'],
+            ] as [string, SectionId][]
+          ).map(([label, id]) => (
+            <button
+              key={id}
+              onClick={() => scrollToSection(id)}
+              style={navLinkStyle}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+
+        {/* Right: CTA + activities + badge + sign out (desktop) */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 16,
+            flexShrink: 0,
+          }}
+        >
           <button
-            onClick={() => signOut({ redirectUrl: '/' })}
-            style={{ fontFamily: mono, fontSize: 10, color: MUTED, background: 'none', border: 'none', cursor: 'pointer', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 700, whiteSpace: 'nowrap' }}
+            onClick={scrollToCta}
+            className="deck-nav-desktop"
+            style={{
+              fontFamily: fontMono,
+              fontSize: 9,
+              letterSpacing: '0.4em',
+              textTransform: 'uppercase',
+              fontWeight: 700,
+              padding: '8px 18px',
+              background: gold,
+              color: bg,
+              border: 'none',
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Request Briefing →
+          </button>
+          <a
+            href="/activities"
+            className="deck-nav-desktop"
+            style={{ ...navLinkStyle, display: 'inline-block', whiteSpace: 'nowrap' }}
+          >
+            Activities
+          </a>
+          <a
+            href="/stages"
+            className="deck-nav-desktop"
+            style={{ ...navLinkStyle, display: 'inline-block', whiteSpace: 'nowrap' }}
+          >
+            Stages
+          </a>
+          <span
+            className="deck-nav-desktop"
+            style={{
+              fontFamily: fontMono,
+              fontSize: 10,
+              letterSpacing: '0.3em',
+              textTransform: 'uppercase',
+              fontWeight: 700,
+              color: gold,
+              border: `1px solid rgba(200,168,75,0.35)`,
+              padding: '4px 10px',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {navLabel.toUpperCase()}
+          </span>
+          <a
+            href="/sign-out"
+            className="deck-nav-desktop"
+            style={{
+              fontFamily: fontMono,
+              fontSize: 9,
+              letterSpacing: '0.4em',
+              textTransform: 'uppercase',
+              fontWeight: 700,
+              color: muted,
+              textDecoration: 'none',
+            }}
           >
             Sign Out
+          </a>
+
+          {/* Hamburger — mobile only */}
+          <button
+            className="deck-hamburger"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open menu"
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              gap: 5,
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '4px 2px',
+            }}
+          >
+            {[0, 1, 2].map((i) => (
+              <span
+                key={i}
+                style={{ display: 'block', width: 22, height: 2, background: muted, borderRadius: 0 }}
+              />
+            ))}
           </button>
         </div>
       </nav>
 
-      {/* ── HERO ── */}
-      <div style={{ position: 'relative', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', overflow: 'hidden' }}>
-        <video
-          autoPlay muted loop playsInline
-          poster="https://res.cloudinary.com/elektricbangaz/image/upload/v1773236490/NAVY_ISLAND_AERIAL_vaapz1.png"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'saturate(0.9) brightness(0.55)' }}
+      {/* ── Mobile full-screen menu ──────────────────────────────────────── */}
+      <style>{`
+        @media (min-width: 901px) {
+          .deck-hamburger { display: none !important; }
+        }
+        @media (max-width: 900px) {
+          .deck-nav-desktop { display: none !important; }
+        }
+        body { cursor: crosshair; }
+        body::before {
+          content: '';
+          position: fixed;
+          inset: 0;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+          pointer-events: none;
+          z-index: 9999;
+          opacity: 0.5;
+        }
+      `}</style>
+
+      {mobileMenuOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 950,
+            backgroundColor: 'rgba(6,8,8,0.97)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '2rem',
+            gap: 0,
+          }}
         >
-          <source src="https://res.cloudinary.com/elektricbangaz/video/upload/v1780459585/aerial-view-of-navy-island-in-port-antonio-in-jama-2025-12-17-11-59-54-utc_coui1y.mov" type="video/mp4" />
-        </video>
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(4,8,10,0.3) 0%, rgba(4,8,10,0.1) 40%, rgba(4,8,10,0.6) 100%)' }} />
-        <div style={{ position: 'relative', zIndex: 10, padding: '0 8vw', maxWidth: 900, width: '100%' }}>
-          <p style={{ fontFamily: mono, fontSize: 10, letterSpacing: '0.4em', color: `rgba(200,168,75,0.8)`, textTransform: 'uppercase', marginBottom: '1.5rem', fontWeight: 700 }}>
-            EXECUTIVE BRIEFING · NAVY ISLAND · PORT ANTONIO · JAMAICA
-          </p>
-          <h1 style={{ fontFamily: display, fontSize: 'clamp(4rem, 13vw, 10rem)', fontWeight: 900, letterSpacing: '-0.03em', color: CREAM, lineHeight: 0.95, textTransform: 'uppercase', margin: '0 0 0.25rem' }}>
-            ZUNGU FESTIVAL
-          </h1>
-          <p style={{ fontFamily: display, fontSize: 'clamp(1rem, 2.5vw, 1.75rem)', fontWeight: 300, letterSpacing: '0.4em', color: GOLD, marginBottom: '2rem' }}>
-            MMXXVII
-          </p>
-          <p style={{ fontFamily: mono, fontSize: 15, color: `rgba(247,243,236,0.75)`, lineHeight: 1.8, marginBottom: '0.75rem', maxWidth: 600, margin: '0 auto 0.75rem' }}>
-            For one week, the most beautiful place on earth welcomes you to Zungu.
-          </p>
-          <p style={{ fontFamily: mono, fontSize: 15, color: `rgba(247,243,236,0.6)`, lineHeight: 1.8, marginBottom: '2.5rem', maxWidth: 600, margin: '0 auto 2.5rem' }}>
-            Where the magic of sound, sea, sand, movement, and Caribbean rhythm invites you into the ultimate electronic music experience.
-          </p>
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="mailto:partnership@zungufestival.com?subject=Briefing%20Request"
-              style={{ fontFamily: mono, fontSize: 10, letterSpacing: '0.3em', padding: '13px 28px', backgroundColor: GOLD, color: BG, textDecoration: 'none', fontWeight: 700, textTransform: 'uppercase' }}>
-              Request Briefing →
+          {/* Close */}
+          <button
+            onClick={() => setMobileMenuOpen(false)}
+            style={{
+              position: 'absolute',
+              top: 20,
+              right: 24,
+              background: 'none',
+              border: 'none',
+              color: muted,
+              fontSize: 22,
+              cursor: 'pointer',
+              fontFamily: fontMono,
+            }}
+          >
+            ✕
+          </button>
+
+          {/* Logo */}
+          <img
+            src="/zungu-z-mark.png"
+            alt="Zungu"
+            style={{ width: 48, height: 48, objectFit: 'contain', marginBottom: 40, filter: 'drop-shadow(0 0 16px rgba(200,168,75,0.3))' }}
+          />
+
+          {/* Chapter links */}
+          <nav style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, width: '100%', marginBottom: 40 }}>
+            {(
+              [
+                ['What Is Zungu', 'brand'],
+                ['The Island', 'island'],
+                ['The Stages', 'stages'],
+                ['The Experience', 'experience'],
+                ['The World', 'world'],
+                ['The Signal', 'signal'],
+              ] as [string, SectionId][]
+            ).map(([label, id]) => (
+              <button
+                key={id}
+                onClick={() => { scrollToSection(id); setMobileMenuOpen(false); }}
+                style={{
+                  fontFamily: fontDisplay,
+                  fontSize: 'clamp(1.4rem, 7vw, 2.2rem)',
+                  fontWeight: 900,
+                  textTransform: 'uppercase',
+                  letterSpacing: '-0.02em',
+                  color: cream,
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: '10px 0',
+                  width: '100%',
+                  textAlign: 'center',
+                  borderBottom: `1px solid ${dim}`,
+                  transition: 'color 0.2s',
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = gold; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = cream; }}
+              >
+                {label}
+              </button>
+            ))}
+          </nav>
+
+          {/* CTA */}
+          <button
+            onClick={() => { scrollToCta(); setMobileMenuOpen(false); }}
+            style={{
+              fontFamily: fontMono,
+              fontSize: 12,
+              letterSpacing: '0.25em',
+              textTransform: 'uppercase',
+              fontWeight: 700,
+              padding: '14px 32px',
+              background: gold,
+              color: bg,
+              border: 'none',
+              cursor: 'pointer',
+              width: '100%',
+              maxWidth: 320,
+              marginBottom: 16,
+            }}
+          >
+            Request Briefing →
+          </button>
+
+          <div style={{ display: 'flex', gap: 32, marginTop: 8 }}>
+            <a
+              href="/activities"
+              style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: muted, textDecoration: 'none', fontWeight: 700 }}
+            >
+              Activities
             </a>
-            <a href="#what-is-zungu"
-              style={{ fontFamily: mono, fontSize: 10, letterSpacing: '0.3em', padding: '13px 28px', backgroundColor: 'transparent', border: `1px solid rgba(200,168,75,0.5)`, color: GOLD, textDecoration: 'none', fontWeight: 700, textTransform: 'uppercase' }}>
-              Explore ↓
+            <a
+              href="/stages"
+              style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: muted, textDecoration: 'none', fontWeight: 700 }}
+            >
+              Stages
+            </a>
+            <a
+              href="/sign-out"
+              style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: muted, textDecoration: 'none', fontWeight: 700 }}
+            >
+              Sign Out
             </a>
           </div>
         </div>
-        <p style={{ position: 'absolute', bottom: '1.75rem', fontFamily: mono, fontSize: 9, letterSpacing: '0.25em', color: `rgba(200,168,75,0.35)`, textTransform: 'lowercase', zIndex: 10 }}>
-          partnership@zungufestival.com
-        </p>
+      )}
+
+      {/* ── Side dots ───────────────────────────────────────────────────── */}
+      <div
+        style={{
+          position: 'fixed',
+          right: 20,
+          top: '50%',
+          transform: 'translateY(-50%)',
+          zIndex: 800,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 12,
+        }}
+      >
+        {SECTIONS.map((id) => (
+          <button
+            key={id}
+            onClick={() => scrollToSection(id)}
+            title={id}
+            style={{
+              width: activeSection === id ? 8 : 5,
+              height: activeSection === id ? 8 : 5,
+              borderRadius: '50%',
+              background: activeSection === id ? gold : dim,
+              border: 'none',
+              cursor: 'pointer',
+              padding: 0,
+              transition: 'all 0.25s',
+              display: 'block',
+            }}
+          />
+        ))}
       </div>
 
-      {/* ── WHAT IS ZUNGU? ── */}
-      <section id="what-is-zungu" style={{ backgroundColor: BG, padding: '96px 8vw', boxSizing: 'border-box' }}>
-        {label('// WHAT IS ZUNGU?')}
-        {h2('What Is Zungu?')}
-        {body('Zungu is a private-island electronic music festival in Port Antonio, Jamaica.')}
-        {body('But it is not just an event on an island.')}
-        {body('It is what happens when an entire island moves in rhythm — stages, people, sound, food, water, art, light, culture, and night coming together as one living world.')}
-        <p style={{ fontFamily: display, fontSize: 'clamp(1rem, 2vw, 1.5rem)', fontWeight: 700, color: GOLD, letterSpacing: '-0.01em', marginTop: 32 }}>
-          For one week, Navy Island becomes Zungu.
-        </p>
-      </section>
+      {/* ═══════════════════════════════════════════════════════════════════
+          HERO
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section
+        style={{
+          width: '100%',
+          boxSizing: 'border-box',
+          position: 'relative',
+          height: '100vh',
+          minHeight: 600,
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        {/* Background */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: `url('/photos/navy-island-aerial-hq.png')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            filter: 'saturate(0.7) brightness(0.45)',
+            transform: `scale(${heroScale})`,
+            transition: 'transform 1.8s cubic-bezier(0.16,1,0.3,1)',
+          }}
+        />
+        {/* Gradient overlay */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: `linear-gradient(to top, ${bg} 0%, rgba(6,8,8,0.55) 40%, rgba(6,8,8,0.1) 100%)`,
+          }}
+        />
 
-      {divider()}
-
-      {/* ── WHAT DOES ZUNGU MEAN? ── */}
-      <section style={{ backgroundColor: BG, padding: '96px 8vw', boxSizing: 'border-box' }}>
-        {label('// WHAT DOES ZUNGU MEAN?')}
-        {h2('What Does Zungu Mean?')}
-        {body('Zungu begins with rhythm.')}
-        {body('The name borrows its pulse from Yellowman\'s "Zungguzungguguzungguzeng" — one of dancehall\'s most iconic sounds. A phrase built from energy, instinct, repetition, and movement.')}
-        {body('It does not need to be translated to be felt.')}
-        {body('For Zungu, the meaning is simple:')}
-        <div style={{ marginTop: 32, paddingLeft: 0 }}>
-          {['Everything in rhythm.', 'The crowd.', 'The bass.', 'The island.', 'The night.', 'The culture.', 'The world coming back to Jamaica.'].map((line, i) => (
-            <p key={i} style={{ fontFamily: mono, fontSize: i === 0 ? 18 : 15, color: i === 0 ? CREAM : MUTED, lineHeight: 1.7, margin: '4px 0', fontWeight: i === 0 ? 700 : 400 }}>
-              {line}
+        {/* Hero content — centered */}
+        <div
+          style={{
+            position: 'relative',
+            zIndex: 2,
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            padding: '52px 8vw 120px',
+            width: '100%',
+          }}
+        >
+          {/* Eyebrow */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 28 }}>
+            <div style={{ width: 32, height: 1, background: gold }} />
+            <p
+              style={{
+                fontFamily: fontMono,
+                fontSize: 9,
+                letterSpacing: '0.4em',
+                textTransform: 'uppercase',
+                color: gold,
+                fontWeight: 700,
+              }}
+            >
+              Navy Island · Port Antonio · Jamaica · Target Window: June 17–23, 2027
             </p>
-          ))}
-        </div>
-      </section>
-
-      {/* ── THE BRAND THESIS ── */}
-      <section style={{ backgroundColor: ALT, padding: '96px 8vw', boxSizing: 'border-box' }}>
-        {label('// THE BRAND THESIS')}
-        {h2('The Brand Thesis')}
-        {body('Jamaica gave the world rhythm.')}
-        {body('From sound systems to dub, dancehall, bass culture, remix culture, MC culture, jungle, drum and bass, dubstep, and global club music — Jamaica\'s influence has moved through the world for decades.')}
-        {body('Zungu brings that movement home.')}
-        <div style={{ marginTop: 24 }}>
-          {['Not as nostalgia.', 'Not as a lecture.', 'As a festival.'].map((line, i) => (
-            <p key={i} style={{ fontFamily: mono, fontSize: 15, color: i === 2 ? CREAM : MUTED, fontWeight: i === 2 ? 700 : 400, lineHeight: 1.7, margin: '4px 0' }}>{line}</p>
-          ))}
-        </div>
-        <p style={{ fontFamily: display, fontSize: 'clamp(1rem, 2vw, 1.4rem)', fontWeight: 700, color: GOLD, marginTop: 32, lineHeight: 1.4 }}>
-          A Jamaican-born electronic music destination built for the world.
-        </p>
-      </section>
-
-      {/* ── THE ISLAND ── */}
-      <section style={{ backgroundColor: BG, padding: '96px 8vw', boxSizing: 'border-box' }}>
-        {label('// THE ISLAND')}
-        {h2('The Island')}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'center' }}>
-          <div>
-            {body('Navy Island is the scenery.')}
-            {body('It is where the world of Zungu comes alive and the magic of the experience begins.')}
-            {body('For one week, the island becomes the festival.')}
-            <div style={{ margin: '24px 0' }}>
-              {['The forest becomes movement.', 'The water becomes atmosphere.', 'The stages become landmarks.', 'The night becomes ritual.', 'The island becomes sound.'].map((line, i) => (
-                <p key={i} style={{ fontFamily: mono, fontSize: 15, color: MUTED, lineHeight: 1.8, margin: '4px 0' }}>{line}</p>
-              ))}
-            </div>
-            {body('This is not a field with a stage on it.')}
-            <p style={{ fontFamily: mono, fontSize: 15, color: CREAM, fontWeight: 700, lineHeight: 1.8 }}>This is an entire island transformed.</p>
+            <div style={{ width: 32, height: 1, background: gold }} />
           </div>
-          <div>
-            <img
-              src="https://res.cloudinary.com/elektricbangaz/image/upload/v1773236490/NAVY_ISLAND_AERIAL_vaapz1.png"
-              alt="Navy Island aerial"
-              style={{ width: '100%', display: 'block', filter: 'saturate(0.9) brightness(0.85)' }}
-            />
+
+          {/* Z-mark */}
+          <img src="/zungu-z-mark.png" width={110} style={{ marginBottom: 24, display: 'block' }} alt="Zungu" />
+
+          {/* H1 */}
+          <h1
+            style={{
+              fontFamily: fontDisplay,
+              fontSize: 'clamp(58px, 11.5vw, 155px)',
+              fontWeight: 900,
+              lineHeight: 0.92,
+              letterSpacing: '-0.03em',
+              color: cream,
+              margin: 0,
+            }}
+          >
+            ZUNGU<br />
+            <span style={{ color: gold }}>FESTIVAL</span>
+          </h1>
+
+          {/* Year */}
+          <p
+            style={{
+              fontFamily: fontDisplay,
+              fontWeight: 300,
+              fontSize: 'clamp(14px, 2.2vw, 26px)',
+              color: dim,
+              letterSpacing: '0.3em',
+              marginTop: 16,
+              marginBottom: 32,
+            }}
+          >
+            MMXXVII
+          </p>
+
+          {/* Tagline */}
+          <p
+            style={{
+              fontFamily: fontMono,
+              fontSize: 'clamp(12px, 1.4vw, 16px)',
+              color: muted,
+              lineHeight: 1.8,
+              maxWidth: 520,
+              marginBottom: 8,
+            }}
+          >
+            For one week, the most beautiful place on earth welcomes you to Zungu.
+          </p>
+
+          {/* Sub */}
+          <p
+            style={{
+              fontFamily: fontMono,
+              fontSize: 'clamp(11px, 1.2vw, 14px)',
+              color: muted,
+              lineHeight: 1.8,
+              maxWidth: 480,
+              marginBottom: 40,
+            }}
+          >
+            Where the magic of sound, sea, sand, movement, and Caribbean rhythm invites you into the ultimate electronic music experience.
+          </p>
+
+          {/* CTAs */}
+          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
+            <button
+              onClick={scrollToCta}
+              style={{
+                fontFamily: fontMono,
+                fontSize: 10,
+                letterSpacing: '0.3em',
+                textTransform: 'uppercase',
+                fontWeight: 700,
+                padding: '14px 28px',
+                background: gold,
+                color: bg,
+                border: 'none',
+                cursor: 'pointer',
+              }}
+            >
+              Request Briefing →
+            </button>
+            <button
+              onClick={() => scrollToSection('brand')}
+              style={{
+                fontFamily: fontMono,
+                fontSize: 10,
+                letterSpacing: '0.3em',
+                textTransform: 'uppercase',
+                fontWeight: 700,
+                padding: '14px 28px',
+                background: 'transparent',
+                color: cream,
+                border: `1px solid ${dim}`,
+                cursor: 'pointer',
+              }}
+            >
+              Explore ↓
+            </button>
           </div>
         </div>
+
+        {/* Stats bar — absolutely pinned to hero bottom */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            zIndex: 3,
+            padding: '20px 8vw',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            borderTop: `1px solid rgba(200,168,75,0.08)`,
+          }}
+        >
+          {[
+              ['64', 'Acres', 'Private Island'],
+              ['5,000', 'Tickets', 'Year 1'],
+              ['7', 'Days', '6 Nights'],
+              ['Jun 17', 'Opens', '2027'],
+            ].map(([num, label, sub], i, arr) => (
+              <React.Fragment key={label}>
+                <div>
+                  <span
+                    style={{
+                      fontFamily: fontDisplay,
+                      fontSize: 'clamp(14px, 2vw, 24px)',
+                      fontWeight: 900,
+                      color: gold,
+                      display: 'block',
+                      lineHeight: 1,
+                    }}
+                  >
+                    {num}
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: fontMono,
+                      fontSize: 9,
+                      letterSpacing: '0.35em',
+                      textTransform: 'uppercase',
+                      color: cream,
+                      fontWeight: 700,
+                      display: 'block',
+                      marginTop: 4,
+                    }}
+                  >
+                    {label}
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: fontMono,
+                      fontSize: 8,
+                      letterSpacing: '0.2em',
+                      textTransform: 'uppercase',
+                      color: muted,
+                      display: 'block',
+                    }}
+                  >
+                    {sub}
+                  </span>
+                </div>
+                {i < arr.length - 1 && (
+                  <div style={{ width: 1, height: 32, background: 'rgba(200,168,75,0.1)', flexShrink: 0 }} />
+                )}
+              </React.Fragment>
+            ))}
+        </div>
       </section>
 
-      {/* ── THE STAGES ── */}
-      <section style={{ backgroundColor: ALT, padding: '96px 8vw', boxSizing: 'border-box' }}>
-        {label('// THE STAGES')}
-        {h2('The Stages')}
-        {body('Three stages give Zungu its shape.')}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2px', marginTop: 48, backgroundColor: DIM }}>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          CHAPTER 1: WHAT IS ZUNGU?
+      ═══════════════════════════════════════════════════════════════════ */}
+      <ChapterDivider
+        num="01"
+        eye="Chapter One"
+        title="What Is Zungu?"
+        sub="A private-island electronic music festival in Port Antonio, Jamaica. But not just an event on an island."
+      />
+
+      {/* What Is Zungu */}
+      <Section id="brand">
+        <SectionHead label="What Is Zungu?" title="An entire island in rhythm." />
+        <div style={{ maxWidth: 880, marginBottom: 32 }}>
           {[
-            { name: 'ORIGINS', accent: ORIGINS_ACCENT, pos: 'Sunrise Stage', desc: 'Faces the sunrise. Earth sound. Tribal fusion. Organic electronic. Deep percussion. Rooted rhythms. The beginning.' },
-            { name: 'REBIRTH', accent: REBIRTH_ACCENT, pos: 'Sunset Stage', desc: 'Faces the sunset. Tribal. Tech. Underground house. Hypnotic grooves. Golden hour energy. The transformation.' },
-            { name: 'ZUNGU', accent: GOLD, pos: 'Centre Island · Mainstage', desc: 'Sits at the centre of the island. The mainstage. Major acts. Big-room energy. Full production. The moments that define the week.' },
-          ].map(({ name, accent, pos, desc }) => (
-            <div key={name} style={{ backgroundColor: ALT, padding: '40px 32px', borderTop: `3px solid ${accent}` }}>
-              <p style={{ fontFamily: display, fontSize: 18, fontWeight: 900, color: accent, letterSpacing: '-0.01em', marginBottom: 8 }}>{name}</p>
-              <p style={{ fontFamily: mono, fontSize: 10, color: MUTED, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 20 }}>{pos}</p>
-              <p style={{ fontFamily: mono, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>{desc}</p>
-            </div>
+            { text: 'Zungu is a private-island electronic music festival in Port Antonio, Jamaica.', weight: 300 },
+            { text: 'But it is not just an event on an island.', weight: 400 },
+            { text: 'It is what happens when an entire island moves in rhythm — stages, people, sound, food, water, art, light, culture, and night coming together as one living world.', weight: 300 },
+          ].map(({ text, weight }) => (
+            <p key={text} style={{ fontFamily: fontDisplay, fontSize: 'clamp(15px, 2.2vw, 26px)', fontWeight: weight, lineHeight: 1.5, color: cream, marginBottom: 6 }}>{text}</p>
+          ))}
+          <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(20px, 3vw, 38px)', fontWeight: 700, lineHeight: 1.3, color: gold, marginTop: 20 }}>
+            For one week, Navy Island becomes Zungu.
+          </p>
+        </div>
+      </Section>
+
+      {/* What Does Zungu Mean */}
+      <Section dark>
+        <SectionHead label="What Does Zungu Mean?" title="Everything in rhythm." />
+        <div style={{ maxWidth: 800, marginBottom: 32 }}>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 20 }}>
+            Zungu begins with rhythm.
+          </p>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 20 }}>
+            The name borrows its pulse from Yellowman&apos;s &ldquo;Zungguzungguguzungguzeng&rdquo; — one of dancehall&apos;s most iconic sounds. A phrase built from energy, instinct, repetition, and movement.
+          </p>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 20 }}>
+            It does not need to be translated to be felt.
+          </p>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: cream, fontWeight: 700, lineHeight: 1.9, marginBottom: 12 }}>
+            For Zungu, the meaning is simple:
+          </p>
+          {['Everything in rhythm.', 'The crowd.', 'The bass.', 'The island.', 'The night.', 'The culture.', 'The world coming back to Jamaica.'].map((line, i) => (
+            <p key={i} style={{ fontFamily: fontDisplay, fontSize: i === 0 ? 'clamp(18px, 2.5vw, 30px)' : 'clamp(14px, 1.8vw, 22px)', fontWeight: i === 0 ? 700 : 300, color: i === 0 ? cream : muted, lineHeight: 1.4, margin: '6px 0' }}>{line}</p>
           ))}
         </div>
-        <p style={{ fontFamily: mono, fontSize: 15, color: MUTED, marginTop: 48, lineHeight: 1.8 }}>
-          The stages are not just places to perform.
-        </p>
-        <p style={{ fontFamily: display, fontSize: 'clamp(1rem, 2vw, 1.4rem)', fontWeight: 700, color: GOLD, marginTop: 8 }}>
-          They are the rhythm of the island.
-        </p>
-      </section>
+      </Section>
 
-      {/* ── THE EXPERIENCE ── */}
-      <section style={{ backgroundColor: BG, padding: '96px 8vw', boxSizing: 'border-box' }}>
-        {label('// THE EXPERIENCE')}
-        {h2('The Experience')}
-        {body('Zungu is designed as a world guests move through.')}
-        {body('By day, the island opens through food, coffee, bars, water, wellness, art, media, culture, retail, and discovery.')}
-        {body('At sunset, the energy shifts.')}
-        {body('At night, the stages take over.')}
-        {body('By sunrise, the island returns to rhythm — slower, deeper, changed.')}
-        {body('Zungu is not built around one moment.')}
-        <p style={{ fontFamily: display, fontSize: 'clamp(1rem, 2vw, 1.4rem)', fontWeight: 700, color: GOLD, marginTop: 16 }}>
-          It is built around movement.
-        </p>
-      </section>
-
-      {/* ── FESTIVAL WEEK ── */}
-      <section style={{ backgroundColor: ALT, padding: '96px 8vw', boxSizing: 'border-box' }}>
-        {label('// FESTIVAL WEEK')}
-        {h2('Festival Week')}
-        {body('Zungu is a seven-day island experience.')}
-        <div style={{ marginTop: 48, display: 'flex', flexDirection: 'column', gap: 0 }}>
-          {[
-            { date: 'June 17', sub: 'Arrival', desc: 'Arrival, check-in, welcome parties, soft openings, partner receptions, island orientation, and the first taste of Zungu.' },
-            { date: 'June 18–21', sub: 'Core Festival Nights', desc: 'The island is fully alive: stages, programming, food, bars, water, wellness, pop-ups, late-night sound, and sunrise sessions.' },
-            { date: 'June 21–23', sub: 'Recovery & Departure', desc: 'Recovery, smaller island events, Port Antonio dinners, media moments, artist sessions, pop-ups, final gatherings, and departure.' },
-            { date: 'After guests leave', sub: 'Production Breakdown', desc: 'Production breakdown begins. The week is not only about the main nights. It is about the island becoming a world, then slowly returning to itself.' },
-          ].map(({ date, sub, desc }, i) => (
-            <div key={i} style={{ display: 'flex', gap: '4rem', padding: '36px 0', borderBottom: `1px solid ${DIM}` }}>
-              <div style={{ minWidth: 160, flexShrink: 0 }}>
-                <p style={{ fontFamily: display, fontSize: 13, fontWeight: 700, color: GOLD, margin: 0, letterSpacing: '-0.01em' }}>{date}</p>
-                <p style={{ fontFamily: mono, fontSize: 10, color: MUTED, letterSpacing: '0.2em', textTransform: 'uppercase', marginTop: 6 }}>{sub}</p>
+      {/* The Brand Thesis */}
+      <Section>
+        <SectionHead label="The Brand Thesis" title="Jamaica gave the world rhythm." goldLine="Zungu brings it home." />
+        <div style={{ maxWidth: 880, marginBottom: 32 }}>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 20 }}>
+            From sound systems to dub, dancehall, bass culture, remix culture, MC culture, jungle, drum and bass, dubstep, and global club music — Jamaica&apos;s influence has moved through the world for decades.
+          </p>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 20 }}>
+            Zungu brings that movement home.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2, marginTop: 32 }}>
+            {[
+              { line: 'Not as nostalgia.', body: '' },
+              { line: 'Not as a lecture.', body: '' },
+              { line: 'As a festival.', body: '' },
+            ].map(({ line }) => (
+              <div key={line} style={{ border: `1px solid rgba(200,168,75,0.1)`, padding: '26px 22px', background: 'rgba(14,24,18,0.8)' }}>
+                <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 22px)', fontWeight: 700, color: cream, lineHeight: 1.3 }}>{line}</p>
               </div>
-              <p style={{ fontFamily: mono, fontSize: 15, color: MUTED, lineHeight: 1.8, margin: 0 }}>{desc}</p>
+            ))}
+          </div>
+        </div>
+        <QuoteBlock
+          quote="A Jamaican-born electronic music destination built for the world."
+          attr="Core Brand Positioning"
+        />
+      </Section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          CHAPTER 2: THE ISLAND
+      ═══════════════════════════════════════════════════════════════════ */}
+      <ChapterDivider
+        num="02"
+        eye="Chapter Two"
+        title="The Island."
+        sub="Navy Island. Port Antonio, Jamaica. 64 acres. The site that makes everything possible."
+      />
+
+      <Section id="island">
+        <SectionHead label="The Island" title="Navy Island is the scenery." />
+        <div style={{ maxWidth: 880, marginBottom: 32 }}>
+          {[
+            { text: 'It is where the world of Zungu comes alive and the magic of the experience begins.', weight: 300 },
+            { text: 'For one week, the island becomes the festival.', weight: 400 },
+          ].map(({ text, weight }) => (
+            <p key={text} style={{ fontFamily: fontDisplay, fontSize: 'clamp(15px, 2.2vw, 26px)', fontWeight: weight, lineHeight: 1.5, color: cream, marginBottom: 8 }}>{text}</p>
+          ))}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 2, margin: '32px 0' }}>
+            {[
+              'The forest becomes movement.',
+              'The water becomes atmosphere.',
+              'The stages become landmarks.',
+              'The night becomes ritual.',
+              'The island becomes sound.',
+            ].map((line) => (
+              <div key={line} style={{ border: `1px solid rgba(200,168,75,0.1)`, padding: '22px 20px', background: 'rgba(14,24,18,0.8)' }}>
+                <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(13px, 1.6vw, 18px)', fontWeight: 600, color: cream, lineHeight: 1.3, margin: 0 }}>{line}</p>
+              </div>
+            ))}
+          </div>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 8 }}>
+            This is not a field with a stage on it.
+          </p>
+          <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(20px, 3vw, 38px)', fontWeight: 700, lineHeight: 1.3, color: gold }}>
+            This is an entire island transformed.
+          </p>
+        </div>
+      </Section>
+
+      <PhotoBreak
+        src="https://res.cloudinary.com/elektricbangaz/image/upload/v1773236490/NAVY_ISLAND_AERIAL_vaapz1.png"
+        quote="Island. Water. Isolation."
+        label="Portland Parish · Caribbean"
+      />
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          CHAPTER 3: THE STAGES
+      ═══════════════════════════════════════════════════════════════════ */}
+      <ChapterDivider
+        num="03"
+        eye="Chapter Three"
+        title="The Stages."
+        sub="Three stages give Zungu its shape. Each one tied to a natural moment of the island."
+      />
+
+      <Section id="stages">
+        <SectionHead label="The Stages" title="Three stages." goldLine="One island." />
+        <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 40 }}>
+          The stages are not just places to perform. They are the rhythm of the island.
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2 }}>
+          {[
+            {
+              name: 'ORIGINS',
+              accent: rust,
+              pos: 'Sunrise Stage',
+              tags: ['Earth sound', 'Tribal fusion', 'Organic electronic', 'Deep percussion'],
+              body: 'Faces the sunrise. Origins carries the first movement of the island: earth sound, tribal percussion, organic electronic music, fusion, deep drums, and music that feels rooted before it becomes electronic. It is the source stage.',
+            },
+            {
+              name: 'REBIRTH',
+              accent: '#9B5FC0',
+              pos: 'Sunset Stage',
+              tags: ['Tribal house', 'Tech house', 'Underground house', 'Hypnotic grooves'],
+              body: 'Faces the sunset. As the island shifts from day to night, Rebirth carries the deeper pulse: tribal house, tech house, underground house, hypnotic grooves, warm percussion, and music built for golden hour. The transformation.',
+            },
+            {
+              name: 'ZUNGU',
+              accent: gold,
+              pos: 'Centre Island · Mainstage',
+              tags: ['Big room electronic', 'Mainstage house', 'Afro-house', 'Peak-time electronic'],
+              body: 'Sits at the centre of the island. The mainstage. Major acts. Big-room energy. Full production. The moments that define the week. If Origins is the beginning and Rebirth is the transformation, Zungu is the centre of gravity.',
+            },
+          ].map(({ name, accent, pos, tags, body }) => (
+            <div key={name} style={{ border: `1px solid rgba(200,168,75,0.1)`, padding: '30px 26px', background: 'rgba(14,24,18,0.8)' }}>
+              <div style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.3em', color: accent, textTransform: 'uppercase', marginBottom: 8 }}>{pos}</div>
+              <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(22px, 3vw, 38px)', fontWeight: 900, color: accent, letterSpacing: '-0.02em', marginBottom: 16, lineHeight: 1 }}>{name}</p>
+              <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.8, marginBottom: 20 }}>{body}</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                {tags.map(tag => (
+                  <span key={tag} style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: accent, border: `1px solid ${accent}30`, padding: '4px 10px' }}>{tag}</span>
+                ))}
+              </div>
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
-      {/* ── THE SOUND ── */}
-      <section style={{ backgroundColor: BG, padding: '96px 8vw', boxSizing: 'border-box' }}>
-        {label('// THE SOUND')}
-        {h2('The Sound')}
-        {body('Zungu is electronic music through a Jamaican lens.')}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, margin: '32px 0 40px' }}>
-          {['Afro-house', 'Tribal house', 'Big-room electronic', 'Tech house', 'Underground house', 'Jungle', 'Drum and bass', 'Dub-influenced club music', 'Jamaican electronic', 'Sunrise sets', 'Sunset sessions', 'Mainstage nights'].map(tag => (
-            <span key={tag} style={{ fontFamily: mono, fontSize: 10, color: GOLD, border: `1px solid rgba(200,168,75,0.35)`, padding: '8px 16px', letterSpacing: '0.15em', textTransform: 'uppercase' }}>{tag}</span>
-          ))}
+      <PhotoBreak
+        src="https://res.cloudinary.com/elektricbangaz/image/upload/v1780459512/island-stages-aerial_zxjfag.png"
+        quote="Origins rises with the sun. Rebirth catches the sunset. Zungu owns the centre."
+        label="Stage Placement · Navy Island"
+      />
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          CHAPTER 4: THE EXPERIENCE
+      ═══════════════════════════════════════════════════════════════════ */}
+      <ChapterDivider
+        num="04"
+        eye="Chapter Four"
+        title="The Experience."
+        sub="Zungu is designed as a world guests move through — not a lineup they attend."
+      />
+
+      <Section id="experience">
+        <SectionHead label="The Experience" title="Built around movement." />
+        <div style={{ maxWidth: 880, marginBottom: 40 }}>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>
+            By day, the island opens through food, coffee, bars, water, wellness, art, media, culture, retail, and discovery.
+          </p>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>At sunset, the energy shifts.</p>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>At night, the stages take over.</p>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 32 }}>
+            By sunrise, the island returns to rhythm — slower, deeper, changed.
+          </p>
         </div>
-        {body('The sound is global.')}
-        <p style={{ fontFamily: display, fontSize: 'clamp(1rem, 2vw, 1.4rem)', fontWeight: 700, color: GOLD }}>The root is Jamaican.</p>
-      </section>
-
-      {/* ── WHY JAMAICA / WHY NAVY ISLAND ── */}
-      <section style={{ backgroundColor: ALT, padding: '96px 8vw', boxSizing: 'border-box' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '6rem' }}>
-          <div>
-            {label('// WHY JAMAICA?')}
-            {h2('Why Jamaica?')}
-            {body('Because the world already moves to Jamaica.')}
-            {body('Jamaican sound-system culture changed how music is played, felt, remixed, performed, and experienced.')}
-            {body('That influence moved outward — through dancehall, dub, hip-hop, jungle, drum and bass, dubstep, grime, bass culture, and global electronic music.')}
-            <p style={{ fontFamily: display, fontSize: 'clamp(0.9rem, 1.8vw, 1.2rem)', fontWeight: 700, color: GOLD, marginTop: 16 }}>Zungu brings the world back to the source.</p>
-          </div>
-          <div>
-            {label('// WHY NAVY ISLAND?')}
-            {h2('Why Navy Island?')}
-            {body('Because an island can become a world.')}
-            {body('Navy Island gives Zungu what no built venue can fake: forest, water, separation, mystery, arrival, scale, and transformation.')}
-            <p style={{ fontFamily: display, fontSize: 'clamp(0.9rem, 1.8vw, 1.2rem)', fontWeight: 700, color: GOLD, marginTop: 16 }}>For one week, it is not just Navy Island. It is Zungu.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* ── PROGRAMMING ── */}
-      <section style={{ backgroundColor: BG, padding: '96px 8vw', boxSizing: 'border-box' }}>
-        {label('// PROGRAMMING')}
-        {h2('Programming')}
-        {body('Zungu is not only nighttime music.')}
-        {body('The island moves all day.')}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, margin: '24px 0 32px' }}>
-          {['Food', 'Coffee', 'Bars', 'Water', 'Wellness', 'Art', 'Culture', 'Media', 'The Zungu Shoppe', 'The Trail', 'The Pier', 'The Signal'].map(item => (
-            <span key={item} style={{ fontFamily: mono, fontSize: 13, color: MUTED, borderLeft: `2px solid rgba(200,168,75,0.35)`, paddingLeft: 12 }}>{item}</span>
-          ))}
-        </div>
-        {body('Every zone has a purpose: guest experience, revenue, sponsor value, local operator participation, and movement across the island.')}
-        <p style={{ fontFamily: display, fontSize: 'clamp(0.9rem, 1.8vw, 1.2rem)', fontWeight: 700, color: GOLD, marginTop: 16 }}>The island is not passive. The island performs.</p>
-      </section>
-
-      {/* ── POP-UPS ── */}
-      <section style={{ backgroundColor: ALT, padding: '96px 8vw', boxSizing: 'border-box' }}>
-        {label('// POP-UPS')}
-        {h2('Pop-Ups')}
-        {body('Not every Zungu moment needs a main stage.')}
-        {body('Some moments are discovered.')}
-        <div style={{ margin: '24px 0 32px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-          {['Beach selectors.', 'Forest listening sessions.', 'Zungu Radio recordings.', 'The Signal sessions.', 'Shoppe takeovers.', 'Partner lounge music.', 'Pier moments.', 'Welcome party sets.', 'Recovery day selectors.', 'Final hoorah programming.'].map((item, i) => (
-            <p key={i} style={{ fontFamily: mono, fontSize: 15, color: MUTED, margin: 0, lineHeight: 1.6 }}>{item}</p>
-          ))}
-        </div>
-        {body('The three stages give Zungu its structure.')}
-        <p style={{ fontFamily: display, fontSize: 'clamp(0.9rem, 1.8vw, 1.2rem)', fontWeight: 700, color: GOLD, marginTop: 8 }}>The pop-ups give the island life between the major moments.</p>
-      </section>
-
-      {/* ── ZUNGU RADIO / THE SIGNAL ── */}
-      <section style={{ backgroundColor: BG, padding: '96px 8vw', boxSizing: 'border-box' }}>
-        {label('// ZUNGU RADIO · THE SIGNAL')}
-        {h2('Zungu Radio / The Signal')}
-        {body('Zungu does not disappear when the festival ends.')}
-        {body('Through Zungu Radio and The Signal, the sound continues: artist interviews, commissioned mixes, live recordings, field audio, press moments, and stories from the island.')}
-        <p style={{ fontFamily: display, fontSize: 'clamp(0.9rem, 1.8vw, 1.2rem)', fontWeight: 700, color: GOLD, marginTop: 24 }}>
-          The festival creates the moment. The media keeps it moving.
-        </p>
-      </section>
-
-      {/* ── PORT ANTONIO ── */}
-      <section style={{ backgroundColor: ALT, padding: '96px 8vw', boxSizing: 'border-box' }}>
-        {label('// PORT ANTONIO')}
-        {h2('Port Antonio')}
-        {body('Zungu is anchored on Navy Island, but Port Antonio powers the experience.')}
-        {body('The town supplies the ecosystem: boats, drivers, hotels, villas, guest houses, restaurants, bars, guides, vendors, food suppliers, production crew, wellness practitioners, artists, and mainland activations.')}
-        <p style={{ fontFamily: display, fontSize: 'clamp(1rem, 2vw, 1.5rem)', fontWeight: 700, color: CREAM, marginTop: 32, lineHeight: 1.3 }}>
-          Navy Island is the world.<br />Port Antonio is the heartbeat behind it.
-        </p>
-        <div style={{ marginTop: 32 }}>
-          {body('This is not charity language.')}
-          <p style={{ fontFamily: mono, fontSize: 15, color: CREAM, fontWeight: 700, lineHeight: 1.8 }}>It is business logic.</p>
-          {body('The stronger Port Antonio is inside the model, the more locally defensible Zungu becomes.')}
-        </div>
-      </section>
-
-      {/* ── INVESTOR POSITIONING ── */}
-      <section style={{ backgroundColor: BG, padding: '96px 8vw', boxSizing: 'border-box' }}>
-        {label('// INVESTOR POSITIONING')}
-        {h2('Investor Positioning')}
-        {body('Zungu is a festival, but the opportunity is larger than one event.')}
-        {body('It is a Jamaican-born destination brand built across live experience, hospitality, sponsorship, media, artist commissions, local economic participation, and long-term cultural value.')}
-        <p style={{ fontFamily: display, fontSize: 'clamp(0.9rem, 1.8vw, 1.2rem)', fontWeight: 700, color: GOLD, marginTop: 24, lineHeight: 1.5 }}>
-          The first edition creates the founding story. The platform grows from there.
-        </p>
-      </section>
-
-      {/* ── SHORT POSITIONING LINES ── */}
-      <section style={{ backgroundColor: ALT, padding: '96px 8vw', boxSizing: 'border-box' }}>
-        {label('// POSITIONING')}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+        <SectionHead label="Festival Week" title="Seven days on the island." goldLine="June 17–23, 2027." />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 2 }}>
           {[
-            { text: 'For one week, the most beautiful place on earth welcomes you to Zungu.', color: CREAM },
-            { text: 'For one week, Navy Island becomes Zungu.', color: GOLD },
-            { text: 'Zungu means everything in rhythm.', color: CREAM },
-            { text: 'Jamaica gave the world rhythm. Zungu brings the world back to the source.', color: GOLD },
-            { text: 'The world has moved to Jamaica\'s rhythm. Now the rhythm has a home.', color: CREAM },
-            { text: 'An island transformed by sound.', color: GOLD },
-            { text: 'The island is not passive. The island performs.', color: CREAM },
-            { text: 'The festival creates the moment. The media keeps it moving.', color: GOLD },
-            { text: 'Navy Island is the world. Port Antonio is the heartbeat behind it.', color: CREAM },
+            { date: 'June 17', label: 'Arrival', body: 'Check-in, welcome parties, soft openings, partner receptions, island orientation, and the first taste of Zungu.' },
+            { date: 'June 18–21', label: 'Core Festival Nights', body: 'The island is fully alive: stages, programming, food, bars, water, wellness, pop-ups, late-night sound, and sunrise sessions.' },
+            { date: 'June 21–23', label: 'Recovery & Departure', body: 'Smaller island events, Port Antonio dinners, media moments, artist sessions, pop-ups, final gatherings, and departure.' },
+            { date: 'After guests leave', label: 'Production Breakdown', body: 'The week is not only about the main nights. It is about the island becoming a world, then slowly returning to itself.' },
+          ].map(({ date, label: lbl, body }) => (
+            <div key={date} style={{ border: `1px solid rgba(200,168,75,0.1)`, padding: '28px 24px', background: 'rgba(14,24,18,0.8)' }}>
+              <div style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.5em', color: muted, textTransform: 'uppercase', marginBottom: 8 }}>{lbl}</div>
+              <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.6vw, 20px)', fontWeight: 700, color: gold, marginBottom: 12, lineHeight: 1.2 }}>{date}</p>
+              <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.8 }}>{body}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section dark>
+        <SectionHead label="The Sound" title="Electronic music through a Jamaican lens." />
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 32 }}>
+          {['Afro-house', 'Tribal house', 'Big-room electronic', 'Tech house', 'Underground house', 'Jungle', 'Drum and bass', 'Dub-influenced club music', 'Jamaican electronic', 'Sunrise sets', 'Sunset sessions', 'Mainstage nights'].map(tag => (
+            <span key={tag} style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: gold, border: `1px solid rgba(200,168,75,0.3)`, padding: '7px 14px' }}>{tag}</span>
+          ))}
+        </div>
+        <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 30px)', fontWeight: 700, color: cream, marginBottom: 8 }}>The sound is global.</p>
+        <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 30px)', fontWeight: 700, color: gold }}>The root is Jamaican.</p>
+      </Section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          CHAPTER 5: THE WORLD
+      ═══════════════════════════════════════════════════════════════════ */}
+      <ChapterDivider
+        num="05"
+        eye="Chapter Five"
+        title="The World."
+        sub="Why Jamaica. Why Navy Island. Why this matters beyond the weekend."
+      />
+
+      <Section id="world">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '6vw' }}>
+          <div>
+            <SectionHead label="Why Jamaica?" title="The world already moves to Jamaica." />
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>
+              Jamaican sound-system culture changed how music is played, felt, remixed, performed, and experienced.
+            </p>
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 24 }}>
+              That influence moved outward — through dancehall, dub, hip-hop, jungle, drum and bass, dubstep, grime, bass culture, and global electronic music.
+            </p>
+            <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(16px, 2vw, 24px)', fontWeight: 700, color: gold, lineHeight: 1.3 }}>
+              Zungu brings the world back to the source.
+            </p>
+          </div>
+          <div>
+            <SectionHead label="Why Navy Island?" title="An island can become a world." />
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>
+              Navy Island gives Zungu what no built venue can fake: forest, water, separation, mystery, arrival, scale, and transformation.
+            </p>
+            <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(16px, 2vw, 24px)', fontWeight: 700, color: gold, lineHeight: 1.3 }}>
+              For one week, it is not just Navy Island. It is Zungu.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      <Section dark>
+        <SectionHead label="Programming" title="The island moves all day." />
+        <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 32 }}>
+          Zungu is not only nighttime music. Every zone has a purpose: guest experience, revenue, sponsor value, local operator participation, and movement across the island.
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 2 }}>
+          {['Food', 'Coffee', 'Bars', 'Water', 'Wellness', 'Art', 'Culture', 'Media', 'The Zungu Shoppe', 'The Trail', 'The Pier', 'The Signal'].map(item => (
+            <div key={item} style={{ border: `1px solid rgba(200,168,75,0.08)`, padding: '18px 16px', background: 'rgba(14,24,18,0.6)' }}>
+              <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, margin: 0 }}>{item}</p>
+            </div>
+          ))}
+        </div>
+        <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 32px)', fontWeight: 700, color: gold, marginTop: 40 }}>
+          The island is not passive. The island performs.
+        </p>
+      </Section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          CHAPTER 6: THE SIGNAL
+      ═══════════════════════════════════════════════════════════════════ */}
+      <ChapterDivider
+        num="06"
+        eye="Chapter Six"
+        title="The Signal."
+        sub="Pop-ups. Zungu Radio. Port Antonio. The festival does not disappear when it ends."
+      />
+
+      <Section id="signal">
+        <SectionHead label="Pop-Ups" title="Not every Zungu moment needs a main stage." />
+        <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 32 }}>
+          Some moments are discovered. The three stages give Zungu its structure. The pop-ups give the island life between the major moments.
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 2 }}>
+          {['Beach selectors', 'Forest listening sessions', 'Zungu Radio recordings', 'The Signal sessions', 'Shoppe takeovers', 'Partner lounge music', 'Pier moments', 'Welcome party sets', 'Recovery day selectors', 'Final hoorah programming'].map(item => (
+            <div key={item} style={{ border: `1px solid rgba(200,168,75,0.08)`, padding: '18px 16px', background: 'rgba(255,255,255,0.02)' }}>
+              <p style={{ fontFamily: fontMono, fontSize: 12, color: muted, margin: 0 }}>{item}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section dark>
+        <SectionHead label="Zungu Radio · The Signal" title="The festival creates the moment." goldLine="The media keeps it moving." />
+        <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 32 }}>
+          Zungu does not disappear when the festival ends. Through Zungu Radio and The Signal, the sound continues: artist interviews, commissioned mixes, live recordings, field audio, press moments, and stories from the island.
+        </p>
+      </Section>
+
+      <PhotoBreak
+        src="https://res.cloudinary.com/elektricbangaz/image/upload/v1773236490/NAVY_ISLAND_FROM_THE_SEA_twhi0w.png"
+        quote="Navy Island is the world. Port Antonio is the heartbeat behind it."
+        label="Port Antonio · Portland Parish · Jamaica"
+      />
+
+      <Section>
+        <SectionHead label="Port Antonio" title="The ecosystem behind the island." />
+        <div style={{ maxWidth: 880, marginBottom: 32 }}>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>
+            Zungu is anchored on Navy Island, but Port Antonio powers the experience. The town supplies the ecosystem: boats, drivers, hotels, villas, guest houses, restaurants, bars, guides, vendors, food suppliers, production crew, wellness practitioners, artists, and mainland activations.
+          </p>
+          <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 32px)', fontWeight: 700, color: cream, lineHeight: 1.3, marginBottom: 8 }}>
+            Navy Island is the world.
+          </p>
+          <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 32px)', fontWeight: 700, color: gold, lineHeight: 1.3, marginBottom: 24 }}>
+            Port Antonio is the heartbeat behind it.
+          </p>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 8 }}>
+            This is not charity language. It is business logic.
+          </p>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9 }}>
+            The stronger Port Antonio is inside the model, the more locally defensible Zungu becomes.
+          </p>
+        </div>
+      </Section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          CHAPTER 7: THE OPPORTUNITY
+      ═══════════════════════════════════════════════════════════════════ */}
+      <ChapterDivider
+        num="07"
+        eye="Chapter Seven"
+        title="The Opportunity."
+        sub="Zungu is a festival, but the opportunity is larger than one event."
+      />
+
+      <Section id="opportunity">
+        <SectionHead label="Investor Positioning" title="Larger than one event." />
+        <div style={{ maxWidth: 880, marginBottom: 40 }}>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>
+            Zungu is a festival, but the opportunity is larger than one event. It is a Jamaican-born destination brand built across live experience, hospitality, sponsorship, media, artist commissions, local economic participation, and long-term cultural value.
+          </p>
+          <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 32px)', fontWeight: 700, color: gold, lineHeight: 1.3 }}>
+            The first edition creates the founding story. The platform grows from there.
+          </p>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '3vw', marginTop: 48 }}>
+          {[
+            { text: 'For one week, Navy Island becomes Zungu.', color: cream },
+            { text: 'Jamaica gave the world rhythm. Zungu brings the world back to the source.', color: gold },
+            { text: 'The world has moved to Jamaica\'s rhythm. Now the rhythm has a home.', color: cream },
+            { text: 'An island transformed by sound.', color: gold },
+            { text: 'The island is not passive. The island performs.', color: cream },
+            { text: 'The festival creates the moment. The media keeps it moving.', color: gold },
           ].map(({ text, color }, i) => (
-            <p key={i} style={{ fontFamily: display, fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)', fontWeight: 700, color, letterSpacing: '-0.02em', lineHeight: 1.2, margin: 0, borderLeft: `2px solid rgba(200,168,75,0.2)`, paddingLeft: '2rem' }}>
+            <p key={i} style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 22px)', fontWeight: 700, color, letterSpacing: '-0.02em', lineHeight: 1.3, margin: 0, borderLeft: `2px solid rgba(200,168,75,0.2)`, paddingLeft: '1.5rem' }}>
               {text}
             </p>
           ))}
         </div>
+      </Section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          CHAPTER 8: REQUEST BRIEFING
+      ═══════════════════════════════════════════════════════════════════ */}
+      <ChapterDivider
+        num="08"
+        eye="Chapter Eight"
+        title="Request Briefing."
+        sub="Zungu briefing access is reviewed by role. The next step is a conversation."
+      />
+
+      <section
+        ref={sectionRefs.cta}
+        id="cta"
+        style={{
+          width: '100%',
+          boxSizing: 'border-box',
+          backgroundColor: green,
+        }}
+      >
+        <div style={{ padding: '88px 8vw', boxSizing: 'border-box' }}>
+          <SectionHead label="Request Briefing" title="Submit your enquiry." goldLine="We respond by role." />
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 580, marginBottom: 16 }}>
+            Zungu briefing access is reviewed by role. Submit your enquiry and the team will respond with the appropriate investor, production, supplier, strategic partner, or press material.
+          </p>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 580, marginBottom: 40 }}>
+            The next step is a conversation, not a commitment.
+          </p>
+          <a
+            href="mailto:partnership@zungufestival.com?subject=Briefing%20Request"
+            style={{
+              fontFamily: fontMono,
+              fontSize: 10,
+              letterSpacing: '0.3em',
+              textTransform: 'uppercase',
+              fontWeight: 700,
+              padding: '16px 36px',
+              background: gold,
+              color: bg,
+              border: 'none',
+              cursor: 'pointer',
+              display: 'inline-block',
+              textDecoration: 'none',
+            }}
+          >
+            Request Briefing →
+          </a>
+        </div>
       </section>
 
-      {/* ── REQUEST BRIEFING ── */}
-      <section style={{ backgroundColor: BG, padding: '96px 8vw', boxSizing: 'border-box', textAlign: 'center' }}>
-        {label('// REQUEST BRIEFING', GOLD)}
-        <h2 style={{ fontFamily: display, fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 900, letterSpacing: '-0.03em', color: CREAM, lineHeight: 1.05, textTransform: 'uppercase', margin: '0 0 32px' }}>
-          Request Briefing
-        </h2>
-        <p style={{ fontFamily: mono, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 560, margin: '0 auto 16px' }}>
-          Zungu briefing access is reviewed by role.
-        </p>
-        <p style={{ fontFamily: mono, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 560, margin: '0 auto 40px' }}>
-          Submit your enquiry and the team will respond with the appropriate investor, production, supplier, strategic partner, or press material.
-        </p>
-        <a
-          href="mailto:partnership@zungufestival.com?subject=Briefing%20Request"
-          style={{ fontFamily: mono, fontSize: 10, letterSpacing: '0.3em', padding: '16px 40px', backgroundColor: GOLD, color: BG, textDecoration: 'none', fontWeight: 700, textTransform: 'uppercase', display: 'inline-block' }}
+      {/* ── Footer ──────────────────────────────────────────────────────── */}
+      <footer
+        style={{
+          width: '100%',
+          boxSizing: 'border-box',
+          backgroundColor: bg,
+          borderTop: `1px solid ${dim}`,
+          padding: '40px 8vw',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: 16,
+        }}
+      >
+        <img
+          src="/zungu-z-mark.png"
+          style={{ height: 32, filter: 'drop-shadow(0 0 10px rgba(200,168,75,.2))', opacity: 0.6 }}
+          alt="Zungu"
+        />
+        <div
+          style={{
+            fontFamily: fontMono,
+            fontSize: 9,
+            color: dim,
+            letterSpacing: '0.25em',
+            textTransform: 'uppercase',
+            lineHeight: 2,
+            textAlign: 'right',
+          }}
         >
-          Request Briefing →
-        </a>
-      </section>
-
-      {/* ── FOOTER ── */}
-      <div style={{ backgroundColor: ALT, padding: '2rem 8vw', borderTop: `1px solid ${DIM}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
-        <img src="/zungu-z-mark.png" alt="Zungu" style={{ height: 24, filter: `drop-shadow(0 0 8px rgba(200,168,75,0.3))`, opacity: 0.6 }} />
-        <p style={{ fontFamily: mono, fontSize: 9, color: MUTED, letterSpacing: '0.2em', margin: 0 }}>
-          CONFIDENTIAL CONCEPT MATERIAL · NOT FOR PUBLIC DISTRIBUTION
-        </p>
-        <p style={{ fontFamily: mono, fontSize: 9, color: MUTED, letterSpacing: '0.15em', margin: 0 }}>
-          NAVY ISLAND · PORT ANTONIO, JAMAICA · JUNE 17–23, 2027
-        </p>
-      </div>
-
+          <div>Confidential concept material · Not for public distribution</div>
+          <div>Navy Island · Port Antonio, Jamaica</div>
+          <div>Target Window: June 17–23, 2027</div>
+        </div>
+      </footer>
     </div>
   );
 }
