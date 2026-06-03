@@ -2,7 +2,7 @@
 
 import { useAuth } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 
 // ── Design tokens ─────────────────────────────────────────────────────────────
@@ -46,7 +46,7 @@ function ChapterDivider({ num, title, goldLine, desc }: { num: string; title: st
       <div style={{ flex: 1 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
           <div style={{ width: 28, height: 1, background: 'rgba(200,168,75,0.5)', flexShrink: 0 }} />
-          <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700 }}>
+          <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700 }}>
             Chapter {num}
           </span>
         </div>
@@ -54,7 +54,7 @@ function ChapterDivider({ num, title, goldLine, desc }: { num: string; title: st
           {title}<br /><span style={{ color: GOLD }}>{goldLine}</span>
         </h2>
         {desc && (
-          <p style={{ marginTop: 12, fontFamily: MONO, fontSize: 14, color: MUTED, lineHeight: 1.8, maxWidth: 540, letterSpacing: '0.02em' }}>
+          <p style={{ marginTop: 12, fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 540, letterSpacing: '0.02em' }}>
             {desc}
           </p>
         )}
@@ -68,7 +68,7 @@ function SLabel({ children }: { children: React.ReactNode }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 32 }}>
       <div style={{ width: 28, height: 1, background: 'rgba(200,168,75,0.5)', flexShrink: 0 }} />
-      <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700 }}>{children}</span>
+      <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700 }}>{children}</span>
     </div>
   );
 }
@@ -135,9 +135,9 @@ export default function StagesPage() {
           <span style={{ fontFamily: DISPLAY, fontSize: 13, fontWeight: 900, letterSpacing: '0.08em', color: CREAM, textTransform: 'uppercase' }}>Zungu 2027</span>
         </button>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flex: 1, justifyContent: 'center', flexWrap: 'wrap' }}>
+        <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flex: 1, justifyContent: 'center', flexWrap: 'nowrap', overflowX: 'auto', scrollbarWidth: 'none' } as React.CSSProperties}>
           {NAV_LINKS.map((l) => (
-            <button key={l.label} onClick={() => scrollTo(l.id)} style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: MUTED, background: 'none', border: 'none', cursor: 'pointer', fontWeight: 700, padding: 0, transition: 'color 0.2s' }}
+            <button key={l.label} onClick={() => scrollTo(l.id)} style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', color: MUTED, background: 'none', border: 'none', cursor: 'pointer', fontWeight: 700, padding: 0, transition: 'color 0.2s' }}
               onMouseEnter={(e) => (e.currentTarget.style.color = GOLD)}
               onMouseLeave={(e) => (e.currentTarget.style.color = MUTED)}>
               {l.label}
@@ -146,10 +146,10 @@ export default function StagesPage() {
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', whiteSpace: 'nowrap' }}>
-          <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, border: `1px solid ${GOLD_DIM}`, padding: '4px 10px', fontWeight: 700 }}>
+          <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, border: `1px solid ${GOLD_DIM}`, padding: '4px 10px', fontWeight: 700 }}>
             Stage Architecture
           </span>
-          <a href="/sign-out" style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: MUTED, textDecoration: 'none', fontWeight: 700, transition: 'color 0.2s' }}
+          <a href="/sign-out" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', color: MUTED, textDecoration: 'none', fontWeight: 700, transition: 'color 0.2s' }}
             onMouseEnter={(e) => (e.currentTarget.style.color = CREAM)}
             onMouseLeave={(e) => (e.currentTarget.style.color = MUTED)}>
             Sign Out
@@ -168,21 +168,27 @@ export default function StagesPage() {
           HERO
       ══════════════════════════════════════════════════════════════════ */}
       <section id="hero" style={{ position: 'relative', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', overflow: 'hidden', padding: '80px 8vw' }}>
-        {/* Background */}
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: "url('/photos/navy-island-aerial-hq.png')", backgroundSize: 'cover', backgroundPosition: 'center 35%' }} />
+        {/* Background video */}
+        <video
+          autoPlay muted loop playsInline
+          poster="https://res.cloudinary.com/elektricbangaz/image/upload/v1780459512/island-stages-aerial_zxjfag.png"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 40%', filter: 'saturate(0.8) brightness(0.45)' }}
+        >
+          <source src="https://res.cloudinary.com/elektricbangaz/video/upload/v1780460482/BANGAZ_FINAL_huedov.webm" type="video/webm" />
+        </video>
         {/* Gradient */}
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(4,8,10,1) 0%, rgba(4,8,10,0.65) 40%, rgba(4,8,10,0.15) 100%), linear-gradient(to right, rgba(4,8,10,0.5) 0%, transparent 65%)' }} />
         {/* Gold grid overlay */}
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(200,168,75,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(200,168,75,0.025) 1px, transparent 1px)', backgroundSize: '60px 60px', pointerEvents: 'none' }} />
 
         <div style={{ position: 'relative', zIndex: 2 }}>
-          <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 24, fontWeight: 700 }}>
+          <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 24, fontWeight: 700 }}>
             Stage Architecture · Navy Island · Port Antonio · Jamaica
           </div>
           <h1 style={{ fontFamily: DISPLAY, fontSize: 'clamp(3.5rem, 9vw, 8rem)', fontWeight: 900, lineHeight: 0.9, color: CREAM, marginBottom: 8 }}>
             THREE<br /><span style={{ color: GOLD }}>STAGES.</span><br />ONE<br />ISLAND.
           </h1>
-          <p style={{ fontFamily: MONO, fontSize: 14, color: MUTED, letterSpacing: '0.06em', lineHeight: 1.8, marginBottom: 48, maxWidth: 480 }}>
+          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.06em', lineHeight: 1.8, marginBottom: 48, maxWidth: 480 }}>
             Origins catches the sunrise. Rebirth catches the sunset.<br />Zungu Main owns the night. The island determines everything.
           </p>
 
@@ -195,7 +201,7 @@ export default function StagesPage() {
               { label: 'June 2027', value: '17–23 June\n5,000 tickets' },
             ].map((s, i, arr) => (
               <div key={s.label} style={{ paddingRight: i < arr.length - 1 ? '2.5rem' : 0, marginRight: i < arr.length - 1 ? '2.5rem' : 0, borderRight: i < arr.length - 1 ? `1px solid ${BORDER_MID}` : 'none' }}>
-                <span style={{ display: 'block', fontFamily: MONO, fontSize: 8, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 6 }}>{s.label}</span>
+                <span style={{ display: 'block', fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 6 }}>{s.label}</span>
                 <span style={{ display: 'block', fontFamily: DISPLAY, fontSize: 12, fontWeight: 400, color: CREAM, lineHeight: 1.5, whiteSpace: 'pre-line' }}>{s.value}</span>
               </div>
             ))}
@@ -214,7 +220,7 @@ export default function StagesPage() {
         {/* Photo grid */}
         <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gridTemplateRows: '360px 240px', gap: 3 }}>
           {[
-            { src: '/photos/navy-island-aerial-hq.png', cap: 'Navy Island · Aerial · Port Antonio harbour', tall: true },
+            { src: 'https://res.cloudinary.com/elektricbangaz/image/upload/v1773236490/NAVY_ISLAND_AERIAL_vaapz1.png', cap: 'Navy Island · Aerial · Port Antonio harbour', tall: true },
             { src: '/photos/navy-island-satellite.png', cap: '64 acres · Dense forest canopy', tall: false },
             { src: '/photos/reference-for-map-crossing.png', cap: 'Island perimeter · Stage placement zones', tall: false },
           ].map(({ src, cap, tall }) => (
@@ -223,7 +229,7 @@ export default function StagesPage() {
                 onMouseEnter={(e) => { const el = e.currentTarget as HTMLImageElement; el.style.filter = 'brightness(1) saturate(1.1)'; el.style.transform = 'scale(1.03)'; }}
                 onMouseLeave={(e) => { const el = e.currentTarget as HTMLImageElement; el.style.filter = 'brightness(0.8) saturate(0.85)'; el.style.transform = 'scale(1)'; }}
               />
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '20px 16px 12px', background: 'linear-gradient(transparent, rgba(4,8,10,0.85))', fontFamily: MONO, fontSize: 8, letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.7)' }}>
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '20px 16px 12px', background: 'linear-gradient(transparent, rgba(4,8,10,0.85))', fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.7)' }}>
                 {cap}
               </div>
             </div>
@@ -233,12 +239,12 @@ export default function StagesPage() {
         {/* Stage zones aerial */}
         <div style={{ marginTop: 3, position: 'relative', overflow: 'hidden' }}>
           <img
-            src="/photos/island-stages-aerial.png"
+            src="https://res.cloudinary.com/elektricbangaz/image/upload/v1780459512/island-stages-aerial_zxjfag.png"
             alt="Navy Island — Stage Zones Aerial"
             loading="lazy"
             style={{ width: '100%', height: 320, objectFit: 'cover', display: 'block', filter: 'brightness(0.8) saturate(0.85)' }}
           />
-          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '20px 16px 12px', background: 'linear-gradient(transparent, rgba(4,8,10,0.85))', fontFamily: MONO, fontSize: 8, letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.7)' }}>
+          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '20px 16px 12px', background: 'linear-gradient(transparent, rgba(4,8,10,0.85))', fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.7)' }}>
             Stage Zones · Aerial · Navy Island · Port Antonio
           </div>
         </div>
@@ -248,7 +254,7 @@ export default function StagesPage() {
           <p style={{ fontFamily: DISPLAY, fontSize: 'clamp(0.9rem, 2vw, 1.3rem)', fontWeight: 300, color: CREAM, lineHeight: 1.5 }}>
             &ldquo;<span style={{ color: GOLD }}>The site is the moat.</span> Most festivals build environments. Zungu begins with one.&rdquo;
           </p>
-          <p style={{ marginTop: 10, fontFamily: MONO, fontSize: 8, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.55)' }}>Site Strategy</p>
+          <p style={{ marginTop: 10, fontFamily: MONO, fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.55)' }}>Site Strategy</p>
         </div>
       </section>
 
@@ -336,11 +342,11 @@ export default function StagesPage() {
           {/* ZUNGU MAIN */}
           <div style={{ position: 'relative', overflow: 'hidden', borderLeft: `3px solid ${GOLD}`, background: 'linear-gradient(135deg, #080f0b, #040a06)' }}>
             <div style={{ padding: '40px 48px' }}>
-              <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, display: 'inline-block', padding: '4px 10px', border: `1px solid rgba(200,168,75,0.3)`, color: GOLD, marginBottom: 16 }}>
+              <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, display: 'inline-block', padding: '4px 10px', border: `1px solid rgba(200,168,75,0.3)`, color: GOLD, marginBottom: 16 }}>
                 Main Stage · Full Capacity · 7pm – 6am · All Four Nights
               </span>
               <div style={{ fontFamily: DISPLAY, fontSize: 'clamp(2.2rem, 5vw, 4.8rem)', fontWeight: 900, lineHeight: 0.9, marginBottom: 8, color: GOLD }}>ZUNGU MAIN</div>
-              <div style={{ fontFamily: MONO, fontSize: 13, color: MUTED, letterSpacing: '0.04em', marginBottom: 32, lineHeight: 1.6 }}>Built into the island. The dominant, singular experience. Total theatrical commitment.</div>
+              <div style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.04em', marginBottom: 32, lineHeight: 1.6 }}>Built into the island. The dominant, singular experience. Total theatrical commitment.</div>
               <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 0.9fr 0.8fr', gap: 40 }}>
                 <div style={{ fontFamily: MONO, fontSize: 14, lineHeight: 1.9, color: MUTED }}>
                   <p>South-facing. Sound travels out to sea, away from Port Antonio. <strong style={{ color: CREAM }}>The stage does not feel built — it feels grown.</strong> Tropical forest frames every sightline. Lush canopy overhead. The Caribbean visible beyond the crowd.</p>
@@ -356,13 +362,13 @@ export default function StagesPage() {
                     { l: 'Company', v: 'Lead production company. Highest spec of the four.' },
                   ].map(({ l, v }) => (
                     <div key={l} style={{ marginBottom: 16 }}>
-                      <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 4 }}>{l}</span>
-                      <span style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.65)', lineHeight: 1.5 }}>{v}</span>
+                      <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 4 }}>{l}</span>
+                      <span style={{ fontFamily: MONO, fontSize: 15, color: 'rgba(242,235,217,0.65)', lineHeight: 1.5 }}>{v}</span>
                     </div>
                   ))}
                 </div>
                 <div>
-                  <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 12 }}>Identity</span>
+                  <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 12 }}>Identity</span>
                   {['One dominant stage', 'Total commitment', 'Everything else secondary', 'Tropical production design', 'Stage faces open water', 'Four distinct nightly concepts'].map((v) => (
                     <span key={v} style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase' as const, padding: '5px 10px', border: `1px solid`, borderColor: v.length < 25 ? 'rgba(200,168,75,0.3)' : 'rgba(242,235,217,0.05)', color: v.length < 25 ? GOLD : 'rgba(242,235,217,0.22)', display: 'block', marginBottom: 6, width: 'fit-content' }}>{v}</span>
                   ))}
@@ -381,11 +387,11 @@ export default function StagesPage() {
           {/* ORIGINS */}
           <div style={{ position: 'relative', overflow: 'hidden', borderLeft: `3px solid ${ORIGINS_C}`, background: 'linear-gradient(135deg, #120800, #0a0500)' }}>
             <div style={{ padding: '40px 48px' }}>
-              <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, display: 'inline-block', padding: '4px 10px', border: `1px solid rgba(212,114,42,0.3)`, color: ORIGINS_C, marginBottom: 16 }}>
+              <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, display: 'inline-block', padding: '4px 10px', border: `1px solid rgba(212,114,42,0.3)`, color: ORIGINS_C, marginBottom: 16 }}>
                 Sunrise Stage · 500 Cap · 6am – 10am · Each Morning
               </span>
               <div style={{ fontFamily: DISPLAY, fontSize: 'clamp(2.2rem, 5vw, 4.8rem)', fontWeight: 900, lineHeight: 0.9, marginBottom: 8, color: ORIGINS_C }}>ORIGINS</div>
-              <div style={{ fontFamily: MONO, fontSize: 13, color: MUTED, letterSpacing: '0.04em', marginBottom: 32, lineHeight: 1.6 }}>East-facing. The sun rises directly behind the DJ. Jungle. Breakfast. The dawn.</div>
+              <div style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.04em', marginBottom: 32, lineHeight: 1.6 }}>East-facing. The sun rises directly behind the DJ. Jungle. Breakfast. The dawn.</div>
               <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 0.9fr 0.8fr', gap: 40 }}>
                 <div style={{ fontFamily: MONO, fontSize: 14, lineHeight: 1.9, color: MUTED }}>
                   <p>The eastern tip of the island. The crowd faces west — the forest behind them. <strong style={{ color: CREAM }}>The sun rises directly behind the DJ.</strong> First light through the trees. The silhouette of the selector against the Caribbean dawn.</p>
@@ -400,13 +406,13 @@ export default function StagesPage() {
                     { l: 'Production', v: 'Quality sound first. Minimal lighting — the sunrise is the light show.' },
                   ].map(({ l, v }) => (
                     <div key={l} style={{ marginBottom: 16 }}>
-                      <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 4 }}>{l}</span>
-                      <span style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.65)', lineHeight: 1.5 }}>{v}</span>
+                      <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 4 }}>{l}</span>
+                      <span style={{ fontFamily: MONO, fontSize: 15, color: 'rgba(242,235,217,0.65)', lineHeight: 1.5 }}>{v}</span>
                     </div>
                   ))}
                 </div>
                 <div>
-                  <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 12 }}>Sonic Identity</span>
+                  <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 12 }}>Sonic Identity</span>
                   {['Jungle · Drum & Bass', 'Jamaican electronic', 'Breakfast party', 'Deep percussion', 'The RA moment', 'Roots & lineage'].map((v, i) => (
                     <span key={v} style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase' as const, padding: '5px 10px', border: `1px solid`, borderColor: i < 4 ? 'rgba(212,114,42,0.3)' : 'rgba(242,235,217,0.05)', color: i < 4 ? ORIGINS_C : 'rgba(242,235,217,0.22)', display: 'block', marginBottom: 6, width: 'fit-content' }}>{v}</span>
                   ))}
@@ -425,11 +431,11 @@ export default function StagesPage() {
           {/* REBIRTH */}
           <div style={{ position: 'relative', overflow: 'hidden', borderLeft: `3px solid ${REBIRTH_C}`, background: 'linear-gradient(135deg, #0e0618, #080410)' }}>
             <div style={{ padding: '40px 48px' }}>
-              <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, display: 'inline-block', padding: '4px 10px', border: `1px solid rgba(155,95,192,0.3)`, color: REBIRTH_C, marginBottom: 16 }}>
+              <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, display: 'inline-block', padding: '4px 10px', border: `1px solid rgba(155,95,192,0.3)`, color: REBIRTH_C, marginBottom: 16 }}>
                 Sunset Stage · 800 Cap · 4pm – 8pm · Each Evening
               </span>
               <div style={{ fontFamily: DISPLAY, fontSize: 'clamp(2.2rem, 5vw, 4.8rem)', fontWeight: 900, lineHeight: 0.9, marginBottom: 8, color: REBIRTH_C }}>REBIRTH</div>
-              <div style={{ fontFamily: MONO, fontSize: 13, color: MUTED, letterSpacing: '0.04em', marginBottom: 32, lineHeight: 1.6 }}>West-facing. The sun sets behind the crowd. Sunset house. The golden hour. The bridge into the night.</div>
+              <div style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.04em', marginBottom: 32, lineHeight: 1.6 }}>West-facing. The sun sets behind the crowd. Sunset house. The golden hour. The bridge into the night.</div>
               <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 0.9fr 0.8fr', gap: 40 }}>
                 <div style={{ fontFamily: MONO, fontSize: 14, lineHeight: 1.9, color: MUTED }}>
                   <p>The western end — the widest point of the island. The crowd faces east toward the forest interior. <strong style={{ color: CREAM }}>The sun sets behind them into the open Caribbean.</strong> Everything turns amber. The water glows.</p>
@@ -444,13 +450,13 @@ export default function StagesPage() {
                     { l: 'Handoff', v: 'Crowd walks lit forest path to Zungu Main. 8–12 minutes. Staffed and guided.' },
                   ].map(({ l, v }) => (
                     <div key={l} style={{ marginBottom: 16 }}>
-                      <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 4 }}>{l}</span>
-                      <span style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.65)', lineHeight: 1.5 }}>{v}</span>
+                      <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 4 }}>{l}</span>
+                      <span style={{ fontFamily: MONO, fontSize: 15, color: 'rgba(242,235,217,0.65)', lineHeight: 1.5 }}>{v}</span>
                     </div>
                   ))}
                 </div>
                 <div>
-                  <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 12 }}>Sonic Identity</span>
+                  <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)', display: 'block', marginBottom: 12 }}>Sonic Identity</span>
                   {['Sunset house', 'Melodic & hypnotic', 'Afrotech · Organic', 'The golden hour', 'Building energy', 'Bridge to Zungu Main'].map((v, i) => (
                     <span key={v} style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase' as const, padding: '5px 10px', border: `1px solid`, borderColor: i < 4 ? 'rgba(155,95,192,0.3)' : 'rgba(242,235,217,0.05)', color: i < 4 ? REBIRTH_C : 'rgba(242,235,217,0.22)', display: 'block', marginBottom: 6, width: 'fit-content' }}>{v}</span>
                   ))}
@@ -467,12 +473,12 @@ export default function StagesPage() {
             {/* Rebirth stage aerial */}
             <div style={{ position: 'relative', overflow: 'hidden' }}>
               <img
-                src="/photos/stage-rebirth-aerial.png"
+                src="https://res.cloudinary.com/elektricbangaz/image/upload/v1780459534/stage-rebirth-aerial_ruosnd.png"
                 alt="Rebirth Stage — Aerial Concept"
                 loading="lazy"
                 style={{ width: '100%', height: 280, objectFit: 'cover', display: 'block', filter: 'brightness(0.75) saturate(0.9)' }}
               />
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '16px 16px 10px', background: 'linear-gradient(transparent, rgba(14,6,24,0.9))', fontFamily: MONO, fontSize: 8, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: REBIRTH_C }}>
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '16px 16px 10px', background: 'linear-gradient(transparent, rgba(14,6,24,0.9))', fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: REBIRTH_C }}>
                 Rebirth Stage · West End · Sunset · 800 Cap
               </div>
             </div>
@@ -605,7 +611,7 @@ export default function StagesPage() {
                 <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase' as const, padding: '4px 10px', border: `1px solid ${night.tagBorder}`, color: night.accent }}>{night.tag}</span>
               </div>
               <div style={{ fontFamily: DISPLAY, fontSize: 'clamp(3rem, 7vw, 7rem)', fontWeight: 900, lineHeight: 0.88, marginBottom: 8, color: night.accent }}>{night.title}</div>
-              <p style={{ fontFamily: MONO, fontSize: 14, color: MUTED, maxWidth: 560, lineHeight: 1.8, marginBottom: 40, letterSpacing: '0.02em' }}>{night.sub}</p>
+              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, maxWidth: 560, lineHeight: 1.8, marginBottom: 40, letterSpacing: '0.02em' }}>{night.sub}</p>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
                 {/* Narrative + visual concept */}
@@ -617,7 +623,7 @@ export default function StagesPage() {
                   </div>
                   {/* Visual concept box */}
                   <div style={{ marginTop: 28, padding: 20, border: `1px solid ${BORDER_MID}`, background: 'rgba(200,168,75,0.02)' }}>
-                    <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 14 }}>Visual Concept · Night {night.num}</span>
+                    <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 14 }}>Visual Concept · Night {night.num}</span>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                       {night.visual.map(({ a, v }) => (
                         <div key={a} style={{ padding: 12, background: 'rgba(242,235,217,0.02)', border: '1px solid rgba(242,235,217,0.04)' }}>
@@ -631,7 +637,7 @@ export default function StagesPage() {
 
                 {/* Schedule table */}
                 <div style={{ background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(242,235,217,0.05)' }}>
-                  <div style={{ display: 'grid', gridTemplateColumns: '60px 1fr 80px', gap: 12, padding: '10px 14px', borderBottom: '1px solid rgba(242,235,217,0.06)', fontFamily: MONO, fontSize: 8, letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '60px 1fr 80px', gap: 12, padding: '10px 14px', borderBottom: '1px solid rgba(242,235,217,0.06)', fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)' }}>
                     <span>Time</span><span>Programme</span><span style={{ textAlign: 'right' }}>Stage</span>
                   </div>
                   {night.schedule.map((row, i) => {

@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState, useRef } from 'react';
 
 const GOLD = '#C8A84B';
-const BLACK = '#060808';
+const BLACK = '#04080A';
 const CREAM = '#F7F3EC';
 const BORDER = 'rgba(200,168,75,0.18)';
 const MUTED = 'rgba(242,235,217,0.45)';
@@ -86,7 +86,7 @@ export default function LandingPage() {
   }
 
   const labelStyle: React.CSSProperties = {
-    fontSize: 8,
+    fontSize: 10,
     letterSpacing: '0.35em',
     color: GOLD,
     textTransform: 'uppercase',
@@ -102,7 +102,7 @@ export default function LandingPage() {
     border: `1px solid rgba(200,168,75,0.25)`,
     color: CREAM,
     fontFamily: "'Space Mono', monospace",
-    fontSize: 12,
+    fontSize: 15,
     letterSpacing: '0.06em',
     padding: '12px 14px',
     outline: 'none',
@@ -116,11 +116,11 @@ export default function LandingPage() {
       <div className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
         <video
           ref={videoRef}
-          src="/photos/aerial-view-from-navy-island-to-port-antonio-town-2026-01-21-22-41-54-utc.mp4"
+          src="https://res.cloudinary.com/elektricbangaz/video/upload/v1780459585/aerial-view-of-navy-island-in-port-antonio-in-jama-2025-12-17-11-59-54-utc_coui1y.mov"
           muted
           playsInline
           preload="auto"
-          poster="/photos/navy-island-aerial-hq.png"
+          poster="https://res.cloudinary.com/elektricbangaz/image/upload/v1773236490/NAVY_ISLAND_AERIAL_vaapz1.png"
           style={{
             position: 'absolute',
             inset: 0,
@@ -180,7 +180,7 @@ export default function LandingPage() {
           <div style={{ width: 60, height: 1, background: GOLD, marginBottom: 24 }} />
 
           <p
-            style={{ fontSize: 13, color: MUTED, letterSpacing: '0.05em', lineHeight: 1.8, maxWidth: 520, marginBottom: '2.5rem', textAlign: 'center' }}
+            style={{ fontSize: 15, color: MUTED, letterSpacing: '0.05em', lineHeight: 1.8, maxWidth: 520, marginBottom: '2.5rem', textAlign: 'center' }}
           >
             A private-island electronic music festival in Port Antonio, Jamaica.<br />
             Built for 5,000 guests, three stage territories, arrival by boat, hospitality, media capture, and long-term destination IP.
@@ -215,9 +215,9 @@ export default function LandingPage() {
       </div>
 
       {/* ── Section 01 — The Proposition ── */}
-      <section style={{ padding: '96px 24px', borderTop: `1px solid ${BORDER}`, backgroundColor: BG_ALT }}>
-        <div style={{ maxWidth: 1080, margin: '0 auto' }}>
-          <p style={{ fontSize: 8, letterSpacing: '0.45em', color: GOLD, textTransform: 'uppercase', fontWeight: 700, marginBottom: 16 }}>
+      <section style={{ padding: '96px 8vw', borderTop: `1px solid ${BORDER}`, backgroundColor: BG_ALT }}>
+        <div>
+          <p style={{ fontSize: 10, letterSpacing: '0.45em', color: GOLD, textTransform: 'uppercase', fontWeight: 700, marginBottom: 16 }}>
             01 — Executive Briefing
           </p>
           <h2
@@ -225,7 +225,7 @@ export default function LandingPage() {
           >
             The proposition.
           </h2>
-          <p style={{ fontSize: 13, color: MUTED, letterSpacing: '0.05em', lineHeight: 1.9, maxWidth: 640, marginBottom: 56 }}>
+          <p style={{ fontSize: 15, color: MUTED, letterSpacing: '0.05em', lineHeight: 1.9, maxWidth: 640, marginBottom: 56 }}>
             Zungu is a private-island electronic music festival in Port Antonio, Jamaica.<br /><br />
             It is built around a market correction: Jamaica&rsquo;s influence is embedded in global electronic music, but the island has not yet owned the premium destination-festival category that influence helped create.<br /><br />
             Zungu converts that authorship into a controlled live experience — 5,000 guests, three stages, hospitality, media, partnerships, and long-term intellectual property.
@@ -251,8 +251,8 @@ export default function LandingPage() {
                   alignItems: 'start',
                 }}
               >
-                <span style={{ fontSize: 8, letterSpacing: '0.4em', color: GOLD, textTransform: 'uppercase', fontWeight: 700, paddingTop: 2 }}>{label}</span>
-                <span style={{ fontSize: 13, color: MUTED, lineHeight: 1.8, letterSpacing: '0.04em' }}>{value}</span>
+                <span style={{ fontSize: 10, letterSpacing: '0.4em', color: GOLD, textTransform: 'uppercase', fontWeight: 700, paddingTop: 2 }}>{label}</span>
+                <span style={{ fontSize: 15, color: MUTED, lineHeight: 1.8, letterSpacing: '0.04em' }}>{value}</span>
               </div>
             ))}
           </div>
@@ -260,9 +260,9 @@ export default function LandingPage() {
       </section>
 
       {/* ── Section 02 — The Site Advantage ── */}
-      <section style={{ padding: '96px 24px', borderTop: `1px solid ${BORDER}`, backgroundColor: '#060808' }}>
-        <div style={{ maxWidth: 1080, margin: '0 auto' }}>
-          <p style={{ fontSize: 8, letterSpacing: '0.45em', color: GOLD, textTransform: 'uppercase', fontWeight: 700, marginBottom: 16 }}>
+      <section style={{ padding: '96px 8vw', borderTop: `1px solid ${BORDER}`, backgroundColor: '#04080A' }}>
+        <div>
+          <p style={{ fontSize: 10, letterSpacing: '0.45em', color: GOLD, textTransform: 'uppercase', fontWeight: 700, marginBottom: 16 }}>
             02 — Site Advantage
           </p>
           <h2
@@ -270,7 +270,7 @@ export default function LandingPage() {
           >
             The island is the moat.
           </h2>
-          <p style={{ fontSize: 13, color: MUTED, letterSpacing: '0.05em', lineHeight: 1.9, maxWidth: 640, marginBottom: 56 }}>
+          <p style={{ fontSize: 15, color: MUTED, letterSpacing: '0.05em', lineHeight: 1.9, maxWidth: 640, marginBottom: 56 }}>
             Navy Island gives Zungu what most destination festivals spend years trying to manufacture: arrival, privacy, containment, natural drama, and separation from the mainland.<br /><br />
             The five-minute crossing from the Errol Flynn Marina is not only logistics. It is guest control, operational pacing, and the first act of the experience.
           </p>
@@ -292,7 +292,7 @@ export default function LandingPage() {
               >
                 <span style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 'clamp(20px, 3vw, 36px)', fontWeight: 900, color: GOLD, display: 'block', lineHeight: 1, marginBottom: 8 }}>{num}</span>
                 <span style={{ fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: CREAM, fontWeight: 700, display: 'block', marginBottom: 4 }}>{label}</span>
-                <span style={{ fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase', color: MUTED, display: 'block' }}>{sub}</span>
+                <span style={{ fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: MUTED, display: 'block' }}>{sub}</span>
               </div>
             ))}
           </div>
@@ -300,9 +300,9 @@ export default function LandingPage() {
       </section>
 
       {/* ── Section 03 — The Operating Thesis ── */}
-      <section style={{ padding: '96px 24px', borderTop: `1px solid ${BORDER}`, backgroundColor: BG_ALT }}>
-        <div style={{ maxWidth: 1080, margin: '0 auto' }}>
-          <p style={{ fontSize: 8, letterSpacing: '0.45em', color: GOLD, textTransform: 'uppercase', fontWeight: 700, marginBottom: 16 }}>
+      <section style={{ padding: '96px 8vw', borderTop: `1px solid ${BORDER}`, backgroundColor: BG_ALT }}>
+        <div>
+          <p style={{ fontSize: 10, letterSpacing: '0.45em', color: GOLD, textTransform: 'uppercase', fontWeight: 700, marginBottom: 16 }}>
             03 — Operating Thesis
           </p>
           <h2
@@ -310,7 +310,7 @@ export default function LandingPage() {
           >
             Built as a festival. Structured as a platform.
           </h2>
-          <p style={{ fontSize: 13, color: MUTED, letterSpacing: '0.05em', lineHeight: 1.9, maxWidth: 640, marginBottom: 56 }}>
+          <p style={{ fontSize: 15, color: MUTED, letterSpacing: '0.05em', lineHeight: 1.9, maxWidth: 640, marginBottom: 56 }}>
             Zungu is not structured as a one-off event.<br /><br />
             The launch format establishes a controlled-capacity festival asset with multiple revenue lines: tickets, VIP, glamping, food and beverage, bars, sponsorship, hospitality partnerships, media capture, artist commissions, and future IP.
           </p>
@@ -330,8 +330,8 @@ export default function LandingPage() {
                   backgroundColor: 'rgba(200,168,75,0.02)',
                 }}
               >
-                <p style={{ fontSize: 8, letterSpacing: '0.4em', color: GOLD, textTransform: 'uppercase', fontWeight: 700, marginBottom: 16 }}>{title}</p>
-                <p style={{ fontSize: 12, color: MUTED, lineHeight: 1.9, letterSpacing: '0.04em' }}>{body}</p>
+                <p style={{ fontSize: 10, letterSpacing: '0.4em', color: GOLD, textTransform: 'uppercase', fontWeight: 700, marginBottom: 16 }}>{title}</p>
+                <p style={{ fontSize: 15, color: MUTED, lineHeight: 1.9, letterSpacing: '0.04em' }}>{body}</p>
               </div>
             ))}
           </div>
@@ -339,9 +339,9 @@ export default function LandingPage() {
       </section>
 
       {/* ── Section 04 — The Partner Tracks ── */}
-      <section style={{ padding: '96px 24px', borderTop: `1px solid ${BORDER}`, backgroundColor: '#060808' }}>
-        <div style={{ maxWidth: 1080, margin: '0 auto' }}>
-          <p style={{ fontSize: 8, letterSpacing: '0.45em', color: GOLD, textTransform: 'uppercase', fontWeight: 700, marginBottom: 16 }}>
+      <section style={{ padding: '96px 8vw', borderTop: `1px solid ${BORDER}`, backgroundColor: '#04080A' }}>
+        <div>
+          <p style={{ fontSize: 10, letterSpacing: '0.45em', color: GOLD, textTransform: 'uppercase', fontWeight: 700, marginBottom: 16 }}>
             04 — Partner Tracks
           </p>
           <h2
@@ -364,8 +364,8 @@ export default function LandingPage() {
                   border: `1px solid rgba(200,168,75,0.1)`,
                 }}
               >
-                <p style={{ fontSize: 8, letterSpacing: '0.4em', color: GOLD, textTransform: 'uppercase', fontWeight: 700, marginBottom: 16 }}>{title}</p>
-                <p style={{ fontSize: 12, color: MUTED, lineHeight: 1.9, letterSpacing: '0.04em' }}>{body}</p>
+                <p style={{ fontSize: 10, letterSpacing: '0.4em', color: GOLD, textTransform: 'uppercase', fontWeight: 700, marginBottom: 16 }}>{title}</p>
+                <p style={{ fontSize: 15, color: MUTED, lineHeight: 1.9, letterSpacing: '0.04em' }}>{body}</p>
               </div>
             ))}
           </div>
@@ -384,9 +384,9 @@ export default function LandingPage() {
       </section>
 
       {/* ── Section 05 — Request Briefing ── */}
-      <section id="briefing" style={{ padding: '96px 24px', borderTop: `1px solid ${BORDER}`, backgroundColor: BG_ALT }}>
+      <section id="briefing" style={{ padding: '96px 8vw', borderTop: `1px solid ${BORDER}`, backgroundColor: BG_ALT }}>
         <div style={{ maxWidth: 640, margin: '0 auto' }}>
-          <p style={{ fontSize: 8, letterSpacing: '0.45em', color: GOLD, textTransform: 'uppercase', fontWeight: 700, marginBottom: 16 }}>
+          <p style={{ fontSize: 10, letterSpacing: '0.45em', color: GOLD, textTransform: 'uppercase', fontWeight: 700, marginBottom: 16 }}>
             05 — Request Briefing
           </p>
           <h2
@@ -394,7 +394,7 @@ export default function LandingPage() {
           >
             Start the conversation.
           </h2>
-          <p style={{ fontSize: 12, color: MUTED, lineHeight: 1.9, marginBottom: 48 }}>
+          <p style={{ fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 48 }}>
             Zungu briefing access is reviewed by role. Submit your enquiry and the team will respond with the appropriate investor, production, supplier, or press material.
           </p>
 
@@ -402,7 +402,7 @@ export default function LandingPage() {
             <div style={{ padding: '40px 32px', border: `1px solid ${GOLD}`, textAlign: 'center' }}>
               <div style={{ width: 28, height: 1, background: GOLD, margin: '0 auto 20px' }} />
               <p style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 18, fontWeight: 700, color: GOLD, marginBottom: 12 }}>Received.</p>
-              <p style={{ fontSize: 12, color: MUTED, lineHeight: 1.7 }}>The Zungu team will follow up with the appropriate briefing material.</p>
+              <p style={{ fontSize: 15, color: MUTED, lineHeight: 1.7 }}>The Zungu team will follow up with the appropriate briefing material.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -487,7 +487,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── Footer ── */}
-      <footer style={{ borderTop: `1px solid ${BORDER}`, padding: '40px 24px', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: 16, maxWidth: 1080, margin: '0 auto' }}>
+      <footer style={{ borderTop: `1px solid ${BORDER}`, padding: '40px 8vw', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: 16 }}>
         <p style={{ fontSize: 9, letterSpacing: '0.25em', color: MUTED }}>
           © 2027 ZUNGU FESTIVAL · NAVY ISLAND · PORT ANTONIO · JAMAICA
         </p>

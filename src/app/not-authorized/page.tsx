@@ -1,6 +1,6 @@
 export default function NotAuthorizedPage() {
   const gold = '#C8A84B';
-  const black = '#060808';
+  const black = '#04080A';
   const white = '#F7F3EC';
   const muted = '#6B6355';
 

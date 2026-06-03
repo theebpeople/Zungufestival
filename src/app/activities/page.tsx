@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // ── Design tokens ─────────────────────────────────────────────────────────────
 const GOLD = '#C8A84B';
-const BLACK = '#060808';
+const BLACK = '#04080A';
 const CREAM = '#F2EBD9';
 const MUTED = 'rgba(242,235,217,0.45)';
 const DIM = 'rgba(242,235,217,0.18)';
@@ -165,9 +165,9 @@ function ZoneCard({ zone }: { zone: typeof ZONES[0] }) {
       >
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 8 }}>
-            <span style={{ fontFamily: fontMono, fontSize: 8, color: GOLD, letterSpacing: '0.4em', textTransform: 'uppercase', fontWeight: 700 }}>{zone.num}</span>
+            <span style={{ fontFamily: fontMono, fontSize: 10, color: GOLD, letterSpacing: '0.4em', textTransform: 'uppercase', fontWeight: 700 }}>{zone.num}</span>
             <div style={{ width: 1, height: 12, background: 'rgba(200,168,75,0.3)' }} />
-            <span style={{ fontFamily: fontMono, fontSize: 8, color: MUTED, letterSpacing: '0.3em', textTransform: 'uppercase' }}>{zone.tag}</span>
+            <span style={{ fontFamily: fontMono, fontSize: 10, color: MUTED, letterSpacing: '0.3em', textTransform: 'uppercase' }}>{zone.tag}</span>
           </div>
           <h3 style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 28px)', fontWeight: 900, color: CREAM, letterSpacing: '-0.01em', textTransform: 'uppercase', margin: 0 }}>
             {zone.name}
@@ -186,8 +186,8 @@ function ZoneCard({ zone }: { zone: typeof ZONES[0] }) {
               { label: 'OPERATIONAL NOTE', text: zone.opNote },
             ].map(({ label, text }, i, arr) => (
               <div key={label} style={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: 24, padding: '16px 0', borderBottom: i < arr.length - 1 ? `1px solid rgba(200,168,75,0.07)` : 'none', alignItems: 'start' }}>
-                <span style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, paddingTop: 2 }}>{label}</span>
-                <span style={{ fontFamily: fontMono, fontSize: 12, color: MUTED, lineHeight: 1.8 }}>{text}</span>
+                <span style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, paddingTop: 2 }}>{label}</span>
+                <span style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>{text}</span>
               </div>
             ))}
           </div>
@@ -206,7 +206,7 @@ function ChapterDivider({ num, eye, title, sub }: { num: string; eye: string; ti
           {num}
         </div>
         <div>
-          <p style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.6em', color: GOLD, textTransform: 'uppercase', marginBottom: 10 }}>{eye}</p>
+          <p style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.6em', color: GOLD, textTransform: 'uppercase', marginBottom: 10 }}>{eye}</p>
           <h2 style={{ fontFamily: fontDisplay, fontSize: 'clamp(22px, 3.5vw, 44px)', fontWeight: 700, color: CREAM, lineHeight: 1.05, letterSpacing: '-0.02em' }}>{title}</h2>
           <p style={{ fontFamily: fontMono, fontSize: 11, color: MUTED, marginTop: 10, lineHeight: 1.7, maxWidth: 540 }}>{sub}</p>
         </div>
@@ -250,25 +250,25 @@ export default function ActivitiesPage() {
         <a href="/" style={{ flexShrink: 0 }}>
           <img src="/zungu-z-mark.png" style={{ height: 28, display: 'block', filter: 'drop-shadow(0 0 8px rgba(200,168,75,0.25))' }} alt="Zungu" />
         </a>
-        <div style={{ display: 'flex', gap: 24, alignItems: 'center', overflowX: 'auto' }}>
+        <div className="nav-links" style={{ display: 'flex', gap: 24, alignItems: 'center', overflowX: 'auto', flexWrap: 'nowrap', scrollbarWidth: 'none' } as React.CSSProperties}>
           {NAV_LINKS.map((link, i) => {
             const id = SECTION_IDS[i + 1];
             return (
-              <button key={link} onClick={() => scrollTo(id)} style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.4em', textTransform: 'uppercase', color: activeSection === id ? GOLD : MUTED, background: 'none', border: 'none', cursor: 'pointer', fontWeight: 700, padding: '4px 0', whiteSpace: 'nowrap', transition: 'color 0.2s' }}>
+              <button key={link} onClick={() => scrollTo(id)} style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', color: activeSection === id ? GOLD : MUTED, background: 'none', border: 'none', cursor: 'pointer', fontWeight: 700, padding: '4px 0', whiteSpace: 'nowrap', transition: 'color 0.2s' }}>
                 {link}
               </button>
             );
           })}
         </div>
         <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexShrink: 0 }}>
-          <a href="/deck" style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.4em', textTransform: 'uppercase', color: MUTED, textDecoration: 'none', fontWeight: 700, whiteSpace: 'nowrap' }}>View Deck</a>
-          <a href="/stages" style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.4em', textTransform: 'uppercase', color: MUTED, textDecoration: 'none', fontWeight: 700, whiteSpace: 'nowrap' }}>Stages</a>
+          <a href="/deck" style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', color: MUTED, textDecoration: 'none', fontWeight: 700, whiteSpace: 'nowrap' }}>View Deck</a>
+          <a href="/stages" style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', color: MUTED, textDecoration: 'none', fontWeight: 700, whiteSpace: 'nowrap' }}>Stages</a>
         </div>
       </nav>
 
       {/* ── Hero ────────────────────────────────────────────────────────── */}
       <section id="section-hero" style={{ width: '100%', minHeight: '85vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', position: 'relative', overflow: 'hidden', padding: '0 8vw 80px', boxSizing: 'border-box' }}>
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: `url('/photos/navy-island-aerial-hq.png')`, backgroundSize: 'cover', backgroundPosition: 'center 30%', filter: 'saturate(0.6) brightness(0.3)' }} />
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: `url('https://res.cloudinary.com/elektricbangaz/image/upload/v1780459528/stage-beach-activities_tnmqx6.png')`, backgroundSize: 'cover', backgroundPosition: 'center 30%', filter: 'saturate(0.6) brightness(0.3)' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(6,8,8,0.95) 0%, rgba(6,8,8,0.4) 60%, rgba(6,8,8,0.1) 100%)' }} />
         <div style={{ position: 'relative', zIndex: 2 }}>
           <p style={{ fontFamily: fontMono, fontSize: 9, color: GOLD, letterSpacing: '0.5em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '1rem' }}>// PROGRAMMING + HOSPITALITY</p>
@@ -282,7 +282,7 @@ export default function ActivitiesPage() {
             {[['9', 'Island Zones'], ['2,500–5,000', 'Planning Range'], ['Jun 17–23', 'Target Window · 2027']].map(([val, label]) => (
               <div key={label}>
                 <span style={{ fontFamily: fontDisplay, fontSize: 'clamp(1.2rem, 3vw, 2.2rem)', fontWeight: 900, color: GOLD, display: 'block', lineHeight: 1 }}>{val}</span>
-                <span style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.3em', textTransform: 'uppercase', color: MUTED, display: 'block', marginTop: 4 }}>{label}</span>
+                <span style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase', color: MUTED, display: 'block', marginTop: 4 }}>{label}</span>
               </div>
             ))}
           </div>
@@ -293,10 +293,10 @@ export default function ActivitiesPage() {
       <ChapterDivider num="01" eye="Chapter One" title="Programming Thesis." sub="The island is not only the venue. It is the operating system." />
       <section id="section-thesis" style={{ padding: '88px 8vw', boxSizing: 'border-box', backgroundColor: BLACK }}>
         <div style={{ maxWidth: 800 }}>
-          <p style={{ fontFamily: fontMono, fontSize: 13, color: MUTED, lineHeight: 1.9, marginBottom: 18 }}>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 18 }}>
             The commercial model does not begin at the gate. It begins at the boat, runs through nine island zones across the full day, and continues until the last transfer back to the marina.
           </p>
-          <p style={{ fontFamily: fontMono, fontSize: 13, color: MUTED, lineHeight: 1.9, marginBottom: 40 }}>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 40 }}>
             Each zone is designed to serve five functions simultaneously: guest experience, revenue generation, guest-flow distribution, sponsor inventory, and local operator opportunity. The zones are not decorative. They are commercial assets with clear operator models and revenue logic.
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 2 }}>
@@ -315,7 +315,7 @@ export default function ActivitiesPage() {
             ))}
           </div>
           <div style={{ marginTop: 48, padding: '28px 32px', border: `1px solid rgba(200,168,75,0.2)`, background: 'rgba(200,168,75,0.03)' }}>
-            <p style={{ fontFamily: fontMono, fontSize: 12, color: MUTED, lineHeight: 1.8, margin: 0 }}>
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.8, margin: 0 }}>
               <strong style={{ color: CREAM }}>Operator model principle:</strong> Zungu owns the commercial framework. Selected local vendors, specialists, and operators deliver services within it. Revenue is shared through stall fees, commissions, minimum guarantees, category exclusivity, and activation fees. Zungu controls layout, payment system, standards, hours, brand presentation, and health and safety.
             </p>
           </div>
@@ -333,7 +333,7 @@ export default function ActivitiesPage() {
       {/* ── Ch03: Commercial Model ──────────────────────────────────────── */}
       <ChapterDivider num="03" eye="Chapter Three" title="Commercial Model." sub="Nine revenue categories. Zungu controls the system. Partners and operators deliver within it." />
       <section id="section-commercial" style={{ padding: '88px 8vw', boxSizing: 'border-box', backgroundColor: BLACK }}>
-        <p style={{ fontFamily: fontMono, fontSize: 13, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
+        <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
           Ticket revenue is the base. The commercial model extends across nine categories — each generating independent revenue lines that compound across the festival window and beyond.
         </p>
         <div style={{ display: 'grid', gap: 2, marginBottom: 60 }}>
@@ -363,7 +363,7 @@ export default function ActivitiesPage() {
             { label: 'Included in VIP + Glamping', color: RUST, items: ['Priority transfers', 'Private bars + viewing areas', 'Concierge service', 'Meal or drink credits', 'Wellness credits', 'Priority booking windows', 'Private lounges', 'Dedicated facilities'] },
           ].map(({ label, color, items }) => (
             <div key={label} style={{ border: `1px solid ${DIM}`, padding: '28px 24px' }}>
-              <div style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.35em', textTransform: 'uppercase', color, fontWeight: 700, marginBottom: 20 }}>{label}</div>
+              <div style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', color, fontWeight: 700, marginBottom: 20 }}>{label}</div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                 {items.map(item => (
                   <li key={item} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 10 }}>
@@ -380,7 +380,7 @@ export default function ActivitiesPage() {
       {/* ── Ch04: Mainland Activations ──────────────────────────────────── */}
       <ChapterDivider num="04" eye="Chapter Four" title="Mainland Activations." sub="Not every Zungu experience belongs on Navy Island. Selected activations route guests through Port Antonio." />
       <section id="section-mainland" style={{ padding: '88px 8vw', boxSizing: 'border-box', backgroundColor: BLACK }}>
-        <p style={{ fontFamily: fontMono, fontSize: 13, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
+        <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
           Mainland activations serve two purposes: they reduce pressure on the island site and they create additional revenue channels for Port Antonio operators — restaurants, guides, transport, food vendors, and excursion specialists.
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2 }}>
@@ -388,7 +388,7 @@ export default function ActivitiesPage() {
             <div key={name} style={{ border: `1px solid ${DIM}`, padding: '32px 28px' }}>
               <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: MUTED, marginBottom: 8 }}>{sub}</div>
               <h3 style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 20px)', fontWeight: 900, color: CREAM, textTransform: 'uppercase', letterSpacing: '-0.01em', marginBottom: 16 }}>{name}</h3>
-              <p style={{ fontFamily: fontMono, fontSize: 12, color: MUTED, lineHeight: 1.8, margin: 0 }}>{body}</p>
+              <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.8, margin: 0 }}>{body}</p>
             </div>
           ))}
         </div>
@@ -397,10 +397,10 @@ export default function ActivitiesPage() {
       {/* ── Ch05: Port Antonio Benefit ──────────────────────────────────── */}
       <ChapterDivider num="05" eye="Chapter Five" title="Port Antonio Benefit." sub="Zungu's commercial model is designed to route value through Port Antonio, not isolate it on Navy Island." />
       <section id="section-benefit" style={{ padding: '88px 8vw', boxSizing: 'border-box', backgroundColor: BLACK }}>
-        <p style={{ fontFamily: fontMono, fontSize: 13, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 16 }}>
+        <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 16 }}>
           The island creates the premium anchor. Port Antonio supplies the operating ecosystem: accommodation, marine transport, food, beverage, drivers, guides, vendors, production support, excursions, staff, and post-event services.
         </p>
-        <p style={{ fontFamily: fontMono, fontSize: 13, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
+        <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
           This is not a secondary consideration. It is part of what makes Zungu investable and locally defensible.
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2, marginBottom: 48 }}>
@@ -422,14 +422,14 @@ export default function ActivitiesPage() {
       {/* ── Ch06: Sustainability ─────────────────────────────────────────── */}
       <ChapterDivider num="06" eye="Chapter Six" title="Sustainability." sub="Sustainability is an operating requirement tied to site access, reef protection, waste removal, local employment, harm reduction, and post-event reporting." />
       <section id="section-sustainability" style={{ padding: '88px 8vw', boxSizing: 'border-box', backgroundColor: BLACK }}>
-        <p style={{ fontFamily: fontMono, fontSize: 13, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
+        <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
           Environmental and community protocol is not a marketing position. It is a condition of operating on Navy Island and a requirement of the site access agreement, local authority relations, and marine licensing.
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2 }}>
           {SUSTAIN.map(({ label, body }) => (
             <div key={label} style={{ border: `1px solid ${DIM}`, padding: '28px 24px' }}>
               <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, marginBottom: 12 }}>{label}</div>
-              <p style={{ fontFamily: fontMono, fontSize: 12, color: MUTED, lineHeight: 1.8, margin: 0 }}>{body}</p>
+              <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.8, margin: 0 }}>{body}</p>
             </div>
           ))}
         </div>

@@ -51,11 +51,11 @@
   --h3-size: clamp(1.6rem,3.5vw,2.8rem);
   --h4-size: 1.25rem;
   --h5-size: 0.9375rem;
-  --body-size:  14px;
-  --small-size: 13px;
+  --body-size:  16px;
+  --small-size: 15px;
   --label-size: 11px;
-  --micro-size: 9px;
-  --nano-size:  8px;
+  --micro-size: 10px;
+  --nano-size:  10px;
 
   /* Tracking */
   --tr-tight:  -0.05em;
@@ -88,8 +88,8 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
-  font-size: 14px;
-  background-color: #060808;
+  font-size: 16px;
+  background-color: #04080A;
   color: #F7F3EC;
   font-family: 'Space Mono', monospace;
   cursor: crosshair;
@@ -130,6 +130,9 @@ body::after {
 /* ─── Hide Clerk dev mode badges ──────────────────────────────────────────── */
 [class*="cl-badge"],[data-localization-key="badge__devMode"],
 [class*="cl-devBrowser"],[class*="cl-internal-b3fm6y"] { display: none !important; }
+
+/* Nav link scrollable row — hide scrollbar cross-browser */
+.nav-links::-webkit-scrollbar { display: none; }
 
 /* Deck nav chapter links — hide on portrait tablet and below */
 .deck-chapter-links {
