@@ -375,8 +375,22 @@ function SignInForm({ role }: { role: string }) {
           box-shadow: none !important;
         }
         [class*="cl-formButtonPrimary"]:hover { background: #dab84e !important; box-shadow: none !important; }
-        [class*="cl-rootBox"] * { font-family: 'Space Mono', monospace !important; }
+        [class*="cl-rootBox"] * { font-family: 'Space Mono', monospace !important; color: #F2EBD9 !important; }
         [class*="cl-card"] { background: transparent !important; box-shadow: none !important; border: none !important; }
+        /* Ensure any Clerk-rendered text (email display, back link, etc.) is visible */
+        [class*="cl-"] p, [class*="cl-"] span, [class*="cl-"] a, [class*="cl-"] button:not([class*="cl-formButtonPrimary"]) {
+          color: rgba(242,235,217,0.7) !important;
+        }
+        [class*="cl-identityPreview"], [class*="cl-identityPreviewText"], [class*="cl-identityPreviewEditButton"] {
+          color: #F2EBD9 !important;
+        }
+        [class*="cl-alternativeMethods"], [class*="cl-alternativeMethodsBlockButton"] {
+          color: rgba(242,235,217,0.55) !important;
+          border-color: rgba(200,168,75,0.2) !important;
+        }
+        [class*="cl-backLink"], [class*="cl-backButton"] {
+          color: rgba(200,168,75,0.7) !important;
+        }
         [class*="cl-formFieldHintText"],[class*="cl-formFieldErrorText"] {
           font-family: 'Space Mono', monospace !important;
           font-size: 12px !important;
@@ -403,14 +417,18 @@ function SignInForm({ role }: { role: string }) {
         /* OTP / verification code inputs */
         [class*="cl-otpCodeField"] input,
         [class*="cl-otpCodeFieldInput"],
-        input[data-otp-input] {
+        input[data-otp-input],
+        input[autocomplete*="one-time-code"] {
           background: rgba(18,24,20,0.97) !important;
           border: 1px solid rgba(200,168,75,0.45) !important;
-          color: #F7F3EC !important;
+          color: #F2EBD9 !important;
+          -webkit-text-fill-color: #F2EBD9 !important;
           border-radius: 0 !important;
-          font-family: 'Unbounded', sans-serif !important;
+          font-family: 'Space Mono', monospace !important;
           font-weight: 700 !important;
-          font-size: 20px !important;
+          font-size: 18px !important;
+          letter-spacing: 0 !important;
+          text-align: center !important;
           box-shadow: none !important;
         }
         [class*="cl-otpCodeField"] input:focus,
