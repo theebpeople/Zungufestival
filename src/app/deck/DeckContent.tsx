@@ -22,7 +22,7 @@ const fontDisplay = "'Unbounded', sans-serif";
 const fontMono = "'Space Mono', monospace";
 
 // ── Section IDs for dot-nav ───────────────────────────────────────────────────
-const SECTIONS = ['brand', 'island', 'stages', 'artists', 'experience', 'world', 'signal', 'opportunity', 'cta'] as const;
+const SECTIONS = ['brand', 'island', 'stages', 'artists', 'experience', 'world', 'signal', 'numbers', 'opportunity', 'cta'] as const;
 type SectionId = typeof SECTIONS[number];
 
 // ── Parallax photo break component ───────────────────────────────────────────
@@ -307,6 +307,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
     experience: useRef<HTMLElement>(null),
     world: useRef<HTMLElement>(null),
     signal: useRef<HTMLElement>(null),
+    numbers: useRef<HTMLElement>(null),
     opportunity: useRef<HTMLElement>(null),
     cta: useRef<HTMLElement>(null),
   };
@@ -320,6 +321,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
     experience: useRef<HTMLDivElement>(null),
     world: useRef<HTMLDivElement>(null),
     signal: useRef<HTMLDivElement>(null),
+    numbers: useRef<HTMLDivElement>(null),
     opportunity: useRef<HTMLDivElement>(null),
     cta: useRef<HTMLDivElement>(null),
   };
@@ -1483,10 +1485,115 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
       </Section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          CHAPTER 7: THE OPPORTUNITY
+          CHAPTER 7: THE NUMBERS
       ═══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider
         num="07"
+        eye="Chapter Seven"
+        title="The Numbers."
+        sub="Conservative assumptions. Separated cost lines. Built to be stress-tested — not to impress."
+      />
+
+      <Section id="numbers">
+        <SectionHead label="Year 1 Revenue · 5,000 Capacity" title="The case at 5,000 tickets." />
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: fontMono, fontSize: 12, minWidth: 500, maxWidth: 800 }}>
+            <tbody>
+              {[
+                ['GA Tickets', '3,200 × $400 avg', '$1,280,000'],
+                ['VIP Tickets', '1,200 × $700 avg', '$840,000'],
+                ['Glamping Tier', '600 × $1,500 avg', '$900,000'],
+                ['Sponsorship & Partners', '3–4 cultural brand partners', '$450,000'],
+                ['Food & Bar Revenue', '$200 per head × 5,000', '$1,000,000'],
+                ['Commissioned IP & Merchandise', 'Year 1 catalog + limited edition', '$120,000'],
+              ].map(([label, detail, value]) => (
+                <tr key={label} style={{ borderBottom: `1px solid ${dim}` }}>
+                  <td style={{ padding: '12px 16px', color: cream }}>{label}</td>
+                  <td style={{ padding: '12px 16px', color: muted, fontSize: 10 }}>{detail}</td>
+                  <td style={{ padding: '12px 16px', color: gold, fontWeight: 700, textAlign: 'right' }}>{value}</td>
+                </tr>
+              ))}
+              <tr style={{ borderTop: `1px solid ${gold}` }}>
+                <td colSpan={2} style={{ padding: '14px 16px', color: cream, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', fontSize: 10 }}>TOTAL REVENUE · Conservative scenario</td>
+                <td style={{ padding: '14px 16px', color: gold, fontWeight: 700, fontSize: 18, textAlign: 'right' }}>$4,590,000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </Section>
+
+      <Section dark>
+        <SectionHead label="Year 1 Cost Structure" title="What it costs to do this properly." />
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: fontMono, fontSize: 12, minWidth: 500, maxWidth: 800 }}>
+            <tbody>
+              {[
+                ['Artist Fees', 'All acts across 7 days', '$1,000,000'],
+                ['Production (4 companies)', 'Starlight, Mainevent, Yes Production, Phase Three', '$700,000'],
+                ['Marine Transport', 'Ferry operators, barge schedule', '$180,000'],
+                ['Island Lease (7 days)', '~1M JMD/day × 7 days', '$44,000'],
+                ['Glamping Build', 'Pods, power, sanitation, access paths', '$220,000'],
+                ['Insurance & Legal', 'Island-specific specialist coverage', '$95,000'],
+                ['Medical Infrastructure', 'Field hospital + helipad', '$45,000'],
+                ['Marketing & Press', 'Cultural story first', '$180,000'],
+                ['Operations & Staffing', 'Crew, security, volunteers', '$145,000'],
+                ['Food Village Infrastructure', 'Stalls, power, Portland Parish vendors', '$80,000'],
+                ['Contingency (15%)', 'Island event risk premium', '$266,000'],
+              ].map(([label, detail, value]) => (
+                <tr key={label} style={{ borderBottom: `1px solid ${dim}` }}>
+                  <td style={{ padding: '12px 16px', color: cream }}>{label}</td>
+                  <td style={{ padding: '12px 16px', color: muted, fontSize: 10 }}>{detail}</td>
+                  <td style={{ padding: '12px 16px', color: muted, fontWeight: 700, textAlign: 'right' }}>{value}</td>
+                </tr>
+              ))}
+              <tr style={{ borderTop: `1px solid ${dim}` }}>
+                <td colSpan={2} style={{ padding: '12px 16px', color: cream, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', fontSize: 10 }}>TOTAL COSTS · Base case</td>
+                <td style={{ padding: '12px 16px', color: cream, fontWeight: 700, fontSize: 16, textAlign: 'right' }}>$2,955,000</td>
+              </tr>
+              <tr style={{ borderTop: `2px solid ${gold}` }}>
+                <td colSpan={2} style={{ padding: '14px 16px', color: cream, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', fontSize: 10 }}>YEAR 1 SURPLUS · Before IP revenue</td>
+                <td style={{ padding: '14px 16px', color: teal, fontWeight: 700, fontSize: 20, textAlign: 'right' }}>$1,635,000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style={{ display: 'flex', border: `1px solid rgba(200,168,75,0.12)`, margin: '28px 0' }}>
+          {[['$4.59M', 'Revenue'], ['$2.96M', 'Costs'], ['$920', 'Blended avg'], ['65%', 'Breakeven occupancy']].map(([num, lbl], i, arr) => (
+            <div key={lbl} style={{ flex: 1, padding: '28px 22px', borderRight: i < arr.length - 1 ? `1px solid rgba(200,168,75,0.08)` : 'none', textAlign: 'center' }}>
+              <span style={{ fontFamily: fontDisplay, fontSize: 'clamp(22px, 3.5vw, 42px)', fontWeight: 700, color: gold, display: 'block', lineHeight: 1 }}>{num}</span>
+              <span style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.25em', textTransform: 'uppercase', color: muted, display: 'block', marginTop: 6 }}>{lbl}</span>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section>
+        <SectionHead label="Financial Discipline" title="Hard gates." goldLine="Money doesn't move until each one is cleared." />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2, marginBottom: 36 }}>
+          {[
+            { title: '$518K Seed Capital Floor', sub: 'Before ticket sales open', body: 'Artist deposits (40%), infrastructure deposits (25%), insurance and legal. Cannot open ticket sales without this confirmed.' },
+            { title: '70% Presale Trigger', sub: 'Hard go/no-go — Feb 5, 2027', body: 'Full cost commitment does not proceed below 70% presale. Non-negotiable. Protects every party in the structure.' },
+            { title: '40% Artist Deposits', sub: 'After insurance is bound only', body: 'Artist contracts activate only after insurance is secured and production contracts are signed. No speculative bookings for optics.' },
+            { title: '15% Contingency', sub: 'Ring-fenced from day one', body: 'Island event risk premium. Built into the model from the start. Not released without production coordinator approval.' },
+          ].map(({ title, sub, body }) => (
+            <div key={title} style={{ border: `1px solid ${dim}`, padding: '34px 30px' }}>
+              <div style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.5vw, 18px)', fontWeight: 700, color: cream, lineHeight: 1.2, marginBottom: 6 }}>{title}</div>
+              <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: muted, marginBottom: 12 }}>{sub}</div>
+              <p style={{ fontFamily: fontMono, fontSize: 12, color: muted, lineHeight: 1.75 }}>{body}</p>
+            </div>
+          ))}
+        </div>
+        <QuoteBlock
+          quote="The festival that executes flawlessly at 5,000 people on a private island in June 2027 has something no amount of money can buy in Year 3: a founding story. You can't retro-fit that. You're either in the room when it starts, or you're not."
+          attr="Investment Thesis · Year 1"
+        />
+      </Section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          CHAPTER 8: THE OPPORTUNITY
+      ═══════════════════════════════════════════════════════════════════ */}
+      <ChapterDivider
+        num="08"
         eye="Chapter Seven"
         title="The Opportunity."
         sub="Zungu is a festival, but the opportunity is larger than one event."
