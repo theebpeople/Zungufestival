@@ -173,24 +173,10 @@ export default function LandingPage() {
             letterSpacing: '0.4em',
             color: 'rgba(247,243,236,0.38)',
             textTransform: 'uppercase',
-            marginBottom: '1.5rem',
-          }}
-        >
-          MMXXVII
-        </p>
-
-        {/* Tagline */}
-        <p
-          style={{
-            fontSize: 'clamp(9px, 1vw, 11px)',
-            letterSpacing: '0.3em',
-            color: 'rgba(242,235,217,0.55)',
-            textTransform: 'uppercase',
-            fontWeight: 700,
             marginBottom: '2rem',
           }}
         >
-          An island festival. By invitation only.
+          MMXXVII
         </p>
 
         {/* CTAs */}
