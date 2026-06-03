@@ -7,7 +7,6 @@ import { useEffect, useRef } from 'react';
 const GOLD = '#C8A84B';
 const BLACK = '#04080A';
 const CREAM = '#F7F3EC';
-const MUTED = 'rgba(242,235,217,0.45)';
 
 export default function LandingPage() {
   const { isSignedIn, isLoaded } = useAuth();
@@ -15,9 +14,7 @@ export default function LandingPage() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (isLoaded && isSignedIn) {
-      router.push('/deck');
-    }
+    if (isLoaded && isSignedIn) router.push('/deck');
   }, [isLoaded, isSignedIn, router]);
 
   useEffect(() => {
@@ -71,7 +68,7 @@ export default function LandingPage() {
         justifyContent: 'center',
       }}
     >
-      {/* ── Video background ── */}
+      {/* ── Video background — vivid, minimal darkening ── */}
       <video
         ref={videoRef}
         src="https://res.cloudinary.com/elektricbangaz/video/upload/v1780459585/aerial-view-of-navy-island-in-port-antonio-in-jama-2025-12-17-11-59-54-utc_coui1y.mov"
@@ -85,28 +82,21 @@ export default function LandingPage() {
           width: '100%',
           height: '100%',
           objectFit: 'cover',
-          objectPosition: 'center 42%',
-          filter: 'saturate(0.8) brightness(0.45)',
+          objectPosition: 'center 35%',
+          filter: 'saturate(1.05) brightness(0.72)',
         }}
       />
+      {/* Subtle vignette — keep island visible */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(to top, rgba(4,8,10,0.92) 0%, rgba(4,8,10,0.6) 40%, rgba(4,8,10,0.2) 75%, rgba(4,8,10,0.35) 100%)',
-          pointerEvents: 'none',
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'radial-gradient(ellipse at 50% 60%, rgba(200,168,75,0.05) 0%, transparent 65%)',
+          background: 'linear-gradient(to bottom, rgba(4,8,10,0.35) 0%, rgba(4,8,10,0.15) 30%, rgba(4,8,10,0.25) 65%, rgba(4,8,10,0.75) 100%)',
           pointerEvents: 'none',
         }}
       />
 
-      {/* ── Hero content ── */}
+      {/* ── Content ── */}
       <div
         style={{
           position: 'relative',
@@ -115,51 +105,46 @@ export default function LandingPage() {
           flexDirection: 'column',
           alignItems: 'center',
           textAlign: 'center',
-          padding: '0 8vw',
+          width: '100%',
+          padding: '0 6vw',
         }}
       >
-        {/* Location tag */}
-        <p
+        {/* Location strip */}
+        <div
           style={{
-            fontSize: 10,
-            letterSpacing: '0.45em',
-            color: GOLD,
-            textTransform: 'uppercase',
-            fontWeight: 700,
-            marginBottom: '2.5rem',
             display: 'flex',
             alignItems: 'center',
-            gap: '0.75rem',
+            gap: '1rem',
+            marginBottom: '1.5rem',
           }}
         >
-          <span style={{ display: 'inline-block', width: 28, height: 1, background: GOLD }} />
-          Navy Island · Port Antonio · Jamaica
-          <span style={{ display: 'inline-block', width: 28, height: 1, background: GOLD }} />
-        </p>
-
-        {/* Z mark */}
-        <img
-          src="/zungu-z-mark.png"
-          alt="Zungu"
-          style={{
-            width: 'min(80px, 14vw)',
-            height: 'auto',
-            marginBottom: '1.75rem',
-            filter: 'drop-shadow(0 0 32px rgba(200,168,75,0.45))',
-          }}
-        />
+          <span style={{ display: 'inline-block', width: 40, height: 1, background: 'rgba(200,168,75,0.7)' }} />
+          <span
+            style={{
+              fontSize: 9,
+              letterSpacing: '0.4em',
+              color: 'rgba(200,168,75,0.85)',
+              textTransform: 'uppercase',
+              fontWeight: 700,
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Navy Island &nbsp;·&nbsp; Port Antonio &nbsp;·&nbsp; Jamaica &nbsp;·&nbsp; June 17–23, 2027
+          </span>
+          <span style={{ display: 'inline-block', width: 40, height: 1, background: 'rgba(200,168,75,0.7)' }} />
+        </div>
 
         {/* Wordmark */}
         <h1
           style={{
             fontFamily: "'Unbounded', sans-serif",
-            fontSize: 'clamp(4rem, 13vw, 10rem)',
+            fontSize: 'clamp(4.5rem, 14vw, 11rem)',
             fontWeight: 900,
             letterSpacing: '-0.03em',
             color: CREAM,
-            lineHeight: 1,
+            lineHeight: 0.95,
             textTransform: 'uppercase',
-            marginBottom: 0,
+            margin: 0,
           }}
         >
           ZUNGU
@@ -167,69 +152,85 @@ export default function LandingPage() {
         <h2
           style={{
             fontFamily: "'Unbounded', sans-serif",
-            fontSize: 'clamp(4rem, 13vw, 10rem)',
+            fontSize: 'clamp(4.5rem, 14vw, 11rem)',
             fontWeight: 900,
             letterSpacing: '-0.03em',
             color: GOLD,
-            lineHeight: 1,
+            lineHeight: 0.95,
             textTransform: 'uppercase',
-            marginBottom: '1rem',
+            marginBottom: '1.25rem',
           }}
         >
           FESTIVAL
         </h2>
 
+        {/* MMXXVII */}
         <p
           style={{
             fontFamily: "'Unbounded', sans-serif",
-            fontSize: 'clamp(0.65rem, 1.1vw, 0.85rem)',
+            fontSize: 'clamp(0.6rem, 1vw, 0.8rem)',
             fontWeight: 300,
-            letterSpacing: '0.35em',
-            color: 'rgba(247,243,236,0.45)',
+            letterSpacing: '0.4em',
+            color: 'rgba(247,243,236,0.38)',
             textTransform: 'uppercase',
-            marginBottom: '2rem',
+            marginBottom: '1.5rem',
           }}
         >
           MMXXVII
         </p>
 
-        <div style={{ width: 48, height: 1, background: GOLD, marginBottom: '2rem' }} />
-
-        {/* Hero copy */}
+        {/* Tagline */}
         <p
           style={{
-            fontSize: 'clamp(13px, 1.4vw, 16px)',
-            color: MUTED,
-            lineHeight: 1.9,
-            maxWidth: 560,
-            marginBottom: '0.75rem',
-            letterSpacing: '0.03em',
+            fontSize: 'clamp(9px, 1vw, 11px)',
+            letterSpacing: '0.3em',
+            color: 'rgba(242,235,217,0.55)',
+            textTransform: 'uppercase',
+            fontWeight: 700,
+            marginBottom: '2rem',
           }}
         >
-          For one week, the most beautiful place on earth welcomes you to Zungu.
-        </p>
-        <p
-          style={{
-            fontSize: 'clamp(13px, 1.4vw, 16px)',
-            color: 'rgba(242,235,217,0.32)',
-            lineHeight: 1.9,
-            maxWidth: 560,
-            marginBottom: '3rem',
-            letterSpacing: '0.03em',
-          }}
-        >
-          Where the magic of sound, sea, sand, movement, and Caribbean rhythm invites you into the ultimate electronic music experience.
+          An island festival. By invitation only.
         </p>
 
         {/* CTAs */}
-        <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
           <a
-            href="mailto:partnership@zungufestival.com?subject=Briefing%20Request"
+            href="mailto:partnership@zungufestival.com?subject=Access%20Request"
             style={{
               fontFamily: "'Space Mono', monospace",
-              fontSize: 10,
-              letterSpacing: '0.4em',
-              padding: '14px 32px',
+              fontSize: 9,
+              letterSpacing: '0.35em',
+              padding: '13px 28px',
+              backgroundColor: 'rgba(200,168,75,0.15)',
+              border: `1px solid rgba(200,168,75,0.6)`,
+              color: GOLD,
+              textDecoration: 'none',
+              display: 'inline-block',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              transition: 'all 0.2s',
+            }}
+            onMouseEnter={e => {
+              const el = e.currentTarget as HTMLElement;
+              el.style.backgroundColor = 'rgba(200,168,75,0.25)';
+              el.style.borderColor = GOLD;
+            }}
+            onMouseLeave={e => {
+              const el = e.currentTarget as HTMLElement;
+              el.style.backgroundColor = 'rgba(200,168,75,0.15)';
+              el.style.borderColor = 'rgba(200,168,75,0.6)';
+            }}
+          >
+            Request Access
+          </a>
+          <a
+            href="/sign-in"
+            style={{
+              fontFamily: "'Space Mono', monospace",
+              fontSize: 9,
+              letterSpacing: '0.35em',
+              padding: '13px 28px',
               backgroundColor: GOLD,
               color: BLACK,
               textDecoration: 'none',
@@ -241,48 +242,28 @@ export default function LandingPage() {
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = '#dab84e'; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = GOLD; }}
           >
-            Request Briefing →
-          </a>
-          <a
-            href="/sign-in"
-            style={{
-              fontFamily: "'Space Mono', monospace",
-              fontSize: 10,
-              letterSpacing: '0.4em',
-              padding: '14px 32px',
-              border: `1px solid rgba(200,168,75,0.45)`,
-              color: GOLD,
-              background: 'transparent',
-              textDecoration: 'none',
-              display: 'inline-block',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              transition: 'all 0.2s',
-            }}
-            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(200,168,75,0.08)'; (e.currentTarget as HTMLElement).style.borderColor = GOLD; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(200,168,75,0.45)'; }}
-          >
             Sign In →
           </a>
         </div>
-
-        {/* Footer line */}
-        <p
-          style={{
-            position: 'absolute',
-            bottom: '2rem',
-            left: 0,
-            right: 0,
-            textAlign: 'center',
-            fontSize: 9,
-            letterSpacing: '0.3em',
-            color: 'rgba(200,168,75,0.35)',
-            textTransform: 'uppercase',
-          }}
-        >
-          Access by invitation only · partnership@zungufestival.com
-        </p>
       </div>
+
+      {/* ── Bottom email ── */}
+      <p
+        style={{
+          position: 'absolute',
+          bottom: '1.75rem',
+          left: 0,
+          right: 0,
+          textAlign: 'center',
+          zIndex: 10,
+          fontSize: 9,
+          letterSpacing: '0.25em',
+          color: 'rgba(200,168,75,0.4)',
+          textTransform: 'lowercase',
+        }}
+      >
+        partnership@zungufestival.com
+      </p>
     </div>
   );
 }
