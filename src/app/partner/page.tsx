@@ -1,6 +1,8 @@
 'use client';
 
 import { useClerk, useUser } from '@clerk/nextjs';
+import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 const gold = '#C8A84B';
 const rust = '#C45A2A';
@@ -8,16 +10,44 @@ const black = '#04080A';
 const white = '#F7F3EC';
 const muted = '#6B6355';
 
-const links = [
-  { label: 'Investor Deck', sub: 'Full festival proposal & financials', href: '/deck' },
-  { label: 'Stage Architecture', sub: 'Three primary stages + The Pier · Navy Island layout · sound specs', href: '/stages', accent: rust },
-  { label: 'Activity Programme', sub: 'Forest · water · wellness · cultural tours', href: '/activities' },
-  { label: 'Brand Strategy', sub: 'Visual identity · positioning · market analysis', href: '/brand' },
-];
+type Role = 'investor' | 'partner' | 'press';
 
-export default function PartnerPage() {
+const ROLE_LINKS: Record<Role, { label: string; sub: string; href: string; accent?: string }[]> = {
+  investor: [
+    { label: 'Investor Deck', sub: 'Full festival proposal · financials · partner opportunity', href: '/deck?role=investor' },
+    { label: 'Stage Architecture', sub: '3 stages · Navy Island layout · sound strategy', href: '/stages?role=investor', accent: rust },
+    { label: 'Activity Programme', sub: 'Forest · water · wellness · cultural tours', href: '/activities?role=investor' },
+  ],
+  partner: [
+    { label: 'Stage Architecture', sub: '3 stages · Navy Island layout · sound strategy', href: '/stages?role=partner', accent: rust },
+    { label: 'Activity Programme', sub: 'Forest · water · wellness · cultural tours', href: '/activities?role=partner' },
+  ],
+  press: [
+    { label: 'Press Materials', sub: 'Festival overview · approved facts · media assets', href: '/deck?role=press' },
+    { label: 'Stage Architecture', sub: '3 stages · Navy Island layout · festival experience', href: '/stages?role=press', accent: rust },
+    { label: 'Activity Programme', sub: 'Forest · water · wellness · cultural tours', href: '/activities?role=press' },
+  ],
+};
+
+const ROLE_BADGE: Record<Role, string> = {
+  investor: 'Investor',
+  partner: 'Production Partners',
+  press: 'Press',
+};
+
+function PartnerHubInner() {
   const { user } = useUser();
   const { signOut } = useClerk();
+  const searchParams = useSearchParams();
+
+  const rawRole = searchParams.get('role') ?? '';
+  const safeRole: Role =
+    rawRole === 'investor' || rawRole === 'partner' || rawRole === 'press'
+      ? rawRole
+      : 'partner';
+
+  const links = ROLE_LINKS[safeRole];
+  const badge = ROLE_BADGE[safeRole];
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: black, fontFamily: "'Space Mono', monospace", color: white }}>
@@ -37,7 +67,7 @@ export default function PartnerPage() {
         <img src="/zungu-z-mark.png" alt="Zungu" style={{ height: 30, width: 'auto', cursor: 'crosshair', filter: 'drop-shadow(0 0 10px rgba(200,168,75,0.3))' }} />
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
           <span style={{ fontSize: 10, color: gold, border: `1px solid rgba(200,168,75,0.4)`, padding: '0.3rem 0.85rem', letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 700 }}>
-            Partner
+            {badge}
           </span>
           <button
             onClick={() => signOut({ redirectUrl: '/' })}
@@ -49,8 +79,8 @@ export default function PartnerPage() {
       </nav>
 
       <main style={{ maxWidth: 800, margin: '0 auto', padding: '4rem 2rem' }}>
-        <p style={{ fontSize: 15, color: gold, letterSpacing: '0.35em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '1rem' }}>
-          // PARTNER ACCESS
+        <p style={{ fontSize: 12, color: gold, letterSpacing: '0.35em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '1rem' }}>
+          // {badge.toUpperCase()} ACCESS
         </p>
         <h1 style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 'clamp(2rem, 6vw, 4rem)', fontWeight: 900, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: 1, marginBottom: '3rem' }}>
           Welcome,<br />{user?.firstName ?? 'Partner'}
@@ -88,5 +118,13 @@ export default function PartnerPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function PartnerPage() {
+  return (
+    <Suspense>
+      <PartnerHubInner />
+    </Suspense>
   );
 }

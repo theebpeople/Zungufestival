@@ -35,9 +35,33 @@ const CHAPTERS: Record<string, { bg: string; accent: string; rgb: string }> = {
 const fontDisplay = "'Unbounded', sans-serif";
 const fontMono = "'Space Mono', monospace";
 
-// ── Section IDs for dot-nav ───────────────────────────────────────────────────
+// ── Section IDs ───────────────────────────────────────────────────────────────
 const SECTIONS = ['brand', 'meaning', 'portantonio', 'island', 'jamaica', 'stages', 'sound', 'experience', 'programming', 'investor', 'cta'] as const;
 type SectionId = typeof SECTIONS[number];
+
+const ROLE_SECTIONS: Record<string, readonly SectionId[]> = {
+  investor: ['brand', 'meaning', 'portantonio', 'island', 'jamaica', 'stages', 'sound', 'experience', 'programming', 'investor', 'cta'],
+  partner:  ['brand', 'meaning', 'portantonio', 'island', 'stages', 'sound', 'experience', 'programming', 'cta'],
+  press:    ['brand', 'meaning', 'portantonio', 'island', 'jamaica', 'stages', 'sound', 'experience', 'programming', 'cta'],
+};
+
+const ROLE_CTA = {
+  investor: {
+    label: 'Request Briefing',
+    title: 'What Zungu needs. From whom. When.',
+    body: "We're talking to a small number of partners who fit. Tell us where you see yourself.",
+  },
+  partner: {
+    label: 'Request Production Briefing',
+    title: 'Ready to build this.',
+    body: "We're looking for an experienced production partner with island or remote-venue experience. Tell us about your capacity.",
+  },
+  press: {
+    label: 'Request Media Access',
+    title: 'The story is ready.',
+    body: "We're providing approved materials, approved facts, and accreditation details to a small number of media contacts. Tell us about your outlet.",
+  },
+} as const;
 
 // ── Parallax photo break component ───────────────────────────────────────────
 interface PhotoBreakProps {
@@ -254,7 +278,10 @@ function SectionHead({ label, title, titleColor = cream, goldLine, accent = gold
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
-export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?: string }) {
+export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'investor' }: { navLabel?: string; role?: string }) {
+  const safeRole = role === 'investor' || role === 'partner' || role === 'press' ? role : 'partner';
+  const visibleSections = ROLE_SECTIONS[safeRole];
+  const ctaCopy = ROLE_CTA[safeRole];
   // Refs for section scroll targets
   const sectionRefs: Record<SectionId, React.RefObject<HTMLElement | null>> = {
     brand: useRef<HTMLElement>(null),
@@ -327,10 +354,9 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
   }
 
   const BRIEFING_ROLES = [
-    { role: 'investor',  label: 'Investor',            sub: 'Fund deck · financials · equity structure', photo: '/photos/port-antonio-aerial.jpeg' },
-    { role: 'partner',   label: 'Production Partner',   sub: 'Staging · logistics · production brief',   photo: '/photos/navy-island-wide.png' },
-    { role: 'supplier',  label: 'Supplier',             sub: 'Equipment · procurement · vendor brief',    photo: '/photos/navy-island-satellite.png' },
-    { role: 'press',     label: 'Press',                sub: 'Media kit · assets · press contacts',       photo: '/photos/port-antonio.jpg' },
+    { role: 'investor',  label: 'Investor',              sub: 'Fund deck · financials · equity structure', photo: '/photos/port-antonio-aerial.jpeg' },
+    { role: 'partner',   label: 'Production Partners',   sub: 'Staging · logistics · production brief',   photo: '/photos/navy-island-wide.png' },
+    { role: 'press',     label: 'Press',                 sub: 'Media kit · assets · press contacts',       photo: '/photos/port-antonio.jpg' },
   ];
 
   // Desktop dropdown nav
@@ -341,7 +367,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
     { label: 'The Island', items: [['Port Antonio', 'portantonio'], ['The Island', 'island'], ['Why Jamaica?', 'jamaica']] },
     { label: 'Stages', items: [['The Stages', 'stages'], ['The Sound', 'sound'], ['The Experience', 'experience'], ['Programming', 'programming']] },
     { label: 'Investors', items: [['Investor Positioning', 'investor'], ['Request Briefing', 'cta']] },
-  ];
+  ].map(group => ({ ...group, items: group.items.filter(([, id]) => visibleSections.includes(id)) as [string, SectionId][] })).filter(group => group.items.length > 0);
 
   // CTA form state
   const [selectedInterest, setSelectedInterest] = useState<string | null>(null);
@@ -363,7 +389,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
   // IntersectionObserver for dot nav
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
-    SECTIONS.forEach((id) => {
+    visibleSections.forEach((id) => {
       const el = document.getElementById(`section-${id}`);
       if (!el) return;
       const obs = new IntersectionObserver(
@@ -759,7 +785,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
 
       {/* ── Side dots ───────────────────────────────────────────────────── */}
       <div className="side-dots">
-        {SECTIONS.map((id) => (
+        {visibleSections.map((id) => (
           <button
             key={id}
             onClick={() => scrollToSection(id)}
@@ -1313,8 +1339,8 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
 
       <PhotoBreak src="/photos/pellew-island.jpg" quote="The island is not passive. The island performs." label="Programming · Navy Island" />
 
-      {/* ═══ CHAPTER 10: INVESTOR POSITIONING ═══ */}
-      <ChapterWrap bg={CHAPTERS['10'].bg} photo="/photos/navy-island-satellite.png">
+      {/* ═══ CHAPTER 10: INVESTOR POSITIONING — investor only ═══ */}
+      {visibleSections.includes('investor') && <ChapterWrap bg={CHAPTERS['10'].bg} photo="/photos/navy-island-satellite.png">
         <ChapterDivider num="10" eye="Chapter Ten" title="Investor Positioning." sub="Zungu is a festival, but the opportunity is larger than one event." accent={CHAPTERS['10'].accent} chBg={CHAPTERS['10'].bg} rgb={CHAPTERS['10'].rgb} />
         <Section id="investor" sectionBg={CHAPTERS['10'].bg} accent={CHAPTERS['10'].accent} rgb={CHAPTERS['10'].rgb}>
           <SectionHead label="Investor Positioning" title="Larger than one event." accent={CHAPTERS['10'].accent} />
@@ -1405,7 +1431,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           </div>
           <QuoteBlock quote="The festival that executes flawlessly at 5,000 people on a private island in June 2027 has something no amount of money can buy in Year 3: a founding story. You can't retro-fit that. You're either in the room when it starts, or you're not." attr="Investment Thesis · Year 1" />
         </Section>
-      </ChapterWrap>
+      </ChapterWrap>}
 
       {/* ═══ REQUEST BRIEFING — modal trigger section ═══ */}
       <ChapterWrap bg={CHAPTERS['cta'].bg} photo="/photos/aerial-island.jpg">
@@ -1423,9 +1449,9 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               <span style={{ display: 'inline-block', width: 24, height: 1, background: gold }} />
             </p>
             <h2 style={{ fontFamily: fontDisplay, fontSize: 'clamp(2.8rem, 8vw, 6rem)', fontWeight: 900, letterSpacing: '-0.04em', color: cream, lineHeight: 0.95, textTransform: 'uppercase', marginBottom: '0.2rem' }}>REQUEST</h2>
-            <h2 style={{ fontFamily: fontDisplay, fontSize: 'clamp(2.8rem, 8vw, 6rem)', fontWeight: 900, letterSpacing: '-0.04em', color: gold, lineHeight: 0.95, textTransform: 'uppercase', marginBottom: '2rem' }}>BRIEFING</h2>
-            <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.9, maxWidth: 480, marginBottom: '2.5rem' }}>The next step is a conversation, not a commitment.</p>
-            <button onClick={openBriefing} style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', fontWeight: 700, padding: '18px 48px', background: gold, color: bg, border: 'none', cursor: 'pointer' }}>Request Briefing →</button>
+            <h2 style={{ fontFamily: fontDisplay, fontSize: 'clamp(2.8rem, 8vw, 6rem)', fontWeight: 900, letterSpacing: '-0.04em', color: gold, lineHeight: 0.95, textTransform: 'uppercase', marginBottom: '2rem' }}>{ctaCopy.label.split(' ').slice(1).join(' ').toUpperCase() || 'BRIEFING'}</h2>
+            <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.9, maxWidth: 480, marginBottom: '2.5rem' }}>{ctaCopy.body}</p>
+            <button onClick={openBriefing} style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', fontWeight: 700, padding: '18px 48px', background: gold, color: bg, border: 'none', cursor: 'pointer' }}>{ctaCopy.label} →</button>
           </div>
         </section>
       </ChapterWrap>
