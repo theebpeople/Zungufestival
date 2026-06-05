@@ -619,8 +619,8 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
           ))}
 
           {/* External links */}
-          <a href="/activities" className="nav-link" style={{ fontSize: 9, padding: '4px 10px', color: muted, textDecoration: 'none', letterSpacing: '0.25em', textTransform: 'uppercase' }}>Activities</a>
-          <a href="/stages" className="nav-link" style={{ fontSize: 9, padding: '4px 10px', color: muted, textDecoration: 'none', letterSpacing: '0.25em', textTransform: 'uppercase' }}>Stages</a>
+          <a href={`/activities?role=${safeRole}`} className="nav-link" style={{ fontSize: 9, padding: '4px 10px', color: muted, textDecoration: 'none', letterSpacing: '0.25em', textTransform: 'uppercase' }}>Activities</a>
+          <a href={`/stages?role=${safeRole}`} className="nav-link" style={{ fontSize: 9, padding: '4px 10px', color: muted, textDecoration: 'none', letterSpacing: '0.25em', textTransform: 'uppercase' }}>Stages</a>
         </div>
 
         {/* Right: badge + sign out (desktop) */}
@@ -775,11 +775,11 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
               marginBottom: 16,
             }}
           >
-            Request Briefing →
+            {ctaCopy.label} →
           </button>
 
           <div style={{ display: 'flex', gap: 24, marginTop: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
-            {[['Activities', '/activities'], ['Stages', '/stages'], ['Sign Out', '/sign-out']].map(([label, href]) => (
+            {[['Activities', `/activities?role=${safeRole}`], ['Stages', `/stages?role=${safeRole}`], ['Sign Out', '/sign-out']].map(([label, href]) => (
               <a key={href} href={href} style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: muted, textDecoration: 'none', fontWeight: 700 }}>{label}</a>
             ))}
           </div>
