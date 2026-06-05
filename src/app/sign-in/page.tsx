@@ -19,15 +19,9 @@ const PORTALS = [
   },
   {
     role: 'partner',
-    label: 'Production Partner',
+    label: 'Production Partners',
     sub: 'Staging · logistics · production brief',
     photo: '/photos/zungu-beach-stage-aerial.png',
-  },
-  {
-    role: 'supplier',
-    label: 'Supplier',
-    sub: 'Equipment · procurement · vendor brief',
-    photo: '/photos/zungu-beach-stage-small.png',
   },
   {
     role: 'press',
@@ -295,15 +289,12 @@ function PortalChooser({ onSelect }: { onSelect: (role: string) => void }) {
 
 function SignInForm({ role }: { role: string }) {
   const router = useRouter();
-  const isPartner = role === 'partner';
   const portalLabel =
     role === 'investor'
       ? 'Investor'
       : role === 'partner'
-        ? 'Production Partner'
-        : role === 'supplier'
-          ? 'Supplier'
-          : 'Press';
+        ? 'Production Partners'
+        : 'Press';
   const photo =
     PORTALS.find((p) => p.role === role)?.photo ?? '/photos/NAVY%20ISLAND%20AERIAL.png';
 
@@ -545,7 +536,7 @@ function SignInForm({ role }: { role: string }) {
       <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 384 }}>
         <SignIn
           routing="hash"
-          forceRedirectUrl={isPartner ? '/partner' : '/deck'}
+          forceRedirectUrl={`/partner?role=${role}`}
           appearance={{
             variables: {
               colorPrimary: gold,

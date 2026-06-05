@@ -21,9 +21,33 @@ const rust = '#C45A2A';
 const fontDisplay = "'Unbounded', sans-serif";
 const fontMono = "'Space Mono', monospace";
 
-// ── Section IDs for dot-nav ───────────────────────────────────────────────────
-const SECTIONS = ['brand', 'island', 'why', 'artists', 'model', 'numbers', 'roadmap', 'cta'] as const;
-type SectionId = typeof SECTIONS[number];
+// ── Section IDs ───────────────────────────────────────────────────────────────
+const ALL_SECTIONS = ['brand', 'island', 'why', 'artists', 'model', 'numbers', 'roadmap', 'cta'] as const;
+type SectionId = typeof ALL_SECTIONS[number];
+
+const ROLE_SECTIONS: Record<string, readonly SectionId[]> = {
+  investor: ['brand', 'island', 'why', 'artists', 'model', 'numbers', 'roadmap', 'cta'],
+  partner:  ['brand', 'island', 'why', 'artists', 'cta'],
+  press:    ['brand', 'island', 'why', 'artists', 'cta'],
+};
+
+const ROLE_CTA = {
+  investor: {
+    label: 'Request Briefing',
+    title: 'What Zungu needs. From whom. When.',
+    body: "We're talking to a small number of partners who fit. Tell us where you see yourself.",
+  },
+  partner: {
+    label: 'Request Production Briefing',
+    title: 'Ready to build this.',
+    body: "We're looking for an experienced production partner with island or remote-venue experience. Tell us about your capacity.",
+  },
+  press: {
+    label: 'Request Media Access',
+    title: 'The story is ready.',
+    body: "We're providing approved materials, approved facts, and accreditation details to a small number of media contacts. Tell us about your outlet.",
+  },
+} as const;
 
 // ── Parallax photo break component ───────────────────────────────────────────
 interface PhotoBreakProps {
@@ -297,7 +321,11 @@ function SectionHead({ label, title, titleColor = cream, goldLine }: SectionHead
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
-export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?: string }) {
+export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'investor' }: { navLabel?: string; role?: string }) {
+  const safeRole = role === 'investor' || role === 'partner' || role === 'press' ? role : 'partner';
+  const visibleSections = ROLE_SECTIONS[safeRole];
+  const ctaCopy = ROLE_CTA[safeRole];
+
   // Refs for section scroll targets
   const sectionRefs: Record<SectionId, React.RefObject<HTMLElement | null>> = {
     brand: useRef<HTMLElement>(null),
@@ -352,7 +380,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
   // IntersectionObserver for dot nav
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
-    SECTIONS.forEach((id) => {
+    visibleSections.forEach((id) => {
       const el = document.getElementById(`section-${id}`);
       if (!el) return;
       const obs = new IntersectionObserver(
@@ -450,7 +478,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               ['The Model', 'model'],
               ['Numbers', 'numbers'],
             ] as [string, SectionId][]
-          ).map(([label, id]) => (
+          ).filter(([, id]) => visibleSections.includes(id)).map(([label, id]) => (
             <button
               key={id}
               onClick={() => scrollToSection(id)}
@@ -487,7 +515,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               whiteSpace: 'nowrap',
             }}
           >
-            Request Briefing →
+            {ctaCopy.label} →
           </button>
           <a
             href="/activities"
@@ -679,9 +707,10 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               width: '100%',
               maxWidth: 320,
               marginBottom: 16,
+              // role-cta-mobile
             }}
           >
-            Request Briefing →
+            {ctaCopy.label} →
           </button>
 
           <div style={{ display: 'flex', gap: 32, marginTop: 8 }}>
@@ -720,7 +749,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           gap: 12,
         }}
       >
-        {SECTIONS.map((id) => (
+        {visibleSections.map((id) => (
           <button
             key={id}
             onClick={() => scrollToSection(id)}
@@ -890,7 +919,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
                 cursor: 'pointer',
               }}
             >
-              Request Briefing →
+              {ctaCopy.label} →
             </button>
             <button
               onClick={() => scrollToSection('island')}
@@ -1817,15 +1846,15 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
       {/* ═══════════════════════════════════════════════════════════════════
           CHAPTER 5: THE MODEL
       ═══════════════════════════════════════════════════════════════════ */}
-      <ChapterDivider
+      {visibleSections.includes('model') && <ChapterDivider
         num="05"
         eye="Chapter Five"
         title="The Model."
         sub="5,000 tickets. 7 days. Three tiers. The structure that makes this sustainable from Year 1."
-      />
+      />}
 
-      {/* Section: Ticket Architecture */}
-      <Section id="section-model">
+      {/* Section: Ticket Architecture — investor only */}
+      {visibleSections.includes('model') && <Section id="section-model">
         <SectionHead label="Ticket Architecture" title="5,000 tickets. One island. Hard cap." />
         <BodyText>
           5,000 is the number that creates urgency without sacrificing the experience. At peak moments, 5,000 people distribute across three stages, the food village, the water, the glamping village. No stage is ever crushingly full. The island breathes. And missing it feels like missing something — which is the foundation of FOMO.
@@ -2003,20 +2032,20 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             </div>
           ))}
         </div>
-      </Section>
+      </Section>}
 
       {/* ═══════════════════════════════════════════════════════════════════
-          CHAPTER 6: NUMBERS
+          CHAPTER 6: NUMBERS — investor only
       ═══════════════════════════════════════════════════════════════════ */}
-      <ChapterDivider
+      {visibleSections.includes('numbers') && <ChapterDivider
         num="06"
         eye="Chapter Six"
         title="The Numbers."
         sub="Conservative assumptions. Separated cost lines. Built to be stress-tested — not to impress."
-      />
+      />}
 
-      {/* Section: Revenue */}
-      <Section id="section-numbers">
+      {/* Section: Revenue — investor only */}
+      {visibleSections.includes('numbers') && <Section id="section-numbers">
         <SectionHead label="Year 1 Revenue · 5,000 Capacity" title="The case at 5,000 tickets." />
 
         <div style={{ overflowX: 'auto' }}>
@@ -2289,19 +2318,19 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           quote="The festival that executes flawlessly at 5,000 people on a private island in June 2027 has something no amount of money can buy in Year 3: a founding story. You can't retro-fit that. You're either in the room when it starts, or you're not."
           attr="Investment Thesis · Year 1"
         />
-      </Section>
+      </Section>}
 
       {/* ═══════════════════════════════════════════════════════════════════
-          CHAPTER 7: ROADMAP
+          CHAPTER 7: ROADMAP — investor only
       ═══════════════════════════════════════════════════════════════════ */}
-      <ChapterDivider
+      {visibleSections.includes('roadmap') && <ChapterDivider
         num="07"
         eye="Chapter Seven"
         title="The Roadmap."
         sub="Three phases. Mythology earned through delivery, not declared through marketing."
-      />
+      />}
 
-      <Section id="section-roadmap">
+      {visibleSections.includes('roadmap') && <Section id="section-roadmap">
         <SectionHead label="Three-Phase Roadmap" title="Boutique → Flagship →" goldLine="Global Node." />
         <p
           style={{
@@ -2387,23 +2416,23 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             </div>
           ))}
         </div>
-      </Section>
+      </Section>}
 
       {/* ═══════════════════════════════════════════════════════════════════
           CHAPTER 8: CTA
       ═══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider
-        num="08"
-        eye="Chapter Eight"
+        num={safeRole === 'investor' ? '08' : '06'}
+        eye={safeRole === 'investor' ? 'Chapter Eight' : 'Chapter Six'}
         title="The Ask."
         sub="We are not pitching a dream. We are presenting a model. The next step is a conversation, not a commitment."
       />
 
       {/* Section: Three Conversations */}
       <Section id="section-cta" dark>
-        <SectionHead label="Three Conversations" title="What Zungu needs. From whom. When." />
+        <SectionHead label={ctaCopy.label} title={ctaCopy.title} />
 
-        <div
+        {safeRole === 'investor' && <div
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
@@ -2465,15 +2494,13 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
               )}
             </div>
           ))}
-        </div>
+        </div>}
       </Section>
 
       {/* Section: Confirm Interest */}
       <Section id="cta-form">
         <SectionHead label="Confirm Interest" title="First edition. One conversation." />
-        <BodyText>
-          We&rsquo;re talking to a small number of partners who fit. Tell us where you see yourself.
-        </BodyText>
+        <BodyText>{ctaCopy.body}</BodyText>
 
         {submitted ? (
           <div

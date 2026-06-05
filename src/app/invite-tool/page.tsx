@@ -9,8 +9,7 @@ const muted = '#6B6355';
 
 const ROLES = [
   { value: 'investor', label: 'Investor' },
-  { value: 'partner', label: 'Production Partner' },
-  { value: 'supplier', label: 'Supplier' },
+  { value: 'partner', label: 'Production Partners' },
   { value: 'press', label: 'Press' },
 ];
 

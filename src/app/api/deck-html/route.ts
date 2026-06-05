@@ -6,7 +6,6 @@ import { join } from 'path';
 const NAV_BADGE_LABELS: Record<string, string> = {
   investor: 'INVESTOR DECK',
   partner: 'PARTNER BRIEF',
-  supplier: 'SUPPLIER BRIEF',
   press: 'PRESS MATERIALS',
 };
 
