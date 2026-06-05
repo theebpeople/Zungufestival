@@ -362,12 +362,15 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
   // Desktop dropdown nav
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
-  const navGroups: { label: string; items: [string, SectionId][] }[] = [
+  const rawNavGroups: { label: string; items: [string, SectionId][] }[] = [
     { label: 'Brand', items: [['What Is Zungu?', 'brand'], ['What Does Zungu Mean?', 'meaning']] },
     { label: 'The Island', items: [['Port Antonio', 'portantonio'], ['The Island', 'island'], ['Why Jamaica?', 'jamaica']] },
     { label: 'Stages', items: [['The Stages', 'stages'], ['The Sound', 'sound'], ['The Experience', 'experience'], ['Programming', 'programming']] },
     { label: 'Investors', items: [['Investor Positioning', 'investor'], ['Request Briefing', 'cta']] },
-  ].map(group => ({ ...group, items: group.items.filter(([, id]) => visibleSections.includes(id)) as [string, SectionId][] })).filter(group => group.items.length > 0);
+  ];
+  const navGroups = rawNavGroups
+    .map(group => ({ ...group, items: group.items.filter(([, id]) => visibleSections.includes(id)) }))
+    .filter(group => group.items.length > 0);
 
   // CTA form state
   const [selectedInterest, setSelectedInterest] = useState<string | null>(null);
