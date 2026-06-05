@@ -149,6 +149,11 @@ export default function StagesPage() {
           <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, border: `1px solid ${GOLD_DIM}`, padding: '4px 10px', fontWeight: 700 }}>
             Stage Architecture
           </span>
+          <a href="/dashboard" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', color: MUTED, textDecoration: 'none', fontWeight: 700, transition: 'color 0.2s' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = CREAM)}
+            onMouseLeave={(e) => (e.currentTarget.style.color = MUTED)}>
+            ← Back
+          </a>
           <a href="/sign-out" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', color: MUTED, textDecoration: 'none', fontWeight: 700, transition: 'color 0.2s' }}
             onMouseEnter={(e) => (e.currentTarget.style.color = CREAM)}
             onMouseLeave={(e) => (e.currentTarget.style.color = MUTED)}>
