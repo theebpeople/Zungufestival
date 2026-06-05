@@ -1846,15 +1846,16 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
       {/* ═══════════════════════════════════════════════════════════════════
           CHAPTER 5: THE MODEL
       ═══════════════════════════════════════════════════════════════════ */}
-      {visibleSections.includes('model') && <ChapterDivider
+      {visibleSections.includes('model') && <>
+      <ChapterDivider
         num="05"
         eye="Chapter Five"
         title="The Model."
         sub="5,000 tickets. 7 days. Three tiers. The structure that makes this sustainable from Year 1."
-      />}
+      />
 
-      {/* Section: Ticket Architecture — investor only */}
-      {visibleSections.includes('model') && <Section id="section-model">
+      {/* Section: Ticket Architecture */}
+      <Section id="section-model">
         <SectionHead label="Ticket Architecture" title="5,000 tickets. One island. Hard cap." />
         <BodyText>
           5,000 is the number that creates urgency without sacrificing the experience. At peak moments, 5,000 people distribute across three stages, the food village, the water, the glamping village. No stage is ever crushingly full. The island breathes. And missing it feels like missing something — which is the foundation of FOMO.
@@ -2032,20 +2033,22 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
             </div>
           ))}
         </div>
-      </Section>}
+      </Section>
+      </>}
 
       {/* ═══════════════════════════════════════════════════════════════════
           CHAPTER 6: NUMBERS — investor only
       ═══════════════════════════════════════════════════════════════════ */}
-      {visibleSections.includes('numbers') && <ChapterDivider
+      {visibleSections.includes('numbers') && <>
+      <ChapterDivider
         num="06"
         eye="Chapter Six"
         title="The Numbers."
         sub="Conservative assumptions. Separated cost lines. Built to be stress-tested — not to impress."
-      />}
+      />
 
-      {/* Section: Revenue — investor only */}
-      {visibleSections.includes('numbers') && <Section id="section-numbers">
+      {/* Section: Revenue */}
+      <Section id="section-numbers">
         <SectionHead label="Year 1 Revenue · 5,000 Capacity" title="The case at 5,000 tickets." />
 
         <div style={{ overflowX: 'auto' }}>
@@ -2318,19 +2321,21 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
           quote="The festival that executes flawlessly at 5,000 people on a private island in June 2027 has something no amount of money can buy in Year 3: a founding story. You can't retro-fit that. You're either in the room when it starts, or you're not."
           attr="Investment Thesis · Year 1"
         />
-      </Section>}
+      </Section>
+      </>}
 
       {/* ═══════════════════════════════════════════════════════════════════
           CHAPTER 7: ROADMAP — investor only
       ═══════════════════════════════════════════════════════════════════ */}
-      {visibleSections.includes('roadmap') && <ChapterDivider
+      {visibleSections.includes('roadmap') && <>
+      <ChapterDivider
         num="07"
         eye="Chapter Seven"
         title="The Roadmap."
         sub="Three phases. Mythology earned through delivery, not declared through marketing."
-      />}
+      />
 
-      {visibleSections.includes('roadmap') && <Section id="section-roadmap">
+      <Section id="section-roadmap">
         <SectionHead label="Three-Phase Roadmap" title="Boutique → Flagship →" goldLine="Global Node." />
         <p
           style={{
@@ -2416,7 +2421,8 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
             </div>
           ))}
         </div>
-      </Section>}
+      </Section>
+      </>}
 
       {/* ═══════════════════════════════════════════════════════════════════
           CHAPTER 8: CTA
