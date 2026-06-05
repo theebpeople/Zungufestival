@@ -116,44 +116,15 @@ interface ChapterProps {
 
 function ChapterDivider({ num, eye, title, sub }: ChapterProps) {
   return (
-    <div
-      style={{
-        width: '100%',
-        boxSizing: 'border-box',
-        backgroundColor: bg,
-        borderTop: `1px solid rgba(200,168,75,0.15)`,
-      }}
-    >
-      <div style={{ padding: '72px 8vw 0', boxSizing: 'border-box' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
-          {/* Ghost number — flex item matching .ch-n */}
-          <div
-            style={{
-              fontFamily: fontDisplay,
-              fontSize: 88,
-              fontWeight: 900,
-              color: 'rgba(200,168,75,0.18)',
-              lineHeight: 1,
-              flexShrink: 0,
-              userSelect: 'none',
-              pointerEvents: 'none',
-            }}
-          >
-            {num}
-          </div>
-          {/* Text content */}
-          <div>
-            <p style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.6em', color: gold, textTransform: 'uppercase', marginBottom: 10 }}>
-              {eye}
-            </p>
-            <h2 style={{ fontFamily: fontDisplay, fontSize: 'clamp(24px, 4vw, 48px)', fontWeight: 700, color: cream, lineHeight: 1.05, letterSpacing: '-0.02em' }}>
-              {title}
-            </h2>
-            <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, marginTop: 10, lineHeight: 1.7, maxWidth: 540 }}>
-              {sub}
-            </p>
-          </div>
+    <div className="chapter-divider">
+      <div className="chapter-ghost">{num}</div>
+      <div style={{ flex: 1 }}>
+        <div className="chapter-label">
+          <span className="chapter-line" />
+          <span className="t-label">{eye}</span>
         </div>
+        <h2 className="t-h2 t-display" style={{ color: cream, letterSpacing: '-0.02em' }}>{title}</h2>
+        <p className="t-body" style={{ marginTop: 10, maxWidth: 540 }}>{sub}</p>
       </div>
     </div>
   );
@@ -170,17 +141,11 @@ interface SectionProps {
 function Section({ id, children, dark, style }: SectionProps) {
   return (
     <section
-      id={id}
-      style={{
-        width: '100%',
-        boxSizing: 'border-box',
-        backgroundColor: dark ? green : bg,
-        ...style,
-      }}
+      id={id ? `section-${id}` : undefined}
+      className={`section section--tall${dark ? ' section--green' : ''}`}
+      style={style}
     >
-      <div style={{ padding: '88px 8vw', boxSizing: 'border-box' }}>
-        {children}
-      </div>
+      {children}
     </section>
   );
 }
@@ -193,39 +158,9 @@ interface QuoteBlockProps {
 
 function QuoteBlock({ quote, attr }: QuoteBlockProps) {
   return (
-    <div
-      style={{
-        borderLeft: `3px solid ${gold}`,
-        paddingLeft: 28,
-        margin: '48px 0',
-        maxWidth: 680,
-      }}
-    >
-      <p
-        style={{
-          fontFamily: fontDisplay,
-          fontSize: 'clamp(16px, 2.2vw, 24px)',
-          fontWeight: 600,
-          color: cream,
-          lineHeight: 1.45,
-          marginBottom: 14,
-          fontStyle: 'italic',
-        }}
-      >
-        &ldquo;{quote}&rdquo;
-      </p>
-      <p
-        style={{
-          fontFamily: fontMono,
-          fontSize: 8,
-          letterSpacing: '0.4em',
-          textTransform: 'uppercase',
-          color: gold,
-          fontWeight: 700,
-        }}
-      >
-        — {attr}
-      </p>
+    <div className="quote-block" style={{ margin: '48px 0', maxWidth: 680 }}>
+      <p className="quote-text" style={{ marginBottom: 14 }}>&ldquo;{quote}&rdquo;</p>
+      <p className="quote-attr">— {attr}</p>
     </div>
   );
 }
@@ -233,18 +168,7 @@ function QuoteBlock({ quote, attr }: QuoteBlockProps) {
 // ── Body text ─────────────────────────────────────────────────────────────────
 function BodyText({ children }: { children: React.ReactNode }) {
   return (
-    <p
-      style={{
-        fontFamily: fontMono,
-        fontSize: 13,
-        color: muted,
-        lineHeight: 1.9,
-        maxWidth: 680,
-        marginBottom: 18,
-      }}
-    >
-      {children}
-    </p>
+    <p className="t-body" style={{ maxWidth: 680, marginBottom: 18 }}>{children}</p>
   );
 }
 
@@ -260,37 +184,14 @@ function SectionHead({ label, title, titleColor = cream, goldLine }: SectionHead
   return (
     <div style={{ marginBottom: 36 }}>
       {label && (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 36 }}>
-          <div style={{ width: 28, height: 1, background: gold, flexShrink: 0 }} />
-          <p
-            style={{
-              fontFamily: fontMono,
-              fontSize: 9,
-              letterSpacing: '0.6em',
-              textTransform: 'uppercase',
-              color: gold,
-              fontWeight: 700,
-            }}
-          >
-            {label}
-          </p>
+        <div className="s-label" style={{ marginBottom: 36 }}>
+          <span className="chapter-line" />
+          <span className="t-label">{label}</span>
         </div>
       )}
-      <h3
-        style={{
-          fontFamily: fontDisplay,
-          fontSize: 'clamp(24px, 4vw, 54px)',
-          fontWeight: 700,
-          color: titleColor,
-          lineHeight: 1.02,
-          letterSpacing: '-0.025em',
-          marginBottom: 28,
-        }}
-      >
+      <h3 className="t-h2 t-display" style={{ color: titleColor, letterSpacing: '-0.025em', lineHeight: 1.02, marginBottom: 28 }}>
         {title}
-        {goldLine && (
-          <><br /><span style={{ color: gold }}>{goldLine}</span></>
-        )}
+        {goldLine && (<><br /><span style={{ color: gold }}>{goldLine}</span></>)}
       </h3>
     </div>
   );
@@ -386,22 +287,14 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
   }
 
   const navLinkStyle: React.CSSProperties = {
-    fontFamily: fontMono,
     fontSize: 9,
-    letterSpacing: '0.4em',
-    textTransform: 'uppercase',
-    color: muted,
-    fontWeight: 700,
-    background: 'none',
-    border: 'none',
-    cursor: 'pointer',
     padding: '4px 0',
     textDecoration: 'none',
-    transition: 'color 0.2s',
+    color: muted,
   };
 
   return (
-    <div style={{ backgroundColor: bg, color: cream, fontFamily: fontMono, position: 'relative', width: '100%', minHeight: '100vh', overflowX: 'hidden' }}>
+    <div className="page" style={{ position: 'relative', width: '100%', overflowX: 'hidden' }}>
 
       {/* ── Scroll progress bar ──────────────────────────────────────────── */}
       <motion.div
@@ -419,25 +312,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
       />
 
       {/* ── Nav ─────────────────────────────────────────────────────────── */}
-      <nav
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: 52,
-          zIndex: 900,
-          backgroundColor: 'rgba(6,8,8,0.85)',
-          backdropFilter: 'blur(16px)',
-          WebkitBackdropFilter: 'blur(16px)',
-          borderBottom: `1px solid ${dim}`,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '0 6vw',
-          gap: 16,
-        }}
-      >
+      <nav className="nav" style={{ gap: 16 }}>
         {/* Left: Z-mark */}
         <div style={{ flexShrink: 0 }}>
           <img
@@ -467,6 +342,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             <button
               key={id}
               onClick={() => scrollToSection(id)}
+              className="nav-link"
               style={navLinkStyle}
             >
               {label}
@@ -516,20 +392,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           >
             Stages
           </a>
-          <span
-            className="deck-nav-desktop"
-            style={{
-              fontFamily: fontMono,
-              fontSize: 10,
-              letterSpacing: '0.3em',
-              textTransform: 'uppercase',
-              fontWeight: 700,
-              color: gold,
-              border: `1px solid rgba(200,168,75,0.35)`,
-              padding: '4px 10px',
-              whiteSpace: 'nowrap',
-            }}
-          >
+          <span className="deck-nav-desktop nav-tag" style={{ whiteSpace: 'nowrap' }}>
             {navLabel.toUpperCase()}
           </span>
           <a
@@ -726,34 +589,13 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
       )}
 
       {/* ── Side dots ───────────────────────────────────────────────────── */}
-      <div
-        style={{
-          position: 'fixed',
-          right: 20,
-          top: '50%',
-          transform: 'translateY(-50%)',
-          zIndex: 800,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 12,
-        }}
-      >
+      <div className="side-dots">
         {SECTIONS.map((id) => (
           <button
             key={id}
             onClick={() => scrollToSection(id)}
             title={id}
-            style={{
-              width: activeSection === id ? 8 : 5,
-              height: activeSection === id ? 8 : 5,
-              borderRadius: '50%',
-              background: activeSection === id ? gold : dim,
-              border: 'none',
-              cursor: 'pointer',
-              padding: 0,
-              transition: 'all 0.25s',
-              display: 'block',
-            }}
+            className={activeSection === id ? 'side-dot side-dot--active' : 'side-dot'}
           />
         ))}
       </div>
@@ -1160,24 +1002,151 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
 
       {/* ═══ CHAPTER 6: FESTIVAL WEEK ═══ */}
       <ChapterDivider num="06" eye="Chapter Six" title="Festival Week." sub="Seven days on the island. June 17–23, 2027." />
-      <Section dark id="week">
-        <SectionHead label="Festival Week" title="Seven days." goldLine="June 17–23, 2027." />
-        <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 40 }}>Zungu is a seven-day island experience.</p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 2 }}>
-          {[
-            { date: 'June 17', label: 'Arrival', body: 'Check-in, welcome parties, soft openings, partner receptions, island orientation, and the first taste of Zungu.' },
-            { date: 'June 18–21', label: 'Core Festival Nights', body: 'The island is fully alive: stages, programming, food, bars, water, wellness, pop-ups, late-night sound, and sunrise sessions.' },
-            { date: 'June 21–23', label: 'Recovery & Departure', body: 'Smaller island events, Port Antonio dinners, media moments, artist sessions, pop-ups, final gatherings, and departure.' },
-            { date: 'After guests leave', label: 'Production Breakdown', body: 'The week is not only about the main nights. It is about the island becoming a world, then slowly returning to itself.' },
-          ].map(({ date, label: lbl, body }) => (
-            <div key={date} style={{ border: `1px solid rgba(200,168,75,0.1)`, padding: '28px 24px', background: 'rgba(14,24,18,0.8)' }}>
-              <div style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.5em', color: muted, textTransform: 'uppercase', marginBottom: 8 }}>{lbl}</div>
-              <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.6vw, 20px)', fontWeight: 700, color: gold, marginBottom: 12, lineHeight: 1.2 }}>{date}</p>
-              <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.8 }}>{body}</p>
+      <div id="section-week">
+        {([
+          {
+            num: '01', bg: '#060600', accent: '#D4722A', tagBorder: 'rgba(212,114,42,0.3)',
+            date: 'JUNE 17', tag: 'Arrival Day',
+            title: 'ARRIVAL DAY',
+            sub: 'Check-in, accommodation access, island orientation, welcome parties, soft openings, partner receptions.',
+            narr: ['<strong>June 17 is Arrival Day.</strong> Check-in, accommodation access, island orientation, welcome parties, soft openings, partner receptions.'],
+            visual: [
+              { a: 'Arrivals', v: 'Check-in and accommodation access.' },
+              { a: 'Orientation', v: 'Island orientation and welcome.' },
+              { a: 'Welcome', v: 'Welcome parties and soft openings.' },
+              { a: 'Receptions', v: 'Partner receptions and first taste of Zungu.' },
+            ],
+            schedule: [
+              { t: 'All day', n: 'Arrival Day', d: 'Check-in, accommodation access, island orientation, welcome parties, soft openings, partner receptions.', stage: 'Island', hl: false, handoff: false },
+            ],
+          },
+          {
+            num: '02', bg: '#040810', accent: '#4A8FBD', tagBorder: 'rgba(74,143,189,0.3)',
+            date: 'JUNE 18', tag: 'Festival Night One',
+            title: 'FESTIVAL NIGHT ONE',
+            sub: 'The first full night. Stages open into the official festival programme.',
+            narr: ['<strong>June 18 is Festival Night One.</strong> The first full night. Stages open into the official festival programme.'],
+            visual: [
+              { a: 'Programme', v: 'Official festival programme opens.' },
+              { a: 'Stages', v: 'All three stages active.' },
+              { a: 'Energy', v: 'The first full night on the island.' },
+              { a: 'Atmosphere', v: 'The world of Zungu begins.' },
+            ],
+            schedule: [
+              { t: 'Evening', n: 'Festival Night One', d: 'The first full night. Stages open into the official festival programme.', stage: 'All Stages', hl: true, handoff: false },
+            ],
+          },
+          {
+            num: '03', bg: '#030e06', accent: '#3AAF7A', tagBorder: 'rgba(58,175,122,0.3)',
+            date: 'JUNE 19', tag: 'Festival Night Two',
+            title: 'FESTIVAL NIGHT TWO',
+            sub: 'The island is fully active. Mainstage, underground, sunrise, sunset, and island programming.',
+            narr: ['<strong>June 19 is Festival Night Two.</strong> The island is fully active. Mainstage, underground, sunrise, sunset, and island programming.'],
+            visual: [
+              { a: 'Mainstage', v: 'Full mainstage programming.' },
+              { a: 'Underground', v: 'Underground and sunset programming.' },
+              { a: 'Sunrise', v: 'Origins sunrise sessions.' },
+              { a: 'Island', v: 'Full island activation.' },
+            ],
+            schedule: [
+              { t: 'All day', n: 'Festival Night Two', d: 'The island is fully active. Mainstage, underground, sunrise, sunset, and island programming.', stage: 'All Stages', hl: true, handoff: false },
+            ],
+          },
+          {
+            num: '04', bg: '#060410', accent: '#9B5FC0', tagBorder: 'rgba(155,95,192,0.3)',
+            date: 'JUNE 20–23', tag: 'Peak Night & Beyond',
+            title: 'PEAK NIGHT & BEYOND',
+            sub: 'June 20: Peak night. Major acts, full production, highest energy. June 21–23: Recovery, pop-ups, and final hoorah.',
+            narr: [
+              '<strong>June 20 is Peak Night.</strong> Major acts, full production, highest energy.',
+              '<strong>June 21</strong>: Core festival programme resolves into sunrise, recovery, smaller pop-ups, brunch, wellness, and reduced-scale programming.',
+              '<strong>June 22</strong>: Smaller music moments, partner events, town dinners, media capture, artist sessions, guest departures.',
+              '<strong>June 23</strong>: Closing island moment, final gatherings, check-out, guest departures, and handover to production breakdown.',
+            ],
+            visual: [
+              { a: 'June 20', v: 'Peak night. Major acts. Full production.' },
+              { a: 'June 21', v: 'Recovery shift. Sunrise. Pop-ups. Wellness.' },
+              { a: 'June 22', v: 'Island pop-ups. Port Antonio events. Town dinners.' },
+              { a: 'June 23', v: 'Final hoorah. Departure. Handover.' },
+            ],
+            schedule: [
+              { t: 'JUN 20', n: 'Festival Night Three', d: 'Peak night. Major acts, full production, highest energy.', stage: 'All Stages', hl: true, handoff: false },
+              { t: 'JUN 21', n: 'Festival Morning / Recovery Shift', d: 'Core festival programme resolves into sunrise, recovery, smaller pop-ups, brunch, wellness, and reduced-scale programming.', stage: 'Island', hl: false, handoff: false },
+              { t: 'JUN 22', n: 'Island Pop-Ups / Port Antonio Events', d: 'Smaller music moments, partner events, town dinners, media capture, artist sessions, guest departures.', stage: 'Island', hl: false, handoff: false },
+              { t: 'JUN 23', n: 'Final Hoorah / Departure', d: 'Closing island moment, final gatherings, check-out, guest departures, and handover to production breakdown.', stage: '—', hl: false, handoff: true },
+            ],
+          },
+        ] as const).map((night) => (
+          <div
+            key={night.num}
+            className="night-section"
+            style={{ backgroundColor: night.bg }}
+          >
+            {/* Ghost number */}
+            <div className="night-ghost">{night.num}</div>
+            {/* Radial gradient overlay */}
+            <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse 70% 60% at 60% 25%, rgba(${night.num === '01' ? '212,114,42' : night.num === '02' ? '74,143,189' : night.num === '03' ? '58,175,122' : '155,95,192'},.09) 0%, transparent 60%)`, pointerEvents: 'none' }} />
+
+            <div style={{ position: 'relative', zIndex: 2 }}>
+              {/* Eyebrow */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 16, flexWrap: 'wrap' }}>
+                <span className="t-micro" style={{ color: 'rgba(200,168,75,0.45)' }}>{night.date}</span>
+                <span className="tag" style={{ borderColor: night.tagBorder, color: night.accent }}>{night.tag}</span>
+              </div>
+              {/* Title */}
+              <div className="night-title" style={{ color: night.accent }}>{night.title}</div>
+              <p className="t-body" style={{ maxWidth: 560, marginBottom: 40 }}>{night.sub}</p>
+
+              {/* Two-column grid */}
+              <div className="night-grid">
+                {/* Left: narrative + concept */}
+                <div>
+                  <div className="t-body">
+                    {night.narr.map((p, i) => (
+                      <p key={i} style={{ marginTop: i > 0 ? 14 : 0 }} dangerouslySetInnerHTML={{ __html: p.replace(/<strong>/g, `<strong style="color:${cream}">`).replace(/<\/strong>/g, '</strong>') }} />
+                    ))}
+                  </div>
+                  <div className="night-concept">
+                    <span className="t-label" style={{ display: 'block', marginBottom: 14 }}>Visual Concept · Night {night.num}</span>
+                    <div className="night-concept-grid">
+                      {night.visual.map(({ a, v }) => (
+                        <div key={a} className="concept-card">
+                          <span className="t-micro" style={{ color: 'rgba(200,168,75,0.35)', display: 'block', marginBottom: 5 }}>{a}</span>
+                          <span className="t-body" style={{ fontSize: 13, color: 'rgba(242,235,217,0.6)', lineHeight: 1.5 }}>{v}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right: schedule table */}
+                <div className="schedule">
+                  <div className="schedule-head">
+                    <span>Time</span><span>Programme</span><span style={{ textAlign: 'right' }}>Stage</span>
+                  </div>
+                  {night.schedule.map((row, i) => (
+                    <div
+                      key={i}
+                      className="schedule-row"
+                      style={{
+                        borderLeft: row.hl ? `2px solid ${night.accent}` : row.handoff ? '2px solid rgba(200,168,75,0.3)' : 'none',
+                        background: row.hl ? `rgba(${night.num === '01' ? '212,114,42' : night.num === '02' ? '74,143,189' : night.num === '03' ? '58,175,122' : '155,95,192'},.04)` : row.handoff ? 'rgba(200,168,75,0.04)' : 'transparent',
+                      }}
+                    >
+                      <span className="t-micro" style={{ color: row.handoff ? gold : 'rgba(200,168,75,0.5)', paddingTop: 2 }}>{row.t}</span>
+                      <div>
+                        <span className="t-mono" style={{ fontSize: 13, color: cream, display: 'block', marginBottom: 3 }}>{row.n}</span>
+                        <span className="t-body" style={{ fontSize: 12, color: 'rgba(242,235,217,0.3)', lineHeight: 1.4 }}>{row.d}</span>
+                      </div>
+                      <span className="t-micro" style={{ color: gold, textAlign: 'right', paddingTop: 2 }}>{row.stage}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
-      </Section>
+          </div>
+        ))}
+      </div>
 
       {/* ═══ CHAPTER 7: THE SOUND ═══ */}
       <ChapterDivider num="07" eye="Chapter Seven" title="The Sound." sub="Electronic music through a Jamaican lens." />
