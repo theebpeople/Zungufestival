@@ -381,63 +381,20 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           ))}
         </div>
 
-        {/* Right: CTA + activities + badge + sign out (desktop) */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 16,
-            flexShrink: 0,
-          }}
-        >
-          <button
-            onClick={scrollToCta}
-            className="deck-nav-desktop"
-            style={{
-              fontFamily: fontMono,
-              fontSize: 9,
-              letterSpacing: '0.4em',
-              textTransform: 'uppercase',
-              fontWeight: 700,
-              padding: '8px 18px',
-              background: gold,
-              color: bg,
-              border: 'none',
-              cursor: 'pointer',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            Request Briefing →
-          </button>
+        {/* Right: badge + sign out (desktop) */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexShrink: 0, whiteSpace: 'nowrap' }}>
+          <span className="deck-nav-desktop nav-tag">{navLabel.toUpperCase()}</span>
           <a
-            href="/activities"
-            className="deck-nav-desktop"
-            style={{ ...navLinkStyle, display: 'inline-block', whiteSpace: 'nowrap' }}
+            href="/dashboard"
+            className="deck-nav-desktop nav-link"
+            style={{ textDecoration: 'none' }}
           >
-            Activities
+            ← Back
           </a>
-          <a
-            href="/stages"
-            className="deck-nav-desktop"
-            style={{ ...navLinkStyle, display: 'inline-block', whiteSpace: 'nowrap' }}
-          >
-            Stages
-          </a>
-          <span className="deck-nav-desktop nav-tag" style={{ whiteSpace: 'nowrap' }}>
-            {navLabel.toUpperCase()}
-          </span>
           <a
             href="/sign-out"
-            className="deck-nav-desktop"
-            style={{
-              fontFamily: fontMono,
-              fontSize: 9,
-              letterSpacing: '0.4em',
-              textTransform: 'uppercase',
-              fontWeight: 700,
-              color: muted,
-              textDecoration: 'none',
-            }}
+            className="deck-nav-desktop nav-link"
+            style={{ textDecoration: 'none' }}
           >
             Sign Out
           </a>
