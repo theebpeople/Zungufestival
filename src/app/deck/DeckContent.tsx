@@ -295,6 +295,16 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
   // Mobile nav
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Desktop dropdown nav
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
+  const navGroups: { label: string; items: [string, SectionId][] }[] = [
+    { label: 'Brand', items: [['What Is Zungu?', 'brand'], ['What Does Zungu Mean?', 'meaning']] },
+    { label: 'The Island', items: [['Port Antonio', 'portantonio'], ['The Island', 'island'], ['Why Jamaica?', 'jamaica']] },
+    { label: 'Stages', items: [['The Stages', 'stages'], ['The Sound', 'sound'], ['The Experience', 'experience'], ['Programming', 'programming']] },
+    { label: 'Investors', items: [['Investor Positioning', 'investor'], ['Request Briefing', 'cta']] },
+  ];
+
   // CTA form state
   const [selectedInterest, setSelectedInterest] = useState<string | null>(null);
   const [formName, setFormName] = useState('');
@@ -379,7 +389,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
       />
 
       {/* ── Nav ─────────────────────────────────────────────────────────── */}
-      <nav className="nav" style={{ gap: 16 }}>
+      <nav className="nav" style={{ gap: 16 }} onMouseLeave={() => setOpenDropdown(null)}>
         {/* Left: Z-mark */}
         <div style={{ flexShrink: 0 }}>
           <img
@@ -389,30 +399,71 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           />
         </div>
 
-        {/* Center: nav links — hidden on portrait tablet via CSS */}
-        <div className="deck-chapter-links">
-          {navLinks.map(([label, id]) => (
-            <button
-              key={id}
-              onClick={() => scrollToSection(id)}
-              className="nav-link"
-              style={navLinkStyle}
+        {/* Center: dropdown nav groups — hidden on mobile */}
+        <div className="deck-chapter-links" style={{ gap: 0 }}>
+          {navGroups.map((group) => (
+            <div
+              key={group.label}
+              style={{ position: 'relative' }}
+              onMouseEnter={() => setOpenDropdown(group.label)}
             >
-              {label}
-            </button>
+              <button
+                className="nav-link"
+                style={{ fontSize: 9, padding: '4px 10px', color: muted, background: 'none', border: 'none', cursor: 'pointer', letterSpacing: '0.25em', textTransform: 'uppercase', fontFamily: "'Space Mono', monospace" }}
+              >
+                {group.label} ▾
+              </button>
+              {openDropdown === group.label && (
+                <div style={{
+                  position: 'absolute',
+                  top: '100%',
+                  left: 0,
+                  minWidth: 200,
+                  backgroundColor: 'rgba(6,8,8,0.97)',
+                  backdropFilter: 'blur(16px)',
+                  WebkitBackdropFilter: 'blur(16px)',
+                  border: `1px solid rgba(200,168,75,0.12)`,
+                  padding: '8px 0',
+                  zIndex: 900,
+                }}>
+                  {group.items.map(([label, id]) => (
+                    <button
+                      key={id}
+                      onClick={() => { scrollToSection(id); setOpenDropdown(null); }}
+                      style={{
+                        display: 'block',
+                        width: '100%',
+                        textAlign: 'left',
+                        padding: '9px 18px',
+                        fontFamily: "'Space Mono', monospace",
+                        fontSize: 9,
+                        letterSpacing: '0.2em',
+                        textTransform: 'uppercase',
+                        color: muted,
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        whiteSpace: 'nowrap',
+                      }}
+                      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = gold; }}
+                      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = String(muted); }}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
+
+          {/* External links */}
+          <a href="/activities" className="nav-link" style={{ fontSize: 9, padding: '4px 10px', color: muted, textDecoration: 'none', letterSpacing: '0.25em', textTransform: 'uppercase' }}>Activities</a>
+          <a href="/stages" className="nav-link" style={{ fontSize: 9, padding: '4px 10px', color: muted, textDecoration: 'none', letterSpacing: '0.25em', textTransform: 'uppercase' }}>Stages</a>
         </div>
 
         {/* Right: badge + sign out (desktop) */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexShrink: 0, whiteSpace: 'nowrap' }}>
           <span className="deck-nav-desktop nav-tag">{navLabel.toUpperCase()}</span>
-          <a
-            href="/dashboard"
-            className="deck-nav-desktop nav-link"
-            style={{ textDecoration: 'none' }}
-          >
-            ← Back
-          </a>
           <a
             href="/sign-out"
             className="deck-nav-desktop nav-link"
@@ -509,33 +560,37 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             style={{ width: 48, height: 48, objectFit: 'contain', marginBottom: 40, filter: 'drop-shadow(0 0 16px rgba(200,168,75,0.3))' }}
           />
 
-          {/* Chapter links */}
-          <nav style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, width: '100%', marginBottom: 40 }}>
-            {navLinks.map(([label, id]) => (
-              <button
-                key={id}
-                onClick={() => { scrollToSection(id); setMobileMenuOpen(false); }}
-                style={{
-                  fontFamily: fontDisplay,
-                  fontSize: 'clamp(1.4rem, 7vw, 2.2rem)',
-                  fontWeight: 900,
-                  textTransform: 'uppercase',
-                  letterSpacing: '-0.02em',
-                  color: cream,
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  padding: '10px 0',
-                  width: '100%',
-                  textAlign: 'center',
-                  borderBottom: `1px solid ${dim}`,
-                  transition: 'color 0.2s',
-                }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = gold; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = cream; }}
-              >
-                {label}
-              </button>
+          {/* Chapter groups */}
+          <nav style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0, width: '100%', marginBottom: 40 }}>
+            {navGroups.map((group) => (
+              <div key={group.label} style={{ width: '100%', borderBottom: `1px solid ${dim}` }}>
+                <div style={{ fontFamily: "'Space Mono', monospace", fontSize: 8, letterSpacing: '0.4em', textTransform: 'uppercase', color: gold, padding: '14px 0 4px', textAlign: 'center' }}>{group.label}</div>
+                {group.items.map(([label, id]) => (
+                  <button
+                    key={id}
+                    onClick={() => { scrollToSection(id); setMobileMenuOpen(false); }}
+                    style={{
+                      fontFamily: fontDisplay,
+                      fontSize: 'clamp(1.1rem, 5vw, 1.6rem)',
+                      fontWeight: 900,
+                      textTransform: 'uppercase',
+                      letterSpacing: '-0.02em',
+                      color: cream,
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      padding: '8px 0',
+                      width: '100%',
+                      textAlign: 'center',
+                      transition: 'color 0.2s',
+                    }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = gold; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = cream; }}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
             ))}
           </nav>
 
@@ -561,25 +616,10 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
             Request Briefing →
           </button>
 
-          <div style={{ display: 'flex', gap: 32, marginTop: 8 }}>
-            <a
-              href="/activities"
-              style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: muted, textDecoration: 'none', fontWeight: 700 }}
-            >
-              Activities
-            </a>
-            <a
-              href="/stages"
-              style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: muted, textDecoration: 'none', fontWeight: 700 }}
-            >
-              Stages
-            </a>
-            <a
-              href="/sign-out"
-              style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: muted, textDecoration: 'none', fontWeight: 700 }}
-            >
-              Sign Out
-            </a>
+          <div style={{ display: 'flex', gap: 24, marginTop: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
+            {[['Activities', '/activities'], ['Stages', '/stages'], ['Sign Out', '/sign-out']].map(([label, href]) => (
+              <a key={href} href={href} style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: muted, textDecoration: 'none', fontWeight: 700 }}>{label}</a>
+            ))}
           </div>
         </div>
       )}
