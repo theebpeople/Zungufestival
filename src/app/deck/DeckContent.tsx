@@ -129,25 +129,19 @@ interface ChapterProps {
   accent?: string;
   chBg?: string;
   rgb?: string;
-  photo?: string;
 }
 
-function ChapterDivider({ num, eye, title, sub, accent = gold, chBg = bg, rgb = '200,168,75', photo }: ChapterProps) {
+function ChapterDivider({ num, eye, title, sub, accent = gold, chBg = bg, rgb = '200,168,75' }: ChapterProps) {
   return (
     <div style={{
-      width: '100%', boxSizing: 'border-box', backgroundColor: chBg,
+      width: '100%', boxSizing: 'border-box',
       borderTop: '1px solid rgba(200,168,75,0.07)',
       padding: '80px 8vw 40px',
       display: 'flex', alignItems: 'flex-start', gap: '3rem',
-      position: 'relative', overflow: 'hidden',
+      position: 'relative',
     }}>
       {/* Radial gradient */}
       <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse 65% 70% at 90% 15%, rgba(${rgb},.11) 0%, transparent 60%)`, pointerEvents: 'none' }} />
-      {/* Ambient photo — right side */}
-      {photo && <>
-        <img src={photo} alt="" aria-hidden style={{ position: 'absolute', top: 0, right: 0, width: '50%', height: '100%', objectFit: 'cover', objectPosition: 'center', opacity: 0.28, filter: 'saturate(0.45) brightness(0.4)', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to right, ${chBg} 28%, ${chBg}ee 50%, transparent 82%)`, pointerEvents: 'none' }} />
-      </>}
       {/* Ghost number */}
       <div className="chapter-ghost" style={{ color: accent, opacity: 0.08, position: 'relative', zIndex: 1 }}>{num}</div>
       <div style={{ flex: 1, position: 'relative', zIndex: 1 }}>
@@ -170,25 +164,44 @@ interface SectionProps {
   accent?: string;
   rgb?: string;
   style?: React.CSSProperties;
-  photo?: string;
 }
 
-function Section({ id, children, sectionBg = bg, accent = gold, rgb = '200,168,75', style, photo }: SectionProps) {
+function Section({ id, children, sectionBg = bg, accent = gold, rgb = '200,168,75', style }: SectionProps) {
   return (
     <section
       id={id ? `section-${id}` : undefined}
       className="section section--tall"
-      style={{ backgroundColor: sectionBg, position: 'relative', overflow: 'hidden', ...style }}
+      style={{ position: 'relative', ...style }}
     >
       {/* Radial gradient overlay */}
       <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse 80% 55% at 5% 95%, rgba(${rgb},.08) 0%, transparent 55%)`, pointerEvents: 'none', zIndex: 0 }} />
-      {/* Ambient photo — right side */}
-      {photo && <>
-        <img src={photo} alt="" aria-hidden style={{ position: 'absolute', top: 0, right: 0, width: '50%', height: '100%', objectFit: 'cover', objectPosition: 'center', opacity: 0.32, filter: 'saturate(0.5) brightness(0.4)', pointerEvents: 'none', zIndex: 0 }} />
-        <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to right, ${sectionBg} 28%, ${sectionBg}ee 50%, transparent 82%)`, pointerEvents: 'none', zIndex: 0 }} />
-      </>}
       <div style={{ position: 'relative', zIndex: 1 }}>{children}</div>
     </section>
+  );
+}
+
+// ── Chapter photo wrapper ─────────────────────────────────────────────────────
+interface ChapterWrapProps {
+  bg: string;
+  photo: string;
+  children: React.ReactNode;
+}
+function ChapterWrap({ bg, photo, children }: ChapterWrapProps) {
+  return (
+    <div style={{ position: 'relative', overflow: 'hidden', backgroundColor: bg }}>
+      <img src={photo} alt="" aria-hidden style={{
+        position: 'absolute', top: 0, right: 0, width: '50%', height: '100%',
+        objectFit: 'cover', objectPosition: 'center',
+        opacity: 0.32, filter: 'saturate(0.5) brightness(0.4)',
+        pointerEvents: 'none', zIndex: 0,
+      }} />
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: `linear-gradient(to right, ${bg} 28%, ${bg}ee 50%, transparent 82%)`,
+        pointerEvents: 'none', zIndex: 0,
+      }} />
+      <div style={{ position: 'relative', zIndex: 1 }}>{children}</div>
+    </div>
   );
 }
 
@@ -838,8 +851,9 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
       </section>
 
       {/* ═══ CHAPTER 1: WHAT IS ZUNGU? ═══ */}
-      <ChapterDivider num="01" eye="Chapter One" title="What Is Zungu?" sub="A private-island electronic music festival in Port Antonio, Jamaica. But not just an event on an island." accent={CHAPTERS['01'].accent} chBg={CHAPTERS['01'].bg} rgb={CHAPTERS['01'].rgb} photo="/photos/navy-island-aerial.jpg" />
-      <Section id="brand" sectionBg={CHAPTERS['01'].bg} accent={CHAPTERS['01'].accent} rgb={CHAPTERS['01'].rgb} photo="/photos/navy-island-aerial.jpg">
+      <ChapterWrap bg={CHAPTERS['01'].bg} photo="/photos/navy-island-aerial.jpg">
+      <ChapterDivider num="01" eye="Chapter One" title="What Is Zungu?" sub="A private-island electronic music festival in Port Antonio, Jamaica. But not just an event on an island." accent={CHAPTERS['01'].accent} chBg={CHAPTERS['01'].bg} rgb={CHAPTERS['01'].rgb} />
+      <Section id="brand" sectionBg={CHAPTERS['01'].bg} accent={CHAPTERS['01'].accent} rgb={CHAPTERS['01'].rgb}>
         <SectionHead label="What Is Zungu?" title="An entire island in rhythm." accent={CHAPTERS['01'].accent} />
         <div style={{ maxWidth: 880, marginBottom: 32 }}>
           {[
@@ -852,12 +866,14 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(20px, 3vw, 38px)', fontWeight: 700, lineHeight: 1.3, color: gold, marginTop: 20 }}>For one week, Navy Island becomes Zungu.</p>
         </div>
       </Section>
+      </ChapterWrap>
 
       <PhotoBreak src="https://res.cloudinary.com/elektricbangaz/image/upload/v1773236490/NAVY_ISLAND_AERIAL_vaapz1.png" quote="An entire island. One week. Everything in rhythm." label="Zungu · Navy Island · Jamaica" />
 
       {/* ═══ CHAPTER 2: WHAT DOES ZUNGU MEAN? ═══ */}
-      <ChapterDivider num="02" eye="Chapter Two" title="What Does Zungu Mean?" sub="The name borrows its pulse from Yellowman — one of dancehall's most iconic sounds." accent={CHAPTERS['02'].accent} chBg={CHAPTERS['02'].bg} rgb={CHAPTERS['02'].rgb} photo="/photos/navy-island-port-antonio.jpeg" />
-      <Section id="meaning" sectionBg={CHAPTERS['02'].bg} accent={CHAPTERS['02'].accent} rgb={CHAPTERS['02'].rgb} photo="/photos/navy-island-port-antonio.jpeg">
+      <ChapterWrap bg={CHAPTERS['02'].bg} photo="/photos/navy-island-port-antonio.jpeg">
+      <ChapterDivider num="02" eye="Chapter Two" title="What Does Zungu Mean?" sub="The name borrows its pulse from Yellowman — one of dancehall's most iconic sounds." accent={CHAPTERS['02'].accent} chBg={CHAPTERS['02'].bg} rgb={CHAPTERS['02'].rgb} />
+      <Section id="meaning" sectionBg={CHAPTERS['02'].bg} accent={CHAPTERS['02'].accent} rgb={CHAPTERS['02'].rgb}>
         <SectionHead label="What Does Zungu Mean?" title="Everything in rhythm." accent={CHAPTERS['02'].accent} />
         <div style={{ maxWidth: 800, marginBottom: 32 }}>
           <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 20 }}>Zungu begins with rhythm.</p>
@@ -874,12 +890,14 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           <QuoteBlock quote="A Jamaican-born electronic music destination built for the world." attr="Core Brand Positioning" />
         </div>
       </Section>
+      </ChapterWrap>
 
       <PhotoBreak src="https://res.cloudinary.com/elektricbangaz/image/upload/v1773236490/NAVY_ISLAND_FROM_THE_SEA_twhi0w.png" quote="Jamaica gave the world rhythm. Zungu brings it home." label="The Brand · Port Antonio" />
 
       {/* ═══ CHAPTER 3: THE ISLAND ═══ */}
-      <ChapterDivider num="03" eye="Chapter Three" title="The Island." sub="Navy Island. Port Antonio, Jamaica. 64 acres. The site that makes everything possible." accent={CHAPTERS['03'].accent} chBg={CHAPTERS['03'].bg} rgb={CHAPTERS['03'].rgb} photo="/photos/navy-island-aerial-hq.png" />
-      <Section id="island" sectionBg={CHAPTERS['03'].bg} accent={CHAPTERS['03'].accent} rgb={CHAPTERS['03'].rgb} photo="/photos/navy-island-aerial-hq.png">
+      <ChapterWrap bg={CHAPTERS['03'].bg} photo="/photos/navy-island-aerial-hq.png">
+      <ChapterDivider num="03" eye="Chapter Three" title="The Island." sub="Navy Island. Port Antonio, Jamaica. 64 acres. The site that makes everything possible." accent={CHAPTERS['03'].accent} chBg={CHAPTERS['03'].bg} rgb={CHAPTERS['03'].rgb} />
+      <Section id="island" sectionBg={CHAPTERS['03'].bg} accent={CHAPTERS['03'].accent} rgb={CHAPTERS['03'].rgb}>
         <SectionHead label="The Island" title="Navy Island is the scenery." accent={CHAPTERS['03'].accent} />
         <div style={{ maxWidth: 880, marginBottom: 32 }}>
           {[
@@ -899,12 +917,11 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(20px, 3vw, 38px)', fontWeight: 700, lineHeight: 1.3, color: gold }}>This is an entire island transformed.</p>
         </div>
       </Section>
-      <PhotoBreak src="https://res.cloudinary.com/elektricbangaz/image/upload/v1773236490/NAVY_ISLAND_AERIAL_vaapz1.png" quote="Island. Water. Isolation." label="Portland Parish · Caribbean" />
       <Section sectionBg={CHAPTERS['03'].bg} accent={CHAPTERS['03'].accent} rgb={CHAPTERS['03'].rgb}>
         <SectionHead label="Marina → Island Crossing Overview" title="The crossing." accent={CHAPTERS['03'].accent} />
         <IslandOverviewMap />
       </Section>
-      <Section sectionBg={CHAPTERS['03'].bg} accent={CHAPTERS['03'].accent} rgb={CHAPTERS['03'].rgb} photo="/photos/navy-island-wide.png">
+      <Section sectionBg={CHAPTERS['03'].bg} accent={CHAPTERS['03'].accent} rgb={CHAPTERS['03'].rgb}>
         <SectionHead label="Stage Placement · Navy Island" title="Three stages. One island." accent={CHAPTERS['03'].accent} />
         <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 28 }}>Provisional placement across the island&apos;s natural terrain. Stages face the sea — not the town. Final positioning subject to site survey.</p>
         <div style={{ marginBottom: 32 }}><StageMap /></div>
@@ -948,10 +965,12 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           <p style={{ fontFamily: fontMono, fontSize: 10, color: muted, marginTop: 12, letterSpacing: '0.1em' }}>Origins · Rebirth · Zungu Main — stage architecture, schedules, and nightly programming</p>
         </div>
       </Section>
+      </ChapterWrap>
 
       {/* ═══ CHAPTER 4: THE STAGES ═══ */}
-      <ChapterDivider num="04" eye="Chapter Four" title="The Stages." sub="Three stages give Zungu its shape. Each one tied to a natural moment of the island." accent={CHAPTERS['04'].accent} chBg={CHAPTERS['04'].bg} rgb={CHAPTERS['04'].rgb} photo="/photos/navy-island-wide.png" />
-      <Section id="stages" sectionBg={CHAPTERS['04'].bg} accent={CHAPTERS['04'].accent} rgb={CHAPTERS['04'].rgb} photo="/photos/navy-island-wide.png">
+      <ChapterWrap bg={CHAPTERS['04'].bg} photo="/photos/navy-island-wide.png">
+      <ChapterDivider num="04" eye="Chapter Four" title="The Stages." sub="Three stages give Zungu its shape. Each one tied to a natural moment of the island." accent={CHAPTERS['04'].accent} chBg={CHAPTERS['04'].bg} rgb={CHAPTERS['04'].rgb} />
+      <Section id="stages" sectionBg={CHAPTERS['04'].bg} accent={CHAPTERS['04'].accent} rgb={CHAPTERS['04'].rgb}>
         <SectionHead label="The Stages" title="Three stages." goldLine="One island." accent={CHAPTERS['04'].accent} />
         <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 40 }}>The stages are not just places to perform. They are the rhythm of the island.</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2 }}>
@@ -987,8 +1006,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           ))}
         </div>
       </Section>
-      <PhotoBreak src="https://res.cloudinary.com/elektricbangaz/image/upload/v1780459512/island-stages-aerial_zxjfag.png" quote="Origins rises with the sun. Rebirth catches the sunset. Zungu owns the centre." label="Stage Placement · Navy Island" />
-      <Section sectionBg={CHAPTERS['04'].bg} accent={CHAPTERS['04'].accent} rgb={CHAPTERS['04'].rgb} photo="/photos/navy-island-wide.png">
+      <Section sectionBg={CHAPTERS['04'].bg} accent={CHAPTERS['04'].accent} rgb={CHAPTERS['04'].rgb}>
         <SectionHead label="The Artists" title="Black Coffee. Not a booking. A co-curator." accent={CHAPTERS['04'].accent} />
         <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 16 }}>Black Coffee runs his own festival — the Black Coffee Weekender in Cape Town, now in its second edition. He curates lineups, commissions collaborations, and has a Grammy for Best Dance/Electronic Album. His Hï Ibiza residency ran 7 consecutive seasons.</p>
         <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 36 }}>His label Soulistic Music signed Shimza. They perform back-to-back. They opened Hï Ibiza together. The conversation is a peer conversation — not a booking form.</p>
@@ -1009,10 +1027,15 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           ))}
         </div>
       </Section>
+      </ChapterWrap>
+
+      {/* existing PhotoBreak between Ch04 stages and Ch05 */}
+      <PhotoBreak src="https://res.cloudinary.com/elektricbangaz/image/upload/v1780459512/island-stages-aerial_zxjfag.png" quote="Origins rises with the sun. Rebirth catches the sunset. Zungu owns the centre." label="Stage Placement · Navy Island" />
 
       {/* ═══ CHAPTER 5: THE EXPERIENCE ═══ */}
-      <ChapterDivider num="05" eye="Chapter Five" title="The Experience." sub="Zungu is designed as a world guests move through — not a lineup they attend." accent={CHAPTERS['05'].accent} chBg={CHAPTERS['05'].bg} rgb={CHAPTERS['05'].rgb} photo="/photos/blue-lagoon-port-antonio.jpg" />
-      <Section id="experience" sectionBg={CHAPTERS['05'].bg} accent={CHAPTERS['05'].accent} rgb={CHAPTERS['05'].rgb} photo="/photos/blue-lagoon-port-antonio.jpg">
+      <ChapterWrap bg={CHAPTERS['05'].bg} photo="/photos/blue-lagoon-port-antonio.jpg">
+      <ChapterDivider num="05" eye="Chapter Five" title="The Experience." sub="Zungu is designed as a world guests move through — not a lineup they attend." accent={CHAPTERS['05'].accent} chBg={CHAPTERS['05'].bg} rgb={CHAPTERS['05'].rgb} />
+      <Section id="experience" sectionBg={CHAPTERS['05'].bg} accent={CHAPTERS['05'].accent} rgb={CHAPTERS['05'].rgb}>
         <SectionHead label="The Experience" title="Built around movement." accent={CHAPTERS['05'].accent} />
         <div style={{ maxWidth: 880, marginBottom: 40 }}>
           <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>By day, the island opens through food, coffee, bars, water, wellness, art, media, culture, retail, and discovery.</p>
@@ -1037,11 +1060,14 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           ))}
         </div>
       </Section>
+      </ChapterWrap>
+
       <PhotoBreak src="/photos/boston-bay.jpg" quote="By day the island opens. By night it transforms." label="The Experience · Navy Island" />
 
       {/* ═══ CHAPTER 7: THE SOUND ═══ */}
-      <ChapterDivider num="07" eye="Chapter Seven" title="The Sound." sub="Electronic music through a Jamaican lens." accent={CHAPTERS['07'].accent} chBg={CHAPTERS['07'].bg} rgb={CHAPTERS['07'].rgb} photo="/photos/boston-bay.jpg" />
-      <Section id="sound" sectionBg={CHAPTERS['07'].bg} accent={CHAPTERS['07'].accent} rgb={CHAPTERS['07'].rgb} photo="/photos/boston-bay.jpg">
+      <ChapterWrap bg={CHAPTERS['07'].bg} photo="/photos/pellew-island.jpg">
+      <ChapterDivider num="07" eye="Chapter Seven" title="The Sound." sub="Electronic music through a Jamaican lens." accent={CHAPTERS['07'].accent} chBg={CHAPTERS['07'].bg} rgb={CHAPTERS['07'].rgb} />
+      <Section id="sound" sectionBg={CHAPTERS['07'].bg} accent={CHAPTERS['07'].accent} rgb={CHAPTERS['07'].rgb}>
         <SectionHead label="The Sound" title="Electronic music through a Jamaican lens." accent={CHAPTERS['07'].accent} />
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 32 }}>
           {['Afro-house', 'Tribal house', 'Big-room electronic', 'Tech house', 'Underground house', 'Jungle', 'Drum and bass', 'Dub-influenced club music', 'Jamaican electronic', 'Sunrise sets', 'Sunset sessions', 'Mainstage nights'].map(tag => (
@@ -1051,12 +1077,14 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 30px)', fontWeight: 700, color: cream, marginBottom: 8 }}>The sound is global.</p>
         <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 30px)', fontWeight: 700, color: gold }}>The root is Jamaican.</p>
       </Section>
+      </ChapterWrap>
 
       <PhotoBreak src="/photos/navy-island-wide.png" quote="The sound is global. The root is Jamaican." label="The Sound · Navy Island" />
 
       {/* ═══ CHAPTER 8: WHY JAMAICA? ═══ */}
-      <ChapterDivider num="08" eye="Chapter Eight" title="Why Jamaica?" sub="Because the world already moves to Jamaica." accent={CHAPTERS['08'].accent} chBg={CHAPTERS['08'].bg} rgb={CHAPTERS['08'].rgb} photo="/photos/port-antonio-aerial.jpeg" />
-      <Section id="jamaica" sectionBg={CHAPTERS['08'].bg} accent={CHAPTERS['08'].accent} rgb={CHAPTERS['08'].rgb} photo="/photos/port-antonio-aerial.jpeg">
+      <ChapterWrap bg={CHAPTERS['08'].bg} photo="/photos/port-antonio-aerial.jpeg">
+      <ChapterDivider num="08" eye="Chapter Eight" title="Why Jamaica?" sub="Because the world already moves to Jamaica." accent={CHAPTERS['08'].accent} chBg={CHAPTERS['08'].bg} rgb={CHAPTERS['08'].rgb} />
+      <Section id="jamaica" sectionBg={CHAPTERS['08'].bg} accent={CHAPTERS['08'].accent} rgb={CHAPTERS['08'].rgb}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '6vw' }}>
           <div>
             <SectionHead label="Why Jamaica?" title="The world already moves to Jamaica." accent={CHAPTERS['08'].accent} />
@@ -1071,12 +1099,14 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           </div>
         </div>
       </Section>
+      </ChapterWrap>
 
       <PhotoBreak src="/photos/navy-island-aerial.jpg" quote="For one week, it is not just Navy Island. It is Zungu." label="Why Jamaica · Portland Parish" />
 
       {/* ═══ CHAPTER 9: PROGRAMMING ═══ */}
-      <ChapterDivider num="09" eye="Chapter Nine" title="Programming." sub="The island moves all day. Every zone has a purpose." accent={CHAPTERS['09'].accent} chBg={CHAPTERS['09'].bg} rgb={CHAPTERS['09'].rgb} photo="/photos/pellew-island.jpg" />
-      <Section id="programming" sectionBg={CHAPTERS['09'].bg} accent={CHAPTERS['09'].accent} rgb={CHAPTERS['09'].rgb} photo="/photos/pellew-island.jpg">
+      <ChapterWrap bg={CHAPTERS['09'].bg} photo="/photos/princess-island-portantonio.jpg">
+      <ChapterDivider num="09" eye="Chapter Nine" title="Programming." sub="The island moves all day. Every zone has a purpose." accent={CHAPTERS['09'].accent} chBg={CHAPTERS['09'].bg} rgb={CHAPTERS['09'].rgb} />
+      <Section id="programming" sectionBg={CHAPTERS['09'].bg} accent={CHAPTERS['09'].accent} rgb={CHAPTERS['09'].rgb}>
         <SectionHead label="Programming" title="The island moves all day." accent={CHAPTERS['09'].accent} />
         <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 32 }}>Zungu is not only nighttime music. Every zone has a purpose: guest experience, revenue, sponsor value, local operator participation, and movement across the island.</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 2 }}>
@@ -1101,13 +1131,14 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680 }}>Through Zungu Radio and The Signal, the sound continues: artist interviews, commissioned mixes, live recordings, field audio, press moments, and stories from the island.</p>
         </div>
       </Section>
+      </ChapterWrap>
+
       <PhotoBreak src="https://res.cloudinary.com/elektricbangaz/image/upload/v1773236490/NAVY_ISLAND_FROM_THE_SEA_twhi0w.png" quote="Navy Island is the world. Port Antonio is the heartbeat behind it." label="Port Antonio · Portland Parish · Jamaica" />
 
-      <PhotoBreak src="/photos/port-antonio-aerial.jpeg" quote="The ecosystem that makes everything possible." label="Port Antonio · Portland Parish" />
-
       {/* ═══ CHAPTER 10: PORT ANTONIO ═══ */}
-      <ChapterDivider num="10" eye="Chapter Ten" title="Port Antonio." sub="The ecosystem behind the island." accent={CHAPTERS['10'].accent} chBg={CHAPTERS['10'].bg} rgb={CHAPTERS['10'].rgb} photo="/photos/port-antonio.jpg" />
-      <Section id="portantonio" sectionBg={CHAPTERS['10'].bg} accent={CHAPTERS['10'].accent} rgb={CHAPTERS['10'].rgb} photo="/photos/port-antonio.jpg">
+      <ChapterWrap bg={CHAPTERS['10'].bg} photo="/photos/port-antonio.jpg">
+      <ChapterDivider num="10" eye="Chapter Ten" title="Port Antonio." sub="The ecosystem behind the island." accent={CHAPTERS['10'].accent} chBg={CHAPTERS['10'].bg} rgb={CHAPTERS['10'].rgb} />
+      <Section id="portantonio" sectionBg={CHAPTERS['10'].bg} accent={CHAPTERS['10'].accent} rgb={CHAPTERS['10'].rgb}>
         <SectionHead label="Port Antonio" title="The ecosystem behind the island." accent={CHAPTERS['10'].accent} />
         <div style={{ maxWidth: 880, marginBottom: 32 }}>
           <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>Zungu is anchored on Navy Island, but Port Antonio powers the experience. The town supplies the ecosystem: boats, drivers, hotels, villas, guest houses, restaurants, bars, guides, vendors, food suppliers, production crew, wellness practitioners, artists, and mainland activations.</p>
@@ -1117,10 +1148,14 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9 }}>The stronger Port Antonio is inside the model, the more locally defensible Zungu becomes.</p>
         </div>
       </Section>
+      </ChapterWrap>
+
+      <PhotoBreak src="/photos/port-antonio-aerial.jpeg" quote="The ecosystem that makes everything possible." label="Port Antonio · Portland Parish" />
 
       {/* ═══ CHAPTER 11: INVESTOR POSITIONING ═══ */}
-      <ChapterDivider num="11" eye="Chapter Eleven" title="Investor Positioning." sub="Zungu is a festival, but the opportunity is larger than one event." accent={CHAPTERS['11'].accent} chBg={CHAPTERS['11'].bg} rgb={CHAPTERS['11'].rgb} photo="/photos/princess-island-portantonio.jpg" />
-      <Section id="investor" sectionBg={CHAPTERS['11'].bg} accent={CHAPTERS['11'].accent} rgb={CHAPTERS['11'].rgb} photo="/photos/princess-island-portantonio.jpg">
+      <ChapterWrap bg={CHAPTERS['11'].bg} photo="/photos/blue-lagoon-port-antonio.jpg">
+      <ChapterDivider num="11" eye="Chapter Eleven" title="Investor Positioning." sub="Zungu is a festival, but the opportunity is larger than one event." accent={CHAPTERS['11'].accent} chBg={CHAPTERS['11'].bg} rgb={CHAPTERS['11'].rgb} />
+      <Section id="investor" sectionBg={CHAPTERS['11'].bg} accent={CHAPTERS['11'].accent} rgb={CHAPTERS['11'].rgb}>
         <SectionHead label="Investor Positioning" title="Larger than one event." accent={CHAPTERS['11'].accent} />
         <div style={{ maxWidth: 880, marginBottom: 40 }}>
           <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>Zungu is a festival, but the opportunity is larger than one event. It is a Jamaican-born destination brand built across live experience, hospitality, sponsorship, media, artist commissions, local economic participation, and long-term cultural value.</p>
@@ -1209,17 +1244,17 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         </div>
         <QuoteBlock quote="The festival that executes flawlessly at 5,000 people on a private island in June 2027 has something no amount of money can buy in Year 3: a founding story. You can't retro-fit that. You're either in the room when it starts, or you're not." attr="Investment Thesis · Year 1" />
       </Section>
+      </ChapterWrap>
 
       {/* ═══ REQUEST BRIEFING ═══ */}
+      <ChapterWrap bg={CHAPTERS['cta'].bg} photo="/photos/aerial-island.jpg">
       <section
         ref={sectionRefs.cta}
         id="section-cta"
         className="section section--tall"
-        style={{ backgroundColor: CHAPTERS['cta'].bg, position: 'relative', overflow: 'hidden' }}
+        style={{ position: 'relative' }}
       >
         <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse 80% 55% at 5% 95%, rgba(${CHAPTERS['cta'].rgb},.08) 0%, transparent 55%)`, pointerEvents: 'none', zIndex: 0 }} />
-        <img src="/photos/aerial-island.jpg" alt="" aria-hidden style={{ position: 'absolute', top: 0, right: 0, width: '50%', height: '100%', objectFit: 'cover', objectPosition: 'center', opacity: 0.32, filter: 'saturate(0.5) brightness(0.4)', pointerEvents: 'none', zIndex: 0 }} />
-        <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to right, ${CHAPTERS['cta'].bg} 28%, ${CHAPTERS['cta'].bg}ee 50%, transparent 82%)`, pointerEvents: 'none', zIndex: 0 }} />
         <div style={{ position: 'relative', zIndex: 1 }}>
           <SectionHead label="Request Briefing" title="Submit your enquiry." goldLine="We respond by role." accent={CHAPTERS['cta'].accent} />
           <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 580, marginBottom: 16 }}>Zungu briefing access is reviewed by role. Submit your enquiry and the team will respond with the appropriate investor, production, supplier, strategic partner, or press material.</p>
@@ -1227,6 +1262,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
           <a href="mailto:partnership@zungufestival.com?subject=Briefing%20Request" style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase', fontWeight: 700, padding: '16px 36px', background: gold, color: bg, border: 'none', cursor: 'pointer', display: 'inline-block', textDecoration: 'none' }}>Request Briefing →</a>
         </div>
       </section>
+      </ChapterWrap>
 
       {/* ── Footer ── */}
       <footer style={{ width: '100%', boxSizing: 'border-box', backgroundColor: bg, borderTop: `1px solid ${dim}`, padding: '40px 8vw', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
