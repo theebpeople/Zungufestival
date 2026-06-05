@@ -29,7 +29,7 @@ export async function GET(
     const data = await verify(token);
     const role = data?.role ?? 'investor';
 
-    return NextResponse.redirect(new URL(`/deck?invite=${token}&role=${role}`, base));
+    return NextResponse.redirect(new URL(`/sign-in?invite=${token}&role=${role}`, base));
   } catch {
     return NextResponse.redirect(new URL('/?expired=1', base));
   }
