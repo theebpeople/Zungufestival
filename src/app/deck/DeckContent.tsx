@@ -295,6 +295,44 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
   // Mobile nav
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Briefing modal
+  const [briefingOpen, setBriefingOpen] = useState(false);
+  const [briefingRole, setBriefingRole] = useState<string | null>(null);
+  const [briefingName, setBriefingName] = useState('');
+  const [briefingOrg, setBriefingOrg] = useState('');
+  const [briefingEmail, setBriefingEmail] = useState('');
+  const [briefingMessage, setBriefingMessage] = useState('');
+  const [briefingSubmitted, setBriefingSubmitted] = useState(false);
+  const [briefingSubmitting, setBriefingSubmitting] = useState(false);
+
+  function openBriefing() {
+    setBriefingRole(null);
+    setBriefingName(''); setBriefingOrg(''); setBriefingEmail(''); setBriefingMessage('');
+    setBriefingSubmitted(false);
+    setBriefingOpen(true);
+  }
+
+  async function submitBriefing(e: React.FormEvent) {
+    e.preventDefault();
+    setBriefingSubmitting(true);
+    try {
+      await fetch('/api/partner-interest', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ role: briefingRole, name: briefingName, org: briefingOrg, email: briefingEmail, message: briefingMessage }),
+      });
+    } catch {}
+    setBriefingSubmitting(false);
+    setBriefingSubmitted(true);
+  }
+
+  const BRIEFING_ROLES = [
+    { role: 'investor',  label: 'Investor',            sub: 'Fund deck · financials · equity structure', photo: '/photos/port-antonio-aerial.jpeg' },
+    { role: 'partner',   label: 'Production Partner',   sub: 'Staging · logistics · production brief',   photo: '/photos/navy-island-wide.png' },
+    { role: 'supplier',  label: 'Supplier',             sub: 'Equipment · procurement · vendor brief',    photo: '/photos/navy-island-satellite.png' },
+    { role: 'press',     label: 'Press',                sub: 'Media kit · assets · press contacts',       photo: '/photos/port-antonio.jpg' },
+  ];
+
   // Desktop dropdown nav
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
@@ -345,10 +383,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   }
 
-  function scrollToCta() {
-    const el = document.getElementById('section-cta');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  }
+  function scrollToCta() { openBriefing(); }
 
   const navLinkStyle: React.CSSProperties = {
     fontSize: 9,
@@ -372,6 +407,104 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
 
   return (
     <div className="page" style={{ position: 'relative', width: '100%', overflowX: 'hidden' }}>
+
+      {/* ── Briefing modal ──────────────────────────────────────────────── */}
+      {briefingOpen && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 980, backgroundColor: 'rgba(6,8,8,0.97)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', overflowY: 'auto', fontFamily: "'Space Mono', monospace" }}>
+          {/* Dim aerial bg */}
+          <div style={{ position: 'fixed', inset: 0, backgroundImage: "url('/photos/navy-island-aerial-hq.png')", backgroundSize: 'cover', backgroundPosition: 'center 40%', filter: 'saturate(0.5) brightness(0.1)', pointerEvents: 'none', zIndex: 0 }} />
+          <div style={{ position: 'fixed', inset: 0, background: 'radial-gradient(ellipse at 50% 35%, rgba(6,8,8,0.5) 0%, rgba(6,8,8,0.92) 70%)', pointerEvents: 'none', zIndex: 0 }} />
+
+          {/* Close */}
+          <button onClick={() => setBriefingOpen(false)} style={{ position: 'fixed', top: 24, right: 28, zIndex: 10, background: 'none', border: 'none', cursor: 'pointer', fontFamily: "'Space Mono', monospace", fontSize: 20, color: muted, lineHeight: 1 }}>✕</button>
+
+          <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '5rem 2rem 4rem', minHeight: '100vh' }}>
+
+            {/* Branding */}
+            <img src="/zungu-z-mark.png" alt="Zungu" style={{ width: 60, marginBottom: '1.5rem', filter: 'drop-shadow(0 0 24px rgba(200,168,75,0.45))' }} />
+            <p style={{ fontSize: 8, letterSpacing: '0.55em', color: gold, textTransform: 'uppercase', fontWeight: 700, marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <span style={{ display: 'inline-block', width: 20, height: 1, background: gold }} />
+              Navy Island · Port Antonio · Jamaica · June 17–23, 2027
+              <span style={{ display: 'inline-block', width: 20, height: 1, background: gold }} />
+            </p>
+            <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 'clamp(2.5rem, 8vw, 5.5rem)', fontWeight: 900, letterSpacing: '-0.04em', color: cream, lineHeight: 1, textTransform: 'uppercase', marginBottom: '0.15rem' }}>REQUEST</h2>
+            <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 'clamp(2.5rem, 8vw, 5.5rem)', fontWeight: 900, letterSpacing: '-0.04em', color: gold, lineHeight: 1, textTransform: 'uppercase', marginBottom: '2.5rem' }}>BRIEFING</h2>
+
+            {briefingSubmitted ? (
+              <div style={{ textAlign: 'center', maxWidth: 480 }}>
+                <div style={{ width: 48, height: 1, background: gold, margin: '0 auto 2rem' }} />
+                <p style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 'clamp(1.1rem, 4vw, 1.8rem)', fontWeight: 900, color: cream, marginBottom: '1rem' }}>Enquiry received.</p>
+                <p style={{ fontSize: 13, color: muted, lineHeight: 1.9, marginBottom: '2rem' }}>The team will respond with the appropriate material for your access level. The next step is a conversation, not a commitment.</p>
+                <button onClick={() => setBriefingOpen(false)} style={{ fontFamily: "'Space Mono', monospace", fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', fontWeight: 700, padding: '14px 32px', background: gold, color: bg, border: 'none', cursor: 'pointer' }}>Back to Deck ←</button>
+              </div>
+            ) : !briefingRole ? (
+              <>
+                <p style={{ fontSize: 9, letterSpacing: '0.4em', color: muted, textTransform: 'uppercase', marginBottom: '2rem' }}>Select your access type</p>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 1, maxWidth: 900, width: '100%' }}>
+                  {BRIEFING_ROLES.map(({ role, label, sub, photo }) => (
+                    <button key={role} onClick={() => setBriefingRole(role)} style={{ position: 'relative', overflow: 'hidden', height: 200, border: '1px solid rgba(200,168,75,0.12)', background: 'none', cursor: 'pointer', textAlign: 'left', padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', transition: 'border-color 0.2s' }}
+                      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(200,168,75,0.5)'; }}
+                      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(200,168,75,0.12)'; }}
+                    >
+                      <div style={{ position: 'absolute', inset: 0, backgroundImage: `url('${photo}')`, backgroundSize: 'cover', backgroundPosition: 'center', filter: 'saturate(0.6) brightness(0.22)', transition: 'filter 0.3s' }} />
+                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(6,8,8,0.96) 0%, rgba(6,8,8,0.3) 100%)' }} />
+                      <div style={{ position: 'relative', zIndex: 2 }}>
+                        <p style={{ fontSize: 8, letterSpacing: '0.3em', color: muted, textTransform: 'uppercase', marginBottom: '0.5rem' }}>{sub}</p>
+                        <p style={{ fontFamily: "'Unbounded', sans-serif", fontSize: '0.8rem', fontWeight: 900, textTransform: 'uppercase', color: cream }}>{label}</p>
+                        <p style={{ fontSize: 9, letterSpacing: '0.3em', color: gold, textTransform: 'uppercase', fontWeight: 700, marginTop: '0.75rem' }}>Select →</p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div style={{ width: '100%', maxWidth: 520 }}>
+                <button onClick={() => setBriefingRole(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 9, letterSpacing: '0.3em', color: muted, textTransform: 'uppercase', fontWeight: 700, marginBottom: '2rem', display: 'block' }}>← Change access type</button>
+                <p style={{ fontSize: 9, letterSpacing: '0.4em', color: gold, textTransform: 'uppercase', fontWeight: 700, marginBottom: '2rem' }}>
+                  // {BRIEFING_ROLES.find(r => r.role === briefingRole)?.label.toUpperCase()} BRIEFING REQUEST
+                </p>
+                <form onSubmit={submitBriefing} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                  {[
+                    { label: 'Name', value: briefingName, set: setBriefingName, placeholder: 'Your full name', required: true },
+                    { label: 'Organisation', value: briefingOrg, set: setBriefingOrg, placeholder: 'Company / fund / publication', required: false },
+                    { label: 'Email', value: briefingEmail, set: setBriefingEmail, placeholder: 'your@email.com', required: true },
+                  ].map(({ label, value, set, placeholder, required }) => (
+                    <div key={label}>
+                      <label style={{ display: 'block', fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: gold, fontWeight: 700, marginBottom: 8 }}>{label}</label>
+                      <input
+                        type={label === 'Email' ? 'email' : 'text'}
+                        value={value}
+                        onChange={e => set(e.target.value)}
+                        placeholder={placeholder}
+                        required={required}
+                        style={{ width: '100%', boxSizing: 'border-box', background: 'rgba(18,24,20,0.97)', border: '1px solid rgba(200,168,75,0.35)', color: cream, fontFamily: "'Space Mono', monospace", fontSize: 14, padding: '12px 14px', outline: 'none' }}
+                        onFocus={e => { e.target.style.borderColor = gold; }}
+                        onBlur={e => { e.target.style.borderColor = 'rgba(200,168,75,0.35)'; }}
+                      />
+                    </div>
+                  ))}
+                  <div>
+                    <label style={{ display: 'block', fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: gold, fontWeight: 700, marginBottom: 8 }}>Message</label>
+                    <textarea
+                      value={briefingMessage}
+                      onChange={e => setBriefingMessage(e.target.value)}
+                      placeholder="Tell us about your interest..."
+                      rows={4}
+                      style={{ width: '100%', boxSizing: 'border-box', background: 'rgba(18,24,20,0.97)', border: '1px solid rgba(200,168,75,0.35)', color: cream, fontFamily: "'Space Mono', monospace", fontSize: 14, padding: '12px 14px', outline: 'none', resize: 'vertical' }}
+                      onFocus={e => { e.target.style.borderColor = gold; }}
+                      onBlur={e => { e.target.style.borderColor = 'rgba(200,168,75,0.35)'; }}
+                    />
+                  </div>
+                  <button type="submit" disabled={briefingSubmitting} style={{ fontFamily: "'Space Mono', monospace", fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', fontWeight: 700, padding: '16px 32px', background: briefingSubmitting ? 'rgba(200,168,75,0.5)' : gold, color: bg, border: 'none', cursor: briefingSubmitting ? 'default' : 'pointer', marginTop: 8 }}>
+                    {briefingSubmitting ? 'Sending...' : 'Submit Enquiry →'}
+                  </button>
+                  <p style={{ fontSize: 9, letterSpacing: '0.15em', color: muted, textAlign: 'center', marginTop: 8 }}>Access by invitation only · <a href="mailto:partnership@zungufestival.com" style={{ color: gold, textDecoration: 'none' }}>partnership@zungufestival.com</a></p>
+                </form>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* ── Scroll progress bar ──────────────────────────────────────────── */}
       <motion.div
@@ -1274,20 +1407,25 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
         </Section>
       </ChapterWrap>
 
-      {/* ═══ REQUEST BRIEFING ═══ */}
+      {/* ═══ REQUEST BRIEFING — modal trigger section ═══ */}
       <ChapterWrap bg={CHAPTERS['cta'].bg} photo="/photos/aerial-island.jpg">
         <section
           ref={sectionRefs.cta}
           id="section-cta"
           className="section section--tall"
-          style={{ position: 'relative', background: 'transparent' }}
+          style={{ position: 'relative', background: 'transparent', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}
         >
-          <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse 80% 55% at 5% 95%, rgba(${CHAPTERS['cta'].rgb},.08) 0%, transparent 55%)`, pointerEvents: 'none', zIndex: 0 }} />
+          <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse 80% 55% at 50% 50%, rgba(${CHAPTERS['cta'].rgb},.1) 0%, transparent 65%)`, pointerEvents: 'none', zIndex: 0 }} />
           <div style={{ position: 'relative', zIndex: 1 }}>
-            <SectionHead label="Request Briefing" title="Submit your enquiry." goldLine="We respond by role." accent={CHAPTERS['cta'].accent} />
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 580, marginBottom: 16 }}>Zungu briefing access is reviewed by role. Submit your enquiry and the team will respond with the appropriate investor, production, supplier, strategic partner, or press material.</p>
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 580, marginBottom: 40 }}>The next step is a conversation, not a commitment.</p>
-            <a href="mailto:partnership@zungufestival.com?subject=Briefing%20Request" style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase', fontWeight: 700, padding: '16px 36px', background: gold, color: bg, border: 'none', cursor: 'pointer', display: 'inline-block', textDecoration: 'none' }}>Request Briefing →</a>
+            <p style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.55em', textTransform: 'uppercase', color: gold, fontWeight: 700, marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}>
+              <span style={{ display: 'inline-block', width: 24, height: 1, background: gold }} />
+              Access by invitation only
+              <span style={{ display: 'inline-block', width: 24, height: 1, background: gold }} />
+            </p>
+            <h2 style={{ fontFamily: fontDisplay, fontSize: 'clamp(2.8rem, 8vw, 6rem)', fontWeight: 900, letterSpacing: '-0.04em', color: cream, lineHeight: 0.95, textTransform: 'uppercase', marginBottom: '0.2rem' }}>REQUEST</h2>
+            <h2 style={{ fontFamily: fontDisplay, fontSize: 'clamp(2.8rem, 8vw, 6rem)', fontWeight: 900, letterSpacing: '-0.04em', color: gold, lineHeight: 0.95, textTransform: 'uppercase', marginBottom: '2rem' }}>BRIEFING</h2>
+            <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.9, maxWidth: 480, marginBottom: '2.5rem' }}>The next step is a conversation, not a commitment.</p>
+            <button onClick={openBriefing} style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', fontWeight: 700, padding: '18px 48px', background: gold, color: bg, border: 'none', cursor: 'pointer' }}>Request Briefing →</button>
           </div>
         </section>
       </ChapterWrap>
