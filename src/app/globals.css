@@ -138,12 +138,20 @@ body::after {
 .deck-chapter-links {
   display: flex;
   align-items: center;
-  gap: clamp(10px, 2vw, 24px);
+  gap: clamp(6px, 1.1vw, 18px);
   flex-wrap: nowrap;
   overflow: hidden;
   flex: 1;
   justify-content: center;
+  min-width: 0;
 }
-@media (max-width: 900px) {
+.deck-chapter-links button {
+  white-space: nowrap;
+  flex-shrink: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width: 1100px) {
   .deck-chapter-links { display: none; }
 }

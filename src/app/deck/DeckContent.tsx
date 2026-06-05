@@ -401,7 +401,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK' }: { navLabel?:
   };
 
   return (
-    <div style={{ backgroundColor: bg, color: cream, fontFamily: fontMono, position: 'relative', width: '100%', minHeight: '100vh' }}>
+    <div style={{ backgroundColor: bg, color: cream, fontFamily: fontMono, position: 'relative', width: '100%', minHeight: '100vh', overflowX: 'hidden' }}>
 
       {/* ── Scroll progress bar ──────────────────────────────────────────── */}
       <motion.div
