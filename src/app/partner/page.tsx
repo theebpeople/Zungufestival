@@ -78,7 +78,7 @@ function PartnerHubInner() {
             {badge}
           </span>
           <button
-            onClick={() => signOut({ redirectUrl: '/' })}
+            onClick={() => signOut({ redirectUrl: `/sign-in?role=${safeRole}` })}
             style={{ fontSize: 10, color: muted, background: 'none', border: 'none', cursor: 'pointer', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 700, fontFamily: "'Space Mono', monospace" }}
           >
             Sign Out

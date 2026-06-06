@@ -144,6 +144,85 @@ function PortalCard({
   );
 }
 
+function RequestAccess() {
+  return (
+    <div
+      style={{
+        minHeight: '100vh',
+        width: '100%',
+        backgroundColor: black,
+        fontFamily: "'Space Mono', monospace",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        padding: '3rem 2rem',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: "url('/photos/NAVY%20ISLAND%20AERIAL.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center 42%',
+          filter: 'saturate(0.6) brightness(0.1)',
+          opacity: 0.9,
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          pointerEvents: 'none',
+          background: 'radial-gradient(ellipse at 50% 40%, rgba(6,8,8,0.5) 0%, rgba(6,8,8,0.92) 75%)',
+        }}
+      />
+
+      <div style={{ position: 'relative', zIndex: 10, maxWidth: 480 }}>
+        <img
+          src="/zungu-z-mark.png"
+          alt="Zungu"
+          style={{ width: 60, height: 'auto', marginBottom: '2rem', display: 'block', margin: '0 auto 2rem', filter: 'drop-shadow(0 0 20px rgba(200,168,75,0.35))' }}
+        />
+        <p style={{ fontSize: 9, letterSpacing: '0.4em', color: gold, textTransform: 'uppercase', fontWeight: 700, marginBottom: '1.5rem' }}>
+          Zungu Festival · 2027
+        </p>
+        <h1
+          style={{
+            fontFamily: "'Unbounded', sans-serif",
+            fontSize: 'clamp(1.4rem, 4vw, 2rem)',
+            fontWeight: 900,
+            color: white,
+            letterSpacing: '-0.02em',
+            textTransform: 'uppercase',
+            lineHeight: 1.1,
+            marginBottom: '1.25rem',
+          }}
+        >
+          Access by<br />invitation only
+        </h1>
+        <p style={{ fontSize: 12, color: muted, lineHeight: 1.8, marginBottom: '2.5rem' }}>
+          This portal is available to invited partners, investors, press, and institutional stakeholders. If you have received an invitation link, please use it to access your portal.
+        </p>
+        <div style={{ width: 40, height: 1, background: 'rgba(200,168,75,0.4)', margin: '0 auto 2rem' }} />
+        <p style={{ fontSize: 9, letterSpacing: '0.2em', color: 'rgba(200,168,75,0.5)', textTransform: 'lowercase' }}>
+          For access requests:{' '}
+          <a
+            href="mailto:partnership@zungufestival.com?subject=Access%20Request"
+            style={{ color: gold, textDecoration: 'none' }}
+          >
+            partnership@zungufestival.com
+          </a>
+        </p>
+      </div>
+    </div>
+  );
+}
+
 function PortalChooser({ onSelect }: { onSelect: (role: string) => void }) {
   return (
     <div
@@ -733,6 +812,9 @@ function SignInContent() {
   );
 
   if (!activeRole) {
+    if (!inviteToken) {
+      return <RequestAccess />;
+    }
     return <PortalChooser onSelect={setSelectedRole} />;
   }
 
