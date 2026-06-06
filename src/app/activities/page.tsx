@@ -465,7 +465,7 @@ export default function ActivitiesPage() {
         </div>
         <div style={{ border: `1px solid rgba(200,168,75,0.2)`, padding: '28px 32px', background: 'rgba(200,168,75,0.02)' }}>
           <p style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, marginBottom: 12 }}>// Travel Partner Opportunity</p>
-          <p style={{ fontFamily: fontMono, fontSize: 13, color: MUTED, lineHeight: 1.9, margin: 0 }}>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.9, margin: 0 }}>
             Zungu&rsquo;s guest journey connects flight arrival, ground transfer, marine logistics, accommodation, and island access into a packageable system. Travel coordination, transport commissions, accommodation partnerships, and concierge fees represent a commercial layer that compounds the per-head yield. Travel partner terms remain subject to confirmed bookings, operator agreements, and logistics finalisation.
           </p>
         </div>
@@ -534,7 +534,7 @@ export default function ActivitiesPage() {
         <div style={{ border: `1px solid rgba(200,168,75,0.25)`, padding: '32px 36px', background: 'rgba(200,168,75,0.03)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 24 }}>
           <div>
             <p style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, marginBottom: 10 }}>// Request Production Brief</p>
-            <p style={{ fontFamily: fontMono, fontSize: 13, color: MUTED, lineHeight: 1.7, maxWidth: 480, margin: 0 }}>
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 480, margin: 0 }}>
               Production partners may request the full Activity Programme Production Brief covering zone build, vendor framework, marine logistics, power and water design, staffing model, risk controls, and execution gates.
             </p>
           </div>

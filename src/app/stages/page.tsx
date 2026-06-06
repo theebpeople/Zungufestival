@@ -750,8 +750,8 @@ export default function StagesPage() {
               ].map(({ tier, count, stageNote, color }) => (
                 <div key={tier} style={{ display: 'grid', gridTemplateColumns: '140px 50px 1fr', gap: 16, padding: '14px 0', borderBottom: '1px solid rgba(242,235,217,0.04)', alignItems: 'start' }}>
                   <span style={{ fontFamily: MONO, fontSize: 13, color: CREAM }}>{tier}</span>
-                  <span style={{ fontFamily: MONO, fontSize: 11, color, paddingTop: 2 }}>{count}</span>
-                  <span style={{ fontFamily: MONO, fontSize: 11, color: 'rgba(242,235,217,0.3)', lineHeight: 1.5 }}>{stageNote}</span>
+                  <span style={{ fontFamily: MONO, fontSize: 13, color, paddingTop: 2 }}>{count}</span>
+                  <span style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.4)', lineHeight: 1.6 }}>{stageNote}</span>
                 </div>
               ))}
             </div>
@@ -762,15 +762,12 @@ export default function StagesPage() {
               <p style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.4)', lineHeight: 1.8, marginBottom: 8 }}>BPM Costa Rica: 80+ artists across multiple stages. SXM Festival: 40+ artists in a similar island format.</p>
               <p style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.4)', lineHeight: 1.8 }}>Zungu Year One targets a tighter, curated lineup — quality and island fit over volume.</p>
             </div>
-            <div style={{ padding: '24px 28px', border: `1px solid rgba(200,168,75,0.1)`, background: 'rgba(200,168,75,0.015)' }}>
-              <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.5)', display: 'block', marginBottom: 12 }}>Final requirements subject to:</span>
+            <div style={{ padding: '24px 28px', border: `1px solid ${BORDER_MID}`, background: 'rgba(200,168,75,0.025)' }}>
+              <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 12 }}>Final requirements subject to:</span>
               {['Confirmed artist bookings', 'Technical rider submission and review', 'Travel and accommodation planning', 'Hospitality and catering scope', 'Security and access management', 'Production partner assessment'].map((item) => (
-                <div key={item} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 8 }}>
-                  <span style={{ color: GOLD, fontSize: 8, paddingTop: 3 }}>—</span>
-                  <span style={{ fontFamily: MONO, fontSize: 12, color: 'rgba(242,235,217,0.35)', lineHeight: 1.6 }}>{item}</span>
-                </div>
+                <div key={item} style={{ fontFamily: MONO, fontSize: 13, lineHeight: 1.7, color: 'rgba(242,235,217,0.4)', paddingLeft: 14, borderLeft: '2px solid rgba(200,168,75,0.2)', marginBottom: 12 }}>{item}</div>
               ))}
-              <p style={{ fontFamily: MONO, fontSize: 11, color: 'rgba(200,168,75,0.4)', lineHeight: 1.7, marginTop: 14, marginBottom: 0, letterSpacing: '0.02em' }}>Full artist rider coordination, DJ equipment baseline, BOH planning, and changeover logistics belong in the Production Brief.</p>
+              <p style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.4)', lineHeight: 1.7, marginTop: 14, marginBottom: 0 }}>Full artist rider coordination, DJ equipment baseline, BOH planning, and changeover logistics belong in the Production Brief.</p>
             </div>
           </div>
         </div>
@@ -807,17 +804,14 @@ export default function StagesPage() {
               'Cost centres, risk controls, and execution gates',
               'Emergency and safety planning per stage',
             ].map((item) => (
-              <div key={item} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-                <span style={{ color: GOLD, flexShrink: 0, fontSize: 9, paddingTop: 2 }}>—</span>
-                <span style={{ fontFamily: MONO, fontSize: 11, color: MUTED, lineHeight: 1.7 }}>{item}</span>
-              </div>
+              <div key={item} style={{ fontFamily: MONO, fontSize: 13, lineHeight: 1.7, color: 'rgba(242,235,217,0.4)', paddingLeft: 14, borderLeft: '2px solid rgba(200,168,75,0.2)', marginBottom: 12 }}>{item}</div>
             ))}
           </div>
         </div>
         <div style={{ border: `1px solid rgba(200,168,75,0.25)`, padding: '32px 36px', background: 'rgba(200,168,75,0.03)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 24 }}>
           <div>
             <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700, marginBottom: 10 }}>// Request Stage Production Brief</p>
-            <p style={{ fontFamily: MONO, fontSize: 13, color: MUTED, lineHeight: 1.7, maxWidth: 480, margin: 0 }}>
+            <p style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.4)', lineHeight: 1.8, maxWidth: 480, margin: 0 }}>
               Production partners may request the full Stage Production Brief covering build specification, technical scope, artist rider planning, marine logistics, power design, and execution gates.
             </p>
           </div>
