@@ -19,16 +19,22 @@ const rust  = '#C45A2A';
 
 // ── Chapter tints (bg + accent per chapter) ───────────────────────────────────
 const CHAPTERS: Record<string, { bg: string; accent: string; rgb: string }> = {
-  '01': { bg: '#060600', accent: '#C8A84B', rgb: '200,168,75'  }, // gold
-  '02': { bg: '#060410', accent: '#9B5FC0', rgb: '155,95,192'  }, // purple
-  '03': { bg: '#030e06', accent: '#3AAF7A', rgb: '58,175,122'  }, // teal
-  '04': { bg: '#060400', accent: '#D4722A', rgb: '212,114,42'  }, // rust
-  '05': { bg: '#040810', accent: '#4A8FBD', rgb: '74,143,189'  }, // blue
-  '06': { bg: '#060410', accent: '#9B5FC0', rgb: '155,95,192'  }, // purple
-  '07': { bg: '#030e06', accent: '#3AAF7A', rgb: '58,175,122'  }, // teal
-  '08': { bg: '#060400', accent: '#D4722A', rgb: '212,114,42'  }, // rust
-  '09': { bg: '#040810', accent: '#4A8FBD', rgb: '74,143,189'  }, // blue
-  '10': { bg: '#060600', accent: '#C8A84B', rgb: '200,168,75'  }, // gold
+  '01': { bg: '#060600', accent: '#C8A84B', rgb: '200,168,75'  }, // gold   — brand
+  '02': { bg: '#060410', accent: '#9B5FC0', rgb: '155,95,192'  }, // purple — meaning
+  '03': { bg: '#030e06', accent: '#3AAF7A', rgb: '58,175,122'  }, // teal   — portantonio
+  '04': { bg: '#060400', accent: '#D4722A', rgb: '212,114,42'  }, // rust   — island
+  '05': { bg: '#040810', accent: '#4A8FBD', rgb: '74,143,189'  }, // blue   — jamaica
+  '06': { bg: '#060410', accent: '#9B5FC0', rgb: '155,95,192'  }, // purple — stages
+  '07': { bg: '#030e06', accent: '#3AAF7A', rgb: '58,175,122'  }, // teal   — sound
+  '08': { bg: '#060400', accent: '#D4722A', rgb: '212,114,42'  }, // rust   — experience
+  '09': { bg: '#040810', accent: '#4A8FBD', rgb: '74,143,189'  }, // blue   — programming
+  '10': { bg: '#060600', accent: '#C8A84B', rgb: '200,168,75'  }, // gold   — opportunity (investor)
+  '11': { bg: '#060410', accent: '#9B5FC0', rgb: '155,95,192'  }, // purple — accommodation (investor)
+  '12': { bg: '#030e06', accent: '#3AAF7A', rgb: '58,175,122'  }, // teal   — commercial (investor)
+  '13': { bg: '#060400', accent: '#D4722A', rgb: '212,114,42'  }, // rust   — financial (investor)
+  '14': { bg: '#040810', accent: '#4A8FBD', rgb: '74,143,189'  }, // blue   — risk (investor)
+  '15': { bg: '#060600', accent: '#C8A84B', rgb: '200,168,75'  }, // gold   — roadmap (investor)
+  '16': { bg: '#060410', accent: '#9B5FC0', rgb: '155,95,192'  }, // purple — investor positioning
   'cta':{ bg: '#060600', accent: '#C8A84B', rgb: '200,168,75'  }, // gold
 };
 
@@ -36,11 +42,21 @@ const fontDisplay = "'Unbounded', sans-serif";
 const fontMono = "'Space Mono', monospace";
 
 // ── Section IDs ───────────────────────────────────────────────────────────────
-const SECTIONS = ['brand', 'meaning', 'portantonio', 'island', 'jamaica', 'stages', 'sound', 'experience', 'programming', 'investor', 'cta'] as const;
+const SECTIONS = [
+  'brand', 'meaning', 'portantonio', 'island', 'jamaica',
+  'stages', 'sound', 'experience', 'programming',
+  'opportunity', 'accommodation', 'commercial', 'financial', 'risk', 'roadmap',
+  'investor', 'cta',
+] as const;
 type SectionId = typeof SECTIONS[number];
 
 const ROLE_SECTIONS: Record<string, readonly SectionId[]> = {
-  investor: ['brand', 'meaning', 'portantonio', 'island', 'jamaica', 'stages', 'sound', 'experience', 'programming', 'investor', 'cta'],
+  investor: [
+    'brand', 'meaning', 'portantonio', 'island', 'jamaica',
+    'stages', 'sound', 'experience', 'programming',
+    'opportunity', 'accommodation', 'commercial', 'financial', 'risk', 'roadmap',
+    'investor', 'cta',
+  ],
   partner:  ['brand', 'meaning', 'portantonio', 'island', 'stages', 'sound', 'experience', 'programming', 'cta'],
   press:    ['brand', 'meaning', 'portantonio', 'island', 'jamaica', 'stages', 'sound', 'experience', 'programming', 'cta'],
 };
@@ -293,6 +309,12 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
     sound: useRef<HTMLElement>(null),
     experience: useRef<HTMLElement>(null),
     programming: useRef<HTMLElement>(null),
+    opportunity: useRef<HTMLElement>(null),
+    accommodation: useRef<HTMLElement>(null),
+    commercial: useRef<HTMLElement>(null),
+    financial: useRef<HTMLElement>(null),
+    risk: useRef<HTMLElement>(null),
+    roadmap: useRef<HTMLElement>(null),
     investor: useRef<HTMLElement>(null),
     cta: useRef<HTMLElement>(null),
   };
@@ -308,6 +330,12 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
     sound: useRef<HTMLDivElement>(null),
     experience: useRef<HTMLDivElement>(null),
     programming: useRef<HTMLDivElement>(null),
+    opportunity: useRef<HTMLDivElement>(null),
+    accommodation: useRef<HTMLDivElement>(null),
+    commercial: useRef<HTMLDivElement>(null),
+    financial: useRef<HTMLDivElement>(null),
+    risk: useRef<HTMLDivElement>(null),
+    roadmap: useRef<HTMLDivElement>(null),
     investor: useRef<HTMLDivElement>(null),
     cta: useRef<HTMLDivElement>(null),
   };
@@ -365,8 +393,17 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
   const rawNavGroups: { label: string; items: [string, SectionId][] }[] = [
     { label: 'Brand', items: [['What Is Zungu?', 'brand'], ['What Does Zungu Mean?', 'meaning']] },
     { label: 'The Island', items: [['Port Antonio', 'portantonio'], ['The Island', 'island'], ['Why Jamaica?', 'jamaica']] },
-    { label: 'Stages', items: [['The Stages', 'stages'], ['The Sound', 'sound'], ['The Experience', 'experience'], ['Programming', 'programming']] },
-    { label: 'Investors', items: [['Investor Positioning', 'investor'], ['Request Briefing', 'cta']] },
+    { label: 'The Festival', items: [['The Stages', 'stages'], ['The Sound', 'sound'], ['The Experience', 'experience'], ['Programming', 'programming']] },
+    { label: 'Investment', items: [
+      ['The Opportunity', 'opportunity'],
+      ['Where You Stay', 'accommodation'],
+      ['Commercial Model', 'commercial'],
+      ['Year One Financials', 'financial'],
+      ['Risk & Execution', 'risk'],
+      ['Roadmap', 'roadmap'],
+      ['Investor Positioning', 'investor'],
+      ['Request Briefing', 'cta'],
+    ]},
   ];
   const navGroups = rawNavGroups
     .map(group => ({ ...group, items: group.items.filter(([, id]) => visibleSections.includes(id)) }))
@@ -431,6 +468,12 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
     ['The Sound', 'sound'],
     ['The Experience', 'experience'],
     ['Programming', 'programming'],
+    ['The Opportunity', 'opportunity'],
+    ['Where You Stay', 'accommodation'],
+    ['Commercial Model', 'commercial'],
+    ['Year One Financials', 'financial'],
+    ['Risk & Execution', 'risk'],
+    ['Roadmap', 'roadmap'],
     ['Investor Positioning', 'investor'],
   ];
 
@@ -1274,6 +1317,36 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
             ))}
           </div>
         </Section>
+        {/* ── Year One Booking Model — investor only ─────────────────────── */}
+        {visibleSections.includes('opportunity') && (
+          <Section sectionBg={CHAPTERS['07'].bg} accent={CHAPTERS['07'].accent} rgb={CHAPTERS['07'].rgb} style={{ background: 'transparent' }}>
+            <SectionHead label="Year One Booking Model" title="Fewer, stronger cultural signals." accent={CHAPTERS['07'].accent} />
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Year One booking model: 30–45 artists and selectors across the festival week. Zungu&apos;s Year One approach is built around quality over quantity: a small number of major international anchors, a curated regional and Jamaican support layer, and local selectors across sunrise, sunset, pop-up, and radio formats. Every booking is intended to serve a purpose within the broader experience rather than simply increase lineup volume. This makes Zungu feel disciplined, not small.</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 2, marginBottom: 40 }}>
+              {[
+                { tier: 'Global Anchor', count: '1', purpose: 'Expensive category signal. Establishes international credibility and gives the market one unmistakable reason to pay attention.' },
+                { tier: 'Major Support Names', count: '2–4', purpose: 'Credibility layer. Builds the mainstage and sunset/sunrise programme without overloading the budget with too many major fees.' },
+                { tier: 'Curated Depth', count: '10–20', purpose: 'Depth. Gives the programme texture across Afro-house, tribal house, tech, underground house, jungle, drum and bass, Jamaican electronic, and dub-influenced club music.' },
+                { tier: 'Local / Selector Layer', count: 'Open', purpose: 'Atmosphere and cultural grounding. Keeps the island alive beyond the headline moments and roots the festival in Jamaica.' },
+              ].map(({ tier, count, purpose }) => (
+                <div key={tier} style={{ border: `1px solid rgba(58,175,122,0.12)`, padding: '26px 22px', background: 'rgba(3,14,6,0.7)' }}>
+                  <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, marginBottom: 6 }}>{count} artist{count === '1' ? '' : 's'}</div>
+                  <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(13px, 1.5vw, 16px)', fontWeight: 700, color: cream, marginBottom: 10, lineHeight: 1.2 }}>{tier}</p>
+                  <p style={{ fontFamily: fontMono, fontSize: 12, color: muted, lineHeight: 1.75 }}>{purpose}</p>
+                </div>
+              ))}
+            </div>
+            <div style={{ border: `1px solid rgba(58,175,122,0.15)`, padding: '28px 30px', marginBottom: 36, background: 'rgba(3,14,6,0.5)' }}>
+              <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, marginBottom: 12 }}>Benchmark</div>
+              <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 16 }}>Comparable destination electronic festivals often operate with larger multi-showcase lineups. BPM Costa Rica has presented editions in the 80+ artist range, while SXM and similar regional destination festivals often sit in the 40–80+ artist range depending on the year, venue spread, and programming model.</p>
+              <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 20px)', fontWeight: 700, color: CHAPTERS['07'].accent }}>Zungu Year One should not attempt to match that scale immediately. A disciplined 30–45 artist/selector model is more appropriate for a 5,000-person private-island launch.</p>
+            </div>
+            <div style={{ border: `1px solid rgba(58,175,122,0.2)`, padding: '28px 30px', background: 'rgba(58,175,122,0.04)' }}>
+              <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, marginBottom: 10 }}>Investor Read</div>
+              <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.85 }}>A smaller artist count does not weaken Zungu. It protects the budget, sharpens the curation, reduces scheduling complexity, and allows the festival to spend more deliberately on the few names that carry real perception value. The island, stage architecture, pop-ups, hospitality, media, and Jamaican cultural thesis do the rest of the work.</p>
+            </div>
+          </Section>
+        )}
       </ChapterWrap>
 
       <PhotoBreak src="/photos/navy-island-aerial.jpg" quote="The sound is global. The root is Jamaican." label="The Sound · Navy Island" />
@@ -1342,92 +1415,317 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
 
       <PhotoBreak src="/photos/pellew-island.jpg" quote="The island is not passive. The island performs." label="Programming · Navy Island" />
 
-      {/* ═══ CHAPTER 10: INVESTOR POSITIONING — investor only ═══ */}
-      {visibleSections.includes('investor') && <ChapterWrap bg={CHAPTERS['10'].bg} photo="/photos/navy-island-satellite.png">
-        <ChapterDivider num="10" eye="Chapter Ten" title="Investor Positioning." sub="Zungu is a festival, but the opportunity is larger than one event." accent={CHAPTERS['10'].accent} chBg={CHAPTERS['10'].bg} rgb={CHAPTERS['10'].rgb} />
-        <Section id="investor" sectionBg={CHAPTERS['10'].bg} accent={CHAPTERS['10'].accent} rgb={CHAPTERS['10'].rgb}>
-          <SectionHead label="Investor Positioning" title="Larger than one event." accent={CHAPTERS['10'].accent} />
+      {/* ═══ CHAPTER 10: THE OPPORTUNITY — investor only ═══ */}
+      {visibleSections.includes('opportunity') && (<>
+        <ChapterWrap bg={CHAPTERS['10'].bg} photo="/photos/navy-island-aerial.jpg">
+          <ChapterDivider num="10" eye="Chapter Ten" title="The Opportunity." sub="A category that doesn't exist yet. A site that can't be replicated." accent={CHAPTERS['10'].accent} chBg={CHAPTERS['10'].bg} rgb={CHAPTERS['10'].rgb} />
+          <Section id="opportunity" sectionBg={CHAPTERS['10'].bg} accent={CHAPTERS['10'].accent} rgb={CHAPTERS['10'].rgb} style={{ background: 'transparent' }}>
+            <SectionHead label="The Gap" title="No festival owns this." accent={CHAPTERS['10'].accent} />
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>The opportunity is not simply to create another festival. The opportunity is to establish Jamaica&apos;s first globally positioned private-island electronic music destination. The world already moves to Jamaican rhythm. That influence has travelled across the world. But Jamaica has not yet owned a premium electronic music destination at international scale. Zungu is built around that gap.</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 2, marginBottom: 40 }}>
+              {[
+                { title: 'Category Gap', body: 'Jamaica has global music authority, but no flagship electronic music destination festival positioned for the international premium market.' },
+                { title: 'Location Gap', body: 'The Caribbean has destination power, but few electronic festivals with a private-island setting, cultural specificity, and a controlled guest experience.' },
+                { title: 'Audience Gap', body: 'Global festival travellers are looking for experiences that feel rare, immersive, beautiful, and discovered before they become obvious.' },
+                { title: 'Brand Gap', body: 'Zungu can become the Jamaican-born electronic festival brand that connects music, island hospitality, media, tourism, and long-term cultural value.' },
+              ].map(({ title, body }) => (
+                <div key={title} style={{ border: `1px solid rgba(200,168,75,0.12)`, padding: '28px 24px', background: 'rgba(6,6,0,0.7)' }}>
+                  <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(13px, 1.5vw, 16px)', fontWeight: 700, color: CHAPTERS['10'].accent, marginBottom: 12, lineHeight: 1.3 }}>{title}</p>
+                  <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.75 }}>{body}</p>
+                </div>
+              ))}
+            </div>
+            <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 30px)', fontWeight: 700, color: CHAPTERS['10'].accent }}>A private-island electronic music festival rooted in Jamaica. The category no one else can claim in the same way.</p>
+          </Section>
+        </ChapterWrap>
+        <PhotoBreak src="/photos/navy-island-port-antonio.jpeg" quote="The gap is obvious once you see it." label="Navy Island · Jamaica" />
+      </>)}
+
+      {/* ═══ CHAPTER 11: WHERE YOU STAY — investor only ═══ */}
+      {visibleSections.includes('accommodation') && (<>
+        <ChapterWrap bg={CHAPTERS['11'].bg} photo="/photos/navy-island-wide.png">
+          <ChapterDivider num="11" eye="Chapter Eleven" title="Where You Stay." sub="On-island accommodation. A layered stay strategy." accent={CHAPTERS['11'].accent} chBg={CHAPTERS['11'].bg} rgb={CHAPTERS['11'].rgb} />
+          <Section id="accommodation" sectionBg={CHAPTERS['11'].bg} accent={CHAPTERS['11'].accent} rgb={CHAPTERS['11'].rgb} style={{ background: 'transparent' }}>
+            <SectionHead label="On-Island Accommodation" title="The island is the hotel." accent={CHAPTERS['11'].accent} />
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Zungu is not a festival where thousands of guests arrive and disappear into an already limited hotel market. Port Antonio is not a mass-hotel destination. That is why accommodation is part of the model. Zungu uses a layered stay strategy: Luxe Glamping Village, Ready Camp, Crew Garden, Island Camp, curated mainland stays, and regional day access.</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 2, marginBottom: 40 }}>
+              {[
+                { tier: 'Luxe Glamping Village', sub: 'Premium on-island accommodation', body: 'The highest-tier on-island stay. Premium finish, full service, dedicated support, and priority access across the island.' },
+                { tier: 'Ready Camp', sub: 'Pre-pitched camping', body: 'Pre-pitched and ready on arrival. Essential comfort for guests who want the island without the logistics.' },
+                { tier: 'Crew Garden', sub: 'Reserved group camping', body: 'Reserved sections for organised groups, crew, and partner allocations.' },
+                { tier: 'Island Camp', sub: 'Controlled bring-your-own camping', body: 'Controlled bring-your-own camping within designated zones. The grassroots layer of the Zungu island experience.' },
+              ].map(({ tier, sub, body }) => (
+                <div key={tier} style={{ border: `1px solid rgba(155,95,192,0.12)`, padding: '26px 22px', background: 'rgba(6,4,16,0.7)' }}>
+                  <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase', color: CHAPTERS['11'].accent, marginBottom: 8 }}>{sub}</div>
+                  <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 20px)', fontWeight: 700, color: cream, marginBottom: 12, lineHeight: 1.2 }}>{tier}</p>
+                  <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.75 }}>{body}</p>
+                </div>
+              ))}
+            </div>
+            <div style={{ display: 'flex', border: `1px solid rgba(155,95,192,0.12)`, marginBottom: 32, flexWrap: 'wrap' }}>
+              {[['5,000', 'Year One Target'], ['1,800–2,500', 'On-Island Overnight'], ['1,000–1,500', 'Mainland Stays'], ['1,000–1,700', 'Day / Regional']].map(([num, lbl], i, arr) => (
+                <div key={lbl} style={{ flex: 1, minWidth: 100, padding: '24px 16px', borderRight: i < arr.length - 1 ? `1px solid rgba(155,95,192,0.08)` : 'none', textAlign: 'center' }}>
+                  <span style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 2vw, 24px)', fontWeight: 700, color: CHAPTERS['11'].accent, display: 'block', lineHeight: 1 }}>{num}</span>
+                  <span style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase', color: muted, display: 'block', marginTop: 6 }}>{lbl}</span>
+                </div>
+              ))}
+            </div>
+            {/* ── Travel + Access Model ───────────────────────────── */}
+            <SectionHead label="Travel + Access Model" title="The journey is part of the product." accent={CHAPTERS['11'].accent} />
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Zungu is not only an island accommodation model. It is a destination travel model. For international guests, the experience does not begin at the stage. It begins the moment they land in Jamaica. The guest journey should be designed from airport arrival to Portland transfer, Port Antonio check-in, marine movement to Navy Island, on-island or mainland accommodation, festival week movement, and final departure. The stronger the travel model, the stronger the guest experience becomes.</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 2, marginBottom: 40 }}>
+              {[
+                { step: '01', title: 'International Arrival', body: 'Most guests arrive through Jamaica\'s major airports before moving east toward Portland. The travel strategy must support overseas guests, diaspora visitors, regional travellers, artists, media, VIPs, and self-managed guests.' },
+                { step: '02', title: 'Airport Transfer', body: 'Guests supported through managed coach transfers, private car service, VIP SUVs, hotel shuttles, travel partner pickups, and group transportation packages. The goal is to reduce arrival friction.' },
+                { step: '03', title: 'Portland / Port Antonio', body: 'Port Antonio is the mainland hospitality and processing base: check-in, wristbands, accommodation confirmation, luggage tags, shuttle access, marine transfer boarding, and hotel, villa, or island-stay support.' },
+                { step: '04', title: 'Marine Transfer to Navy Island', body: 'Access controlled through scheduled ferry movement, private boat windows, VIP and artist transfers, luggage handling, marine safety, and approved operators. The crossing is the threshold into the Zungu world.' },
+                { step: '05', title: 'Departure + Return', body: 'The final guest journey: checkout, luggage movement, return marine transfer, Port Antonio dispatch, airport return transfers, and post-event travel support. The departure experience should feel as designed as the arrival.' },
+              ].map(({ step, title, body }) => (
+                <div key={step} style={{ border: `1px solid rgba(155,95,192,0.12)`, padding: '26px 22px', background: 'rgba(6,4,16,0.6)' }}>
+                  <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: CHAPTERS['11'].accent, marginBottom: 8 }}>{step}</div>
+                  <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(13px, 1.5vw, 16px)', fontWeight: 700, color: cream, marginBottom: 10, lineHeight: 1.2 }}>{title}</p>
+                  <p style={{ fontFamily: fontMono, fontSize: 12, color: muted, lineHeight: 1.75 }}>{body}</p>
+                </div>
+              ))}
+            </div>
+            <SectionHead label="Package Strategy" title="Five layers. One destination product." accent={CHAPTERS['11'].accent} />
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 2, marginBottom: 40 }}>
+              {[
+                { tier: 'Festival Access Only', note: 'For Jamaican, regional, and self-managed guests who handle their own travel and stay.' },
+                { tier: 'Festival + Transfer', note: 'Airport-to-Portland transport, Port Antonio transfer support, and scheduled marine access.' },
+                { tier: 'Festival + Stay', note: 'On-island accommodation, curated mainland hotels, villas, guesthouses, or selected partner stays.' },
+                { tier: 'Festival + Stay + Transfer', note: 'The preferred destination package model for international guests. Clearer guest journey, stronger order value, better arrival control.' },
+                { tier: 'VIP / The Thirty Concierge', note: 'High-touch travel coordination, private airport transfers, premium accommodation, private boat windows, hosted hospitality, and dedicated guest support.' },
+              ].map(({ tier, note }) => (
+                <div key={tier} style={{ border: `1px solid rgba(155,95,192,0.1)`, padding: '22px 20px', background: 'rgba(6,4,16,0.5)' }}>
+                  <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(12px, 1.4vw, 15px)', fontWeight: 700, color: cream, marginBottom: 8, lineHeight: 1.2 }}>{tier}</p>
+                  <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, lineHeight: 1.7 }}>{note}</p>
+                </div>
+              ))}
+            </div>
+            <div style={{ border: `1px solid rgba(155,95,192,0.1)`, padding: '20px 24px', marginBottom: 32, background: 'rgba(6,4,16,0.4)' }}>
+              <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: CHAPTERS['11'].accent, marginBottom: 8 }}>Travel Partner Opportunity</div>
+              <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.8 }}>Travel partner packages may be introduced through airline, hotel, villa, transport, and destination partners. Future editions may explore flight-inclusive packages, hotel-inclusive packages, villa packages, diaspora travel groups, concierge itineraries, and tourism-board aligned travel bundles. Do not state that flights or hotel blocks are included unless confirmed through a signed partner agreement.</p>
+            </div>
+            <SectionHead label="Commercial Value" title="The travel model creates value beyond logistics." accent={CHAPTERS['11'].accent} />
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 2, marginBottom: 36 }}>
+              {[
+                'Higher average order value',
+                'Better guest-flow control and reduced arrival chaos',
+                'Transfer revenue',
+                'Hotel and villa commissions',
+                'Airport shuttle partnerships',
+                'Airline and tourism partnerships',
+                'VIP concierge upsells',
+                'Longer stays in Port Antonio',
+                'Stronger pre- and post-festival spend',
+                'Better guest data and communication',
+                'More reliable departure management',
+              ].map(item => (
+                <div key={item} style={{ border: `1px solid rgba(155,95,192,0.08)`, padding: '14px 16px', background: 'rgba(6,4,16,0.4)' }}>
+                  <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, lineHeight: 1.6 }}>{item}</p>
+                </div>
+              ))}
+            </div>
+            <div style={{ border: `1px solid rgba(155,95,192,0.25)`, padding: '28px 30px', marginBottom: 40, background: 'rgba(155,95,192,0.04)' }}>
+              <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: CHAPTERS['11'].accent, marginBottom: 10 }}>Investor Read</div>
+              <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 16 }}>A private-island festival cannot rely on guests figuring everything out themselves. The travel layer is part of the product. The more Zungu controls the journey, the more it can improve guest experience, protect operations, increase package value, and route more economic activity through Portland.</p>
+              <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 20px)', fontWeight: 700, color: CHAPTERS['11'].accent }}>The island is the world. The journey is how guests enter it.</p>
+            </div>
+            <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, letterSpacing: '0.1em', textAlign: 'center', padding: '14px', border: `1px solid rgba(155,95,192,0.1)`, maxWidth: 400 }}>Stay at Zungu — coming soon</p>
+          </Section>
+        </ChapterWrap>
+        <PhotoBreak src="/photos/blue-lagoon-port-antonio.jpg" quote="The island doesn't sleep." label="Navy Island · June 2027" />
+      </>)}
+
+      {/* ═══ CHAPTER 12: THE COMMERCIAL MODEL — investor only ═══ */}
+      {visibleSections.includes('commercial') && (<>
+        <ChapterWrap bg={CHAPTERS['12'].bg} photo="/photos/navy-island-satellite.png">
+          <ChapterDivider num="12" eye="Chapter Twelve" title="The Commercial Model." sub="Nine revenue lines. One island. One week." accent={CHAPTERS['12'].accent} chBg={CHAPTERS['12'].bg} rgb={CHAPTERS['12'].rgb} />
+          <Section id="commercial" sectionBg={CHAPTERS['12'].bg} accent={CHAPTERS['12'].accent} rgb={CHAPTERS['12'].rgb} style={{ background: 'transparent' }}>
+            <SectionHead label="Ticket Architecture" title="Four tiers. One week." accent={CHAPTERS['12'].accent} />
+            <div style={{ display: 'flex', border: `1px solid rgba(58,175,122,0.12)`, marginBottom: 48, flexWrap: 'wrap' }}>
+              {[['GA', 'US$600', 'Festival Access · 3,500 tickets'], ['VIP / Navy', 'US$1,350', '900 tickets'], ['Glamping / Obsidian', 'US$3,500', '570 packages'], ['The Thirty', 'US$12,500', '30 guests']].map(([tier, price, vol], i, arr) => (
+                <div key={tier} style={{ flex: 1, minWidth: 120, padding: '28px 16px', borderRight: i < arr.length - 1 ? `1px solid rgba(58,175,122,0.08)` : 'none', textAlign: 'center' }}>
+                  <span style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 2vw, 22px)', fontWeight: 700, color: CHAPTERS['12'].accent, display: 'block', lineHeight: 1 }}>{tier}</span>
+                  <span style={{ fontFamily: fontMono, fontSize: 16, color: cream, display: 'block', marginTop: 8 }}>{price}</span>
+                  <span style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.15em', textTransform: 'uppercase', color: muted, display: 'block', marginTop: 4 }}>{vol}</span>
+                </div>
+              ))}
+            </div>
+            <SectionHead label="Revenue Stack" title="Nine revenue lines." accent={CHAPTERS['12'].accent} />
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 2 }}>
+              {[
+                { line: 'Access', note: 'GA, VIP, Glamping, The Thirty, partner allocation' },
+                { line: 'Accommodation', note: 'Glamping, camping tiers, mainland packages where not bundled' },
+                { line: 'Bars', note: 'Main, stage, VIP, rum, cocktail, bottle service, branded specials' },
+                { line: 'Food', note: 'Vendor commissions, premium dining, breakfast, late-night, partner dinners' },
+                { line: 'Retail', note: 'The Zungu Shoppe, merch, essentials, artist collabs, limited objects' },
+                { line: 'Activities', note: 'Wellness, guided walks, workshops, water activity, mainland excursions' },
+                { line: 'Sponsorship', note: 'Stage, bar, coffee, rum, telecoms, travel, sustainability, wellness, media' },
+                { line: 'Media + IP', note: 'Zungu Radio, The Signal, recorded sets, interviews, content, catalog' },
+                { line: 'Vendor / Operator Fees', note: 'Stall rentals, commissions, minimum guarantees, category exclusivity' },
+              ].map(({ line, note }) => (
+                <div key={line} style={{ border: `1px solid rgba(58,175,122,0.08)`, padding: '20px 18px', background: 'rgba(3,14,6,0.6)' }}>
+                  <p style={{ fontFamily: fontDisplay, fontSize: 14, fontWeight: 700, color: cream, marginBottom: 6 }}>{line}</p>
+                  <p style={{ fontFamily: fontMono, fontSize: 11, color: muted }}>{note}</p>
+                </div>
+              ))}
+            </div>
+            <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(16px, 2.2vw, 26px)', fontWeight: 700, color: CHAPTERS['12'].accent, marginTop: 40 }}>The first edition is not only a ticketed event. It is the launch of a destination festival economy.</p>
+          </Section>
+        </ChapterWrap>
+        <PhotoBreak src="/photos/port-antonio-aerial.jpeg" quote="Nine revenue lines. One island. One week." label="Commercial Model · Zungu Festival" />
+      </>)}
+
+      {/* ═══ CHAPTER 13: YEAR ONE FINANCIALS — investor only ═══ */}
+      {visibleSections.includes('financial') && (<>
+        <ChapterWrap bg={CHAPTERS['13'].bg} photo="/photos/port-antonio.jpg">
+          <ChapterDivider num="13" eye="Chapter Thirteen" title="Year One Financials." sub="The base case, the upside lines, and the discipline." accent={CHAPTERS['13'].accent} chBg={CHAPTERS['13'].bg} rgb={CHAPTERS['13'].rgb} />
+          <Section id="financial" sectionBg={CHAPTERS['13'].bg} accent={CHAPTERS['13'].accent} rgb={CHAPTERS['13'].rgb} style={{ background: 'transparent' }}>
+            <SectionHead label="Year One Revenue Model" title="The case at 5,000 guests." accent={CHAPTERS['13'].accent} />
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Year One is modelled around 5,000 guests, controlled capacity, premium yield, and multiple revenue lines. The working access model suggests potential gross access revenue of approximately US$5.685M before bars, food, retail, sponsorship, vendor fees, activities, media, accommodation add-ons, and hospitality upsides.</p>
+            <div style={{ overflowX: 'auto', marginBottom: 40 }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: fontMono, fontSize: 12, minWidth: 500, maxWidth: 800 }}>
+                <tbody>
+                  {[
+                    ['GA / Festival Access', '3,500 × US$600', 'US$2,100,000'],
+                    ['VIP / Navy', '900 × US$1,350', 'US$1,215,000'],
+                    ['Glamping / Obsidian', '570 × US$3,500', 'US$1,995,000'],
+                    ['The Thirty', '30 × US$12,500', 'US$375,000'],
+                  ].map(([label, detail, value]) => (
+                    <tr key={label} style={{ borderBottom: `1px solid ${dim}` }}>
+                      <td style={{ padding: '12px 16px', color: cream }}>{label}</td>
+                      <td style={{ padding: '12px 16px', color: muted, fontSize: 10 }}>{detail}</td>
+                      <td style={{ padding: '12px 16px', color: gold, fontWeight: 700, textAlign: 'right' }}>{value}</td>
+                    </tr>
+                  ))}
+                  <tr style={{ borderTop: `1px solid ${gold}` }}>
+                    <td colSpan={2} style={{ padding: '14px 16px', color: cream, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', fontSize: 10 }}>INDICATIVE GROSS ACCESS REVENUE</td>
+                    <td style={{ padding: '14px 16px', color: gold, fontWeight: 700, fontSize: 18, textAlign: 'right' }}>US$5,685,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <SectionHead label="Additional Revenue Lines" title="Beyond access." accent={CHAPTERS['13'].accent} />
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 2, marginBottom: 40 }}>
+              {['F&B + Bars', 'Sponsorship', 'Retail', 'Vendor / Operator Fees', 'Activities', 'Accommodation Add-Ons', 'Media + IP', 'Partner Dinners / Hospitality', 'Mainland Package Commissions'].map(line => (
+                <div key={line} style={{ border: `1px solid ${dim}`, padding: '16px 18px', background: 'rgba(6,4,0,0.5)' }}>
+                  <p style={{ fontFamily: fontMono, fontSize: 12, color: muted, margin: 0 }}>{line} — <span style={{ color: CHAPTERS['13'].accent }}>TBD</span></p>
+                </div>
+              ))}
+            </div>
+            <SectionHead label="Financial Discipline" title="Four gates. Non-negotiable." accent={CHAPTERS['13'].accent} />
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2, marginBottom: 36 }}>
+              {[
+                { title: 'Seed Capital Floor', sub: 'Before ticket sales open', body: 'Ticket sales should not open until minimum capital requirements, insurance path, production budget, legal structure, and site pathway are confirmed.' },
+                { title: '70% Presale Trigger', sub: 'Planning gate', body: 'Full production commitment should not proceed below the agreed presale threshold. Hard go/no-go. Protects every party in the structure.' },
+                { title: 'Artist Deposit Control', sub: 'After insurance is bound only', body: 'Artist deposits should only be released after insurance, production agreements, legal terms, and financing gates are in place. No speculative bookings for optics.' },
+                { title: '15% Contingency', sub: 'Ring-fenced from day one', body: 'A dedicated contingency ring-fenced from the start. Island event risk premium. Not released without production coordinator approval.' },
+              ].map(({ title, sub, body }) => (
+                <div key={title} style={{ border: `1px solid ${dim}`, padding: '34px 30px' }}>
+                  <div style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.5vw, 18px)', fontWeight: 700, color: cream, lineHeight: 1.2, marginBottom: 6 }}>{title}</div>
+                  <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: muted, marginBottom: 12 }}>{sub}</div>
+                  <p style={{ fontFamily: fontMono, fontSize: 12, color: muted, lineHeight: 1.75 }}>{body}</p>
+                </div>
+              ))}
+            </div>
+            <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(16px, 2.2vw, 24px)', fontWeight: 700, color: CHAPTERS['13'].accent }}>The access revenue gives Zungu a credible base case. The additional revenue lines create upside. The discipline gates protect capital.</p>
+          </Section>
+        </ChapterWrap>
+      </>)}
+
+      {/* ═══ CHAPTER 14: RISK & EXECUTION — investor only ═══ */}
+      {visibleSections.includes('risk') && (<>
+        <ChapterWrap bg={CHAPTERS['14'].bg} photo="/photos/navy-island-wide.png">
+          <ChapterDivider num="14" eye="Chapter Fourteen" title="Risk & Execution." sub="Ambitious, but not naive." accent={CHAPTERS['14'].accent} chBg={CHAPTERS['14'].bg} rgb={CHAPTERS['14'].rgb} />
+          <Section id="risk" sectionBg={CHAPTERS['14'].bg} accent={CHAPTERS['14'].accent} rgb={CHAPTERS['14'].rgb} style={{ background: 'transparent' }}>
+            <SectionHead label="Risk Matrix" title="Known risks. Planned mitigations." accent={CHAPTERS['14'].accent} />
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Zungu is ambitious, but not naive. A private-island festival carries a different risk profile from a traditional land-based event. The model must be built around expert partners, phased commitments, permits, marine logistics, safety planning, environmental protocol, insurance, and hard financial gates.</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 2 }}>
+              {[
+                { risk: 'Marine Logistics', body: 'Ferry movement, private boat access, dock capacity, equipment barging, night transfers, weather holds, emergency marine access, Port Authority coordination, and Coast Guard alignment.' },
+                { risk: 'Weather', body: 'June window post-peak hurricane season. Historical Jamaica weather data reviewed. Covered stages, drainage infrastructure. Weather clause in all contracts. Insurance covers weather event.' },
+                { risk: 'Medical + Safety', body: 'On-island medical post, first-aid points, AEDs, ambulance boat, mainland medical coordination, guest welfare, hydration, heat response, and emergency evacuation.' },
+                { risk: 'Security', body: 'Access control, guest screening, wristband checks, crowd movement, glamping access, backstage zones, artist security, marine access, and restricted areas.' },
+                { risk: 'Power', body: 'Temporary production power, generator redundancy, fuel logistics, distribution, weatherproofing, emergency lighting, and backup systems.' },
+                { risk: 'Water + Sanitation', body: 'Potable water, toilets, showers, handwash stations, greywater, vendor water, bathhouses, waste holding, cleaning crews, and removal from the island.' },
+                { risk: 'Environmental', body: 'Reef protection, tree protection, no-build zones, controlled pathways, waste removal, lighting impact, marine activity controls, and post-event restoration.' },
+                { risk: 'Production', body: 'Stage build, sound direction, lighting, video, rigging, labour, crew access, vendor build, accommodation build, testing, show operations, and demobilisation.' },
+                { risk: 'Financial', body: 'Presale gates, insurance, deposits, contingency, phased commitments, change-order control, and go/no-go decision points.' },
+              ].map(({ risk, body }) => (
+                <div key={risk} style={{ border: `1px solid rgba(74,143,189,0.1)`, padding: '26px 22px', background: 'rgba(4,8,16,0.7)' }}>
+                  <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(13px, 1.5vw, 16px)', fontWeight: 700, color: CHAPTERS['14'].accent, marginBottom: 10 }}>{risk}</p>
+                  <p style={{ fontFamily: fontMono, fontSize: 12, color: muted, lineHeight: 1.75 }}>{body}</p>
+                </div>
+              ))}
+            </div>
+          </Section>
+        </ChapterWrap>
+        <PhotoBreak src="https://res.cloudinary.com/elektricbangaz/image/upload/v1773236490/NAVY_ISLAND_FROM_THE_SEA_twhi0w.png" quote="The risks are real. The mitigations are built in." label="Risk · Execution · Navy Island" />
+      </>)}
+
+      {/* ═══ CHAPTER 15: THE ROADMAP — investor only ═══ */}
+      {visibleSections.includes('roadmap') && (<>
+        <ChapterWrap bg={CHAPTERS['15'].bg} photo="/photos/princess-island-portantonio.jpg">
+          <ChapterDivider num="15" eye="Chapter Fifteen" title="The Roadmap." sub="Year One is the proof of concept. The platform is the opportunity." accent={CHAPTERS['15'].accent} chBg={CHAPTERS['15'].bg} rgb={CHAPTERS['15'].rgb} />
+          <Section id="roadmap" sectionBg={CHAPTERS['15'].bg} accent={CHAPTERS['15'].accent} rgb={CHAPTERS['15'].rgb} style={{ background: 'transparent' }}>
+            <SectionHead label="Four-Year Arc" title="Boutique to global." accent={CHAPTERS['15'].accent} />
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 2, marginBottom: 48 }}>
+              {[
+                { year: '2025 — Seed', body: 'Site strategy, brand architecture, investor development, partner outreach, early production scoping, and concept validation.' },
+                { year: '2026 — Build', body: 'Permits, site survey, production partners, marine logistics, sponsor commitments, artist holds, accommodation design, ticketing infrastructure, and market preparation.' },
+                { year: '2027 — Launch', body: 'Capital close, production build, festival execution, media capture, guest reporting, partner reporting, and post-event review.' },
+                { year: '2028 — Expansion', body: 'Year Two optimisation, repeat audience, partner renewals, media/IP monetisation, capacity refinement, travel packages, and regional expansion.' },
+              ].map(({ year, body }) => (
+                <div key={year} style={{ border: `1px solid rgba(200,168,75,0.12)`, padding: '28px 24px', background: 'rgba(6,6,0,0.7)' }}>
+                  <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 20px)', fontWeight: 700, color: CHAPTERS['15'].accent, marginBottom: 14, lineHeight: 1.1 }}>{year}</p>
+                  <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.75 }}>{body}</p>
+                </div>
+              ))}
+            </div>
+            <SectionHead label="Platform Value" title="Beyond the festival." accent={CHAPTERS['15'].accent} />
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 2 }}>
+              {[
+                { title: 'Repeat Audience', note: 'A successful Year One creates urgency for Year Two.' },
+                { title: 'Sponsorship Renewals', note: 'Founding partners gain early association with the brand before it scales.' },
+                { title: 'Media Library', note: 'Zungu Radio, The Signal, recorded sets, interviews, photography, recap films become reusable assets.' },
+                { title: 'Commissioned Music', note: 'Original collaborations between Jamaican producers and international artists create cultural and IP value.' },
+                { title: 'Travel Packages', note: 'Accommodation, hospitality, excursions, mainland activations, and return travel build a stronger destination product.' },
+                { title: 'Merchandise + Retail', note: 'The Zungu Shoppe, limited objects, artist collaborations, local goods, and essentials expand the brand beyond the event.' },
+                { title: 'Regional Expansion', note: 'If Year One proves the model, Zungu can explore future editions, affiliated events, media formats, and regional partnerships.' },
+              ].map(({ title, note }) => (
+                <div key={title} style={{ border: `1px solid rgba(200,168,75,0.08)`, padding: '20px 18px', background: 'rgba(6,6,0,0.5)' }}>
+                  <p style={{ fontFamily: fontDisplay, fontSize: 14, fontWeight: 700, color: cream, marginBottom: 6 }}>{title}</p>
+                  <p style={{ fontFamily: fontMono, fontSize: 11, color: muted }}>{note}</p>
+                </div>
+              ))}
+            </div>
+            <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 30px)', fontWeight: 700, color: CHAPTERS['15'].accent, marginTop: 40 }}>Year One creates the founding story. The platform grows from there.</p>
+          </Section>
+        </ChapterWrap>
+      </>)}
+
+      {/* ═══ CHAPTER 16: INVESTOR POSITIONING — investor only ═══ */}
+      {visibleSections.includes('investor') && <ChapterWrap bg={CHAPTERS['16'].bg} photo="/photos/navy-island-satellite.png">
+        <ChapterDivider num="16" eye="Chapter Sixteen" title="Investor Positioning." sub="Zungu is a festival, but the opportunity is larger than one event." accent={CHAPTERS['16'].accent} chBg={CHAPTERS['16'].bg} rgb={CHAPTERS['16'].rgb} />
+        <Section id="investor" sectionBg={CHAPTERS['16'].bg} accent={CHAPTERS['16'].accent} rgb={CHAPTERS['16'].rgb} style={{ background: 'transparent' }}>
+          <SectionHead label="Investor Positioning" title="Larger than one event." accent={CHAPTERS['16'].accent} />
           <div style={{ maxWidth: 880, marginBottom: 40 }}>
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>Zungu is a festival, but the opportunity is larger than one event. It is a Jamaican-born destination brand built across live experience, hospitality, sponsorship, media, artist commissions, local economic participation, and long-term cultural value.</p>
-            <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 32px)', fontWeight: 700, color: CHAPTERS['10'].accent, lineHeight: 1.3 }}>The first edition creates the founding story. The platform grows from there.</p>
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>We are not pitching a dream. We are building a Jamaican-born destination festival brand with a controlled-capacity private-island launch, premium pricing, multiple revenue lines, local economic participation, and long-term platform potential.</p>
+            <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 32px)', fontWeight: 700, color: CHAPTERS['16'].accent, lineHeight: 1.3 }}>The first edition creates the founding story. The platform grows from there.</p>
           </div>
-          <SectionHead label="Year 1 Revenue · 5,000 Capacity" title="The case at 5,000 tickets." accent={CHAPTERS['10'].accent} />
-          <div style={{ overflowX: 'auto', marginBottom: 40 }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: fontMono, fontSize: 12, minWidth: 500, maxWidth: 800 }}>
-              <tbody>
-                {[
-                  ['GA Tickets', '3,200 × $400 avg', '$1,280,000'],
-                  ['VIP Tickets', '1,200 × $700 avg', '$840,000'],
-                  ['Glamping Tier', '600 × $1,500 avg', '$900,000'],
-                  ['Sponsorship & Partners', '3–4 cultural brand partners', '$450,000'],
-                  ['Food & Bar Revenue', '$200 per head × 5,000', '$1,000,000'],
-                  ['Commissioned IP & Merchandise', 'Year 1 catalog + limited edition', '$120,000'],
-                ].map(([label, detail, value]) => (
-                  <tr key={label} style={{ borderBottom: `1px solid ${dim}` }}>
-                    <td style={{ padding: '12px 16px', color: cream }}>{label}</td>
-                    <td style={{ padding: '12px 16px', color: muted, fontSize: 10 }}>{detail}</td>
-                    <td style={{ padding: '12px 16px', color: gold, fontWeight: 700, textAlign: 'right' }}>{value}</td>
-                  </tr>
-                ))}
-                <tr style={{ borderTop: `1px solid ${gold}` }}>
-                  <td colSpan={2} style={{ padding: '14px 16px', color: cream, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', fontSize: 10 }}>TOTAL REVENUE · Conservative scenario</td>
-                  <td style={{ padding: '14px 16px', color: gold, fontWeight: 700, fontSize: 18, textAlign: 'right' }}>$4,590,000</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <SectionHead label="Year 1 Cost Structure" title="What it costs to do this properly." accent={CHAPTERS['10'].accent} />
-          <div style={{ overflowX: 'auto', marginBottom: 32 }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: fontMono, fontSize: 12, minWidth: 500, maxWidth: 800 }}>
-              <tbody>
-                {[
-                  ['Artist Fees', 'All acts across 7 days', '$1,000,000'],
-                  ['Production (4 companies)', 'Starlight, Mainevent, Yes Production, Phase Three', '$700,000'],
-                  ['Marine Transport', 'Ferry operators, barge schedule', '$180,000'],
-                  ['Island Lease (7 days)', '~1M JMD/day × 7 days', '$44,000'],
-                  ['Glamping Build', 'Pods, power, sanitation, access paths', '$220,000'],
-                  ['Insurance & Legal', 'Island-specific specialist coverage', '$95,000'],
-                  ['Medical Infrastructure', 'Field hospital + helipad', '$45,000'],
-                  ['Marketing & Press', 'Cultural story first', '$180,000'],
-                  ['Operations & Staffing', 'Crew, security, volunteers', '$145,000'],
-                  ['Food Village Infrastructure', 'Stalls, power, Portland Parish vendors', '$80,000'],
-                  ['Contingency (15%)', 'Island event risk premium', '$266,000'],
-                ].map(([label, detail, value]) => (
-                  <tr key={label} style={{ borderBottom: `1px solid ${dim}` }}>
-                    <td style={{ padding: '12px 16px', color: cream }}>{label}</td>
-                    <td style={{ padding: '12px 16px', color: muted, fontSize: 10 }}>{detail}</td>
-                    <td style={{ padding: '12px 16px', color: muted, fontWeight: 700, textAlign: 'right' }}>{value}</td>
-                  </tr>
-                ))}
-                <tr style={{ borderTop: `1px solid ${dim}` }}>
-                  <td colSpan={2} style={{ padding: '12px 16px', color: cream, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', fontSize: 10 }}>TOTAL COSTS · Base case</td>
-                  <td style={{ padding: '12px 16px', color: cream, fontWeight: 700, fontSize: 16, textAlign: 'right' }}>$2,955,000</td>
-                </tr>
-                <tr style={{ borderTop: `2px solid ${gold}` }}>
-                  <td colSpan={2} style={{ padding: '14px 16px', color: cream, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', fontSize: 10 }}>YEAR 1 SURPLUS · Before IP revenue</td>
-                  <td style={{ padding: '14px 16px', color: teal, fontWeight: 700, fontSize: 20, textAlign: 'right' }}>$1,635,000</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div style={{ display: 'flex', border: `1px solid rgba(200,168,75,0.12)`, margin: '28px 0' }}>
-            {[['$4.59M', 'Revenue'], ['$2.96M', 'Costs'], ['$920', 'Blended avg'], ['65%', 'Breakeven occupancy']].map(([num, lbl], i, arr) => (
-              <div key={lbl} style={{ flex: 1, padding: '28px 22px', borderRight: i < arr.length - 1 ? `1px solid rgba(200,168,75,0.08)` : 'none', textAlign: 'center' }}>
-                <span style={{ fontFamily: fontDisplay, fontSize: 'clamp(22px, 3.5vw, 42px)', fontWeight: 700, color: gold, display: 'block', lineHeight: 1 }}>{num}</span>
-                <span style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.25em', textTransform: 'uppercase', color: muted, display: 'block', marginTop: 6 }}>{lbl}</span>
-              </div>
-            ))}
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2, marginBottom: 36 }}>
+          <SectionHead label="Partner Tracks" title="Who this is for." accent={CHAPTERS['16'].accent} />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 2, marginBottom: 40 }}>
             {[
-              { title: '$518K Seed Capital Floor', sub: 'Before ticket sales open', body: 'Artist deposits (40%), infrastructure deposits (25%), insurance and legal. Cannot open ticket sales without this confirmed.' },
-              { title: '70% Presale Trigger', sub: 'Hard go/no-go — Feb 5, 2027', body: 'Full cost commitment does not proceed below 70% presale. Non-negotiable. Protects every party in the structure.' },
-              { title: '40% Artist Deposits', sub: 'After insurance is bound only', body: 'Artist contracts activate only after insurance is secured and production contracts are signed. No speculative bookings for optics.' },
-              { title: '15% Contingency', sub: 'Ring-fenced from day one', body: 'Island event risk premium. Built into the model from the start. Not released without production coordinator approval.' },
-            ].map(({ title, sub, body }) => (
-              <div key={title} style={{ border: `1px solid ${dim}`, padding: '34px 30px' }}>
-                <div style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.5vw, 18px)', fontWeight: 700, color: cream, lineHeight: 1.2, marginBottom: 6 }}>{title}</div>
-                <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: muted, marginBottom: 12 }}>{sub}</div>
+              { track: 'Investors', body: 'Capital participation, strategic introductions, governance alignment, financial discipline, and long-term platform development.' },
+              { track: 'Production Partners', body: 'Stage, lighting, sound, marine logistics, safety, power, build, crew, sanitation, and technical execution.' },
+              { track: 'Strategic Partners', body: 'Tourism, beverage, telecoms, travel, hospitality, luxury, media, sustainability, and infrastructure alignment.' },
+              { track: 'Press', body: 'Founder briefing, approved language, image access, destination positioning, cultural context, and future announcement support.' },
+              { track: 'Local / Government / Tourism', body: 'Alignment across marine access, hospitality, local employment, vendor participation, environmental protocol, safety planning, guest movement, and destination positioning.' },
+            ].map(({ track, body }) => (
+              <div key={track} style={{ border: `1px solid ${dim}`, padding: '30px 26px' }}>
+                <div style={{ fontFamily: fontDisplay, fontSize: 'clamp(13px, 1.5vw, 16px)', fontWeight: 700, color: cream, lineHeight: 1.2, marginBottom: 12 }}>{track}</div>
                 <p style={{ fontFamily: fontMono, fontSize: 12, color: muted, lineHeight: 1.75 }}>{body}</p>
               </div>
             ))}

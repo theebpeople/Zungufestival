@@ -278,9 +278,9 @@ export default function ActivitiesPage() {
           <p style={{ fontFamily: fontMono, fontSize: 'clamp(11px, 1.3vw, 14px)', color: MUTED, lineHeight: 1.9, maxWidth: 600, marginBottom: '2rem' }}>
             Zungu is not only nighttime music. By day, Navy Island moves through food, water, wellness, art, culture, media, retail, forest routes, and controlled discovery. Nine zones turn the island into a living system before the stages open — creating guest flow, revenue, sponsor value, local operator participation, and a fuller reason to stay.
           </p>
-          <div style={{ display: 'flex', gap: '2.5rem', flexWrap: 'wrap' }}>
-            {[['9', 'Island Zones'], ['2,500–5,000', 'Planning Range'], ['Jun 17–23', 'Target Window · 2027']].map(([val, label]) => (
-              <div key={label}>
+          <div style={{ display: 'flex', width: '100%', borderTop: '1px solid rgba(200,168,75,0.15)', paddingTop: '1.5rem' }}>
+            {[['9', 'Island Zones'], ['2,500–5,000', 'Planning Range'], ['Jun 17–23', 'Target Window · 2027']].map(([val, label], i, arr) => (
+              <div key={label} style={{ flex: 1, paddingRight: '2rem', borderRight: i < arr.length - 1 ? '1px solid rgba(200,168,75,0.12)' : 'none', marginRight: i < arr.length - 1 ? '2rem' : 0 }}>
                 <span style={{ fontFamily: fontDisplay, fontSize: 'clamp(1.2rem, 3vw, 2.2rem)', fontWeight: 900, color: GOLD, display: 'block', lineHeight: 1 }}>{val}</span>
                 <span style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase', color: MUTED, display: 'block', marginTop: 4 }}>{label}</span>
               </div>
