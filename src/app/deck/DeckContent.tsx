@@ -1317,6 +1317,36 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
             ))}
           </div>
         </Section>
+        {/* ── Year One Booking Model — investor only ─────────────────────── */}
+        {visibleSections.includes('opportunity') && (
+          <Section sectionBg={CHAPTERS['07'].bg} accent={CHAPTERS['07'].accent} rgb={CHAPTERS['07'].rgb} style={{ background: 'transparent' }}>
+            <SectionHead label="Year One Booking Model" title="Fewer, stronger cultural signals." accent={CHAPTERS['07'].accent} />
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Year One booking model: 30–45 artists and selectors across the festival week. Zungu&apos;s Year One approach is built around quality over quantity: a small number of major international anchors, a curated regional and Jamaican support layer, and local selectors across sunrise, sunset, pop-up, and radio formats. Every booking is intended to serve a purpose within the broader experience rather than simply increase lineup volume. This makes Zungu feel disciplined, not small.</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 2, marginBottom: 40 }}>
+              {[
+                { tier: 'Global Anchor', count: '1', purpose: 'Expensive category signal. Establishes international credibility and gives the market one unmistakable reason to pay attention.' },
+                { tier: 'Major Support Names', count: '2–4', purpose: 'Credibility layer. Builds the mainstage and sunset/sunrise programme without overloading the budget with too many major fees.' },
+                { tier: 'Curated Depth', count: '10–20', purpose: 'Depth. Gives the programme texture across Afro-house, tribal house, tech, underground house, jungle, drum and bass, Jamaican electronic, and dub-influenced club music.' },
+                { tier: 'Local / Selector Layer', count: 'Open', purpose: 'Atmosphere and cultural grounding. Keeps the island alive beyond the headline moments and roots the festival in Jamaica.' },
+              ].map(({ tier, count, purpose }) => (
+                <div key={tier} style={{ border: `1px solid rgba(58,175,122,0.12)`, padding: '26px 22px', background: 'rgba(3,14,6,0.7)' }}>
+                  <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, marginBottom: 6 }}>{count} artist{count === '1' ? '' : 's'}</div>
+                  <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(13px, 1.5vw, 16px)', fontWeight: 700, color: cream, marginBottom: 10, lineHeight: 1.2 }}>{tier}</p>
+                  <p style={{ fontFamily: fontMono, fontSize: 12, color: muted, lineHeight: 1.75 }}>{purpose}</p>
+                </div>
+              ))}
+            </div>
+            <div style={{ border: `1px solid rgba(58,175,122,0.15)`, padding: '28px 30px', marginBottom: 36, background: 'rgba(3,14,6,0.5)' }}>
+              <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, marginBottom: 12 }}>Benchmark</div>
+              <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 16 }}>Comparable destination electronic festivals often operate with larger multi-showcase lineups. BPM Costa Rica has presented editions in the 80+ artist range, while SXM and similar regional destination festivals often sit in the 40–80+ artist range depending on the year, venue spread, and programming model.</p>
+              <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 20px)', fontWeight: 700, color: CHAPTERS['07'].accent }}>Zungu Year One should not attempt to match that scale immediately. A disciplined 30–45 artist/selector model is more appropriate for a 5,000-person private-island launch.</p>
+            </div>
+            <div style={{ border: `1px solid rgba(58,175,122,0.2)`, padding: '28px 30px', background: 'rgba(58,175,122,0.04)' }}>
+              <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, marginBottom: 10 }}>Investor Read</div>
+              <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.85 }}>A smaller artist count does not weaken Zungu. It protects the budget, sharpens the curation, reduces scheduling complexity, and allows the festival to spend more deliberately on the few names that carry real perception value. The island, stage architecture, pop-ups, hospitality, media, and Jamaican cultural thesis do the rest of the work.</p>
+            </div>
+          </Section>
+        )}
       </ChapterWrap>
 
       <PhotoBreak src="/photos/navy-island-aerial.jpg" quote="The sound is global. The root is Jamaican." label="The Sound · Navy Island" />
