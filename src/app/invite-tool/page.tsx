@@ -11,6 +11,7 @@ const ROLES = [
   { value: 'investor', label: 'Investor' },
   { value: 'partner', label: 'Production Partners' },
   { value: 'press', label: 'Press' },
+  { value: 'stakeholder', label: 'Stakeholders' },
 ];
 
 export default function InviteTool() {

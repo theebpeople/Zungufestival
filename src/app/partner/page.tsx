@@ -10,7 +10,7 @@ const black = '#04080A';
 const white = '#F7F3EC';
 const muted = '#6B6355';
 
-type Role = 'investor' | 'partner' | 'press';
+type Role = 'investor' | 'partner' | 'press' | 'stakeholder';
 
 const ROLE_LINKS: Record<Role, { label: string; sub: string; href: string; accent?: string }[]> = {
   investor: [
@@ -27,12 +27,18 @@ const ROLE_LINKS: Record<Role, { label: string; sub: string; href: string; accen
     { label: 'Stage Architecture', sub: '3 stages · Navy Island layout · festival experience', href: '/stages?role=press', accent: rust },
     { label: 'Activity Programme', sub: 'Forest · water · wellness · cultural tours', href: '/activities?role=press' },
   ],
+  stakeholder: [
+    { label: 'Stakeholder Brief', sub: 'Festival overview · Port Antonio benefit · site-use context', href: '/stakeholder' },
+    { label: 'Stage Architecture', sub: '3 stages · Navy Island layout · site use overview', href: '/stages?role=stakeholder', accent: rust },
+    { label: 'Activity Programme', sub: 'Island zones · local operator model · sustainability', href: '/activities?role=stakeholder' },
+  ],
 };
 
 const ROLE_BADGE: Record<Role, string> = {
   investor: 'Investor',
   partner: 'Production Partners',
   press: 'Press',
+  stakeholder: 'Institutional Stakeholder',
 };
 
 function PartnerHubInner() {
@@ -42,8 +48,10 @@ function PartnerHubInner() {
 
   const rawRole = searchParams.get('role') ?? '';
   const safeRole: Role =
-    rawRole === 'investor' || rawRole === 'partner' || rawRole === 'press'
-      ? rawRole
+    rawRole === 'investor' || rawRole === 'partner' || rawRole === 'press' || rawRole === 'stakeholder'
+      ? (rawRole as Role)
+      : rawRole === 'supplier'
+      ? 'stakeholder'
       : 'partner';
 
   const links = ROLE_LINKS[safeRole];

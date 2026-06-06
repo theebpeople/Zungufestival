@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 // ── Design tokens ─────────────────────────────────────────────────────────────
 const GOLD = '#C8A84B';
@@ -216,7 +217,9 @@ function ChapterDivider({ num, eye, title, sub }: { num: string; eye: string; ti
 }
 
 // ── Main page ─────────────────────────────────────────────────────────────────
-export default function ActivitiesPage() {
+function ActivitiesPageInner() {
+  const searchParams = useSearchParams();
+  const role = searchParams.get('role') ?? '';
   const [activeSection, setActiveSection] = useState('hero');
   const [navVisible, setNavVisible] = useState(false);
 
@@ -547,6 +550,18 @@ export default function ActivitiesPage() {
         </div>
       </section>
 
+      {/* Stakeholder Review Note */}
+      {role === 'stakeholder' && (
+        <section style={{ padding: '40px 8vw', borderBottom: `1px solid ${DIM}`, backgroundColor: BLACK }}>
+          <div style={{ padding: '24px 28px', border: `1px solid rgba(200,168,75,0.2)`, background: 'rgba(200,168,75,0.025)', maxWidth: 720 }}>
+            <span style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 12 }}>Stakeholder Review Note</span>
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>
+              The activity programme is designed to route value through Port Antonio while maintaining controls around local operator participation, environmental protection, guest movement, water activity, waste removal, and mainland activations. Final operating standards should be developed with relevant tourism, environmental, site-use, safety, and municipal stakeholders.
+            </p>
+          </div>
+        </section>
+      )}
+
       {/* ── Footer ──────────────────────────────────────────────────────── */}
       <footer style={{ padding: '60px 8vw', borderTop: `1px solid ${DIM}`, display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 32, backgroundColor: BLACK }}>
         <div style={{ fontFamily: fontDisplay, fontSize: 'clamp(28px, 6vw, 72px)', fontWeight: 900, color: 'rgba(200,168,75,0.06)', lineHeight: 1, letterSpacing: '-0.03em' }}>
@@ -559,5 +574,13 @@ export default function ActivitiesPage() {
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function ActivitiesPage() {
+  return (
+    <Suspense>
+      <ActivitiesPageInner />
+    </Suspense>
   );
 }

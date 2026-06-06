@@ -57,8 +57,9 @@ const ROLE_SECTIONS: Record<string, readonly SectionId[]> = {
     'opportunity', 'accommodation', 'commercial', 'financial', 'risk', 'roadmap',
     'investor', 'cta',
   ],
-  partner:  ['brand', 'meaning', 'portantonio', 'island', 'stages', 'sound', 'experience', 'programming', 'cta'],
-  press:    ['brand', 'meaning', 'portantonio', 'island', 'jamaica', 'stages', 'sound', 'experience', 'programming', 'cta'],
+  partner:      ['brand', 'meaning', 'portantonio', 'island', 'stages', 'sound', 'experience', 'programming', 'cta'],
+  press:        ['brand', 'meaning', 'portantonio', 'island', 'jamaica', 'stages', 'sound', 'experience', 'programming', 'cta'],
+  stakeholder:  ['brand', 'meaning', 'portantonio', 'island', 'jamaica', 'stages', 'experience', 'programming', 'cta'],
 };
 
 const ROLE_CTA = {
@@ -76,6 +77,11 @@ const ROLE_CTA = {
     label: 'Request Media Access',
     title: 'The story is ready.',
     body: "We're providing approved materials, approved facts, and accreditation details to a small number of media contacts. Tell us about your outlet.",
+  },
+  stakeholder: {
+    label: 'Request Stakeholder Meeting',
+    title: 'Let’s have the conversation.',
+    body: "We're seeking dialogue with institutional partners, local authorities, and community stakeholders. Tell us about your organisation and area of interest.",
   },
 } as const;
 
@@ -295,9 +301,6 @@ function SectionHead({ label, title, titleColor = cream, goldLine, accent = gold
 
 // ── Main component ────────────────────────────────────────────────────────────
 export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'investor' }: { navLabel?: string; role?: string }) {
-  const safeRole = role === 'investor' || role === 'partner' || role === 'press' ? role : 'partner';
-  const visibleSections = ROLE_SECTIONS[safeRole];
-  const ctaCopy = ROLE_CTA[safeRole];
   // Refs for section scroll targets
   const sectionRefs: Record<SectionId, React.RefObject<HTMLElement | null>> = {
     brand: useRef<HTMLElement>(null),
@@ -339,6 +342,10 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
     investor: useRef<HTMLDivElement>(null),
     cta: useRef<HTMLDivElement>(null),
   };
+
+  const safeRole = (role === 'investor' || role === 'partner' || role === 'press' || role === 'stakeholder') ? role : 'partner';
+  const visibleSections = ROLE_SECTIONS[safeRole] ?? ROLE_SECTIONS.partner;
+  const ctaCopy = ROLE_CTA[safeRole] ?? ROLE_CTA.partner;
 
   // Scroll progress bar
   const { scrollYProgress } = useScroll();
@@ -990,7 +997,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
                 cursor: 'pointer',
               }}
             >
-              Request Briefing →
+              {ctaCopy.label} →
             </button>
             <button
               onClick={() => scrollToSection('brand')}
@@ -1283,6 +1290,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
 
       <PhotoBreak src="/photos/boston-bay.jpg" quote="Origins rises with the sun. Rebirth catches the sunset. Zungu owns the centre." label="Stage Placement · Navy Island" />
 
+
       {/* ═══ CHAPTER 07: THE SOUND + ARTISTS ═══ */}
       <ChapterWrap bg={CHAPTERS['07'].bg} photo="/photos/pellew-island.jpg">
         <ChapterDivider num="07" eye="Chapter Seven" title="The Sound." sub="Electronic music through a Jamaican lens." accent={CHAPTERS['07'].accent} chBg={CHAPTERS['07'].bg} rgb={CHAPTERS['07'].rgb} />
@@ -1292,6 +1300,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
             {['Afro-house', 'Tribal house', 'Big-room electronic', 'Tech house', 'Underground house', 'Jungle', 'Drum and bass', 'Dub-influenced club music', 'Jamaican electronic', 'Sunrise sets', 'Sunset sessions', 'Mainstage nights'].map(tag => (
               <span key={tag} style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, border: `1px solid rgba(58,175,122,0.3)`, padding: '7px 14px' }}>{tag}</span>
             ))}
+
           </div>
           <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 30px)', fontWeight: 700, color: cream, marginBottom: 8 }}>The sound is global.</p>
           <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 30px)', fontWeight: 700, color: CHAPTERS['07'].accent }}>The root is Jamaican.</p>

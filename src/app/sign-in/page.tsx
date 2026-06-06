@@ -41,6 +41,12 @@ const PORTALS = [
     sub: 'Media kit · assets · press contacts',
     photo: '/photos/port-antonio.jpg',
   },
+  {
+    role: 'stakeholder',
+    label: 'Stakeholders',
+    sub: 'Institutional · Community · Authorities',
+    photo: '/photos/port-antonio.jpg',
+  },
 ] as const;
 
 type Portal = (typeof PORTALS)[number];
@@ -306,7 +312,9 @@ function SignInForm({ role }: { role: string }) {
       ? 'Investor'
       : role === 'partner'
         ? 'Production Partners'
-        : 'Press';
+        : role === 'stakeholder'
+          ? 'Institutional Stakeholder'
+          : 'Press';
   const photo =
     PORTALS.find((p) => p.role === role)?.photo ?? '/photos/NAVY%20ISLAND%20AERIAL.png';
 
