@@ -1,8 +1,20 @@
 'use client';
 
-import { SignIn } from '@clerk/nextjs';
+import { SignIn, SignUp } from '@clerk/nextjs';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense, useState } from 'react';
+import { Suspense, useState, useMemo } from 'react';
+
+function decodeInviteEmail(token: string): string | null {
+  try {
+    const payload = token.split('.')[0];
+    const padded = payload.replace(/-/g, '+').replace(/_/g, '/');
+    const padLen = (4 - (padded.length % 4)) % 4;
+    const json = atob(padded + '='.repeat(padLen));
+    return JSON.parse(json)?.email ?? null;
+  } catch {
+    return null;
+  }
+}
 
 const gold = '#C8A84B';
 const rust = '#C45A2A';
@@ -366,8 +378,22 @@ function SignInForm({ role }: { role: string }) {
           box-shadow: none !important;
         }
         [class*="cl-formButtonPrimary"]:hover { background: #dab84e !important; box-shadow: none !important; }
-        [class*="cl-rootBox"] * { font-family: 'Space Mono', monospace !important; }
+        [class*="cl-rootBox"] * { font-family: 'Space Mono', monospace !important; color: #F2EBD9 !important; }
         [class*="cl-card"] { background: transparent !important; box-shadow: none !important; border: none !important; }
+        /* Ensure any Clerk-rendered text (email display, back link, etc.) is visible */
+        [class*="cl-"] p, [class*="cl-"] span, [class*="cl-"] a, [class*="cl-"] button:not([class*="cl-formButtonPrimary"]) {
+          color: rgba(242,235,217,0.7) !important;
+        }
+        [class*="cl-identityPreview"], [class*="cl-identityPreviewText"], [class*="cl-identityPreviewEditButton"] {
+          color: #F2EBD9 !important;
+        }
+        [class*="cl-alternativeMethods"], [class*="cl-alternativeMethodsBlockButton"] {
+          color: rgba(242,235,217,0.55) !important;
+          border-color: rgba(200,168,75,0.2) !important;
+        }
+        [class*="cl-backLink"], [class*="cl-backButton"] {
+          color: rgba(200,168,75,0.7) !important;
+        }
         [class*="cl-formFieldHintText"],[class*="cl-formFieldErrorText"] {
           font-family: 'Space Mono', monospace !important;
           font-size: 12px !important;
@@ -394,14 +420,18 @@ function SignInForm({ role }: { role: string }) {
         /* OTP / verification code inputs */
         [class*="cl-otpCodeField"] input,
         [class*="cl-otpCodeFieldInput"],
-        input[data-otp-input] {
+        input[data-otp-input],
+        input[autocomplete*="one-time-code"] {
           background: rgba(18,24,20,0.97) !important;
           border: 1px solid rgba(200,168,75,0.45) !important;
-          color: #F7F3EC !important;
+          color: #F2EBD9 !important;
+          -webkit-text-fill-color: #F2EBD9 !important;
           border-radius: 0 !important;
-          font-family: 'Unbounded', sans-serif !important;
+          font-family: 'Space Mono', monospace !important;
           font-weight: 700 !important;
-          font-size: 20px !important;
+          font-size: 18px !important;
+          letter-spacing: 0 !important;
+          text-align: center !important;
           box-shadow: none !important;
         }
         [class*="cl-otpCodeField"] input:focus,
@@ -586,15 +616,120 @@ function SignInForm({ role }: { role: string }) {
   );
 }
 
+function SignUpForm({ role, email }: { role: string; email: string | null }) {
+  const router = useRouter();
+  const isPartner = role === 'partner';
+  const portalLabel =
+    role === 'investor' ? 'Investor' :
+    role === 'partner' ? 'Production Partner' :
+    role === 'supplier' ? 'Supplier' : 'Press';
+  const photo = PORTALS.find((p) => p.role === role)?.photo ?? '/photos/NAVY%20ISLAND%20AERIAL.png';
+
+  return (
+    <div
+      style={{
+        minHeight: '100vh', width: '100%', display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center', backgroundColor: black,
+        fontFamily: "'Space Mono', monospace", padding: '2rem', textAlign: 'center',
+        position: 'relative', overflow: 'hidden',
+      }}
+    >
+      <style>{`
+        [class*="cl-header"],[class*="cl-cardHeader"] { display: none !important; }
+        [class*="cl-socialButtons"],[class*="cl-divider"] { display: none !important; }
+        [class*="cl-badge"],[data-localization-key="badge__devMode"] { display: none !important; }
+        [class*="cl-formFieldLabel"],[class*="cl-label"] {
+          font-family: 'Space Mono', monospace !important; font-size: 9px !important;
+          letter-spacing: 0.4em !important; text-transform: uppercase !important;
+          color: #C8A84B !important; font-weight: 700 !important;
+        }
+        [class*="cl-formFieldInput"],[class*="cl-formFieldInput"]:not([type="submit"]) {
+          background: rgba(18,24,20,0.97) !important; border: 1px solid rgba(200,168,75,0.45) !important;
+          color: #F7F3EC !important; font-family: 'Space Mono', monospace !important;
+          font-size: 14px !important; border-radius: 0 !important; box-shadow: none !important;
+          padding: 12px 14px !important; min-height: 46px !important;
+        }
+        [class*="cl-formFieldInput"]:focus { border-color: #C8A84B !important; outline: none !important; box-shadow: 0 0 0 1px #C8A84B !important; }
+        [class*="cl-formButtonPrimary"] {
+          background: #C8A84B !important; color: #060808 !important;
+          font-family: 'Space Mono', monospace !important; font-size: 9px !important;
+          font-weight: 700 !important; letter-spacing: 0.4em !important;
+          text-transform: uppercase !important; border-radius: 0 !important; box-shadow: none !important;
+        }
+        [class*="cl-rootBox"] * { font-family: 'Space Mono', monospace !important; color: #F2EBD9 !important; }
+        [class*="cl-card"] { background: transparent !important; box-shadow: none !important; border: none !important; }
+        [class*="cl-otpCodeField"] input, [class*="cl-otpCodeFieldInput"], input[autocomplete*="one-time-code"] {
+          background: rgba(18,24,20,0.97) !important; border: 1px solid rgba(200,168,75,0.45) !important;
+          color: #F2EBD9 !important; -webkit-text-fill-color: #F2EBD9 !important;
+          border-radius: 0 !important; font-family: 'Space Mono', monospace !important;
+          font-weight: 700 !important; font-size: 18px !important; text-align: center !important; box-shadow: none !important;
+        }
+      `}</style>
+
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: `url('${photo}')`, backgroundSize: 'cover', backgroundPosition: 'center', filter: 'saturate(0.6) brightness(0.18)', opacity: 0.85 }} />
+      <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'radial-gradient(ellipse at center, rgba(6,8,8,0.55) 0%, rgba(6,8,8,0.92) 75%)' }} />
+
+      <button onClick={() => router.push('/sign-in')} style={{ position: 'absolute', top: '2rem', left: '2rem', zIndex: 20, background: 'none', border: 'none', cursor: 'pointer', fontSize: 9, letterSpacing: '0.3em', color: 'rgba(242,235,217,0.55)', textTransform: 'uppercase', fontWeight: 700, fontFamily: "'Space Mono', monospace" }}>
+        ← Portals
+      </button>
+
+      <div style={{ position: 'relative', zIndex: 10, marginBottom: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <img src="/zungu-z-mark.png" alt="Zungu" style={{ width: 90, height: 'auto', marginBottom: '2rem', filter: 'drop-shadow(0 0 28px rgba(200,168,75,0.4))' }} />
+        <h1 style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 'clamp(3rem, 9vw, 6rem)', color: white, lineHeight: 1, fontWeight: 900, letterSpacing: '-0.05em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>ZUNGU</h1>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', color: gold, fontSize: 11, letterSpacing: '0.4em', fontWeight: 700, textTransform: 'uppercase' }}>
+          <span>Navy Island</span>
+          <div style={{ width: 4, height: 4, transform: 'rotate(45deg)', backgroundColor: rust }} />
+          <span>MMXXVII</span>
+        </div>
+      </div>
+
+      <p style={{ position: 'relative', zIndex: 10, fontSize: 10, textTransform: 'uppercase', fontWeight: 700, fontStyle: 'italic', marginBottom: '2rem', color: gold, letterSpacing: '0.4em' }}>
+        // {portalLabel.toUpperCase()} ACCESS — CREATE ACCOUNT
+      </p>
+
+      <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 384 }}>
+        <SignUp
+          routing="hash"
+          forceRedirectUrl={isPartner ? '/partner' : `/deck?role=${role}`}
+          initialValues={email ? { emailAddress: email } : undefined}
+          appearance={{
+            variables: {
+              colorPrimary: gold, colorText: white, colorBackground: black,
+              colorInputBackground: 'rgba(18,24,20,0.97)', colorInputText: white,
+              fontFamily: "'Space Mono', monospace", borderRadius: '0px',
+            },
+            elements: {
+              rootBox: { width: '100%' },
+              card: { background: 'transparent', border: 'none', boxShadow: 'none', padding: 0 },
+              cardHeader: { display: 'none' }, header: { display: 'none' },
+              socialButtonsRoot: { display: 'none' }, socialButtonsBlockButton: { display: 'none' },
+              dividerRow: { display: 'none' }, dividerLine: { display: 'none' },
+            },
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
 function SignInContent() {
   const searchParams = useSearchParams();
   const urlRole = searchParams.get('role');
+  const inviteToken = searchParams.get('invite');
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
 
   const activeRole = urlRole ?? selectedRole;
+  const inviteEmail = useMemo(
+    () => (inviteToken ? decodeInviteEmail(inviteToken) : null),
+    [inviteToken],
+  );
 
   if (!activeRole) {
     return <PortalChooser onSelect={setSelectedRole} />;
+  }
+
+  if (inviteToken) {
+    return <SignUpForm role={activeRole} email={inviteEmail} />;
   }
 
   return <SignInForm role={activeRole} />;
