@@ -71,11 +71,10 @@ export default function LandingPage() {
       {/* ── Video background — vivid, minimal darkening ── */}
       <video
         ref={videoRef}
-        src="https://res.cloudinary.com/elektricbangaz/video/upload/v1780459585/aerial-view-of-navy-island-in-port-antonio-in-jama-2025-12-17-11-59-54-utc_coui1y.mov"
+        src="https://res.cloudinary.com/elektricbangaz/video/upload/f_auto,q_auto/v1780459585/aerial-view-of-navy-island-in-port-antonio-in-jama-2025-12-17-11-59-54-utc_coui1y.mp4"
         muted
         playsInline
         preload="auto"
-        poster="https://res.cloudinary.com/elektricbangaz/image/upload/v1773236490/NAVY_ISLAND_AERIAL_vaapz1.png"
         style={{
           position: 'absolute',
           inset: 0,
