@@ -71,7 +71,7 @@ export default function LandingPage() {
       {/* ── Video background — vivid, minimal darkening ── */}
       <video
         ref={videoRef}
-        src="https://res.cloudinary.com/elektricbangaz/video/upload/f_auto,q_auto/v1780459585/aerial-view-of-navy-island-in-port-antonio-in-jama-2025-12-17-11-59-54-utc_coui1y.mp4"
+        src="https://res.cloudinary.com/elektricbangaz/video/upload/v1780459585/aerial-view-of-navy-island-in-port-antonio-in-jama-2025-12-17-11-59-54-utc_coui1y.mp4"
         muted
         playsInline
         preload="auto"
