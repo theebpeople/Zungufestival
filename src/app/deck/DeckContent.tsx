@@ -1470,6 +1470,68 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
                 </div>
               ))}
             </div>
+            {/* ── Travel + Access Model ───────────────────────────── */}
+            <SectionHead label="Travel + Access Model" title="The journey is part of the product." accent={CHAPTERS['11'].accent} />
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Zungu is not only an island accommodation model. It is a destination travel model. For international guests, the experience does not begin at the stage. It begins the moment they land in Jamaica. The guest journey should be designed from airport arrival to Portland transfer, Port Antonio check-in, marine movement to Navy Island, on-island or mainland accommodation, festival week movement, and final departure. The stronger the travel model, the stronger the guest experience becomes.</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 2, marginBottom: 40 }}>
+              {[
+                { step: '01', title: 'International Arrival', body: 'Most guests arrive through Jamaica\'s major airports before moving east toward Portland. The travel strategy must support overseas guests, diaspora visitors, regional travellers, artists, media, VIPs, and self-managed guests.' },
+                { step: '02', title: 'Airport Transfer', body: 'Guests supported through managed coach transfers, private car service, VIP SUVs, hotel shuttles, travel partner pickups, and group transportation packages. The goal is to reduce arrival friction.' },
+                { step: '03', title: 'Portland / Port Antonio', body: 'Port Antonio is the mainland hospitality and processing base: check-in, wristbands, accommodation confirmation, luggage tags, shuttle access, marine transfer boarding, and hotel, villa, or island-stay support.' },
+                { step: '04', title: 'Marine Transfer to Navy Island', body: 'Access controlled through scheduled ferry movement, private boat windows, VIP and artist transfers, luggage handling, marine safety, and approved operators. The crossing is the threshold into the Zungu world.' },
+                { step: '05', title: 'Departure + Return', body: 'The final guest journey: checkout, luggage movement, return marine transfer, Port Antonio dispatch, airport return transfers, and post-event travel support. The departure experience should feel as designed as the arrival.' },
+              ].map(({ step, title, body }) => (
+                <div key={step} style={{ border: `1px solid rgba(155,95,192,0.12)`, padding: '26px 22px', background: 'rgba(6,4,16,0.6)' }}>
+                  <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: CHAPTERS['11'].accent, marginBottom: 8 }}>{step}</div>
+                  <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(13px, 1.5vw, 16px)', fontWeight: 700, color: cream, marginBottom: 10, lineHeight: 1.2 }}>{title}</p>
+                  <p style={{ fontFamily: fontMono, fontSize: 12, color: muted, lineHeight: 1.75 }}>{body}</p>
+                </div>
+              ))}
+            </div>
+            <SectionHead label="Package Strategy" title="Five layers. One destination product." accent={CHAPTERS['11'].accent} />
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 2, marginBottom: 40 }}>
+              {[
+                { tier: 'Festival Access Only', note: 'For Jamaican, regional, and self-managed guests who handle their own travel and stay.' },
+                { tier: 'Festival + Transfer', note: 'Airport-to-Portland transport, Port Antonio transfer support, and scheduled marine access.' },
+                { tier: 'Festival + Stay', note: 'On-island accommodation, curated mainland hotels, villas, guesthouses, or selected partner stays.' },
+                { tier: 'Festival + Stay + Transfer', note: 'The preferred destination package model for international guests. Clearer guest journey, stronger order value, better arrival control.' },
+                { tier: 'VIP / The Thirty Concierge', note: 'High-touch travel coordination, private airport transfers, premium accommodation, private boat windows, hosted hospitality, and dedicated guest support.' },
+              ].map(({ tier, note }) => (
+                <div key={tier} style={{ border: `1px solid rgba(155,95,192,0.1)`, padding: '22px 20px', background: 'rgba(6,4,16,0.5)' }}>
+                  <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(12px, 1.4vw, 15px)', fontWeight: 700, color: cream, marginBottom: 8, lineHeight: 1.2 }}>{tier}</p>
+                  <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, lineHeight: 1.7 }}>{note}</p>
+                </div>
+              ))}
+            </div>
+            <div style={{ border: `1px solid rgba(155,95,192,0.1)`, padding: '20px 24px', marginBottom: 32, background: 'rgba(6,4,16,0.4)' }}>
+              <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: CHAPTERS['11'].accent, marginBottom: 8 }}>Travel Partner Opportunity</div>
+              <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.8 }}>Travel partner packages may be introduced through airline, hotel, villa, transport, and destination partners. Future editions may explore flight-inclusive packages, hotel-inclusive packages, villa packages, diaspora travel groups, concierge itineraries, and tourism-board aligned travel bundles. Do not state that flights or hotel blocks are included unless confirmed through a signed partner agreement.</p>
+            </div>
+            <SectionHead label="Commercial Value" title="The travel model creates value beyond logistics." accent={CHAPTERS['11'].accent} />
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 2, marginBottom: 36 }}>
+              {[
+                'Higher average order value',
+                'Better guest-flow control and reduced arrival chaos',
+                'Transfer revenue',
+                'Hotel and villa commissions',
+                'Airport shuttle partnerships',
+                'Airline and tourism partnerships',
+                'VIP concierge upsells',
+                'Longer stays in Port Antonio',
+                'Stronger pre- and post-festival spend',
+                'Better guest data and communication',
+                'More reliable departure management',
+              ].map(item => (
+                <div key={item} style={{ border: `1px solid rgba(155,95,192,0.08)`, padding: '14px 16px', background: 'rgba(6,4,16,0.4)' }}>
+                  <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, lineHeight: 1.6 }}>{item}</p>
+                </div>
+              ))}
+            </div>
+            <div style={{ border: `1px solid rgba(155,95,192,0.25)`, padding: '28px 30px', marginBottom: 40, background: 'rgba(155,95,192,0.04)' }}>
+              <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: CHAPTERS['11'].accent, marginBottom: 10 }}>Investor Read</div>
+              <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 16 }}>A private-island festival cannot rely on guests figuring everything out themselves. The travel layer is part of the product. The more Zungu controls the journey, the more it can improve guest experience, protect operations, increase package value, and route more economic activity through Portland.</p>
+              <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 20px)', fontWeight: 700, color: CHAPTERS['11'].accent }}>The island is the world. The journey is how guests enter it.</p>
+            </div>
             <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, letterSpacing: '0.1em', textAlign: 'center', padding: '14px', border: `1px solid rgba(155,95,192,0.1)`, maxWidth: 400 }}>Stay at Zungu — coming soon</p>
           </Section>
         </ChapterWrap>
