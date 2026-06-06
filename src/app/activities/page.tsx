@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 // ── Design tokens ─────────────────────────────────────────────────────────────
 const GOLD = '#C8A84B';
@@ -216,7 +217,9 @@ function ChapterDivider({ num, eye, title, sub }: { num: string; eye: string; ti
 }
 
 // ── Main page ─────────────────────────────────────────────────────────────────
-export default function ActivitiesPage() {
+function ActivitiesPageInner() {
+  const searchParams = useSearchParams();
+  const role = searchParams.get('role') ?? '';
   const [activeSection, setActiveSection] = useState('hero');
   const [navVisible, setNavVisible] = useState(false);
 
@@ -273,13 +276,13 @@ export default function ActivitiesPage() {
         <div style={{ position: 'relative', zIndex: 2 }}>
           <p style={{ fontFamily: fontMono, fontSize: 9, color: GOLD, letterSpacing: '0.5em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '1rem' }}>// PROGRAMMING + HOSPITALITY</p>
           <h1 style={{ fontFamily: fontDisplay, fontSize: 'clamp(2.5rem, 8vw, 7rem)', fontWeight: 900, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: 0.95, marginBottom: '1.5rem', color: CREAM }}>
-            NINE ZONES.<br /><span style={{ color: GOLD }}>ONE ISLAND</span><br />IN RHYTHM.
+            NINE ZONES.<br /><span style={{ color: GOLD }}>ONE ISLAND</span><br />IN MOTION.
           </h1>
           <p style={{ fontFamily: fontMono, fontSize: 'clamp(11px, 1.3vw, 14px)', color: MUTED, lineHeight: 1.9, maxWidth: 600, marginBottom: '2rem' }}>
             Zungu is not only nighttime music. By day, Navy Island moves through food, water, wellness, art, culture, media, retail, forest routes, and controlled discovery. Nine zones turn the island into a living system before the stages open — creating guest flow, revenue, sponsor value, local operator participation, and a fuller reason to stay.
           </p>
           <div style={{ display: 'flex', width: '100%', borderTop: '1px solid rgba(200,168,75,0.15)', paddingTop: '1.5rem' }}>
-            {[['9', 'Island Zones'], ['2,500–5,000', 'Planning Range'], ['Jun 17–23', 'Target Window · 2027']].map(([val, label], i, arr) => (
+            {[['9', 'Island Zones'], ['5,000', 'Year One Target'], ['Jun 17–23', 'Target Window · 2027']].map(([val, label], i, arr) => (
               <div key={label} style={{ flex: 1, paddingRight: '2rem', borderRight: i < arr.length - 1 ? '1px solid rgba(200,168,75,0.12)' : 'none', marginRight: i < arr.length - 1 ? '2rem' : 0 }}>
                 <span style={{ fontFamily: fontDisplay, fontSize: 'clamp(1.2rem, 3vw, 2.2rem)', fontWeight: 900, color: GOLD, display: 'block', lineHeight: 1 }}>{val}</span>
                 <span style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase', color: MUTED, display: 'block', marginTop: 4 }}>{label}</span>
@@ -301,11 +304,11 @@ export default function ActivitiesPage() {
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 2 }}>
             {[
-              { num: '1', label: 'Music + Stages', sub: 'Three territories. Sunrise to night.' },
-              { num: '2', label: 'Food + Beverage', sub: 'Vendor hub, bars, retail.' },
-              { num: '3', label: 'Wellness + Recovery', sub: 'Sanctum, cold plunge, treatments.' },
-              { num: '4', label: 'Water + Nature', sub: 'Cove, Trail, marine programming.' },
-              { num: '5', label: 'Media + Culture', sub: 'Signal, Yard, Studio.' },
+              { num: '1', label: 'Experience', sub: 'Creating moments beyond the stages.' },
+              { num: '2', label: 'Movement', sub: 'Pulling guests through the island safely.' },
+              { num: '3', label: 'Revenue', sub: 'Food, bars, retail, activities, hospitality.' },
+              { num: '4', label: 'Sponsorship', sub: 'Physical and media inventory for partners.' },
+              { num: '5', label: 'Local Operator Opportunity', sub: 'Vendors, guides, wellness, food operators.' },
             ].map(({ num, label, sub }) => (
               <div key={num} style={{ border: `1px solid ${DIM}`, padding: '28px 20px' }}>
                 <div style={{ fontFamily: fontDisplay, fontSize: 28, fontWeight: 900, color: 'rgba(200,168,75,0.2)', lineHeight: 1, marginBottom: 12 }}>{num}</div>
@@ -419,8 +422,60 @@ export default function ActivitiesPage() {
         </div>
       </section>
 
+      {/* ── Ch06.5: Travel + Stay Connection ───────────────────────────── */}
+      <ChapterDivider num="07" eye="Chapter Seven" title="Travel + Stay Connection." sub="The activity programme connects directly to how guests arrive, stay, and depart. Guest movement is part of the operating system." />
+      <section id="section-travel" style={{ padding: '88px 8vw', boxSizing: 'border-box', backgroundColor: BLACK }}>
+        <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
+          The activity programme is not isolated from guest logistics. Arrivals, check-in, marine transfers, accommodation access, and departures are integrated into the zone operating model. The fuller the guest journey, the higher the spend per head and the stronger the case for premium packages.
+        </p>
+        <div style={{ display: 'flex', gap: 2, marginBottom: 40, overflowX: 'auto' }}>
+          {[
+            { step: '01', label: 'International Arrival', sub: 'Kingston or Montego Bay. Transfer to Port Antonio.' },
+            { step: '02', label: 'Check-In', sub: 'Port Antonio. Accommodation, ferry boarding, briefing.' },
+            { step: '03', label: 'Island Movement', sub: 'Marine transfer to Navy Island. Zone access opens.' },
+            { step: '04', label: 'Stay', sub: 'On-island glamping, off-island villa or hotel. Full access.' },
+            { step: '05', label: 'Departure', sub: 'June 23. Ferry return. Transfer to airport.' },
+          ].map(({ step, label, sub }, i, arr) => (
+            <div key={step} style={{ flex: '1 1 160px', border: `1px solid ${DIM}`, padding: '24px 20px', position: 'relative', minWidth: 140 }}>
+              <div style={{ fontFamily: fontDisplay, fontSize: 32, fontWeight: 900, color: 'rgba(200,168,75,0.08)', lineHeight: 1, marginBottom: 12 }}>{step}</div>
+              <div style={{ fontFamily: fontMono, fontSize: 10, fontWeight: 700, color: GOLD, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 8 }}>{label}</div>
+              <div style={{ fontFamily: fontMono, fontSize: 9, color: MUTED, lineHeight: 1.7 }}>{sub}</div>
+              {i < arr.length - 1 && (
+                <div style={{ position: 'absolute', right: -10, top: '50%', transform: 'translateY(-50%)', fontFamily: fontMono, fontSize: 12, color: 'rgba(200,168,75,0.3)', zIndex: 2 }}>→</div>
+              )}
+            </div>
+          ))}
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2, marginBottom: 40 }}>
+          {[
+            { label: 'Festival Access Only', items: ['Ferry transfer included', 'Island zone access', 'Stage access', 'General Market + Trail'] },
+            { label: 'VIP Package', items: ['Priority transfer included', 'VIP bars and viewing', 'Meal and drink credits', 'Concierge service', 'Priority activity booking'] },
+            { label: 'Glamping Package', items: ['On-island accommodation', 'Ferry transfer included', 'Dedicated facilities', 'Wellness credits', 'Wake-up programming'] },
+            { label: 'The Thirty Concierge', items: ['Full travel coordination', 'Private marine transfer', 'Villa or suite accommodation', 'Private dining', 'Dedicated concierge', 'Artist and investor access'] },
+          ].map(({ label, items }) => (
+            <div key={label} style={{ border: `1px solid ${DIM}`, padding: '24px 24px' }}>
+              <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, marginBottom: 16 }}>{label}</div>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                {items.map(item => (
+                  <li key={item} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 8 }}>
+                    <span style={{ color: GOLD, flexShrink: 0, fontSize: 10 }}>—</span>
+                    <span style={{ fontFamily: fontMono, fontSize: 11, color: MUTED, lineHeight: 1.6 }}>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <div style={{ border: `1px solid rgba(200,168,75,0.2)`, padding: '28px 32px', background: 'rgba(200,168,75,0.02)' }}>
+          <p style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, marginBottom: 12 }}>// Travel Partner Opportunity</p>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.9, margin: 0 }}>
+            Zungu&rsquo;s guest journey connects flight arrival, ground transfer, marine logistics, accommodation, and island access into a packageable system. Travel coordination, transport commissions, accommodation partnerships, and concierge fees represent a commercial layer that compounds the per-head yield. Travel partner terms remain subject to confirmed bookings, operator agreements, and logistics finalisation.
+          </p>
+        </div>
+      </section>
+
       {/* ── Ch06: Sustainability ─────────────────────────────────────────── */}
-      <ChapterDivider num="06" eye="Chapter Six" title="Sustainability is an operating requirement." sub="Environmental and community protocol is not a marketing position. For Zungu, sustainability is tied to site access, reef protection, waste removal, local employment, harm reduction, marine licensing, demobilisation, and post-event reporting." />
+      <ChapterDivider num="08" eye="Chapter Eight" title="Sustainability is an operating requirement." sub="Environmental and community protocol is not a marketing position. For Zungu, sustainability is tied to site access, reef protection, waste removal, local employment, harm reduction, marine licensing, demobilisation, and post-event reporting." />
       <section id="section-sustainability" style={{ padding: '88px 8vw', boxSizing: 'border-box', backgroundColor: BLACK }}>
         <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
           Environmental and community protocol is not a marketing position. For Zungu, sustainability is tied to site access, reef protection, waste removal, local employment, harm reduction, marine licensing, demobilisation, and post-event reporting.
@@ -435,6 +490,78 @@ export default function ActivitiesPage() {
         </div>
       </section>
 
+      {/* ── Production Partner Note ─────────────────────────────────────── */}
+      <section style={{ padding: '88px 8vw', boxSizing: 'border-box', backgroundColor: BLACK, borderTop: `1px solid rgba(200,168,75,0.15)` }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 32 }}>
+          <div style={{ width: 28, height: 1, background: GOLD }} />
+          <span style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.5em', textTransform: 'uppercase', color: GOLD, fontWeight: 700 }}>// Production Partner Note</span>
+        </div>
+        <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 16 }}>
+          This page defines the island activity programme and operating logic. It is not the full production manual.
+        </p>
+        <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 40 }}>
+          The activity system described here — nine zones, mainland activations, commercial model, sustainability protocols — requires a Production Brief to move from concept to confirmed operating plan.
+        </p>
+        <div style={{ border: `1px solid ${DIM}`, padding: '28px 32px', marginBottom: 40 }}>
+          <p style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, marginBottom: 20 }}>The Production Brief should cover:</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px 40px' }}>
+            {[
+              'Zone-by-zone build specification and site plan',
+              'Power distribution across all nine zones',
+              'Water supply, sanitation, and waste management',
+              'Marine logistics: ferry schedule, boat slots, safety',
+              'Vendor onboarding, contracts, and category exclusivity',
+              'POS and payment integration across all zones',
+              'Food hygiene permits and fire safety per zone',
+              'Reef protocol and marine environmental compliance',
+              'Wayfinding, zone signage, and guest-flow management',
+              'Staffing model: zone managers, crew, security, welfare',
+              'Medical provision and harm reduction protocols',
+              'Cold storage, ice supply, and refrigeration',
+              'Customs, import, and inventory management for retail',
+              'Media release and recording consent protocol',
+              'Artist session logistics at The Signal',
+              'Mainland activation logistics and guide contracts',
+              'Demobilisation plan per zone post-festival',
+              'Environmental reporting obligations',
+              'Insurance, licensing, and regulatory approvals',
+              'Build timeline, cost centres, and risk controls',
+            ].map((item) => (
+              <div key={item} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                <span style={{ color: GOLD, flexShrink: 0, fontSize: 9, paddingTop: 2 }}>—</span>
+                <span style={{ fontFamily: fontMono, fontSize: 11, color: MUTED, lineHeight: 1.7 }}>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div style={{ border: `1px solid rgba(200,168,75,0.25)`, padding: '32px 36px', background: 'rgba(200,168,75,0.03)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 24 }}>
+          <div>
+            <p style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, marginBottom: 10 }}>// Request Production Brief</p>
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 480, margin: 0 }}>
+              Production partners may request the full Activity Programme Production Brief covering zone build, vendor framework, marine logistics, power and water design, staffing model, risk controls, and execution gates.
+            </p>
+          </div>
+          <a href="/partner" style={{ display: 'inline-block', padding: '14px 28px', border: `1px solid rgba(200,168,75,0.4)`, fontFamily: fontMono, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, textDecoration: 'none', fontWeight: 700, whiteSpace: 'nowrap', transition: 'all 0.2s' }}
+            onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = 'rgba(200,168,75,0.08)'; el.style.borderColor = GOLD; }}
+            onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = 'transparent'; el.style.borderColor = 'rgba(200,168,75,0.4)'; }}
+          >
+            Request Brief →
+          </a>
+        </div>
+      </section>
+
+      {/* Stakeholder Review Note */}
+      {role === 'stakeholder' && (
+        <section style={{ padding: '40px 8vw', borderBottom: `1px solid ${DIM}`, backgroundColor: BLACK }}>
+          <div style={{ padding: '24px 28px', border: `1px solid rgba(200,168,75,0.2)`, background: 'rgba(200,168,75,0.025)', maxWidth: 720 }}>
+            <span style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 12 }}>Stakeholder Review Note</span>
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>
+              The activity programme is designed to route value through Port Antonio while maintaining controls around local operator participation, environmental protection, guest movement, water activity, waste removal, and mainland activations. Final operating standards should be developed with relevant tourism, environmental, site-use, safety, and municipal stakeholders.
+            </p>
+          </div>
+        </section>
+      )}
+
       {/* ── Footer ──────────────────────────────────────────────────────── */}
       <footer style={{ padding: '60px 8vw', borderTop: `1px solid ${DIM}`, display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 32, backgroundColor: BLACK }}>
         <div style={{ fontFamily: fontDisplay, fontSize: 'clamp(28px, 6vw, 72px)', fontWeight: 900, color: 'rgba(200,168,75,0.06)', lineHeight: 1, letterSpacing: '-0.03em' }}>
@@ -447,5 +574,13 @@ export default function ActivitiesPage() {
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function ActivitiesPage() {
+  return (
+    <Suspense>
+      <ActivitiesPageInner />
+    </Suspense>
   );
 }

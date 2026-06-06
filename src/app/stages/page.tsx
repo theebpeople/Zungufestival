@@ -1,8 +1,8 @@
 'use client';
 
 import { useAuth } from '@clerk/nextjs';
-import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 
 // ── Design tokens ─────────────────────────────────────────────────────────────
@@ -74,9 +74,11 @@ function SLabel({ children }: { children: React.ReactNode }) {
 }
 
 // ── Main page ─────────────────────────────────────────────────────────────────
-export default function StagesPage() {
+function StagesPageInner() {
   const { isLoaded, isSignedIn } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const role = searchParams.get('role') ?? '';
   const [activeSection, setActiveSection] = useState('hero');
   const [navScrolled, setNavScrolled] = useState(false);
 
@@ -730,113 +732,150 @@ export default function StagesPage() {
       {/* ══════════════════════════════════════════════════════════════════
           CHAPTER 06 — ARTIST PROGRAMMING IMPLICATIONS
       ══════════════════════════════════════════════════════════════════ */}
-      <ChapterDivider num="06" title="Artist Programming Implications." goldLine="The booking model shapes the production model." desc="Artist selection determines stage specification, rider requirements, power load, crew size, back-of-house scope, and production timeline. The three-stage structure gives the booking model its territory." />
 
       <section style={{ padding: '60px 8vw', borderBottom: `1px solid ${BORDER}`, backgroundColor: BG }}>
-        <SLabel>// 06 ARTIST PROGRAMMING IMPLICATIONS</SLabel>
+        <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 8 }}>Chapter 06</div>
+        <div style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 900, color: CREAM, lineHeight: 1.05, marginBottom: 8 }}>Artist Programming</div>
+        <div style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 900, color: GOLD, lineHeight: 1.05, marginBottom: 20 }}>Implications.</div>
+        <p style={{ fontFamily: MONO, fontSize: 13, color: MUTED, lineHeight: 1.8, maxWidth: 600 }}>The booking model shapes the build. Every confirmed artist affects the stage specification, rider, equipment, power load, back-of-house, and changeover plan.</p>
+      </section>
+
+      <section style={{ padding: '60px 8vw', borderBottom: `1px solid ${BORDER}`, backgroundColor: BG }}>
+        <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 40 }}>06 — Year One Booking Model</div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, marginTop: 40 }}>
           <div>
-            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 24 }}>
-              Year One booking model: 30–45 artists and selectors across the full festival week. The booking tier determines which stage each artist plays and the production specification each stage must meet.
+            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, marginBottom: 20 }}>
+              Zungu&rsquo;s Year One artist model is intentionally curated. The goal is not to match large showcase festivals on volume. The goal is a tighter island programme where every booking has a clear stage, time, purpose, and production requirement.
             </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, marginBottom: 20 }}>
+              A private-island festival cannot treat artists as names on a poster only. Each booking affects the stage specification, rider review, DJ equipment, power load, back-of-house, travel, accommodation, security, hospitality, crew schedule, and changeover plan.
+            </p>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, marginTop: 32 }}>
               {[
-                { tier: 'Global Anchor', count: '1', stageNote: 'Zungu Main · highest specification · must be advanced first', color: GOLD },
-                { tier: 'Major Support Names', count: '2–4', stageNote: 'Zungu Main or Rebirth · mid-to-high production demand', color: GOLD },
-                { tier: 'Curated Depth Acts', count: '10–20', stageNote: 'All three stages · varied production requirements', color: MUTED },
-                { tier: 'Local / Selector Layer', count: 'Open', stageNote: 'Origins, Rebirth, pop-ups · lower production demand', color: MUTED },
-              ].map(({ tier, count, stageNote, color }) => (
-                <div key={tier} style={{ display: 'grid', gridTemplateColumns: '140px 50px 1fr', gap: 16, padding: '14px 0', borderBottom: '1px solid rgba(242,235,217,0.04)', alignItems: 'start' }}>
-                  <span style={{ fontFamily: MONO, fontSize: 13, color: CREAM }}>{tier}</span>
-                  <span style={{ fontFamily: MONO, fontSize: 13, color, paddingTop: 2 }}>{count}</span>
-                  <span style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.4)', lineHeight: 1.6 }}>{stageNote}</span>
+                { n: '30–45', label: 'Artists and selectors across the full festival week' },
+                { n: '7', label: 'Festival days — Jun 17–23. Every day has a programme purpose.' },
+                { n: '3', label: 'Main stages. Each with a distinct booking profile and production spec.' },
+                { n: '4', label: 'Booking tiers from global anchor to local selector layer.' },
+              ].map(({ n, label }) => (
+                <div key={n} style={{ padding: '20px 16px', border: `1px solid ${BORDER_MID}`, background: 'rgba(200,168,75,0.02)' }}>
+                  <div style={{ fontFamily: DISPLAY, fontSize: '2rem', fontWeight: 900, color: GOLD, lineHeight: 1, marginBottom: 8 }}>{n}</div>
+                  <div style={{ fontFamily: MONO, fontSize: 12, color: MUTED, lineHeight: 1.6 }}>{label}</div>
+
                 </div>
               ))}
             </div>
           </div>
-          <div>
-            <div style={{ padding: '24px 28px', border: `1px solid ${BORDER_MID}`, background: 'rgba(200,168,75,0.02)', marginBottom: 20 }}>
-              <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 14 }}>// Benchmark Reference</span>
-              <p style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.4)', lineHeight: 1.8, marginBottom: 8 }}>BPM Costa Rica: 80+ artists across multiple stages. SXM Festival: 40+ artists in a similar island format.</p>
-              <p style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.4)', lineHeight: 1.8 }}>Zungu Year One targets a tighter, curated lineup — quality and island fit over volume.</p>
-            </div>
-            <div style={{ padding: '24px 28px', border: `1px solid ${BORDER_MID}`, background: 'rgba(200,168,75,0.025)' }}>
-              <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 12 }}>Final requirements subject to:</span>
-              {['Confirmed artist bookings', 'Technical rider submission and review', 'Travel and accommodation planning', 'Hospitality and catering scope', 'Security and access management', 'Production partner assessment'].map((item) => (
-                <div key={item} style={{ fontFamily: MONO, fontSize: 13, lineHeight: 1.7, color: 'rgba(242,235,217,0.4)', paddingLeft: 14, borderLeft: '2px solid rgba(200,168,75,0.2)', marginBottom: 12 }}>{item}</div>
-              ))}
-              <p style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.4)', lineHeight: 1.7, marginTop: 14, marginBottom: 0 }}>Full artist rider coordination, DJ equipment baseline, BOH planning, and changeover logistics belong in the Production Brief.</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* ══════════════════════════════════════════════════════════════════
-          PRODUCTION PARTNER NOTE + CTA
-      ══════════════════════════════════════════════════════════════════ */}
-      <section style={{ padding: '80px 8vw', borderBottom: `1px solid ${BORDER}`, backgroundColor: GREEN }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 32 }}>
-          <div style={{ width: 28, height: 1, background: GOLD_DIM }} />
-          <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.5em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700 }}>// Production Partner Note</span>
-        </div>
-        <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 16 }}>
-          This page defines the stage architecture, programming model, and festival week structure. It is not the full Production Brief.
-        </p>
-        <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 40 }}>
-          All stage specifications, artist requirements, and production scope remain subject to site survey, environmental review, permit conditions, rider submission, technical assessment, and production partner confirmation.
-        </p>
-        <div style={{ border: `1px solid ${BORDER_MID}`, padding: '28px 32px', background: 'rgba(200,168,75,0.015)', marginBottom: 32 }}>
-          <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700, marginBottom: 20 }}>Production partners may request the full Production Brief for:</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px 40px' }}>
+
+          <div>
+            <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 20 }}>Booking Tiers</span>
             {[
-              'Stage build specification and structural design',
-              'Technical scope: audio, lighting, video, power',
-              'Artist rider planning and rider management',
-              'DJ equipment baseline per stage',
-              'Power distribution and generator planning',
-              'Marine logistics: equipment delivery, crew ferry',
-              'Back-of-house: green rooms, production offices',
-              'Build timeline, teardown, and demobilisation',
-              'Artist travel and accommodation coordination',
-              'Security: stage, artist, crowd, marine',
-              'Cost centres, risk controls, and execution gates',
-              'Emergency and safety planning per stage',
-            ].map((item) => (
-              <div key={item} style={{ fontFamily: MONO, fontSize: 13, lineHeight: 1.7, color: 'rgba(242,235,217,0.4)', paddingLeft: 14, borderLeft: '2px solid rgba(200,168,75,0.2)', marginBottom: 12 }}>{item}</div>
+              {
+                tier: 'Global Anchor',
+                count: '1',
+                stages: 'Zungu Main',
+                note: 'Highest specification. Advanced first. Their rider, travel, security, hospitality, and production requirements set the mainstage benchmark.',
+                color: GOLD,
+              },
+              {
+                tier: 'Major Support',
+                count: '2–4',
+                stages: 'Zungu Main / Rebirth',
+                note: 'Mid-to-high production demand. Builds credibility around the headline programme. May require stronger technical support, dedicated hospitality, tighter changeovers.',
+                color: GOLD,
+              },
+              {
+                tier: 'Curated Depth',
+                count: '10–20',
+                stages: 'All three stages',
+                note: 'Afro-house, tribal, tech, underground house, organic electronic, jungle, drum and bass, Jamaican electronic, and sunrise/sunset programming.',
+                color: MUTED,
+              },
+              {
+                tier: 'Local / Selector Layer',
+                count: 'Open',
+                stages: 'Origins / Rebirth / Pop-ups',
+                note: 'Local selectors, Jamaican artists, Portland voices, radio sessions, recovery-day sets. Lower production demand. This layer gives Zungu its grounding.',
+                color: MUTED,
+              },
+            ].map(({ tier, count, stages, note, color }) => (
+              <div key={tier} style={{ borderBottom: `1px solid ${BORDER}`, padding: '16px 0' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 6 }}>
+                  <span style={{ fontFamily: DISPLAY, fontSize: '0.85rem', fontWeight: 700, color, textTransform: 'uppercase' as const }}>{tier}</span>
+                  <span style={{ fontFamily: MONO, fontSize: 9, color: 'rgba(200,168,75,0.4)', letterSpacing: '0.2em' }}>{count} · {stages}</span>
+                </div>
+                <p style={{ fontFamily: MONO, fontSize: 13, color: MUTED, lineHeight: 1.6 }}>{note}</p>
+              </div>
             ))}
           </div>
         </div>
-        <div style={{ border: `1px solid rgba(200,168,75,0.25)`, padding: '32px 36px', background: 'rgba(200,168,75,0.03)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 24 }}>
-          <div>
-            <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700, marginBottom: 10 }}>// Request Stage Production Brief</p>
-            <p style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.4)', lineHeight: 1.8, maxWidth: 480, margin: 0 }}>
-              Production partners may request the full Stage Production Brief covering build specification, technical scope, artist rider planning, marine logistics, power design, and execution gates.
-            </p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginTop: 48 }}>
+          <div style={{ padding: 24, border: `1px solid ${BORDER_MID}`, background: 'rgba(200,168,75,0.025)' }}>
+            <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 16 }}>Benchmark Reference</span>
+            {[
+              'BPM Costa Rica has operated with 80+ artists across multiple stages and showcases.',
+              'SXM Festival has presented 40+ artists in a comparable island-destination format.',
+              'Zungu Year One should not chase volume for its own sake. Fewer stronger bookings are more powerful than a crowded lineup.',
+            ].map((line, i) => (
+              <p key={i} style={{ fontFamily: MONO, fontSize: 13, color: MUTED, lineHeight: 1.7, paddingLeft: 14, borderLeft: '2px solid rgba(200,168,75,0.2)', marginBottom: 10 }}>{line}</p>
+            ))}
           </div>
-          <a href="/partner" style={{ display: 'inline-block', padding: '14px 28px', border: `1px solid rgba(200,168,75,0.4)`, fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, textDecoration: 'none', fontWeight: 700, whiteSpace: 'nowrap', transition: 'all 0.2s' }}
-            onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = 'rgba(200,168,75,0.08)'; el.style.borderColor = GOLD; }}
-            onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = 'transparent'; el.style.borderColor = 'rgba(200,168,75,0.4)'; }}
-          >
-            Request Brief →
-          </a>
+
+          <div style={{ padding: 24, border: `1px solid ${BORDER_MID}`, background: 'rgba(200,168,75,0.025)' }}>
+            <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 16 }}>Production Read</span>
+            <p style={{ fontFamily: MONO, fontSize: 13, color: MUTED, lineHeight: 1.7, marginBottom: 12 }}>Each confirmed artist reviewed against:</p>
+            {[
+              'Artist rider · DJ equipment · stage assignment · set time',
+              'Travel schedule · accommodation · hospitality · security',
+              'Media permissions · changeover time · power requirements',
+              'Back-of-house layout · crew schedule',
+            ].map((line, i) => (
+              <p key={i} style={{ fontFamily: MONO, fontSize: 13, color: MUTED, lineHeight: 1.6, paddingLeft: 14, borderLeft: '2px solid rgba(200,168,75,0.2)', marginBottom: 8 }}>{line}</p>
+            ))}
+          </div>
+        </div>
+
+        <div style={{ marginTop: 48 }}>
+          <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 20 }}>What This Means for Production Partners</div>
+          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 720, marginBottom: 16 }}>
+            The artist strategy is controlled by design. A tighter lineup reduces unnecessary complexity while giving Zungu the musical depth it needs across the full week.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2, maxWidth: 720 }}>
+            {[
+              { stage: 'ZUNGU MAIN', note: 'Advanced first. Global anchor shapes the mainstage package. Generator redundancy, full LED, lighting, sound, pyro. Highest spec.' },
+              { stage: 'ORIGINS + REBIRTH', note: 'Quality sound, clear identity, controlled production scale. Do not overbuild. The setting does the visual work.' },
+              { stage: 'POP-UPS + THE PIER', note: 'Modular sound packages, temporary power, simple DJ setups, weather cover, controlled guest flow. Small crew.' },
+            ].map(({ stage, note }) => (
+              <div key={stage} style={{ padding: 18, border: `1px solid ${BORDER}`, background: 'rgba(242,235,217,0.01)' }}>
+                <div style={{ fontFamily: DISPLAY, fontSize: '0.7rem', fontWeight: 700, color: GOLD, marginBottom: 10, textTransform: 'uppercase' as const }}>{stage}</div>
+                <p style={{ fontFamily: MONO, fontSize: 13, color: MUTED, lineHeight: 1.6 }}>{note}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div style={{ marginTop: 48, padding: '20px 24px', border: `1px solid ${BORDER}`, background: 'rgba(200,168,75,0.015)' }}>
+          <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.5)', display: 'block', marginBottom: 8 }}>Production Brief</span>
+          <p style={{ fontFamily: MONO, fontSize: 13, color: MUTED, lineHeight: 1.7 }}>
+            Detailed rider management, DJ equipment baseline, back-of-house layout, artist travel, green rooms, security routes, technical schedules, and changeover planning are developed in the Stage Production Brief.
+          </p>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════════════
-          CHAPTER 07 — WHY THIS STAGE SYSTEM MATTERS
-      ══════════════════════════════════════════════════════════════════ */}
-      <section style={{ padding: '80px 8vw', borderBottom: `1px solid ${BORDER}`, backgroundColor: GREEN }}>
-        <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 24 }}>
-          Zungu is not a field of stages.<br /><span style={{ color: GOLD }}>It is an island in rhythm.</span>
-        </h2>
-        <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 640, marginBottom: 32, letterSpacing: '0.02em' }}>
-          The stage system gives the island shape. Origins gives Zungu its beginning. Rebirth gives Zungu its transformation. Zungu gives the festival its centre. The pop-ups give the island life between the major moments. Together, the stages and smaller sound moments create a complete world: sunrise, sunset, night, discovery, recovery, and return.
-        </p>
-        <p style={{ fontFamily: MONO, fontSize: 11, color: 'rgba(242,235,217,0.25)', lineHeight: 1.9, maxWidth: 680, letterSpacing: '0.02em' }}>
-          All stage locations, orientation, operating hours, production scale, sound direction, artist programming, and pop-up formats remain subject to final site survey, environmental review, permit conditions, safety planning, technical design, and production partner assessment.
-        </p>
-      </section>
+      {role === 'stakeholder' && (
+        <section style={{ padding: '40px 8vw', borderBottom: `1px solid ${BORDER}`, backgroundColor: BG }}>
+          <div style={{ padding: '24px 28px', border: `1px solid rgba(200,168,75,0.2)`, background: 'rgba(200,168,75,0.025)', maxWidth: 720 }}>
+            <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 12 }}>Stakeholder Review Note</span>
+            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>
+              The stage plan is a conceptual site-use framework. Final placement, operating hours, sound direction, access routes, temporary infrastructure, emergency access, and demobilisation requirements must be reviewed with relevant site, environmental, marine, safety, and public-sector stakeholders before approval.
+            </p>
+          </div>
+        </section>
+      )}
+
 
       {/* Footer */}
       <footer style={{ backgroundColor: BG, padding: '40px 8vw', borderTop: `1px solid ${BORDER}`, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 20 }}>
@@ -849,5 +888,13 @@ export default function StagesPage() {
       </footer>
 
     </div>
+  );
+}
+
+export default function StagesPage() {
+  return (
+    <Suspense>
+      <StagesPageInner />
+    </Suspense>
   );
 }

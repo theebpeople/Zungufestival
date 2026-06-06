@@ -41,6 +41,12 @@ const PORTALS = [
     sub: 'Media kit · assets · press contacts',
     photo: '/photos/port-antonio.jpg',
   },
+  {
+    role: 'stakeholder',
+    label: 'Stakeholders',
+    sub: 'Institutional · Community · Authorities',
+    photo: '/photos/port-antonio.jpg',
+  },
 ] as const;
 
 type Portal = (typeof PORTALS)[number];
@@ -135,6 +141,85 @@ function PortalCard({
         </div>
       </div>
     </button>
+  );
+}
+
+function RequestAccess() {
+  return (
+    <div
+      style={{
+        minHeight: '100vh',
+        width: '100%',
+        backgroundColor: black,
+        fontFamily: "'Space Mono', monospace",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        padding: '3rem 2rem',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: "url('/photos/NAVY%20ISLAND%20AERIAL.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center 42%',
+          filter: 'saturate(0.6) brightness(0.1)',
+          opacity: 0.9,
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          pointerEvents: 'none',
+          background: 'radial-gradient(ellipse at 50% 40%, rgba(6,8,8,0.5) 0%, rgba(6,8,8,0.92) 75%)',
+        }}
+      />
+
+      <div style={{ position: 'relative', zIndex: 10, maxWidth: 480 }}>
+        <img
+          src="/zungu-z-mark.png"
+          alt="Zungu"
+          style={{ width: 60, height: 'auto', marginBottom: '2rem', display: 'block', margin: '0 auto 2rem', filter: 'drop-shadow(0 0 20px rgba(200,168,75,0.35))' }}
+        />
+        <p style={{ fontSize: 9, letterSpacing: '0.4em', color: gold, textTransform: 'uppercase', fontWeight: 700, marginBottom: '1.5rem' }}>
+          Zungu Festival · 2027
+        </p>
+        <h1
+          style={{
+            fontFamily: "'Unbounded', sans-serif",
+            fontSize: 'clamp(1.4rem, 4vw, 2rem)',
+            fontWeight: 900,
+            color: white,
+            letterSpacing: '-0.02em',
+            textTransform: 'uppercase',
+            lineHeight: 1.1,
+            marginBottom: '1.25rem',
+          }}
+        >
+          Access by<br />invitation only
+        </h1>
+        <p style={{ fontSize: 12, color: muted, lineHeight: 1.8, marginBottom: '2.5rem' }}>
+          This portal is available to invited partners, investors, press, and institutional stakeholders. If you have received an invitation link, please use it to access your portal.
+        </p>
+        <div style={{ width: 40, height: 1, background: 'rgba(200,168,75,0.4)', margin: '0 auto 2rem' }} />
+        <p style={{ fontSize: 9, letterSpacing: '0.2em', color: 'rgba(200,168,75,0.5)', textTransform: 'lowercase' }}>
+          For access requests:{' '}
+          <a
+            href="mailto:partnership@zungufestival.com?subject=Access%20Request"
+            style={{ color: gold, textDecoration: 'none' }}
+          >
+            partnership@zungufestival.com
+          </a>
+        </p>
+      </div>
+    </div>
   );
 }
 
@@ -299,14 +384,16 @@ function PortalChooser({ onSelect }: { onSelect: (role: string) => void }) {
   );
 }
 
-function SignInForm({ role }: { role: string }) {
+function SignInForm({ role, inviteToken }: { role: string; inviteToken?: string | null }) {
   const router = useRouter();
   const portalLabel =
     role === 'investor'
       ? 'Investor'
       : role === 'partner'
         ? 'Production Partners'
-        : 'Press';
+        : role === 'stakeholder'
+          ? 'Institutional Stakeholder'
+          : 'Press';
   const photo =
     PORTALS.find((p) => p.role === role)?.photo ?? '/photos/NAVY%20ISLAND%20AERIAL.png';
 
@@ -566,7 +653,7 @@ function SignInForm({ role }: { role: string }) {
       <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 384 }}>
         <SignIn
           routing="hash"
-          forceRedirectUrl={`/partner?role=${role}`}
+          forceRedirectUrl={`/api/set-role?role=${role}${inviteToken ? `&token=${encodeURIComponent(inviteToken)}` : ''}`}
           appearance={{
             variables: {
               colorPrimary: gold,
@@ -616,7 +703,7 @@ function SignInForm({ role }: { role: string }) {
   );
 }
 
-function SignUpForm({ role, email }: { role: string; email: string | null }) {
+function SignUpForm({ role, email, inviteToken }: { role: string; email: string | null; inviteToken?: string | null }) {
   const router = useRouter();
   const isPartner = role === 'partner';
   const portalLabel =
@@ -690,7 +777,7 @@ function SignUpForm({ role, email }: { role: string; email: string | null }) {
       <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 384 }}>
         <SignUp
           routing="hash"
-          forceRedirectUrl={isPartner ? '/partner' : `/deck?role=${role}`}
+          forceRedirectUrl={`/api/set-role?role=${role}${inviteToken ? `&token=${encodeURIComponent(inviteToken)}` : ''}`}
           initialValues={email ? { emailAddress: email } : undefined}
           appearance={{
             variables: {
@@ -725,14 +812,17 @@ function SignInContent() {
   );
 
   if (!activeRole) {
+    if (!inviteToken) {
+      return <RequestAccess />;
+    }
     return <PortalChooser onSelect={setSelectedRole} />;
   }
 
   if (inviteToken) {
-    return <SignUpForm role={activeRole} email={inviteEmail} />;
+    return <SignUpForm role={activeRole} email={inviteEmail} inviteToken={inviteToken} />;
   }
 
-  return <SignInForm role={activeRole} />;
+  return <SignInForm role={activeRole} inviteToken={inviteToken} />;
 }
 
 export default function SignInPage() {
