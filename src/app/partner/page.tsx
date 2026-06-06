@@ -21,10 +21,9 @@ const ROLE_LINKS: Record<Role, { label: string; sub: string; href: string; accen
   partner: [
     { label: 'Stage Architecture', sub: '3 stages · Navy Island layout · sound strategy', href: '/stages?role=partner', accent: rust },
     { label: 'Activity Programme', sub: 'Forest · water · wellness · cultural tours', href: '/activities?role=partner' },
-    { label: 'Production Brief', sub: 'Site · marine · power · sanitation · build timeline · execution gates', href: '/production-brief' },
   ],
   press: [
-    { label: 'Press Materials', sub: 'Festival overview · approved facts · media FAQ · asset request', href: '/press' },
+    { label: 'Press Materials', sub: 'Festival overview · approved facts · media assets', href: '/deck?role=press' },
     { label: 'Stage Architecture', sub: '3 stages · Navy Island layout · festival experience', href: '/stages?role=press', accent: rust },
     { label: 'Activity Programme', sub: 'Forest · water · wellness · cultural tours', href: '/activities?role=press' },
   ],
