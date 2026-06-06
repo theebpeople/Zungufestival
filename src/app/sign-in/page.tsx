@@ -384,7 +384,7 @@ function PortalChooser({ onSelect }: { onSelect: (role: string) => void }) {
   );
 }
 
-function SignInForm({ role }: { role: string }) {
+function SignInForm({ role, inviteToken }: { role: string; inviteToken?: string | null }) {
   const router = useRouter();
   const portalLabel =
     role === 'investor'
@@ -653,7 +653,7 @@ function SignInForm({ role }: { role: string }) {
       <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 384 }}>
         <SignIn
           routing="hash"
-          forceRedirectUrl={`/partner?role=${role}`}
+          forceRedirectUrl={`/api/set-role?role=${role}${inviteToken ? `&token=${encodeURIComponent(inviteToken)}` : ''}`}
           appearance={{
             variables: {
               colorPrimary: gold,
@@ -703,7 +703,7 @@ function SignInForm({ role }: { role: string }) {
   );
 }
 
-function SignUpForm({ role, email }: { role: string; email: string | null }) {
+function SignUpForm({ role, email, inviteToken }: { role: string; email: string | null; inviteToken?: string | null }) {
   const router = useRouter();
   const isPartner = role === 'partner';
   const portalLabel =
@@ -777,7 +777,7 @@ function SignUpForm({ role, email }: { role: string; email: string | null }) {
       <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 384 }}>
         <SignUp
           routing="hash"
-          forceRedirectUrl={isPartner ? '/partner' : `/deck?role=${role}`}
+          forceRedirectUrl={`/api/set-role?role=${role}${inviteToken ? `&token=${encodeURIComponent(inviteToken)}` : ''}`}
           initialValues={email ? { emailAddress: email } : undefined}
           appearance={{
             variables: {
@@ -819,10 +819,10 @@ function SignInContent() {
   }
 
   if (inviteToken) {
-    return <SignUpForm role={activeRole} email={inviteEmail} />;
+    return <SignUpForm role={activeRole} email={inviteEmail} inviteToken={inviteToken} />;
   }
 
-  return <SignInForm role={activeRole} />;
+  return <SignInForm role={activeRole} inviteToken={inviteToken} />;
 }
 
 export default function SignInPage() {

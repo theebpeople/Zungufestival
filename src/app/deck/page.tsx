@@ -1,6 +1,6 @@
 'use client';
 
-import { useAuth } from '@clerk/nextjs';
+import { useAuth, useUser } from '@clerk/nextjs';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Suspense, useEffect } from 'react';
 import DeckContentComponent from './DeckContent';
@@ -12,12 +12,18 @@ const NAV_LABELS: Record<string, string> = {
   press: 'Press Materials',
 };
 
+const VALID_ROLES = ['investor', 'partner', 'press', 'stakeholder'];
+
 function DeckGate() {
   const { isLoaded, isSignedIn } = useAuth();
+  const { user } = useUser();
   const searchParams = useSearchParams();
   const router = useRouter();
-  const rawRole = searchParams.get('role') ?? 'investor';
-  const role = rawRole === 'supplier' ? 'stakeholder' : rawRole;
+
+  const metaRole = user?.publicMetadata?.role as string | undefined;
+  const urlRole = searchParams.get('role') ?? '';
+  const rawRole = metaRole || (urlRole === 'supplier' ? 'stakeholder' : urlRole) || 'investor';
+  const role = VALID_ROLES.includes(rawRole) ? rawRole : 'investor';
   const navLabel = NAV_LABELS[role] ?? 'Investor Deck';
 
   useEffect(() => {

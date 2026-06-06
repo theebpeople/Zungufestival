@@ -46,12 +46,12 @@ function PartnerHubInner() {
   const { signOut } = useClerk();
   const searchParams = useSearchParams();
 
-  const rawRole = searchParams.get('role') ?? '';
+  const metaRole = user?.publicMetadata?.role as string | undefined;
+  const urlRole = searchParams.get('role') ?? '';
+  const rawRole = metaRole || (urlRole === 'supplier' ? 'stakeholder' : urlRole);
   const safeRole: Role =
     rawRole === 'investor' || rawRole === 'partner' || rawRole === 'press' || rawRole === 'stakeholder'
       ? (rawRole as Role)
-      : rawRole === 'supplier'
-      ? 'stakeholder'
       : 'partner';
 
   const links = ROLE_LINKS[safeRole];
