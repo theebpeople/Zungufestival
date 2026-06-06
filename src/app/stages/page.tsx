@@ -193,18 +193,21 @@ export default function StagesPage() {
           <h1 style={{ fontFamily: DISPLAY, fontSize: 'clamp(3.5rem, 9vw, 8rem)', fontWeight: 900, lineHeight: 0.9, color: CREAM, marginBottom: 8 }}>
             THREE<br /><span style={{ color: GOLD }}>STAGES.</span><br />ONE<br />ISLAND.
           </h1>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.06em', lineHeight: 1.8, marginBottom: 48, maxWidth: 480 }}>
-            The island is the scenery. It is where the world of Zungu comes alive and the magic of the experience begins. Origins rises with the sun. Rebirth catches the sunset. Zungu stands at the centre. Three stages. Three energies. One island transformed by sound.
+          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.06em', lineHeight: 1.8, marginBottom: 16, maxWidth: 520 }}>
+            The island is the scenery. It is where the world of Zungu comes alive and the magic of the experience begins. Origins rises with the sun. Rebirth catches the sunset. Zungu stands at the centre.
+          </p>
+          <p style={{ fontFamily: MONO, fontSize: 14, color: 'rgba(242,235,217,0.35)', letterSpacing: '0.04em', lineHeight: 1.8, marginBottom: 48, maxWidth: 520 }}>
+            For production partners, the stage plan is more than a creative concept. It is the first working framework for site survey, sound direction, power planning, access routes, artist movement, crowd flow, technical delivery, safety, and build feasibility. Three stages. Three energies. One island transformed by sound — pending final site survey, environmental review, permit conditions, technical design, and production partner assessment.
           </p>
 
           {/* Hero stats — bordered box */}
           <div style={{ display: 'flex', gap: 0, borderTop: `1px solid rgba(200,168,75,0.2)`, paddingTop: 24, flexWrap: 'wrap' }}>
             {[
-              { label: 'ORIGINS', value: 'Sunrise · Earth sound · Tribal fusion' },
-              { label: 'ZUNGU', value: 'Centre island · Mainstage · Big room' },
-              { label: 'REBIRTH', value: 'Sunset · Tribal · Tech · Underground house' },
+              { label: 'ORIGINS', value: 'Sunrise · Earth sound · Tribal fusion · Sound-first build' },
+              { label: 'ZUNGU', value: 'Centre island · Mainstage · Full production · Major acts' },
+              { label: 'REBIRTH', value: 'Sunset · Tribal · Tech · Underground house · Transition stage' },
               { label: 'JUN 17–23', value: 'Arrival · Festival nights · Closing events' },
-              { label: '5,000', value: 'Year One target' },
+              { label: '5,000', value: 'Year One target · Subject to operating approvals' },
             ].map((s, i, arr) => (
               <div key={s.label} style={{ paddingRight: i < arr.length - 1 ? '2.5rem' : 0, marginRight: i < arr.length - 1 ? '2.5rem' : 0, borderRight: i < arr.length - 1 ? `1px solid ${BORDER_MID}` : 'none' }}>
                 <span style={{ display: 'block', fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 6 }}>{s.label}</span>
@@ -384,6 +387,12 @@ export default function StagesPage() {
                   </span>
                 ))}
               </div>
+              <div style={{ marginTop: 24, padding: '20px 24px', border: '1px solid rgba(200,168,75,0.15)', background: 'rgba(200,168,75,0.02)' }}>
+                <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 10 }}>// Production Partner Notes</span>
+                <p style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.4)', lineHeight: 1.8, margin: 0 }}>
+                  Zungu is the highest production demand on the island. The global anchor rider directly determines mainstage specification — audio system, power load, rigging, video wall, stage dimensions, and back-of-house. Rider review, stage build timeline, power distribution, and artist logistics must be advanced before any other stage planning locks in. Final specification depends on confirmed artist bookings, rider submission, and technical assessment.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -424,6 +433,12 @@ export default function StagesPage() {
                   </span>
                 ))}
               </div>
+              <div style={{ marginTop: 24, padding: '20px 24px', border: '1px solid rgba(212,114,42,0.15)', background: 'rgba(212,114,42,0.02)' }}>
+                <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: ORIGINS_C, display: 'block', marginBottom: 10 }}>// Production Partner Notes</span>
+                <p style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.4)', lineHeight: 1.8, margin: 0 }}>
+                  Origins is sound-first and low-impact. Do not overbuild. The power of this stage comes from the sunrise setting, the sound system, and the morning atmosphere — not from visual production. Smaller crew, lower power draw, morning access logistics, and natural-material scenic design make Origins more achievable but it still requires full site access, marine logistics, audio system delivery, crew movement, and safety planning. Sound direction must avoid bleed into Zungu and Rebirth.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -463,6 +478,12 @@ export default function StagesPage() {
                     <span style={{ fontSize: 5, color: GOLD, opacity: 0.4 }}>●</span>{p}
                   </span>
                 ))}
+              </div>
+              <div style={{ marginTop: 24, padding: '20px 24px', border: '1px solid rgba(155,95,192,0.15)', background: 'rgba(155,95,192,0.02)' }}>
+                <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: REBIRTH_C, display: 'block', marginBottom: 10 }}>// Production Partner Notes</span>
+                <p style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.4)', lineHeight: 1.8, margin: 0 }}>
+                  Rebirth must support the emotional handoff from day to night. Mid-scale audio, sunset-calibrated lighting, and safe guest movement between Rebirth and Zungu are the production priorities. Path lighting, crowd-flow routing, artist access from back-of-house, and warm atmosphere design must be planned before Rebirth programming locks in. Sound direction and visual output should not compete with the Zungu mainstage.
+                </p>
               </div>
             </div>
             {/* Rebirth stage aerial */}
@@ -650,10 +671,10 @@ export default function StagesPage() {
           {/* Left: Stage roles */}
           <div>
             {[
-              { t: 'ORIGINS', label: 'The source stage.', body: 'Sunrise. Earth sound. Tribal fusion. Rooted electronic. Local and emerging selectors.', key: true, color: ORIGINS_C },
-              { t: 'ZUNGU', label: 'The mainstage.', body: 'Big room. Major acts. Full production. Peak festival moments.', key: true, color: GOLD },
-              { t: 'REBIRTH', label: 'The underground stage.', body: 'Sunset. Tribal. Tech. Underground house. Deep transition into night.', key: true, color: REBIRTH_C },
-              { t: 'POP-UPS', label: 'The surprise layer.', body: 'Small music moments across the island: beach sets, forest sessions, Shoppe takeovers, The Signal recordings, partner lounges, pier moments, and late discoveries.', key: false, color: null, ritual: true },
+              { t: 'ORIGINS', label: 'The source stage.', body: 'Sunrise. Earth sound. Tribal fusion. Rooted electronic. Local and emerging selectors. Production Read: sound-first, low-impact scenic, morning access, smaller crew, sunrise timing.', key: true, color: ORIGINS_C },
+              { t: 'ZUNGU', label: 'The mainstage.', body: 'Big room. Major acts. Full production. Peak festival moments. Production Read: highest specification, major rider support, full stage management, high crowd load, security, FOH, visuals, power redundancy.', key: true, color: GOLD },
+              { t: 'REBIRTH', label: 'The underground stage.', body: 'Sunset. Tribal. Tech. Underground house. Deep transition into night. Production Read: mid-scale audio, sunset lighting, guest-flow transition, artist access, path lighting, warm atmosphere.', key: true, color: REBIRTH_C },
+              { t: 'POP-UPS', label: 'The surprise layer.', body: 'Small music moments across the island: beach sets, forest sessions, Shoppe takeovers, The Signal recordings, partner lounges, pier moments, and late discoveries. Production Read: portable sound, temporary power, media release control, weather cover, small crew, guest-flow control, security, equipment protection.', key: false, color: null, ritual: true },
             ].map(({ t, label, body, key, color, ritual }) => (
               <div key={t} style={{ display: 'grid', gridTemplateColumns: '72px 1fr' }}>
                 <div style={{ position: 'relative', padding: '12px 14px 12px 0', textAlign: 'right', borderRight: `1px solid rgba(200,168,75,0.1)` }}>
@@ -704,6 +725,102 @@ export default function StagesPage() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════
+          CHAPTER 06 — ARTIST PROGRAMMING IMPLICATIONS
+      ══════════════════════════════════════════════════════════════════ */}
+      <ChapterDivider num="06" title="Artist Programming Implications." goldLine="The booking model shapes the production model." desc="Artist selection determines stage specification, rider requirements, power load, crew size, back-of-house scope, and production timeline. The three-stage structure gives the booking model its territory." />
+
+      <section style={{ padding: '60px 8vw', borderBottom: `1px solid ${BORDER}`, backgroundColor: BG }}>
+        <SLabel>// 06 ARTIST PROGRAMMING IMPLICATIONS</SLabel>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, marginTop: 40 }}>
+          <div>
+            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 24 }}>
+              Year One booking model: 30–45 artists and selectors across the full festival week. The booking tier determines which stage each artist plays and the production specification each stage must meet.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              {[
+                { tier: 'Global Anchor', count: '1', stageNote: 'Zungu Main · highest specification · must be advanced first', color: GOLD },
+                { tier: 'Major Support Names', count: '2–4', stageNote: 'Zungu Main or Rebirth · mid-to-high production demand', color: GOLD },
+                { tier: 'Curated Depth Acts', count: '10–20', stageNote: 'All three stages · varied production requirements', color: MUTED },
+                { tier: 'Local / Selector Layer', count: 'Open', stageNote: 'Origins, Rebirth, pop-ups · lower production demand', color: MUTED },
+              ].map(({ tier, count, stageNote, color }) => (
+                <div key={tier} style={{ display: 'grid', gridTemplateColumns: '140px 50px 1fr', gap: 16, padding: '14px 0', borderBottom: '1px solid rgba(242,235,217,0.04)', alignItems: 'start' }}>
+                  <span style={{ fontFamily: MONO, fontSize: 13, color: CREAM }}>{tier}</span>
+                  <span style={{ fontFamily: MONO, fontSize: 13, color, paddingTop: 2 }}>{count}</span>
+                  <span style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.4)', lineHeight: 1.6 }}>{stageNote}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div style={{ padding: '24px 28px', border: `1px solid ${BORDER_MID}`, background: 'rgba(200,168,75,0.02)', marginBottom: 20 }}>
+              <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 14 }}>// Benchmark Reference</span>
+              <p style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.4)', lineHeight: 1.8, marginBottom: 8 }}>BPM Costa Rica: 80+ artists across multiple stages. SXM Festival: 40+ artists in a similar island format.</p>
+              <p style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.4)', lineHeight: 1.8 }}>Zungu Year One targets a tighter, curated lineup — quality and island fit over volume.</p>
+            </div>
+            <div style={{ padding: '24px 28px', border: `1px solid ${BORDER_MID}`, background: 'rgba(200,168,75,0.025)' }}>
+              <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 12 }}>Final requirements subject to:</span>
+              {['Confirmed artist bookings', 'Technical rider submission and review', 'Travel and accommodation planning', 'Hospitality and catering scope', 'Security and access management', 'Production partner assessment'].map((item) => (
+                <div key={item} style={{ fontFamily: MONO, fontSize: 13, lineHeight: 1.7, color: 'rgba(242,235,217,0.4)', paddingLeft: 14, borderLeft: '2px solid rgba(200,168,75,0.2)', marginBottom: 12 }}>{item}</div>
+              ))}
+              <p style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.4)', lineHeight: 1.7, marginTop: 14, marginBottom: 0 }}>Full artist rider coordination, DJ equipment baseline, BOH planning, and changeover logistics belong in the Production Brief.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════
+          PRODUCTION PARTNER NOTE + CTA
+      ══════════════════════════════════════════════════════════════════ */}
+      <section style={{ padding: '80px 8vw', borderBottom: `1px solid ${BORDER}`, backgroundColor: GREEN }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 32 }}>
+          <div style={{ width: 28, height: 1, background: GOLD_DIM }} />
+          <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.5em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700 }}>// Production Partner Note</span>
+        </div>
+        <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 16 }}>
+          This page defines the stage architecture, programming model, and festival week structure. It is not the full Production Brief.
+        </p>
+        <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 40 }}>
+          All stage specifications, artist requirements, and production scope remain subject to site survey, environmental review, permit conditions, rider submission, technical assessment, and production partner confirmation.
+        </p>
+        <div style={{ border: `1px solid ${BORDER_MID}`, padding: '28px 32px', background: 'rgba(200,168,75,0.015)', marginBottom: 32 }}>
+          <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700, marginBottom: 20 }}>Production partners may request the full Production Brief for:</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px 40px' }}>
+            {[
+              'Stage build specification and structural design',
+              'Technical scope: audio, lighting, video, power',
+              'Artist rider planning and rider management',
+              'DJ equipment baseline per stage',
+              'Power distribution and generator planning',
+              'Marine logistics: equipment delivery, crew ferry',
+              'Back-of-house: green rooms, production offices',
+              'Build timeline, teardown, and demobilisation',
+              'Artist travel and accommodation coordination',
+              'Security: stage, artist, crowd, marine',
+              'Cost centres, risk controls, and execution gates',
+              'Emergency and safety planning per stage',
+            ].map((item) => (
+              <div key={item} style={{ fontFamily: MONO, fontSize: 13, lineHeight: 1.7, color: 'rgba(242,235,217,0.4)', paddingLeft: 14, borderLeft: '2px solid rgba(200,168,75,0.2)', marginBottom: 12 }}>{item}</div>
+            ))}
+          </div>
+        </div>
+        <div style={{ border: `1px solid rgba(200,168,75,0.25)`, padding: '32px 36px', background: 'rgba(200,168,75,0.03)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 24 }}>
+          <div>
+            <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700, marginBottom: 10 }}>// Request Stage Production Brief</p>
+            <p style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.4)', lineHeight: 1.8, maxWidth: 480, margin: 0 }}>
+              Production partners may request the full Stage Production Brief covering build specification, technical scope, artist rider planning, marine logistics, power design, and execution gates.
+            </p>
+          </div>
+          <a href="/partner" style={{ display: 'inline-block', padding: '14px 28px', border: `1px solid rgba(200,168,75,0.4)`, fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, textDecoration: 'none', fontWeight: 700, whiteSpace: 'nowrap', transition: 'all 0.2s' }}
+            onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = 'rgba(200,168,75,0.08)'; el.style.borderColor = GOLD; }}
+            onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = 'transparent'; el.style.borderColor = 'rgba(200,168,75,0.4)'; }}
+          >
+            Request Brief →
+          </a>
         </div>
       </section>
 
