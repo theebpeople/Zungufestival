@@ -19,6 +19,7 @@ const ROLE_LINKS: Record<Role, { label: string; sub: string; href: string; accen
     { label: 'Activity Programme', sub: 'Forest · water · wellness · cultural tours', href: '/activities?role=investor' },
   ],
   partner: [
+    { label: 'Production Brief', sub: 'Full operating manual · site logistics · technical scope · delivery framework', href: '/production-brief' },
     { label: 'Stage Architecture', sub: '3 stages · Navy Island layout · sound strategy', href: '/stages?role=partner', accent: rust },
     { label: 'Activity Programme', sub: 'Forest · water · wellness · cultural tours', href: '/activities?role=partner' },
   ],

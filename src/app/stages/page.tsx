@@ -910,9 +910,15 @@ function StagesPageInner() {
         <section style={{ padding: '60px 8vw', backgroundColor: BG, borderTop: `1px solid ${BORDER}` }}>
           <div style={{ maxWidth: 720 }}>
             <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD_DIM, marginBottom: 12 }}>// Stage Production Brief</div>
-            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
+            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
               Detailed rider management, DJ equipment baseline, back-of-house layout, artist travel, security, technical schedules, cost centres, and changeover planning are developed in the Stage Production Brief.
             </p>
+            <a href="/production-brief"
+              style={{ display: 'inline-block', fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700, border: `1px solid ${GOLD_DIM}`, padding: '0.65rem 1.4rem', textDecoration: 'none', transition: 'all 0.2s' }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(200,168,75,0.08)'; e.currentTarget.style.borderColor = GOLD; }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.borderColor = GOLD_DIM; }}>
+              Open Production Brief →
+            </a>
           </div>
         </section>
       )}
