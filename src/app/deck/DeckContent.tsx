@@ -35,6 +35,7 @@ const CHAPTERS: Record<string, { bg: string; accent: string; rgb: string }> = {
   '14': { bg: '#040810', accent: '#4A8FBD', rgb: '74,143,189'  }, // blue   — risk (investor)
   '15': { bg: '#060600', accent: '#C8A84B', rgb: '200,168,75'  }, // gold   — roadmap (investor)
   '16': { bg: '#060410', accent: '#9B5FC0', rgb: '155,95,192'  }, // purple — investor positioning
+  'capitalbuilds': { bg: '#060400', accent: '#D4722A', rgb: '212,114,42'  }, // rust  — capital builds (investor)
   'cta':{ bg: '#060600', accent: '#C8A84B', rgb: '200,168,75'  }, // gold
 };
 
@@ -45,7 +46,7 @@ const fontMono = "'Space Mono', monospace";
 const SECTIONS = [
   'brand', 'meaning', 'portantonio', 'island', 'jamaica',
   'stages', 'sound', 'experience', 'programming',
-  'opportunity', 'accommodation', 'commercial', 'financial', 'risk', 'roadmap',
+  'opportunity', 'accommodation', 'capitalbuilds', 'commercial', 'financial', 'risk', 'roadmap',
   'investor', 'cta',
 ] as const;
 type SectionId = typeof SECTIONS[number];
@@ -54,7 +55,7 @@ const ROLE_SECTIONS: Record<string, readonly SectionId[]> = {
   investor: [
     'brand', 'meaning', 'portantonio', 'island', 'jamaica',
     'stages', 'sound', 'experience', 'programming',
-    'opportunity', 'accommodation', 'commercial', 'financial', 'risk', 'roadmap',
+    'opportunity', 'accommodation', 'capitalbuilds', 'commercial', 'financial', 'risk', 'roadmap',
     'investor', 'cta',
   ],
   partner:      ['brand', 'meaning', 'portantonio', 'island', 'stages', 'sound', 'experience', 'programming', 'cta'],
@@ -314,6 +315,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
     programming: useRef<HTMLElement>(null),
     opportunity: useRef<HTMLElement>(null),
     accommodation: useRef<HTMLElement>(null),
+    capitalbuilds: useRef<HTMLElement>(null),
     commercial: useRef<HTMLElement>(null),
     financial: useRef<HTMLElement>(null),
     risk: useRef<HTMLElement>(null),
@@ -335,6 +337,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
     programming: useRef<HTMLDivElement>(null),
     opportunity: useRef<HTMLDivElement>(null),
     accommodation: useRef<HTMLDivElement>(null),
+    capitalbuilds: useRef<HTMLDivElement>(null),
     commercial: useRef<HTMLDivElement>(null),
     financial: useRef<HTMLDivElement>(null),
     risk: useRef<HTMLDivElement>(null),
@@ -404,6 +407,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
     { label: 'Investment', items: [
       ['The Opportunity', 'opportunity'],
       ['Where You Stay', 'accommodation'],
+      ['What the Capital Builds', 'capitalbuilds'],
       ['Commercial Model', 'commercial'],
       ['Year One Financials', 'financial'],
       ['Risk & Execution', 'risk'],
@@ -477,6 +481,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
     ['Programming', 'programming'],
     ['The Opportunity', 'opportunity'],
     ['Where You Stay', 'accommodation'],
+      ['What the Capital Builds', 'capitalbuilds'],
     ['Commercial Model', 'commercial'],
     ['Year One Financials', 'financial'],
     ['Risk & Execution', 'risk'],
@@ -1547,10 +1552,48 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         <PhotoBreak src="/photos/blue-lagoon-port-antonio.jpg" quote="The island doesn't sleep." label="Navy Island · June 2027" />
       </>)}
 
+      {/* ═══ CHAPTER 12: WHAT THE CAPITAL BUILDS — investor only ═══ */}
+      {visibleSections.includes('capitalbuilds') && (<>
+        <ChapterWrap bg={CHAPTERS['capitalbuilds'].bg} photo="/photos/navy-island-aerial.jpg">
+          <ChapterDivider num="12" eye="Chapter Twelve" title="What the Capital Builds." sub="This is not a venue rental. The capital builds a temporary operating system." accent={CHAPTERS['capitalbuilds'].accent} chBg={CHAPTERS['capitalbuilds'].bg} rgb={CHAPTERS['capitalbuilds'].rgb} />
+          <Section id="capitalbuilds" sectionBg={CHAPTERS['capitalbuilds'].bg} accent={CHAPTERS['capitalbuilds'].accent} rgb={CHAPTERS['capitalbuilds'].rgb} style={{ background: 'transparent' }}>
+            <SectionHead label="Use of Capital" title="An island does not come ready." accent={CHAPTERS['capitalbuilds'].accent} />
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Zungu is not a conventional venue rental. The capital builds the temporary operating system required to transform Navy Island into a controlled-capacity destination festival environment — safely, credibly, and completely.</p>
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Investment funds ten interconnected workstreams. Each is required. None is optional. Together they make the festival possible.</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 2, marginBottom: 48 }}>
+              {[
+                { num: '01', title: 'Site Access + Island Preparation', body: 'Vegetation management, ground preparation, access route establishment, and pre-event site surveys across Navy Island.' },
+                { num: '02', title: 'Marine Access + Temporary Docking', body: 'Temporary dock infrastructure, tender operations, marine transfer logistics, and vessel coordination between Port Antonio and Navy Island.' },
+                { num: '03', title: 'Stages, Sound, Lighting + Video', body: 'Full stage builds, PA systems, monitor rigs, lighting design, visual production, and technical infrastructure across all festival zones.' },
+                { num: '04', title: 'Power + Fuel', body: 'Generator sets, distribution boards, cabling, fuel logistics, and backup power for all island operations throughout the festival week.' },
+                { num: '05', title: 'Water, Sanitation + Waste', body: 'Fresh water supply, sanitation infrastructure, ablution facilities, waste management, and island-wide hygiene operations.' },
+                { num: '06', title: 'Medical, Welfare + Security', body: 'On-site medical team, welfare facilities, crowd safety management, accreditation control, and security operations across all zones.' },
+                { num: '07', title: 'Environmental Protection + Demobilisation', body: 'Pre-event environmental survey, operational impact management, post-event strip-out, site restoration, and demobilisation logistics.' },
+                { num: '08', title: 'Glamping + Hospitality Infrastructure', body: 'Glamping pod installation, guest zone fit-out, hospitality areas, food and beverage infrastructure, and artist and crew facilities.' },
+                { num: '09', title: 'Artist Travel + Hospitality', body: 'International and regional artist travel, accommodation, technical riders, production coordination, and artist movement during festival week.' },
+                { num: '10', title: 'Staffing, Permits, Insurance + Contingency', body: 'Production and operations staffing, regulatory permits, event insurance, legal compliance, and contingency reserves across all departments.' },
+              ].map(({ num, title, body }) => (
+                <div key={num} style={{ border: `1px solid rgba(212,114,42,0.15)`, padding: '24px 20px', background: 'rgba(6,4,0,0.5)' }}>
+                  <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: CHAPTERS['capitalbuilds'].accent, marginBottom: 10 }}>{num}</div>
+                  <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(13px, 1.5vw, 16px)', fontWeight: 700, color: cream, marginBottom: 10, lineHeight: 1.3 }}>{title}</p>
+                  <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, lineHeight: 1.75 }}>{body}</p>
+                </div>
+              ))}
+            </div>
+            <div style={{ border: `1px solid rgba(212,114,42,0.25)`, padding: '28px 30px', marginBottom: 40, background: 'rgba(212,114,42,0.04)' }}>
+              <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: CHAPTERS['capitalbuilds'].accent, marginBottom: 10 }}>Investor Note</div>
+              <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 16 }}>The Production Brief translates these workstreams into vendor scopes, technical specifications, build timelines, and execution responsibilities for qualified production partners. Investors see the operating logic and capital deployment framework; production partners receive the execution manual.</p>
+              <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 20px)', fontWeight: 700, color: CHAPTERS['capitalbuilds'].accent }}>Every line above is a reason the island has never hosted a festival like this before. It is also why it will not be easy to replicate.</p>
+            </div>
+          </Section>
+        </ChapterWrap>
+        <PhotoBreak src="/photos/navy-island-wide.png" quote="The island is the infrastructure." label="Navy Island · Port Antonio · Jamaica" />
+      </>)}
+
       {/* ═══ CHAPTER 12: THE COMMERCIAL MODEL — investor only ═══ */}
       {visibleSections.includes('commercial') && (<>
         <ChapterWrap bg={CHAPTERS['12'].bg} photo="/photos/navy-island-satellite.png">
-          <ChapterDivider num="12" eye="Chapter Twelve" title="The Commercial Model." sub="Nine revenue lines. One island. One week." accent={CHAPTERS['12'].accent} chBg={CHAPTERS['12'].bg} rgb={CHAPTERS['12'].rgb} />
+          <ChapterDivider num="13" eye="Chapter Thirteen" title="The Commercial Model." sub="Nine revenue lines. One island. One week." accent={CHAPTERS['12'].accent} chBg={CHAPTERS['12'].bg} rgb={CHAPTERS['12'].rgb} />
           <Section id="commercial" sectionBg={CHAPTERS['12'].bg} accent={CHAPTERS['12'].accent} rgb={CHAPTERS['12'].rgb} style={{ background: 'transparent' }}>
             <SectionHead label="Ticket Architecture" title="Four tiers. One week." accent={CHAPTERS['12'].accent} />
             <div style={{ display: 'flex', border: `1px solid rgba(58,175,122,0.12)`, marginBottom: 48, flexWrap: 'wrap' }}>
@@ -1590,7 +1633,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
       {/* ═══ CHAPTER 13: YEAR ONE FINANCIALS — investor only ═══ */}
       {visibleSections.includes('financial') && (<>
         <ChapterWrap bg={CHAPTERS['13'].bg} photo="/photos/port-antonio.jpg">
-          <ChapterDivider num="13" eye="Chapter Thirteen" title="Year One Financials." sub="The base case, the upside lines, and the discipline." accent={CHAPTERS['13'].accent} chBg={CHAPTERS['13'].bg} rgb={CHAPTERS['13'].rgb} />
+          <ChapterDivider num="14" eye="Chapter Fourteen" title="Year One Financials." sub="The base case, the upside lines, and the discipline." accent={CHAPTERS['13'].accent} chBg={CHAPTERS['13'].bg} rgb={CHAPTERS['13'].rgb} />
           <Section id="financial" sectionBg={CHAPTERS['13'].bg} accent={CHAPTERS['13'].accent} rgb={CHAPTERS['13'].rgb} style={{ background: 'transparent' }}>
             <SectionHead label="Year One Revenue Model" title="The case at 5,000 guests." accent={CHAPTERS['13'].accent} />
             <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Year One is modelled around 5,000 guests, controlled capacity, premium yield, and multiple revenue lines. The working access model suggests potential gross access revenue of approximately US$5.685M before bars, food, retail, sponsorship, vendor fees, activities, media, accommodation add-ons, and hospitality upsides.</p>
@@ -1647,7 +1690,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
       {/* ═══ CHAPTER 14: RISK & EXECUTION — investor only ═══ */}
       {visibleSections.includes('risk') && (<>
         <ChapterWrap bg={CHAPTERS['14'].bg} photo="/photos/navy-island-wide.png">
-          <ChapterDivider num="14" eye="Chapter Fourteen" title="Risk & Execution." sub="Ambitious, but not naive." accent={CHAPTERS['14'].accent} chBg={CHAPTERS['14'].bg} rgb={CHAPTERS['14'].rgb} />
+          <ChapterDivider num="15" eye="Chapter Fifteen" title="Risk & Execution." sub="Ambitious, but not naive." accent={CHAPTERS['14'].accent} chBg={CHAPTERS['14'].bg} rgb={CHAPTERS['14'].rgb} />
           <Section id="risk" sectionBg={CHAPTERS['14'].bg} accent={CHAPTERS['14'].accent} rgb={CHAPTERS['14'].rgb} style={{ background: 'transparent' }}>
             <SectionHead label="Risk Matrix" title="Known risks. Planned mitigations." accent={CHAPTERS['14'].accent} />
             <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Zungu is ambitious, but not naive. A private-island festival carries a different risk profile from a traditional land-based event. The model must be built around expert partners, phased commitments, permits, marine logistics, safety planning, environmental protocol, insurance, and hard financial gates.</p>
@@ -1677,7 +1720,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
       {/* ═══ CHAPTER 15: THE ROADMAP — investor only ═══ */}
       {visibleSections.includes('roadmap') && (<>
         <ChapterWrap bg={CHAPTERS['15'].bg} photo="/photos/princess-island-portantonio.jpg">
-          <ChapterDivider num="15" eye="Chapter Fifteen" title="The Roadmap." sub="Year One is the proof of concept. The platform is the opportunity." accent={CHAPTERS['15'].accent} chBg={CHAPTERS['15'].bg} rgb={CHAPTERS['15'].rgb} />
+          <ChapterDivider num="16" eye="Chapter Sixteen" title="The Roadmap." sub="Year One is the proof of concept. The platform is the opportunity." accent={CHAPTERS['15'].accent} chBg={CHAPTERS['15'].bg} rgb={CHAPTERS['15'].rgb} />
           <Section id="roadmap" sectionBg={CHAPTERS['15'].bg} accent={CHAPTERS['15'].accent} rgb={CHAPTERS['15'].rgb} style={{ background: 'transparent' }}>
             <SectionHead label="Four-Year Arc" title="Boutique to global." accent={CHAPTERS['15'].accent} />
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 2, marginBottom: 48 }}>
@@ -1717,7 +1760,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
 
       {/* ═══ CHAPTER 16: INVESTOR POSITIONING — investor only ═══ */}
       {visibleSections.includes('investor') && <ChapterWrap bg={CHAPTERS['16'].bg} photo="/photos/navy-island-satellite.png">
-        <ChapterDivider num="16" eye="Chapter Sixteen" title="Investor Positioning." sub="Zungu is a festival, but the opportunity is larger than one event." accent={CHAPTERS['16'].accent} chBg={CHAPTERS['16'].bg} rgb={CHAPTERS['16'].rgb} />
+        <ChapterDivider num="17" eye="Chapter Seventeen" title="Investor Positioning." sub="Zungu is a festival, but the opportunity is larger than one event." accent={CHAPTERS['16'].accent} chBg={CHAPTERS['16'].bg} rgb={CHAPTERS['16'].rgb} />
         <Section id="investor" sectionBg={CHAPTERS['16'].bg} accent={CHAPTERS['16'].accent} rgb={CHAPTERS['16'].rgb} style={{ background: 'transparent' }}>
           <SectionHead label="Investor Positioning" title="Larger than one event." accent={CHAPTERS['16'].accent} />
           <div style={{ maxWidth: 880, marginBottom: 40 }}>
