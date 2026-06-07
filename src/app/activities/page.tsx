@@ -582,75 +582,45 @@ function ActivitiesPageInner() {
       </ChapterSection>
 
       {/* ══════════════════════════════════════════════════════════════════
-          PRODUCTION PARTNER NOTE
+          ROLE-AWARE CLOSING NOTE
       ══════════════════════════════════════════════════════════════════ */}
-      <ChapterSection bg={GREEN} photo="/photos/navy-island-aerial-hq.png">
-        <div style={{ padding: '80px 8vw' }}>
-          <SLabel>// Production Partner Note</SLabel>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 16 }}>
-            This page defines the island activity programme and operating logic. It is not the full production manual.
-          </p>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 40 }}>
-            The activity system described here — nine zones, mainland activations, commercial model, sustainability protocols — requires a Production Brief to move from concept to confirmed operating plan.
-          </p>
-          <div style={{ border: `1px solid ${DIM}`, padding: '28px 32px', marginBottom: 40 }}>
-            <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, marginBottom: 20 }}>The Production Brief should cover:</p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px 40px' }}>
-              {[
-                'Zone-by-zone build specification and site plan',
-                'Power distribution across all nine zones',
-                'Water supply, sanitation, and waste management',
-                'Marine logistics: ferry schedule, boat slots, safety',
-                'Vendor onboarding, contracts, and category exclusivity',
-                'POS and payment integration across all zones',
-                'Food hygiene permits and fire safety per zone',
-                'Reef protocol and marine environmental compliance',
-                'Wayfinding, zone signage, and guest-flow management',
-                'Staffing model: zone managers, crew, security, welfare',
-                'Medical provision and harm reduction protocols',
-                'Cold storage, ice supply, and refrigeration',
-                'Customs, import, and inventory management for retail',
-                'Media release and recording consent protocol',
-                'Artist session logistics at The Signal',
-                'Mainland activation logistics and guide contracts',
-                'Demobilisation plan per zone post-festival',
-                'Environmental reporting obligations',
-                'Insurance, licensing, and regulatory approvals',
-                'Build timeline, cost centres, and risk controls',
-              ].map((item) => (
-                <div key={item} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-                  <span style={{ color: GOLD, flexShrink: 0, fontSize: 9, paddingTop: 2 }}>—</span>
-                  <span style={{ fontFamily: MONO, fontSize: 11, color: MUTED, lineHeight: 1.7 }}>{item}</span>
-                </div>
-              ))}
+      {role === 'partner' && (
+        <ChapterSection bg={GREEN} photo="/photos/navy-island-aerial-hq.png">
+          <div style={{ padding: '80px 8vw' }}>
+            <SLabel>// Production Brief</SLabel>
+            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 40 }}>
+              The full Production Brief develops the operating requirements behind the activity programme: zone-by-zone build, power, water, sanitation, waste, vendor onboarding, marine logistics, POS, food hygiene, wayfinding, staffing, welfare, cold storage, media permissions, mainland activations, demobilisation, insurance, licensing, cost centres, and risk controls.
+            </p>
+            <div style={{ border: `1px solid rgba(200,168,75,0.25)`, padding: '32px 36px', background: 'rgba(200,168,75,0.03)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 24 }}>
+              <div>
+                <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, marginBottom: 10 }}>// Request Production Brief</p>
+                <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 480, margin: 0 }}>
+                  Production partners may request the full Activity Programme Production Brief covering zone build, vendor framework, marine logistics, power and water design, staffing model, risk controls, and execution gates.
+                </p>
+              </div>
+              <a href="/partner" style={{ display: 'inline-block', padding: '14px 28px', border: `1px solid rgba(200,168,75,0.4)`, fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, textDecoration: 'none', fontWeight: 700, whiteSpace: 'nowrap', transition: 'all 0.2s' }}
+                onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = 'rgba(200,168,75,0.08)'; el.style.borderColor = GOLD; }}
+                onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = 'transparent'; el.style.borderColor = 'rgba(200,168,75,0.4)'; }}
+              >
+                Request Brief →
+              </a>
             </div>
           </div>
-          <div style={{ border: `1px solid rgba(200,168,75,0.25)`, padding: '32px 36px', background: 'rgba(200,168,75,0.03)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 24 }}>
-            <div>
-              <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, marginBottom: 10 }}>// Request Production Brief</p>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 480, margin: 0 }}>
-                Production partners may request the full Activity Programme Production Brief covering zone build, vendor framework, marine logistics, power and water design, staffing model, risk controls, and execution gates.
-              </p>
-            </div>
-            <a href="/partner" style={{ display: 'inline-block', padding: '14px 28px', border: `1px solid rgba(200,168,75,0.4)`, fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, textDecoration: 'none', fontWeight: 700, whiteSpace: 'nowrap', transition: 'all 0.2s' }}
-              onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = 'rgba(200,168,75,0.08)'; el.style.borderColor = GOLD; }}
-              onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = 'transparent'; el.style.borderColor = 'rgba(200,168,75,0.4)'; }}
-            >
-              Request Brief →
-            </a>
+        </ChapterSection>
+      )}
+      {role === 'stakeholder' && (
+        <ChapterSection bg={GREEN} photo="/photos/navy-island-aerial-hq.png">
+          <div style={{ padding: '80px 8vw' }}>
+            <SLabel>// Stakeholder Operating Note</SLabel>
+            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 20 }}>
+              The activity programme is structured around local operator participation, guest movement, environmental protection, licensed marine activity, health standards, waste controls, mainland routes, and Port Antonio economic participation.
+            </p>
+            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680 }}>
+              Zungu's operating standards are being developed through the relevant tourism, environmental, site-use, safety, and municipal review pathways.
+            </p>
           </div>
-
-          {/* Stakeholder Review Note */}
-          {role === 'stakeholder' && (
-            <div style={{ marginTop: 48, padding: '24px 28px', border: `1px solid rgba(200,168,75,0.2)`, background: 'rgba(200,168,75,0.025)', maxWidth: 720 }}>
-              <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 12 }}>// Stakeholder Review Note</span>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>
-                The activity programme is designed to route value through Port Antonio while maintaining controls around local operator participation, environmental protection, guest movement, water activity, waste removal, and mainland activations. Final operating standards should be developed with relevant tourism, environmental, site-use, safety, and municipal stakeholders.
-              </p>
-            </div>
-          )}
-        </div>
-      </ChapterSection>
+        </ChapterSection>
+      )}
 
       {/* ── Footer ── */}
       <footer style={{ padding: '60px 8vw', borderTop: `1px solid ${BORDER}`, display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 32, backgroundColor: BG }}>

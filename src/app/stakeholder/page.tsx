@@ -683,11 +683,11 @@ function StakeholderPageInner() {
           <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 480, marginBottom: 40 }}>
             The next step is a stakeholder meeting to review site use, tourism alignment, operating considerations, and the appropriate approval pathway.
           </p>
-          <a href="mailto:stakeholders@zungufestival.com"
+          <a href="mailto:partnership@zungufestival.com"
             style={{ display: 'inline-block', fontFamily: MONO, fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700, border: `1px solid ${GOLD_DIM}`, padding: '1rem 2rem', textDecoration: 'none', transition: 'all 0.2s', marginBottom: 48 }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(200,168,75,0.08)'; e.currentTarget.style.borderColor = GOLD; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.borderColor = GOLD_DIM; }}>
-            stakeholders@zungufestival.com
+            partnership@zungufestival.com
           </a>
           <div style={{ display: 'inline-block', marginLeft: 16 }}>
             <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, border: `1px solid ${GOLD_DIM}`, padding: '4px 10px', fontWeight: 700 }}>Institutional Stakeholder</span>
@@ -697,7 +697,7 @@ function StakeholderPageInner() {
             <p style={{ fontFamily: MONO, fontSize: 14, color: MUTED, lineHeight: 1.8, marginBottom: 20 }}>
               Zungu is developing dedicated RFP tracks for qualified production, marine, infrastructure, hospitality, environmental, logistics, and local operator partners. Request RFP access if your organisation is interested in participating in the delivery, operation, or support of the festival.
             </p>
-            <a href="mailto:partnerships@zungufestival.com?subject=Zungu%20RFP%20Access%20Request"
+            <a href="mailto:partnership@zungufestival.com?subject=Zungu%20RFP%20Access%20Request"
               style={{ display: 'inline-block', fontFamily: MONO, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: MUTED, fontWeight: 700, border: `1px solid ${BORDER_MID}`, padding: '0.75rem 1.5rem', textDecoration: 'none', transition: 'all 0.2s' }}
               onMouseEnter={(e) => { e.currentTarget.style.color = GOLD; e.currentTarget.style.borderColor = GOLD_DIM; }}
               onMouseLeave={(e) => { e.currentTarget.style.color = MUTED; e.currentTarget.style.borderColor = BORDER_MID; }}>
