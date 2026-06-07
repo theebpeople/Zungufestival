@@ -15,12 +15,10 @@ const DIM = 'rgba(242,235,217,0.18)';
 const BORDER = 'rgba(200,168,75,0.07)';
 const BORDER_MID = 'rgba(200,168,75,0.12)';
 const GOLD_DIM = 'rgba(200,168,75,0.45)';
-
 const ORIGINS_C = '#D4722A';
 const REBIRTH_C = '#9B5FC0';
 const N2_C = '#4A8FBD';
 const N3_C = '#3AAF7A';
-
 const DISPLAY = "'Unbounded', sans-serif";
 const MONO = "'Space Mono', monospace";
 
@@ -40,11 +38,10 @@ const STAGES = [
     id: 'zungu',
     bg: '#060600',
     accent: GOLD,
-    tagBorder: 'rgba(200,168,75,0.3)',
-    label: 'Main Stage · South Face · Centre Island · Full Production',
+    label: 'Main Stage · South Face · Centre island · Full production',
     title: 'ZUNGU MAIN',
     sub: 'The centre of gravity. Full production. One headliner per night. When Zungu Main is active, nothing else competes.',
-    img: '/photos/stage-beach-aerial.png',
+    img: '/photos/zungu-main-stage design.png',
     narr: [
       'South-facing. <strong>Sound travels out to sea</strong>, away from Port Antonio. The stage does not feel built — it feels grown. Tropical forest frames every sightline.',
       'Full production at festival scale — LED walls, lighting rig, laser, water feature, pyro. The production serves the environment. <strong>The island is the set design.</strong>',
@@ -68,11 +65,10 @@ const STAGES = [
     id: 'origins',
     bg: '#120800',
     accent: ORIGINS_C,
-    tagBorder: 'rgba(212,114,42,0.3)',
-    label: 'Sunrise Stage · East · Earth Sound · Tribal Fusion',
+    label: 'Sunrise Stage · East · Earth sound · Tribal fusion',
     title: 'ORIGINS',
     sub: 'The source stage. East-facing. The sun rises directly behind the DJ. The first movement of the island.',
-    img: '/photos/origins-stage.jpg',
+    img: '/photos/zungu-origins-stage-design.png',
     narr: [
       'The eastern tip of the island. <strong>The sun rises directly behind the DJ.</strong> First light through the trees. The silhouette of the selector against the Caribbean dawn.',
       'Origins is not the mainstage. It is the beginning. The breakfast party. The RA moment. The cultural argument stated at 6am, in a clearing, on the island that earned the right to state it.',
@@ -81,7 +77,7 @@ const STAGES = [
       { a: 'Stage Function', v: 'Sunrise sessions · early-day programming · local selectors · rooted electronic' },
       { a: 'Sonic Identity', v: 'Earth sound · Jungle · Tribal fusion · Jamaican electronic · Deep percussion' },
       { a: 'Production Read', v: 'Sound-first. Low-impact. The sunrise does the visual work. Do not overbuild.' },
-      { a: 'Scale', v: 'Intimate · Morning energy · Sound-first sunrise stage' },
+      { a: 'Scale', v: 'Intimate · Morning energy · Sound-first' },
     ],
     table: [
       { l: 'Position', v: 'Eastern tip · Crowd faces west into forest' },
@@ -96,11 +92,10 @@ const STAGES = [
     id: 'rebirth',
     bg: '#0e0618',
     accent: REBIRTH_C,
-    tagBorder: 'rgba(155,95,192,0.3)',
-    label: 'Sunset Stage · West · Tribal · Tech · Underground House',
+    label: 'Sunset Stage · West · Tribal · Tech · Underground house',
     title: 'REBIRTH',
     sub: 'The underground pulse. West-facing. As the island shifts from day to night, Rebirth carries the transition.',
-    img: '/photos/stage-rebirth-aerial.png',
+    img: '/photos/zungu-rebirth-stage.png',
     narr: [
       'The western point of the island. <strong>The sun lowers behind the stage.</strong> Golden hour. The crowd moves from the activity programme into the rhythm of the night.',
       'Tribal house. Tech house. Underground house. Hypnotic grooves. Warm percussion. <strong>The island starts to turn.</strong> At 7:45pm, Rebirth hands the crowd to Zungu Main through the forest path.',
@@ -109,7 +104,7 @@ const STAGES = [
       { a: 'Stage Function', v: 'Sunset sessions · underground programming · transition sets · deeper house' },
       { a: 'Sonic Identity', v: 'Tribal · Tech · Underground house · Afro-tech · Hypnotic grooves' },
       { a: 'Production Read', v: 'Mid-scale. Warm. Sunset-calibrated. Built for transition into night.' },
-      { a: 'Scale', v: 'Mid-scale · West point · Sunset transition stage' },
+      { a: 'Scale', v: 'Mid-scale · West point · Sunset transition · Manages forest path handoff at 7:45pm' },
     ],
     table: [
       { l: 'Position', v: 'West end · Sunset directly behind stage' },
@@ -122,7 +117,98 @@ const STAGES = [
   },
 ];
 
-// ── Chapter divider ───────────────────────────────────────────────────────────
+// ── Festival Week night data ───────────────────────────────────────────────────
+const NIGHTS = [
+  {
+    num: '01', bg: '#060600', accent: ORIGINS_C, tagBorder: 'rgba(212,114,42,0.3)',
+    date: 'JUNE 17', tag: 'Arrival Day',
+    title: 'ARRIVAL DAY',
+    photo: '/photos/zungu-tribal-stage-arrival.png',
+    sub: 'Check-in, accommodation access, island orientation, welcome parties, soft openings, partner receptions.',
+    narr: [
+      '<strong>June 17 is Arrival Day.</strong> Guests arrive by marine transfer from Port Antonio. Check-in, island orientation, first look at the stages in daylight.',
+      'Welcome parties at sunset. Soft openings. Partner receptions. The island begins to breathe. Tomorrow, the stages activate.',
+    ],
+    visual: [
+      { a: 'Arrivals', v: 'Marine transfer from Port Antonio · Harbour crossing · Island check-in' },
+      { a: 'Accommodation', v: 'Glamping pods · Bamboo structures · Villa allocation · Guest services open' },
+      { a: 'Welcome', v: 'Welcome parties · Soft openings · First taste of Zungu food + drink' },
+      { a: 'Receptions', v: 'Partner receptions · Press briefings · Artist arrivals · Ground crew orientation' },
+    ],
+    schedule: [
+      { t: 'All day', n: 'Arrival Day', d: 'Marine transfer, check-in, island orientation, accommodation access.', stage: 'Island', sc: '', hl: false, handoff: false },
+    ],
+  },
+  {
+    num: '02', bg: '#040810', accent: N2_C, tagBorder: 'rgba(74,143,189,0.3)',
+    date: 'JUNE 18', tag: 'Festival Night One',
+    title: 'FESTIVAL NIGHT ONE',
+    photo: '/photos/zungu-main-stage design.png',
+    sub: 'The first full night. All stages open into the official festival programme.',
+    narr: [
+      '<strong>June 18 is Festival Night One.</strong> The first full night. Origins opens at 6am. Rebirth at 4pm. Zungu Main at 8pm.',
+      'Stage readiness at full operational level. Guest flow tested across the island. The world of Zungu begins on the water.',
+    ],
+    visual: [
+      { a: 'Programme', v: 'Official festival programme · All three stages active' },
+      { a: 'Origins', v: '6am sunrise sessions · East · First light on the island' },
+      { a: 'Rebirth', v: '4pm sunset sessions · West · Golden hour · 7:45pm handoff' },
+      { a: 'Zungu Main', v: '8pm · Full production · Doors open · First headline night' },
+    ],
+    schedule: [
+      { t: '6:00am', n: 'Origins opens', d: 'First sunrise session of the festival.', stage: 'Origins', sc: 'o', hl: false, handoff: false },
+      { t: '4:00pm', n: 'Rebirth opens', d: 'Sunset sessions begin.', stage: 'Rebirth', sc: 'r', hl: false, handoff: false },
+      { t: '8:00pm', n: 'Zungu Main opens', d: 'The first full night at the mainstage.', stage: 'Zungu', sc: 'm', hl: true, handoff: false },
+    ],
+  },
+  {
+    num: '03', bg: '#030e06', accent: N3_C, tagBorder: 'rgba(58,175,122,0.3)',
+    date: 'JUNE 19', tag: 'Festival Night Two',
+    title: 'FESTIVAL NIGHT TWO',
+    photo: '/photos/zungu-stage-design-aerial.png',
+    sub: 'The island is fully active. Mainstage, underground, sunrise, sunset, and island programming.',
+    narr: [
+      '<strong>June 19 is Festival Night Two.</strong> The island is fully active. Origins at dawn. Daytime activities. Rebirth at sunset.',
+      'Crew rotation in effect. Pop-up events. <strong>The full island rhythm is established.</strong> Zungu Main carries the night into the early hours.',
+    ],
+    visual: [
+      { a: 'Mainstage', v: 'Full mainstage programming · Peak crowd · Deep into the night' },
+      { a: 'Underground', v: 'Rebirth sunset sessions · Tribal · Tech · Forest path transition' },
+      { a: 'Sunrise', v: 'Origins at 6am · Daytime island activities · Wellness · Water' },
+      { a: 'Island', v: 'Full island activation · Pop-ups · Crew rotation · Night two rhythm' },
+    ],
+    schedule: [
+      { t: '6:00am', n: 'Origins opens', d: 'Second sunrise session.', stage: 'Origins', sc: 'o', hl: false, handoff: false },
+      { t: '4:00pm', n: 'Rebirth opens', d: 'Sunset sessions · Night two underground programme.', stage: 'Rebirth', sc: 'r', hl: false, handoff: false },
+      { t: '8:00pm', n: 'Zungu Main opens', d: 'Night two · Full programme · All production live.', stage: 'Zungu', sc: 'm', hl: true, handoff: false },
+    ],
+  },
+  {
+    num: '04', bg: '#060410', accent: REBIRTH_C, tagBorder: 'rgba(155,95,192,0.3)',
+    date: 'JUNE 20–23', tag: 'Peak Night & Beyond',
+    title: 'PEAK NIGHT & BEYOND',
+    photo: '/photos/zungu-origins-stage-design-night.png',
+    sub: 'June 20: Peak night. Major acts, full production, highest energy. June 21–23: Recovery, pop-ups, and final hoorah.',
+    narr: [
+      '<strong>June 20 is Peak Night.</strong> Major acts. Full production at highest specification. Zungu Main at capacity.',
+      '<strong>June 21–23:</strong> The island slows. Recovery. Pop-ups. Smaller events, town dinners, media moments, partner gatherings, final hoorah before departure.',
+    ],
+    visual: [
+      { a: 'June 20', v: 'Peak night. Major acts. Full production. Highest energy.' },
+      { a: 'June 21', v: 'Recovery shift. Sunrise. Pop-ups. Wellness. Smaller-scale programming.' },
+      { a: 'June 22', v: 'Island pop-ups. Port Antonio events. Town dinners. Artist sessions.' },
+      { a: 'June 23', v: 'Final hoorah. Departure. Handover to production breakdown.' },
+    ],
+    schedule: [
+      { t: 'JUN 20', n: 'Peak Night', d: 'Major acts, full production, highest energy.', stage: 'All Stages', sc: 'm', hl: true, handoff: false },
+      { t: 'JUN 21', n: 'Recovery Shift', d: 'Sunrise, recovery, pop-ups, wellness, reduced-scale programming.', stage: 'Island', sc: 'o', hl: false, handoff: false },
+      { t: 'JUN 22', n: 'Island Pop-Ups', d: 'Smaller music moments, partner events, town dinners, media capture.', stage: 'Island', sc: 'r', hl: false, handoff: false },
+      { t: 'JUN 23', n: 'Final Hoorah / Departure', d: 'Closing island moment, check-out, guest departures, production handover.', stage: '—', sc: '', hl: false, handoff: true },
+    ],
+  },
+];
+
+// ── ChapterDivider ─────────────────────────────────────────────────────────────
 function ChapterDivider({ num, title, goldLine, desc }: { num: string; title: string; goldLine: string; desc: string }) {
   return (
     <div style={{ width: '100%', boxSizing: 'border-box', backgroundColor: BG, padding: '80px 8vw 40px', borderTop: `1px solid ${BORDER}`, display: 'flex', alignItems: 'flex-start', gap: '3rem', position: 'relative', overflow: 'hidden' }}>
@@ -149,7 +235,7 @@ function ChapterDivider({ num, title, goldLine, desc }: { num: string; title: st
   );
 }
 
-// ── Section label ─────────────────────────────────────────────────────────────
+// ── SLabel ─────────────────────────────────────────────────────────────────────
 function SLabel({ children }: { children: React.ReactNode }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 32 }}>
@@ -159,52 +245,43 @@ function SLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-// ── StageSlide helper ─────────────────────────────────────────────────────────
-interface StageSlideProps {
-  backgroundImage?: string;
-  backgroundPosition?: string;
-  bg: string;
-  accent: string;
-  ghostNumber: string;
-  eyebrow?: string;
-  title: React.ReactNode;
-  subtitle?: string;
-  children?: React.ReactNode;
-  id?: string;
-  minHeight?: string;
+// ── ChapterSection — /deck ChapterWrap pattern ────────────────────────────────
+function ChapterSection({
+  bg, photo, children, id, minHeight = 'auto',
+}: {
+  bg: string; photo?: string; children: React.ReactNode; id?: string; minHeight?: string;
+}) {
+  return (
+    <div id={id} style={{ position: 'relative', overflow: 'hidden', backgroundColor: bg, minHeight, borderBottom: `1px solid ${BORDER}` }}>
+      {photo && (
+        <img
+          src={photo}
+          alt=""
+          aria-hidden
+          style={{
+            position: 'absolute', top: 0, right: 0, width: '50%', height: '100%',
+            objectFit: 'cover', objectPosition: 'center',
+            opacity: 0.32, filter: 'saturate(0.5) brightness(0.4)',
+            pointerEvents: 'none', zIndex: 0,
+          }}
+        />
+      )}
+      {photo && (
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: `linear-gradient(to right, ${bg} 28%, ${bg}ee 50%, transparent 82%)`,
+          pointerEvents: 'none', zIndex: 0,
+        }} />
+      )}
+      <div style={{ position: 'relative', zIndex: 1 }}>{children}</div>
+    </div>
+  );
 }
 
-function StageSlide({
-  backgroundImage,
-  backgroundPosition = 'center center',
-  bg,
-  accent,
-  ghostNumber,
-  eyebrow,
-  title,
-  subtitle,
-  children,
-  id,
-  minHeight = '100vh',
-}: StageSlideProps) {
+// ── Ghost number ──────────────────────────────────────────────────────────────
+function GhostNum({ children }: { children: React.ReactNode }) {
   return (
-    <section id={id} style={{ position: 'relative', minHeight, padding: '80px 8vw', backgroundColor: bg, overflow: 'hidden', display: 'flex', flexDirection: 'column', borderBottom: `1px solid ${BORDER}` }}>
-      {backgroundImage && (
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition, opacity: 0.18, zIndex: 0 }} />
-      )}
-      <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse at top left, ${accent}17 0%, transparent 60%)`, zIndex: 1, pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', right: '6vw', top: 20, fontFamily: DISPLAY, fontSize: '18rem', fontWeight: 900, color: CREAM, opacity: 0.04, lineHeight: 1, zIndex: 1, userSelect: 'none', pointerEvents: 'none' }}>{ghostNumber}</div>
-      <div style={{ position: 'relative', zIndex: 2, flex: 1, display: 'flex', flexDirection: 'column' }}>
-        {eyebrow && (
-          <p style={{ fontFamily: MONO, fontSize: 9, color: accent, letterSpacing: '0.35em', textTransform: 'uppercase' as const, fontWeight: 700, marginBottom: '1.5rem' }}>{eyebrow}</p>
-        )}
-        <div style={{ fontFamily: DISPLAY, fontSize: 'clamp(3rem, 7vw, 7rem)', fontWeight: 900, lineHeight: 0.88, color: accent, textTransform: 'uppercase' as const, marginBottom: '2rem' }}>{title}</div>
-        {subtitle && (
-          <p style={{ fontFamily: MONO, fontSize: 14, color: MUTED, maxWidth: 560, lineHeight: 1.8, marginBottom: '3rem', letterSpacing: '0.02em' }}>{subtitle}</p>
-        )}
-        {children}
-      </div>
-    </section>
+    <div style={{ position: 'absolute', right: '6vw', top: 20, fontFamily: DISPLAY, fontSize: '18rem', fontWeight: 900, color: CREAM, opacity: 0.04, lineHeight: 1, zIndex: 0, userSelect: 'none', pointerEvents: 'none' }}>{children}</div>
   );
 }
 
@@ -348,168 +425,160 @@ function StagesPageInner() {
       ══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider num="01" title="The Location" goldLine="Navy Island." desc="Zungu does not begin with a stage design. It begins with Navy Island." />
 
-      <StageSlide
-        id="island"
-        bg={BG}
-        accent={GOLD}
-        ghostNumber="01"
-        backgroundImage="/photos/navy-island-aerial-hq.png"
-        backgroundPosition="center center"
-        minHeight="85vh"
-        eyebrow="// Navy Island · Port Antonio · Jamaica · 64 Acres"
-        title={<>NAVY ISLAND<br />IS THE<br />FIRST STAGE.</>}
-        subtitle="Forest. Shoreline. Open sky. The island is the product."
-      >
-        <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
-          {/* Left: narrative + quote */}
-          <div>
-            <div style={{ fontFamily: MONO, fontSize: 14, lineHeight: 1.9, color: MUTED }}>
-              <p>Navy Island is a 64-acre private island in Port Antonio harbour, Jamaica. Dense rainforest. Natural shoreline. Open Caribbean sky. Sixty-four acres of island that does not need to be built — it already exists as the most powerful venue in the Caribbean.</p>
-              <p style={{ marginTop: 14 }}>The stage positions come from the island itself. Origins faces east — the sunrise. Rebirth faces west — the sunset. Zungu Main sits at the centre, south-facing, sound travelling out to open sea.</p>
-            </div>
-            <div style={{ marginTop: 32, padding: '24px 28px', borderLeft: `3px solid ${GOLD}`, background: 'rgba(200,168,75,0.03)' }}>
-              <p style={{ fontFamily: DISPLAY, fontSize: 'clamp(0.9rem, 2vw, 1.2rem)', fontWeight: 300, color: CREAM, lineHeight: 1.5 }}>
-                &ldquo;<span style={{ color: GOLD }}>Tomorrowland built a fantasy world. Zungu doesn&rsquo;t need to build anything. The world is already there.</span>&rdquo;
-              </p>
-              <p style={{ marginTop: 10, fontFamily: MONO, fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.55)' }}>Location Strategy</p>
-            </div>
-          </div>
+      <ChapterSection id="island" bg={BG} photo="/photos/navy-island-aerial-hq.png" minHeight="85vh">
+        <div style={{ position: 'relative', padding: '80px 8vw' }}>
+          <GhostNum>01</GhostNum>
+          <SLabel>// Navy Island · Port Antonio · Jamaica · 64 Acres</SLabel>
+          <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 900, lineHeight: 1.1, color: CREAM, marginBottom: 16, textTransform: 'uppercase' as const }}>
+            NAVY ISLAND<br /><span style={{ color: GOLD }}>IS THE FIRST STAGE.</span>
+          </h2>
+          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, maxWidth: 520, lineHeight: 1.8, marginBottom: 48, letterSpacing: '0.02em' }}>
+            Forest. Shoreline. Open sky. The island is the product.
+          </p>
 
-          {/* Right: location logic table */}
-          <div style={{ background: 'rgba(0,0,0,0.5)', border: `1px solid rgba(242,235,217,0.06)` }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, padding: '10px 14px', borderBottom: '1px solid rgba(242,235,217,0.06)', fontFamily: MONO, fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)' }}>
-              <span>Stage</span><span>Direction</span><span>Identity</span>
-            </div>
-            {[
-              { stage: 'Zungu', dir: 'South face', id: 'Centre-island · Night', c: GOLD },
-              { stage: 'Origins', dir: 'East', id: 'Sunrise · Source', c: ORIGINS_C },
-              { stage: 'Rebirth', dir: 'West', id: 'Sunset · Underground', c: REBIRTH_C },
-              { stage: 'Arrival / Marine', dir: 'South/SW', id: 'Guest arrival · marine transfer', c: DIM },
-              { stage: 'Navy Island', dir: '—', id: '64 acres · Caribbean', c: MUTED },
-            ].map(({ stage, dir, id, c }) => (
-              <div key={stage} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, padding: '11px 14px', borderBottom: '1px solid rgba(242,235,217,0.04)', alignItems: 'start' }}>
-                <span style={{ fontFamily: DISPLAY, fontSize: 10, fontWeight: 700, color: c }}>{stage}</span>
-                <span style={{ fontFamily: MONO, fontSize: 11, color: MUTED }}>{dir}</span>
-                <span style={{ fontFamily: MONO, fontSize: 11, color: MUTED }}>{id}</span>
+          <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
+            <div>
+              <div style={{ fontFamily: MONO, fontSize: 15, lineHeight: 1.9, color: MUTED }}>
+                <p>Navy Island is a 64-acre private island in Port Antonio harbour, Jamaica. Dense rainforest. Natural shoreline. Open Caribbean sky. Sixty-four acres of island that does not need to be built — it already exists as the most powerful venue in the Caribbean.</p>
+                <p style={{ marginTop: 14 }}>The stage positions come from the island itself. Origins faces east — the sunrise. Rebirth faces west — the sunset. Zungu Main sits at the centre, south-facing, sound travelling out to open sea.</p>
               </div>
-            ))}
+              <div style={{ marginTop: 32, padding: '24px 28px', borderLeft: `3px solid ${GOLD}`, background: 'rgba(200,168,75,0.03)' }}>
+                <p style={{ fontFamily: DISPLAY, fontSize: 'clamp(0.9rem, 2vw, 1.2rem)', fontWeight: 300, color: CREAM, lineHeight: 1.5 }}>
+                  &ldquo;<span style={{ color: GOLD }}>Tomorrowland built a fantasy world. Zungu doesn&rsquo;t need to build anything. The world is already there.</span>&rdquo;
+                </p>
+                <p style={{ marginTop: 10, fontFamily: MONO, fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.55)' }}>Location Strategy</p>
+              </div>
+            </div>
+
+            <div style={{ background: 'rgba(0,0,0,0.5)', border: `1px solid rgba(242,235,217,0.06)` }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, padding: '10px 14px', borderBottom: '1px solid rgba(242,235,217,0.06)', fontFamily: MONO, fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)' }}>
+                <span>Stage</span><span>Direction</span><span>Identity</span>
+              </div>
+              {[
+                { stage: 'Zungu', dir: 'South face', id: 'Centre-island · Night', c: GOLD },
+                { stage: 'Origins', dir: 'East', id: 'Sunrise · Source', c: ORIGINS_C },
+                { stage: 'Rebirth', dir: 'West', id: 'Sunset · Underground', c: REBIRTH_C },
+                { stage: 'Arrival / Marine', dir: 'South/SW', id: 'Guest arrival · marine transfer', c: DIM },
+                { stage: 'Navy Island', dir: '—', id: '64 acres · Caribbean', c: MUTED },
+              ].map(({ stage, dir, id, c }) => (
+                <div key={stage} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, padding: '11px 14px', borderBottom: '1px solid rgba(242,235,217,0.04)', alignItems: 'start' }}>
+                  <span style={{ fontFamily: DISPLAY, fontSize: 10, fontWeight: 700, color: c }}>{stage}</span>
+                  <span style={{ fontFamily: MONO, fontSize: 11, color: MUTED }}>{dir}</span>
+                  <span style={{ fontFamily: MONO, fontSize: 11, color: MUTED }}>{id}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </StageSlide>
+      </ChapterSection>
 
       {/* ══════════════════════════════════════════════════════════════════
           CHAPTER 02 — SITE ARCHITECTURE
       ══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider num="02" title="Site Architecture" goldLine="Three Stages. One Island." desc="Each stage is positioned to a natural moment of the island: sunrise, sunset, and centre-island gathering." />
 
-      <StageSlide
-        id="map"
-        bg={GREEN}
-        accent={GOLD}
-        ghostNumber="02"
-        backgroundImage="/photos/island-stages-aerial.png"
-        backgroundPosition="center center"
-        minHeight="80vh"
-        eyebrow="// Site Plan · Navy Island · KML Ground Reference"
-        title={<>THREE DIRECTIONS.<br />ONE ISLAND WORLD.</>}
-        subtitle="The stages are not placed randomly. Each responds to geography — east, west, south. One island. Three moments of the day."
-      >
-        <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
-          {/* Left: map SVG + legend */}
-          <div>
-            <div style={{ border: `1px solid ${BORDER_MID}`, background: 'rgba(0,0,0,0.5)', padding: 24 }}>
-              <svg viewBox="0 0 820 360" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', maxWidth: 820, display: 'block' }}>
-                <defs>
-                  <radialGradient id="ig2" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#2d5a3d" stopOpacity=".85" />
-                    <stop offset="100%" stopColor="#1a3a2a" stopOpacity=".6" />
-                  </radialGradient>
-                </defs>
-                <rect width="820" height="360" fill="#050d10" />
-                <g stroke="rgba(29,74,90,.1)" strokeWidth=".5">
-                  <line x1="0" y1="72" x2="820" y2="72" /><line x1="0" y1="144" x2="820" y2="144" />
-                  <line x1="0" y1="216" x2="820" y2="216" /><line x1="0" y1="288" x2="820" y2="288" />
-                </g>
-                <path d="M130,195 C118,172 124,148 150,133 C172,120 208,112 255,105 C302,98 355,93 405,91 C455,89 500,92 538,100 C576,108 600,120 618,136 C636,152 640,170 632,186 C624,202 607,213 584,220 C561,227 532,231 500,234 C468,237 432,240 396,243 C360,246 323,249 290,251 C257,253 228,253 205,250 C182,247 160,241 145,231 C132,223 126,208 130,195 Z" fill="url(#ig2)" stroke="rgba(200,168,75,.18)" strokeWidth="1.2" />
-                <g fill="#2d5a3d" fillOpacity=".45">
-                  <circle cx="260" cy="162" r="8" /><circle cx="300" cy="152" r="6" /><circle cx="345" cy="155" r="9" /><circle cx="385" cy="148" r="7" /><circle cx="320" cy="180" r="6" />
-                  <circle cx="360" cy="190" r="7" /><circle cx="278" cy="190" r="5" /><circle cx="420" cy="162" r="7" /><circle cx="460" cy="152" r="8" />
-                  <circle cx="440" cy="185" r="6" /><circle cx="488" cy="168" r="7" /><circle cx="400" cy="210" r="5" />
-                </g>
-                {/* Zungu Main — centre, south face */}
-                <g transform="translate(382,255)">
-                  <circle r="20" fill="rgba(200,168,75,.12)" stroke="rgba(200,168,75,.5)" strokeWidth="1.5" />
-                  <circle r="9" fill="rgba(200,168,75,.9)" />
-                  <line x1="0" y1="20" x2="0" y2="44" stroke="rgba(200,168,75,.3)" strokeWidth="1" strokeDasharray="3,2" />
-                  <text y="57" textAnchor="middle" fill="rgba(200,168,75,.85)" fontSize="10" fontFamily="'Space Mono',monospace" letterSpacing="1.5">ZUNGU MAIN</text>
-                  <text y="70" textAnchor="middle" fill="rgba(200,168,75,.4)" fontSize="7.5" fontFamily="'Space Mono',monospace">SOUTH · FULL PRODUCTION</text>
-                </g>
-                {/* Origins — east */}
-                <g transform="translate(636,178)">
-                  <circle r="13" fill="rgba(212,114,42,.12)" stroke="rgba(212,114,42,.5)" strokeWidth="1.5" />
-                  <circle r="6" fill="rgba(212,114,42,.9)" />
-                  <line x1="13" y1="0" x2="42" y2="0" stroke="rgba(212,114,42,.3)" strokeWidth="1" strokeDasharray="3,2" />
-                  <text x="48" y="4" fill="rgba(212,114,42,.85)" fontSize="10" fontFamily="'Space Mono',monospace" letterSpacing="1.5">ORIGINS</text>
-                  <text x="48" y="16" fill="rgba(212,114,42,.4)" fontSize="7.5" fontFamily="'Space Mono',monospace">EAST TIP · SUNRISE</text>
-                </g>
-                {/* Rebirth — west */}
-                <g transform="translate(148,188)">
-                  <circle r="13" fill="rgba(155,95,192,.12)" stroke="rgba(155,95,192,.5)" strokeWidth="1.5" />
-                  <circle r="6" fill="rgba(155,95,192,.9)" />
-                  <line x1="-13" y1="0" x2="-42" y2="0" stroke="rgba(155,95,192,.3)" strokeWidth="1" strokeDasharray="3,2" />
-                  <text x="-48" y="4" textAnchor="end" fill="rgba(155,95,192,.85)" fontSize="10" fontFamily="'Space Mono',monospace" letterSpacing="1.5">REBIRTH</text>
-                  <text x="-48" y="16" textAnchor="end" fill="rgba(155,95,192,.4)" fontSize="7.5" fontFamily="'Space Mono',monospace">WEST · SUNSET</text>
-                </g>
-                {/* Arrival — south/southwest */}
-                <g transform="translate(310,315)">
-                  <rect x="-18" y="-5" width="36" height="9" fill="none" stroke="rgba(200,168,75,.2)" strokeWidth="1" />
-                  <text y="-9" textAnchor="middle" fill="rgba(200,168,75,.35)" fontSize="8" fontFamily="'Space Mono',monospace">ARRIVAL / MARINE</text>
-                  <text y="20" textAnchor="middle" fill="rgba(200,168,75,.2)" fontSize="7" fontFamily="'Space Mono',monospace">SOUTH/SW ACCESS</text>
-                </g>
-                <path d="M162,200 Q270,235 370,248" stroke="rgba(200,168,75,.12)" strokeWidth="1.5" strokeDasharray="5,4" fill="none" />
-                <text x="755" y="26" fill="rgba(200,168,75,.22)" fontSize="8" fontFamily="'Space Mono',monospace">N ↑</text>
-              </svg>
-              <div style={{ display: 'flex', gap: 20, marginTop: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
+      <ChapterSection id="map" bg={GREEN} photo="/photos/island-stages-aerial.png" minHeight="80vh">
+        <div style={{ position: 'relative', padding: '80px 8vw' }}>
+          <GhostNum>02</GhostNum>
+          <SLabel>// Site Plan · Navy Island · KML Ground Reference</SLabel>
+          <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 900, lineHeight: 1.1, color: CREAM, marginBottom: 16, textTransform: 'uppercase' as const }}>
+            THREE DIRECTIONS.<br /><span style={{ color: GOLD }}>ONE ISLAND WORLD.</span>
+          </h2>
+          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, maxWidth: 520, lineHeight: 1.8, marginBottom: 48, letterSpacing: '0.02em' }}>
+            The stages are not placed randomly. Each responds to geography — east, west, south. One island. Three moments of the day.
+          </p>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
+            <div>
+              <div style={{ border: `1px solid ${BORDER_MID}`, background: 'rgba(0,0,0,0.5)', padding: 24 }}>
+                <svg viewBox="0 0 820 360" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', maxWidth: 820, display: 'block' }}>
+                  <defs>
+                    <radialGradient id="ig2" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stopColor="#2d5a3d" stopOpacity=".85" />
+                      <stop offset="100%" stopColor="#1a3a2a" stopOpacity=".6" />
+                    </radialGradient>
+                  </defs>
+                  <rect width="820" height="360" fill="#050d10" />
+                  <g stroke="rgba(29,74,90,.1)" strokeWidth=".5">
+                    <line x1="0" y1="72" x2="820" y2="72" /><line x1="0" y1="144" x2="820" y2="144" />
+                    <line x1="0" y1="216" x2="820" y2="216" /><line x1="0" y1="288" x2="820" y2="288" />
+                  </g>
+                  <path d="M130,195 C118,172 124,148 150,133 C172,120 208,112 255,105 C302,98 355,93 405,91 C455,89 500,92 538,100 C576,108 600,120 618,136 C636,152 640,170 632,186 C624,202 607,213 584,220 C561,227 532,231 500,234 C468,237 432,240 396,243 C360,246 323,249 290,251 C257,253 228,253 205,250 C182,247 160,241 145,231 C132,223 126,208 130,195 Z" fill="url(#ig2)" stroke="rgba(200,168,75,.18)" strokeWidth="1.2" />
+                  <g fill="#2d5a3d" fillOpacity=".45">
+                    <circle cx="260" cy="162" r="8" /><circle cx="300" cy="152" r="6" /><circle cx="345" cy="155" r="9" /><circle cx="385" cy="148" r="7" /><circle cx="320" cy="180" r="6" />
+                    <circle cx="360" cy="190" r="7" /><circle cx="278" cy="190" r="5" /><circle cx="420" cy="162" r="7" /><circle cx="460" cy="152" r="8" />
+                    <circle cx="440" cy="185" r="6" /><circle cx="488" cy="168" r="7" /><circle cx="400" cy="210" r="5" />
+                  </g>
+                  <g transform="translate(382,255)">
+                    <circle r="20" fill="rgba(200,168,75,.12)" stroke="rgba(200,168,75,.5)" strokeWidth="1.5" />
+                    <circle r="9" fill="rgba(200,168,75,.9)" />
+                    <line x1="0" y1="20" x2="0" y2="44" stroke="rgba(200,168,75,.3)" strokeWidth="1" strokeDasharray="3,2" />
+                    <text y="57" textAnchor="middle" fill="rgba(200,168,75,.85)" fontSize="10" fontFamily="'Space Mono',monospace" letterSpacing="1.5">ZUNGU MAIN</text>
+                    <text y="70" textAnchor="middle" fill="rgba(200,168,75,.4)" fontSize="7.5" fontFamily="'Space Mono',monospace">SOUTH · FULL PRODUCTION</text>
+                  </g>
+                  <g transform="translate(636,178)">
+                    <circle r="13" fill="rgba(212,114,42,.12)" stroke="rgba(212,114,42,.5)" strokeWidth="1.5" />
+                    <circle r="6" fill="rgba(212,114,42,.9)" />
+                    <line x1="13" y1="0" x2="42" y2="0" stroke="rgba(212,114,42,.3)" strokeWidth="1" strokeDasharray="3,2" />
+                    <text x="48" y="4" fill="rgba(212,114,42,.85)" fontSize="10" fontFamily="'Space Mono',monospace" letterSpacing="1.5">ORIGINS</text>
+                    <text x="48" y="16" fill="rgba(212,114,42,.4)" fontSize="7.5" fontFamily="'Space Mono',monospace">EAST TIP · SUNRISE</text>
+                  </g>
+                  <g transform="translate(148,188)">
+                    <circle r="13" fill="rgba(155,95,192,.12)" stroke="rgba(155,95,192,.5)" strokeWidth="1.5" />
+                    <circle r="6" fill="rgba(155,95,192,.9)" />
+                    <line x1="-13" y1="0" x2="-42" y2="0" stroke="rgba(155,95,192,.3)" strokeWidth="1" strokeDasharray="3,2" />
+                    <text x="-48" y="4" textAnchor="end" fill="rgba(155,95,192,.85)" fontSize="10" fontFamily="'Space Mono',monospace" letterSpacing="1.5">REBIRTH</text>
+                    <text x="-48" y="16" textAnchor="end" fill="rgba(155,95,192,.4)" fontSize="7.5" fontFamily="'Space Mono',monospace">WEST · SUNSET</text>
+                  </g>
+                  <g transform="translate(310,315)">
+                    <rect x="-18" y="-5" width="36" height="9" fill="none" stroke="rgba(200,168,75,.2)" strokeWidth="1" />
+                    <text y="-9" textAnchor="middle" fill="rgba(200,168,75,.35)" fontSize="8" fontFamily="'Space Mono',monospace">ARRIVAL / MARINE</text>
+                    <text y="20" textAnchor="middle" fill="rgba(200,168,75,.2)" fontSize="7" fontFamily="'Space Mono',monospace">SOUTH/SW ACCESS</text>
+                  </g>
+                  <path d="M162,200 Q270,235 370,248" stroke="rgba(200,168,75,.12)" strokeWidth="1.5" strokeDasharray="5,4" fill="none" />
+                  <text x="755" y="26" fill="rgba(200,168,75,.22)" fontSize="8" fontFamily="'Space Mono',monospace">N ↑</text>
+                </svg>
+                <div style={{ display: 'flex', gap: 20, marginTop: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
+                  {[
+                    { color: 'rgba(200,168,75,0.9)', label: 'Zungu Main · South · Centre' },
+                    { color: 'rgba(212,114,42,0.9)', label: 'Origins · East · Sunrise' },
+                    { color: 'rgba(155,95,192,0.9)', label: 'Rebirth · West · Sunset' },
+                    { color: 'rgba(200,168,75,0.3)', label: 'Arrival / Marine · South/SW', bordered: true },
+                  ].map(({ color, label, bordered }) => (
+                    <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: MONO, fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase' as const, color: MUTED }}>
+                      <div style={{ width: 8, height: 8, borderRadius: '50%', background: color, border: bordered ? `1px solid ${color}` : 'none', flexShrink: 0 }} />
+                      {label}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div style={{ background: 'rgba(0,0,0,0.5)', border: `1px solid rgba(242,235,217,0.06)`, marginBottom: 24 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, padding: '10px 14px', borderBottom: '1px solid rgba(242,235,217,0.06)', fontFamily: MONO, fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)' }}>
+                  <span>Stage</span><span>Position</span><span>Role</span>
+                </div>
                 {[
-                  { color: 'rgba(200,168,75,0.9)', label: 'Zungu Main · South · Centre' },
-                  { color: 'rgba(212,114,42,0.9)', label: 'Origins · East · Sunrise' },
-                  { color: 'rgba(155,95,192,0.9)', label: 'Rebirth · West · Sunset' },
-                  { color: 'rgba(200,168,75,0.3)', label: 'Arrival / Marine · South/SW', bordered: true },
-                ].map(({ color, label, bordered }) => (
-                  <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: MONO, fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase' as const, color: MUTED }}>
-                    <div style={{ width: 8, height: 8, borderRadius: '50%', background: color, border: bordered ? `1px solid ${color}` : 'none', flexShrink: 0 }} />
-                    {label}
+                  { stage: 'Zungu', pos: 'Centre · South face', role: 'Mainstage · Full release', c: GOLD },
+                  { stage: 'Origins', pos: 'East · Sunrise', role: 'Source stage · Morning', c: ORIGINS_C },
+                  { stage: 'Rebirth', pos: 'West · Sunset', role: 'Underground · Transition', c: REBIRTH_C },
+                  { stage: 'Arrival', pos: 'South/SW access', role: 'Marine access · Guest movement', c: DIM },
+                ].map(({ stage, pos, role: r, c }) => (
+                  <div key={stage} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, padding: '11px 14px', borderBottom: '1px solid rgba(242,235,217,0.04)', alignItems: 'start' }}>
+                    <span style={{ fontFamily: DISPLAY, fontSize: 10, fontWeight: 700, color: c }}>{stage}</span>
+                    <span style={{ fontFamily: MONO, fontSize: 11, color: MUTED }}>{pos}</span>
+                    <span style={{ fontFamily: MONO, fontSize: 11, color: MUTED }}>{r}</span>
                   </div>
                 ))}
               </div>
+              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, letterSpacing: '0.02em' }}>
+                Final site layout confirmed through survey, permitting, environmental review, and production planning.
+              </p>
             </div>
-          </div>
-
-          {/* Right: stage position table */}
-          <div>
-            <div style={{ background: 'rgba(0,0,0,0.5)', border: `1px solid rgba(242,235,217,0.06)`, marginBottom: 24 }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, padding: '10px 14px', borderBottom: '1px solid rgba(242,235,217,0.06)', fontFamily: MONO, fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)' }}>
-                <span>Stage</span><span>Position</span><span>Role</span>
-              </div>
-              {[
-                { stage: 'Zungu', pos: 'Centre · South face', role: 'Mainstage · Full release', c: GOLD },
-                { stage: 'Origins', pos: 'East · Sunrise', role: 'Source stage · Morning', c: ORIGINS_C },
-                { stage: 'Rebirth', pos: 'West · Sunset', role: 'Underground · Transition', c: REBIRTH_C },
-                { stage: 'Arrival', pos: 'South/SW access', role: 'Marine access · Guest movement', c: DIM },
-              ].map(({ stage, pos, role: r, c }) => (
-                <div key={stage} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, padding: '11px 14px', borderBottom: '1px solid rgba(242,235,217,0.04)', alignItems: 'start' }}>
-                  <span style={{ fontFamily: DISPLAY, fontSize: 10, fontWeight: 700, color: c }}>{stage}</span>
-                  <span style={{ fontFamily: MONO, fontSize: 11, color: MUTED }}>{pos}</span>
-                  <span style={{ fontFamily: MONO, fontSize: 11, color: MUTED }}>{r}</span>
-                </div>
-              ))}
-            </div>
-            <p style={{ fontFamily: MONO, fontSize: 12, color: MUTED, lineHeight: 1.8, letterSpacing: '0.02em' }}>
-              Final site layout confirmed through survey, permitting, environmental review, and production planning.
-            </p>
           </div>
         </div>
-      </StageSlide>
+      </ChapterSection>
 
       {/* ══════════════════════════════════════════════════════════════════
           CHAPTER 03 — THE THREE STAGES
@@ -518,171 +587,94 @@ function StagesPageInner() {
 
       <div id="stages">
         {STAGES.map((stage, idx) => (
-          <StageSlide
-            key={stage.id}
-            bg={stage.bg}
-            accent={stage.accent}
-            ghostNumber={String(idx + 1).padStart(2, '0')}
-            backgroundImage={stage.img}
-            backgroundPosition="center center"
-            minHeight="100vh"
-            eyebrow={stage.label}
-            title={stage.title}
-            subtitle={stage.sub}
-          >
+          <ChapterSection key={stage.id} bg={stage.bg} photo={stage.img} minHeight="100vh">
+            <div style={{ position: 'relative', padding: '80px 8vw' }}>
+              <GhostNum>{String.fromCharCode(65 + idx)}</GhostNum>
+              <SLabel>{stage.label}</SLabel>
+              <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 900, lineHeight: 1.1, color: stage.accent, marginBottom: 16, textTransform: 'uppercase' as const }}>
+                {stage.title}
+              </h2>
+              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, maxWidth: 520, lineHeight: 1.8, marginBottom: 48, letterSpacing: '0.02em' }}>
+                {stage.sub}
+              </p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
-              {/* Left: image card + narrative */}
-              <div>
-                <div style={{ position: 'relative', overflow: 'hidden', marginBottom: 24, height: 280 }}>
-                  <img src={stage.img} alt={stage.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center', filter: 'brightness(0.75) saturate(0.9)', display: 'block' }} />
-                  <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to top, ${stage.bg}cc 0%, transparent 60%)` }} />
-                  <div style={{ position: 'absolute', bottom: 12, left: 16, fontFamily: MONO, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: stage.accent, opacity: 0.8 }}>{stage.title} · Navy Island</div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
+                <div>
+                  <div style={{ position: 'relative', overflow: 'hidden', marginBottom: 24, height: 280 }}>
+                    <img src={stage.img} alt={stage.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', filter: 'brightness(0.75) saturate(0.9)', display: 'block' }} />
+                    <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to top, ${stage.bg}cc 0%, transparent 60%)` }} />
+                    <div style={{ position: 'absolute', bottom: 12, left: 16, fontFamily: MONO, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: stage.accent, opacity: 0.8 }}>{stage.title} · Navy Island</div>
+                  </div>
+                  <div style={{ fontFamily: MONO, fontSize: 15, lineHeight: 1.9, color: MUTED }}>
+                    {stage.narr.map((p, i) => (
+                      <p key={i} style={{ marginTop: i > 0 ? 14 : 0 }} dangerouslySetInnerHTML={{ __html: p.replace(/<strong>/g, `<strong style="color:${CREAM}">`) }} />
+                    ))}
+                  </div>
                 </div>
-                <div style={{ fontFamily: MONO, fontSize: 14, lineHeight: 1.9, color: MUTED }}>
-                  {stage.narr.map((p, i) => (
-                    <p key={i} style={{ marginTop: i > 0 ? 14 : 0 }} dangerouslySetInnerHTML={{ __html: p.replace(/<strong>/g, `<strong style="color:${CREAM}">`) }} />
-                  ))}
-                </div>
-              </div>
 
-              {/* Right: visual concept grid + specs table */}
-              <div>
-                <div style={{ padding: 20, border: `1px solid ${BORDER_MID}`, background: 'rgba(200,168,75,0.02)', marginBottom: 16 }}>
-                  <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 14 }}>Stage Profile · {stage.title}</span>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-                    {stage.visual.map(({ a, v }) => (
-                      <div key={a} style={{ padding: 12, background: 'rgba(242,235,217,0.02)', border: '1px solid rgba(242,235,217,0.04)' }}>
-                        <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.35)', display: 'block', marginBottom: 5 }}>{a}</span>
-                        <span style={{ fontFamily: MONO, fontSize: 12, color: 'rgba(242,235,217,0.6)', lineHeight: 1.5 }}>{v}</span>
+                <div>
+                  <div style={{ padding: 20, border: `1px solid ${BORDER_MID}`, background: 'rgba(200,168,75,0.02)', marginBottom: 16 }}>
+                    <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 14 }}>Stage Profile · {stage.title}</span>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                      {stage.visual.map(({ a, v }) => (
+                        <div key={a} style={{ padding: 12, background: 'rgba(242,235,217,0.02)', border: '1px solid rgba(242,235,217,0.04)' }}>
+                          <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.35)', display: 'block', marginBottom: 5 }}>{a}</span>
+                          <span style={{ fontFamily: MONO, fontSize: 12, color: 'rgba(242,235,217,0.6)', lineHeight: 1.5 }}>{v}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div style={{ background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(242,235,217,0.06)' }}>
+                    <div style={{ padding: '8px 14px', borderBottom: '1px solid rgba(242,235,217,0.06)', fontFamily: MONO, fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)' }}>Stage Specs</div>
+                    {stage.table.map(({ l, v }) => (
+                      <div key={l} style={{ display: 'grid', gridTemplateColumns: '100px 1fr', gap: 12, padding: '9px 14px', borderBottom: '1px solid rgba(242,235,217,0.04)' }}>
+                        <span style={{ fontFamily: MONO, fontSize: 9, color: 'rgba(200,168,75,0.4)', textTransform: 'uppercase' as const, letterSpacing: '0.1em' }}>{l}</span>
+                        <span style={{ fontFamily: MONO, fontSize: 12, color: MUTED, lineHeight: 1.5 }}>{v}</span>
                       </div>
                     ))}
                   </div>
                 </div>
-                <div style={{ background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(242,235,217,0.06)' }}>
-                  <div style={{ padding: '8px 14px', borderBottom: '1px solid rgba(242,235,217,0.06)', fontFamily: MONO, fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)' }}>Stage Specs</div>
-                  {stage.table.map(({ l, v }) => (
-                    <div key={l} style={{ display: 'grid', gridTemplateColumns: '100px 1fr', gap: 12, padding: '9px 14px', borderBottom: '1px solid rgba(242,235,217,0.04)' }}>
-                      <span style={{ fontFamily: MONO, fontSize: 9, color: 'rgba(200,168,75,0.4)', textTransform: 'uppercase' as const, letterSpacing: '0.1em' }}>{l}</span>
-                      <span style={{ fontFamily: MONO, fontSize: 12, color: MUTED, lineHeight: 1.5 }}>{v}</span>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
-          </StageSlide>
+          </ChapterSection>
         ))}
       </div>
 
       {/* ══════════════════════════════════════════════════════════════════
-          CHAPTER 04 — FESTIVAL WEEK  ← UNTOUCHED
+          CHAPTER 04 — FESTIVAL WEEK
       ══════════════════════════════════════════════════════════════════ */}
-      <ChapterDivider num="04" title="Festival Week." goldLine="Seven Days. Four Core Nights." desc="Zungu is a seven-day island experience, not a single-night event. The venue opens on June 17 for arrivals, check-in, island orientation, welcome parties, and the first taste of Zungu. The core festival runs from June 18 through the morning of June 21. From June 21 to June 23, the island slows into smaller events, pop-ups, recovery sessions, town dinners, media moments, partner gatherings, and the final hoorah before departure. Production breakdown begins after guests leave and continues through the following week." />
+      <ChapterDivider num="04" title="Festival Week." goldLine="Seven Days. Four Core Nights." desc="The island runs on a rhythm. Each day has its moment. Each night has its release." />
 
       <div id="nights">
-        {[
-          {
-            num: '01', bg: '#060600', accent: ORIGINS_C, tagBorder: 'rgba(212,114,42,0.3)',
-            date: 'JUNE 17', tag: 'Arrival Day',
-            title: 'ARRIVAL DAY',
-            sub: "Check-in, accommodation access, island orientation, welcome parties, soft openings, partner receptions.",
-            narr: [
-              '<strong>June 17 is Arrival Day.</strong> Check-in, accommodation access, island orientation, welcome parties, soft openings, partner receptions.',
-            ],
-            visual: [
-              { a: 'Arrivals', v: 'Check-in and accommodation access.' },
-              { a: 'Orientation', v: 'Island orientation and welcome.' },
-              { a: 'Welcome', v: 'Welcome parties and soft openings.' },
-              { a: 'Receptions', v: 'Partner receptions and first taste of Zungu.' },
-            ],
-            schedule: [
-              { t: 'All day', n: 'Arrival Day', d: 'Check-in, accommodation access, island orientation, welcome parties, soft openings, partner receptions.', stage: 'Island', sc: 'm', hl: false, handoff: false },
-            ],
-          },
-          {
-            num: '02', bg: '#040810', accent: N2_C, tagBorder: 'rgba(74,143,189,0.3)',
-            date: 'JUNE 18', tag: 'Festival Night One',
-            title: 'FESTIVAL NIGHT ONE',
-            sub: 'The first full night. Stages open into the official festival programme.',
-            narr: [
-              '<strong>June 18 is Festival Night One.</strong> The first full night. Stages open into the official festival programme.',
-            ],
-            visual: [
-              { a: 'Programme', v: 'Official festival programme opens.' },
-              { a: 'Stages', v: 'All three stages active.' },
-              { a: 'Energy', v: 'The first full night on the island.' },
-              { a: 'Atmosphere', v: 'The world of Zungu begins.' },
-            ],
-            schedule: [
-              { t: 'Evening', n: 'Festival Night One', d: 'The first full night. Stages open into the official festival programme.', stage: 'All Stages', sc: 'm', hl: true, handoff: false },
-            ],
-          },
-          {
-            num: '03', bg: '#030e06', accent: N3_C, tagBorder: 'rgba(58,175,122,0.3)',
-            date: 'JUNE 19', tag: 'Festival Night Two',
-            title: 'FESTIVAL NIGHT TWO',
-            sub: 'The island is fully active. Mainstage, underground, sunrise, sunset, and island programming.',
-            narr: [
-              '<strong>June 19 is Festival Night Two.</strong> The island is fully active. Mainstage, underground, sunrise, sunset, and island programming.',
-            ],
-            visual: [
-              { a: 'Mainstage', v: 'Full mainstage programming.' },
-              { a: 'Underground', v: 'Underground and sunset programming.' },
-              { a: 'Sunrise', v: 'Origins sunrise sessions.' },
-              { a: 'Island', v: 'Full island activation.' },
-            ],
-            schedule: [
-              { t: 'All day', n: 'Festival Night Two', d: 'The island is fully active. Mainstage, underground, sunrise, sunset, and island programming.', stage: 'All Stages', sc: 'm', hl: true, handoff: false },
-            ],
-          },
-          {
-            num: '04', bg: '#060410', accent: REBIRTH_C, tagBorder: 'rgba(155,95,192,0.3)',
-            date: 'JUNE 20–23', tag: 'Peak Night & Beyond',
-            title: 'PEAK NIGHT & BEYOND',
-            sub: 'June 20: Peak night. Major acts, full production, highest energy. June 21–23: Recovery, pop-ups, and final hoorah.',
-            narr: [
-              '<strong>June 20 is Peak Night.</strong> Major acts, full production, highest energy.',
-              '<strong>June 21</strong>: Core festival programme resolves into sunrise, recovery, smaller pop-ups, brunch, wellness, and reduced-scale programming.',
-              '<strong>June 22</strong>: Smaller music moments, partner events, town dinners, media capture, artist sessions, guest departures.',
-              '<strong>June 23</strong>: Closing island moment, final gatherings, check-out, guest departures, and handover to production breakdown.',
-            ],
-            visual: [
-              { a: 'June 20', v: 'Peak night. Major acts. Full production.' },
-              { a: 'June 21', v: 'Recovery shift. Sunrise. Pop-ups. Wellness.' },
-              { a: 'June 22', v: 'Island pop-ups. Port Antonio events. Town dinners.' },
-              { a: 'June 23', v: 'Final hoorah. Departure. Handover.' },
-            ],
-            schedule: [
-              { t: 'JUN 20', n: 'Festival Night Three', d: 'Peak night. Major acts, full production, highest energy.', stage: 'All Stages', sc: 'm', hl: true, handoff: false },
-              { t: 'JUN 21', n: 'Festival Morning / Recovery Shift', d: 'Core festival programme resolves into sunrise, recovery, smaller pop-ups, brunch, wellness, and reduced-scale programming.', stage: 'Island', sc: 'o', hl: false, handoff: false },
-              { t: 'JUN 22', n: 'Island Pop-Ups / Port Antonio Events', d: 'Smaller music moments, partner events, town dinners, media capture, artist sessions, guest departures.', stage: 'Island', sc: 'r', hl: false, handoff: false },
-              { t: 'JUN 23', n: 'Final Hoorah / Departure', d: 'Closing island moment, final gatherings, check-out, guest departures, and handover to production breakdown.', stage: '—', sc: '', hl: false, handoff: true },
-            ],
-          },
-        ].map((night) => (
-          <div key={night.num} style={{ minHeight: '100vh', padding: '80px 8vw', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column', borderBottom: `1px solid ${BORDER}`, backgroundColor: night.bg }}>
-            <div style={{ fontFamily: DISPLAY, fontSize: '18rem', fontWeight: 900, lineHeight: 1, position: 'absolute', right: '6vw', top: 20, opacity: 0.04, pointerEvents: 'none', color: CREAM }}>
-              {night.num}
-            </div>
-            <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse 70% 60% at ${night.num === '01' ? '85% 30%' : night.num === '02' ? '15% 40%' : night.num === '03' ? '60% 25%' : '40% 60%'}, rgba(${night.num === '01' ? '212,114,42' : night.num === '02' ? '74,143,189' : night.num === '03' ? '58,175,122' : '155,95,192'},.09) 0%, transparent 60%)`, pointerEvents: 'none' }} />
-
-            <div style={{ position: 'relative', zIndex: 2 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 16, flexWrap: 'wrap' }}>
+        {NIGHTS.map((night) => (
+          <ChapterSection key={night.num} bg={night.bg} photo={night.photo} minHeight="100vh">
+            <div style={{ position: 'relative', padding: '80px 8vw' }}>
+              <GhostNum>{night.num}</GhostNum>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 24, flexWrap: 'wrap' }}>
                 <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.45)' }}>{night.date}</span>
                 <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase' as const, padding: '4px 10px', border: `1px solid ${night.tagBorder}`, color: night.accent }}>{night.tag}</span>
               </div>
-              <div style={{ fontFamily: DISPLAY, fontSize: 'clamp(3rem, 7vw, 7rem)', fontWeight: 900, lineHeight: 0.88, marginBottom: 8, color: night.accent }}>{night.title}</div>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, maxWidth: 560, lineHeight: 1.8, marginBottom: 40, letterSpacing: '0.02em' }}>{night.sub}</p>
+              <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 900, lineHeight: 1.1, color: night.accent, marginBottom: 16, textTransform: 'uppercase' as const }}>
+                {night.title}
+              </h2>
+              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, maxWidth: 520, lineHeight: 1.8, marginBottom: 48, letterSpacing: '0.02em' }}>{night.sub}</p>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
                 <div>
-                  <div style={{ fontFamily: MONO, fontSize: 14, lineHeight: 1.9, color: MUTED }}>
+                  {night.num === '01' && (
+                    <div style={{ position: 'relative', overflow: 'hidden', marginBottom: 24, height: 200 }}>
+                      <img src="/photos/zungu-glamping-luxe.png" alt="Glamping accommodation" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', filter: 'brightness(0.7) saturate(0.85)', display: 'block' }} />
+                      <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to top, ${night.bg}cc 0%, transparent 60%)` }} />
+                      <div style={{ position: 'absolute', bottom: 12, left: 16, fontFamily: MONO, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: GOLD, opacity: 0.8 }}>Accommodation · Navy Island</div>
+                    </div>
+                  )}
+                  <div style={{ fontFamily: MONO, fontSize: 15, lineHeight: 1.9, color: MUTED }}>
                     {night.narr.map((p, i) => (
                       <p key={i} style={{ marginTop: i > 0 ? 14 : 0 }} dangerouslySetInnerHTML={{ __html: p.replace(/<strong>/g, `<strong style="color:${CREAM}">`).replace(/<\/strong>/g, '</strong>') }} />
                     ))}
                   </div>
                   <div style={{ marginTop: 28, padding: 20, border: `1px solid ${BORDER_MID}`, background: 'rgba(200,168,75,0.02)' }}>
-                    <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 14 }}>Visual Concept · Night {night.num}</span>
+                    <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 14 }}>Programme · {night.tag}</span>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                       {night.visual.map(({ a, v }) => (
                         <div key={a} style={{ padding: 12, background: 'rgba(242,235,217,0.02)', border: '1px solid rgba(242,235,217,0.04)' }}>
@@ -705,7 +697,7 @@ function StagesPageInner() {
                         display: 'grid', gridTemplateColumns: '60px 1fr 80px', gap: 12, padding: '11px 14px',
                         borderBottom: '1px solid rgba(242,235,217,0.04)',
                         borderLeft: row.hl ? `2px solid ${night.accent}` : row.handoff ? '2px solid rgba(200,168,75,0.3)' : 'none',
-                        background: row.hl ? `rgba(${night.num === '01' ? '212,114,42' : night.num === '02' ? '74,143,189' : night.num === '03' ? '58,175,122' : '155,95,192'},.04)` : row.handoff ? 'rgba(200,168,75,0.04)' : 'transparent',
+                        background: row.hl ? 'rgba(200,168,75,0.04)' : row.handoff ? 'rgba(200,168,75,0.04)' : 'transparent',
                         alignItems: 'start',
                       }}>
                         <span style={{ fontFamily: MONO, fontSize: 9, color: row.handoff ? GOLD : 'rgba(200,168,75,0.5)', paddingTop: 2 }}>{row.t}</span>
@@ -720,7 +712,7 @@ function StagesPageInner() {
                 </div>
               </div>
             </div>
-          </div>
+          </ChapterSection>
         ))}
       </div>
 
@@ -729,13 +721,10 @@ function StagesPageInner() {
       ══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider num="05" title="Every Stage" goldLine="Has a Different Build." desc="Three stages. One island. Each operates with different technical, spatial, and operational requirements." />
 
-      <section id="production" style={{ padding: '80px 8vw', borderBottom: `1px solid ${BORDER}`, backgroundColor: BG, position: 'relative', overflow: 'hidden' }}>
-        {/* Subtle background tint */}
-        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at bottom right, rgba(200,168,75,0.05) 0%, transparent 60%)', pointerEvents: 'none' }} />
-        <div style={{ position: 'relative', zIndex: 1 }}>
+      <ChapterSection id="production" bg={BG} photo="/photos/navy-island-stage-map.png">
+        <div style={{ position: 'relative', padding: '80px 8vw' }}>
           <SLabel>// 05 Production Requirements</SLabel>
 
-          {/* 3-column stage cards */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 3, marginBottom: 48 }}>
             {[
               {
@@ -774,7 +763,7 @@ function StagesPageInner() {
             ].map(({ name, accent, summary, reqs }) => (
               <div key={name} style={{ borderTop: `3px solid ${accent}`, padding: '28px 24px', background: 'rgba(242,235,217,0.01)', border: `1px solid rgba(242,235,217,0.06)`, borderTopColor: accent, borderTopWidth: 3 }}>
                 <div style={{ fontFamily: DISPLAY, fontSize: '1rem', fontWeight: 900, color: accent, textTransform: 'uppercase' as const, marginBottom: 10, letterSpacing: '0.02em' }}>{name}</div>
-                <p style={{ fontFamily: MONO, fontSize: 12, color: CREAM, lineHeight: 1.6, marginBottom: 20, opacity: 0.8 }}>{summary}</p>
+                <p style={{ fontFamily: MONO, fontSize: 15, color: CREAM, lineHeight: 1.6, marginBottom: 20, opacity: 0.8 }}>{summary}</p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                   {reqs.map((r, i) => (
                     <div key={i} style={{ fontFamily: MONO, fontSize: 12, color: MUTED, lineHeight: 1.6, paddingLeft: 14, borderLeft: `2px solid ${accent}33` }}>{r}</div>
@@ -784,7 +773,6 @@ function StagesPageInner() {
             ))}
           </div>
 
-          {/* Daily timeline — compressed */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48 }}>
             <div>
               <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 20 }}>Daily Stage Flow</div>
@@ -807,7 +795,6 @@ function StagesPageInner() {
               </div>
             </div>
 
-            {/* Hard rules */}
             <div>
               <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 20 }}>The Hard Rules</div>
               <div style={{ padding: 24, border: `1px solid ${BORDER_MID}`, background: 'rgba(200,168,75,0.025)' }}>
@@ -824,94 +811,91 @@ function StagesPageInner() {
             </div>
           </div>
         </div>
-      </section>
+      </ChapterSection>
 
       {/* ══════════════════════════════════════════════════════════════════
           CHAPTER 06 — YEAR ONE BOOKING MODEL
       ══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider num="06" title="Year One" goldLine="Booking Model." desc="30–45 artists and selectors across the festival week. This is the working artist-load model for production planning — not a confirmed lineup." />
 
-      <StageSlide
-        id="booking"
-        bg={BG}
-        accent={GOLD}
-        ghostNumber="06"
-        backgroundImage="/photos/stage-zungu-aerial.png"
-        backgroundPosition="center center"
-        minHeight="85vh"
-        eyebrow="// Year One Planning Assumption · Not a Confirmed Lineup"
-        title={<>30–45 ARTISTS.<br />ONE ISLAND.<br />ONE WEEK.</>}
-        subtitle="The booking model shapes the build. Every confirmed artist affects the stage specification, rider review, equipment, travel, accommodation, and back-of-house planning."
-      >
-        <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
-          {/* Left: narrative + tier grid */}
-          <div>
-            <div style={{ fontFamily: MONO, fontSize: 14, lineHeight: 1.9, color: MUTED, marginBottom: 28 }}>
-              <p>Year One planning assumption: 30–45 artists and selectors across the festival week. Production partners should account for this range across rider management, DJ equipment, stage management, artist travel, accommodation, hospitality, marine transfers, security, changeovers, and back-of-house planning.</p>
-              <p style={{ marginTop: 14 }}>A private-island festival cannot treat artists as names on a poster only. Each booking affects the stage specification, power load, crew schedule, and marine logistics. Fewer, stronger bookings are more powerful than a crowded lineup.</p>
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-              {[
-                { tier: 'Global Anchor', count: '1', note: 'Zungu Main. Their rider sets the mainstage benchmark. Advanced first.' },
-                { tier: 'Major Support', count: '2–4', note: 'Zungu Main + Rebirth. Builds credibility around the headline programme.' },
-                { tier: 'Curated Depth', count: '10–20', note: 'All three stages. Afro-house, tribal, tech, underground, organic electronic.' },
-                { tier: 'Local Layer', count: 'Open', note: 'Origins + Rebirth + Pop-ups. Jamaican artists, Portland voices, radio sessions.' },
-              ].map(({ tier, count, note }) => (
-                <div key={tier} style={{ padding: 16, background: 'rgba(242,235,217,0.02)', border: '1px solid rgba(242,235,217,0.05)' }}>
-                  <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.35)', display: 'block', marginBottom: 5 }}>{tier}</span>
-                  <span style={{ fontFamily: DISPLAY, fontSize: '1.4rem', fontWeight: 900, color: GOLD, display: 'block', lineHeight: 1, marginBottom: 8 }}>{count}</span>
-                  <span style={{ fontFamily: MONO, fontSize: 12, color: MUTED, lineHeight: 1.5 }}>{note}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+      <ChapterSection id="booking" bg={BG} photo="/photos/zungu-stage-design-aerial.png" minHeight="85vh">
+        <div style={{ position: 'relative', padding: '80px 8vw' }}>
+          <GhostNum>06</GhostNum>
+          <SLabel>// Year One Planning Assumption · Not a Confirmed Lineup</SLabel>
+          <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 900, lineHeight: 1.1, color: GOLD, marginBottom: 16, textTransform: 'uppercase' as const }}>
+            30–45 ARTISTS.<br /><span style={{ color: CREAM }}>ONE ISLAND.</span><br />ONE WEEK.
+          </h2>
+          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, maxWidth: 520, lineHeight: 1.8, marginBottom: 48, letterSpacing: '0.02em' }}>
+            The booking model shapes the build. Every confirmed artist affects the stage specification, rider review, equipment, travel, accommodation, and back-of-house planning.
+          </p>
 
-          {/* Right: planning implications table + benchmark */}
-          <div>
-            <div style={{ background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(242,235,217,0.06)', marginBottom: 20 }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, padding: '10px 14px', borderBottom: '1px solid rgba(242,235,217,0.06)', fontFamily: MONO, fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)' }}>
-                <span>Area</span><span>What to Plan</span>
+          <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
+            <div>
+              <div style={{ fontFamily: MONO, fontSize: 15, lineHeight: 1.9, color: MUTED, marginBottom: 28 }}>
+                <p>Year One planning assumption: 30–45 artists and selectors across the festival week. Production partners should account for this range across rider management, DJ equipment, stage management, artist travel, accommodation, hospitality, marine transfers, security, changeovers, and back-of-house planning.</p>
+                <p style={{ marginTop: 14 }}>A private-island festival cannot treat artists as names on a poster only. Each booking affects the stage specification, power load, crew schedule, and marine logistics. Fewer, stronger bookings are more powerful than a crowded lineup.</p>
               </div>
-              {[
-                { area: 'Rider review', plan: 'Per confirmed artist' },
-                { area: 'DJ equipment', plan: 'Stage-assigned baseline' },
-                { area: 'Stage assignment', plan: 'Anchor → Mainstage first' },
-                { area: 'Travel + transfer', plan: 'Air · Marine · Ground' },
-                { area: 'Accommodation', plan: 'Villa / hotel per tier' },
-                { area: 'Hospitality', plan: 'Rider-specified requirements' },
-                { area: 'Security', plan: 'Per artist movement plan' },
-                { area: 'Changeovers', plan: 'Per night schedule' },
-                { area: 'Media permissions', plan: 'Per artist' },
-                { area: 'Back-of-house', plan: 'Green room · crew schedule' },
-              ].map(({ area, plan }) => (
-                <div key={area} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, padding: '9px 14px', borderBottom: '1px solid rgba(242,235,217,0.04)' }}>
-                  <span style={{ fontFamily: MONO, fontSize: 11, color: 'rgba(200,168,75,0.5)' }}>{area}</span>
-                  <span style={{ fontFamily: MONO, fontSize: 11, color: MUTED }}>{plan}</span>
-                </div>
-              ))}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                {[
+                  { tier: 'Global Anchor', count: '1', note: 'Zungu Main. Their rider sets the mainstage benchmark. Advanced first.' },
+                  { tier: 'Major Support', count: '2–4', note: 'Zungu Main + Rebirth. Builds credibility around the headline programme.' },
+                  { tier: 'Curated Depth', count: '10–20', note: 'All three stages. Afro-house, tribal, tech, underground, organic electronic.' },
+                  { tier: 'Local Layer', count: 'Open', note: 'Origins + Rebirth + Pop-ups. Jamaican artists, Portland voices, radio sessions.' },
+                ].map(({ tier, count, note }) => (
+                  <div key={tier} style={{ padding: 16, background: 'rgba(242,235,217,0.02)', border: '1px solid rgba(242,235,217,0.05)' }}>
+                    <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.35)', display: 'block', marginBottom: 5 }}>{tier}</span>
+                    <span style={{ fontFamily: DISPLAY, fontSize: '1.4rem', fontWeight: 900, color: GOLD, display: 'block', lineHeight: 1, marginBottom: 8 }}>{count}</span>
+                    <span style={{ fontFamily: MONO, fontSize: 12, color: MUTED, lineHeight: 1.5 }}>{note}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div style={{ padding: 20, border: `1px solid ${BORDER_MID}`, background: 'rgba(200,168,75,0.025)' }}>
-              <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 14 }}>Benchmark Reference</span>
-              {[
-                'BPM Costa Rica: 80+ artists across multiple stages.',
-                'SXM Festival: 40+ artists · comparable island-destination format.',
-                'Zungu Year One: 30–45 — fewer, stronger, controlled.',
-              ].map((line, i) => (
-                <p key={i} style={{ fontFamily: MONO, fontSize: 12, color: MUTED, lineHeight: 1.7, paddingLeft: 12, borderLeft: '2px solid rgba(200,168,75,0.2)', marginBottom: 8 }}>{line}</p>
-              ))}
+
+            <div>
+              <div style={{ background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(242,235,217,0.06)', marginBottom: 20 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, padding: '10px 14px', borderBottom: '1px solid rgba(242,235,217,0.06)', fontFamily: MONO, fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.4)' }}>
+                  <span>Area</span><span>What to Plan</span>
+                </div>
+                {[
+                  { area: 'Rider review', plan: 'Per confirmed artist' },
+                  { area: 'DJ equipment', plan: 'Stage-assigned baseline' },
+                  { area: 'Stage assignment', plan: 'Anchor → Mainstage first' },
+                  { area: 'Travel + transfer', plan: 'Air · Marine · Ground' },
+                  { area: 'Accommodation', plan: 'Villa / hotel per tier' },
+                  { area: 'Hospitality', plan: 'Rider-specified requirements' },
+                  { area: 'Security', plan: 'Per artist movement plan' },
+                  { area: 'Changeovers', plan: 'Per night schedule' },
+                  { area: 'Media permissions', plan: 'Per artist' },
+                  { area: 'Back-of-house', plan: 'Green room · crew schedule' },
+                ].map(({ area, plan }) => (
+                  <div key={area} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, padding: '9px 14px', borderBottom: '1px solid rgba(242,235,217,0.04)' }}>
+                    <span style={{ fontFamily: MONO, fontSize: 11, color: 'rgba(200,168,75,0.5)' }}>{area}</span>
+                    <span style={{ fontFamily: MONO, fontSize: 11, color: MUTED }}>{plan}</span>
+                  </div>
+                ))}
+              </div>
+              <div style={{ padding: 20, border: `1px solid ${BORDER_MID}`, background: 'rgba(200,168,75,0.025)' }}>
+                <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 14 }}>Benchmark Reference</span>
+                {[
+                  'BPM Costa Rica: 80+ artists across multiple stages.',
+                  'SXM Festival: 40+ artists · comparable island-destination format.',
+                  'Zungu Year One: 30–45 — fewer, stronger, controlled.',
+                ].map((line, i) => (
+                  <p key={i} style={{ fontFamily: MONO, fontSize: 12, color: MUTED, lineHeight: 1.7, paddingLeft: 12, borderLeft: '2px solid rgba(200,168,75,0.2)', marginBottom: 8 }}>{line}</p>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </StageSlide>
+      </ChapterSection>
 
       {/* ══════════════════════════════════════════════════════════════════
           CHAPTER 07 — PRODUCTION PARTNER OPPORTUNITIES
       ══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider num="07" title="Building the Island" goldLine="Takes Partners." desc="Zungu creates opportunities across staging, technical delivery, infrastructure, logistics, hospitality, transport, sustainability, and guest experience." />
 
-      <section id="partners" style={{ padding: '80px 8vw', borderBottom: `1px solid ${BORDER}`, backgroundColor: GREEN, position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at top left, rgba(200,168,75,0.06) 0%, transparent 55%)', pointerEvents: 'none' }} />
-        <div style={{ position: 'relative', zIndex: 1 }}>
+      <ChapterSection id="partners" bg={GREEN} photo="/photos/navy-island-wide.png">
+        <div style={{ position: 'relative', padding: '80px 8vw' }}>
           <SLabel>// 07 Production Partner Opportunities</SLabel>
           <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 640, marginBottom: 40 }}>
             Every partner category maps to a defined operational requirement. The island creates real scope across eight areas.
@@ -925,7 +909,7 @@ function StagesPageInner() {
               { cat: 'Hospitality & Guest Services', desc: 'Glamping, villas, catering, bar infrastructure, VIP services, wellness, guest experience.' },
               { cat: 'Media & Content', desc: 'Photography, video, livestream, social content, press access management, archiving.' },
               { cat: 'Sustainability & Environmental', desc: 'Waste management, ecological compliance, site restoration, low-impact infrastructure.' },
-              { cat: 'Local Operations & Workforce', desc: 'Local crew, security, community engagement, Jamaican partnerships, local supplier pipeline.' },
+              { cat: 'Local Operations & Workforce', desc: 'Local crew, security, community engagement, Jamaican partnerships, local operator pipeline.' },
             ].map(({ cat, desc }) => (
               <div key={cat} style={{ padding: '24px 20px', border: `1px solid rgba(200,168,75,0.12)`, borderTop: `3px solid rgba(200,168,75,0.4)`, background: 'rgba(0,0,0,0.3)', transition: 'border-color 0.2s, background 0.2s' }}
                 onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(200,168,75,0.5)'; el.style.background = 'rgba(200,168,75,0.04)'; }}
@@ -937,7 +921,7 @@ function StagesPageInner() {
             ))}
           </div>
         </div>
-      </section>
+      </ChapterSection>
 
       {/* ══════════════════════════════════════════════════════════════════
           CLOSING — STAGE PRODUCTION BRIEF
@@ -945,7 +929,7 @@ function StagesPageInner() {
       <section style={{ padding: '60px 8vw', backgroundColor: BG, borderTop: `1px solid ${BORDER}` }}>
         <div style={{ maxWidth: 720 }}>
           <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD_DIM, marginBottom: 12 }}>// Stage Production Brief</div>
-          <p style={{ fontFamily: MONO, fontSize: 14, color: MUTED, lineHeight: 1.9 }}>
+          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
             Detailed rider management, DJ equipment baseline, back-of-house layout, artist travel, security, technical schedules, cost centres, and changeover planning are developed in the Stage Production Brief.
           </p>
         </div>
@@ -953,7 +937,7 @@ function StagesPageInner() {
         {role === 'stakeholder' && (
           <div style={{ marginTop: 32, padding: '24px 28px', border: `1px solid rgba(200,168,75,0.2)`, background: 'rgba(200,168,75,0.025)', maxWidth: 720 }}>
             <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 12 }}>// Stakeholder Review Note</div>
-            <p style={{ fontFamily: MONO, fontSize: 14, color: MUTED, lineHeight: 1.8 }}>
+            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>
               The stage plan is a conceptual site-use framework. Final placement, operating hours, sound direction, access routes, temporary infrastructure, emergency access, and demobilisation requirements should be reviewed with the relevant site, environmental, marine, safety, and public-sector stakeholders.
             </p>
           </div>
