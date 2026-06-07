@@ -9,9 +9,9 @@ const muted = '#6B6355';
 
 const ROLES = [
   { value: 'investor', label: 'Investor' },
-  { value: 'partner', label: 'Production Partner' },
-  { value: 'supplier', label: 'Supplier' },
+  { value: 'partner', label: 'Production Partners' },
   { value: 'press', label: 'Press' },
+  { value: 'stakeholder', label: 'Stakeholders' },
 ];
 
 export default function InviteTool() {
@@ -67,7 +67,7 @@ export default function InviteTool() {
             // PARTNER INVITE TOOL
           </p>
           <h1 style={{ fontFamily: "'Unbounded', sans-serif", fontSize: '1.75rem', color: white, fontWeight: 900, letterSpacing: '-0.02em', textTransform: 'uppercase' }}>
-            Generate Invite
+            Generate Briefing Invite
           </h1>
           <p style={{ marginTop: '0.75rem', fontSize: 11, color: muted, lineHeight: 1.6 }}>
             Links expire after 30 days. Recipient must sign in with the exact email address used here.

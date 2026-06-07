@@ -10,9 +10,12 @@ const isClerkProtectedRoute = createRouteMatcher([
   '/partner(.*)',
   '/deck(.*)',
   '/dashboard(.*)',
+  '/activities(.*)',
+  '/brand(.*)',
+  '/stages(.*)',
 ]);
 
-const isEmailProtectedRoute = createRouteMatcher(['/partner(.*)', '/deck(.*)']);
+const isEmailProtectedRoute = createRouteMatcher(['/partner(.*)', '/deck(.*)', '/activities(.*)', '/brand(.*)', '/stages(.*)']);
 
 const isInviteToolRoute = createRouteMatcher(['/invite-tool(.*)']);
 
@@ -39,9 +42,21 @@ export default clerkMiddleware(async (auth, req) => {
   if (inviteParam) {
     const result = await verify(inviteParam);
     if (result) {
-      const clean = new URL(url.pathname, req.url);
-      url.searchParams.forEach((v, k) => { if (k !== 'invite') clean.searchParams.set(k, v); });
-      const res = NextResponse.redirect(clean);
+      // Only strip the invite param and set cookie when NOT already on /sign-in
+      // (so the sign-in page can detect the invite and show sign-up)
+      if (!url.pathname.startsWith('/sign-in')) {
+        const clean = new URL(url.pathname, req.url);
+        url.searchParams.forEach((v, k) => { if (k !== 'invite') clean.searchParams.set(k, v); });
+        const res = NextResponse.redirect(clean);
+        res.cookies.set(INVITED_EMAIL_COOKIE, result.email, {
+          httpOnly: true,
+          path: '/',
+          maxAge: 30 * 24 * 60 * 60,
+        });
+        return res;
+      }
+      // On /sign-in with invite param — let the page see it, just set the cookie too
+      const res = NextResponse.next();
       res.cookies.set(INVITED_EMAIL_COOKIE, result.email, {
         httpOnly: true,
         path: '/',

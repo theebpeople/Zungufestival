@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZUNGU 2027 — Activity Programme</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   ZUNGU 2027 — UNIFIED DESIGN SYSTEM
+   Activity Programme
+   Unbounded (display) + Space Mono (UI/labels)
+═══════════════════════════════════════════════════════════════ */
+:root {
+  --bg:         #04080A;
+  --green:      #0D2018;
+  --gold:       #C8A84B;
+  --gold-dim:   rgba(200,168,75,0.45);
+  --gold-faint: rgba(200,168,75,0.08);
+  --cream:      #F2EBD9;
+  --muted:      rgba(242,235,217,0.45);
+  --border:     rgba(200,168,75,0.07);
+  --border-mid: rgba(200,168,75,0.12);
+  --forest-bg:  #060e08;
+  --water-bg:   #04080e;
+  --wellness-bg:#070a06;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: 'Space Mono', monospace;
+  overflow-x: hidden;
+}
+
+/* ── SCROLL PROGRESS ── */
+#progress-bar {
+  position: fixed; top:0; left:0;
+  height: 2px; width: 0%;
+  background: var(--gold);
+  z-index: 1000; transition: width 0.1s linear;
+}
+
+/* ── NAV ── */
+.nav {
+  position: fixed; top:0; left:0; right:0; z-index:900;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 8vw; height: 52px;
+  background: rgba(4,8,10,0.85);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Unbounded', sans-serif; font-size:11px; font-weight:700;
+  color: var(--gold); letter-spacing:0.15em; text-transform:uppercase; text-decoration:none;
+}
+.nav-links { display:flex; gap:2rem; list-style:none; }
+.nav-links a {
+  font-size:9px; letter-spacing:0.3em; text-transform:uppercase;
+  color: var(--muted); text-decoration:none; transition:color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+/* ── SIDE DOTS ── */
+.dot-nav {
+  position:fixed; right:2rem; top:50%; transform:translateY(-50%);
+  z-index:800; display:flex; flex-direction:column; gap:10px;
+}
+.dot-nav-item {
+  width:6px; height:6px; border-radius:50%;
+  background: rgba(200,168,75,0.25);
+  cursor:pointer; transition:all 0.3s; border:none; padding:0;
+}
+.dot-nav-item.active { background: var(--gold); transform:scale(1.5); }
+.dot-nav-item:hover  { background: var(--gold-dim); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; position:relative;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding: 80px 8vw; overflow:hidden;
+}
+.hero-bg {
+  position:absolute; inset:0;
+  background-image: url('/mnt/user-data/uploads/Screenshot_2026-03-04_at_3_15_52_PM.png');
+  background-size:cover; background-position:center 35%;
+}
+.hero-bg::after {
+  content:''; position:absolute; inset:0;
+  background: linear-gradient(to top, rgba(4,8,10,0.98) 0%, rgba(4,8,10,0.55) 50%, rgba(4,8,10,0.2) 100%);
+}
+.hero-grid-overlay {
+  position:absolute; inset:0; z-index:1;
+  background-image:
+    linear-gradient(rgba(200,168,75,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,168,75,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+.hero-content { position:relative; z-index:2; }
+.hero-eyebrow {
+  font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--gold);
+  margin-bottom:1.5rem; display:flex; align-items:center; gap:1rem;
+}
+.hero-eyebrow::before {
+  content:''; display:inline-block; width:32px; height:1px;
+  background:var(--gold); opacity:0.6;
+}
+.hero-title {
+  font-family:'Unbounded',sans-serif; font-weight:700;
+  font-size:clamp(3.5rem,9vw,8.5rem); line-height:0.95; letter-spacing:-0.02em; margin-bottom:1.5rem;
+}
+.hero-title .g { color:var(--gold); }
+.hero-sub {
+  font-size:11px; line-height:1.8; color:var(--muted); letter-spacing:0.05em;
+  max-width:520px; margin-bottom:3rem;
+}
+.hero-stats { display:flex; gap:0; border:1px solid var(--border-mid); width:fit-content; flex-wrap:wrap; }
+.hero-stat { padding:1.2rem 2rem; border-right:1px solid var(--border-mid); }
+.hero-stat:last-child { border-right:none; }
+.hero-stat .label { display:block; font-size:8px; letter-spacing:0.35em; text-transform:uppercase; color:var(--gold); margin-bottom:0.4rem; }
+.hero-stat .value { display:block; font-family:'Unbounded',sans-serif; font-size:13px; font-weight:400; color:var(--cream); letter-spacing:0.05em; }
+
+/* ── CHAPTER DIVIDERS ── */
+.chapter {
+  background:var(--bg); padding:60px 8vw 40px;
+  border-top:1px solid var(--border); position:relative; overflow:hidden;
+}
+.chapter-num {
+  font-family:'Unbounded',sans-serif; font-weight:900;
+  font-size:clamp(6rem,18vw,14rem); color:rgba(200,168,75,0.04);
+  line-height:1; position:absolute; right:6vw; top:-10px;
+  pointer-events:none; letter-spacing:-0.04em;
+}
+.chapter-label {
+  font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:var(--gold);
+  display:flex; align-items:center; gap:0.8rem; margin-bottom:1rem;
+}
+.chapter-label::before {
+  content:''; width:24px; height:1px; background:var(--gold); opacity:0.5; flex-shrink:0;
+}
+.chapter-title {
+  font-family:'Unbounded',sans-serif; font-weight:700;
+  font-size:clamp(1.8rem,4vw,3.2rem); color:var(--cream);
+  line-height:1.1; letter-spacing:-0.02em; position:relative;
+}
+.chapter-title .g { color:var(--gold); }
+.chapter-body {
+  font-size:11px; line-height:1.8; color:var(--muted);
+  max-width:560px; margin-top:1rem; letter-spacing:0.02em;
+}
+
+/* ── PHILOSOPHY ── */
+.philosophy-sec {
+  background: var(--green); padding:80px 8vw;
+  border-top:1px solid var(--border);
+}
+.philosophy-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:4rem; margin-top:3rem;
+}
+.philosophy-text {
+  font-size:13px; line-height:1.9; color:var(--muted); letter-spacing:0.02em;
+}
+.philosophy-text strong { color:var(--gold); font-weight:700; }
+.principles { display:flex; flex-direction:column; gap:1rem; }
+.principle {
+  padding:1.2rem 1.5rem;
+  border-left:2px solid rgba(200,168,75,0.25);
+  background:var(--gold-faint);
+}
+.principle-title {
+  font-size:9px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:0.35rem;
+}
+.principle-text { font-size:10px; color:var(--muted); line-height:1.6; }
+
+/* ── HARD RULE CALLOUT ── */
+.hard-rule-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-bottom:3rem;
+}
+.hard-rule-card {
+  padding:2rem; border:1px solid var(--border-mid); background:var(--gold-faint);
+}
+.hard-rule-card.dark { background:#04080A; border-color:var(--border-mid); }
+.hard-rule-accent {
+  font-size:8px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:0.6rem;
+}
+.hard-rule-title {
+  font-family:'Unbounded',sans-serif; font-weight:700;
+  font-size:clamp(1rem,2.5vw,1.6rem); color:var(--gold); line-height:1.1; margin-bottom:0.8rem;
+}
+.hard-rule-body { font-size:10px; color:var(--muted); line-height:1.7; }
+.hard-rule-body strong { color:var(--cream); }
+.day-shape-row { display:flex; gap:1.5rem; align-items:baseline; margin-bottom:0.4rem; }
+.day-shape-time { font-size:9px; color:var(--gold-dim); min-width:90px; }
+.day-shape-text { font-size:10px; color:var(--muted); }
+.day-shape-text.key { color:var(--cream); font-weight:700; }
+
+/* ── DAY TABS ── */
+.day-tabs {
+  display:flex; border-bottom:1px solid var(--border-mid); margin-bottom:2rem; overflow-x:auto;
+}
+.day-tab {
+  flex:none; padding:0.8rem 1.5rem; font-family:'Space Mono',monospace;
+  font-size:9px; letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--muted); background:none; border:none; border-bottom:2px solid transparent;
+  cursor:pointer; transition:all 0.2s; white-space:nowrap;
+}
+.day-tab:hover  { color:var(--gold); }
+.day-tab.active { color:var(--gold); border-bottom-color:var(--gold); }
+.day-content    { display:none; }
+.day-content.active { display:block; }
+
+/* ── TIME GRID ── */
+.time-grid {
+  display:grid; grid-template-columns:90px repeat(4,1fr);
+  gap:1px; background:var(--border);
+}
+.tg-header {
+  padding:0.6rem 0.8rem; font-size:8px; letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--gold); background:var(--bg);
+}
+.tg-time {
+  padding:0.7rem 0.8rem; font-size:9px; color:var(--gold-dim); background:var(--bg);
+  border-right:1px solid var(--border-mid); font-variant-numeric:tabular-nums;
+  display:flex; align-items:flex-start; font-weight:700;
+}
+.tg-cell {
+  padding:0.7rem 0.8rem; font-size:10px; color:var(--muted);
+  background:var(--bg); line-height:1.4;
+}
+.tg-cell.highlight { background:var(--gold-faint); }
+.tg-cell.empty { color:rgba(242,235,217,0.12); text-align:center; display:flex; align-items:center; justify-content:center; }
+.tg-cell.stage-block { background:rgba(13,32,24,0.5); border-left:2px solid rgba(200,168,75,0.3); }
+.act-name { display:block; font-size:10px; color:var(--cream); margin-bottom:0.2rem; font-weight:700; }
+.act-detail { display:block; font-size:9px; color:rgba(242,235,217,0.4); line-height:1.35; }
+
+/* ── ZONES ── */
+.zones-sec { background:var(--bg); padding:80px 8vw; border-top:1px solid var(--border); }
+.zones-intro {
+  font-size:11px; line-height:1.85; color:var(--muted); max-width:560px; margin-bottom:3.5rem; letter-spacing:0.02em;
+}
+.zones-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border);
+}
+.zone-card {
+  background:var(--bg); padding:2.5rem 2rem;
+  transition:background 0.3s; position:relative; overflow:hidden;
+}
+.zone-card:hover { background:var(--gold-faint); }
+.zone-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:var(--gold); opacity:0;
+  transition:opacity 0.3s;
+}
+.zone-card:hover::before { opacity:1; }
+.zone-card.forest { }
+.zone-card.water  { }
+.zone-card.wellness { }
+.zone-card.pier { border-left:2px solid rgba(200,168,75,0.3); }
+
+.zone-icon { font-size:1.5rem; display:block; margin-bottom:1rem; }
+.zone-name {
+  font-family:'Unbounded',sans-serif; font-weight:700;
+  font-size:clamp(0.9rem,1.8vw,1.3rem); color:var(--cream);
+  letter-spacing:-0.01em; line-height:1.1; margin-bottom:0.4rem;
+}
+.zone-subtitle { font-size:8px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:1rem; }
+.zone-desc { font-size:10px; color:var(--muted); line-height:1.7; margin-bottom:1rem; }
+.zone-activities { font-size:9px; color:rgba(242,235,217,0.4); line-height:1.8; padding-left:1rem; }
+.zone-activities li { border-bottom:1px solid var(--border); padding:0.2rem 0; }
+.zone-tag {
+  display:inline-block; margin-top:1.2rem; font-size:8px; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--gold-dim); border:1px solid var(--border-mid); padding:0.25rem 0.6rem;
+}
+
+/* ── SCHEDULE ── */
+.schedule-sec {
+  background: #f0ead8; color:var(--bg); padding:80px 8vw; border-top:1px solid rgba(10,10,8,0.1);
+}
+.schedule-sec .chapter-label { color:#8a6a1a; }
+.schedule-sec .chapter-label::before { background:#8a6a1a; }
+.schedule-sec .chapter-title { color:var(--bg); }
+.schedule-sec .chapter-title .g { color:#8a6a1a; }
+.schedule-sec .hard-rule-card { background:rgba(0,0,0,0.04); border-color:rgba(0,0,0,0.1); }
+.schedule-sec .hard-rule-accent { color:#8a6a1a; }
+.schedule-sec .hard-rule-title { color:#3a2800; }
+.schedule-sec .hard-rule-body { color:rgba(4,8,10,0.65); }
+.schedule-sec .hard-rule-body strong { color:var(--bg); }
+.schedule-sec .day-shape-time { color:#8a6a1a; }
+.schedule-sec .day-shape-text { color:rgba(4,8,10,0.6); }
+.schedule-sec .day-shape-text.key { color:var(--bg); }
+.schedule-sec .day-tab { color:rgba(4,8,10,0.45); }
+.schedule-sec .day-tab.active { color:#8a6a1a; border-bottom-color:#8a6a1a; }
+.schedule-sec .day-tabs { border-bottom-color:rgba(0,0,0,0.1); }
+.schedule-sec .time-grid { background:rgba(0,0,0,0.06); }
+.schedule-sec .tg-header { background:#f0ead8; color:#8a6a1a; }
+.schedule-sec .tg-time { background:#f0ead8; color:#8a6a1a; border-right-color:rgba(0,0,0,0.08); }
+.schedule-sec .tg-cell { background:#f0ead8; color:rgba(4,8,10,0.55); }
+.schedule-sec .tg-cell.highlight { background:rgba(138,106,26,0.06); }
+.schedule-sec .tg-cell.empty { color:rgba(4,8,10,0.15); }
+.schedule-sec .act-name { color:var(--bg); }
+.schedule-sec .act-detail { color:rgba(4,8,10,0.4); }
+.schedule-sec .tg-cell.stage-block { background:rgba(138,106,26,0.06); border-left-color:rgba(138,106,26,0.35); }
+
+/* ── WELLNESS ── */
+.wellness-sec {
+  background:var(--wellness-bg); padding:80px 8vw; border-top:1px solid var(--border);
+}
+.wellness-intro { font-size:11px; line-height:1.85; color:var(--muted); max-width:620px; margin-bottom:3.5rem; letter-spacing:0.02em; }
+.wellness-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); }
+.wellness-card {
+  background:var(--bg); padding:2rem 1.5rem; position:relative; overflow:hidden;
+}
+.wellness-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg, var(--gold), transparent); opacity:0.4;
+}
+.wellness-time { font-size:8px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:0.6rem; }
+.wellness-name { font-family:'Unbounded',sans-serif; font-weight:700; font-size:0.95rem; color:var(--cream); letter-spacing:-0.01em; margin-bottom:0.6rem; line-height:1.2; }
+.wellness-desc { font-size:10px; color:var(--muted); line-height:1.65; }
+
+/* ── VIP ── */
+.vip-sec { background:var(--bg); padding:80px 8vw; border-top:1px solid var(--border); }
+.vip-intro { font-size:11px; line-height:1.85; color:var(--muted); max-width:560px; margin-bottom:3.5rem; letter-spacing:0.02em; }
+.vip-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); }
+.vip-tier { background:var(--bg); padding:2.5rem; position:relative; }
+.vip-tier.obsidian { background:var(--green); }
+.vip-tier.black { background:#08040a; border-top:2px solid var(--gold); }
+.tier-badge {
+  font-size:8px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold);
+  display:inline-block; border:1px solid var(--border-mid); padding:0.2rem 0.6rem; margin-bottom:1rem;
+}
+.tier-name {
+  font-family:'Unbounded',sans-serif; font-weight:700; font-size:clamp(1.5rem,3vw,2.2rem);
+  color:var(--cream); letter-spacing:-0.02em; line-height:0.9; margin-bottom:0.5rem;
+}
+.tier-price { font-size:9px; letter-spacing:0.1em; color:var(--gold-dim); margin-bottom:1.5rem; line-height:1.5; }
+.tier-benefits { font-size:10px; color:var(--muted); line-height:1.8; padding-left:1rem; }
+.tier-benefits li { border-bottom:1px solid var(--border); padding:0.25rem 0; }
+.tier-benefits li:last-child { border-bottom:none; }
+
+/* ── SUSTAINABILITY ── */
+.sustain-sec { background:var(--green); padding:80px 8vw; border-top:1px solid var(--border); }
+.sustain-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); margin-top:3rem; }
+.sustain-item { background:var(--green); padding:2rem; }
+.sustain-number {
+  font-family:'Unbounded',sans-serif; font-weight:900;
+  font-size:2.5rem; color:rgba(200,168,75,0.08); line-height:1; margin-bottom:0.6rem; letter-spacing:-0.04em;
+}
+.sustain-title { font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--cream); margin-bottom:0.6rem; }
+.sustain-text  { font-size:10px; color:var(--muted); line-height:1.7; }
+
+/* ── FOOTER ── */
+.doc-footer {
+  background:var(--bg); padding:3rem 8vw;
+  border-top:1px solid var(--border-mid);
+  display:flex; justify-content:space-between; align-items:flex-end;
+}
+.footer-brand { font-family:'Unbounded',sans-serif; font-weight:700; font-size:1.4rem; color:rgba(200,168,75,0.15); letter-spacing:-0.02em; }
+.footer-meta { font-size:8px; letter-spacing:0.2em; color:rgba(242,235,217,0.12); text-align:right; line-height:2.2; text-transform:uppercase; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  .hero, .philosophy-sec, .zones-sec, .wellness-sec, .vip-sec, .sustain-sec, .schedule-sec, .chapter { padding:60px 5vw; }
+  .hero-stats { flex-wrap:wrap; }
+  .hero-stat { border-right:none; border-bottom:1px solid var(--border-mid); }
+  .zones-grid, .wellness-grid, .vip-grid, .sustain-grid { grid-template-columns:1fr 1fr; }
+  .philosophy-grid { grid-template-columns:1fr; gap:2rem; }
+  .hard-rule-grid  { grid-template-columns:1fr; }
+  .time-grid { grid-template-columns:70px repeat(2,1fr); }
+  .time-grid .tg-header:nth-child(n+4), .time-grid .tg-cell:nth-child(4n), .time-grid .tg-cell:nth-child(4n-0) { display:none; }
+  .dot-nav, .nav-links { display:none; }
+  .doc-footer { flex-direction:column; gap:1.5rem; }
+  .footer-meta { text-align:left; }
+}
+@media (max-width:600px) {
+  .zones-grid, .wellness-grid, .vip-grid, .sustain-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo" href="#">Zungu 2027</a>
+  <ul class="nav-links">
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#zones">Zones</a></li>
+    <li><a href="#schedule">Programme</a></li>
+    <li><a href="#wellness">Wellness</a></li>
+    <li><a href="#vip">VIP</a></li>
+    <li><a href="#sustainability">Commitments</a></li>
+  </ul>
+</nav>
+
+<div class="dot-nav" id="dotNav">
+  <button class="dot-nav-item active" data-section="hero"         title="Hero"></button>
+  <button class="dot-nav-item"        data-section="philosophy"   title="Philosophy"></button>
+  <button class="dot-nav-item"        data-section="zones"        title="Zones"></button>
+  <button class="dot-nav-item"        data-section="schedule"     title="Schedule"></button>
+  <button class="dot-nav-item"        data-section="wellness"     title="Wellness"></button>
+  <button class="dot-nav-item"        data-section="vip"          title="VIP"></button>
+  <button class="dot-nav-item"        data-section="sustainability" title="Commitments"></button>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Activity Programme · Navy Island · June 2027</div>
+    <h1 class="hero-title">
+      EIGHT<br>
+      <span class="g">WORLDS.</span><br>
+      ONE<br>
+      ISLAND.
+    </h1>
+    <p class="hero-sub">Six am to four am. Every zone running simultaneously. Nobody waiting. Nobody bored. Nobody doing the same thing as everyone else.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="label">Location</span><span class="value">64 Acres, Navy Island</span></div>
+      <div class="hero-stat"><span class="label">Format</span><span class="value">8 Simultaneous Zones</span></div>
+      <div class="hero-stat"><span class="label">June 2027</span><span class="value">13–16 June · 4 Days</span></div>
+      <div class="hero-stat"><span class="label">Capacity</span><span class="value">2,000–2,500 · 18+</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 01 -->
+<div class="chapter" id="philosophy-chapter">
+  <div class="chapter-num">01</div>
+  <div class="chapter-label">Chapter One</div>
+  <h2 class="chapter-title">The Programme <span class="g">Philosophy</span></h2>
+  <p class="chapter-body">Tomorrowland builds kingdoms. Burning Man builds cities. Zamna builds sanctuaries. EDC builds spectacle. Zungu builds an island.</p>
+</div>
+
+<!-- PHILOSOPHY -->
+<div class="philosophy-sec" id="philosophy">
+  <div class="philosophy-grid">
+    <div>
+      <p class="philosophy-text">
+        Every zone operates simultaneously. At any given hour, 2,000 adults are choosing their own experience — whether that is deep in the forest with a paintball rifle, suspended in a hammock listening to an ambient installation, sweating in a cold plunge at dawn, or dancing on the main stage at 3am.<br><br>
+        Nobody is ever waiting. Nobody is ever bored. Nobody is ever doing the same thing as everyone else.<br><br>
+        <strong>The island is the programme. The programme is the island.</strong>
+      </p>
+    </div>
+    <div class="principles">
+      <div class="principle">
+        <div class="principle-title">Simultaneity</div>
+        <div class="principle-text">Every zone runs in parallel. No queues, no bottlenecks, no single point of congregation except by choice.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-title">Discovery Over Announcement</div>
+        <div class="principle-text">Some experiences are not on the programme. You find them by walking into the forest at midnight, or by asking the right person.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-title">Adults Only, Always</div>
+        <div class="principle-text">18+ throughout. No softening. The bar programme, the wellness spaces, the night activations — all designed for adults who know what they want.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-title">Local First, Global Stage</div>
+        <div class="principle-text">Every zone has a Portland Parish operator at its core. Activities are not imported — they are rooted here and elevated for the world.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER 02 -->
+<div class="chapter" id="zones-chapter">
+  <div class="chapter-num">02</div>
+  <div class="chapter-label">Chapter Two</div>
+  <h2 class="chapter-title">Zone <span class="g">Architecture</span></h2>
+  <p class="chapter-body">Eight permanent zones, active simultaneously across all four days. Each zone has its own name, its own operating hours, its own sensory identity.</p>
+</div>
+
+<!-- ZONES -->
+<div class="zones-sec" id="zones">
+  <div class="zones-grid">
+
+    <div class="zone-card forest">
+      <span class="zone-icon">🎯</span>
+      <div class="zone-name">THE AMBUSH</div>
+      <span class="zone-subtitle">Forest Combat Zone · Paintball Jamaica</span>
+      <p class="zone-desc">Deep in the Navy Island forest. Managed by Paintball Jamaica. Six distinct terrain formats across 4 acres. The only zone where you earn something at the end.</p>
+      <ul class="zone-activities">
+        <li>Classic woodsball — 6 sessions daily (max 30/session)</li>
+        <li>Night sessions with UV phosphorescent paint — 10pm & midnight</li>
+        <li>Team tournament — Day 3 bracket, prizes + trophy ceremony</li>
+        <li>Speedball arena — smaller court, faster pace, spectator viewing</li>
+        <li>Sniper solo challenge — 1v1 timed elimination</li>
+        <li>Signature cocktail at the Armoury Bar post-session</li>
+      </ul>
+      <span class="zone-tag">Daytime & Night · Ticketed Sessions · 18+</span>
+    </div>
+
+    <div class="zone-card water">
+      <span class="zone-icon">🌊</span>
+      <div class="zone-name">THE COVE</div>
+      <span class="zone-subtitle">Beach & Water Activation</span>
+      <p class="zone-desc">The western beach. Where the Caribbean sea and the festival intersect. Every water activity curated by local Portland guides. No motorised watercraft near the reef.</p>
+      <ul class="zone-activities">
+        <li>Dawn paddle: SUP at 6am, guided, max 12 people</li>
+        <li>Reef snorkel — marine biologist-led, 90 mins, ecology brief</li>
+        <li>Deep sea fishing charter — private half-day, 8 max</li>
+        <li>Kayak exploration — self-guided, mangrove detour option</li>
+        <li>Sunset catamaran — live soundsystem, rum punch, 2hr nightly</li>
+        <li>Floating DJ set — anchored platform 50m offshore, afternoons</li>
+        <li>Cliff jump point — guided only, safety assessment, waiver</li>
+      </ul>
+      <span class="zone-tag">6am – 11pm Daily · Reef-Safe Zone</span>
+    </div>
+
+    <div class="zone-card wellness">
+      <span class="zone-icon">🌿</span>
+      <div class="zone-name">THE SANCTUM</div>
+      <span class="zone-subtitle">Wellness, Recovery & Ritual</span>
+      <p class="zone-desc">Adults-only wellness precinct. No music above 60 decibels. No phones after the entrance gate. Designed for those who need to recover, reset, or simply be still.</p>
+      <ul class="zone-activities">
+        <li>Sunrise yoga & breathwork — 5:45am, open air, guided</li>
+        <li>Cold plunge pool — spring-fed, open 5am to midnight</li>
+        <li>Hot/cold contrast therapy — Nordic protocol</li>
+        <li>Massage pavilion — Swedish, deep tissue, sports recovery</li>
+        <li>Sound bath chamber — crystal bowls, gongs, 3× daily</li>
+        <li>IV hydration lounge — electrolytes, B12, Vitamin C</li>
+        <li>Guided ceremony — Day 3 only, pre-register, 8 max</li>
+      </ul>
+      <span class="zone-tag">5am – Midnight · No Phones · 18+</span>
+    </div>
+
+    <div class="zone-card">
+      <span class="zone-icon">🏛️</span>
+      <div class="zone-name">THE YARD</div>
+      <span class="zone-subtitle">Culture, Talk & Participation</span>
+      <p class="zone-desc">The cultural anchor of the island. Soundsystem history, Patois workshops, vinyl market, rum masterclass, live debate, open mic. Where the thesis is spoken aloud.</p>
+      <ul class="zone-activities">
+        <li>Soundsystem history sessions — panels and live demonstration</li>
+        <li>Patois workshop — twice daily, interactive, beginner-friendly</li>
+        <li>Vinyl market — local selectors bring crates</li>
+        <li>Rum masterclass — Jamaican distillery partnership</li>
+        <li>Film screening — 11pm nightly, Jamaican cinema archive</li>
+        <li>Poetry & spoken word — 2–3:30pm daily, closes before stages</li>
+      </ul>
+      <span class="zone-tag">8am – 3:30pm Cultural · Evening Film</span>
+    </div>
+
+    <div class="zone-card">
+      <span class="zone-icon">🎨</span>
+      <div class="zone-name">THE STUDIO</div>
+      <span class="zone-subtitle">Art, Making & Creation</span>
+      <p class="zone-desc">A working creative space. Portland Parish artist-in-residence. Festival-goers contribute to a live mural. Darkroom, ceramics, screen printing, indigo dyeing — all open.</p>
+      <ul class="zone-activities">
+        <li>Live mural — Portland artist, festival-goer contribution Day 3</li>
+        <li>Ceramics wheel — open sessions, instructor available</li>
+        <li>Screen printing — custom t-shirt, limited edition designs</li>
+        <li>Darkroom — analogue photography, guided sessions</li>
+        <li>Indigo dyeing — traditional Jamaican technique</li>
+        <li>Jewellery-making — beads, wire, silver-work workshop</li>
+      </ul>
+      <span class="zone-tag">7am – 3pm Daily · Walk-In Welcome</span>
+    </div>
+
+    <div class="zone-card">
+      <span class="zone-icon">🍽️</span>
+      <div class="zone-name">THE MARKET</div>
+      <span class="zone-subtitle">Food, Drink & Portland Vendors</span>
+      <p class="zone-desc">All Portland Parish vendors. Boston Bay jerk, seafood raw bar, Blue Mountain coffee, rum bar, Jamaican patisserie. The only 24-hour zone on the island.</p>
+      <ul class="zone-activities">
+        <li>Boston Bay jerk — wood fire, pork and chicken, open all day</li>
+        <li>Seafood raw bar — fresh daily, lobster, conch, fish</li>
+        <li>Blue Mountain coffee service — from 5:30am</li>
+        <li>Chef demonstration — one Portland chef per day, open kitchen</li>
+        <li>Rum bar — curated Jamaican rums, bar manager from Portland</li>
+        <li>Non-alcoholic programme — Jamaican nutritionist-designed</li>
+      </ul>
+      <span class="zone-tag">5:30am – 3am Daily · All Local</span>
+    </div>
+
+    <div class="zone-card forest">
+      <span class="zone-icon">🌲</span>
+      <div class="zone-name">THE TRAIL</div>
+      <span class="zone-subtitle">Forest Immersion & Hidden Activations</span>
+      <p class="zone-desc">A 2km walking route through the Navy Island forest. Not all of what you find on it is on the map. Some installations are found, not announced — a Burning Man principle.</p>
+      <ul class="zone-activities">
+        <li>Guided forest walk — ecology and island history, 7am, max 15</li>
+        <li>Hammock forest — 40 hammocks, first-come, quiet zone</li>
+        <li>Hidden ambient installation — generative sound, deep in forest</li>
+        <li>Secret bar — unmarked, discoverable only by full trail walk</li>
+        <li>Aerial silks platform — bookable 30-min sessions</li>
+        <li>Night trail — lit with lanterns only, guided midnight walk</li>
+      </ul>
+      <span class="zone-tag">Dawn to Midnight · Mostly Free</span>
+    </div>
+
+    <div class="zone-card pier">
+      <span class="zone-icon">🌙</span>
+      <div class="zone-name">THE PIER</div>
+      <span class="zone-subtitle">Intimate Night Stage · No Announced Lineup</span>
+      <p class="zone-desc">200-capacity. The walk to it is part of it. No lineup posted. You arrive to discover who is playing. Zamna's intimacy, transposed to the Caribbean. Opens at midnight.</p>
+      <ul class="zone-activities">
+        <li>200 maximum — managed by door count, no wristband upgrade</li>
+        <li>No lineup published — identity revealed only at the door</li>
+        <li>Sunrise set — final DJ plays until 8am on Day 4</li>
+        <li>Private bar — Pier guests only, rum-focused, no menu</li>
+        <li>No phones policy — enforced at entrance with lens stickers</li>
+        <li>Acoustic intermissions — between DJ sets, live only</li>
+      </ul>
+      <span class="zone-tag">Midnight – Dawn · 200 Cap · Discovery Only</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- CHAPTER 03 -->
+<div class="chapter schedule-sec" id="schedule-chapter" style="background:#f0ead8;color:#04080A;">
+  <div class="chapter-num" style="color:rgba(0,0,0,0.04);">03</div>
+  <div class="chapter-label" style="color:#8a6a1a;">
+    <span style="display:inline-block;width:24px;height:1px;background:#8a6a1a;opacity:0.5;flex-shrink:0;margin-right:0.8rem;"></span>
+    Chapter Three
+  </div>
+  <h2 class="chapter-title" style="color:#04080A;">Day-by-Day <span style="color:#8a6a1a;">Programme</span></h2>
+  <p class="chapter-body" style="color:rgba(4,8,10,0.6);">Four days. One hard rule. All activity zones run 6am–3:30pm only. From 4pm, the stages own the island. This is non-negotiable in the run sheet.</p>
+</div>
+
+<!-- SCHEDULE -->
+<div class="schedule-sec" id="schedule">
+  <div class="hard-rule-grid">
+    <div class="hard-rule-card dark" style="background:rgba(138,106,26,0.06);">
+      <div class="hard-rule-accent">Hard Boundary</div>
+      <div class="hard-rule-title">Activities close.<br>Stages open.</div>
+      <div class="hard-rule-body">All activity zones run <strong>6am – 3:30pm only.</strong> From 4pm, the stages own the island. No activity competes with the music programme. Non-negotiable in the run sheet.</div>
+    </div>
+    <div class="hard-rule-card">
+      <div class="hard-rule-accent">Day Shape</div>
+      <div class="day-shape-row"><span class="day-shape-time">5:30 – 7am</span><span class="day-shape-text">Early risers: Sanctum, coffee, water</span></div>
+      <div class="day-shape-row"><span class="day-shape-time">7am – 12pm</span><span class="day-shape-text">Peak activity: all zones active</span></div>
+      <div class="day-shape-row"><span class="day-shape-time">12 – 2pm</span><span class="day-shape-text">Midday: food, culture, The Yard</span></div>
+      <div class="day-shape-row"><span class="day-shape-time">2 – 3:30pm</span><span class="day-shape-text">Poetry & Spoken Word — The Yard</span></div>
+      <div class="day-shape-row"><span class="day-shape-time">3:30 – 4pm</span><span class="day-shape-text">Wind-down, get ready</span></div>
+      <div class="day-shape-row"><span class="day-shape-time">4pm – 4am</span><span class="day-shape-text key">Stages only</span></div>
+    </div>
+  </div>
+
+  <div class="day-tabs">
+    <button class="day-tab active" onclick="showDay('day1',this)">Day 1 · Thu 13</button>
+    <button class="day-tab" onclick="showDay('day2',this)">Day 2 · Fri 14</button>
+    <button class="day-tab" onclick="showDay('day3',this)">Day 3 · Sat 15</button>
+    <button class="day-tab" onclick="showDay('day4',this)">Day 4 · Sun 16</button>
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="day-content active" id="day1">
+    <div class="time-grid">
+      <div class="tg-header">Time</div>
+      <div class="tg-header">🌊 Cove & Water</div>
+      <div class="tg-header">🌿 Sanctum</div>
+      <div class="tg-header">🎯 Ambush & Trail</div>
+      <div class="tg-header">🍽️ Market & Culture</div>
+
+      <div class="tg-time">5:30am</div>
+      <div class="tg-cell empty">—</div>
+      <div class="tg-cell highlight"><span class="act-name">Cold Plunge Opens</span><span class="act-detail">Spring-fed pool. First light. Opens before everything else.</span></div>
+      <div class="tg-cell empty">—</div>
+      <div class="tg-cell"><span class="act-name">Blue Mountain Coffee</span><span class="act-detail">Market opens 5:30am. Coffee, pastries, fresh juice.</span></div>
+
+      <div class="tg-time">6:00am</div>
+      <div class="tg-cell highlight"><span class="act-name">Dawn Paddle — SUP</span><span class="act-detail">Guided stand-up paddleboard. Max 12. Register night before.</span></div>
+      <div class="tg-cell highlight"><span class="act-name">Sunrise Yoga</span><span class="act-detail">Open air, ocean-facing. All levels. No booking.</span></div>
+      <div class="tg-cell"><span class="act-name">Forest Meditation</span><span class="act-detail">Sunrise platform in the trees. Self-guided. No sound.</span></div>
+      <div class="tg-cell empty">—</div>
+
+      <div class="tg-time">7:00am</div>
+      <div class="tg-cell"><span class="act-name">Reef Snorkel</span><span class="act-detail">Marine biologist led. 90 mins. Gear included.</span></div>
+      <div class="tg-cell"><span class="act-name">Breathwork</span><span class="act-detail">Holotropic technique. 45 mins. Optional cold plunge after.</span></div>
+      <div class="tg-cell"><span class="act-name">Guided Forest Walk</span><span class="act-detail">Island ecology & history. 7am departure. Max 15.</span></div>
+      <div class="tg-cell highlight"><span class="act-name">Full Jamaican Breakfast</span><span class="act-detail">Ackee & saltfish, festival bread, callaloo, dumplings. 7–11am.</span></div>
+
+      <div class="tg-time">9:00am</div>
+      <div class="tg-cell"><span class="act-name">Kayak Routes Open</span><span class="act-detail">Self-guided. Maps from The Cove desk.</span></div>
+      <div class="tg-cell"><span class="act-name">Sound Bath #1</span><span class="act-detail">Crystal bowls + gongs. 45 mins. Walk-in.</span></div>
+      <div class="tg-cell"><span class="act-name">Paintball Opens</span><span class="act-detail">6 sessions daily. Book at armoury. Gear provided.</span></div>
+      <div class="tg-cell"><span class="act-name">Patois Workshop</span><span class="act-detail">First session. Interactive, beginner-friendly. The Yard.</span></div>
+
+      <div class="tg-time">11:00am</div>
+      <div class="tg-cell"><span class="act-name">Cliff Jump Point</span><span class="act-detail">Guided only. Safety assessment. Waiver required.</span></div>
+      <div class="tg-cell"><span class="act-name">Nordic Circuit</span><span class="act-detail">Sauna → cold plunge → rest. Guided protocol card.</span></div>
+      <div class="tg-cell"><span class="act-name">Aerial Silks</span><span class="act-detail">Bookable 30-min sessions. Instructor-led.</span></div>
+      <div class="tg-cell"><span class="act-name">Soundsystem Panel</span><span class="act-detail">History, lineage, the argument made out loud. The Yard.</span></div>
+
+      <div class="tg-time">1:00pm</div>
+      <div class="tg-cell"><span class="act-name">Floating DJ Set</span><span class="act-detail">Anchored platform 50m offshore. Afternoon only.</span></div>
+      <div class="tg-cell"><span class="act-name">Sound Bath #2</span><span class="act-detail">Midday session. Walk-in.</span></div>
+      <div class="tg-cell"><span class="act-name">Archery Range</span><span class="act-detail">Traditional bows. Three skill levels. Instructor on site.</span></div>
+      <div class="tg-cell highlight"><span class="act-name">Chef Demo</span><span class="act-detail">Portland Parish chef. Open kitchen. Jerk technique.</span></div>
+
+      <div class="tg-time">2:00pm</div>
+      <div class="tg-cell"><span class="act-name">Catamaran Departs</span><span class="act-detail">Sunset cruise. Live soundsystem. Rum punch. 2hr.</span></div>
+      <div class="tg-cell"><span class="act-name">Somatic Movement</span><span class="act-detail">60 mins. Small group. Max 12. Evening session.</span></div>
+      <div class="tg-cell empty">—</div>
+      <div class="tg-cell highlight"><span class="act-name">Poetry & Spoken Word</span><span class="act-detail">2–3:30pm. Cultural warm-up before stages. The Yard.</span></div>
+
+      <div class="tg-time">3:30pm</div>
+      <div class="tg-cell empty">All zones close</div>
+      <div class="tg-cell empty">All zones close</div>
+      <div class="tg-cell empty">All zones close</div>
+      <div class="tg-cell empty">All zones close</div>
+
+      <div class="tg-time">4:00pm</div>
+      <div class="tg-cell stage-block" style="grid-column:2/-1;"><span class="act-name">STAGES OPEN — Rebirth 4pm · Zungu Main 7pm</span><span class="act-detail">Activities do not run. Music owns the island until 4am.</span></div>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day-content" id="day2">
+    <div class="time-grid">
+      <div class="tg-header">Time</div>
+      <div class="tg-header">🌊 Cove & Water</div>
+      <div class="tg-header">🌿 Sanctum</div>
+      <div class="tg-header">🎯 Ambush & Trail</div>
+      <div class="tg-header">🍽️ Market & Culture</div>
+
+      <div class="tg-time">6:00am</div>
+      <div class="tg-cell highlight"><span class="act-name">Dawn Paddle — SUP</span><span class="act-detail">Day 2 route: northern reef. Deeper water.</span></div>
+      <div class="tg-cell highlight"><span class="act-name">Sunrise Yoga + Breathwork</span><span class="act-detail">Day 2 adds holotropic breathwork after yoga.</span></div>
+      <div class="tg-cell"><span class="act-name">Night Trail Debrief</span><span class="act-detail">Optional sunrise reflection after last night's midnight walk.</span></div>
+      <div class="tg-cell"><span class="act-name">Coffee & Recovery</span><span class="act-detail">Market opens. IV hydration lounge available from 6:30am.</span></div>
+
+      <div class="tg-time">7:00am</div>
+      <div class="tg-cell"><span class="act-name">Kayak: Mangrove Detour</span><span class="act-detail">Optional extended route. Maps updated for Day 2.</span></div>
+      <div class="tg-cell"><span class="act-name">Cold Plunge Sessions</span><span class="act-detail">Open. Guide available 7–9am for protocol advice.</span></div>
+      <div class="tg-cell"><span class="act-name">Guided Forest Walk</span><span class="act-detail">Day 2 route focuses on the interior — different terrain.</span></div>
+      <div class="tg-cell"><span class="act-name">Rum Masterclass</span><span class="act-detail">Day 2 morning session. Jamaican distillery partnership.</span></div>
+
+      <div class="tg-time">9:00am</div>
+      <div class="tg-cell"><span class="act-name">Deep Sea Fishing</span><span class="act-detail">Private half-day. 8-person max. Book at info hub.</span></div>
+      <div class="tg-cell"><span class="act-name">Massage Pavilion</span><span class="act-detail">Walk-ins from 9am. Book at Sanctum gate for specific times.</span></div>
+      <div class="tg-cell"><span class="act-name">Paintball: Tournament Qualifiers</span><span class="act-detail">Day 2 bracket begins. Tournament builds to Day 3 final.</span></div>
+      <div class="tg-cell"><span class="act-name">Vinyl Market Opens</span><span class="act-detail">Local selectors bring crates. Browse, trade, play.</span></div>
+
+      <div class="tg-time">11:00am</div>
+      <div class="tg-cell"><span class="act-name">Reef Snorkel</span><span class="act-detail">Day 2 route: eastern reef. Different marine ecosystem.</span></div>
+      <div class="tg-cell"><span class="act-name">Sound Bath #1</span><span class="act-detail">Morning session. Candlelight only today.</span></div>
+      <div class="tg-cell"><span class="act-name">Hammock Forest</span><span class="act-detail">40 hammocks. First-come. Quiet zone — no amplified sound.</span></div>
+      <div class="tg-cell"><span class="act-name">Patois Workshop</span><span class="act-detail">Second daily session. Previous students welcome back.</span></div>
+
+      <div class="tg-time">2:00pm</div>
+      <div class="tg-cell"><span class="act-name">Catamaran: Obsidian Night</span><span class="act-detail">Obsidian tier private cruise tonight. GA sunset option tomorrow.</span></div>
+      <div class="tg-cell"><span class="act-name">Sound Bath #2</span><span class="act-detail">Afternoon session. Walk-in.</span></div>
+      <div class="tg-cell"><span class="act-name">Archery + Silks</span><span class="act-detail">Both open. Peak afternoon hours for The Trail.</span></div>
+      <div class="tg-cell highlight"><span class="act-name">Poetry & Spoken Word</span><span class="act-detail">Day 2 poets. New voices. 2–3:30pm. The Yard.</span></div>
+
+      <div class="tg-time">3:30pm</div>
+      <div class="tg-cell empty">All zones close</div>
+      <div class="tg-cell empty">All zones close</div>
+      <div class="tg-cell empty">All zones close</div>
+      <div class="tg-cell empty">All zones close</div>
+
+      <div class="tg-time">4:00pm</div>
+      <div class="tg-cell stage-block" style="grid-column:2/-1;"><span class="act-name">STAGES OPEN — Rebirth 4pm · Zungu Main 7pm</span><span class="act-detail">Activities do not run. Music owns the island until 4am.</span></div>
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="day-content" id="day3">
+    <div class="time-grid">
+      <div class="tg-header">Time</div>
+      <div class="tg-header">🌊 Cove & Water</div>
+      <div class="tg-header">🌿 Sanctum</div>
+      <div class="tg-header">🎯 Ambush & Trail</div>
+      <div class="tg-header">🍽️ Market & Culture</div>
+
+      <div class="tg-time">6:00am</div>
+      <div class="tg-cell highlight"><span class="act-name">Dawn Paddle — Final Route</span><span class="act-detail">Circumnavigation route. Day 3 only. Pre-register.</span></div>
+      <div class="tg-cell highlight"><span class="act-name">Guided Ceremony Prep</span><span class="act-detail">Pre-registered only. Briefing 6am. Ceremony begins 8am. Max 8 participants.</span></div>
+      <div class="tg-cell"><span class="act-name">Forest Walk</span><span class="act-detail">Day 3 variant: night flora focus. Dawn departure.</span></div>
+      <div class="tg-cell"><span class="act-name">Jerk Masters</span><span class="act-detail">Day 3 special — multiple Boston Bay pits lit at dawn.</span></div>
+
+      <div class="tg-time">8:00am</div>
+      <div class="tg-cell"><span class="act-name">Sunrise Yoga</span><span class="act-detail">Gentler today. Day 3 — bodies have been at work.</span></div>
+      <div class="tg-cell highlight"><span class="act-name">Guided Ceremony</span><span class="act-detail">Pre-registered. Private space. Facilitated. 3 hours. Harm-reduction briefing provided.</span></div>
+      <div class="tg-cell"><span class="act-name">Tournament Final Setup</span><span class="act-detail">Paintball bracket Day 3. Semi-finals 9am. Final 12pm.</span></div>
+      <div class="tg-cell"><span class="act-name">Live Mural Day</span><span class="act-detail">Festival-goer contribution opens. Portland artist leads. Studio all day.</span></div>
+
+      <div class="tg-time">12:00pm</div>
+      <div class="tg-cell"><span class="act-name">Floating DJ Set</span><span class="act-detail">Midday. Acoustic + electronic fusion. Day 3 special.</span></div>
+      <div class="tg-cell"><span class="act-name">Nordic Recovery Circuit</span><span class="act-detail">Peak afternoon use. Guided sessions available.</span></div>
+      <div class="tg-cell highlight"><span class="act-name">PAINTBALL FINAL</span><span class="act-detail">Tournament final. Trophy ceremony 1pm. Full crowd welcome.</span></div>
+      <div class="tg-cell highlight"><span class="act-name">Chef's Table Prep</span><span class="act-detail">Thirty-tier private dinner tonight. Open kitchen demo 12pm for all.</span></div>
+
+      <div class="tg-time">2:00pm</div>
+      <div class="tg-cell"><span class="act-name">Sunset Catamaran</span><span class="act-detail">Public departure 2pm. GA tickets at The Cove desk.</span></div>
+      <div class="tg-cell"><span class="act-name">Sound Bath #3</span><span class="act-detail">Special Day 3 session. Candlelight. Extended 90 mins.</span></div>
+      <div class="tg-cell"><span class="act-name">Hammock Forest</span><span class="act-detail">Today's hammocks are in high demand. Arrive early.</span></div>
+      <div class="tg-cell highlight"><span class="act-name">Poetry & Spoken Word</span><span class="act-detail">Day 3 — longest session. Multiple voices. 2–3:30pm.</span></div>
+
+      <div class="tg-time">3:30pm</div>
+      <div class="tg-cell empty">All zones close</div>
+      <div class="tg-cell empty">All zones close</div>
+      <div class="tg-cell empty">All zones close</div>
+      <div class="tg-cell empty">All zones close</div>
+
+      <div class="tg-time">4:00pm</div>
+      <div class="tg-cell stage-block" style="grid-column:2/-1;"><span class="act-name">STAGES OPEN — Rebirth 4pm · Shimza opens Zungu Main 10pm · BLACK COFFEE closes 12am–5am</span><span class="act-detail">Peak night. Full production. 5am close. The argument resolves.</span></div>
+    </div>
+  </div>
+
+  <!-- DAY 4 -->
+  <div class="day-content" id="day4">
+    <div class="time-grid">
+      <div class="tg-header">Time</div>
+      <div class="tg-header">🌊 Farewell Morning</div>
+      <div class="tg-header">🌿 Sanctum Recovery</div>
+      <div class="tg-header">🎯 Quiet Trail</div>
+      <div class="tg-header">🍽️ Closing Ceremony</div>
+
+      <div class="tg-time">6:00am</div>
+      <div class="tg-cell"><span class="act-name">The Pier Continues</span><span class="act-detail">Sunrise set carries over from last night. The Pier runs until 8am.</span></div>
+      <div class="tg-cell highlight"><span class="act-name">Final Cold Plunge</span><span class="act-detail">The Sanctum open from 5am. People coming straight from the stage.</span></div>
+      <div class="tg-cell"><span class="act-name">Hammocks Available</span><span class="act-detail">Quiet zone. For those who need to be still before going home.</span></div>
+      <div class="tg-cell"><span class="act-name">Last Market Morning</span><span class="act-detail">Full Jamaican breakfast. Blue Mountain coffee. The last one.</span></div>
+
+      <div class="tg-time">9:00am</div>
+      <div class="tg-cell"><span class="act-name">Farewell Paddle</span><span class="act-detail">Optional. Small group. No guide — explore alone.</span></div>
+      <div class="tg-cell"><span class="act-name">Sunrise Yoga</span><span class="act-detail">Final session. Gentle. For the ones who danced until 5am.</span></div>
+      <div class="tg-cell"><span class="act-name">Trail Walk</span><span class="act-detail">Last walk through. The secret bar is open. Say goodbye to the forest.</span></div>
+      <div class="tg-cell empty">—</div>
+
+      <div class="tg-time">12:00pm</div>
+      <div class="tg-cell empty">Trail closes 1pm</div>
+      <div class="tg-cell empty">Sanctum closes 11am</div>
+      <div class="tg-cell empty">Trail closes 1pm</div>
+      <div class="tg-cell highlight"><span class="act-name">CLOSING CEREMONY</span><span class="act-detail">Midday. The Yard. Mural unveiled. Spoken word. No stage. No DJ. The island speaks last.</span></div>
+
+      <div class="tg-time">1:00pm</div>
+      <div class="tg-cell" style="grid-column:2/-1;"><span class="act-name">Ferry Departures Begin</span><span class="act-detail">Staggered exits from 1pm. Final ferry 6pm. Island restoration begins immediately after last guest departs.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER 04 -->
+<div class="chapter" id="wellness-chapter">
+  <div class="chapter-num">04</div>
+  <div class="chapter-label">Chapter Four</div>
+  <h2 class="chapter-title">The <span class="g">Sanctum</span></h2>
+  <p class="chapter-body">Not a spa. A recovery and ritual space for adults at a 4-night festival. Designed for people who dance until dawn and need to survive four days without their body breaking.</p>
+</div>
+
+<!-- WELLNESS -->
+<div class="wellness-sec" id="wellness">
+  <p class="wellness-intro">No phones beyond the gate. No music above ambient. No performance. The Sanctum operates independently of the festival's energy — a counterweight, not a feature.</p>
+  <div class="wellness-grid">
+    <div class="wellness-card"><span class="wellness-time">5:00am – Midnight</span><div class="wellness-name">Cold Plunge Pool</div><div class="wellness-desc">Spring-fed. Maintained at 10–14°C. Solo and group plunge areas. The most-used facility at the festival. Towels provided.</div></div>
+    <div class="wellness-card"><span class="wellness-time">5:45am Daily</span><div class="wellness-name">Sunrise Yoga & Breathwork</div><div class="wellness-desc">Open air. Ocean-facing. All levels. Holotropic breathwork follows yoga on Days 2 and 3. Facilitated by Jamaican practitioner.</div></div>
+    <div class="wellness-card"><span class="wellness-time">All Day · Bookable</span><div class="wellness-name">Massage Pavilion</div><div class="wellness-desc">Swedish, deep tissue, sports recovery. 45 or 90 minute sessions. Six beds. Portland-trained therapists only.</div></div>
+    <div class="wellness-card"><span class="wellness-time">3× Daily</span><div class="wellness-name">Sound Bath</div><div class="wellness-desc">Crystal singing bowls, gongs, Tibetan instruments. 45-minute sessions at 9am, 1pm, and 10pm. The 10pm session by candlelight only.</div></div>
+    <div class="wellness-card"><span class="wellness-time">Hot/Cold Circuit</span><div class="wellness-name">Nordic Contrast Therapy</div><div class="wellness-desc">Infrared sauna → cold plunge → passive rest. Guided protocol card at entry. Recommended 3 cycles. Infrared pods available solo or partner.</div></div>
+    <div class="wellness-card"><span class="wellness-time">Walk-In · No Queue</span><div class="wellness-name">IV Hydration Lounge</div><div class="wellness-desc">Electrolyte drip, B12, Vitamin C, and recovery blends. Administered by qualified nurse. 30–45 minutes per session.</div></div>
+    <div class="wellness-card"><span class="wellness-time">Evening · 60 mins</span><div class="wellness-name">Somatic Movement</div><div class="wellness-desc">Facilitated body-awareness movement for people whose bodies have been dancing in unfamiliar ways. Small groups, 12 maximum.</div></div>
+    <div class="wellness-card"><span class="wellness-time">Day 3 · Pre-Register · 8 Max</span><div class="wellness-name">Guided Ceremony</div><div class="wellness-desc">Optional. Curated and facilitated. Pre-registration required at info hub. Three-hour guided session. The Sanctum's most private space. Harm-reduction briefing provided.</div></div>
+  </div>
+</div>
+
+<!-- CHAPTER 05 -->
+<div class="chapter" id="vip-chapter">
+  <div class="chapter-num">05</div>
+  <div class="chapter-label">Chapter Five</div>
+  <h2 class="chapter-title">VIP & <span class="g">Premium Tiers</span></h2>
+  <p class="chapter-body">Three tiers above General Admission. Each adds access, not a different festival. Premium tiers remove friction and add privacy — the experience is the same island.</p>
+</div>
+
+<!-- VIP -->
+<div class="vip-sec" id="vip">
+  <div class="vip-grid">
+    <div class="vip-tier">
+      <span class="tier-badge">Tier 1</span>
+      <div class="tier-name">NAVY</div>
+      <div class="tier-price">General Admission + Comfort Upgrades</div>
+      <ul class="tier-benefits">
+        <li>Dedicated Navy-tier entry lane — no queue at ferry and gate</li>
+        <li>Reserved viewing platform at Stage 1 with dedicated bar service</li>
+        <li>Access to The Pier guaranteed (GA is first-come; Navy guaranteed entry)</li>
+        <li>Priority booking window for Sanctum massage, fishing charter, paintball</li>
+        <li>Complimentary welcome kit: branded towel, reef-safe sunscreen, Zungu zine</li>
+        <li>Dedicated info concierge — personal scheduling assistance on arrival</li>
+        <li>Late-night jerk window credit — JMD 3,000 included</li>
+      </ul>
+    </div>
+    <div class="vip-tier obsidian">
+      <span class="tier-badge">Tier 2</span>
+      <div class="tier-name">OBSIDIAN</div>
+      <div class="tier-price">All Navy benefits + Accommodation + Private Spaces</div>
+      <ul class="tier-benefits">
+        <li>All Navy tier benefits included</li>
+        <li>Glamping accommodation on-island — pod or bell tent, linens, fan, charging dock</li>
+        <li>Private Obsidian lounge — shaded, furnished, adjacent to Stage 1</li>
+        <li>Daily Sanctum credit — one complimentary massage per person per day</li>
+        <li>Private catamaran cruise — Obsidian group only, one evening of choice</li>
+        <li>Artist meet brief — informal, curated, 30-minute greenroom access (one session)</li>
+        <li>Reserved hammock enclave — Sanctum private section, bookable daily</li>
+        <li>Welcome champagne and rum selection on arrival to pod</li>
+        <li>Dedicated Obsidian WhatsApp for real-time logistics and bookings</li>
+      </ul>
+    </div>
+    <div class="vip-tier black">
+      <span class="tier-badge">Tier 3 · Limited to 30 Guests</span>
+      <div class="tier-name">THE THIRTY</div>
+      <div class="tier-price">Full Island Experience · Maximum Privacy · Year-Round Access</div>
+      <ul class="tier-benefits">
+        <li>All Obsidian benefits without exception</li>
+        <li>Private villa accommodation — Navy Island hotel rooms, en-suite, sea view</li>
+        <li>Personal festival host for four days — private scheduling and transport</li>
+        <li>Private dining: curated 5-course tasting menu, Jamaican produce, chef's table format</li>
+        <li>The Pier: 10 reserved seats each night regardless of door queue</li>
+        <li>Private Sanctum session: cold plunge + sauna + sound bath reserved for group</li>
+        <li>Commissioning credit — acknowledged co-patrons of Zungu 2027</li>
+        <li>Private speedboat transfer — no ferry queue, private water taxi from Port Antonio marina</li>
+        <li>Priority Year 2 allocation — first right to same tier at equivalent or lower price</li>
+        <li>Invitation to Zungu investor/partner dinner in Kingston, date TBC</li>
+        <li>Naming credit in festival zine and mural dedication plaque</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER 06 -->
+<div class="chapter" id="sustainability-chapter">
+  <div class="chapter-num">06</div>
+  <div class="chapter-label">Chapter Six</div>
+  <h2 class="chapter-title">Commitments & <span class="g">Responsibilities</span></h2>
+  <p class="chapter-body">Nine commitments. All contractual, not aspirational. Documented and published post-event.</p>
+</div>
+
+<!-- SUSTAINABILITY -->
+<div class="sustain-sec" id="sustainability">
+  <div class="sustain-grid">
+    <div class="sustain-item"><div class="sustain-number">01</div><div class="sustain-title">Zero Single-Use Plastics</div><div class="sustain-text">No plastic bottles, cups, or packaging anywhere on the island. Reusable cup provided at entry. Compost stations at every food node. NEPA compliance documented and submitted post-event.</div></div>
+    <div class="sustain-item"><div class="sustain-number">02</div><div class="sustain-title">Reef Protection Protocol</div><div class="sustain-text">All water activities guided or reef-aware. Reef-safe sunscreen provided at entry and enforced at The Cove. Marine biologist on-site all four days. Post-event reef assessment filed with NEPA.</div></div>
+    <div class="sustain-item"><div class="sustain-number">03</div><div class="sustain-title">Portland Parish Employment First</div><div class="sustain-text">Every zone coordinator is Portland-based. Every food vendor is local. Every construction crew drawn from Portland Parish. This is contractual. Employment numbers documented and published post-event.</div></div>
+    <div class="sustain-item"><div class="sustain-number">04</div><div class="sustain-title">Bilingual Wayfinding</div><div class="sustain-text">Every sign, map, and zone name in English and Jamaican Patois. Patois is the first language of the island. The festival speaks it. Workshops run twice daily in The Yard.</div></div>
+    <div class="sustain-item"><div class="sustain-number">05</div><div class="sustain-title">Carbon Contribution Line</div><div class="sustain-text">A fixed contribution is built into every ticket price — not a voluntary add-on. Directed to Portland Parish reforestation and marine conservation. Amount and allocation published transparently pre-sale.</div></div>
+    <div class="sustain-item"><div class="sustain-number">06</div><div class="sustain-title">Non-Alcoholic Programme</div><div class="sustain-text">Designed by a Jamaican nutritionist and treated as a full programme — not a concession. Cold-press juices, herbal teas, coconut water cocktails, sorrel and ginger blends. Named, curated, not an afterthought.</div></div>
+    <div class="sustain-item"><div class="sustain-number">07</div><div class="sustain-title">Harm Reduction</div><div class="sustain-text">On-site harm reduction team, discreet and non-punitive. Testing kits at The Sanctum. Water, bananas, and electrolytes free at every stage. No judgement. No escalation unless medical.</div></div>
+    <div class="sustain-item"><div class="sustain-number">08</div><div class="sustain-title">Quiet Zone</div><div class="sustain-text">The forest hammock area is a designated quiet zone — no amplified music, no group noise, no exceptions. For introverts, the overwhelmed, people who need to exist at a festival without performing it.</div></div>
+    <div class="sustain-item"><div class="sustain-number">09</div><div class="sustain-title">Island Restoration</div><div class="sustain-text">Full demobilisation begins within 24 hours of last ferry. All portable infrastructure removed. Environmental compliance documented. NEPA post-event report submitted as condition of Year 2 clearance.</div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <div class="footer-brand">ZUNGU 2027</div>
+  <div class="footer-meta">
+    Navy Island · Port Antonio · Jamaica<br>
+    June 13–16, 2027 · 18+ Adults Only<br>
+    Activity Programme · Internal Working Document<br>
+    Confidential — Not for Distribution
+  </div>
+</div>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const scroll = doc.scrollTop || document.body.scrollTop;
+    const height = doc.scrollHeight - doc.clientHeight;
+    document.getElementById('progress-bar').style.width = (scroll / height * 100) + '%';
+  });
+
+  // Day tabs
+  function showDay(id, btn) {
+    document.querySelectorAll('.day-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.day-tab').forEach(el => el.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // Dot nav
+  const sections = ['hero','philosophy','zones','schedule','wellness','vip','sustainability'];
+  const dots = document.querySelectorAll('.dot-nav-item');
+
+  const sectionObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        dots.forEach((d, i) => d.classList.toggle('active', sections[i] === e.target.id));
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) sectionObs.observe(el);
+  });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      const el = document.getElementById(sections[i]);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // Fade in
+  const fadeObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.05 });
+
+  document.querySelectorAll('.zone-card, .wellness-card, .sustain-item, .vip-tier, .principle').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(12px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    fadeObs.observe(el);
+  });
+</script>
+</body>
+</html>

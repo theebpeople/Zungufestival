@@ -1,14 +1,28 @@
 import { auth } from '@clerk/nextjs/server';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-export async function GET() {
+const NAV_BADGE_LABELS: Record<string, string> = {
+  investor: 'INVESTOR DECK',
+  partner: 'PARTNER BRIEF',
+  press: 'PRESS MATERIALS',
+};
+
+const DEFAULT_BADGE = 'PRIVATE DECK';
+
+export async function GET(request: NextRequest) {
   const { userId } = await auth();
   if (!userId) {
     return NextResponse.redirect('/sign-in');
   }
-  const html = readFileSync(join(process.cwd(), 'deck-private.html'), 'utf-8');
+
+  const role = request.nextUrl.searchParams.get('role') ?? 'investor';
+  const badgeLabel = NAV_BADGE_LABELS[role] ?? DEFAULT_BADGE;
+
+  let html = readFileSync(join(process.cwd(), 'deck-private.html'), 'utf-8');
+  html = html.replace('INVESTOR DECK', badgeLabel);
+
   return new NextResponse(html, {
     headers: { 'Content-Type': 'text/html; charset=utf-8' },
   });
