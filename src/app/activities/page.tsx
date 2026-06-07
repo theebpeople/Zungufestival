@@ -227,8 +227,8 @@ function ChapterDivider({ num, eye, title, sub }: { num: string; eye: string; ti
 // ── ZoneCard ──────────────────────────────────────────────────────────────────
 function ZoneCard({ zone, role }: { zone: typeof ZONES[0]; role: string }) {
   const [open, setOpen] = useState(false);
-  const showCommercial = role === 'partner' || role === 'investor';
-  const showOpNote = role === 'partner' || role === 'investor' || role === 'stakeholder';
+  const showCommercial = safeRole === 'partner' || safeRole === 'investor';
+  const showOpNote = safeRole === 'partner' || safeRole === 'investor' || safeRole === 'stakeholder';
   const rows = [
     { label: 'PURPOSE', text: zone.purpose, show: true },
     { label: 'REVENUE LOGIC', text: zone.revLogic, show: showCommercial },
@@ -401,7 +401,7 @@ function ActivitiesPageInner() {
                 </div>
               ))}
             </div>
-            {(role === 'partner' || role === 'investor') && (
+            {(safeRole === 'partner' || safeRole === 'investor') && (
               <div style={{ padding: '28px 32px', border: `1px solid rgba(200,168,75,0.2)`, background: 'rgba(200,168,75,0.03)' }}>
                 <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, margin: 0 }}>
                   <strong style={{ color: CREAM }}>Operator model principle:</strong> Zungu owns the commercial framework. Selected local vendors, specialists, and operators deliver services within it. Revenue is shared through stall fees, commissions, minimum guarantees, category exclusivity, and activation fees. Zungu controls layout, payment system, standards, hours, brand presentation, and health and safety.
@@ -428,8 +428,8 @@ function ActivitiesPageInner() {
       {/* ══════════════════════════════════════════════════════════════════
           CHAPTER 03 — COMMERCIAL MODEL (partner + investor only)
       ══════════════════════════════════════════════════════════════════ */}
-      {(role === 'partner' || role === 'investor') && <ChapterDivider num="03" eye="Chapter Three" title="The island economy." sub="Nine revenue categories. Zungu controls the system. Partners and operators deliver within it." />}
-      {(role === 'partner' || role === 'investor') && <ChapterSection id="section-commercial" bg={BG} photo="/photos/zungu-glamping-luxe.png">
+      {(safeRole === 'partner' || safeRole === 'investor') && <ChapterDivider num="03" eye="Chapter Three" title="The island economy." sub="Nine revenue categories. Zungu controls the system. Partners and operators deliver within it." />}
+      {(safeRole === 'partner' || safeRole === 'investor') && <ChapterSection id="section-commercial" bg={BG} photo="/photos/zungu-glamping-luxe.png">
         <div style={{ padding: '80px 8vw' }}>
           <SLabel>// Revenue Architecture</SLabel>
           <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
@@ -607,7 +607,7 @@ function ActivitiesPageInner() {
       {/* ══════════════════════════════════════════════════════════════════
           ROLE-AWARE CLOSING NOTE
       ══════════════════════════════════════════════════════════════════ */}
-      {role === 'partner' && (
+      {safeRole === 'partner' && (
         <ChapterSection bg={GREEN} photo="/photos/navy-island-aerial-hq.png">
           <div style={{ padding: '80px 8vw' }}>
             <SLabel>// Production Brief</SLabel>
@@ -631,7 +631,7 @@ function ActivitiesPageInner() {
           </div>
         </ChapterSection>
       )}
-      {role === 'stakeholder' && (
+      {safeRole === 'stakeholder' && (
         <ChapterSection bg={GREEN} photo="/photos/navy-island-aerial-hq.png">
           <div style={{ padding: '80px 8vw' }}>
             <SLabel>// Stakeholder Operating Note</SLabel>
@@ -641,19 +641,15 @@ function ActivitiesPageInner() {
             <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680 }}>
               Zungu's operating standards are being developed through the relevant tourism, environmental, site-use, safety, and municipal review pathways.
             </p>
-          </div>
-
-          {/* Stakeholder Review Note */}
-          {safeRole === 'stakeholder' && (
             <div style={{ marginTop: 48, padding: '24px 28px', border: `1px solid rgba(200,168,75,0.2)`, background: 'rgba(200,168,75,0.025)', maxWidth: 720 }}>
               <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 12 }}>// Stakeholder Review Note</span>
               <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>
                 The activity programme is designed to route value through Port Antonio while maintaining controls around local operator participation, environmental protection, guest movement, water activity, waste removal, and mainland activations. Final operating standards should be developed with relevant tourism, environmental, site-use, safety, and municipal stakeholders.
               </p>
             </div>
-          )}
-        </div>
-      </ChapterSection>
+          </div>
+        </ChapterSection>
+      )}
 
       {/* ── Footer ── */}
       <footer style={{ padding: '60px 8vw', borderTop: `1px solid ${BORDER}`, display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 32, backgroundColor: BG }}>
