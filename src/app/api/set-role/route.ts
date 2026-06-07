@@ -39,5 +39,12 @@ export async function GET(req: Request) {
     // Non-fatal: metadata write failed, role still enforced via URL param this session
   }
 
-  return NextResponse.redirect(new URL(`/partner?role=${role}`, base));
+  const DEST: Record<string, string> = {
+    investor:    `/deck?role=investor`,
+    partner:     `/production-brief`,
+    stakeholder: `/stakeholder`,
+    press:       `/deck?role=press`,
+  };
+  const dest = DEST[role] ?? `/partner?role=${role}`;
+  return NextResponse.redirect(new URL(dest, base));
 }

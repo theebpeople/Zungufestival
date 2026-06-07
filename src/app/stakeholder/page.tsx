@@ -707,6 +707,21 @@ function StakeholderPageInner() {
           <p style={{ fontFamily: MONO, fontSize: 10, color: 'rgba(242,235,217,0.25)', lineHeight: 1.8, maxWidth: 560, marginTop: 48 }}>
             This brief is a conceptual overview for early stakeholder dialogue. All operational details are subject to the review pathway being developed with the relevant authorities.
           </p>
+
+          <div style={{ marginTop: 48 }}>
+            <a
+              href="/deck?role=stakeholder"
+              style={{
+                display: 'inline-block',
+                fontFamily: MONO, fontSize: 12, letterSpacing: '0.2em',
+                textTransform: 'uppercase' as const, fontWeight: 700,
+                color: BG, background: GOLD,
+                padding: '14px 32px', textDecoration: 'none',
+              }}
+            >
+              View Deck →
+            </a>
+          </div>
         </div>
       </ChapterSection>
 

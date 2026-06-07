@@ -32,7 +32,7 @@ const PORTALS = [
   {
     role: 'partner',
     label: 'Production Partners',
-    sub: 'Staging · logistics · production brief',
+    sub: 'Production brief · stages · activities',
     photo: '/photos/zungu-beach-stage-aerial.png',
   },
   {

@@ -98,6 +98,10 @@ export default clerkMiddleware(async (auth, req) => {
 
   const invitedEmail = cookies.get(INVITED_EMAIL_COOKIE)?.value;
 
+  const userRole = (user.publicMetadata as Record<string, unknown>)?.role as string | undefined;
+  const validRoles = ['investor', 'partner', 'press', 'stakeholder'];
+  if (userRole && validRoles.includes(userRole)) return NextResponse.next();
+
   if (email && allowedEmails.includes(email)) return NextResponse.next();
   if (email && invitedEmail && invitedEmail.toLowerCase() === email.toLowerCase()) return NextResponse.next();
 

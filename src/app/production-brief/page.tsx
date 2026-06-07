@@ -535,16 +535,16 @@ function ProductionBriefInner() {
       {/* ── CTA ── */}
       <section id="cta" style={{ backgroundColor: '#060600', padding: 'clamp(4rem,10vw,7rem) clamp(1.5rem,6vw,4rem)' }}>
         <div style={{ maxWidth: 680, margin: '0 auto', textAlign: 'center' }}>
-          <Label>Production Partner · Expression of Interest</Label>
+          <Label>Production Partner · Next Step</Label>
           <Head>Ready to Build<br />Something Unprecedented?</Head>
           <Body>
-            We are talking to a small number of production companies with island or remote-site festival experience. If this is you, tell us about your capacity and what draws you to this project.
+            You have read the brief. The next step is the deck — stages, activities, and the full programme detail.
           </Body>
-          <button
-            onClick={() => setShowCTA(true)}
-            style={{ marginTop: '1rem', padding: '1rem 2.5rem', backgroundColor: gold, color: black, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', fontWeight: 700, border: 'none', cursor: 'pointer', fontFamily: "'Space Mono', monospace" }}>
-            Express Interest
-          </button>
+          <a
+            href="/deck?role=partner"
+            style={{ marginTop: '1rem', display: 'inline-block', padding: '1rem 2.5rem', backgroundColor: gold, color: black, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', fontWeight: 700, textDecoration: 'none', fontFamily: "'Space Mono', monospace" }}>
+            View Deck →
+          </a>
         </div>
       </section>
 

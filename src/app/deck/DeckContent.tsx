@@ -717,10 +717,10 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
 
       {/* ── Mobile full-screen menu ──────────────────────────────────────── */}
       <style>{`
-        @media (min-width: 901px) {
+        @media (min-width: 1025px) {
           .deck-hamburger { display: none !important; }
         }
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
           .deck-nav-desktop { display: none !important; }
         }
         body { cursor: crosshair; }
