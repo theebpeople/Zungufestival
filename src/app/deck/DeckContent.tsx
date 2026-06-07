@@ -1562,7 +1562,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
             <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Investment funds ten interconnected workstreams. Each is required. None is optional. Together they make the festival possible.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 2, marginBottom: 48 }}>
               {[
-                { num: '01', title: 'Site Access + Island Preparation', body: 'Vegetation management, ground preparation, access route establishment, and pre-event site surveys across Navy Island.' },
+                { num: '01', title: 'Site Access + Island Preparation', body: 'Low-impact site preparation, access route establishment, ground protection, and pre-event site surveys across Navy Island.' },
                 { num: '02', title: 'Marine Access + Temporary Docking', body: 'Temporary dock infrastructure, tender operations, marine transfer logistics, and vessel coordination between Port Antonio and Navy Island.' },
                 { num: '03', title: 'Stages, Sound, Lighting + Video', body: 'Full stage builds, PA systems, monitor rigs, lighting design, visual production, and technical infrastructure across all festival zones.' },
                 { num: '04', title: 'Power + Fuel', body: 'Generator sets, distribution boards, cabling, fuel logistics, and backup power for all island operations throughout the festival week.' },
