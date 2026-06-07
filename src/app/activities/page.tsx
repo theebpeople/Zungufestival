@@ -224,8 +224,17 @@ function ChapterDivider({ num, eye, title, sub }: { num: string; eye: string; ti
 }
 
 // ── ZoneCard ──────────────────────────────────────────────────────────────────
-function ZoneCard({ zone }: { zone: typeof ZONES[0] }) {
+function ZoneCard({ zone, role }: { zone: typeof ZONES[0]; role: string }) {
   const [open, setOpen] = useState(false);
+  const showCommercial = role === 'partner' || role === 'investor';
+  const showOpNote = role === 'partner' || role === 'investor' || role === 'stakeholder';
+  const rows = [
+    { label: 'PURPOSE', text: zone.purpose, show: true },
+    { label: 'REVENUE LOGIC', text: zone.revLogic, show: showCommercial },
+    { label: 'OPERATOR MODEL', text: zone.operatorModel, show: showCommercial },
+    { label: 'PARTNER OPPORTUNITY', text: zone.partnerOpp, show: showCommercial },
+    { label: 'OPERATIONAL NOTE', text: zone.opNote, show: showOpNote },
+  ].filter(r => r.show);
   return (
     <div style={{ border: `1px solid rgba(200,168,75,0.15)`, backgroundColor: BG, overflow: 'hidden' }}>
       <button
@@ -247,14 +256,8 @@ function ZoneCard({ zone }: { zone: typeof ZONES[0] }) {
       {open && (
         <div style={{ padding: '0 32px 32px', borderTop: `1px solid rgba(200,168,75,0.08)` }}>
           <div style={{ paddingTop: 28 }}>
-            {[
-              { label: 'PURPOSE', text: zone.purpose },
-              { label: 'REVENUE LOGIC', text: zone.revLogic },
-              { label: 'OPERATOR MODEL', text: zone.operatorModel },
-              { label: 'PARTNER OPPORTUNITY', text: zone.partnerOpp },
-              { label: 'OPERATIONAL NOTE', text: zone.opNote },
-            ].map(({ label, text }, i, arr) => (
-              <div key={label} style={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: 24, padding: '16px 0', borderBottom: i < arr.length - 1 ? `1px solid rgba(200,168,75,0.07)` : 'none', alignItems: 'start' }}>
+            {rows.map(({ label, text }, i) => (
+              <div key={label} style={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: 24, padding: '16px 0', borderBottom: i < rows.length - 1 ? `1px solid rgba(200,168,75,0.07)` : 'none', alignItems: 'start' }}>
                 <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, paddingTop: 2 }}>{label}</span>
                 <span style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>{text}</span>
               </div>
@@ -380,11 +383,13 @@ function ActivitiesPageInner() {
                 </div>
               ))}
             </div>
-            <div style={{ padding: '28px 32px', border: `1px solid rgba(200,168,75,0.2)`, background: 'rgba(200,168,75,0.03)' }}>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, margin: 0 }}>
-                <strong style={{ color: CREAM }}>Operator model principle:</strong> Zungu owns the commercial framework. Selected local vendors, specialists, and operators deliver services within it. Revenue is shared through stall fees, commissions, minimum guarantees, category exclusivity, and activation fees. Zungu controls layout, payment system, standards, hours, brand presentation, and health and safety.
-              </p>
-            </div>
+            {(role === 'partner' || role === 'investor') && (
+              <div style={{ padding: '28px 32px', border: `1px solid rgba(200,168,75,0.2)`, background: 'rgba(200,168,75,0.03)' }}>
+                <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, margin: 0 }}>
+                  <strong style={{ color: CREAM }}>Operator model principle:</strong> Zungu owns the commercial framework. Selected local vendors, specialists, and operators deliver services within it. Revenue is shared through stall fees, commissions, minimum guarantees, category exclusivity, and activation fees. Zungu controls layout, payment system, standards, hours, brand presentation, and health and safety.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </ChapterSection>
@@ -397,16 +402,16 @@ function ActivitiesPageInner() {
         <div style={{ padding: '80px 8vw' }}>
           <SLabel>// Nine Zones · Navy Island</SLabel>
           <div style={{ display: 'grid', gap: 2 }}>
-            {ZONES.map(zone => <ZoneCard key={zone.num} zone={zone} />)}
+            {ZONES.map(zone => <ZoneCard key={zone.num} zone={zone} role={role} />)}
           </div>
         </div>
       </ChapterSection>
 
       {/* ══════════════════════════════════════════════════════════════════
-          CHAPTER 03 — COMMERCIAL MODEL
+          CHAPTER 03 — COMMERCIAL MODEL (partner + investor only)
       ══════════════════════════════════════════════════════════════════ */}
-      <ChapterDivider num="03" eye="Chapter Three" title="The island economy." sub="Nine revenue categories. Zungu controls the system. Partners and operators deliver within it." />
-      <ChapterSection id="section-commercial" bg={BG} photo="/photos/zungu-glamping-luxe.png">
+      {(role === 'partner' || role === 'investor') && <ChapterDivider num="03" eye="Chapter Three" title="The island economy." sub="Nine revenue categories. Zungu controls the system. Partners and operators deliver within it." />}
+      {(role === 'partner' || role === 'investor') && <ChapterSection id="section-commercial" bg={BG} photo="/photos/zungu-glamping-luxe.png">
         <div style={{ padding: '80px 8vw' }}>
           <SLabel>// Revenue Architecture</SLabel>
           <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
@@ -449,7 +454,7 @@ function ActivitiesPageInner() {
             ))}
           </div>
         </div>
-      </ChapterSection>
+      </ChapterSection>}
 
       {/* ══════════════════════════════════════════════════════════════════
           CHAPTER 04 — MAINLAND ACTIVATIONS

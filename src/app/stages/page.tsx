@@ -658,11 +658,11 @@ function StagesPageInner() {
       </div>
 
       {/* ══════════════════════════════════════════════════════════════════
-          CHAPTER 05 — PRODUCTION REQUIREMENTS BY STAGE
+          CHAPTER 05 — PRODUCTION REQUIREMENTS BY STAGE (partner only)
       ══════════════════════════════════════════════════════════════════ */}
-      <ChapterDivider num="05" title="Every Stage" goldLine="Has a Different Build." desc="Three stages. One island. Each operates with different technical, spatial, and operational requirements." />
+      {role === 'partner' && <ChapterDivider num="05" title="Every Stage" goldLine="Has a Different Build." desc="Three stages. One island. Each operates with different technical, spatial, and operational requirements." />}
 
-      <ChapterSection id="production" bg={BG} photo="/photos/navy-island-stage-map.png">
+      {role === 'partner' && <ChapterSection id="production" bg={BG} photo="/photos/navy-island-stage-map.png">
         <div style={{ position: 'relative', padding: '80px 8vw' }}>
           <SLabel>// 05 Production Requirements</SLabel>
 
@@ -752,14 +752,14 @@ function StagesPageInner() {
             </div>
           </div>
         </div>
-      </ChapterSection>
+      </ChapterSection>}
 
       {/* ══════════════════════════════════════════════════════════════════
-          CHAPTER 06 — YEAR ONE BOOKING MODEL
+          CHAPTER 06 — YEAR ONE BOOKING MODEL (partner + investor only)
       ══════════════════════════════════════════════════════════════════ */}
-      <ChapterDivider num="06" title="Year One" goldLine="Booking Model." desc="30–45 artists and selectors across the festival week. This is the working artist-load model for production planning — not a confirmed lineup." />
+      {(role === 'partner' || role === 'investor') && <ChapterDivider num="06" title="Year One" goldLine="Booking Model." desc="30–45 artists and selectors across the festival week. This is the working artist-load model for production planning — not a confirmed lineup." />}
 
-      <ChapterSection id="booking" bg={BG} photo="/photos/zungu-stage-design-aerial.png" minHeight="85vh">
+      {(role === 'partner' || role === 'investor') && <ChapterSection id="booking" bg={BG} photo="/photos/zungu-stage-design-aerial.png" minHeight="85vh">
         <div style={{ position: 'relative', padding: '80px 8vw' }}>
           <GhostNum>06</GhostNum>
           <SLabel>// Year One Planning Assumption · Not a Confirmed Lineup</SLabel>
@@ -828,7 +828,7 @@ function StagesPageInner() {
             </div>
           </div>
         </div>
-      </ChapterSection>
+      </ChapterSection>}
 
       {/* ══════════════════════════════════════════════════════════════════
           CHAPTER 07 — PRODUCTION PARTNER OPPORTUNITIES
@@ -865,25 +865,28 @@ function StagesPageInner() {
       </ChapterSection>
 
       {/* ══════════════════════════════════════════════════════════════════
-          CLOSING — STAGE PRODUCTION BRIEF
+          CLOSING — ROLE-AWARE NOTE
       ══════════════════════════════════════════════════════════════════ */}
-      <section style={{ padding: '60px 8vw', backgroundColor: BG, borderTop: `1px solid ${BORDER}` }}>
-        <div style={{ maxWidth: 720 }}>
-          <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD_DIM, marginBottom: 12 }}>// Stage Production Brief</div>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
-            Detailed rider management, DJ equipment baseline, back-of-house layout, artist travel, security, technical schedules, cost centres, and changeover planning are developed in the Stage Production Brief.
-          </p>
-        </div>
-
-        {role === 'stakeholder' && (
-          <div style={{ marginTop: 32, padding: '24px 28px', border: `1px solid rgba(200,168,75,0.2)`, background: 'rgba(200,168,75,0.025)', maxWidth: 720 }}>
-            <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 12 }}>// Stakeholder Review Note</div>
-            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>
-              The stage plan is a conceptual site-use framework. Final placement, operating hours, sound direction, access routes, temporary infrastructure, emergency access, and demobilisation requirements should be reviewed with the relevant site, environmental, marine, safety, and public-sector stakeholders.
+      {role === 'partner' && (
+        <section style={{ padding: '60px 8vw', backgroundColor: BG, borderTop: `1px solid ${BORDER}` }}>
+          <div style={{ maxWidth: 720 }}>
+            <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD_DIM, marginBottom: 12 }}>// Stage Production Brief</div>
+            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
+              Detailed rider management, DJ equipment baseline, back-of-house layout, artist travel, security, technical schedules, cost centres, and changeover planning are developed in the Stage Production Brief.
             </p>
           </div>
-        )}
-      </section>
+        </section>
+      )}
+      {role === 'stakeholder' && (
+        <section style={{ padding: '60px 8vw', backgroundColor: BG, borderTop: `1px solid ${BORDER}` }}>
+          <div style={{ maxWidth: 720, padding: '24px 28px', border: `1px solid rgba(200,168,75,0.2)`, background: 'rgba(200,168,75,0.025)' }}>
+            <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 12 }}>// Stakeholder Operating Note</div>
+            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>
+              The stage plan is a site-use framework developed around three temporary stage environments. Placement, sound direction, operating hours, access routes, and demobilisation are being developed through site survey, environmental guidance, and stakeholder coordination.
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* Footer */}
       <footer style={{ backgroundColor: BG, padding: '40px 8vw', borderTop: `1px solid ${BORDER}`, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 20 }}>
