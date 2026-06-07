@@ -199,10 +199,10 @@ function StakeholderPageInner() {
             // STAKEHOLDER BRIEF · ZUNGU FESTIVAL · PORT ANTONIO · JAMAICA
           </div>
           <h1 style={{ fontFamily: DISPLAY, fontSize: 'clamp(2.5rem, 6vw, 5rem)', fontWeight: 900, lineHeight: 0.95, color: CREAM, marginBottom: 8 }}>
-            NAVY ISLAND.<br /><span style={{ color: GOLD }}>PORT ANTONIO.</span><br />A NEW CULTURAL<br />TOURISM PROPOSAL.
+            ZUNGU FESTIVAL.<br /><span style={{ color: GOLD }}>NAVY ISLAND.</span><br />PORT ANTONIO.
           </h1>
           <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.04em', lineHeight: 1.8, marginBottom: 48, maxWidth: 520 }}>
-            A proposed international electronic music festival on a 64-acre island in Port Antonio Harbour. This brief sets out the site context, operating model, local economic participation, and the review pathway we intend to develop with the relevant authorities and partners.
+            Zungu is a proposed private-island electronic music festival and cultural tourism platform for Navy Island, Port Antonio. This stakeholder brief sets out the site context, operating model, local economic participation, environmental considerations, and review pathway intended for early dialogue with relevant authorities and partners.
           </p>
           <div style={{ display: 'flex', gap: 0, borderTop: `1px solid rgba(200,168,75,0.2)`, paddingTop: 24, flexWrap: 'wrap' }}>
             {[
