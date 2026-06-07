@@ -17,14 +17,14 @@ const GOLD_DIM = 'rgba(200,168,75,0.45)';
 const DISPLAY = "'Unbounded', sans-serif";
 const MONO = "'Space Mono', monospace";
 
-const SECTION_IDS = ['hero', 'overview', 'portantonio', 'island', 'experience', 'model', 'review', 'contact'];
+const SECTION_IDS = ['hero', 'overview', 'portantonio', 'island', 'stages', 'activities', 'experience', 'model', 'review', 'contact'];
 
 const NAV_LINKS = [
   { label: 'Overview', id: 'overview' },
-  { label: 'Port Antonio', id: 'portantonio' },
   { label: 'Island', id: 'island' },
-  { label: 'Experience', id: 'experience' },
-  { label: 'Model', id: 'model' },
+  { label: 'Stages', id: 'stages' },
+  { label: 'Activities', id: 'activities' },
+  { label: 'Review', id: 'review' },
 ];
 
 // ── ChapterDivider ─────────────────────────────────────────────────────────────
@@ -105,6 +105,27 @@ function FactCard({ rows, accent = GOLD }: { rows: { l: string; v: string }[]; a
         </div>
       ))}
     </div>
+  );
+}
+
+// ── CtaLinkCard ───────────────────────────────────────────────────────────────
+function CtaLinkCard({ eye, title, sub, href }: { eye: string; title: string; sub: string; href: string }) {
+  return (
+    <a
+      href={href}
+      style={{
+        display: 'block', marginTop: 16, padding: '1.25rem',
+        border: `1px solid ${BORDER_MID}`, borderTop: `2px solid ${GOLD}`,
+        backgroundColor: 'rgba(200,168,75,0.03)', textDecoration: 'none',
+        transition: 'all 0.2s',
+      }}
+      onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(200,168,75,0.07)'; }}
+      onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(200,168,75,0.03)'; }}
+    >
+      <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700, marginBottom: 8 }}>{eye}</p>
+      <p style={{ fontFamily: DISPLAY, fontSize: '0.95rem', fontWeight: 700, color: CREAM, letterSpacing: '-0.01em', textTransform: 'uppercase' as const, marginBottom: 6 }}>{title} →</p>
+      <p style={{ fontFamily: MONO, fontSize: 11, color: MUTED, lineHeight: 1.6 }}>{sub}</p>
+    </a>
   );
 }
 
@@ -380,16 +401,135 @@ function StakeholderPageInner() {
       </ChapterSection>
 
       {/* ══════════════════════════════════════════════════════════════════
-          CH04 — GUEST EXPERIENCE & PROGRAMME
+          CH04 — STAGE ARCHITECTURE
       ══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider
-        num="04" eye="Festival Experience"
+        num="04" eye="Stage Architecture"
+        title="Three Stages."
+        sub="The stage plan is a site-use framework: sunrise, sunset, and centre-island gathering."
+      />
+      <ChapterSection id="stages" bg={GREEN} photo="/photos/zungu-stage-design-aerial.png">
+        <div style={{ padding: '80px 8vw', position: 'relative' }}>
+          <GhostNum>04</GhostNum>
+          <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 16 }}>
+            THREE STAGES.<br />THREE DIRECTIONS.<br />ONE ISLAND.
+          </h2>
+          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
+            Origins faces sunrise. Rebirth faces sunset. Zungu Main sits at the centre of the island. Each stage responds to geography, sound direction, guest movement, and temporary infrastructure requirements.
+          </p>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 48, alignItems: 'start' }}>
+            <div>
+              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+                The stage plan is not only a creative decision. It is part of the site-use model.
+              </p>
+              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+                Each stage placement factors in sound direction, temporary structures, guest movement, access control, marine coordination, public safety, waste planning, and demobilisation.
+              </p>
+              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 28 }}>
+                Origins, Rebirth, and Zungu Main are designed as temporary stage environments. Final placement, operating hours, sound direction, and access requirements should be reviewed through site survey, environmental guidance, stakeholder coordination, and permitting.
+              </p>
+              <div style={{ borderRadius: 0, overflow: 'hidden', border: `1px solid ${BORDER_MID}`, marginBottom: 0 }}>
+                <img
+                  src="/photos/navy-island-stage-map.png"
+                  alt="Navy Island stage positions"
+                  style={{ width: '100%', height: 200, objectFit: 'cover', display: 'block', filter: 'saturate(0.7) brightness(0.8)' }}
+                />
+                <div style={{ padding: '10px 14px', backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                  <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: MUTED }}>Navy Island · Stage Positions · Site Use Overview</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <FactCard rows={[
+                { l: 'Origins', v: 'East · sunrise · morning programming · sound-first' },
+                { l: 'Zungu Main', v: 'Centre/South · mainstage · primary crowd gathering' },
+                { l: 'Rebirth', v: 'West · sunset · transition into night' },
+                { l: 'Access', v: 'South/SW · marine arrival · guest movement' },
+                { l: 'Review', v: 'sound · operating hours · temporary structures · demobilisation' },
+              ]} />
+              <CtaLinkCard
+                eye="// Stage Architecture"
+                title="View Stage Architecture"
+                sub="Open stakeholder-safe stage overview"
+                href="/stages?role=stakeholder"
+              />
+            </div>
+          </div>
+        </div>
+      </ChapterSection>
+
+      {/* ══════════════════════════════════════════════════════════════════
+          CH05 — ACTIVITY PROGRAMME
+      ══════════════════════════════════════════════════════════════════ */}
+      <ChapterDivider
+        num="05" eye="Activity Programme"
+        title="The Island Moves By Day."
+        sub="The daytime programme creates local operator participation, guest flow, and cultural context before the stages open."
+      />
+      <ChapterSection id="activities" bg={BG} photo="/photos/stage-beach-activities.png">
+        <div style={{ padding: '80px 8vw', position: 'relative' }}>
+          <GhostNum>05</GhostNum>
+          <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 16 }}>
+            FOOD.<br />WATER.<br />WELLNESS.<br />CULTURE.
+          </h2>
+          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
+            Zungu is not only night-time music. The island programme includes food, wellness, water activity, cultural moments, media, retail, forest routes, and controlled discovery — all requiring stakeholder review and local operator coordination.
+          </p>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 48, alignItems: 'start' }}>
+            <div>
+              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+                The activity programme is where Port Antonio participation becomes most visible.
+              </p>
+              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+                Local food vendors, wellness practitioners, marine operators, guides, cultural partners, craft vendors, media teams, and hospitality providers all operate within the festival week.
+              </p>
+              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 28 }}>
+                For stakeholders, this programme matters because it touches guest movement, health standards, marine safety, reef protocol, waste management, environmental protection, local vendor participation, and mainland route planning.
+              </p>
+              <div style={{ borderRadius: 0, overflow: 'hidden', border: `1px solid ${BORDER_MID}` }}>
+                <img
+                  src="/photos/blue-lagoon-port-antonio.jpg"
+                  alt="Portland Parish activity context"
+                  style={{ width: '100%', height: 200, objectFit: 'cover', display: 'block', filter: 'saturate(0.7) brightness(0.8)' }}
+                />
+                <div style={{ padding: '10px 14px', backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                  <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: MUTED }}>Portland Parish · Activity Context · Local Operator Integration</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <FactCard rows={[
+                { l: 'Food + Beverage', v: 'local vendors · health standards · waste controls' },
+                { l: 'Water + Marine', v: 'licensed operators · reef protocol · marine safety' },
+                { l: 'Wellness', v: 'guest recovery · practitioner standards' },
+                { l: 'Culture + Media', v: 'local creatives · Jamaica story · content control' },
+                { l: 'Forest Routes', v: 'guest movement · environmental protection' },
+                { l: 'Mainland Routes', v: 'Port Antonio operator participation' },
+              ]} />
+              <CtaLinkCard
+                eye="// Activity Programme"
+                title="View Activity Programme"
+                sub="Open stakeholder-safe activity overview"
+                href="/activities?role=stakeholder"
+              />
+            </div>
+          </div>
+        </div>
+      </ChapterSection>
+
+      {/* ══════════════════════════════════════════════════════════════════
+          CH06 — GUEST EXPERIENCE & PROGRAMME
+      ══════════════════════════════════════════════════════════════════ */}
+      <ChapterDivider
+        num="06" eye="Festival Experience"
         title="Seven Days. Curated."
         sub="The festival is designed for international guests who spend their full week in and around Port Antonio."
       />
       <ChapterSection id="experience" bg={GREEN} photo="/photos/zungu-glamping-luxe.png">
         <div style={{ padding: '80px 8vw', position: 'relative' }}>
-          <GhostNum>04</GhostNum>
+          <GhostNum>06</GhostNum>
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 16 }}>
             GUESTS ARRIVE.<br />GUESTS STAY.<br />PORT ANTONIO<br />PARTICIPATES.
           </h2>
@@ -425,13 +565,13 @@ function StakeholderPageInner() {
           CH05 — ECONOMIC & TOURISM MODEL
       ══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider
-        num="05" eye="Economic Model"
+        num="07" eye="Economic Model"
         title="Designed for Portland."
         sub="The Zungu model is structured to maximise Portland Parish economic participation across the full festival week."
       />
       <ChapterSection id="model" bg={BG} photo="/photos/navy-island-wide.png">
         <div style={{ padding: '80px 8vw', position: 'relative' }}>
-          <GhostNum>05</GhostNum>
+          <GhostNum>07</GhostNum>
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 16 }}>
             LOCAL FIRST.<br />ALWAYS.
           </h2>
@@ -484,13 +624,13 @@ function StakeholderPageInner() {
           CH06 — STAKEHOLDER REVIEW FRAMEWORK
       ══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider
-        num="06" eye="Review Framework"
+        num="08" eye="Review Framework"
         title="Open to Review."
         sub="Zungu recognises that an event of this nature requires coordination across institutional, environmental, marine, and community stakeholders."
       />
       <ChapterSection id="review" bg={GREEN} photo="/photos/navy-island-stage-map.png">
         <div style={{ padding: '80px 8vw', position: 'relative' }}>
-          <GhostNum>06</GhostNum>
+          <GhostNum>08</GhostNum>
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 16 }}>
             REVIEW.<br />COORDINATE.<br />CONFIRM.
           </h2>
