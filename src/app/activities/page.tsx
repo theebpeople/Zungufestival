@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useAuth } from '@clerk/nextjs';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense, useEffect, useState } from 'react';
 
 // ── Design tokens ─────────────────────────────────────────────────────────────
 const BG = '#04080A';
@@ -271,10 +272,18 @@ function ZoneCard({ zone, role }: { zone: typeof ZONES[0]; role: string }) {
 
 // ── Main page ─────────────────────────────────────────────────────────────────
 function ActivitiesPageInner() {
+  const { isLoaded, isSignedIn } = useAuth();
+  const router = useRouter();
   const searchParams = useSearchParams();
-  const role = searchParams.get('role') ?? '';
   const [activeSection, setActiveSection] = useState('hero');
   const [navVisible, setNavVisible] = useState(false);
+
+  const rawRole = searchParams.get('role') ?? '';
+  const safeRole = ['investor', 'partner', 'press', 'stakeholder'].includes(rawRole) ? rawRole : 'investor';
+
+  useEffect(() => {
+    if (isLoaded && !isSignedIn) router.push('/sign-in');
+  }, [isLoaded, isSignedIn, router]);
 
   useEffect(() => {
     const handleScroll = () => setNavVisible(window.scrollY > 120);
@@ -316,16 +325,25 @@ function ActivitiesPageInner() {
             );
           })}
         </div>
-        <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexShrink: 0 }}>
-          <a href="/stages" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', color: MUTED, textDecoration: 'none', fontWeight: 700, whiteSpace: 'nowrap', transition: 'color 0.2s' }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = GOLD)}
-            onMouseLeave={(e) => (e.currentTarget.style.color = MUTED)}>
-            Stages
-          </a>
-          <a href="/partner" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', color: MUTED, textDecoration: 'none', fontWeight: 700, whiteSpace: 'nowrap', transition: 'color 0.2s' }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = GOLD)}
-            onMouseLeave={(e) => (e.currentTarget.style.color = MUTED)}>
-            ← Back
+
+        {/* Badge + Sign Out */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', whiteSpace: 'nowrap' }}>
+          <a
+            href={`/deck?role=${safeRole}`}
+            style={{
+              fontFamily: MONO,
+              fontSize: 9,
+              letterSpacing: '0.4em',
+              textTransform: 'uppercase',
+              color: MUTED,
+              textDecoration: 'none',
+              fontWeight: 700,
+              transition: 'color 0.2s',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = CREAM)}
+            onMouseLeave={(e) => (e.currentTarget.style.color = MUTED)}
+          >
+            ← Deck
           </a>
         </div>
       </nav>

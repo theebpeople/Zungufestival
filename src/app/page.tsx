@@ -1,6 +1,6 @@
 'use client';
 
-import { useAuth } from '@clerk/nextjs';
+import { useAuth, useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 
@@ -10,12 +10,21 @@ const CREAM = '#F7F3EC';
 
 export default function LandingPage() {
   const { isSignedIn, isLoaded } = useAuth();
+  const { user } = useUser();
   const router = useRouter();
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (isLoaded && isSignedIn) router.push('/deck');
-  }, [isLoaded, isSignedIn, router]);
+    if (!isLoaded || !isSignedIn) return;
+    const role = (user?.publicMetadata as Record<string, unknown>)?.role as string | undefined;
+    const dest: Record<string, string> = {
+      investor:    '/deck?role=investor',
+      partner:     '/production-brief',
+      stakeholder: '/stakeholder',
+      press:       '/deck?role=press',
+    };
+    router.push(dest[role ?? ''] ?? '/deck');
+  }, [isLoaded, isSignedIn, user, router]);
 
   useEffect(() => {
     const video = videoRef.current;
