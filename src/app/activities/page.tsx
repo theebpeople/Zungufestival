@@ -642,8 +642,18 @@ function ActivitiesPageInner() {
               Zungu's operating standards are being developed through the relevant tourism, environmental, site-use, safety, and municipal review pathways.
             </p>
           </div>
-        </ChapterSection>
-      )}
+
+          {/* Stakeholder Review Note */}
+          {safeRole === 'stakeholder' && (
+            <div style={{ marginTop: 48, padding: '24px 28px', border: `1px solid rgba(200,168,75,0.2)`, background: 'rgba(200,168,75,0.025)', maxWidth: 720 }}>
+              <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 12 }}>// Stakeholder Review Note</span>
+              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>
+                The activity programme is designed to route value through Port Antonio while maintaining controls around local operator participation, environmental protection, guest movement, water activity, waste removal, and mainland activations. Final operating standards should be developed with relevant tourism, environmental, site-use, safety, and municipal stakeholders.
+              </p>
+            </div>
+          )}
+        </div>
+      </ChapterSection>
 
       {/* ── Footer ── */}
       <footer style={{ padding: '60px 8vw', borderTop: `1px solid ${BORDER}`, display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 32, backgroundColor: BG }}>
