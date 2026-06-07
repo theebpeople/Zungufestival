@@ -658,9 +658,12 @@ function StagesPageInner() {
       </div>
 
       {/* ══════════════════════════════════════════════════════════════════
-          CHAPTER 05 — PRODUCTION REQUIREMENTS BY STAGE (partner only)
+          CHAPTER 05 — PRODUCTION BUILD
+          partner: full detail  |  investor: operational readiness
+          stakeholder/press/none: hidden
       ══════════════════════════════════════════════════════════════════ */}
       {role === 'partner' && <ChapterDivider num="05" title="Every Stage" goldLine="Has a Different Build." desc="Three stages. One island. Each operates with different technical, spatial, and operational requirements." />}
+      {role === 'investor' && <ChapterDivider num="05" title="Production" goldLine="Readiness." desc="Three stages. Three distinct operational requirements. The plan accounts for the real workstreams." />}
 
       {role === 'partner' && <ChapterSection id="production" bg={BG} photo="/photos/navy-island-stage-map.png">
         <div style={{ position: 'relative', padding: '80px 8vw' }}>
@@ -750,6 +753,42 @@ function StagesPageInner() {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      </ChapterSection>}
+
+      {role === 'investor' && <ChapterSection id="production" bg={BG} photo="/photos/navy-island-stage-map.png">
+        <div style={{ position: 'relative', padding: '80px 8vw' }}>
+          <SLabel>// 05 Operational Readiness</SLabel>
+          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
+            Three stages. Three operational profiles. Each is designed around the real constraints of a private-island festival — temporary infrastructure, marine access, sound management, and full demobilisation.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 3, marginBottom: 48 }}>
+            {[
+              { name: 'ZUNGU MAIN', accent: GOLD, summary: 'Primary mainstage. Highest production scale. Anchor booking drives specification.' },
+              { name: 'ORIGINS', accent: ORIGINS_C, summary: 'Morning stage. Sound-first, low-impact design. Responds to island\'s east-facing geography.' },
+              { name: 'REBIRTH', accent: REBIRTH_C, summary: 'Sunset stage. Mid-scale. Manages the daily handoff into the headline programme.' },
+            ].map(({ name, accent, summary }) => (
+              <div key={name} style={{ borderTop: `3px solid ${accent}`, padding: '28px 24px', border: `1px solid rgba(242,235,217,0.06)`, borderTopColor: accent, borderTopWidth: 3 }}>
+                <div style={{ fontFamily: DISPLAY, fontSize: '1rem', fontWeight: 900, color: accent, textTransform: 'uppercase' as const, marginBottom: 10, letterSpacing: '0.02em' }}>{name}</div>
+                <p style={{ fontFamily: MONO, fontSize: 14, color: MUTED, lineHeight: 1.7 }}>{summary}</p>
+              </div>
+            ))}
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3 }}>
+            {[
+              { label: 'Temporary infrastructure', body: 'All stages are temporary structures. Full site clearance follows the event.' },
+              { label: 'Marine access', body: 'All crew, equipment, and supplies arrive by marine transfer. Marine logistics are a primary production workstream.' },
+              { label: 'Power', body: 'Independent generator supply per stage. Redundancy required at mainstage level.' },
+              { label: 'Sound direction', body: 'Stage placement and sound direction are designed around harbour geography and noise management.' },
+              { label: 'Guest flow + safety', body: 'Stage sequencing, crowd movement, and handoff logistics are part of the site operating plan.' },
+              { label: 'Environmental care + demobilisation', body: 'Reef protocol, waste removal, and full site restoration are built into the production model from day one.' },
+            ].map(({ label, body }) => (
+              <div key={label} style={{ border: `1px solid rgba(200,168,75,0.1)`, padding: '20px 22px' }}>
+                <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700, marginBottom: 10 }}>{label}</div>
+                <p style={{ fontFamily: MONO, fontSize: 13, color: MUTED, lineHeight: 1.7, margin: 0 }}>{body}</p>
+              </div>
+            ))}
           </div>
         </div>
       </ChapterSection>}
@@ -873,6 +912,19 @@ function StagesPageInner() {
             <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD_DIM, marginBottom: 12 }}>// Stage Production Brief</div>
             <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
               Detailed rider management, DJ equipment baseline, back-of-house layout, artist travel, security, technical schedules, cost centres, and changeover planning are developed in the Stage Production Brief.
+            </p>
+          </div>
+        </section>
+      )}
+      {role === 'investor' && (
+        <section style={{ padding: '60px 8vw', backgroundColor: BG, borderTop: `1px solid ${BORDER}` }}>
+          <div style={{ maxWidth: 720, padding: '24px 28px', border: `1px solid rgba(200,168,75,0.2)`, background: 'rgba(200,168,75,0.025)' }}>
+            <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 12 }}>// Operational Confidence</div>
+            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 16 }}>
+              Zungu's stage and activity systems are being developed around the core execution realities of a private-island festival: temporary infrastructure, marine access, power, sound direction, guest movement, safety, environmental care, hospitality, and demobilisation.
+            </p>
+            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
+              Detailed build specifications, vendor scopes, technical schedules, and contractor requirements sit inside the Production Brief. Investors see the operating logic; production partners receive the execution manual.
             </p>
           </div>
         </section>
