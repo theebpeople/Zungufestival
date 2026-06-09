@@ -471,9 +471,9 @@ function StakeholderPageInner() {
             </div>
             <FactCard rows={[
               { l: 'Anchor genre', v: 'Electronic music · Jamaican sound heritage' },
-              { l: 'Main Stage', v: 'Headline programme · 2,000–3,000 capacity' },
-              { l: 'Forest Stage', v: 'Intimate · canopy · 500–800 capacity' },
-              { l: 'Beach Stage', v: 'Sunrise / sunset · beach programme' },
+              { l: 'Zungu Main', v: 'Headline-scale programme environment' },
+              { l: 'Origins', v: 'Intimate canopy programme environment' },
+              { l: 'Rebirth', v: 'Shoreline / beach programme environment' },
               { l: 'Sound separation', v: 'Stage placement + directional arrays + landform' },
               { l: 'Sound management', v: 'Subject to local authority licencing' },
               { l: 'Local artists', v: 'Jamaican and Caribbean artists · programme priority' },
@@ -608,9 +608,9 @@ function StakeholderPageInner() {
               </p>
             </div>
             <FactCard rows={[
-              { l: 'Zungu Main', v: 'South-centre · headline · 2,000–3,000 capacity' },
-              { l: 'Origins', v: 'East · forest canopy · 500–800 capacity' },
-              { l: 'Rebirth', v: 'West · beach · sunrise + sunset programme' },
+              { l: 'Zungu Main', v: 'South-centre · headline-scale programme environment' },
+              { l: 'Origins', v: 'East · intimate canopy programme environment' },
+              { l: 'Rebirth', v: 'West · shoreline / beach programme environment' },
               { l: 'Simultaneous', v: 'All 3 stages operate simultaneously' },
               { l: 'Acoustic design', v: 'Directional arrays · landform · stage placement' },
               { l: 'Structure', v: 'All temporary · fully demobilised post-event' },
