@@ -325,9 +325,9 @@ function StakeholderBriefInner() {
         <Divider accent={gold} />
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 2 }}>
           {[
-            { title: 'Zungu Main (South-centre)', body: 'Open-air headliner stage. 2,000–3,000 standing capacity. Full PA, lighting rig, video production, artist infrastructure. Facing south — primary sound direction away from Port Antonio.' },
-            { title: 'Origins (East · Forest Stage)', body: '500–800 capacity. Enclosed canopy environment. Natural acoustic treatment. Intimate and atmospheric. Programmatic identity of the festival — this is where the music culture lives.' },
-            { title: 'Rebirth (West · Beach Stage)', body: '300–500 capacity. Sunrise and sunset programme. Minimal structure. DJ-first with live provision. Facing west — natural sound barrier from main stage operation.' },
+            { title: 'Zungu Main (South-centre)', body: 'Headline-scale programme environment. Open-air headliner stage. Full PA, lighting rig, video production, artist infrastructure. Facing south — primary sound direction away from Port Antonio.' },
+            { title: 'Origins (East · Forest Stage)', body: 'Intimate canopy programme environment. Natural acoustic treatment. Atmospheric. Programmatic identity of the festival — this is where the music culture lives.' },
+            { title: 'Rebirth (West · Beach Stage)', body: 'Shoreline / beach programme environment. Sunrise and sunset programme. Minimal structure. DJ-first with live provision. Facing west — natural sound barrier from main stage operation.' },
             { title: 'Sound Management', body: 'Directional arrays and landform used to minimise sound bleed between stages and off-island. Operating hours, decibel limits, and sound direction subject to local authority licence conditions.' },
           ].map(c => <Card key={c.title} title={c.title} body={c.body} accent={gold} />)}
         </div>
@@ -373,15 +373,15 @@ function StakeholderBriefInner() {
           {[
             {
               title: 'Zungu Main',
-              body: 'South-centre position. Open-air headliner stage. 2,000–3,000 standing capacity. Full PA system, lighting rig, LED screen or projection wall, artist infrastructure, production wings, covered FOH position. Roof or tensile weather protection required.',
+              body: 'South-centre position. Headline-scale programme environment. Open-air headliner stage. Full PA system, lighting rig, LED screen or projection wall, artist infrastructure, production wings, covered FOH position. Roof or tensile weather protection required.',
             },
             {
               title: 'Origins (Forest Stage)',
-              body: 'East position. Enclosed canopy environment in island interior. 500–800 capacity. Natural acoustic treatment. Modular line array. Atmospheric lighting. The spiritual centre of the festival — production design must match that intention.',
+              body: 'East position. Intimate canopy programme environment in island interior. Natural acoustic treatment. Modular line array. Atmospheric lighting. The spiritual centre of the festival — production design must match that intention.',
             },
             {
               title: 'Rebirth (Beach Stage)',
-              body: 'West position. Sunrise and sunset programme. 300–500 standing or seated. Minimal structure — the environment is the design. Sound must not bleed to Zungu Main. DJ-first with live instrumentation provision.',
+              body: 'West position. Shoreline / beach programme environment. Sunrise and sunset programme. Minimal structure — the environment is the design. Sound must not bleed to Zungu Main. DJ-first with live instrumentation provision.',
             },
           ].map(c => <Card key={c.title} title={c.title} body={c.body} accent={green} />)}
         </div>
