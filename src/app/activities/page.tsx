@@ -541,7 +541,7 @@ function ActivitiesPageInner() {
               { step: '01', label: 'International Arrival', sub: 'Kingston or Montego Bay. Transfer to Port Antonio.' },
               { step: '02', label: 'Check-In', sub: 'Port Antonio. Accommodation, ferry boarding, briefing.' },
               { step: '03', label: 'Island Movement', sub: 'Marine transfer to Navy Island. Zone access opens.' },
-              { step: '04', label: 'Stay', sub: 'On-island glamping, off-island villa or hotel. Full access.' },
+              { step: '04', label: 'Stay', sub: 'On-island accommodation or off-island villa / hotel. Full access.' },
               { step: '05', label: 'Departure', sub: 'June 23. Ferry return. Transfer to airport.' },
             ].map(({ step, label, sub }, i, arr) => (
               <div key={step} style={{ flex: '1 1 160px', border: `1px solid ${DIM}`, padding: '24px 20px', position: 'relative', minWidth: 140 }}>

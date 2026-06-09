@@ -323,11 +323,11 @@ function ProductionBriefInner() {
         <Divider accent={gold} />
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 2 }}>
           {[
-            { title: 'Navy Obsidian', body: 'Premium on-island glamping village. Pre-pitched elevated accommodation. 570 guests across accommodation clusters. Curated communal spaces. Dedicated premium facilities. Power, lighting, serviced beds.' },
-            { title: 'The Thirty Compound', body: 'Private shoreline compound. 30 guests maximum. Full-service, dedicated host. Separate from all public guest areas. Private marine transfer access.' },
-            { title: 'Island Village', body: 'General on-island camping. Festival culture. Shared facilities. Power connections. 24-hour island access. Available as add-on to Full Week Pass, Weekend Pass, and VIP / Navy Pass based on inventory.' },
-            { title: 'Full Week + VIP Mainland Guests', body: 'Full Week + VIP Mainland Guests — guests based in the Port Antonio Hotel + Villa Network with scheduled daily marine transfer unless Island Village or Navy Obsidian is purchased.' },
-            { title: 'Artist + Crew Compound', body: 'Separate from all public areas. Full rider facilities. Dedicated catering, secure perimeter, dedicated marine access. Production partner manages security boundary. Not commercially available.' },
+            { title: 'Navy Obsidian', body: 'High-spec on-island accommodation zone. Structured premium units with real beds, lighting, USB power, and hanging storage. 60–80 units across two clusters.' },
+            { title: 'The Thirty Compound', body: 'Exclusive on-island compound for The Thirty package guests. Private suites, dedicated facilities, concierge-level fitout. Separate from general accommodation zones.' },
+            { title: 'Island Village', body: 'On-island accommodation for full-week guests. Communal wash facilities, shared social spaces. Minimum standard: weatherproof, ventilated, lockable.' },
+            { title: 'Full Week + VIP Mainland Guests', body: 'Guests arriving by marine transfer from Port Antonio hotels and villas. No on-island accommodation required. Transfer scheduling, marine logistics, and arrival flow are a primary production workstream.' },
+            { title: 'Artist + Crew Compound', body: 'Separate village for artists and crew with private accommodation, dedicated catering, and secure perimeter. Production partner manages security boundary.' },
           ].map(c => <Card key={c.title} title={c.title} body={c.body} accent={gold} />)}
         </div>
         <div style={{ marginTop: '2rem', padding: '1rem 1.5rem', borderLeft: `3px solid rgba(200,168,75,0.4)` }}>

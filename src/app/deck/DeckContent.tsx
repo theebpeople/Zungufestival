@@ -723,6 +723,11 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         @media (max-width: 1024px) {
           .deck-nav-desktop { display: none !important; }
         }
+        @media (max-width: 480px) {
+          .hero-wordmark { font-size: 10vw !important; }
+          .hero-eyebrow-full { display: none !important; }
+          .hero-eyebrow-mobile { display: block !important; }
+        }
         body { cursor: crosshair; }
         body::before {
           content: '';
@@ -905,8 +910,8 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
             width: '100%',
           }}
         >
-          {/* Eyebrow */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 28 }}>
+          {/* Eyebrow — desktop full */}
+          <div className="hero-eyebrow-full" style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 28 }}>
             <div style={{ width: 32, height: 1, background: gold }} />
             <p
               style={{
@@ -922,12 +927,33 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
             </p>
             <div style={{ width: 32, height: 1, background: gold }} />
           </div>
+          {/* Eyebrow — mobile short */}
+          <p
+            className="hero-eyebrow-mobile"
+            style={{
+              display: 'none',
+              fontFamily: fontMono,
+              fontSize: 9,
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase' as const,
+              color: gold,
+              fontWeight: 700,
+              textAlign: 'center' as const,
+              maxWidth: 'calc(100vw - 48px)',
+              marginBottom: 28,
+              whiteSpace: 'normal' as const,
+              overflow: 'visible' as const,
+            }}
+          >
+            Navy Island · Port Antonio · 2027
+          </p>
 
           {/* Z-mark */}
           <img src="/zungu-z-mark.png" width={132} style={{ marginBottom: 42, display: 'block', filter: 'drop-shadow(0 0 28px rgba(200,168,75,0.45))' }} alt="Zungu" />
 
           {/* H1 */}
           <h1
+            className="hero-wordmark"
             style={{
               fontFamily: fontDisplay,
               fontSize: 'clamp(58px, 11.5vw, 155px)',
@@ -1311,7 +1337,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
           <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 30px)', fontWeight: 700, color: CHAPTERS['07'].accent }}>The root is Jamaican.</p>
         </Section>
         <Section sectionBg={CHAPTERS['07'].bg} accent={CHAPTERS['07'].accent} rgb={CHAPTERS['07'].rgb}>
-          <SectionHead label="The Curatorial Targets" title="Not a lineup. A thesis." accent={CHAPTERS['07'].accent} />
+          <SectionHead label="The Artists" title="Not a lineup. A thesis." accent={CHAPTERS['07'].accent} />
           <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 36 }}>
             {safeRole === 'press'
               ? 'The following artists represent Zungu\'s curatorial direction. These are not confirmed bookings. They are the artistic thesis the programme is being built around.'
@@ -1323,47 +1349,46 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
                 name: 'Black Coffee',
                 tags: 'Grammy Winner · Afro-house pioneer · Hï Ibiza 7 seasons · Madison Square Garden · Tomorrowland · Coachella',
                 bio: 'He brought Afro-house to the world, then watched the world reorganise around it. Grammy winner. Seven Hï Ibiza seasons. Madison Square Garden — sold out, with a 12-piece orchestra. His music has featured Pharrell Williams, Alicia Keys, and Usher. His career has been explicitly about repositioning the Global South as a source of culture, not a recipient of it.',
-                why: safeRole === 'press'
-                  ? 'He\'s been talking publicly for years about what it costs to be taken seriously as an artist from a continent the world underestimates. That framing maps directly onto what Zungu is trying to do in Jamaica. If Black Coffee plays here, this isn\'t "big name plays island festival." It\'s two cultures making the same argument on the same stage.'
-                  : 'His whole career makes the same argument Zungu is making — from a South African angle rather than a Jamaican one. The Global South doesn\'t need a western co-sign to produce world-class culture. That\'s why, if this conversation happens, it\'s between equals — not an artist and a promoter filling a slot.',
-                headline: true,
+                whyInvPrt: 'His whole career makes the same argument Zungu is making — from a South African angle rather than a Jamaican one. The Global South doesn\'t need a western co-sign to produce world-class culture. That\'s why, if this conversation happens, it\'s between equals — not an artist and a promoter filling a slot.',
+                whyPress: 'He\'s been talking publicly for years about what it costs to be taken seriously as an artist from a continent the world underestimates. That framing maps directly onto what Zungu is trying to do in Jamaica. If Black Coffee plays here, this isn\'t "big name plays island festival." It\'s two cultures making the same argument on the same stage.',
+                strategic: true,
               },
               {
                 name: 'Shimza',
                 tags: 'Afro-tech pioneer · Hï Ibiza · Zamna Tulum · NY Knockdown Center',
                 bio: 'South African DJ. They call him the Effect Master — not a gimmick, just what he does to a room. He was at Hï Ibiza when Black Coffee opened his residency. He\'s been at Zamna Tulum, Knockdown Center in New York, clubs in Tokyo. In October 2024 he and Black Coffee played together in New York to a room that was already full. The set ran late into the morning.',
-                why: safeRole === 'press'
-                  ? 'The reunion in New York — sold out before announcement, ran until morning — is the story before the story. If they play Navy Island, this narrative has been building for years.'
-                  : 'If the conversation with Black Coffee happens, Shimza is already in it. That October 2024 set wasn\'t a one-off. The chemistry is recent and documented. You don\'t plan for that kind of dynamic. You make room for it.',
-                headline: true,
+                whyInvPrt: 'If the conversation with Black Coffee happens, Shimza is already in it. That October 2024 set wasn\'t a one-off. The chemistry is recent and documented. You don\'t plan for that kind of dynamic. You make room for it.',
+                whyPress: 'The reunion in New York — sold out before announcement, ran until morning — is the story before the story. If they play Navy Island, this narrative has been building for years.',
+                strategic: true,
               },
               {
                 name: 'Major Lazer',
                 tags: 'Diplo · Walshy Fire · Ape Drums · Sound system roots · Black Chiney · Stadium act',
                 bio: 'Major Lazer is one of the few global electronic acts that does not need Jamaica explained to it. The project sits at the intersection of dancehall, Caribbean rhythm, global electronic music, and international festival culture — Diplo bringing international reach, Walshy Fire the Jamaican sound-system connection, Ape Drums the Latin and Caribbean percussion edge. \'Lean On\' has billions of streams. \'Pon de Floor\' is still in DJ sets everywhere. They have played stadiums on every continent.',
-                why: safeRole === 'press'
-                  ? 'Major Lazer at Zungu would not read as an imported electronic act landing in Jamaica for a weekend. It would read as a return of a sound that Jamaica helped send around the world — now staged on a private island in Port Antonio.'
-                  : 'Major Lazer connects Jamaica, dancehall, electronic music, global festival audiences, and mainstream recognition without requiring a long explanation. If Zungu needs one act that can make the idea legible to the widest possible audience immediately, Major Lazer sits near the top of that list.',
-                headline: false,
+                whyInvPrt: 'Major Lazer connects Jamaica, dancehall, electronic music, global festival audiences, and mainstream recognition without requiring a long explanation. If Zungu needs one act that can make the idea legible to the widest possible audience immediately, Major Lazer sits near the top of that list.',
+                whyPress: 'Major Lazer at Zungu would not read as an imported electronic act landing in Jamaica for a weekend. It would read as a return of a sound that Jamaica helped send around the world — now staged on a private island in Port Antonio.',
+                strategic: false,
               },
               {
                 name: 'Keinemusik',
                 tags: '&ME · Rampa · Adam Port · Zamna regulars · Kloud',
                 bio: 'Three people — &ME, Rampa, Adam Port — who figured out how to make melodic house feel like it was written for wherever you\'re standing when you hear it. They\'ve played Zamna\'s jungle cenote so many times it\'s become a ritual. Their Kloud shows sell out in New York, Paris, and London — not because they\'re famous, because their audience finds them.',
-                why: safeRole === 'press'
-                  ? 'They have performed at Zamna\'s cenote to sold-out shows. Their audience found them, as it always does. If Keinemusik plays Zungu, it\'s the story of where that audience goes next.'
-                  : 'Their audience is the Zungu audience — they\'ve just been going to different places. People who follow Keinemusik across continents are exactly the people who will look twice at a private island in Jamaica. Watch what happens to availability in Tulum the week they play Zamna. That\'s the effect.',
-                headline: false,
+                whyInvPrt: 'Their audience is the Zungu audience — they\'ve just been going to different places. People who follow Keinemusik across continents are exactly the people who will look twice at a private island in Jamaica. Watch what happens to availability in Tulum the week they play Zamna. That\'s the effect.',
+                whyPress: 'They have performed at Zamna\'s cenote to sold-out shows. Their audience found them, as it always does. If Keinemusik plays Zungu, it\'s the story of where that audience goes next.',
+                strategic: false,
               },
-            ].map(({ name, tags, bio, why, headline }) => (
-              <div key={name} style={{ border: `1px solid ${headline ? 'rgba(58,175,122,0.4)' : 'rgba(58,175,122,0.12)'}`, padding: '36px 32px', background: headline ? 'rgba(58,175,122,0.04)' : 'rgba(13,31,20,0.4)', position: 'relative' }}>
-                {headline && <div style={{ position: 'absolute', top: 20, right: 20, fontFamily: fontMono, fontSize: 7, letterSpacing: '0.4em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, fontWeight: 700, border: `1px solid rgba(58,175,122,0.4)`, padding: '3px 8px' }}>STRATEGIC TARGET</div>}
-                <div style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 28px)', fontWeight: 900, color: cream, marginBottom: 6, lineHeight: 1.1 }}>{name}</div>
-                <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, marginBottom: 16 }}>{tags}</div>
-                <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.75, marginBottom: 16 }}>{bio}</p>
-                <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, lineHeight: 1.7, fontStyle: 'italic', borderTop: `1px solid rgba(58,175,122,0.1)`, paddingTop: 16, marginTop: 16 }}>{why}</p>
-              </div>
-            ))}
+            ].map(({ name, tags, bio, whyInvPrt, whyPress, strategic }) => {
+              const why = safeRole === 'press' ? whyPress : whyInvPrt;
+              return (
+                <div key={name} style={{ border: `1px solid ${strategic ? 'rgba(58,175,122,0.4)' : 'rgba(58,175,122,0.12)'}`, padding: '36px 32px', background: strategic ? 'rgba(58,175,122,0.04)' : 'rgba(13,31,20,0.4)', position: 'relative' }}>
+                  {strategic && <div style={{ position: 'absolute', top: 20, right: 20, fontFamily: fontMono, fontSize: 7, letterSpacing: '0.4em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, fontWeight: 700, border: `1px solid rgba(58,175,122,0.4)`, padding: '3px 8px' }}>STRATEGIC TARGET</div>}
+                  <div style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 28px)', fontWeight: 900, color: cream, marginBottom: 6, lineHeight: 1.1 }}>{name}</div>
+                  <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, marginBottom: 16 }}>{tags}</div>
+                  <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.75, marginBottom: 16 }}>{bio}</p>
+                  <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, lineHeight: 1.7, fontStyle: 'italic', borderTop: `1px solid rgba(58,175,122,0.1)`, paddingTop: 16, marginTop: 16 }}>{why}</p>
+                </div>
+              );
+            })}
           </div>
         </Section>
         {/* ── Zungu Sessions ─────────────────────────────────────────────── */}
@@ -1526,10 +1551,9 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
               <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: fontMono, fontSize: 12, minWidth: 500, maxWidth: 800 }}>
                 <thead>
                   <tr style={{ borderBottom: `1px solid rgba(155,95,192,0.2)` }}>
-                    <th style={{ padding: '10px 16px', color: CHAPTERS['11'].accent, textAlign: 'left', fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', fontWeight: 700 }}>Product</th>
-                    <th style={{ padding: '10px 16px', color: CHAPTERS['11'].accent, textAlign: 'left', fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', fontWeight: 700 }}>Price</th>
-                    <th style={{ padding: '10px 16px', color: CHAPTERS['11'].accent, textAlign: 'left', fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', fontWeight: 700 }}>Allocation</th>
-                    <th style={{ padding: '10px 16px', color: CHAPTERS['11'].accent, textAlign: 'left', fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', fontWeight: 700 }}>Notes</th>
+                    {['Product', 'Price', 'Allocation', 'Notes'].map(h => (
+                      <th key={h} style={{ textAlign: 'left', padding: '10px 16px', fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: CHAPTERS['11'].accent, fontWeight: 700 }}>{h}</th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody>
@@ -1539,12 +1563,12 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
                     ['Full Week Pass', 'US$600', '3,500', 'June 17–23. Accommodation separate or add-on.'],
                     ['VIP / Navy Pass', 'US$1,350', '900', 'Premium access. Accommodation separate or bundled.'],
                     ['The Thirty', 'US$12,500', '30', 'Fully hosted. Bundled. Non-separable.'],
-                  ].map(([product, price, alloc, note]) => (
-                    <tr key={product} style={{ borderBottom: `1px solid ${dim}` }}>
-                      <td style={{ padding: '12px 16px', color: cream }}>{product}</td>
-                      <td style={{ padding: '12px 16px', color: CHAPTERS['11'].accent, fontWeight: 700 }}>{price}</td>
-                      <td style={{ padding: '12px 16px', color: muted, fontSize: 10 }}>{alloc}</td>
-                      <td style={{ padding: '12px 16px', color: muted, fontSize: 11 }}>{note}</td>
+                  ].map(([product, price, cap, note]) => (
+                    <tr key={product} style={{ borderBottom: `1px solid rgba(155,95,192,0.06)` }}>
+                      <td style={{ padding: '14px 16px', color: cream, fontWeight: 700, fontSize: 13 }}>{product}</td>
+                      <td style={{ padding: '14px 16px', color: CHAPTERS['11'].accent, fontWeight: 700, fontSize: 13 }}>{price}</td>
+                      <td style={{ padding: '14px 16px', color: muted, fontSize: 12 }}>{cap}</td>
+                      <td style={{ padding: '14px 16px', color: muted, fontSize: 12 }}>{note}</td>
                     </tr>
                   ))}
                 </tbody>
