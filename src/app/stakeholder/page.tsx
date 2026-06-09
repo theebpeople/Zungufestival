@@ -19,7 +19,7 @@ const MONO = "'Space Mono', monospace";
 
 const SECTION_IDS = [
   'hero', 'overview', 'portantonio', 'island',
-  'sound', 'audience', 'stages', 'activities',
+  'sound', 'sessions', 'audience', 'stages', 'activities',
   'experience', 'model', 'operations', 'alignment', 'asks', 'contact',
 ];
 
@@ -161,6 +161,21 @@ function StakeholderPageInner() {
       {/* ── Scroll progress ── */}
       <motion.div style={{ scaleX, transformOrigin: 'left', position: 'fixed', top: 0, left: 0, height: 2, background: GOLD, zIndex: 1000, width: '100%' }} />
 
+      <style>{`
+        @media (max-width: 480px) {
+          .hero-wordmark { font-size: 9vw !important; }
+          .hero-eyebrow-full { display: none !important; }
+          .hero-eyebrow-mobile { display: block !important; }
+        }
+        @media (max-width: 1100px) {
+          .stakeholder-badge-nav {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+      `}</style>
+
       {/* ── Nav ── */}
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 900,
@@ -173,10 +188,9 @@ function StakeholderPageInner() {
       }}>
         <button onClick={() => scrollTo('hero')} style={{ display: 'flex', alignItems: 'center', gap: 10, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
           <img src="/zungu-z-mark.png" alt="Zungu" style={{ height: 28, width: 28, objectFit: 'contain' }} />
-          <span style={{ fontFamily: DISPLAY, fontSize: 13, fontWeight: 900, letterSpacing: '0.08em', color: CREAM, textTransform: 'uppercase' }}>Zungu 2027</span>
         </button>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flex: 1, justifyContent: 'center' }}>
+        <div className="deck-chapter-links" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flex: 1, justifyContent: 'center' }}>
           {NAV_LINKS.map((l) => (
             <button key={l.label} onClick={() => scrollTo(l.id)}
               style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', color: MUTED, background: 'none', border: 'none', cursor: 'pointer', fontWeight: 700, padding: 0, transition: 'color 0.2s' }}
@@ -188,7 +202,7 @@ function StakeholderPageInner() {
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, border: `1px solid ${GOLD_DIM}`, padding: '4px 10px', fontWeight: 700 }}>
+          <span className="stakeholder-badge-nav" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, border: `1px solid ${GOLD_DIM}`, padding: '4px 10px', fontWeight: 700, whiteSpace: 'nowrap' }}>
             Stakeholder Brief
           </span>
           <button onClick={() => signOut({ redirectUrl: '/sign-in?role=stakeholder' })}
@@ -213,29 +227,54 @@ function StakeholderPageInner() {
       ══════════════════════════════════════════════════════════════════ */}
       <section id="hero" style={{
         position: 'relative', minHeight: '100vh',
-        display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
+        display: 'flex', flexDirection: 'column', justifyContent: 'center',
+        alignItems: 'center',
         overflow: 'hidden', padding: '80px 8vw',
         backgroundImage: 'url(/photos/navy-island-aerial-hq.png)',
         backgroundSize: 'cover', backgroundPosition: 'center 35%',
       }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(4,8,10,1) 0%, rgba(4,8,10,0.7) 40%, rgba(4,8,10,0.2) 100%), linear-gradient(to right, rgba(4,8,10,0.55) 0%, transparent 65%)' }} />
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(200,168,75,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(200,168,75,0.025) 1px, transparent 1px)', backgroundSize: '60px 60px', pointerEvents: 'none' }} />
+        {/* Radial vignette — same treatment as /deck */}
+        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 50% 40%, rgba(4,8,10,0.55) 0%, rgba(4,8,10,0.92) 75%)', pointerEvents: 'none' }} />
 
-        <div style={{ position: 'relative', zIndex: 2 }}>
-          <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 24, fontWeight: 700 }}>
-            Institutional Stakeholder Brief · Zungu Festival · Port Antonio · Jamaica
+        <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', width: '100%' }}>
+          {/* Z-mark */}
+          <img
+            src="/zungu-z-mark.png"
+            alt="Zungu Festival"
+            style={{ width: 132, height: 132, objectFit: 'contain', display: 'block', margin: '0 auto 28px', filter: 'drop-shadow(0 0 24px rgba(200,168,75,0.55))' }}
+          />
+
+          {/* Portal badge */}
+          <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700, marginBottom: 28, textAlign: 'center' }}>
+            // Stakeholder Brief
           </div>
-          <h1 style={{ fontFamily: DISPLAY, fontSize: 'clamp(2.5rem, 6vw, 5rem)', fontWeight: 900, lineHeight: 0.95, color: CREAM, marginBottom: 8 }}>
+
+          {/* Eyebrow — desktop full */}
+          <div className="hero-eyebrow-full" style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: 28 }}>
+            <span style={{ display: 'inline-block', width: 28, height: 1, background: 'rgba(200,168,75,0.5)' }} />
+            <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.75)', fontWeight: 700, whiteSpace: 'nowrap' }}>
+              Institutional Stakeholder Brief · Zungu Festival · Port Antonio · Jamaica
+            </span>
+            <span style={{ display: 'inline-block', width: 28, height: 1, background: 'rgba(200,168,75,0.5)' }} />
+          </div>
+          {/* Eyebrow — mobile short */}
+          <p className="hero-eyebrow-mobile" style={{ display: 'none', fontFamily: MONO, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.85)', fontWeight: 700, textAlign: 'center', maxWidth: 'calc(100vw - 48px)', marginBottom: 28, whiteSpace: 'normal', overflow: 'visible' }}>
+            Stakeholder Brief · Port Antonio · 2027
+          </p>
+
+          {/* H1 */}
+          <h1 className="hero-wordmark" style={{ fontFamily: DISPLAY, fontSize: 'clamp(2.5rem, 6vw, 5rem)', fontWeight: 900, lineHeight: 0.95, color: CREAM, marginBottom: 8, textAlign: 'center' }}>
             A PRIVATE ISLAND<br />FESTIVAL.<br /><span style={{ color: GOLD }}>A PORT ANTONIO</span><br />OPPORTUNITY.<br />A JAMAICAN CULTURAL<br />EXPORT.
           </h1>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.04em', lineHeight: 1.8, marginBottom: 24, maxWidth: 520 }}>
-            Zungu is a proposed controlled-capacity destination festival on Navy Island, Port Antonio Harbour. Designed to be one of the world's most distinctive festival experiences — intimate, curated, and rooted in Jamaican culture — it is a serious tourism, economic, and cultural proposition for Portland Parish and for Jamaica.
+          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.04em', lineHeight: 1.8, marginBottom: 24, maxWidth: 520, textAlign: 'center' }}>
+            Zungu is a proposed controlled-capacity destination festival on Navy Island, Port Antonio Harbour. Designed to be one of the world&#39;s most distinctive festival experiences — intimate, curated, and rooted in Jamaican culture — it is a serious tourism, economic, and cultural proposition for Portland Parish and for Jamaica.
           </p>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.04em', lineHeight: 1.8, marginBottom: 48, maxWidth: 520 }}>
+          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.04em', lineHeight: 1.8, marginBottom: 48, maxWidth: 520, textAlign: 'center' }}>
             This Stakeholder Brief is designed for institutional, governmental, tourism, environmental, and community stakeholders who need to understand the proposition, the model, and the process before formal review begins.
           </p>
 
-          <div style={{ display: 'flex', gap: 0, borderTop: `1px solid rgba(200,168,75,0.2)`, paddingTop: 24, flexWrap: 'wrap', marginBottom: 32 }}>
+          {/* Stats */}
+          <div style={{ display: 'flex', gap: 0, borderTop: `1px solid rgba(200,168,75,0.2)`, paddingTop: 24, flexWrap: 'wrap', marginBottom: 32, justifyContent: 'center' }}>
             {[
               { label: 'Navy Island', value: 'Proposed Site' },
               { label: 'Port Antonio', value: 'Mainland Base' },
@@ -249,7 +288,8 @@ function StakeholderPageInner() {
             ))}
           </div>
 
-          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+          {/* CTAs */}
+          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
             <a href="mailto:partnership@zungufestival.com?subject=Stakeholder%20Meeting%20Request"
               style={{ display: 'inline-block', fontFamily: MONO, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase' as const, fontWeight: 700, color: BG, background: GOLD, padding: '14px 28px', textDecoration: 'none' }}>
               Request Stakeholder Meeting
@@ -431,12 +471,63 @@ function StakeholderPageInner() {
             </div>
             <FactCard rows={[
               { l: 'Anchor genre', v: 'Electronic music · Jamaican sound heritage' },
-              { l: 'Main Stage', v: 'Headline programme · 2,000–3,000 capacity' },
-              { l: 'Forest Stage', v: 'Intimate · canopy · 500–800 capacity' },
-              { l: 'Beach Stage', v: 'Sunrise / sunset · 300–500 capacity' },
+              { l: 'Zungu Main', v: 'Headline-scale programme environment' },
+              { l: 'Origins', v: 'Intimate canopy programme environment' },
+              { l: 'Rebirth', v: 'Shoreline / beach programme environment' },
               { l: 'Sound separation', v: 'Stage placement + directional arrays + landform' },
               { l: 'Sound management', v: 'Subject to local authority licencing' },
               { l: 'Local artists', v: 'Jamaican and Caribbean artists · programme priority' },
+            ]} />
+          </div>
+        </div>
+      </ChapterSection>
+
+      {/* ══════════════════════════════════════════════════════════════════
+          ZUNGU SESSIONS — CREATIVE PROGRAMME
+      ══════════════════════════════════════════════════════════════════ */}
+      <ChapterDivider
+        num="04b" eye="The Creative Programme"
+        title="Zungu Sessions."
+        sub="A private creative programme running alongside the main festival — connecting international artists and Jamaican producers across Port Antonio."
+      />
+      <ChapterSection id="sessions" bg={GREEN}>
+        <div style={{ padding: '80px 8vw', position: 'relative' }}>
+          <GhostNum>04</GhostNum>
+          <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 16 }}>
+            NOT A RECORDING DEAL.<br />A CREATIVE ENVIRONMENT.
+          </h2>
+          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
+            During festival week, Zungu creates a private creative programme alongside the main event — bringing selected international artists and Jamaican producers into studios, listening rooms, and creative sessions across Port Antonio.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 48, alignItems: 'start' }}>
+            <div>
+              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+                The programme is designed to:
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px' }}>
+                {[
+                  'Route international creative talent through Port Antonio',
+                  'Create genuine cultural exchange between Jamaican and international artists',
+                  'Build a media archive that associates Port Antonio with world-class creative output',
+                  'Provide local studios and creative facilities with international exposure',
+                ].map(item => (
+                  <li key={item} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', marginBottom: 14 }}>
+                    <span style={{ color: GOLD, flexShrink: 0, fontFamily: MONO, fontSize: 12 }}>—</span>
+                    <span style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
+                Geejam and Port Antonio creative spaces are central to this. The sessions are not forced deliverables. They are a curated environment. What happens in them is what makes them valuable.
+              </p>
+            </div>
+            <FactCard rows={[
+              { l: 'Programme type', v: 'Private creative sessions · not public events' },
+              { l: 'Location', v: 'Geejam · Port Antonio studios · island villas' },
+              { l: 'Participants', v: 'Selected international artists + Jamaican producers' },
+              { l: 'Deliverables', v: 'None guaranteed — conditions are the product' },
+              { l: 'Community benefit', v: 'Local studio exposure · international talent' },
+              { l: 'Media value', v: 'Cultural archive · Port Antonio association' },
             ]} />
           </div>
         </div>
@@ -517,9 +608,9 @@ function StakeholderPageInner() {
               </p>
             </div>
             <FactCard rows={[
-              { l: 'Zungu Main', v: 'South-centre · headline · 2,000–3,000 capacity' },
-              { l: 'Origins', v: 'East · forest canopy · 500–800 capacity' },
-              { l: 'Rebirth', v: 'West · beach · 300–500 capacity' },
+              { l: 'Zungu Main', v: 'South-centre · headline-scale programme environment' },
+              { l: 'Origins', v: 'East · intimate canopy programme environment' },
+              { l: 'Rebirth', v: 'West · shoreline / beach programme environment' },
               { l: 'Simultaneous', v: 'All 3 stages operate simultaneously' },
               { l: 'Acoustic design', v: 'Directional arrays · landform · stage placement' },
               { l: 'Structure', v: 'All temporary · fully demobilised post-event' },
@@ -595,7 +686,7 @@ function StakeholderPageInner() {
                 Zungu is structured as a destination event, not a day-trip. The guest journey begins in Port Antonio: accommodation, orientation, marine transfer to the island. The festival week moves between the island (music and evening programming) and Portland Parish (daytime activities, guided experiences, local dining).
               </p>
               <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
-                On-island accommodation — luxury temporary glamping, structured safari tents — is a premium product positioned for guests who want the full island-immersive experience. Hotel, villa, and guesthouse accommodation in Port Antonio serves the rest of the audience.
+                On-island accommodation — Navy Obsidian premium units and Island Village — is a premium product positioned for guests who want the full island-immersive experience. Hotel, villa, and guesthouse accommodation in Port Antonio serves the rest of the audience.
               </p>
               <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
                 This format puts international visitors inside Port Antonio's economy for seven days. Not for a night. Not for a day-visit. A week.
@@ -603,7 +694,7 @@ function StakeholderPageInner() {
             </div>
             <FactCard rows={[
               { l: 'Duration', v: 'Festival week · 5–7 days' },
-              { l: 'On-island stay', v: 'Luxury glamping · temporary · premium tier' },
+              { l: 'On-island stay', v: 'Navy Obsidian + Island Village · temporary · premium tier' },
               { l: 'Town accommodation', v: 'Port Antonio hotels · villas · guesthouses' },
               { l: 'Daytime', v: 'Island activities + Portland Parish programme' },
               { l: 'Evening', v: 'Three stages · island cross · marine transfer' },

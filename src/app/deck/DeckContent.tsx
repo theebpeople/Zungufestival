@@ -58,7 +58,7 @@ const ROLE_SECTIONS: Record<string, readonly SectionId[]> = {
     'opportunity', 'accommodation', 'capitalbuilds', 'commercial', 'financial', 'risk', 'roadmap',
     'investor', 'cta',
   ],
-  partner:      ['brand', 'meaning', 'portantonio', 'island', 'stages', 'sound', 'experience', 'programming', 'cta'],
+  partner:      ['brand', 'meaning', 'portantonio', 'island', 'stages', 'sound', 'experience', 'programming', 'accommodation', 'roadmap', 'cta'],
   press:        ['brand', 'meaning', 'portantonio', 'island', 'jamaica', 'stages', 'sound', 'experience', 'programming', 'cta'],
   stakeholder:  ['brand', 'meaning', 'portantonio', 'island', 'jamaica', 'stages', 'experience', 'programming', 'cta'],
 };
@@ -611,7 +611,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         <div style={{ flexShrink: 0 }}>
           <img
             src="/zungu-z-mark.png"
-            style={{ height: 30, filter: 'drop-shadow(0 0 10px rgba(200,168,75,.3))', display: 'block' }}
+            style={{ height: 26, filter: 'drop-shadow(0 0 6px rgba(200,168,75,.2))', display: 'block', opacity: 0.65 }}
             alt="Zungu"
           />
         </div>
@@ -722,6 +722,11 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         }
         @media (max-width: 1024px) {
           .deck-nav-desktop { display: none !important; }
+        }
+        @media (max-width: 480px) {
+          .hero-wordmark { font-size: 10vw !important; }
+          .hero-eyebrow-full { display: none !important; }
+          .hero-eyebrow-mobile { display: block !important; }
         }
         body { cursor: crosshair; }
         body::before {
@@ -905,8 +910,8 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
             width: '100%',
           }}
         >
-          {/* Eyebrow */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 28 }}>
+          {/* Eyebrow — desktop full */}
+          <div className="hero-eyebrow-full" style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 28 }}>
             <div style={{ width: 32, height: 1, background: gold }} />
             <p
               style={{
@@ -922,12 +927,33 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
             </p>
             <div style={{ width: 32, height: 1, background: gold }} />
           </div>
+          {/* Eyebrow — mobile short */}
+          <p
+            className="hero-eyebrow-mobile"
+            style={{
+              display: 'none',
+              fontFamily: fontMono,
+              fontSize: 9,
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase' as const,
+              color: gold,
+              fontWeight: 700,
+              textAlign: 'center' as const,
+              maxWidth: 'calc(100vw - 48px)',
+              marginBottom: 28,
+              whiteSpace: 'normal' as const,
+              overflow: 'visible' as const,
+            }}
+          >
+            Navy Island · Port Antonio · 2027
+          </p>
 
           {/* Z-mark */}
-          <img src="/zungu-z-mark.png" width={110} style={{ marginBottom: 24, display: 'block' }} alt="Zungu" />
+          <img src="/zungu-z-mark.png" width={132} style={{ marginBottom: 42, display: 'block', filter: 'drop-shadow(0 0 28px rgba(200,168,75,0.45))' }} alt="Zungu" />
 
           {/* H1 */}
           <h1
+            className="hero-wordmark"
             style={{
               fontFamily: fontDisplay,
               fontSize: 'clamp(58px, 11.5vw, 155px)',
@@ -968,7 +994,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
               marginBottom: 8,
             }}
           >
-            For one week, the most beautiful place on earth welcomes you to Zungu.
+            A 64-acre private island in the Caribbean. No other festival has this site.
           </p>
 
           {/* Sub */}
@@ -982,7 +1008,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
               marginBottom: 40,
             }}
           >
-            Where the magic of sound, sea, sand, movement, and Caribbean rhythm invites you into the ultimate electronic music experience.
+            You arrive by boat. Before a note plays, you&apos;re already somewhere else.
           </p>
 
           {/* CTAs */}
@@ -1041,7 +1067,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         >
           {[
               ['64', 'Acres', 'Private Island'],
-              ['5,000', 'Tickets', 'Year 1'],
+              ['5,000', 'Guests', 'Year 1'],
               ['7', 'Days', '6 Nights'],
               ['Jun 17', 'Opens', '2027'],
             ].map(([num, label, sub], i, arr) => (
@@ -1311,22 +1337,74 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
           <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 30px)', fontWeight: 700, color: CHAPTERS['07'].accent }}>The root is Jamaican.</p>
         </Section>
         <Section sectionBg={CHAPTERS['07'].bg} accent={CHAPTERS['07'].accent} rgb={CHAPTERS['07'].rgb}>
-          <SectionHead label="The Artists" title="Black Coffee. Not a booking. A co-curator." accent={CHAPTERS['07'].accent} />
-          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 16 }}>Black Coffee runs his own festival — the Black Coffee Weekender in Cape Town, now in its second edition. He curates lineups, commissions collaborations, and has a Grammy for Best Dance/Electronic Album. His Hï Ibiza residency ran 7 consecutive seasons.</p>
-          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 36 }}>His label Soulistic Music signed Shimza. They perform back-to-back. They opened Hï Ibiza together. The conversation is a peer conversation — not a booking form.</p>
+          <SectionHead label="The Artists" title="Not a lineup. A thesis." accent={CHAPTERS['07'].accent} />
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 36 }}>
+            {safeRole === 'press'
+              ? 'The following artists represent Zungu\'s curatorial direction. These are not confirmed bookings. They are the artistic thesis the programme is being built around.'
+              : 'The following artists represent Zungu\'s Year One curatorial targets — the booking thesis behind the programme. None of these bookings are confirmed. All are strategic fits for what Zungu is building and why.'}
+          </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2 }}>
             {[
-              { name: 'Black Coffee', tags: 'Grammy Winner · Soulistic Music · Hï Ibiza · 7 Seasons', bio: 'South African DJ, Grammy-winning artist, festival curator. Runs his own event — the Black Coffee Weekender. Plays the Dominican Republic and Caribbean markets regularly. His Afro-house sound — deep percussion, emotional tension, Afropolitan register — is the exact fit for a Caribbean island at night.', why: 'The co-curation angle: he already curates festivals, has a label relationship with Shimza, and collaborated with Diplo on the Grammy album. This is a peer conversation — not a booking form.', headline: true },
-              { name: 'Shimza', tags: 'Soulistic Music · Hï Ibiza · Zamna Tulum', bio: 'South African DJ, signed to Black Coffee\'s Soulistic Music. Performed at the opening of Black Coffee\'s Hï Ibiza residency. Regular at Zamna Tulum, Ibiza Club Chinois, New York, Tokyo. The African-Caribbean sonic connection is a documentable curatorial argument.', why: 'Natural extension of the Black Coffee conversation. The label relationship makes the sequence logical. If Black Coffee is in, Shimza is the next call.', headline: true },
-              { name: 'Keinemusik', tags: '&ME · Rampa · Adam Port · Global Circuit', bio: 'Currently the single biggest draw in the boutique festival circuit globally. Kloud shows sell out 5,000–10,000 seat venues in New York, Paris, London. Melodic, afro-infused house — exact register for a Caribbean island. Zamna regulars.', why: 'The FOMO booking. "Keinemusik is playing on a private island in Jamaica" moves in the right rooms immediately.', headline: false },
-              { name: 'Diplo', tags: 'Port Antonio Resident · Major Lazer · Grammy Collaborator', bio: 'Permanent residence in Port Antonio, Jamaica. Hosts "Higher Ground" events drawing international fashion and music crowd. Collaborated with Black Coffee on the Grammy-winning album Subconsciously.', why: 'Not a booking. He lives here. The conversation is neighbour to neighbour — which changes the fee, the association, and the story the press tells.', headline: false },
-            ].map(({ name, tags, bio, why, headline }) => (
-              <div key={name} style={{ border: `1px solid ${headline ? 'rgba(58,175,122,0.4)' : 'rgba(58,175,122,0.12)'}`, padding: '36px 32px', background: headline ? 'rgba(58,175,122,0.04)' : 'rgba(13,31,20,0.4)', position: 'relative' }}>
-                {headline && <div style={{ position: 'absolute', top: 20, right: 20, fontFamily: fontMono, fontSize: 7, letterSpacing: '0.4em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, fontWeight: 700, border: `1px solid rgba(58,175,122,0.4)`, padding: '3px 8px' }}>HEADLINE</div>}
-                <div style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 28px)', fontWeight: 900, color: cream, marginBottom: 6, lineHeight: 1.1 }}>{name}</div>
-                <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, marginBottom: 16 }}>{tags}</div>
-                <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.75, marginBottom: 16 }}>{bio}</p>
-                <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, lineHeight: 1.7, fontStyle: 'italic', borderTop: `1px solid rgba(58,175,122,0.1)`, paddingTop: 16, marginTop: 16 }}>{why}</p>
+              {
+                name: 'Black Coffee',
+                tags: 'Grammy Winner · Afro-house pioneer · Hï Ibiza 7 seasons · Madison Square Garden · Tomorrowland · Coachella',
+                bio: 'He brought Afro-house to the world, then watched the world reorganise around it. Grammy winner. Seven Hï Ibiza seasons. Madison Square Garden — sold out, with a 12-piece orchestra. His music has featured Pharrell Williams, Alicia Keys, and Usher. His career has been explicitly about repositioning the Global South as a source of culture, not a recipient of it.',
+                whyInvPrt: 'His whole career makes the same argument Zungu is making — from a South African angle rather than a Jamaican one. The Global South doesn\'t need a western co-sign to produce world-class culture. That\'s why, if this conversation happens, it\'s between equals — not an artist and a promoter filling a slot.',
+                whyPress: 'He\'s been talking publicly for years about what it costs to be taken seriously as an artist from a continent the world underestimates. That framing maps directly onto what Zungu is trying to do in Jamaica. If Black Coffee plays here, this isn\'t "big name plays island festival." It\'s two cultures making the same argument on the same stage.',
+                strategic: true,
+              },
+              {
+                name: 'Shimza',
+                tags: 'Afro-tech pioneer · Hï Ibiza · Zamna Tulum · NY Knockdown Center',
+                bio: 'South African DJ. They call him the Effect Master — not a gimmick, just what he does to a room. He was at Hï Ibiza when Black Coffee opened his residency. He\'s been at Zamna Tulum, Knockdown Center in New York, clubs in Tokyo. In October 2024 he and Black Coffee played together in New York to a room that was already full. The set ran late into the morning.',
+                whyInvPrt: 'If the conversation with Black Coffee happens, Shimza is already in it. That October 2024 set wasn\'t a one-off. The chemistry is recent and documented. You don\'t plan for that kind of dynamic. You make room for it.',
+                whyPress: 'The reunion in New York — sold out before announcement, ran until morning — is the story before the story. If they play Navy Island, this narrative has been building for years.',
+                strategic: true,
+              },
+              {
+                name: 'Major Lazer',
+                tags: 'Diplo · Walshy Fire · Ape Drums · Sound system roots · Black Chiney · Stadium act',
+                bio: 'Major Lazer is one of the few global electronic acts that does not need Jamaica explained to it. The project sits at the intersection of dancehall, Caribbean rhythm, global electronic music, and international festival culture — Diplo bringing international reach, Walshy Fire the Jamaican sound-system connection, Ape Drums the Latin and Caribbean percussion edge. \'Lean On\' has billions of streams. \'Pon de Floor\' is still in DJ sets everywhere. They have played stadiums on every continent.',
+                whyInvPrt: 'Major Lazer connects Jamaica, dancehall, electronic music, global festival audiences, and mainstream recognition without requiring a long explanation. If Zungu needs one act that can make the idea legible to the widest possible audience immediately, Major Lazer sits near the top of that list.',
+                whyPress: 'Major Lazer at Zungu would not read as an imported electronic act landing in Jamaica for a weekend. It would read as a return of a sound that Jamaica helped send around the world — now staged on a private island in Port Antonio.',
+                strategic: false,
+              },
+              {
+                name: 'Keinemusik',
+                tags: '&ME · Rampa · Adam Port · Zamna regulars · Kloud',
+                bio: 'Three people — &ME, Rampa, Adam Port — who figured out how to make melodic house feel like it was written for wherever you\'re standing when you hear it. They\'ve played Zamna\'s jungle cenote so many times it\'s become a ritual. Their Kloud shows sell out in New York, Paris, and London — not because they\'re famous, because their audience finds them.',
+                whyInvPrt: 'Their audience is the Zungu audience — they\'ve just been going to different places. People who follow Keinemusik across continents are exactly the people who will look twice at a private island in Jamaica. Watch what happens to availability in Tulum the week they play Zamna. That\'s the effect.',
+                whyPress: 'They have performed at Zamna\'s cenote to sold-out shows. Their audience found them, as it always does. If Keinemusik plays Zungu, it\'s the story of where that audience goes next.',
+                strategic: false,
+              },
+            ].map(({ name, tags, bio, whyInvPrt, whyPress, strategic }) => {
+              const why = safeRole === 'press' ? whyPress : whyInvPrt;
+              return (
+                <div key={name} style={{ border: `1px solid ${strategic ? 'rgba(58,175,122,0.4)' : 'rgba(58,175,122,0.12)'}`, padding: '36px 32px', background: strategic ? 'rgba(58,175,122,0.04)' : 'rgba(13,31,20,0.4)', position: 'relative' }}>
+                  {strategic && <div style={{ position: 'absolute', top: 20, right: 20, fontFamily: fontMono, fontSize: 7, letterSpacing: '0.4em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, fontWeight: 700, border: `1px solid rgba(58,175,122,0.4)`, padding: '3px 8px' }}>STRATEGIC TARGET</div>}
+                  <div style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 28px)', fontWeight: 900, color: cream, marginBottom: 6, lineHeight: 1.1 }}>{name}</div>
+                  <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, marginBottom: 16 }}>{tags}</div>
+                  <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.75, marginBottom: 16 }}>{bio}</p>
+                  <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, lineHeight: 1.7, fontStyle: 'italic', borderTop: `1px solid rgba(58,175,122,0.1)`, paddingTop: 16, marginTop: 16 }}>{why}</p>
+                </div>
+              );
+            })}
+          </div>
+        </Section>
+        {/* ── Zungu Sessions ─────────────────────────────────────────────── */}
+        <Section sectionBg={CHAPTERS['07'].bg} accent={CHAPTERS['07'].accent} rgb={CHAPTERS['07'].rgb}>
+          <SectionHead label="Zungu Sessions" title="Zungu creates the conditions for music to happen." goldLine="Not the obligation. The conditions." accent={CHAPTERS['07'].accent} />
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 36 }}>During festival week, selected artists, producers, and Jamaican collaborators are invited into private sessions, listening rooms, writing camps, and informal creative encounters across Port Antonio. Some of this happens at Geejam — one of the finest studio environments in the Caribbean. Some of it happens in villas, in back rooms, on the island itself. Nothing is forced. Nothing is promised as a deliverable. But the infrastructure is there. The right people are in the right place. In that environment, things tend to happen.</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 2 }}>
+            {[
+              { title: 'Zungu Sessions', sub: 'The Creative Programme', body: 'During festival week, selected artists and Jamaican collaborators are placed in private creative environments across Port Antonio. No forced deliverables. No recording obligations. The programme creates the conditions. The sessions do the rest.' },
+              { title: 'Optional Upside', sub: 'What the Sessions Can Become', body: 'When sessions produce something — a track, a recording, a piece of content — Zungu has a framework for rights, credits, and release. The catalog builds over time. Year One is the first chapter.' },
+              { title: 'The Story That Travels', sub: 'Media Value', body: 'RA, Mixmag, and Pitchfork are not covering "festival in Jamaica." They\'re covering "artists and Jamaican producers in a studio in Port Antonio during festival week." That story doesn\'t need a press release. It needs to happen.' },
+            ].map(({ title, sub, body }) => (
+              <div key={title} style={{ border: `1px solid rgba(58,175,122,0.12)`, padding: '28px 24px', background: 'rgba(3,14,6,0.5)' }}>
+                <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, marginBottom: 8 }}>{sub}</div>
+                <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 20px)', fontWeight: 700, color: cream, marginBottom: 12, lineHeight: 1.2 }}>{title}</p>
+                <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.75 }}>{body}</p>
               </div>
             ))}
           </div>
@@ -1380,7 +1458,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
           {/* Experience mockups */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             {[
-              { src: 'https://res.cloudinary.com/elektricbangaz/image/upload/v1780459516/zungu-glamping-pods_iiwdwk.png', label: 'GLAMPING — Island Accommodation', sub: 'On-island · Premium pods · Full service' },
+              { src: 'https://res.cloudinary.com/elektricbangaz/image/upload/v1780459516/zungu-glamping-pods_iiwdwk.png', label: 'NAVY OBSIDIAN — Island Accommodation', sub: 'On-island · Premium pods · Full service' },
               { src: 'https://res.cloudinary.com/elektricbangaz/image/upload/v1780459528/stage-beach-activities_tnmqx6.png', label: 'THE ISLAND BETWEEN SETS', sub: 'Caribbean water · Daytime programme' },
             ].map(({ src, label, sub }) => (
               <div key={src} style={{ position: 'relative' }}>
@@ -1402,7 +1480,11 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         <ChapterDivider num="09" eye="Chapter Nine" title="Programming." sub="The island moves all day. Every zone has a purpose." accent={CHAPTERS['09'].accent} chBg={CHAPTERS['09'].bg} rgb={CHAPTERS['09'].rgb} />
         <Section id="programming" sectionBg={CHAPTERS['09'].bg} accent={CHAPTERS['09'].accent} rgb={CHAPTERS['09'].rgb}>
           <SectionHead label="Programming" title="The island moves all day." accent={CHAPTERS['09'].accent} />
-          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 32 }}>Zungu is not only nighttime music. Every zone has a purpose: guest experience, revenue, sponsor value, local operator participation, and movement across the island.</p>
+          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 32 }}>
+            {safeRole === 'stakeholder'
+              ? 'Zungu is not only nighttime music. Every zone has a purpose: guest experience, community participation, cultural programming, local operator opportunity, and movement across the island.'
+              : 'Zungu is not only nighttime music. Every zone has a purpose: guest experience, revenue, sponsor value, local operator participation, and movement across the island.'}
+          </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 2 }}>
             {['Food', 'Coffee', 'Bars', 'Water', 'Wellness', 'Art', 'Culture', 'Media', 'The Zungu Shoppe', 'The Trail', 'The Pier', 'The Signal'].map(item => (
               <div key={item} style={{ border: `1px solid rgba(200,168,75,0.08)`, padding: '18px 16px', background: 'rgba(14,24,18,0.6)' }}>
@@ -1458,16 +1540,50 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
       {/* ═══ CHAPTER 11: WHERE YOU STAY — investor only ═══ */}
       {visibleSections.includes('accommodation') && (<>
         <ChapterWrap bg={CHAPTERS['11'].bg} photo="/photos/navy-island-wide.png">
-          <ChapterDivider num="11" eye="Chapter Eleven" title="Where You Stay." sub="On-island accommodation. A layered stay strategy." accent={CHAPTERS['11'].accent} chBg={CHAPTERS['11'].bg} rgb={CHAPTERS['11'].rgb} />
+          <ChapterDivider num="11" eye="Chapter Eleven" title="Where You Stay." sub="Two decisions. One island." accent={CHAPTERS['11'].accent} chBg={CHAPTERS['11'].bg} rgb={CHAPTERS['11'].rgb} />
           <Section id="accommodation" sectionBg={CHAPTERS['11'].bg} accent={CHAPTERS['11'].accent} rgb={CHAPTERS['11'].rgb} style={{ background: 'transparent' }}>
-            <SectionHead label="On-Island Accommodation" title="The island is the hotel." accent={CHAPTERS['11'].accent} />
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Zungu is not a festival where thousands of guests arrive and disappear into an already limited hotel market. Port Antonio is not a mass-hotel destination. That is why accommodation is part of the model. Zungu uses a layered stay strategy: Luxe Glamping Village, Ready Camp, Crew Garden, Island Camp, curated mainland stays, and regional day access.</p>
+            <SectionHead label="Access + Accommodation" title="Two decisions. One island." accent={CHAPTERS['11'].accent} />
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Festival access determines how long you attend and at what level. Accommodation determines where you sleep. These are not the same product. Buying one does not require the other — except for The Thirty, which is always bundled. This gives Zungu the flexibility of a destination festival: some guests sleep inside the music, some base in Port Antonio and cross each morning, some take a private villa and move between both worlds all week.</p>
+
+            {/* Access Products Table */}
+            <SectionHead label="Access Products" title="Five tiers." accent={CHAPTERS['11'].accent} />
+            <div style={{ overflowX: 'auto', marginBottom: 48 }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: fontMono, fontSize: 12, minWidth: 500, maxWidth: 800 }}>
+                <thead>
+                  <tr style={{ borderBottom: `1px solid rgba(155,95,192,0.2)` }}>
+                    {['Product', 'Price', 'Allocation', 'Notes'].map(h => (
+                      <th key={h} style={{ textAlign: 'left', padding: '10px 16px', fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: CHAPTERS['11'].accent, fontWeight: 700 }}>{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    ['Day Pass', 'TBC', 'TBC', 'Single-day island access. No overnight.'],
+                    ['Weekend Pass', 'TBC', 'TBC', 'Accommodation separate.'],
+                    ['Full Week Pass', 'US$600', '3,500', 'June 17–23. Accommodation separate or add-on.'],
+                    ['VIP / Navy Pass', 'US$1,350', '900', 'Premium access. Accommodation separate or bundled.'],
+                    ['The Thirty', 'US$12,500', '30', 'Fully hosted. Bundled. Non-separable.'],
+                  ].map(([product, price, cap, note]) => (
+                    <tr key={product} style={{ borderBottom: `1px solid rgba(155,95,192,0.06)` }}>
+                      <td style={{ padding: '14px 16px', color: cream, fontWeight: 700, fontSize: 13 }}>{product}</td>
+                      <td style={{ padding: '14px 16px', color: CHAPTERS['11'].accent, fontWeight: 700, fontSize: 13 }}>{price}</td>
+                      <td style={{ padding: '14px 16px', color: muted, fontSize: 12 }}>{cap}</td>
+                      <td style={{ padding: '14px 16px', color: muted, fontSize: 12 }}>{note}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Accommodation Products */}
+            <SectionHead label="Accommodation Products" title="Five accommodation types." accent={CHAPTERS['11'].accent} />
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 2, marginBottom: 40 }}>
               {[
-                { tier: 'Luxe Glamping Village', sub: 'Premium on-island accommodation', body: 'The highest-tier on-island stay. Premium finish, full service, dedicated support, and priority access across the island.' },
-                { tier: 'Ready Camp', sub: 'Pre-pitched camping', body: 'Pre-pitched and ready on arrival. Essential comfort for guests who want the island without the logistics.' },
-                { tier: 'Crew Garden', sub: 'Reserved group camping', body: 'Reserved sections for organised groups, crew, and partner allocations.' },
-                { tier: 'Island Camp', sub: 'Controlled bring-your-own camping', body: 'Controlled bring-your-own camping within designated zones. The grassroots layer of the Zungu island experience.' },
+                { tier: 'Island Village', sub: 'General on-island camping', body: 'Island Village is where Zungu lives between sets. Social camping for guests who want to stay inside the island world throughout the week. Close to the stages, surrounded by forest, with shared facilities, communal spaces, and the kind of energy that only happens when people sleep near the music. Available as add-on: Full Week Pass, Weekend Pass, VIP / Navy Pass.' },
+                { tier: 'Navy Obsidian', sub: 'Premium on-island accommodation', body: 'Pre-pitched elevated accommodation. Shared premium facilities, curated communal spaces, and a position on the island set back enough to rest properly — close enough to feel everything. Not a hotel. Not a campsite. Somewhere between the two. Available as add-on or bundle: Full Week Pass, VIP / Navy Pass.' },
+                { tier: 'Port Antonio Hotel + Villa Network', sub: 'Off-island accommodation', body: 'For guests who want to be part of Zungu while sleeping on the mainland. Three tiers: Standard (curated guesthouses), Premium (private villas with dedicated transfer), Private (full villa rental, private marine transfer, concierge integration). Available with all access products.' },
+                { tier: 'The Thirty Compound', sub: 'Bundled with The Thirty only', body: 'Private shoreline compound. Thirty guests maximum. Permanent-feel temporary structures, full service, dedicated host. Separate from all public accommodation zones. Private marine transfer. Zungu Sessions access. Not separately purchasable.' },
+                { tier: 'Artist + Crew Village', sub: 'Operational only', body: 'Separate from all public areas. Full rider facilities. Not commercially available.' },
               ].map(({ tier, sub, body }) => (
                 <div key={tier} style={{ border: `1px solid rgba(155,95,192,0.12)`, padding: '26px 22px', background: 'rgba(6,4,16,0.7)' }}>
                   <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase', color: CHAPTERS['11'].accent, marginBottom: 8 }}>{sub}</div>
@@ -1476,13 +1592,15 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
                 </div>
               ))}
             </div>
-            <div style={{ display: 'flex', border: `1px solid rgba(155,95,192,0.12)`, marginBottom: 32, flexWrap: 'wrap' }}>
-              {[['5,000', 'Year One Target'], ['1,800–2,500', 'On-Island Overnight'], ['1,000–1,500', 'Mainland Stays'], ['1,000–1,700', 'Day / Regional']].map(([num, lbl], i, arr) => (
-                <div key={lbl} style={{ flex: 1, minWidth: 100, padding: '24px 16px', borderRight: i < arr.length - 1 ? `1px solid rgba(155,95,192,0.08)` : 'none', textAlign: 'center' }}>
-                  <span style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 2vw, 24px)', fontWeight: 700, color: CHAPTERS['11'].accent, display: 'block', lineHeight: 1 }}>{num}</span>
-                  <span style={{ fontFamily: fontMono, fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase', color: muted, display: 'block', marginTop: 6 }}>{lbl}</span>
-                </div>
-              ))}
+
+            {/* The Thirty */}
+            <div style={{ border: `1px solid rgba(155,95,192,0.3)`, padding: '32px 30px', marginBottom: 40, background: 'rgba(155,95,192,0.05)' }}>
+              <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: CHAPTERS['11'].accent, marginBottom: 10 }}>The Thirty</div>
+              <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(16px, 2vw, 24px)', fontWeight: 700, color: cream, marginBottom: 16, lineHeight: 1.2 }}>Thirty guests. The smallest tier Zungu offers. Also the most complete.</p>
+              <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 12 }}>Private shoreline compound. Dedicated host throughout the week. Closed-door dinners with artists and collaborators. Morning sessions that don&apos;t appear on the public programme.</p>
+              <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 12 }}>And access to Zungu Sessions — private listening rooms, unreleased music, producer conversations, and creative encounters that happen because the right people are in the right place at the right time.</p>
+              <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 12 }}>The Thirty is not backstage access. It is proximity to the making of the cultural layer of the festival. There is no upgrade path from any other tier. The thirty places exist. Then they don&apos;t.</p>
+              <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 20px)', fontWeight: 700, color: CHAPTERS['11'].accent }}>US$12,500 per person · Hosted island package · Founding-edition priority for future invitations, subject to final package terms.</p>
             </div>
             {/* ── Travel + Access Model ───────────────────────────── */}
             <SectionHead label="Travel + Access Model" title="The journey is part of the product." accent={CHAPTERS['11'].accent} />
@@ -1541,12 +1659,13 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
                 </div>
               ))}
             </div>
-            <div style={{ border: `1px solid rgba(155,95,192,0.25)`, padding: '28px 30px', marginBottom: 40, background: 'rgba(155,95,192,0.04)' }}>
-              <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: CHAPTERS['11'].accent, marginBottom: 10 }}>Investor Read</div>
-              <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 16 }}>A private-island festival cannot rely on guests figuring everything out themselves. The travel layer is part of the product. The more Zungu controls the journey, the more it can improve guest experience, protect operations, increase package value, and route more economic activity through Portland.</p>
-              <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 20px)', fontWeight: 700, color: CHAPTERS['11'].accent }}>The island is the world. The journey is how guests enter it.</p>
-            </div>
-            <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, letterSpacing: '0.1em', textAlign: 'center', padding: '14px', border: `1px solid rgba(155,95,192,0.1)`, maxWidth: 400 }}>Stay at Zungu — coming soon</p>
+            {visibleSections.includes('financial') && (
+              <div style={{ border: `1px solid rgba(155,95,192,0.25)`, padding: '28px 30px', marginBottom: 40, background: 'rgba(155,95,192,0.04)' }}>
+                <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: CHAPTERS['11'].accent, marginBottom: 10 }}>Investor Read</div>
+                <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 16 }}>Separating access from accommodation creates a second revenue moment after ticket purchase. A Full Week Pass holder who adds Navy Obsidian or a Port Antonio villa package increases total spend significantly without changing the headline ticket price. It creates inventory flexibility — Island Village can expand or contract based on environmental review and site survey outcomes, without restructuring the ticket model. And the Port Antonio Hotel and Villa Network routes accommodation revenue through local operators — strengthening the commercial case and the community case simultaneously.</p>
+                <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 20px)', fontWeight: 700, color: CHAPTERS['11'].accent }}>The island is the world. The journey is how guests enter it.</p>
+              </div>
+            )}
           </Section>
         </ChapterWrap>
         <PhotoBreak src="/photos/blue-lagoon-port-antonio.jpg" quote="The island doesn't sleep." label="Navy Island · June 2027" />
@@ -1569,8 +1688,8 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
                 { num: '05', title: 'Water, Sanitation + Waste', body: 'Fresh water supply, sanitation infrastructure, ablution facilities, waste management, and island-wide hygiene operations.' },
                 { num: '06', title: 'Medical, Welfare + Security', body: 'On-site medical team, welfare facilities, crowd safety management, accreditation control, and security operations across all zones.' },
                 { num: '07', title: 'Environmental Protection + Demobilisation', body: 'Pre-event environmental survey, operational impact management, post-event strip-out, site restoration, and demobilisation logistics.' },
-                { num: '08', title: 'Glamping + Hospitality Infrastructure', body: 'Glamping pod installation, guest zone fit-out, hospitality areas, food and beverage infrastructure, and artist and crew facilities.' },
-                { num: '09', title: 'Artist Travel + Hospitality', body: 'International and regional artist travel, accommodation, technical riders, production coordination, and artist movement during festival week.' },
+                { num: '08', title: 'Accommodation Build', body: 'Island Village, Navy Obsidian, and The Thirty Compound installation. Guest zone fit-out, hospitality areas, food and beverage infrastructure, and artist and crew facilities.' },
+                { num: '09', title: 'Zungu Sessions Programme', body: 'Studio partnerships, Geejam coordination, artist logistics for the creative programme. International and regional artist travel, accommodation, technical riders, and artist movement during festival week.' },
                 { num: '10', title: 'Staffing, Permits, Insurance + Contingency', body: 'Production and operations staffing, regulatory permits, event insurance, legal compliance, and contingency reserves across all departments.' },
               ].map(({ num, title, body }) => (
                 <div key={num} style={{ border: `1px solid rgba(212,114,42,0.15)`, padding: '24px 20px', background: 'rgba(6,4,0,0.5)' }}>
@@ -1595,26 +1714,30 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         <ChapterWrap bg={CHAPTERS['12'].bg} photo="/photos/navy-island-satellite.png">
           <ChapterDivider num="13" eye="Chapter Thirteen" title="The Commercial Model." sub="Nine revenue lines. One island. One week." accent={CHAPTERS['12'].accent} chBg={CHAPTERS['12'].bg} rgb={CHAPTERS['12'].rgb} />
           <Section id="commercial" sectionBg={CHAPTERS['12'].bg} accent={CHAPTERS['12'].accent} rgb={CHAPTERS['12'].rgb} style={{ background: 'transparent' }}>
-            <SectionHead label="Ticket Architecture" title="Four tiers. One week." accent={CHAPTERS['12'].accent} />
-            <div style={{ display: 'flex', border: `1px solid rgba(58,175,122,0.12)`, marginBottom: 48, flexWrap: 'wrap' }}>
-              {[['GA', 'US$600', 'Festival Access · 3,500 tickets'], ['VIP / Navy', 'US$1,350', '900 tickets'], ['Glamping / Obsidian', 'US$3,500', '570 packages'], ['The Thirty', 'US$12,500', '30 guests']].map(([tier, price, vol], i, arr) => (
+            <SectionHead label="Access Revenue" title="Base case." accent={CHAPTERS['12'].accent} />
+            <div style={{ display: 'flex', border: `1px solid rgba(58,175,122,0.12)`, marginBottom: 16, flexWrap: 'wrap' }}>
+              {[['Full Week Pass', 'US$600', '3,500 guests · planning figure'], ['VIP / Navy Pass', 'US$1,350', '900 guests · planning figure'], ['The Thirty', 'US$12,500', '30 places · fixed']].map(([tier, price, vol], i, arr) => (
                 <div key={tier} style={{ flex: 1, minWidth: 120, padding: '28px 16px', borderRight: i < arr.length - 1 ? `1px solid rgba(58,175,122,0.08)` : 'none', textAlign: 'center' }}>
-                  <span style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 2vw, 22px)', fontWeight: 700, color: CHAPTERS['12'].accent, display: 'block', lineHeight: 1 }}>{tier}</span>
+                  <span style={{ fontFamily: fontDisplay, fontSize: 'clamp(12px, 1.8vw, 18px)', fontWeight: 700, color: CHAPTERS['12'].accent, display: 'block', lineHeight: 1 }}>{tier}</span>
                   <span style={{ fontFamily: fontMono, fontSize: 16, color: cream, display: 'block', marginTop: 8 }}>{price}</span>
                   <span style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.15em', textTransform: 'uppercase', color: muted, display: 'block', marginTop: 4 }}>{vol}</span>
                 </div>
               ))}
             </div>
+            <div style={{ border: `1px solid rgba(58,175,122,0.2)`, padding: '20px 24px', marginBottom: 48, background: 'rgba(58,175,122,0.04)' }}>
+              <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(16px, 2vw, 22px)', fontWeight: 700, color: CHAPTERS['12'].accent, marginBottom: 8 }}>Base Case Gross Access Revenue: US$3,690,000</p>
+              <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, lineHeight: 1.75 }}>Day Pass and Weekend Pass are priced TBC and not included in the base case. They represent upside, not gaps. Accommodation is a separate revenue line — not embedded in access.</p>
+            </div>
             <SectionHead label="Revenue Stack" title="Nine revenue lines." accent={CHAPTERS['12'].accent} />
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 2 }}>
               {[
-                { line: 'Access', note: 'GA, VIP, Glamping, The Thirty, partner allocation' },
-                { line: 'Accommodation', note: 'Glamping, camping tiers, mainland packages where not bundled' },
+                { line: 'Access', note: 'Full Week Pass, VIP / Navy Pass, The Thirty, Day Pass, Weekend Pass, partner allocation' },
+                { line: 'Accommodation', note: 'Island Village, Navy Obsidian, Port Antonio Hotel + Villa Network (separate from access revenue)' },
                 { line: 'Bars', note: 'Main, stage, VIP, rum, cocktail, bottle service, branded specials' },
+                { line: 'Zungu Sessions', note: 'Branded content, optional IP, studio partnerships, media value' },
                 { line: 'Food', note: 'Vendor commissions, premium dining, breakfast, late-night, partner dinners' },
                 { line: 'Retail', note: 'The Zungu Shoppe, merch, essentials, artist collabs, limited objects' },
-                { line: 'Activities', note: 'Wellness, guided walks, workshops, water activity, mainland excursions' },
-                { line: 'Sponsorship', note: 'Stage, bar, coffee, rum, telecoms, travel, sustainability, wellness, media' },
+                { line: 'Brand Partnerships', note: 'Stage, bar, coffee, rum, telecoms, travel, sustainability, wellness, media' },
                 { line: 'Media + IP', note: 'Zungu Radio, The Signal, recorded sets, interviews, content, catalog' },
                 { line: 'Vendor / Operator Fees', note: 'Stall rentals, commissions, minimum guarantees, category exclusivity' },
               ].map(({ line, note }) => (
@@ -1635,15 +1758,14 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         <ChapterWrap bg={CHAPTERS['13'].bg} photo="/photos/port-antonio.jpg">
           <ChapterDivider num="14" eye="Chapter Fourteen" title="Year One Financials." sub="The base case, the upside lines, and the discipline." accent={CHAPTERS['13'].accent} chBg={CHAPTERS['13'].bg} rgb={CHAPTERS['13'].rgb} />
           <Section id="financial" sectionBg={CHAPTERS['13'].bg} accent={CHAPTERS['13'].accent} rgb={CHAPTERS['13'].rgb} style={{ background: 'transparent' }}>
-            <SectionHead label="Year One Revenue Model" title="The case at 5,000 guests." accent={CHAPTERS['13'].accent} />
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Year One is modelled around 5,000 guests, controlled capacity, premium yield, and multiple revenue lines. The working access model suggests potential gross access revenue of approximately US$5.685M before bars, food, retail, sponsorship, vendor fees, activities, media, accommodation add-ons, and hospitality upsides.</p>
-            <div style={{ overflowX: 'auto', marginBottom: 40 }}>
+            <SectionHead label="Year One Revenue Model" title="The base case at 5,000 guests." accent={CHAPTERS['13'].accent} />
+            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Year One is modelled around 5,000 guests, controlled capacity, premium yield, and multiple revenue lines. Access revenue is the base. Accommodation, F&B, brand partnerships, media, retail, vendor fees, and activities all compound it.</p>
+            <div style={{ overflowX: 'auto', marginBottom: 16 }}>
               <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: fontMono, fontSize: 12, minWidth: 500, maxWidth: 800 }}>
                 <tbody>
                   {[
-                    ['GA / Festival Access', '3,500 × US$600', 'US$2,100,000'],
-                    ['VIP / Navy', '900 × US$1,350', 'US$1,215,000'],
-                    ['Glamping / Obsidian', '570 × US$3,500', 'US$1,995,000'],
+                    ['Full Week Pass', '3,500 × US$600', 'US$2,100,000'],
+                    ['VIP / Navy Pass', '900 × US$1,350', 'US$1,215,000'],
                     ['The Thirty', '30 × US$12,500', 'US$375,000'],
                   ].map(([label, detail, value]) => (
                     <tr key={label} style={{ borderBottom: `1px solid ${dim}` }}>
@@ -1653,15 +1775,18 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
                     </tr>
                   ))}
                   <tr style={{ borderTop: `1px solid ${gold}` }}>
-                    <td colSpan={2} style={{ padding: '14px 16px', color: cream, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', fontSize: 10 }}>INDICATIVE GROSS ACCESS REVENUE</td>
-                    <td style={{ padding: '14px 16px', color: gold, fontWeight: 700, fontSize: 18, textAlign: 'right' }}>US$5,685,000</td>
+                    <td colSpan={2} style={{ padding: '14px 16px', color: cream, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', fontSize: 10 }}>BASE CASE GROSS ACCESS REVENUE</td>
+                    <td style={{ padding: '14px 16px', color: gold, fontWeight: 700, fontSize: 18, textAlign: 'right' }}>US$3,690,000</td>
                   </tr>
                 </tbody>
               </table>
             </div>
+            <div style={{ border: `1px solid rgba(74,143,189,0.15)`, padding: '18px 20px', marginBottom: 40, background: 'rgba(4,8,16,0.5)' }}>
+              <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, lineHeight: 1.8 }}>Earlier model showed US$5,685,000 — that figure included Navy Obsidian accommodation embedded in access revenue. Accommodation is now a separate revenue line. This is a cleaner model, not a weaker one. Day Pass and Weekend Pass are priced TBC and not included in the base case — they represent upside.</p>
+            </div>
             <SectionHead label="Additional Revenue Lines" title="Beyond access." accent={CHAPTERS['13'].accent} />
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 2, marginBottom: 40 }}>
-              {['F&B + Bars', 'Sponsorship', 'Retail', 'Vendor / Operator Fees', 'Activities', 'Accommodation Add-Ons', 'Media + IP', 'Partner Dinners / Hospitality', 'Mainland Package Commissions'].map(line => (
+              {['Accommodation (Island Village, Navy Obsidian, Port Antonio Network)', 'F&B + Bars', 'Brand Partnerships + Sponsorship', 'Retail + Merchandise', 'Zungu Sessions (IP, content, studio partnerships)', 'Media + Content (Zungu Radio, broadcast)', 'Travel Packages (transfers, helicopter, concierge)', 'Premium Experiences', 'Day Pass + Weekend Pass (volume not yet modelled)'].map(line => (
                 <div key={line} style={{ border: `1px solid ${dim}`, padding: '16px 18px', background: 'rgba(6,4,0,0.5)' }}>
                   <p style={{ fontFamily: fontMono, fontSize: 12, color: muted, margin: 0 }}>{line} — <span style={{ color: CHAPTERS['13'].accent }}>TBD</span></p>
                 </div>
@@ -1699,7 +1824,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
                 { risk: 'Marine Logistics', body: 'Ferry movement, private boat access, dock capacity, equipment barging, night transfers, weather holds, emergency marine access, Port Authority coordination, and Coast Guard alignment.' },
                 { risk: 'Weather', body: 'June window post-peak hurricane season. Historical Jamaica weather data reviewed. Covered stages, drainage infrastructure. Weather clause in all contracts. Insurance covers weather event.' },
                 { risk: 'Medical + Safety', body: 'On-island medical post, first-aid points, AEDs, ambulance boat, mainland medical coordination, guest welfare, hydration, heat response, and emergency evacuation.' },
-                { risk: 'Security', body: 'Access control, guest screening, wristband checks, crowd movement, glamping access, backstage zones, artist security, marine access, and restricted areas.' },
+                { risk: 'Security', body: 'Access control, guest screening, wristband checks, crowd movement, accommodation zone access, backstage zones, artist security, marine access, and restricted areas.' },
                 { risk: 'Power', body: 'Temporary production power, generator redundancy, fuel logistics, distribution, weatherproofing, emergency lighting, and backup systems.' },
                 { risk: 'Water + Sanitation', body: 'Potable water, toilets, showers, handwash stations, greywater, vendor water, bathhouses, waste holding, cleaning crews, and removal from the island.' },
                 { risk: 'Environmental', body: 'Reef protection, tree protection, no-build zones, controlled pathways, waste removal, lighting impact, marine activity controls, and post-event restoration.' },

@@ -144,7 +144,7 @@ function PortalCard({
   );
 }
 
-function RequestAccess() {
+function RequestAccess({ onSelect }: { onSelect: (role: string) => void }) {
   return (
     <div
       style={{
@@ -182,7 +182,7 @@ function RequestAccess() {
         }}
       />
 
-      <div style={{ position: 'relative', zIndex: 10, maxWidth: 480 }}>
+      <div style={{ position: 'relative', zIndex: 10, maxWidth: 600, width: '100%' }}>
         <img
           src="/zungu-z-mark.png"
           alt="Zungu"
@@ -209,7 +209,7 @@ function RequestAccess() {
           This portal is available to invited partners, investors, press, and institutional stakeholders. If you have received an invitation link, please use it to access your portal.
         </p>
         <div style={{ width: 40, height: 1, background: 'rgba(200,168,75,0.4)', margin: '0 auto 2rem' }} />
-        <p style={{ fontSize: 9, letterSpacing: '0.2em', color: 'rgba(200,168,75,0.5)', textTransform: 'lowercase' }}>
+        <p style={{ fontSize: 9, letterSpacing: '0.2em', color: 'rgba(200,168,75,0.5)', textTransform: 'lowercase', marginBottom: '3rem' }}>
           For access requests:{' '}
           <a
             href="mailto:partnership@zungufestival.com?subject=Access%20Request"
@@ -218,6 +218,24 @@ function RequestAccess() {
             partnership@zungufestival.com
           </a>
         </p>
+
+        {/* Sign-in for returning users */}
+        <div style={{ width: 40, height: 1, background: 'rgba(200,168,75,0.15)', margin: '0 auto 2rem' }} />
+        <p style={{ fontSize: 9, letterSpacing: '0.35em', color: 'rgba(242,235,217,0.3)', textTransform: 'uppercase', fontWeight: 700, marginBottom: '1.5rem' }}>
+          Already have an account? Select your portal.
+        </p>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
+            gap: 1,
+            width: '100%',
+          }}
+        >
+          {PORTALS.map((p) => (
+            <PortalCard key={p.role} portal={p} onSelect={onSelect} />
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -813,7 +831,7 @@ function SignInContent() {
 
   if (!activeRole) {
     if (!inviteToken) {
-      return <RequestAccess />;
+      return <RequestAccess onSelect={setSelectedRole} />;
     }
     return <PortalChooser onSelect={setSelectedRole} />;
   }

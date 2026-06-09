@@ -134,7 +134,7 @@ const NIGHTS = [
     ],
     visual: [
       { a: 'Arrivals', v: 'Marine transfer from Port Antonio · Harbour crossing · Island check-in' },
-      { a: 'Accommodation', v: 'Glamping pods · Bamboo structures · Villa allocation · Guest services open' },
+      { a: 'Accommodation', v: 'On-island accommodation · Bamboo structures · Villa allocation · Guest services open' },
       { a: 'Welcome', v: 'Welcome parties · Soft openings · First taste of Zungu food + drink' },
       { a: 'Receptions', v: 'Partner receptions · Press briefings · Artist arrivals · Ground crew orientation' },
     ],
@@ -604,7 +604,7 @@ function StagesPageInner() {
                 <div>
                   {night.num === '01' && (
                     <div style={{ position: 'relative', overflow: 'hidden', marginBottom: 24, height: 200 }}>
-                      <img src="/photos/zungu-glamping-luxe.png" alt="Glamping accommodation" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', filter: 'brightness(0.7) saturate(0.85)', display: 'block' }} />
+                      <img src="/photos/zungu-glamping-luxe.png" alt="On-island accommodation" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', filter: 'brightness(0.7) saturate(0.85)', display: 'block' }} />
                       <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to top, ${night.bg}cc 0%, transparent 60%)` }} />
                       <div style={{ position: 'absolute', bottom: 12, left: 16, fontFamily: MONO, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: GOLD, opacity: 0.8 }}>Accommodation · Navy Island</div>
                     </div>
@@ -796,9 +796,9 @@ function StagesPageInner() {
       {/* ══════════════════════════════════════════════════════════════════
           CHAPTER 06 — YEAR ONE BOOKING MODEL (partner + investor only)
       ══════════════════════════════════════════════════════════════════ */}
-      {(role === 'partner' || role === 'investor') && <ChapterDivider num="06" title="Year One" goldLine="Booking Model." desc="30–45 artists and selectors across the festival week. This is the working artist-load model for production planning — not a confirmed lineup." />}
+      {role === 'investor' && <ChapterDivider num="06" title="Year One" goldLine="Booking Model." desc="30–45 artists and selectors across the festival week. This is the working artist-load model for production planning — not a confirmed lineup." />}
 
-      {(role === 'partner' || role === 'investor') && <ChapterSection id="booking" bg={BG} photo="/photos/zungu-stage-design-aerial.png" minHeight="85vh">
+      {role === 'investor' && <ChapterSection id="booking" bg={BG} photo="/photos/zungu-stage-design-aerial.png" minHeight="85vh">
         <div style={{ position: 'relative', padding: '80px 8vw' }}>
           <GhostNum>06</GhostNum>
           <SLabel>// Year One Planning Assumption · Not a Confirmed Lineup</SLabel>
@@ -870,11 +870,11 @@ function StagesPageInner() {
       </ChapterSection>}
 
       {/* ══════════════════════════════════════════════════════════════════
-          CHAPTER 07 — PRODUCTION PARTNER OPPORTUNITIES
+          CHAPTER 07 — PRODUCTION PARTNER OPPORTUNITIES (investor + partner only)
       ══════════════════════════════════════════════════════════════════ */}
-      <ChapterDivider num="07" title="Building the Island" goldLine="Takes Partners." desc="Zungu creates opportunities across staging, technical delivery, infrastructure, logistics, hospitality, transport, sustainability, and guest experience." />
+      {(role === 'investor' || role === 'partner') && <ChapterDivider num="07" title="Building the Island" goldLine="Takes Partners." desc="Zungu creates opportunities across staging, technical delivery, infrastructure, logistics, hospitality, transport, sustainability, and guest experience." />}
 
-      <ChapterSection id="partners" bg={GREEN} photo="/photos/navy-island-wide.png">
+      {(role === 'investor' || role === 'partner') && <ChapterSection id="partners" bg={GREEN} photo="/photos/navy-island-wide.png">
         <div style={{ position: 'relative', padding: '80px 8vw' }}>
           <SLabel>// 07 Production Partner Opportunities</SLabel>
           <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 640, marginBottom: 40 }}>
@@ -886,7 +886,7 @@ function StagesPageInner() {
               { cat: 'Audio, Lighting & Video', desc: 'PA systems, lighting rigs, LED walls, lasers, atmospheric effects, FOH infrastructure.' },
               { cat: 'Power & Site Infrastructure', desc: 'Generator supply, power distribution, cabling, backup systems, site utilities.' },
               { cat: 'Marine & Transport', desc: 'Ferry services, marine transfers, guest movement, artist logistics, equipment delivery.' },
-              { cat: 'Hospitality & Guest Services', desc: 'Glamping, villas, catering, bar infrastructure, VIP services, wellness, guest experience.' },
+              { cat: 'Hospitality & Guest Services', desc: 'Accommodation, villas, catering, bar infrastructure, VIP services, wellness, guest experience.' },
               { cat: 'Media & Content', desc: 'Photography, video, livestream, social content, press access management, archiving.' },
               { cat: 'Sustainability & Environmental', desc: 'Waste management, ecological compliance, site restoration, low-impact infrastructure.' },
               { cat: 'Local Operations & Workforce', desc: 'Local crew, security, community engagement, Jamaican partnerships, local operator pipeline.' },
@@ -901,7 +901,7 @@ function StagesPageInner() {
             ))}
           </div>
         </div>
-      </ChapterSection>
+      </ChapterSection>}
 
       {/* ══════════════════════════════════════════════════════════════════
           CLOSING — ROLE-AWARE NOTE
@@ -941,6 +941,19 @@ function StagesPageInner() {
             <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 12 }}>// Stakeholder Operating Note</div>
             <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>
               The stage plan is a site-use framework developed around three temporary stage environments. Placement, sound direction, operating hours, access routes, and demobilisation are being developed through site survey, environmental guidance, and stakeholder coordination.
+            </p>
+          </div>
+        </section>
+      )}
+      {role === 'press' && (
+        <section style={{ padding: '60px 8vw', backgroundColor: BG, borderTop: `1px solid ${BORDER}` }}>
+          <div style={{ maxWidth: 720 }}>
+            <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD_DIM, marginBottom: 12 }}>// Press Note</div>
+            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 16 }}>
+              Three stages. One private island. Each stage responds to the geography of Navy Island — east, west, and centre-south. Origins at sunrise. Rebirth at sunset. Zungu Main after dark.
+            </p>
+            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
+              Stage architecture, lineup, and full production specification will be released as confirmed. Press enquiries: <a href="mailto:press@zungufestival.com" style={{ color: GOLD, textDecoration: 'none' }}>press@zungufestival.com</a>
             </p>
           </div>
         </section>
