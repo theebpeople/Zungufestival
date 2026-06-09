@@ -443,6 +443,57 @@ function StakeholderPageInner() {
       </ChapterSection>
 
       {/* ══════════════════════════════════════════════════════════════════
+          ZUNGU SESSIONS — CREATIVE PROGRAMME
+      ══════════════════════════════════════════════════════════════════ */}
+      <ChapterDivider
+        num="04b" eye="The Creative Programme"
+        title="Zungu Sessions."
+        sub="A private creative programme running alongside the main festival — connecting international artists and Jamaican producers across Port Antonio."
+      />
+      <ChapterSection id="sessions" bg={GREEN}>
+        <div style={{ padding: '80px 8vw', position: 'relative' }}>
+          <GhostNum>04</GhostNum>
+          <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 16 }}>
+            NOT A RECORDING DEAL.<br />A CREATIVE ENVIRONMENT.
+          </h2>
+          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
+            During festival week, Zungu creates a private creative programme alongside the main event — bringing selected international artists and Jamaican producers into studios, listening rooms, and creative sessions across Port Antonio.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 48, alignItems: 'start' }}>
+            <div>
+              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+                The programme is designed to:
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px' }}>
+                {[
+                  'Route international creative talent through Port Antonio',
+                  'Create genuine cultural exchange between Jamaican and international artists',
+                  'Build a media archive that associates Port Antonio with world-class creative output',
+                  'Provide local studios and creative facilities with international exposure',
+                ].map(item => (
+                  <li key={item} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', marginBottom: 14 }}>
+                    <span style={{ color: GOLD, flexShrink: 0, fontFamily: MONO, fontSize: 12 }}>—</span>
+                    <span style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
+                Geejam and Port Antonio creative spaces are central to this. The sessions are not forced deliverables. They are a curated environment. What happens in them is what makes them valuable.
+              </p>
+            </div>
+            <FactCard rows={[
+              { l: 'Programme type', v: 'Private creative sessions · not public events' },
+              { l: 'Location', v: 'Geejam · Port Antonio studios · island villas' },
+              { l: 'Participants', v: 'Selected international artists + Jamaican producers' },
+              { l: 'Deliverables', v: 'None guaranteed — conditions are the product' },
+              { l: 'Community benefit', v: 'Local studio exposure · international talent' },
+              { l: 'Media value', v: 'Cultural archive · Port Antonio association' },
+            ]} />
+          </div>
+        </div>
+      </ChapterSection>
+
+      {/* ══════════════════════════════════════════════════════════════════
           CH05 — THE AUDIENCE
       ══════════════════════════════════════════════════════════════════ */}
       <ChapterDivider

@@ -274,16 +274,16 @@ function ProductionBriefInner() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 2 }}>
           {[
             {
-              title: 'Main Stage',
-              body: 'Open-air headliner stage. Capacity: 2,000–3,000 standing. Full PA system, lighting rig, LED screen or video projection wall, artist infrastructure, production wings, and covered FOH position. Roof or tensile weather protection required.',
+              title: 'Main Stage (Zungu Main)',
+              body: 'Open-air headliner stage. Design crowd load: 2,000–3,000. Full PA system, lighting rig, LED screen or video projection wall, artist infrastructure, production wings, and covered FOH position. Roof or tensile weather protection required.',
             },
             {
-              title: 'Forest Stage',
-              body: 'Enclosed canopy environment in the island interior. Capacity: 500–800. Natural acoustic treatment. Modular line array. Atmospheric lighting. This is where the festival\'s identity lives — production design must match that intention.',
+              title: 'Forest Stage (Origins)',
+              body: 'Enclosed canopy environment in the island interior. Design crowd load: 500–800. Natural acoustic treatment. Modular line array. Atmospheric lighting. This is where the festival\'s identity lives — production design must match that intention.',
             },
             {
-              title: 'Beach Stage',
-              body: 'Sunrise/sunset programme. Capacity: 300–500 seated or standing. Minimal structure — the environment is the design. Sound must not bleed to Main Stage. DJ-first configuration with live instrumentation provision.',
+              title: 'Shoreline Stage (Rebirth)',
+              body: 'Sunset/transition programme. Design crowd load: 800–1,200. Minimal structure — the environment is the design. Sound must not bleed to Main Stage. DJ-first configuration with live instrumentation provision.',
             },
           ].map(c => <Card key={c.title} title={c.title} body={c.body} accent={rust} />)}
         </div>
@@ -323,10 +323,11 @@ function ProductionBriefInner() {
         <Divider accent={gold} />
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 2 }}>
           {[
-            { title: 'Safari Tents', body: 'Structured canvas units with real beds, lighting, USB power, and hanging storage. 60–80 units across two clusters.' },
-            { title: 'Eco Cabins', body: 'Prefabricated timber units with integrated power. Higher price tier. Requires extended lead time for fabrication and shipping.' },
-            { title: 'Shared Dorms', body: 'High-capacity bunk units for crew and lower-tier guests. Communal wash facilities. Minimum standard: weatherproof, ventilated, lockable.' },
-            { title: 'Artist Compound', body: 'Separate artist village with private accommodation, dedicated catering, and secure perimeter. Production partner manages security boundary.' },
+            { title: 'Navy Obsidian', body: 'Premium on-island glamping village. Pre-pitched elevated accommodation. 570 guests across accommodation clusters. Curated communal spaces. Dedicated premium facilities. Power, lighting, serviced beds.' },
+            { title: 'The Thirty Compound', body: 'Private shoreline compound. 30 guests maximum. Full-service, dedicated host. Separate from all public guest areas. Private marine transfer access.' },
+            { title: 'Island Village', body: 'General on-island camping. Festival culture. Shared facilities. Power connections. 24-hour island access. Available as add-on to Full Week Pass, Weekend Pass, and VIP / Navy Pass based on inventory.' },
+            { title: 'Full Week + VIP Mainland Guests', body: 'Full Week + VIP Mainland Guests — guests based in the Port Antonio Hotel + Villa Network with scheduled daily marine transfer unless Island Village or Navy Obsidian is purchased.' },
+            { title: 'Artist + Crew Compound', body: 'Separate from all public areas. Full rider facilities. Dedicated catering, secure perimeter, dedicated marine access. Production partner manages security boundary. Not commercially available.' },
           ].map(c => <Card key={c.title} title={c.title} body={c.body} accent={gold} />)}
         </div>
         <div style={{ marginTop: '2rem', padding: '1rem 1.5rem', borderLeft: `3px solid rgba(200,168,75,0.4)` }}>

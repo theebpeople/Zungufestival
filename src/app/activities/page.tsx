@@ -40,7 +40,7 @@ const ZONES = [
     name: 'THE SANCTUM',
     tag: 'Wellness + Recovery',
     purpose: 'The Sanctum is the island\'s recovery environment: quiet, wellness, reset, and premium guest care.',
-    revLogic: 'Paid treatments, wellness packages, VIP and Glamping credits, recovery sponsors, hospitality add-ons, and premium booking windows.',
+    revLogic: 'Paid treatments, wellness packages, VIP and on-island accommodation credits, recovery sponsors, hospitality add-ons, and premium booking windows.',
     operatorModel: 'Professional wellness providers deliver services under Zungu scheduling, space, pricing, and guest-flow controls.',
     partnerOpp: 'Hydration, skincare, sleep, athletic recovery, wellness, hospitality, and premium lifestyle partners.',
     opNote: 'No medical or therapeutic claims should be made without qualified professionals, proper licensing, insurance, and waivers. Medical-grade recovery services only operate where legally approved and professionally supervised.',
@@ -119,10 +119,10 @@ const ZONES = [
 
 // ── Commercial model ──────────────────────────────────────────────────────────
 const COMMERCIAL_LINES = [
-  { cat: 'CORE ACCESS', items: 'GA, VIP, Glamping, partner allocation, press allocation control.', model: 'Ticket yield.' },
+  { cat: 'CORE ACCESS', items: 'Day Pass, Weekend Pass, Full Week Pass, VIP / Navy Pass, The Thirty, partner allocation, press allocation control.', model: 'Ticket yield.' },
   { cat: 'HOSPITALITY', items: 'Accommodation, transfers, concierge, premium lounges, private dinners, The Thirty packages.', model: 'Tier markup + hospitality package margin.' },
   { cat: 'BARS', items: 'Main bars, stage bars, VIP bars, rum bar, cocktail bars, non-alcoholic bars, bottle service, branded specials, reusable cup deposits.', model: 'Zungu-controlled or lead bar partner. High-margin. Core profit center.' },
-  { cat: 'FOOD', items: 'Vendor stall fees, commission, Zungu-operated counters (breakfast, late-night), VIP food credits, Glamping meals, chef dinners, partner dinners.', model: 'Hybrid. Vendor fees + commission + controlled premium dining.' },
+  { cat: 'FOOD', items: 'Vendor stall fees, commission, Zungu-operated counters (breakfast, late-night), VIP food credits, on-island accommodation meal credits, chef dinners, partner dinners.', model: 'Hybrid. Vendor fees + commission + controlled premium dining.' },
   { cat: 'RETAIL', items: 'Zungu Shoppe, essentials, official merchandise, artist collabs, local goods.', model: 'Zungu-controlled or managed retail partner. Brand/IP monetisation.' },
   { cat: 'ACTIVITIES', items: 'Water excursions, wellness bookings, massage, cold plunge, guided walks, workshops, chef dinners, premium tastings, private boats, catamaran.', model: 'Paid add-ons layered over base ticket value. Booking commission + specialist operator contracts.' },
   { cat: 'SPONSORSHIP', items: 'Stage, bar, coffee, rum, telecoms, airline/travel, bank/payment, hydration, sustainability, media, wellness.', model: 'Each sponsor requires a physical asset or media placement — not only logo. Activation fee.' },
@@ -227,8 +227,8 @@ function ChapterDivider({ num, eye, title, sub }: { num: string; eye: string; ti
 // ── ZoneCard ──────────────────────────────────────────────────────────────────
 function ZoneCard({ zone, role }: { zone: typeof ZONES[0]; role: string }) {
   const [open, setOpen] = useState(false);
-  const showCommercial = safeRole === 'partner' || safeRole === 'investor';
-  const showOpNote = safeRole === 'partner' || safeRole === 'investor' || safeRole === 'stakeholder';
+  const showCommercial = role === 'partner' || role === 'investor';
+  const showOpNote = role === 'partner' || role === 'investor' || role === 'stakeholder';
   const rows = [
     { label: 'PURPOSE', text: zone.purpose, show: true },
     { label: 'REVENUE LOGIC', text: zone.revLogic, show: showCommercial },
@@ -420,7 +420,7 @@ function ActivitiesPageInner() {
         <div style={{ padding: '80px 8vw' }}>
           <SLabel>// Nine Zones · Navy Island</SLabel>
           <div style={{ display: 'grid', gap: 2 }}>
-            {ZONES.map(zone => <ZoneCard key={zone.num} zone={zone} role={role} />)}
+            {ZONES.map(zone => <ZoneCard key={zone.num} zone={zone} role={safeRole} />)}
           </div>
         </div>
       </ChapterSection>
@@ -456,7 +456,7 @@ function ActivitiesPageInner() {
             {[
               { label: 'Included in Festival Access', color: DIM, items: ['All stages', 'Basic island programming', 'The Trail', 'Selected talks / culture sessions', 'Market access', 'General lounge spaces', 'Basic water/refill access', 'Some sponsor activations'] },
               { label: 'Paid Add-Ons', color: GOLD, items: ['Premium wellness treatments', 'Massage + IV hydration', 'Private boat trips', 'Catamaran + deep sea fishing', 'Guided excursions', 'The Ambush', 'Premium workshops', 'Chef dinners + premium tastings', 'Merchandise'] },
-              { label: 'Included in VIP + Glamping', color: RUST, items: ['Priority transfers', 'Private bars + viewing areas', 'Concierge service', 'Meal or drink credits', 'Wellness credits', 'Priority booking windows', 'Private lounges', 'Dedicated facilities'] },
+              { label: 'Included in VIP / Navy Pass + The Thirty', color: RUST, items: ['Priority transfers', 'Private bars + viewing areas', 'Concierge service', 'Meal or drink credits', 'Wellness credits', 'Priority booking windows', 'Private lounges', 'Dedicated facilities'] },
             ].map(({ label, color, items }) => (
               <div key={label} style={{ border: `1px solid ${DIM}`, padding: '28px 24px' }}>
                 <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', color, fontWeight: 700, marginBottom: 20 }}>{label}</div>
@@ -558,7 +558,7 @@ function ActivitiesPageInner() {
             {[
               { label: 'Festival Access Only', items: ['Ferry transfer included', 'Island zone access', 'Stage access', 'General Market + Trail'] },
               { label: 'VIP Package', items: ['Priority transfer included', 'VIP bars and viewing', 'Meal and drink credits', 'Concierge service', 'Priority activity booking'] },
-              { label: 'Glamping Package', items: ['On-island accommodation', 'Ferry transfer included', 'Dedicated facilities', 'Wellness credits', 'Wake-up programming'] },
+              { label: 'Navy Obsidian Package', items: ['On-island accommodation', 'Ferry transfer included', 'Dedicated facilities', 'Wellness credits', 'Wake-up programming'] },
               { label: 'The Thirty Concierge', items: ['Full travel coordination', 'Private marine transfer', 'Villa or suite accommodation', 'Private dining', 'Dedicated concierge', 'Artist and investor access'] },
             ].map(({ label, items }) => (
               <div key={label} style={{ border: `1px solid ${DIM}`, padding: '24px 24px' }}>
