@@ -611,7 +611,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         <div style={{ flexShrink: 0 }}>
           <img
             src="/zungu-z-mark.png"
-            style={{ height: 30, filter: 'drop-shadow(0 0 10px rgba(200,168,75,.3))', display: 'block' }}
+            style={{ height: 26, filter: 'drop-shadow(0 0 6px rgba(200,168,75,.2))', display: 'block', opacity: 0.65 }}
             alt="Zungu"
           />
         </div>
@@ -924,7 +924,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
           </div>
 
           {/* Z-mark */}
-          <img src="/zungu-z-mark.png" width={110} style={{ marginBottom: 24, display: 'block' }} alt="Zungu" />
+          <img src="/zungu-z-mark.png" width={132} style={{ marginBottom: 42, display: 'block', filter: 'drop-shadow(0 0 28px rgba(200,168,75,0.45))' }} alt="Zungu" />
 
           {/* H1 */}
           <h1
