@@ -42,6 +42,7 @@ const CHAPTERS: Record<string, { bg: string; accent: string; rgb: string }> = {
 
 const fontDisplay = "'Unbounded', sans-serif";
 const fontMono = "'Space Mono', monospace";
+const fontBody = "'Inter', 'Helvetica Neue', sans-serif";
 
 // ── Section IDs ───────────────────────────────────────────────────────────────
 const SECTIONS = [
@@ -1149,17 +1150,17 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         <Section id="meaning" sectionBg={CHAPTERS['02'].bg} accent={CHAPTERS['02'].accent} rgb={CHAPTERS['02'].rgb}>
           <SectionHead label="What Does Zungu Mean?" title="Everything in rhythm." accent={CHAPTERS['02'].accent} />
           <div style={{ maxWidth: 800, marginBottom: 32 }}>
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 20 }}>Zungu begins with rhythm.</p>
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 20 }}>The name borrows its pulse from Yellowman&apos;s &ldquo;Zungguzungguguzungguzeng&rdquo; — one of dancehall&apos;s most iconic sounds. A phrase built from energy, instinct, repetition, and movement.</p>
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 20 }}>It does not need to be translated to be felt.</p>
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: cream, fontWeight: 700, lineHeight: 1.9, marginBottom: 12 }}>For Zungu, the meaning is simple:</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 20 }}>Zungu begins with rhythm.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 20 }}>The name borrows its pulse from Yellowman&apos;s &ldquo;Zungguzungguguzungguzeng&rdquo; — one of dancehall&apos;s most iconic sounds. A phrase built from energy, instinct, repetition, and movement.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 20 }}>It does not need to be translated to be felt.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: cream, fontWeight: 700, lineHeight: 1.9, marginBottom: 12 }}>For Zungu, the meaning is simple:</p>
             {['Everything in rhythm.', 'The crowd.', 'The bass.', 'The island.', 'The night.', 'The culture.', 'The world coming back to Jamaica.'].map((line, i) => (
               <p key={i} style={{ fontFamily: fontDisplay, fontSize: i === 0 ? 'clamp(18px, 2.5vw, 30px)' : 'clamp(14px, 1.8vw, 22px)', fontWeight: i === 0 ? 700 : 300, color: i === 0 ? cream : muted, lineHeight: 1.4, margin: '6px 0' }}>{line}</p>
             ))}
           </div>
           <div style={{ marginTop: 40, paddingTop: 32, borderTop: `1px solid ${dim}` }}>
             <SectionHead label="The Brand Thesis" title="Jamaica gave the world rhythm." goldLine="Zungu brings it home." accent={CHAPTERS['02'].accent} />
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 20 }}>From sound systems to dub, dancehall, bass culture, remix culture, MC culture, jungle, drum and bass, dubstep, and global club music — Jamaica&apos;s influence has moved through the world for decades.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 20 }}>From sound systems to dub, dancehall, bass culture, remix culture, MC culture, jungle, drum and bass, dubstep, and global club music — Jamaica&apos;s influence has moved through the world for decades.</p>
             <QuoteBlock quote="A Jamaican-born electronic music destination built for the world." attr="Core Brand Positioning" />
           </div>
         </Section>
@@ -1173,11 +1174,11 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         <Section id="portantonio" sectionBg={CHAPTERS['03'].bg} accent={CHAPTERS['03'].accent} rgb={CHAPTERS['03'].rgb}>
           <SectionHead label="Port Antonio" title="The ecosystem behind the island." accent={CHAPTERS['03'].accent} />
           <div style={{ maxWidth: 880, marginBottom: 32 }}>
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>Zungu is anchored on Navy Island, but Port Antonio powers the experience. The town supplies the ecosystem: boats, drivers, hotels, villas, guest houses, restaurants, bars, guides, vendors, food suppliers, production crew, wellness practitioners, artists, and mainland activations.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>Zungu is anchored on Navy Island, but Port Antonio powers the experience. The town supplies the ecosystem: boats, drivers, hotels, villas, guest houses, restaurants, bars, guides, vendors, food suppliers, production crew, wellness practitioners, artists, and mainland activations.</p>
             <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 32px)', fontWeight: 700, color: cream, lineHeight: 1.3, marginBottom: 8 }}>Navy Island is the world.</p>
             <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 32px)', fontWeight: 700, color: CHAPTERS['03'].accent, lineHeight: 1.3, marginBottom: 24 }}>Port Antonio is the heartbeat behind it.</p>
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 8 }}>This is not charity language. It is business logic.</p>
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9 }}>The stronger Port Antonio is inside the model, the more locally defensible Zungu becomes.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 8 }}>This is not charity language. It is business logic.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9 }}>The stronger Port Antonio is inside the model, the more locally defensible Zungu becomes.</p>
           </div>
         </Section>
       </ChapterWrap>
@@ -1203,7 +1204,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
                 </div>
               ))}
             </div>
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 8 }}>This is not a field with a stage on it.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 8 }}>This is not a field with a stage on it.</p>
             <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(20px, 3vw, 38px)', fontWeight: 700, lineHeight: 1.3, color: CHAPTERS['04'].accent }}>This is an entire island transformed.</p>
           </div>
         </Section>
@@ -1213,7 +1214,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         </Section>
         <Section sectionBg={CHAPTERS['04'].bg} accent={CHAPTERS['04'].accent} rgb={CHAPTERS['04'].rgb}>
           <SectionHead label="Stage Placement · Navy Island" title="Three stages. One island." accent={CHAPTERS['04'].accent} />
-          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 28 }}>Provisional placement across the island&apos;s natural terrain. Stages face the sea — not the town. Final positioning subject to site survey.</p>
+          <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 28 }}>Provisional placement across the island&apos;s natural terrain. Stages face the sea — not the town. Final positioning subject to site survey.</p>
           <div style={{ marginBottom: 32 }}><StageMap /></div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px 40px', marginBottom: 48 }}>
             {[{ color: gold, name: 'ZUNGU MAIN', sub: 'Centre Island · Mainstage' }, { color: teal, name: 'ORIGINS', sub: 'Sunrise Stage · Earth Sound' }, { color: rust, name: 'REBIRTH', sub: 'Sunset Stage · Underground House' }, { color: dim, name: 'ARRIVAL DOCK', sub: '~5 min from Errol Flynn Marina' }].map(({ color, name, sub }) => (
@@ -1262,13 +1263,13 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '6vw' }}>
             <div>
               <SectionHead label="Why Jamaica?" title="The world already moves to Jamaica." accent={CHAPTERS['05'].accent} />
-              <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>Jamaican sound-system culture changed how music is played, felt, remixed, performed, and experienced.</p>
-              <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 24 }}>That influence moved outward — through dancehall, dub, hip-hop, jungle, drum and bass, dubstep, grime, bass culture, and global electronic music.</p>
+              <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>Jamaican sound-system culture changed how music is played, felt, remixed, performed, and experienced.</p>
+              <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 24 }}>That influence moved outward — through dancehall, dub, hip-hop, jungle, drum and bass, dubstep, grime, bass culture, and global electronic music.</p>
               <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(16px, 2vw, 24px)', fontWeight: 700, color: CHAPTERS['05'].accent, lineHeight: 1.3 }}>Zungu brings the world back to the source.</p>
             </div>
             <div>
               <SectionHead label="Why Navy Island?" title="An island can become a world." accent={CHAPTERS['05'].accent} />
-              <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>Navy Island gives Zungu what no built venue can fake: forest, water, separation, mystery, arrival, scale, and transformation.</p>
+              <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>Navy Island gives Zungu what no built venue can fake: forest, water, separation, mystery, arrival, scale, and transformation.</p>
               <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(16px, 2vw, 24px)', fontWeight: 700, color: CHAPTERS['05'].accent, lineHeight: 1.3 }}>For one week, it is not just Navy Island. It is Zungu.</p>
             </div>
           </div>
@@ -1282,7 +1283,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         <ChapterDivider num="06" eye="Chapter Six" title="The Stages." sub="Three stages give Zungu its shape. Each one tied to a natural moment of the island." accent={CHAPTERS['06'].accent} chBg={CHAPTERS['06'].bg} rgb={CHAPTERS['06'].rgb} />
         <Section id="stages" sectionBg={CHAPTERS['06'].bg} accent={CHAPTERS['06'].accent} rgb={CHAPTERS['06'].rgb}>
           <SectionHead label="The Stages" title="Three stages." goldLine="One island." accent={CHAPTERS['06'].accent} />
-          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 40 }}>The stages are not just places to perform. They are the rhythm of the island.</p>
+          <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 40 }}>The stages are not just places to perform. They are the rhythm of the island.</p>
           <div className="grid-3" style={{ gap: 2 }}>
             {[
               { name: 'ORIGINS', accent: rust, pos: 'Sunrise Stage', tags: ['Earth sound', 'Tribal fusion', 'Organic electronic', 'Deep percussion'], body: 'Faces the sunrise. Origins carries the first movement of the island: earth sound, tribal percussion, organic electronic music, fusion, deep drums, and music that feels rooted before it becomes electronic. It is the source stage.' },
@@ -1292,7 +1293,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
               <div key={name} style={{ border: `1px solid rgba(200,168,75,0.1)`, padding: '30px 26px', background: 'rgba(14,24,18,0.8)' }}>
                 <div style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.3em', color: accent, textTransform: 'uppercase', marginBottom: 8 }}>{pos}</div>
                 <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(22px, 3vw, 38px)', fontWeight: 900, color: accent, letterSpacing: '-0.02em', marginBottom: 16, lineHeight: 1 }}>{name}</p>
-                <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.8, marginBottom: 20 }}>{body}</p>
+                <p style={{ fontFamily: fontBody, fontSize: 14, color: muted, lineHeight: 1.8, marginBottom: 20 }}>{body}</p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
                   {tags.map(tag => <span key={tag} style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: accent, border: `1px solid ${accent}30`, padding: '4px 10px' }}>{tag}</span>)}
                 </div>
@@ -1332,7 +1333,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         </Section>
         <Section sectionBg={CHAPTERS['07'].bg} accent={CHAPTERS['07'].accent} rgb={CHAPTERS['07'].rgb}>
           <SectionHead label="The Artists" title="Not a lineup. A thesis." accent={CHAPTERS['07'].accent} />
-          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 36 }}>
+          <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 36 }}>
             {safeRole === 'press'
               ? 'The following artists represent Zungu\'s curatorial direction. These are not confirmed bookings. They are the artistic thesis the programme is being built around.'
               : 'The following artists represent Zungu\'s Year One curatorial targets — the booking thesis behind the programme. None of these bookings are confirmed. All are strategic fits for what Zungu is building and why.'}
@@ -1378,7 +1379,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
                   {strategic && <div className="artist-badge" style={{ position: 'absolute', top: 20, right: 20, fontFamily: fontMono, fontSize: 7, letterSpacing: '0.4em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, fontWeight: 700, border: `1px solid rgba(58,175,122,0.4)`, padding: '3px 8px' }}>STRATEGIC TARGET</div>}
                   <div style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 28px)', fontWeight: 900, color: cream, marginBottom: 6, lineHeight: 1.1 }}>{name}</div>
                   <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, marginBottom: 16 }}>{tags}</div>
-                  <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.75, marginBottom: 16 }}>{bio}</p>
+                  <p style={{ fontFamily: fontBody, fontSize: 13, color: muted, lineHeight: 1.75, marginBottom: 16 }}>{bio}</p>
                   <p style={{ fontFamily: fontMono, fontSize: 11, color: muted, lineHeight: 1.7, fontStyle: 'italic', borderTop: `1px solid rgba(58,175,122,0.1)`, paddingTop: 16, marginTop: 16 }}>{why}</p>
                 </div>
               );
@@ -1388,7 +1389,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         {/* ── Zungu Sessions ─────────────────────────────────────────────── */}
         <Section sectionBg={CHAPTERS['07'].bg} accent={CHAPTERS['07'].accent} rgb={CHAPTERS['07'].rgb}>
           <SectionHead label="Zungu Sessions" title="Zungu creates the conditions for music to happen." goldLine="Not the obligation. The conditions." accent={CHAPTERS['07'].accent} />
-          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 36 }}>During festival week, selected artists, producers, and Jamaican collaborators are invited into private sessions, listening rooms, writing camps, and informal creative encounters across Port Antonio. Some of this happens at Geejam — one of the finest studio environments in the Caribbean. Some of it happens in villas, in back rooms, on the island itself. Nothing is forced. Nothing is promised as a deliverable. But the infrastructure is there. The right people are in the right place. In that environment, things tend to happen.</p>
+          <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 36 }}>During festival week, selected artists, producers, and Jamaican collaborators are invited into private sessions, listening rooms, writing camps, and informal creative encounters across Port Antonio. Some of this happens at Geejam — one of the finest studio environments in the Caribbean. Some of it happens in villas, in back rooms, on the island itself. Nothing is forced. Nothing is promised as a deliverable. But the infrastructure is there. The right people are in the right place. In that environment, things tend to happen.</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 2 }}>
             {[
               { title: 'Zungu Sessions', sub: 'The Creative Programme', body: 'During festival week, selected artists and Jamaican collaborators are placed in private creative environments across Port Antonio. No forced deliverables. No recording obligations. The programme creates the conditions. The sessions do the rest.' },
@@ -1398,7 +1399,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
               <div key={title} style={{ border: `1px solid rgba(58,175,122,0.12)`, padding: '28px 24px', background: 'rgba(3,14,6,0.5)' }}>
                 <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, marginBottom: 8 }}>{sub}</div>
                 <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 20px)', fontWeight: 700, color: cream, marginBottom: 12, lineHeight: 1.2 }}>{title}</p>
-                <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.75 }}>{body}</p>
+                <p style={{ fontFamily: fontBody, fontSize: 13, color: muted, lineHeight: 1.75 }}>{body}</p>
               </div>
             ))}
           </div>
@@ -1407,7 +1408,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         {visibleSections.includes('opportunity') && (
           <Section sectionBg={CHAPTERS['07'].bg} accent={CHAPTERS['07'].accent} rgb={CHAPTERS['07'].rgb} style={{ background: 'transparent' }}>
             <SectionHead label="Year One Booking Model" title="Fewer, stronger cultural signals." accent={CHAPTERS['07'].accent} />
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Year One booking model: 30–45 artists and selectors across the festival week. Zungu&apos;s Year One approach is built around quality over quantity: a small number of major international anchors, a curated regional and Jamaican support layer, and local selectors across sunrise, sunset, pop-up, and radio formats. Every booking is intended to serve a purpose within the broader experience rather than simply increase lineup volume. This makes Zungu feel disciplined, not small.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Year One booking model: 30–45 artists and selectors across the festival week. Zungu&apos;s Year One approach is built around quality over quantity: a small number of major international anchors, a curated regional and Jamaican support layer, and local selectors across sunrise, sunset, pop-up, and radio formats. Every booking is intended to serve a purpose within the broader experience rather than simply increase lineup volume. This makes Zungu feel disciplined, not small.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 2, marginBottom: 40 }}>
               {[
                 { tier: 'Global Anchor', count: '1', purpose: 'Expensive category signal. Establishes international credibility and gives the market one unmistakable reason to pay attention.' },
@@ -1424,12 +1425,12 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
             </div>
             <div style={{ border: `1px solid rgba(58,175,122,0.15)`, padding: '28px 30px', marginBottom: 36, background: 'rgba(3,14,6,0.5)' }}>
               <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, marginBottom: 12 }}>Benchmark</div>
-              <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 16 }}>Comparable destination electronic festivals often operate with larger multi-showcase lineups. BPM Costa Rica has presented editions in the 80+ artist range, while SXM and similar regional destination festivals often sit in the 40–80+ artist range depending on the year, venue spread, and programming model.</p>
+              <p style={{ fontFamily: fontBody, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 16 }}>Comparable destination electronic festivals often operate with larger multi-showcase lineups. BPM Costa Rica has presented editions in the 80+ artist range, while SXM and similar regional destination festivals often sit in the 40–80+ artist range depending on the year, venue spread, and programming model.</p>
               <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 20px)', fontWeight: 700, color: CHAPTERS['07'].accent }}>Zungu Year One should not attempt to match that scale immediately. A disciplined 30–45 artist/selector model is more appropriate for a 5,000-person private-island launch.</p>
             </div>
             <div style={{ border: `1px solid rgba(58,175,122,0.2)`, padding: '28px 30px', background: 'rgba(58,175,122,0.04)' }}>
               <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, marginBottom: 10 }}>Investor Read</div>
-              <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.85 }}>A smaller artist count does not weaken Zungu. It protects the budget, sharpens the curation, reduces scheduling complexity, and allows the festival to spend more deliberately on the few names that carry real perception value. The island, stage architecture, pop-ups, hospitality, media, and Jamaican cultural thesis do the rest of the work.</p>
+              <p style={{ fontFamily: fontBody, fontSize: 14, color: muted, lineHeight: 1.85 }}>A smaller artist count does not weaken Zungu. It protects the budget, sharpens the curation, reduces scheduling complexity, and allows the festival to spend more deliberately on the few names that carry real perception value. The island, stage architecture, pop-ups, hospitality, media, and Jamaican cultural thesis do the rest of the work.</p>
             </div>
           </Section>
         )}
@@ -1443,10 +1444,10 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         <Section id="experience" sectionBg={CHAPTERS['08'].bg} accent={CHAPTERS['08'].accent} rgb={CHAPTERS['08'].rgb}>
           <SectionHead label="The Experience" title="Built around movement." accent={CHAPTERS['08'].accent} />
           <div style={{ maxWidth: 880, marginBottom: 40 }}>
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>By day, the island opens through food, coffee, bars, water, wellness, art, media, culture, retail, and discovery.</p>
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>At sunset, the energy shifts.</p>
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>At night, the stages take over.</p>
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 32 }}>By sunrise, the island returns to rhythm — slower, deeper, changed.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>By day, the island opens through food, coffee, bars, water, wellness, art, media, culture, retail, and discovery.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>At sunset, the energy shifts.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>At night, the stages take over.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 32 }}>By sunrise, the island returns to rhythm — slower, deeper, changed.</p>
             <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 32px)', fontWeight: 700, color: CHAPTERS['08'].accent }}>Zungu is not built around one moment. It is built around movement.</p>
           </div>
           {/* Experience mockups */}
@@ -1469,7 +1470,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         <ChapterDivider num="09" eye="Chapter Nine" title="Programming." sub="The island moves all day. Every zone has a purpose." accent={CHAPTERS['09'].accent} chBg={CHAPTERS['09'].bg} rgb={CHAPTERS['09'].rgb} />
         <Section id="programming" sectionBg={CHAPTERS['09'].bg} accent={CHAPTERS['09'].accent} rgb={CHAPTERS['09'].rgb}>
           <SectionHead label="Programming" title="The island moves all day." accent={CHAPTERS['09'].accent} />
-          <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 32 }}>
+          <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 32 }}>
             {safeRole === 'stakeholder'
               ? 'Zungu is not only nighttime music. Every zone has a purpose: guest experience, community participation, cultural programming, local operator opportunity, and movement across the island.'
               : 'Zungu is not only nighttime music. Every zone has a purpose: guest experience, revenue, sponsor value, local operator participation, and movement across the island.'}
@@ -1484,7 +1485,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
           <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 32px)', fontWeight: 700, color: CHAPTERS['09'].accent, marginTop: 40 }}>The island is not passive. The island performs.</p>
           <div style={{ marginTop: 48 }}>
             <SectionHead label="Pop-Ups" title="Not every Zungu moment needs a main stage." accent={CHAPTERS['09'].accent} />
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 24 }}>Some moments are discovered. The three stages give Zungu its structure. The pop-ups give the island life between the major moments.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 24 }}>Some moments are discovered. The three stages give Zungu its structure. The pop-ups give the island life between the major moments.</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {['Beach selectors', 'Forest listening sessions', 'Zungu Radio recordings', 'The Signal sessions', 'Shoppe takeovers', 'Partner lounge music', 'Pier moments', 'Welcome party sets', 'Recovery day selectors', 'Final hoorah programming'].map(item => (
                 <span key={item} style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', color: muted, border: `1px solid rgba(200,168,75,0.15)`, padding: '6px 14px' }}>{item}</span>
@@ -1493,7 +1494,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
           </div>
           <div style={{ marginTop: 48 }}>
             <SectionHead label="Zungu Radio · The Signal" title="The festival creates the moment." goldLine="The media keeps it moving." accent={CHAPTERS['09'].accent} />
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680 }}>Through Zungu Radio and The Signal, the sound continues: artist interviews, commissioned mixes, live recordings, field audio, press moments, and stories from the island.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680 }}>Through Zungu Radio and The Signal, the sound continues: artist interviews, commissioned mixes, live recordings, field audio, press moments, and stories from the island.</p>
           </div>
         </Section>
       </ChapterWrap>
@@ -1506,7 +1507,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
           <ChapterDivider num="10" eye="Chapter Ten" title="The Opportunity." sub="A category that doesn't exist yet. A site that can't be replicated." accent={CHAPTERS['10'].accent} chBg={CHAPTERS['10'].bg} rgb={CHAPTERS['10'].rgb} />
           <Section id="opportunity" sectionBg={CHAPTERS['10'].bg} accent={CHAPTERS['10'].accent} rgb={CHAPTERS['10'].rgb} style={{ background: 'transparent' }}>
             <SectionHead label="The Gap" title="No festival owns this." accent={CHAPTERS['10'].accent} />
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>The opportunity is not simply to create another festival. The opportunity is to establish Jamaica&apos;s first globally positioned private-island electronic music destination. The world already moves to Jamaican rhythm. That influence has travelled across the world. But Jamaica has not yet owned a premium electronic music destination at international scale. Zungu is built around that gap.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>The opportunity is not simply to create another festival. The opportunity is to establish Jamaica&apos;s first globally positioned private-island electronic music destination. The world already moves to Jamaican rhythm. That influence has travelled across the world. But Jamaica has not yet owned a premium electronic music destination at international scale. Zungu is built around that gap.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 2, marginBottom: 40 }}>
               {[
                 { title: 'Category Gap', body: 'Jamaica has global music authority, but no flagship electronic music destination festival positioned for the international premium market.' },
@@ -1516,7 +1517,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
               ].map(({ title, body }) => (
                 <div key={title} style={{ border: `1px solid rgba(200,168,75,0.12)`, padding: '28px 24px', background: 'rgba(6,6,0,0.7)' }}>
                   <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(13px, 1.5vw, 16px)', fontWeight: 700, color: CHAPTERS['10'].accent, marginBottom: 12, lineHeight: 1.3 }}>{title}</p>
-                  <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.75 }}>{body}</p>
+                  <p style={{ fontFamily: fontBody, fontSize: 13, color: muted, lineHeight: 1.75 }}>{body}</p>
                 </div>
               ))}
             </div>
@@ -1532,7 +1533,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
           <ChapterDivider num="11" eye="Chapter Eleven" title="Where You Stay." sub="Two decisions. One island." accent={CHAPTERS['11'].accent} chBg={CHAPTERS['11'].bg} rgb={CHAPTERS['11'].rgb} />
           <Section id="accommodation" sectionBg={CHAPTERS['11'].bg} accent={CHAPTERS['11'].accent} rgb={CHAPTERS['11'].rgb} style={{ background: 'transparent' }}>
             <SectionHead label="Access + Accommodation" title="Two decisions. One island." accent={CHAPTERS['11'].accent} />
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Festival access determines how long you attend and at what level. Accommodation determines where you sleep. These are not the same product. Buying one does not require the other — except for The Thirty, which is always bundled. This gives Zungu the flexibility of a destination festival: some guests sleep inside the music, some base in Port Antonio and cross each morning, some take a private villa and move between both worlds all week.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Festival access determines how long you attend and at what level. Accommodation determines where you sleep. These are not the same product. Buying one does not require the other — except for The Thirty, which is always bundled. This gives Zungu the flexibility of a destination festival: some guests sleep inside the music, some base in Port Antonio and cross each morning, some take a private villa and move between both worlds all week.</p>
 
             {/* Access Products Table */}
             <SectionHead label="Access Products" title="Five tiers." accent={CHAPTERS['11'].accent} />
@@ -1577,7 +1578,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
                 <div key={tier} style={{ border: `1px solid rgba(155,95,192,0.12)`, padding: '26px 22px', background: 'rgba(6,4,16,0.7)' }}>
                   <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase', color: CHAPTERS['11'].accent, marginBottom: 8 }}>{sub}</div>
                   <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 20px)', fontWeight: 700, color: cream, marginBottom: 12, lineHeight: 1.2 }}>{tier}</p>
-                  <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.75 }}>{body}</p>
+                  <p style={{ fontFamily: fontBody, fontSize: 13, color: muted, lineHeight: 1.75 }}>{body}</p>
                 </div>
               ))}
             </div>
@@ -1586,14 +1587,14 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
             <div style={{ border: `1px solid rgba(155,95,192,0.3)`, padding: '32px 30px', marginBottom: 40, background: 'rgba(155,95,192,0.05)' }}>
               <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: CHAPTERS['11'].accent, marginBottom: 10 }}>The Thirty</div>
               <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(16px, 2vw, 24px)', fontWeight: 700, color: cream, marginBottom: 16, lineHeight: 1.2 }}>Thirty guests. The smallest tier Zungu offers. Also the most complete.</p>
-              <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 12 }}>Private shoreline compound. Dedicated host throughout the week. Closed-door dinners with artists and collaborators. Morning sessions that don&apos;t appear on the public programme.</p>
-              <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 12 }}>And access to Zungu Sessions — private listening rooms, unreleased music, producer conversations, and creative encounters that happen because the right people are in the right place at the right time.</p>
-              <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 12 }}>The Thirty is not backstage access. It is proximity to the making of the cultural layer of the festival. There is no upgrade path from any other tier. The thirty places exist. Then they don&apos;t.</p>
+              <p style={{ fontFamily: fontBody, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 12 }}>Private shoreline compound. Dedicated host throughout the week. Closed-door dinners with artists and collaborators. Morning sessions that don&apos;t appear on the public programme.</p>
+              <p style={{ fontFamily: fontBody, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 12 }}>And access to Zungu Sessions — private listening rooms, unreleased music, producer conversations, and creative encounters that happen because the right people are in the right place at the right time.</p>
+              <p style={{ fontFamily: fontBody, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 12 }}>The Thirty is not backstage access. It is proximity to the making of the cultural layer of the festival. There is no upgrade path from any other tier. The thirty places exist. Then they don&apos;t.</p>
               <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 20px)', fontWeight: 700, color: CHAPTERS['11'].accent }}>US$12,500 per person · Hosted island package · Founding-edition priority for future invitations, subject to final package terms.</p>
             </div>
             {/* ── Travel + Access Model ───────────────────────────── */}
             <SectionHead label="Travel + Access Model" title="The journey is part of the product." accent={CHAPTERS['11'].accent} />
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Zungu is not only an island accommodation model. It is a destination travel model. For international guests, the experience does not begin at the stage. It begins the moment they land in Jamaica. The guest journey should be designed from airport arrival to Portland transfer, Port Antonio check-in, marine movement to Navy Island, on-island or mainland accommodation, festival week movement, and final departure. The stronger the travel model, the stronger the guest experience becomes.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Zungu is not only an island accommodation model. It is a destination travel model. For international guests, the experience does not begin at the stage. It begins the moment they land in Jamaica. The guest journey should be designed from airport arrival to Portland transfer, Port Antonio check-in, marine movement to Navy Island, on-island or mainland accommodation, festival week movement, and final departure. The stronger the travel model, the stronger the guest experience becomes.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 2, marginBottom: 40 }}>
               {[
                 { step: '01', title: 'International Arrival', body: 'Most guests arrive through Jamaica\'s major airports before moving east toward Portland. The travel strategy must support overseas guests, diaspora visitors, regional travellers, artists, media, VIPs, and self-managed guests.' },
@@ -1626,7 +1627,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
             </div>
             <div style={{ border: `1px solid rgba(155,95,192,0.1)`, padding: '20px 24px', marginBottom: 32, background: 'rgba(6,4,16,0.4)' }}>
               <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: CHAPTERS['11'].accent, marginBottom: 8 }}>Travel Partner Opportunity</div>
-              <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.8 }}>Travel partner packages may be introduced through airline, hotel, villa, transport, and destination partners. Future editions may explore flight-inclusive packages, hotel-inclusive packages, villa packages, diaspora travel groups, concierge itineraries, and tourism-board aligned travel bundles. Do not state that flights or hotel blocks are included unless confirmed through a signed partner agreement.</p>
+              <p style={{ fontFamily: fontBody, fontSize: 13, color: muted, lineHeight: 1.8 }}>Travel partner packages may be introduced through airline, hotel, villa, transport, and destination partners. Future editions may explore flight-inclusive packages, hotel-inclusive packages, villa packages, diaspora travel groups, concierge itineraries, and tourism-board aligned travel bundles. Do not state that flights or hotel blocks are included unless confirmed through a signed partner agreement.</p>
             </div>
             <SectionHead label="Commercial Value" title="The travel model creates value beyond logistics." accent={CHAPTERS['11'].accent} />
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 2, marginBottom: 36 }}>
@@ -1651,7 +1652,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
             {visibleSections.includes('financial') && (
               <div style={{ border: `1px solid rgba(155,95,192,0.25)`, padding: '28px 30px', marginBottom: 40, background: 'rgba(155,95,192,0.04)' }}>
                 <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: CHAPTERS['11'].accent, marginBottom: 10 }}>Investor Read</div>
-                <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 16 }}>Separating access from accommodation creates a second revenue moment after ticket purchase. A Full Week Pass holder who adds Navy Obsidian or a Port Antonio villa package increases total spend significantly without changing the headline ticket price. It creates inventory flexibility — Island Village can expand or contract based on environmental review and site survey outcomes, without restructuring the ticket model. And the Port Antonio Hotel and Villa Network routes accommodation revenue through local operators — strengthening the commercial case and the community case simultaneously.</p>
+                <p style={{ fontFamily: fontBody, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 16 }}>Separating access from accommodation creates a second revenue moment after ticket purchase. A Full Week Pass holder who adds Navy Obsidian or a Port Antonio villa package increases total spend significantly without changing the headline ticket price. It creates inventory flexibility — Island Village can expand or contract based on environmental review and site survey outcomes, without restructuring the ticket model. And the Port Antonio Hotel and Villa Network routes accommodation revenue through local operators — strengthening the commercial case and the community case simultaneously.</p>
                 <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 20px)', fontWeight: 700, color: CHAPTERS['11'].accent }}>The island is the world. The journey is how guests enter it.</p>
               </div>
             )}
@@ -1666,8 +1667,8 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
           <ChapterDivider num="12" eye="Chapter Twelve" title="What the Capital Builds." sub="This is not a venue rental. The capital builds a temporary operating system." accent={CHAPTERS['capitalbuilds'].accent} chBg={CHAPTERS['capitalbuilds'].bg} rgb={CHAPTERS['capitalbuilds'].rgb} />
           <Section id="capitalbuilds" sectionBg={CHAPTERS['capitalbuilds'].bg} accent={CHAPTERS['capitalbuilds'].accent} rgb={CHAPTERS['capitalbuilds'].rgb} style={{ background: 'transparent' }}>
             <SectionHead label="Use of Capital" title="An island does not come ready." accent={CHAPTERS['capitalbuilds'].accent} />
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Zungu is not a conventional venue rental. The capital builds the temporary operating system required to transform Navy Island into a controlled-capacity destination festival environment — safely, credibly, and completely.</p>
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Investment funds ten interconnected workstreams. Each is required. None is optional. Together they make the festival possible.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Zungu is not a conventional venue rental. The capital builds the temporary operating system required to transform Navy Island into a controlled-capacity destination festival environment — safely, credibly, and completely.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Investment funds ten interconnected workstreams. Each is required. None is optional. Together they make the festival possible.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 2, marginBottom: 48 }}>
               {[
                 { num: '01', title: 'Site Access + Island Preparation', body: 'Low-impact site preparation, access route establishment, ground protection, and pre-event site surveys across Navy Island.' },
@@ -1690,7 +1691,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
             </div>
             <div style={{ border: `1px solid rgba(212,114,42,0.25)`, padding: '28px 30px', marginBottom: 40, background: 'rgba(212,114,42,0.04)' }}>
               <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: CHAPTERS['capitalbuilds'].accent, marginBottom: 10 }}>Investor Note</div>
-              <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 16 }}>The Production Brief translates these workstreams into vendor scopes, technical specifications, build timelines, and execution responsibilities for qualified production partners. Investors see the operating logic and capital deployment framework; production partners receive the execution manual.</p>
+              <p style={{ fontFamily: fontBody, fontSize: 14, color: muted, lineHeight: 1.85, marginBottom: 16 }}>The Production Brief translates these workstreams into vendor scopes, technical specifications, build timelines, and execution responsibilities for qualified production partners. Investors see the operating logic and capital deployment framework; production partners receive the execution manual.</p>
               <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 20px)', fontWeight: 700, color: CHAPTERS['capitalbuilds'].accent }}>Every line above is a reason the island has never hosted a festival like this before. It is also why it will not be easy to replicate.</p>
             </div>
           </Section>
@@ -1748,7 +1749,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
           <ChapterDivider num="14" eye="Chapter Fourteen" title="Year One Financials." sub="The base case, the upside lines, and the discipline." accent={CHAPTERS['13'].accent} chBg={CHAPTERS['13'].bg} rgb={CHAPTERS['13'].rgb} />
           <Section id="financial" sectionBg={CHAPTERS['13'].bg} accent={CHAPTERS['13'].accent} rgb={CHAPTERS['13'].rgb} style={{ background: 'transparent' }}>
             <SectionHead label="Year One Revenue Model" title="The base case at 5,000 guests." accent={CHAPTERS['13'].accent} />
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Year One is modelled around 5,000 guests, controlled capacity, premium yield, and multiple revenue lines. Access revenue is the base. Accommodation, F&B, brand partnerships, media, retail, vendor fees, and activities all compound it.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Year One is modelled around 5,000 guests, controlled capacity, premium yield, and multiple revenue lines. Access revenue is the base. Accommodation, F&B, brand partnerships, media, retail, vendor fees, and activities all compound it.</p>
             <div style={{ overflowX: 'auto', marginBottom: 16 }}>
               <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: fontMono, fontSize: 12, maxWidth: 800 }}>
                 <tbody>
@@ -1807,7 +1808,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
           <ChapterDivider num="15" eye="Chapter Fifteen" title="Risk & Execution." sub="Ambitious, but not naive." accent={CHAPTERS['14'].accent} chBg={CHAPTERS['14'].bg} rgb={CHAPTERS['14'].rgb} />
           <Section id="risk" sectionBg={CHAPTERS['14'].bg} accent={CHAPTERS['14'].accent} rgb={CHAPTERS['14'].rgb} style={{ background: 'transparent' }}>
             <SectionHead label="Risk Matrix" title="Known risks. Planned mitigations." accent={CHAPTERS['14'].accent} />
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Zungu is ambitious, but not naive. A private-island festival carries a different risk profile from a traditional land-based event. The model must be built around expert partners, phased commitments, permits, marine logistics, safety planning, environmental protocol, insurance, and hard financial gates.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Zungu is ambitious, but not naive. A private-island festival carries a different risk profile from a traditional land-based event. The model must be built around expert partners, phased commitments, permits, marine logistics, safety planning, environmental protocol, insurance, and hard financial gates.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 2 }}>
               {[
                 { risk: 'Marine Logistics', body: 'Ferry movement, private boat access, dock capacity, equipment barging, night transfers, weather holds, emergency marine access, Port Authority coordination, and Coast Guard alignment.' },
@@ -1846,7 +1847,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
               ].map(({ year, body }) => (
                 <div key={year} style={{ border: `1px solid rgba(200,168,75,0.12)`, padding: '28px 24px', background: 'rgba(6,6,0,0.7)' }}>
                   <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(14px, 1.8vw, 20px)', fontWeight: 700, color: CHAPTERS['15'].accent, marginBottom: 14, lineHeight: 1.1 }}>{year}</p>
-                  <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.75 }}>{body}</p>
+                  <p style={{ fontFamily: fontBody, fontSize: 13, color: muted, lineHeight: 1.75 }}>{body}</p>
                 </div>
               ))}
             </div>
@@ -1878,7 +1879,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         <Section id="investor" sectionBg={CHAPTERS['16'].bg} accent={CHAPTERS['16'].accent} rgb={CHAPTERS['16'].rgb} style={{ background: 'transparent' }}>
           <SectionHead label="Investor Positioning" title="Larger than one event." accent={CHAPTERS['16'].accent} />
           <div style={{ maxWidth: 880, marginBottom: 40 }}>
-            <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>We are not pitching a dream. We are building a Jamaican-born destination festival brand with a controlled-capacity private-island launch, premium pricing, multiple revenue lines, local economic participation, and long-term platform potential.</p>
+            <p style={{ fontFamily: fontBody, fontSize: 15, color: muted, lineHeight: 1.9, marginBottom: 16 }}>We are not pitching a dream. We are building a Jamaican-born destination festival brand with a controlled-capacity private-island launch, premium pricing, multiple revenue lines, local economic participation, and long-term platform potential.</p>
             <p style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 32px)', fontWeight: 700, color: CHAPTERS['16'].accent, lineHeight: 1.3 }}>The first edition creates the founding story. The platform grows from there.</p>
           </div>
           <SectionHead label="Partner Tracks" title="Who this is for." accent={CHAPTERS['16'].accent} />
@@ -1917,7 +1918,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
             </p>
             <h2 style={{ fontFamily: fontDisplay, fontSize: 'clamp(2.8rem, 8vw, 6rem)', fontWeight: 900, letterSpacing: '-0.04em', color: cream, lineHeight: 0.95, textTransform: 'uppercase', marginBottom: '0.2rem' }}>REQUEST</h2>
             <h2 style={{ fontFamily: fontDisplay, fontSize: 'clamp(2.8rem, 8vw, 6rem)', fontWeight: 900, letterSpacing: '-0.04em', color: gold, lineHeight: 0.95, textTransform: 'uppercase', marginBottom: '2rem' }}>{ctaCopy.label.split(' ').slice(1).join(' ').toUpperCase() || 'BRIEFING'}</h2>
-            <p style={{ fontFamily: fontMono, fontSize: 14, color: muted, lineHeight: 1.9, maxWidth: 480, marginBottom: '2.5rem' }}>{ctaCopy.body}</p>
+            <p style={{ fontFamily: fontBody, fontSize: 14, color: muted, lineHeight: 1.9, maxWidth: 480, marginBottom: '2.5rem' }}>{ctaCopy.body}</p>
             <button onClick={openBriefing} style={{ fontFamily: fontMono, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', fontWeight: 700, padding: '18px 48px', background: gold, color: bg, border: 'none', cursor: 'pointer' }}>{ctaCopy.label} →</button>
           </div>
         </section>

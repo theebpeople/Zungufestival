@@ -18,6 +18,7 @@ const GOLD_DIM = 'rgba(200,168,75,0.45)';
 
 const DISPLAY = "'Unbounded', sans-serif";
 const MONO = "'Space Mono', monospace";
+const BODY = "'Inter', 'Helvetica Neue', sans-serif";
 
 // ── Nav sections ──────────────────────────────────────────────────────────────
 const NAV_LINKS = ['Thesis', 'Zones', 'Commercial', 'Mainland', 'Port Antonio', 'Sustainability'];
@@ -217,7 +218,7 @@ function ChapterDivider({ num, eye, title, sub }: { num: string; eye: string; ti
             <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700 }}>{eye}</span>
           </div>
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM }}>{title}</h2>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, marginTop: 12, lineHeight: 1.8, maxWidth: 540, letterSpacing: '0.02em' }}>{sub}</p>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, marginTop: 12, lineHeight: 1.8, maxWidth: 540, letterSpacing: '0.02em' }}>{sub}</p>
         </div>
       </div>
     </div>
@@ -260,7 +261,7 @@ function ZoneCard({ zone, role }: { zone: typeof ZONES[0]; role: string }) {
             {rows.map(({ label, text }, i) => (
               <div key={label} className="zone-detail-row" style={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: 24, padding: '16px 0', borderBottom: i < rows.length - 1 ? `1px solid rgba(200,168,75,0.07)` : 'none', alignItems: 'start' }}>
                 <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, paddingTop: 2 }}>{label}</span>
-                <span style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>{text}</span>
+                <span style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>{text}</span>
               </div>
             ))}
           </div>
@@ -388,7 +389,7 @@ function ActivitiesPageInner() {
           <h1 style={{ fontFamily: DISPLAY, fontSize: 'clamp(2.5rem, 8vw, 7rem)', fontWeight: 900, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: 0.95, marginBottom: '1.5rem', color: CREAM }}>
             NINE ZONES.<br /><span style={{ color: GOLD }}>ONE ISLAND</span><br />IN MOTION.
           </h1>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 600, marginBottom: '2rem' }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 600, marginBottom: '2rem' }}>
             Zungu is not only nighttime music. By day, Navy Island moves through food, water, wellness, art, culture, media, retail, and forest discovery before the stages open at sunset. Nine zones turn the island into a living system — creating guest flow, revenue, sponsor value, local operator participation, and a fuller reason to stay.
           </p>
           <div style={{ display: 'flex', width: '100%', borderTop: `1px solid rgba(200,168,75,0.2)`, paddingTop: '1.5rem', flexWrap: 'wrap' }}>
@@ -410,10 +411,10 @@ function ActivitiesPageInner() {
         <div style={{ padding: '80px 8vw' }}>
           <SLabel>// Island Programming Model</SLabel>
           <div style={{ maxWidth: 760 }}>
-            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 18 }}>
+            <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 18 }}>
               Zungu begins before the first headline set. The daytime programme gives the island its rhythm: guests move through water, food, wellness, craft, media, culture, retail, and forest discovery before the stages take over at sunset. This is not filler. It is the hospitality layer, the revenue layer, and the guest-flow system working at once.
             </p>
-            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 40 }}>
+            <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 40 }}>
               Every zone serves five purposes: experience, revenue, movement, sponsorship, and local operator opportunity.
             </p>
             <div className="grid-5" style={{ gap: 2, marginBottom: 48 }}>
@@ -433,7 +434,7 @@ function ActivitiesPageInner() {
             </div>
             {(safeRole === 'partner' || safeRole === 'investor') && (
               <div style={{ padding: '28px 32px', border: `1px solid rgba(200,168,75,0.2)`, background: 'rgba(200,168,75,0.03)' }}>
-                <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, margin: 0 }}>
+                <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, margin: 0 }}>
                   <strong style={{ color: CREAM }}>Operator model principle:</strong> Zungu owns the commercial framework. Selected local vendors, specialists, and operators deliver services within it. Revenue is shared through stall fees, commissions, minimum guarantees, category exclusivity, and activation fees. Zungu controls layout, payment system, standards, hours, brand presentation, and health and safety.
                 </p>
               </div>
@@ -462,7 +463,7 @@ function ActivitiesPageInner() {
       {(safeRole === 'partner' || safeRole === 'investor') && <ChapterSection id="section-commercial" bg={BG} photo="/photos/zungu-glamping-luxe.png">
         <div style={{ padding: '80px 8vw' }}>
           <SLabel>// Revenue Architecture</SLabel>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
             Ticket revenue is the base. Zungu's commercial model extends across multiple revenue lines that compound through the festival window and beyond.
           </p>
           <div style={{ display: 'grid', gap: 2, marginBottom: 60 }}>
@@ -511,7 +512,7 @@ function ActivitiesPageInner() {
       <ChapterSection id="section-mainland" bg={GREEN} photo="/photos/navy-island-wide.png">
         <div style={{ padding: '80px 8vw' }}>
           <SLabel>// Mainland Programme</SLabel>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
             Selected activations should move through Port Antonio. Mainland programming reduces pressure on the island, creates additional revenue for local operators, gives guests a reason to arrive earlier and stay longer, and makes Port Antonio part of the festival week.
           </p>
           <div className="grid-2" style={{ gap: 2 }}>
@@ -519,7 +520,7 @@ function ActivitiesPageInner() {
               <div key={name} style={{ border: `1px solid ${DIM}`, padding: '32px 28px' }}>
                 <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: MUTED, marginBottom: 8 }}>{sub}</div>
                 <h3 style={{ fontFamily: DISPLAY, fontSize: 'clamp(14px, 1.8vw, 20px)', fontWeight: 900, color: CREAM, textTransform: 'uppercase', letterSpacing: '-0.01em', marginBottom: 16 }}>{name}</h3>
-                <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, margin: 0 }}>{body}</p>
+                <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, margin: 0 }}>{body}</p>
               </div>
             ))}
           </div>
@@ -533,10 +534,10 @@ function ActivitiesPageInner() {
       <ChapterSection id="section-benefit" bg={BG} photo="/photos/navy-island-satellite.png">
         <div style={{ padding: '80px 8vw' }}>
           <SLabel>// Port Antonio Economic Case</SLabel>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 16 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 16 }}>
             Zungu is anchored on Navy Island, but the commercial model is designed to route value through Port Antonio. The town supplies the operating ecosystem: accommodation, marine transport, drivers, food, beverage, guides, vendors, production support, wellness providers, artists, mainland activations, and post-event services.
           </p>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
             This is not charity language. It is business logic. The stronger Port Antonio is inside the model, the more locally defensible Zungu becomes.
           </p>
           <div className="grid-3" style={{ gap: 2, marginBottom: 48 }}>
@@ -563,7 +564,7 @@ function ActivitiesPageInner() {
       <ChapterSection bg={GREEN} photo="/photos/zungu-tribal-stage-arrival.png">
         <div style={{ padding: '80px 8vw' }}>
           <SLabel>// Guest Journey Architecture</SLabel>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
             The activity programme is not isolated from guest logistics. Arrivals, check-in, marine transfers, accommodation access, and departures are integrated into the zone operating model. The fuller the guest journey, the higher the spend per head and the stronger the case for premium packages.
           </p>
           <div className="journey-steps" style={{ display: 'flex', gap: 2, marginBottom: 40, overflowX: 'auto' }}>
@@ -606,7 +607,7 @@ function ActivitiesPageInner() {
           </div>
           <div style={{ border: `1px solid rgba(200,168,75,0.2)`, padding: '28px 32px', background: 'rgba(200,168,75,0.02)' }}>
             <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, marginBottom: 12 }}>// Travel Partner Opportunity</p>
-            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, margin: 0 }}>
+            <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, margin: 0 }}>
               Zungu&rsquo;s guest journey connects flight arrival, ground transfer, marine logistics, accommodation, and island access into a packageable system. Travel coordination, transport commissions, accommodation partnerships, and concierge fees represent a commercial layer that compounds the per-head yield. Travel partner terms remain subject to confirmed bookings, operator agreements, and logistics finalisation.
             </p>
           </div>
@@ -620,14 +621,14 @@ function ActivitiesPageInner() {
       <ChapterSection id="section-sustainability" bg={BG} photo="/photos/navy-island-stage-map.png">
         <div style={{ padding: '80px 8vw' }}>
           <SLabel>// Environmental + Community Protocol</SLabel>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
             Environmental and community protocol is not a marketing position. For Zungu, sustainability is tied to site access, reef protection, waste removal, local employment, harm reduction, marine licensing, demobilisation, and post-event reporting.
           </p>
           <div className="grid-2" style={{ gap: 2 }}>
             {SUSTAIN.map(({ label, body }) => (
               <div key={label} style={{ border: `1px solid ${DIM}`, padding: '28px 24px' }}>
                 <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, marginBottom: 12 }}>{label}</div>
-                <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, margin: 0 }}>{body}</p>
+                <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, margin: 0 }}>{body}</p>
               </div>
             ))}
           </div>
@@ -641,13 +642,13 @@ function ActivitiesPageInner() {
         <ChapterSection bg={GREEN} photo="/photos/navy-island-aerial-hq.png">
           <div style={{ padding: '80px 8vw' }}>
             <SLabel>// Production Brief</SLabel>
-            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 40 }}>
+            <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 40 }}>
               The full Production Brief develops the operating requirements behind the activity programme: zone-by-zone build, power, water, sanitation, waste, vendor onboarding, marine logistics, POS, food hygiene, wayfinding, staffing, welfare, cold storage, media permissions, mainland activations, demobilisation, insurance, licensing, cost centres, and risk controls.
             </p>
             <div style={{ border: `1px solid rgba(200,168,75,0.25)`, padding: '32px 36px', background: 'rgba(200,168,75,0.03)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 24 }}>
               <div>
                 <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, marginBottom: 10 }}>// Request Production Brief</p>
-                <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 480, margin: 0 }}>
+                <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 480, margin: 0 }}>
                   Production partners may request the full Activity Programme Production Brief covering zone build, vendor framework, marine logistics, power and water design, staffing model, risk controls, and execution gates.
                 </p>
               </div>
@@ -665,15 +666,15 @@ function ActivitiesPageInner() {
         <ChapterSection bg={GREEN} photo="/photos/navy-island-aerial-hq.png">
           <div style={{ padding: '80px 8vw' }}>
             <SLabel>// Stakeholder Operating Note</SLabel>
-            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 20 }}>
+            <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 20 }}>
               The activity programme is structured around local operator participation, guest movement, environmental protection, licensed marine activity, health standards, waste controls, mainland routes, and Port Antonio economic participation.
             </p>
-            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680 }}>
+            <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680 }}>
               Zungu's operating standards are being developed through the relevant tourism, environmental, site-use, safety, and municipal review pathways.
             </p>
             <div style={{ marginTop: 48, padding: '24px 28px', border: `1px solid rgba(200,168,75,0.2)`, background: 'rgba(200,168,75,0.025)', maxWidth: 720 }}>
               <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, display: 'block', marginBottom: 12 }}>// Stakeholder Review Note</span>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>
                 The activity programme is designed to route value through Port Antonio while maintaining controls around local operator participation, environmental protection, guest movement, water activity, waste removal, and mainland activations. Final operating standards should be developed with relevant tourism, environmental, site-use, safety, and municipal stakeholders.
               </p>
             </div>

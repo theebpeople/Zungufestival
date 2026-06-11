@@ -16,6 +16,7 @@ const BORDER_MID = 'rgba(200,168,75,0.12)';
 const GOLD_DIM = 'rgba(200,168,75,0.45)';
 const DISPLAY = "'Unbounded', sans-serif";
 const MONO = "'Space Mono', monospace";
+const BODY = "'Inter', 'Helvetica Neue', sans-serif";
 
 const SECTION_IDS = [
   'hero', 'overview', 'portantonio', 'island',
@@ -49,7 +50,7 @@ function ChapterDivider({ num, eye, title, sub }: { num: string; eye: string; ti
         <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM }}>
           {title}
         </h2>
-        <p style={{ marginTop: 12, fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 540, letterSpacing: '0.02em' }}>
+        <p style={{ marginTop: 12, fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 540, letterSpacing: '0.02em' }}>
           {sub}
         </p>
       </div>
@@ -266,10 +267,10 @@ function StakeholderPageInner() {
           <h1 className="hero-wordmark" style={{ fontFamily: DISPLAY, fontSize: 'clamp(2.5rem, 6vw, 5rem)', fontWeight: 900, lineHeight: 0.95, color: CREAM, marginBottom: 8, textAlign: 'center' }}>
             A PRIVATE ISLAND<br />FESTIVAL.<br /><span style={{ color: GOLD }}>A PORT ANTONIO</span><br />OPPORTUNITY.<br />A JAMAICAN CULTURAL<br />EXPORT.
           </h1>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.04em', lineHeight: 1.8, marginBottom: 24, maxWidth: 520, textAlign: 'center' }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, letterSpacing: '0.04em', lineHeight: 1.8, marginBottom: 24, maxWidth: 520, textAlign: 'center' }}>
             Zungu is a proposed controlled-capacity destination festival on Navy Island, Port Antonio Harbour. Designed to be one of the world&#39;s most distinctive festival experiences — intimate, curated, and rooted in Jamaican culture — it is a serious tourism, economic, and cultural proposition for Portland Parish and for Jamaica.
           </p>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.04em', lineHeight: 1.8, marginBottom: 48, maxWidth: 520, textAlign: 'center' }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, letterSpacing: '0.04em', lineHeight: 1.8, marginBottom: 48, maxWidth: 520, textAlign: 'center' }}>
             This Stakeholder Brief is designed for institutional, governmental, tourism, environmental, and community stakeholders who need to understand the proposition, the model, and the process before formal review begins.
           </p>
 
@@ -316,16 +317,16 @@ function StakeholderPageInner() {
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 16 }}>
             CONTROLLED.<br />CURATED.<br />PORT ANTONIO-ROOTED.
           </h2>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
             Zungu is not a mass-attendance event. It is a destination festival — designed for a specific audience, a specific place, and a specific purpose.
           </p>
 
           <div className="col-layout">
             <div>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 Zungu is a proposed five-to-seven day international festival on Navy Island, Port Antonio Harbour. Year One target capacity is 5,000 guests. The programme centres on electronic music with curated cultural, wellness, and environmental programming shaped by Jamaica's natural landscape and cultural heritage.
               </p>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
                 The event is island-accessed — guests cross from Port Antonio by marine transfer and return daily or stay on-site in temporary accommodation. The mainland base in Port Antonio is the logistical and commercial hub. The town, its operators, and its community are the foundation of the festival's operations.
               </p>
             </div>
@@ -356,19 +357,19 @@ function StakeholderPageInner() {
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 16 }}>
             PORT ANTONIO<br />IS THE<br />FOUNDATION.
           </h2>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
             Every marine operator, food vendor, cultural contributor, and site-services provider is sourced from Portland Parish first.
           </p>
 
           <div className="col-layout">
             <div>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 Port Antonio is one of the Caribbean's most historically significant and currently underserved tourism destinations. The town has an international reputation — Errol Flynn, Ian Fleming, the Blue Lagoon — but has not benefited from a tourism model that converts that reputation into sustained local economic participation.
               </p>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 Zungu is designed to change that relationship. Every operational requirement of the festival — marine logistics, catering, accommodation referrals, workforce, guides, cultural programme, site services — is specified for Portland Parish procurement first.
               </p>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
                 Guests arrive through Port Antonio. They spend in Port Antonio. They leave knowing Port Antonio. That is the economic model.
               </p>
             </div>
@@ -409,19 +410,19 @@ function StakeholderPageInner() {
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 16 }}>
             THE ISLAND<br />IS THE<br />VENUE.
           </h2>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
             Three stage positions respond to the island's natural geography. All structures are temporary. No permanent modification to the island is proposed.
           </p>
 
           <div className="col-layout">
             <div>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 Navy Island sits in Port Antonio Harbour, approximately 500 metres from the Port Antonio waterfront. It is a 64-acre island of forest, shoreline, and open sky. It has no permanent infrastructure of the kind required for a festival operation — power, water, sanitation, and all production structures must be brought in and removed.
               </p>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 The three stage positions — east, west, and south-centre — are calibrated to the island's natural geography, not imposed on it. The forest, the elevation, and the shoreline are design elements, not obstacles.
               </p>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
                 Site use is subject to the relevant permitting, environmental review, and stakeholder approval processes. No activation proceeds until that review is complete.
               </p>
             </div>
@@ -453,19 +454,19 @@ function StakeholderPageInner() {
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 16 }}>
             ROOTED IN<br />JAMAICAN SOUND<br />CULTURE.
           </h2>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
             The Zungu sound identity is anchored in Jamaica's global music contribution — not imported and placed on the island, but drawn from it.
           </p>
 
           <div className="col-layout">
             <div>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 The musical programme positions Zungu in the intersection of Jamaica's sound system heritage and contemporary global electronic music culture. Curation is built around that crossover — not a generic international festival programme placed on a Jamaican island.
               </p>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 Three stages serve different programme moods: the main stage for headline programming, the forest stage for deeper, more intimate sets, and the beach stage for sunrise and sunset sessions. All three operate simultaneously with acoustic separation managed by stage placement, landform, and directional sound design.
               </p>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
                 Sound management — operating hours, direction, levels — is subject to agreement with the relevant local authorities as part of the event licencing process.
               </p>
             </div>
@@ -496,12 +497,12 @@ function StakeholderPageInner() {
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 16 }}>
             NOT A RECORDING DEAL.<br />A CREATIVE ENVIRONMENT.
           </h2>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
             During festival week, Zungu creates a private creative programme alongside the main event — bringing selected international artists and Jamaican producers into studios, listening rooms, and creative sessions across Port Antonio.
           </p>
           <div className="col-layout">
             <div>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 The programme is designed to:
               </p>
               <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px' }}>
@@ -513,11 +514,11 @@ function StakeholderPageInner() {
                 ].map(item => (
                   <li key={item} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', marginBottom: 14 }}>
                     <span style={{ color: GOLD, flexShrink: 0, fontFamily: MONO, fontSize: 12 }}>—</span>
-                    <span style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>{item}</span>
+                    <span style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>{item}</span>
                   </li>
                 ))}
               </ul>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
                 Geejam and Port Antonio creative spaces are central to this. The sessions are not forced deliverables. They are a curated environment. What happens in them is what makes them valuable.
               </p>
             </div>
@@ -547,19 +548,19 @@ function StakeholderPageInner() {
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 16 }}>
             CULTURAL TRAVELLERS.<br />NOT MASS TOURISTS.
           </h2>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
             The Zungu audience is self-selecting for quality, experience, and destination. They travel specifically for the event — and they stay for the place.
           </p>
 
           <div className="col-layout">
             <div>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 Zungu's controlled-capacity model, island setting, and premium positioning attract a specific audience profile: international cultural travellers, predominantly 25–45, with travel and discretionary spend patterns that align with extended-stay, experience-first tourism.
               </p>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 This audience does not come for a weekend and leave. They plan a trip to Jamaica around the festival. They stay in Port Antonio accommodation before and after the event. They engage with local guides, restaurants, and experiences throughout the week. The festival is the anchor — Port Antonio is the destination.
               </p>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
                 Many will be first-time visitors to Jamaica. Many will return. The Zungu audience profile is one that Portland Parish and Jamaica Tourism have not previously had access to at this scale.
               </p>
             </div>
@@ -589,7 +590,7 @@ function StakeholderPageInner() {
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 16 }}>
             ZUNGU.<br />ORIGINS.<br />REBIRTH.
           </h2>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 32 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 32 }}>
             The three stages are named for the arc of the festival experience — arriving, going deeper, beginning again.
           </p>
 
@@ -600,10 +601,10 @@ function StakeholderPageInner() {
 
           <div className="col-layout">
             <div>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 Zungu Main (south-centre) is the headline stage — open sky, facing south, built for the full production weight of international headliners. Origins (east) is the forest stage — intimate, enclosed, a canopy environment that serves as the spiritual heart of the festival. Rebirth (west) is the beach stage — minimal, facing the sunset, built for the beginning and end of each day.
               </p>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
                 All three stages are temporary structures, fully demobilised after the event. Stage placement is designed around acoustic separation — simultaneous operation without sound bleed between stages. Structural specifications, sound design, and site layout are detailed in the Production Partner Brief.
               </p>
             </div>
@@ -633,7 +634,7 @@ function StakeholderPageInner() {
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 16 }}>
             THE ISLAND<br />IS THE<br />PROGRAMME.
           </h2>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 32 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 32 }}>
             A significant portion of the Zungu experience happens outside stage hours. The island and Port Antonio are the daytime venue.
           </p>
 
@@ -644,10 +645,10 @@ function StakeholderPageInner() {
 
           <div className="col-layout">
             <div>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 The daytime activity programme takes guests through the island and into Port Antonio. Forest trails, beach swimming, kayaking and paddle boarding, guided cultural and heritage tours, wellness programming, a local food market, art and craft spaces, and sound system culture workshops are all part of the festival week.
               </p>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
                 The mainland programme — Blue Lagoon, Boston Bay, Frenchman's Cove, local guide networks, Portland Parish day experiences — is structured as a formal part of the Zungu week, not an afterthought. Local operators partner with Zungu to programme and deliver these experiences.
               </p>
             </div>
@@ -676,19 +677,19 @@ function StakeholderPageInner() {
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 16 }}>
             GUESTS ARRIVE.<br />GUESTS STAY.<br />PORT ANTONIO<br />PARTICIPATES.
           </h2>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
             The festival week is designed for extended dwell — on the island, in the town, across Portland Parish.
           </p>
 
           <div className="col-layout">
             <div>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 Zungu is structured as a destination event, not a day-trip. The guest journey begins in Port Antonio: accommodation, orientation, marine transfer to the island. The festival week moves between the island (music and evening programming) and Portland Parish (daytime activities, guided experiences, local dining).
               </p>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 On-island accommodation — Navy Obsidian premium units and Island Village — is a premium product positioned for guests who want the full island-immersive experience. Hotel, villa, and guesthouse accommodation in Port Antonio serves the rest of the audience.
               </p>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
                 This format puts international visitors inside Port Antonio's economy for seven days. Not for a night. Not for a day-visit. A week.
               </p>
             </div>
@@ -718,13 +719,13 @@ function StakeholderPageInner() {
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 16 }}>
             STRUCTURED FOR<br />PORTLAND<br />PARTICIPATION.
           </h2>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
             The economic model is not aspirational. Local participation is contractual — written into the event's operational structure from the start.
           </p>
 
           <div className="col-layout">
             <div>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 32 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 32 }}>
                 Every operational contract for Zungu is written with a Portland Parish priority clause. Marine operations, catering supply, site workforce, accommodation referrals, cultural programming, and guide services are all tendered locally before going beyond the parish. This is not a goodwill gesture. It is how the event is designed to work.
               </p>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3 }}>
@@ -744,7 +745,7 @@ function StakeholderPageInner() {
             <div>
               <div style={{ backgroundColor: 'rgba(0,0,0,0.4)', border: `1px solid ${BORDER_MID}`, borderTop: `3px solid ${GOLD}`, padding: '1.5rem' }}>
                 <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700, marginBottom: 16 }}>Tourism Alignment</p>
-                <p style={{ fontFamily: MONO, fontSize: 13, color: MUTED, lineHeight: 1.8, marginBottom: 16 }}>
+                <p style={{ fontFamily: BODY, fontSize: 13, color: MUTED, lineHeight: 1.8, marginBottom: 16 }}>
                   Controlled-capacity, extended-stay model delivers higher per-visitor spend and stronger local economic multiplier than volume day-trip tourism.
                 </p>
                 <p style={{ fontFamily: MONO, fontSize: 12, color: MUTED, lineHeight: 1.7, marginBottom: 20 }}>
@@ -774,7 +775,7 @@ function StakeholderPageInner() {
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 16 }}>
             DESIGNED TO<br />OPERATE CLEANLY.
           </h2>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
             An island festival requires complete operational self-sufficiency. Every system — power, water, waste, medical, security, transport — must be planned, resourced, and compliant before the event opens.
           </p>
 
@@ -810,19 +811,19 @@ function StakeholderPageInner() {
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 16 }}>
             NO ACTIVATION<br />BEFORE REVIEW<br />IS COMPLETE.
           </h2>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
             The project is being prepared for early stakeholder dialogue. This brief is the beginning of that conversation, not the end.
           </p>
 
           <div className="col-layout">
             <div>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 Zungu is being developed with full awareness that an event on Navy Island requires engagement across multiple institutional, community, environmental, and regulatory stakeholders. The organisers are not seeking to proceed by exception. They are seeking to proceed by consent.
               </p>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 Site use permitting, environmental review, marine access coordination, sound management agreements, operating hours, emergency planning, and demobilisation protocols are all areas where the relevant authorities and stakeholders have formal roles. Zungu supports full engagement with those processes.
               </p>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
                 Community consultation is welcomed. The organisers are committed to open dialogue with Port Antonio residents, community organisations, local representatives, and civil society groups throughout the development process.
               </p>
             </div>
@@ -863,7 +864,7 @@ function StakeholderPageInner() {
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: CREAM, marginBottom: 16 }}>
             EARLY DIALOGUE.<br />CLEAR PROCESS.<br />OPEN OUTCOME.
           </h2>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
             We are not asking for permission to proceed before review. We are asking for the conversation that makes review possible.
           </p>
 
@@ -915,7 +916,7 @@ function StakeholderPageInner() {
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 700, lineHeight: 1.1, color: GOLD, marginBottom: 20 }}>
             REQUEST<br />STAKEHOLDER<br />MEETING.
           </h2>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 480, marginBottom: 40 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 480, marginBottom: 40 }}>
             Zungu is seeking early dialogue with institutional, tourism, environmental, marine, community, and public-sector stakeholders. The contact for all stakeholder enquiries is below.
           </p>
 

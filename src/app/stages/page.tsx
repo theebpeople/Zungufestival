@@ -25,6 +25,7 @@ const N2_C = '#4A8FBD';
 const N3_C = '#3AAF7A';
 const DISPLAY = "'Unbounded', sans-serif";
 const MONO = "'Space Mono', monospace";
+const BODY = "'Inter', 'Helvetica Neue', sans-serif";
 
 const SECTION_IDS = ['hero', 'island', 'map', 'stages', 'nights', 'production', 'booking', 'partners'];
 
@@ -230,7 +231,7 @@ function ChapterDivider({ num, title, goldLine, desc }: { num: string; title: st
           {title}<br /><span style={{ color: GOLD }}>{goldLine}</span>
         </h2>
         {desc && (
-          <p style={{ marginTop: 12, fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 540, letterSpacing: '0.02em' }}>
+          <p style={{ marginTop: 12, fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 540, letterSpacing: '0.02em' }}>
             {desc}
           </p>
         )}
@@ -443,7 +444,7 @@ function StagesPageInner() {
           <h1 style={{ fontFamily: DISPLAY, fontSize: 'clamp(3.5rem, 9vw, 8rem)', fontWeight: 900, lineHeight: 0.9, color: CREAM, marginBottom: 8 }}>
             THREE<br /><span style={{ color: GOLD }}>STAGES.</span><br />ONE<br />ISLAND.
           </h1>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, letterSpacing: '0.06em', lineHeight: 1.8, marginBottom: 48, maxWidth: 520 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, letterSpacing: '0.06em', lineHeight: 1.8, marginBottom: 48, maxWidth: 520 }}>
             Origins catches the sunrise. Rebirth catches the sunset. Zungu Main owns the night. Every stage responds to the land.
           </p>
 
@@ -476,13 +477,13 @@ function StagesPageInner() {
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 900, lineHeight: 1.1, color: CREAM, marginBottom: 16, textTransform: 'uppercase' as const }}>
             NAVY ISLAND<br /><span style={{ color: GOLD }}>IS THE FIRST STAGE.</span>
           </h2>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, maxWidth: 520, lineHeight: 1.8, marginBottom: 48, letterSpacing: '0.02em' }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, maxWidth: 520, lineHeight: 1.8, marginBottom: 48, letterSpacing: '0.02em' }}>
             Forest. Shoreline. Open sky. The island is the product.
           </p>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
             <div>
-              <div style={{ fontFamily: MONO, fontSize: 15, lineHeight: 1.9, color: MUTED }}>
+              <div style={{ fontFamily: BODY, fontSize: 15, lineHeight: 1.9, color: MUTED }}>
                 <p>Navy Island is a 64-acre private island in Port Antonio harbour, Jamaica. Dense rainforest. Natural shoreline. Open Caribbean sky. Sixty-four acres of island that does not need to be built — it already exists as the most powerful venue in the Caribbean.</p>
                 <p style={{ marginTop: 14 }}>The stage positions come from the island itself. Origins faces east — the sunrise. Rebirth faces west — the sunset. Zungu Main sits at the centre, south-facing, sound travelling out to open sea.</p>
               </div>
@@ -528,7 +529,7 @@ function StagesPageInner() {
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 900, lineHeight: 1.1, color: CREAM, marginBottom: 16, textTransform: 'uppercase' as const }}>
             THREE DIRECTIONS.<br /><span style={{ color: GOLD }}>ONE ISLAND WORLD.</span>
           </h2>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, maxWidth: 520, lineHeight: 1.8, marginBottom: 48, letterSpacing: '0.02em' }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, maxWidth: 520, lineHeight: 1.8, marginBottom: 48, letterSpacing: '0.02em' }}>
             The stages are not placed randomly. Each responds to geography — east, west, south. One island. Three moments of the day.
           </p>
 
@@ -555,7 +556,7 @@ function StagesPageInner() {
                   </div>
                 ))}
               </div>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, letterSpacing: '0.02em' }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, letterSpacing: '0.02em' }}>
                 Final site layout confirmed through survey, permitting, environmental review, and production planning.
               </p>
             </div>
@@ -577,7 +578,7 @@ function StagesPageInner() {
               <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 900, lineHeight: 1.1, color: stage.accent, marginBottom: 16, textTransform: 'uppercase' as const }}>
                 {stage.title}
               </h2>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, maxWidth: 520, lineHeight: 1.8, marginBottom: 48, letterSpacing: '0.02em' }}>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, maxWidth: 520, lineHeight: 1.8, marginBottom: 48, letterSpacing: '0.02em' }}>
                 {stage.sub}
               </p>
 
@@ -591,7 +592,7 @@ function StagesPageInner() {
                       <div style={{ position: 'absolute', bottom: 12, left: 16, fontFamily: MONO, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: stage.accent, opacity: 0.8 }}>{stage.title} · Navy Island</div>
                     </div>
                   </LightboxImage>
-                  <div style={{ fontFamily: MONO, fontSize: 15, lineHeight: 1.9, color: MUTED }}>
+                  <div style={{ fontFamily: BODY, fontSize: 15, lineHeight: 1.9, color: MUTED }}>
                     {stage.narr.map((p, i) => (
                       <p key={i} style={{ marginTop: i > 0 ? 14 : 0 }} dangerouslySetInnerHTML={{ __html: p.replace(/<strong>/g, `<strong style="color:${CREAM}">`) }} />
                     ))}
@@ -643,7 +644,7 @@ function StagesPageInner() {
               <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 900, lineHeight: 1.1, color: night.accent, marginBottom: 16, textTransform: 'uppercase' as const }}>
                 {night.title}
               </h2>
-              <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, maxWidth: 520, lineHeight: 1.8, marginBottom: 48, letterSpacing: '0.02em' }}>{night.sub}</p>
+              <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, maxWidth: 520, lineHeight: 1.8, marginBottom: 48, letterSpacing: '0.02em' }}>{night.sub}</p>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
                 <div>
@@ -657,7 +658,7 @@ function StagesPageInner() {
                       </div>
                     </LightboxImage>
                   )}
-                  <div style={{ fontFamily: MONO, fontSize: 15, lineHeight: 1.9, color: MUTED }}>
+                  <div style={{ fontFamily: BODY, fontSize: 15, lineHeight: 1.9, color: MUTED }}>
                     {night.narr.map((p, i) => (
                       <p key={i} style={{ marginTop: i > 0 ? 14 : 0 }} dangerouslySetInnerHTML={{ __html: p.replace(/<strong>/g, `<strong style="color:${CREAM}">`).replace(/<\/strong>/g, '</strong>') }} />
                     ))}
@@ -668,7 +669,7 @@ function StagesPageInner() {
                       {night.visual.map(({ a, v }) => (
                         <div key={a} style={{ padding: 12, background: 'rgba(242,235,217,0.02)', border: '1px solid rgba(242,235,217,0.04)' }}>
                           <span style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: 'rgba(200,168,75,0.35)', display: 'block', marginBottom: 5 }}>{a}</span>
-                          <span style={{ fontFamily: MONO, fontSize: 13, color: 'rgba(242,235,217,0.6)', lineHeight: 1.5 }}>{v}</span>
+                          <span style={{ fontFamily: BODY, fontSize: 13, color: 'rgba(242,235,217,0.6)', lineHeight: 1.5 }}>{v}</span>
                         </div>
                       ))}
                     </div>
@@ -755,7 +756,7 @@ function StagesPageInner() {
             ].map(({ name, accent, summary, reqs }) => (
               <div key={name} style={{ borderTop: `3px solid ${accent}`, padding: '28px 24px', background: 'rgba(242,235,217,0.01)', border: `1px solid rgba(242,235,217,0.06)`, borderTopColor: accent, borderTopWidth: 3 }}>
                 <div style={{ fontFamily: DISPLAY, fontSize: '1rem', fontWeight: 900, color: accent, textTransform: 'uppercase' as const, marginBottom: 10, letterSpacing: '0.02em' }}>{name}</div>
-                <p style={{ fontFamily: MONO, fontSize: 15, color: CREAM, lineHeight: 1.6, marginBottom: 20, opacity: 0.8 }}>{summary}</p>
+                <p style={{ fontFamily: BODY, fontSize: 15, color: CREAM, lineHeight: 1.6, marginBottom: 20, opacity: 0.8 }}>{summary}</p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                   {reqs.map((r, i) => (
                     <div key={i} style={{ fontFamily: MONO, fontSize: 12, color: MUTED, lineHeight: 1.6, paddingLeft: 14, borderLeft: `2px solid ${accent}33` }}>{r}</div>
@@ -797,7 +798,7 @@ function StagesPageInner() {
                   'All stage crew must have confirmed marine transfer and access route.',
                   'Generator redundancy at Zungu Main is non-negotiable. No single-point power failure.',
                 ].map((rule, i) => (
-                  <div key={i} style={{ fontFamily: MONO, fontSize: 13, lineHeight: 1.7, color: MUTED, paddingLeft: 14, borderLeft: '2px solid rgba(200,168,75,0.2)', marginBottom: 12 }}>{rule}</div>
+                  <div key={i} style={{ fontFamily: BODY, fontSize: 13, lineHeight: 1.7, color: MUTED, paddingLeft: 14, borderLeft: '2px solid rgba(200,168,75,0.2)', marginBottom: 12 }}>{rule}</div>
                 ))}
               </div>
             </div>
@@ -808,7 +809,7 @@ function StagesPageInner() {
       {role === 'investor' && <ChapterSection id="production" bg={BG} photo="/photos/navy-island-stage-map.png">
         <div style={{ position: 'relative', padding: '80px 8vw' }}>
           <SLabel>// 05 Operational Readiness</SLabel>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
             Three stages. Three operational profiles. Each is designed around the real constraints of a private-island festival — temporary infrastructure, marine access, sound management, and full demobilisation.
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 3, marginBottom: 48 }}>
@@ -819,7 +820,7 @@ function StagesPageInner() {
             ].map(({ name, accent, summary }) => (
               <div key={name} style={{ borderTop: `3px solid ${accent}`, padding: '28px 24px', border: `1px solid rgba(242,235,217,0.06)`, borderTopColor: accent, borderTopWidth: 3 }}>
                 <div style={{ fontFamily: DISPLAY, fontSize: '1rem', fontWeight: 900, color: accent, textTransform: 'uppercase' as const, marginBottom: 10, letterSpacing: '0.02em' }}>{name}</div>
-                <p style={{ fontFamily: MONO, fontSize: 14, color: MUTED, lineHeight: 1.7 }}>{summary}</p>
+                <p style={{ fontFamily: BODY, fontSize: 14, color: MUTED, lineHeight: 1.7 }}>{summary}</p>
               </div>
             ))}
           </div>
@@ -834,7 +835,7 @@ function StagesPageInner() {
             ].map(({ label, body }) => (
               <div key={label} style={{ border: `1px solid rgba(200,168,75,0.1)`, padding: '20px 22px' }}>
                 <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700, marginBottom: 10 }}>{label}</div>
-                <p style={{ fontFamily: MONO, fontSize: 13, color: MUTED, lineHeight: 1.7, margin: 0 }}>{body}</p>
+                <p style={{ fontFamily: BODY, fontSize: 13, color: MUTED, lineHeight: 1.7, margin: 0 }}>{body}</p>
               </div>
             ))}
           </div>
@@ -853,13 +854,13 @@ function StagesPageInner() {
           <h2 style={{ fontFamily: DISPLAY, fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 900, lineHeight: 1.1, color: GOLD, marginBottom: 16, textTransform: 'uppercase' as const }}>
             30–45 ARTISTS.<br /><span style={{ color: CREAM }}>ONE ISLAND.</span><br />ONE WEEK.
           </h2>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, maxWidth: 520, lineHeight: 1.8, marginBottom: 48, letterSpacing: '0.02em' }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, maxWidth: 520, lineHeight: 1.8, marginBottom: 48, letterSpacing: '0.02em' }}>
             The booking model shapes the build. Every confirmed artist affects the stage specification, rider review, equipment, travel, accommodation, and back-of-house planning.
           </p>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
             <div>
-              <div style={{ fontFamily: MONO, fontSize: 15, lineHeight: 1.9, color: MUTED, marginBottom: 28 }}>
+              <div style={{ fontFamily: BODY, fontSize: 15, lineHeight: 1.9, color: MUTED, marginBottom: 28 }}>
                 <p>Year One planning assumption: 30–45 artists and selectors across the festival week. Production partners should account for this range across rider management, DJ equipment, stage management, artist travel, accommodation, hospitality, marine transfers, security, changeovers, and back-of-house planning.</p>
                 <p style={{ marginTop: 14 }}>A private-island festival cannot treat artists as names on a poster only. Each booking affects the stage specification, power load, crew schedule, and marine logistics. Fewer, stronger bookings are more powerful than a crowded lineup.</p>
               </div>
@@ -925,7 +926,7 @@ function StagesPageInner() {
       {(role === 'investor' || role === 'partner') && <ChapterSection id="partners" bg={GREEN} photo="/photos/navy-island-wide.png">
         <div style={{ position: 'relative', padding: '80px 8vw' }}>
           <SLabel>// 07 Production Partner Opportunities</SLabel>
-          <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 640, marginBottom: 40 }}>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 640, marginBottom: 40 }}>
             Every partner category maps to a defined operational requirement. The island creates real scope across eight areas.
           </p>
           <div className="grid-4" style={{ gap: 3 }}>
@@ -958,7 +959,7 @@ function StagesPageInner() {
         <section style={{ padding: '60px 8vw', backgroundColor: BG, borderTop: `1px solid ${BORDER}` }}>
           <div style={{ maxWidth: 720 }}>
             <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD_DIM, marginBottom: 12 }}>// Stage Production Brief</div>
-            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
+            <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
               Detailed rider management, DJ equipment baseline, back-of-house layout, artist travel, security, technical schedules, cost centres, and changeover planning are developed in the Stage Production Brief.
             </p>
             <a href="/production-brief"
@@ -974,10 +975,10 @@ function StagesPageInner() {
         <section style={{ padding: '60px 8vw', backgroundColor: BG, borderTop: `1px solid ${BORDER}` }}>
           <div style={{ maxWidth: 720, padding: '24px 28px', border: `1px solid rgba(200,168,75,0.2)`, background: 'rgba(200,168,75,0.025)' }}>
             <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 12 }}>// Operational Confidence</div>
-            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 16 }}>
+            <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 16 }}>
               Zungu's stage and activity systems are being developed around the core execution realities of a private-island festival: temporary infrastructure, marine access, power, sound direction, guest movement, safety, environmental care, hospitality, and demobilisation.
             </p>
-            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
+            <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
               Detailed build specifications, vendor scopes, technical schedules, and contractor requirements sit inside the Production Brief. Investors see the operating logic; production partners receive the execution manual.
             </p>
           </div>
@@ -987,7 +988,7 @@ function StagesPageInner() {
         <section style={{ padding: '60px 8vw', backgroundColor: BG, borderTop: `1px solid ${BORDER}` }}>
           <div style={{ maxWidth: 720, padding: '24px 28px', border: `1px solid rgba(200,168,75,0.2)`, background: 'rgba(200,168,75,0.025)' }}>
             <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: 12 }}>// Stakeholder Operating Note</div>
-            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>
+            <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>
               The stage plan is a site-use framework developed around three temporary stage environments. Placement, sound direction, operating hours, access routes, and demobilisation are being developed through site survey, environmental guidance, and stakeholder coordination.
             </p>
           </div>
@@ -997,10 +998,10 @@ function StagesPageInner() {
         <section style={{ padding: '60px 8vw', backgroundColor: BG, borderTop: `1px solid ${BORDER}` }}>
           <div style={{ maxWidth: 720 }}>
             <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase' as const, color: GOLD_DIM, marginBottom: 12 }}>// Press Note</div>
-            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 16 }}>
+            <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 16 }}>
               Three stages. One private island. Each stage responds to the geography of Navy Island — east, west, and centre-south. Origins at sunrise. Rebirth at sunset. Zungu Main after dark.
             </p>
-            <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
+            <p style={{ fontFamily: BODY, fontSize: 15, color: MUTED, lineHeight: 1.9 }}>
               Stage architecture, lineup, and full production specification will be released as confirmed. Press enquiries: <a href="mailto:press@zungufestival.com" style={{ color: GOLD, textDecoration: 'none' }}>press@zungufestival.com</a>
             </p>
           </div>
