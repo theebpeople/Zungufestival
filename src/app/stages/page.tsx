@@ -296,6 +296,7 @@ function StagesPageInner() {
   const role = searchParams.get('role') ?? '';
   const [activeSection, setActiveSection] = useState('hero');
   const [navScrolled, setNavScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const { scrollYProgress } = useScroll();
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
@@ -325,7 +326,12 @@ function StagesPageInner() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  if (!isLoaded || !isSignedIn) return null;
+  if (!isLoaded || !isSignedIn) return (
+    <div style={{ minHeight: '100vh', backgroundColor: BG, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 24 }}>
+      <img src="/zungu-z-mark.png" alt="Zungu" style={{ width: 40, height: 40, objectFit: 'contain', opacity: 0.8 }} />
+      <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', color: GOLD_DIM, margin: 0 }}>Loading…</p>
+    </div>
+  );
 
   function scrollTo(id: string) {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -363,16 +369,51 @@ function StagesPageInner() {
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', whiteSpace: 'nowrap' }}>
-          <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, border: `1px solid ${GOLD_DIM}`, padding: '4px 10px', fontWeight: 700 }}>
+          <span className="stages-desktop-badge" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, border: `1px solid ${GOLD_DIM}`, padding: '4px 10px', fontWeight: 700 }}>
             Stage Architecture
           </span>
-          <a href="/" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', color: MUTED, textDecoration: 'none', fontWeight: 700, transition: 'color 0.2s' }}
+          <a className="stages-desktop-back" href="/" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', color: MUTED, textDecoration: 'none', fontWeight: 700, transition: 'color 0.2s' }}
             onMouseEnter={(e) => (e.currentTarget.style.color = CREAM)}
             onMouseLeave={(e) => (e.currentTarget.style.color = MUTED)}>
             ← Back
           </a>
+          {/* Hamburger — mobile only */}
+          <button
+            className="mobile-hamburger"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open menu"
+            style={{ display: 'none', flexDirection: 'column', justifyContent: 'center', gap: 5, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 2px' }}
+          >
+            {[0,1,2].map(i => <span key={i} style={{ display: 'block', width: 22, height: 2, background: MUTED, borderRadius: 0 }} />)}
+          </button>
         </div>
       </nav>
+
+      {/* ── Mobile full-screen menu ── */}
+      <style>{`
+        @media (max-width: 768px) {
+          .stages-desktop-badge { display: none !important; }
+          .stages-desktop-back { display: none !important; }
+          .mobile-hamburger { display: flex !important; }
+        }
+      `}</style>
+
+      {mobileMenuOpen && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 950, backgroundColor: 'rgba(4,8,10,0.97)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', gap: 0 }}>
+          <button onClick={() => setMobileMenuOpen(false)} style={{ position: 'absolute', top: 20, right: 24, background: 'none', border: 'none', color: MUTED, fontSize: 22, cursor: 'pointer', fontFamily: MONO }}>✕</button>
+          <img src="/zungu-z-mark.png" alt="Zungu" style={{ width: 40, height: 40, objectFit: 'contain', marginBottom: 32, filter: 'drop-shadow(0 0 12px rgba(200,168,75,0.3))' }} />
+          <nav style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0, width: '100%', maxWidth: 320, marginBottom: 32 }}>
+            {NAV_LINKS.map((l) => (
+              <button key={l.id} onClick={() => { scrollTo(l.id); setMobileMenuOpen(false); }} style={{ fontFamily: MONO, fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.25em', color: CREAM, background: 'none', border: 'none', borderBottom: `1px solid rgba(242,235,217,0.08)`, cursor: 'pointer', padding: '16px 0', width: '100%', textAlign: 'center', transition: 'color 0.2s' }}
+                onMouseEnter={e => (e.currentTarget.style.color = GOLD)}
+                onMouseLeave={e => (e.currentTarget.style.color = CREAM)}>
+                {l.label}
+              </button>
+            ))}
+          </nav>
+          <a href={`/deck?role=${role || 'investor'}`} style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: MUTED, textDecoration: 'none', fontWeight: 700 }}>← Back to Deck</a>
+        </div>
+      )}
 
       {/* ── Side dots ── */}
       <div className="side-dots">

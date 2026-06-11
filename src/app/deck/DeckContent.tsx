@@ -792,16 +792,16 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
                     key={id}
                     onClick={() => { scrollToSection(id); setMobileMenuOpen(false); }}
                     style={{
-                      fontFamily: fontDisplay,
-                      fontSize: 'clamp(1.1rem, 5vw, 1.6rem)',
-                      fontWeight: 900,
+                      fontFamily: fontMono,
+                      fontSize: 11,
+                      fontWeight: 700,
                       textTransform: 'uppercase',
-                      letterSpacing: '-0.02em',
+                      letterSpacing: '0.25em',
                       color: cream,
                       background: 'none',
                       border: 'none',
                       cursor: 'pointer',
-                      padding: '8px 0',
+                      padding: '10px 0',
                       width: '100%',
                       textAlign: 'center',
                       transition: 'color 0.2s',

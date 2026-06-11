@@ -32,7 +32,12 @@ function DeckGate() {
     }
   }, [isLoaded, isSignedIn, role, router]);
 
-  if (!isLoaded || !isSignedIn) return null;
+  if (!isLoaded || !isSignedIn) return (
+    <div style={{ minHeight: '100vh', backgroundColor: '#060600', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 24 }}>
+      <img src="/zungu-z-mark.png" alt="Zungu" style={{ width: 48, height: 48, objectFit: 'contain', filter: 'drop-shadow(0 0 16px rgba(200,168,75,0.35))', opacity: 0.85 }} />
+      <p style={{ fontFamily: "'Space Mono', monospace", fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', color: 'rgba(200,168,75,0.5)', margin: 0 }}>Loading secure deck…</p>
+    </div>
+  );
 
   return <DeckContentComponent navLabel={navLabel} role={role} />;
 }
