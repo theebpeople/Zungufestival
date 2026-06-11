@@ -251,12 +251,38 @@ body::after {
 /* ─── Responsive: stack night grid on mobile ──────────────────────────────── */
 @media (max-width: 768px) {
   .night-grid { grid-template-columns: 1fr; }
-  .stage-card__content { grid-template-columns: 1fr; gap: 24px; }
+  .stage-card__content { grid-template-columns: 1fr !important; gap: 24px !important; }
   .grid-3 { grid-template-columns: 1fr; }
-  .photo-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .photo-grid { grid-template-columns: 1fr !important; grid-template-rows: auto !important; }
   .night-ghost { font-size: 8rem; }
   .side-dots { display: none; }
   .col-layout { grid-template-columns: 1fr; gap: 28px; }
   .fact-row, .fact-row--130 { grid-template-columns: 1fr; gap: 4px; }
   .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
+
+  /* Nav links — hide desktop labels on mobile, keep logo + back action */
+  .nav-links { display: none !important; }
+
+  /* Dot rail — already hidden via .side-dots; also handle .dot-rail fallback */
+  .dot-rail { display: none !important; }
+
+  /* Stage layouts */
+  .stage-map-grid   { grid-template-columns: 1fr !important; gap: 16px !important; grid-template-rows: auto !important; }
+  .handoff-grid     { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .night-layout-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .stage-island-grid { grid-template-columns: 1fr !important; gap: 24px !important; grid-template-rows: auto !important; }
+
+  /* Activities commercial matrix — 3-col 200px/1fr/280px → stacked */
+  .commercial-matrix > * { grid-template-columns: 1fr !important; }
+  .commercial-matrix { grid-template-columns: 1fr !important; }
+
+  /* ZoneCard label/detail rows — fixed 180px col → stacked */
+  .zone-detail-row { grid-template-columns: 1fr !important; gap: 8px !important; }
+
+  /* Artist card grid */
+  .artist-card-grid { grid-template-columns: 1fr !important; }
+
+  /* Mobile card body safety */
+  .mobile-card-body { font-size: 14px !important; line-height: 1.6 !important; }
+  .mobile-label { letter-spacing: 0.12em !important; }
 }
