@@ -880,7 +880,7 @@ function StagesPageInner() {
           <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 640, marginBottom: 40 }}>
             Every partner category maps to a defined operational requirement. The island creates real scope across eight areas.
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 3 }}>
+          <div className="grid-4" style={{ gap: 3 }}>
             {[
               { cat: 'Staging & Structures', desc: 'Main stage, secondary stages, platforms, trusses, temporary structures, access scaffolding.' },
               { cat: 'Audio, Lighting & Video', desc: 'PA systems, lighting rigs, LED walls, lasers, atmospheric effects, FOH infrastructure.' },

@@ -1284,7 +1284,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         <Section id="stages" sectionBg={CHAPTERS['06'].bg} accent={CHAPTERS['06'].accent} rgb={CHAPTERS['06'].rgb}>
           <SectionHead label="The Stages" title="Three stages." goldLine="One island." accent={CHAPTERS['06'].accent} />
           <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 40 }}>The stages are not just places to perform. They are the rhythm of the island.</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 2 }}>
+          <div className="grid-3" style={{ gap: 2 }}>
             {[
               { name: 'ORIGINS', accent: rust, pos: 'Sunrise Stage', tags: ['Earth sound', 'Tribal fusion', 'Organic electronic', 'Deep percussion'], body: 'Faces the sunrise. Origins carries the first movement of the island: earth sound, tribal percussion, organic electronic music, fusion, deep drums, and music that feels rooted before it becomes electronic. It is the source stage.' },
               { name: 'REBIRTH', accent: '#9B5FC0', pos: 'Sunset Stage', tags: ['Tribal house', 'Tech house', 'Underground house', 'Hypnotic grooves'], body: 'Faces the sunset. As the island shifts from day to night, Rebirth carries the deeper pulse: tribal house, tech house, underground house, hypnotic grooves, warm percussion, and music built for golden hour. The transformation.' },
@@ -1343,7 +1343,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
               ? 'The following artists represent Zungu\'s curatorial direction. These are not confirmed bookings. They are the artistic thesis the programme is being built around.'
               : 'The following artists represent Zungu\'s Year One curatorial targets — the booking thesis behind the programme. None of these bookings are confirmed. All are strategic fits for what Zungu is building and why.'}
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 2 }}>
+          <div className="grid-2" style={{ gap: 2 }}>
             {[
               {
                 name: 'Black Coffee',
@@ -1793,7 +1793,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
               ))}
             </div>
             <SectionHead label="Financial Discipline" title="Four gates. Non-negotiable." accent={CHAPTERS['13'].accent} />
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 2, marginBottom: 36 }}>
+            <div className="grid-2" style={{ gap: 2, marginBottom: 36 }}>
               {[
                 { title: 'Seed Capital Floor', sub: 'Before ticket sales open', body: 'Ticket sales should not open until minimum capital requirements, insurance path, production budget, legal structure, and site pathway are confirmed.' },
                 { title: '70% Presale Trigger', sub: 'Planning gate', body: 'Full production commitment should not proceed below the agreed presale threshold. Hard go/no-go. Protects every party in the structure.' },
