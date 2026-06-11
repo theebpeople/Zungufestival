@@ -386,7 +386,7 @@ function ActivitiesPageInner() {
             <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 40 }}>
               Every zone serves five purposes: experience, revenue, movement, sponsorship, and local operator opportunity.
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 2, marginBottom: 48 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 2, marginBottom: 48 }}>
               {[
                 { num: '1', label: 'Experience', sub: 'Creating moments beyond the stages.' },
                 { num: '2', label: 'Movement', sub: 'Pulling guests through the island safely.' },
@@ -452,7 +452,7 @@ function ActivitiesPageInner() {
           </div>
 
           <SLabel>// Included vs Paid</SLabel>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 2 }}>
             {[
               { label: 'Included in Festival Access', color: DIM, items: ['All stages', 'Basic island programming', 'The Trail', 'Selected talks / culture sessions', 'Market access', 'General lounge spaces', 'Basic water/refill access', 'Some sponsor activations'] },
               { label: 'Paid Add-Ons', color: GOLD, items: ['Premium wellness treatments', 'Massage + IV hydration', 'Private boat trips', 'Catamaran + deep sea fishing', 'Guided excursions', 'The Ambush', 'Premium workshops', 'Chef dinners + premium tastings', 'Merchandise'] },
@@ -484,7 +484,7 @@ function ActivitiesPageInner() {
           <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
             Selected activations should move through Port Antonio. Mainland programming reduces pressure on the island, creates additional revenue for local operators, gives guests a reason to arrive earlier and stay longer, and makes Port Antonio part of the festival week.
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 2 }}>
             {MAINLAND.map(({ name, sub, body }) => (
               <div key={name} style={{ border: `1px solid ${DIM}`, padding: '32px 28px' }}>
                 <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: MUTED, marginBottom: 8 }}>{sub}</div>
@@ -509,7 +509,7 @@ function ActivitiesPageInner() {
           <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
             This is not charity language. It is business logic. The stronger Port Antonio is inside the model, the more locally defensible Zungu becomes.
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2, marginBottom: 48 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 2, marginBottom: 48 }}>
             {BENEFIT_ITEMS.map(({ cat, items }) => (
               <div key={cat} style={{ border: `1px solid ${DIM}`, padding: '28px 24px', backgroundColor: 'rgba(13,32,24,0.5)' }}>
                 <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, marginBottom: 14 }}>{cat}</div>
@@ -544,7 +544,7 @@ function ActivitiesPageInner() {
               { step: '04', label: 'Stay', sub: 'On-island accommodation or off-island villa / hotel. Full access.' },
               { step: '05', label: 'Departure', sub: 'June 23. Ferry return. Transfer to airport.' },
             ].map(({ step, label, sub }, i, arr) => (
-              <div key={step} style={{ flex: '1 1 160px', border: `1px solid ${DIM}`, padding: '24px 20px', position: 'relative', minWidth: 140 }}>
+              <div key={step} style={{ flex: '1 1 160px', border: `1px solid ${DIM}`, padding: '24px 20px', position: 'relative', minWidth: 0 }}>
                 <div style={{ fontFamily: DISPLAY, fontSize: 32, fontWeight: 900, color: 'rgba(200,168,75,0.08)', lineHeight: 1, marginBottom: 12 }}>{step}</div>
                 <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, color: GOLD, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 8 }}>{label}</div>
                 <div style={{ fontFamily: MONO, fontSize: 9, color: MUTED, lineHeight: 1.7 }}>{sub}</div>
@@ -554,7 +554,7 @@ function ActivitiesPageInner() {
               </div>
             ))}
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2, marginBottom: 40 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 2, marginBottom: 40 }}>
             {[
               { label: 'Festival Access Only', items: ['Ferry transfer included', 'Island zone access', 'Stage access', 'General Market + Trail'] },
               { label: 'VIP Package', items: ['Priority transfer included', 'VIP bars and viewing', 'Meal and drink credits', 'Concierge service', 'Priority activity booking'] },
@@ -593,7 +593,7 @@ function ActivitiesPageInner() {
           <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
             Environmental and community protocol is not a marketing position. For Zungu, sustainability is tied to site access, reef protection, waste removal, local employment, harm reduction, marine licensing, demobilisation, and post-event reporting.
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 2 }}>
             {SUSTAIN.map(({ label, body }) => (
               <div key={label} style={{ border: `1px solid ${DIM}`, padding: '28px 24px' }}>
                 <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, marginBottom: 12 }}>{label}</div>

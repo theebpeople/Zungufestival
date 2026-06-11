@@ -375,7 +375,7 @@ function StagesPageInner() {
       </nav>
 
       {/* ── Side dots ── */}
-      <div style={{ position: 'fixed', right: 20, top: '50%', transform: 'translateY(-50%)', zIndex: 800, display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div className="side-dots">
         {SECTION_IDS.map((id) => (
           <button key={id} onClick={() => scrollTo(id)} title={id} style={{ width: activeSection === id ? 8 : 6, height: activeSection === id ? 8 : 6, borderRadius: '50%', border: 'none', cursor: 'pointer', padding: 0, backgroundColor: activeSection === id ? GOLD : GOLD_DIM, transition: 'all 0.3s' }} />
         ))}
@@ -880,7 +880,7 @@ function StagesPageInner() {
           <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 640, marginBottom: 40 }}>
             Every partner category maps to a defined operational requirement. The island creates real scope across eight areas.
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 3 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 3 }}>
             {[
               { cat: 'Staging & Structures', desc: 'Main stage, secondary stages, platforms, trusses, temporary structures, access scaffolding.' },
               { cat: 'Audio, Lighting & Video', desc: 'PA systems, lighting rigs, LED walls, lasers, atmospheric effects, FOH infrastructure.' },
