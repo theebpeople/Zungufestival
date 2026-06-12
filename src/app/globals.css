@@ -250,21 +250,34 @@ body::after {
 
 /* ─── Responsive: stack night grid on mobile ──────────────────────────────── */
 @media (max-width: 768px) {
-  .night-grid { grid-template-columns: 1fr; }
+  /* ── Catch-all: force EVERY inline-styled grid to a single column.
+     Stylesheet !important beats inline style attributes, so this collapses
+     all desktop card grids regardless of whether they carry a class. */
+  [style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+  }
+
+  /* Class-based grids — single column with safe gaps */
+  .night-grid { grid-template-columns: 1fr !important; }
   .stage-card__content { grid-template-columns: 1fr !important; gap: 24px !important; }
-  .grid-3 { grid-template-columns: 1fr; }
   .photo-grid { grid-template-columns: 1fr !important; grid-template-rows: auto !important; }
   .night-ghost { font-size: 8rem; }
-  .side-dots { display: none; }
-  .col-layout { grid-template-columns: 1fr; gap: 28px; }
-  .fact-row, .fact-row--130 { grid-template-columns: 1fr; gap: 4px; }
-  .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
+  .col-layout { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .fact-row, .fact-row--130 { grid-template-columns: 1fr !important; gap: 4px !important; }
+  .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr !important; }
+
+  /* Side dots / dot rails — never visible on mobile */
+  .side-dots,
+  [class*="side-dots"],
+  .dot-rail {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
 
   /* Nav links — hide desktop labels on mobile, keep logo + back action */
   .nav-links { display: none !important; }
-
-  /* Dot rail — already hidden via .side-dots; also handle .dot-rail fallback */
-  .dot-rail { display: none !important; }
 
   /* Stage layouts */
   .stage-map-grid   { grid-template-columns: 1fr !important; gap: 16px !important; grid-template-rows: auto !important; }
@@ -285,4 +298,19 @@ body::after {
   /* Mobile card body safety */
   .mobile-card-body { font-size: 14px !important; line-height: 1.6 !important; }
   .mobile-label { letter-spacing: 0.12em !important; }
+
+  /* Safe section gutters — sections use var(--gutter) and inline 8vw padding */
+  :root { --gutter: 24px; }
+  .section, .night-section, .chapter-divider, .site-footer {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  /* Letter-spacing on labels squeezes badly at 390px */
+  .t-label, .nav-link { letter-spacing: 0.12em; }
 }
+
+/* ─── Global horizontal-overflow guard (all viewports) ───────────────────── */
+html, body { max-width: 100%; overflow-x: hidden; }
+* { min-width: 0; }
+img, video { max-width: 100%; height: auto; }
