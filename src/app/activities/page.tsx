@@ -207,8 +207,8 @@ function SLabel({ children }: { children: React.ReactNode }) {
 function ChapterDivider({ num, eye, title, sub }: { num: string; eye: string; title: string; sub: string }) {
   return (
     <div style={{ width: '100%', boxSizing: 'border-box', backgroundColor: BG, borderTop: `1px solid ${BORDER_MID}`, padding: '72px 8vw 0' }}>
-      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 28 }}>
-        <div style={{ fontFamily: DISPLAY, fontSize: 'clamp(4rem, 9vw, 8rem)', fontWeight: 900, color: 'rgba(200,168,75,0.06)', lineHeight: 1, flexShrink: 0, userSelect: 'none', pointerEvents: 'none', marginTop: '-0.1em' }}>
+      <div className="chapter-divider-inner" style={{ display: 'flex', alignItems: 'flex-start', gap: 28 }}>
+        <div className="chapter-ghost-num" style={{ fontFamily: DISPLAY, fontSize: 'clamp(4rem, 9vw, 8rem)', fontWeight: 900, color: 'rgba(200,168,75,0.06)', lineHeight: 1, flexShrink: 0, userSelect: 'none', pointerEvents: 'none', marginTop: '-0.1em' }}>
           {num}
         </div>
         <div style={{ flex: 1 }}>
@@ -566,7 +566,7 @@ function ActivitiesPageInner() {
           <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
             The activity programme is not isolated from guest logistics. Arrivals, check-in, marine transfers, accommodation access, and departures are integrated into the zone operating model. The fuller the guest journey, the higher the spend per head and the stronger the case for premium packages.
           </p>
-          <div style={{ display: 'flex', gap: 2, marginBottom: 40, overflowX: 'auto' }}>
+          <div className="journey-steps" style={{ display: 'flex', gap: 2, marginBottom: 40, overflowX: 'auto' }}>
             {[
               { step: '01', label: 'International Arrival', sub: 'Kingston or Montego Bay. Transfer to Port Antonio.' },
               { step: '02', label: 'Check-In', sub: 'Port Antonio. Accommodation, ferry boarding, briefing.' },

@@ -382,6 +382,21 @@ body::after {
 
   /* Letter-spacing on labels squeezes badly at 390px */
   .t-label, .nav-link { letter-spacing: 0.12em; }
+
+  /* Journey steps — flex column, no horizontal scroll */
+  .journey-steps { flex-direction: column !important; overflow-x: visible !important; gap: 8px !important; }
+  .journey-steps > div { flex: none !important; }
+
+  /* ChapterDivider — collapse flex row, hide ghost number */
+  .chapter-divider-inner { flex-direction: column !important; gap: 12px !important; padding: 40px 24px 24px !important; }
+  .chapter-ghost-num { display: none !important; }
+
+  /* Stakeholder hero stats — 2×2 grid, strip inline separators */
+  .hero-stats-row { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
+  .hero-stats-row > div { padding-right: 0 !important; margin-right: 0 !important; border-right: none !important; }
+
+  /* Stakeholder badge nav — decorative, hide on mobile */
+  .stakeholder-badge-nav { display: none !important; }
 }
 
 /* ─── Global horizontal-overflow guard (all viewports) ───────────────────── */
