@@ -24,6 +24,10 @@
 .DS_Store
 *.pem
 
+# large source video files — served from Cloudinary, not the repo
+*.mov
+*.mp4
+
 # debug
 npm-debug.log*
 yarn-debug.log*
