@@ -167,7 +167,7 @@ function StakeholderBriefInner() {
       )}
 
       {/* dot nav */}
-      <div style={{ position: 'fixed', right: '1.25rem', top: '50%', transform: 'translateY(-50%)', zIndex: 40, display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
+      <div className="side-dots" style={{ gap: '0.45rem', zIndex: 40 }}>
         {SECTIONS.map(id => (
           <button key={id} title={NAV_LABELS[id]}
             onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })}

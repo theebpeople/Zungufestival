@@ -190,6 +190,13 @@ body::after {
 .side-dot   { width: 6px; height: 6px; border-radius: 50%; border: none; cursor: pointer; padding: 0; background: rgba(200,168,75,0.45); transition: all 0.3s; }
 .side-dot--active { width: 8px; height: 8px; background: var(--gold); }
 
+/* Responsive column layout — asymmetric two-col on desktop, stacked on mobile */
+.col-layout { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: start; }
+
+/* Key-value fact rows */
+.fact-row { display: grid; grid-template-columns: 140px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.fact-row--130 { grid-template-columns: 130px 1fr; }
+
 /* Chapter divider */
 .chapter-divider { width: 100%; box-sizing: border-box; background: var(--bg); padding: 80px var(--gutter) 40px; border-top: 1px solid var(--border); display: flex; align-items: flex-start; gap: 3rem; position: relative; overflow: hidden; }
 .chapter-ghost   { font-family: var(--font-display); font-size: clamp(4rem,9vw,8rem); font-weight: 900; color: rgba(200,168,75,0.06); line-height: 1; flex-shrink: 0; user-select: none; pointer-events: none; margin-top: -0.1em; }
@@ -228,8 +235,10 @@ body::after {
 .stage-name         { font-family: var(--font-display); font-size: clamp(2.2rem,5vw,4.8rem); font-weight: 900; line-height: 0.9; margin-bottom: 8px; }
 
 /* Grids */
-.grid-2     { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-.grid-3     { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.grid-2     { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.grid-3     { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.grid-4     { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.grid-5     { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; }
 .photo-grid { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: 360px 240px; gap: 3px; }
 
 /* Photo wrapper + caption */
@@ -239,11 +248,158 @@ body::after {
 /* Footer */
 .site-footer { background: var(--bg); padding: 40px var(--gutter); border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px; }
 
+/* ─── Tablet band: 769–1180px ─────────────────────────────────────────────
+   iPad landscape and small laptops should not use full desktop composition.
+   Three behavior bands: desktop 1181px+, tablet 769–1180px, mobile ≤768px. */
+@media (max-width: 1180px) {
+  /* Side dots / dot rails — hidden on tablet, not just mobile */
+  .side-dots,
+  [class*="side-dots"],
+  .dot-rail {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* Wide card grids reduce to 2 columns on tablet */
+  .grid-5, .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+
+  /* Dense two/three-column content layouts go single-column on tablet */
+  .stage-card__content { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .col-layout { grid-template-columns: 1fr !important; gap: 36px !important; }
+  .night-grid { grid-template-columns: 1fr !important; }
+
+  /* Deck hero — CTA row must not crowd the pinned stats bar */
+  .deck-hero-content { padding-bottom: 200px !important; }
+  .deck-hero-stats { padding: 16px 5vw !important; }
+
+  /* Tablet-safe gutters */
+  .section, .night-section, .chapter-divider, .site-footer {
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* Inline-styled grids collapse at tablet width, not just 768px */
+  [style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+  }
+
+  /* Portal / sign-in cards: 2-up so labels (e.g. STAKEHOLDER) never clip.
+     Placed after the catch-all so it wins at equal specificity. */
+  .portal-grid, .portal-grid--compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
 /* ─── Responsive: stack night grid on mobile ──────────────────────────────── */
 @media (max-width: 768px) {
-  .night-grid { grid-template-columns: 1fr; }
-  .stage-card__content { grid-template-columns: 1fr; gap: 24px; }
-  .grid-3 { grid-template-columns: 1fr; }
-  .photo-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  /* ── Catch-all: force EVERY inline-styled grid to a single column.
+     Stylesheet !important beats inline style attributes, so this collapses
+     all desktop card grids regardless of whether they carry a class. */
+  [style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+  }
+
+  /* Class-based grids — single column with safe gaps */
+  .night-grid { grid-template-columns: 1fr !important; }
+  .stage-card__content { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .photo-grid { grid-template-columns: 1fr !important; grid-template-rows: auto !important; }
   .night-ghost { font-size: 8rem; }
+  .col-layout { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .fact-row, .fact-row--130 { grid-template-columns: 1fr !important; gap: 4px !important; }
+  .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr !important; }
+
+  /* Side dots / dot rails — never visible on mobile */
+  .side-dots,
+  [class*="side-dots"],
+  .dot-rail {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* Nav links — hide desktop labels on mobile, keep logo + back action */
+  .nav-links { display: none !important; }
+
+  /* Stage layouts */
+  .stage-map-grid   { grid-template-columns: 1fr !important; gap: 16px !important; grid-template-rows: auto !important; }
+  .handoff-grid     { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .night-layout-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .stage-island-grid { grid-template-columns: 1fr !important; gap: 24px !important; grid-template-rows: auto !important; }
+
+  /* Activities commercial matrix — 3-col 200px/1fr/280px → stacked */
+  .commercial-matrix > * { grid-template-columns: 1fr !important; }
+  .commercial-matrix { grid-template-columns: 1fr !important; }
+
+  /* ZoneCard label/detail rows — fixed 180px col → stacked */
+  .zone-detail-row { grid-template-columns: 1fr !important; gap: 8px !important; }
+
+  /* Artist card grid */
+  .artist-card-grid { grid-template-columns: 1fr !important; }
+
+  /* Artist card badge — stack above the name instead of floating top-right */
+  .artist-badge {
+    position: static !important;
+    display: inline-block !important;
+    margin-bottom: 14px;
+  }
+
+  /* Portal / sign-in cards stack on phone */
+  .portal-grid, .portal-grid--compact { grid-template-columns: 1fr !important; }
+
+  /* Deck hero — stats become a static 2×2 block below the CTAs */
+  .deck-hero-content { padding-bottom: 48px !important; }
+  .deck-hero-stats {
+    position: static !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 16px;
+    text-align: left;
+    padding: 24px 24px 32px !important;
+  }
+  .stat-divider { display: none !important; }
+
+  /* Dense body paragraphs — rein in the oversized/airy mobile feel */
+  p[style*="font-size:15px"], p[style*="font-size:16px"],
+  p[style*="font-size: 15px"], p[style*="font-size: 16px"] { font-size: 14px !important; }
+  [style*="line-height:1.9"], [style*="line-height: 1.9"] { line-height: 1.7 !important; }
+  [style*="line-height:1.8"], [style*="line-height: 1.8"] { line-height: 1.65 !important; }
+
+  /* Mobile card body safety */
+  .mobile-card-body { font-size: 14px !important; line-height: 1.6 !important; }
+  .mobile-label { letter-spacing: 0.12em !important; }
+
+  /* Safe section gutters — sections use var(--gutter) and inline 8vw padding */
+  :root { --gutter: 24px; }
+  .section, .night-section, .chapter-divider, .site-footer {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  /* Letter-spacing on labels squeezes badly at 390px */
+  .t-label, .nav-link { letter-spacing: 0.12em; }
+
+  /* Journey steps — flex column, no horizontal scroll */
+  .journey-steps { flex-direction: column !important; overflow-x: visible !important; gap: 8px !important; }
+  .journey-steps > div { flex: none !important; }
+
+  /* ChapterDivider — collapse flex row, hide ghost number */
+  .chapter-divider-inner { flex-direction: column !important; gap: 12px !important; padding: 40px 24px 24px !important; }
+  .chapter-ghost-num { display: none !important; }
+
+  /* Stakeholder hero stats — 2×2 grid, strip inline separators */
+  .hero-stats-row { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
+  .hero-stats-row > div { padding-right: 0 !important; margin-right: 0 !important; border-right: none !important; }
+
+  /* Stakeholder badge nav — decorative, hide on mobile */
+  .stakeholder-badge-nav { display: none !important; }
 }
+
+/* ─── Global horizontal-overflow guard (all viewports) ───────────────────── */
+html, body { max-width: 100%; overflow-x: hidden; }
+* { min-width: 0; }
+img, video { max-width: 100%; height: auto; }

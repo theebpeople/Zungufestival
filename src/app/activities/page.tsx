@@ -207,8 +207,8 @@ function SLabel({ children }: { children: React.ReactNode }) {
 function ChapterDivider({ num, eye, title, sub }: { num: string; eye: string; title: string; sub: string }) {
   return (
     <div style={{ width: '100%', boxSizing: 'border-box', backgroundColor: BG, borderTop: `1px solid ${BORDER_MID}`, padding: '72px 8vw 0' }}>
-      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 28 }}>
-        <div style={{ fontFamily: DISPLAY, fontSize: 'clamp(4rem, 9vw, 8rem)', fontWeight: 900, color: 'rgba(200,168,75,0.06)', lineHeight: 1, flexShrink: 0, userSelect: 'none', pointerEvents: 'none', marginTop: '-0.1em' }}>
+      <div className="chapter-divider-inner" style={{ display: 'flex', alignItems: 'flex-start', gap: 28 }}>
+        <div className="chapter-ghost-num" style={{ fontFamily: DISPLAY, fontSize: 'clamp(4rem, 9vw, 8rem)', fontWeight: 900, color: 'rgba(200,168,75,0.06)', lineHeight: 1, flexShrink: 0, userSelect: 'none', pointerEvents: 'none', marginTop: '-0.1em' }}>
           {num}
         </div>
         <div style={{ flex: 1 }}>
@@ -258,7 +258,7 @@ function ZoneCard({ zone, role }: { zone: typeof ZONES[0]; role: string }) {
         <div style={{ padding: '0 32px 32px', borderTop: `1px solid rgba(200,168,75,0.08)` }}>
           <div style={{ paddingTop: 28 }}>
             {rows.map(({ label, text }, i) => (
-              <div key={label} style={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: 24, padding: '16px 0', borderBottom: i < rows.length - 1 ? `1px solid rgba(200,168,75,0.07)` : 'none', alignItems: 'start' }}>
+              <div key={label} className="zone-detail-row" style={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: 24, padding: '16px 0', borderBottom: i < rows.length - 1 ? `1px solid rgba(200,168,75,0.07)` : 'none', alignItems: 'start' }}>
                 <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, paddingTop: 2 }}>{label}</span>
                 <span style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8 }}>{text}</span>
               </div>
@@ -277,6 +277,7 @@ function ActivitiesPageInner() {
   const searchParams = useSearchParams();
   const [activeSection, setActiveSection] = useState('hero');
   const [navVisible, setNavVisible] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const rawRole = searchParams.get('role') ?? '';
   const safeRole = ['investor', 'partner', 'press', 'stakeholder'].includes(rawRole) ? rawRole : 'investor';
@@ -329,24 +330,53 @@ function ActivitiesPageInner() {
         {/* Badge + Sign Out */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', whiteSpace: 'nowrap' }}>
           <a
+            className="activities-desktop-back"
             href={`/deck?role=${safeRole}`}
-            style={{
-              fontFamily: MONO,
-              fontSize: 9,
-              letterSpacing: '0.4em',
-              textTransform: 'uppercase',
-              color: MUTED,
-              textDecoration: 'none',
-              fontWeight: 700,
-              transition: 'color 0.2s',
-            }}
+            style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: MUTED, textDecoration: 'none', fontWeight: 700, transition: 'color 0.2s' }}
             onMouseEnter={(e) => (e.currentTarget.style.color = CREAM)}
             onMouseLeave={(e) => (e.currentTarget.style.color = MUTED)}
           >
             ← Deck
           </a>
+          {/* Hamburger — mobile only */}
+          <button
+            className="mobile-hamburger"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open menu"
+            style={{ display: 'none', flexDirection: 'column', justifyContent: 'center', gap: 5, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 2px' }}
+          >
+            {[0,1,2].map(i => <span key={i} style={{ display: 'block', width: 22, height: 2, background: MUTED, borderRadius: 0 }} />)}
+          </button>
         </div>
       </nav>
+
+      {/* ── Mobile full-screen menu ── */}
+      <style>{`
+        @media (max-width: 768px) {
+          .activities-desktop-back { display: none !important; }
+          .mobile-hamburger { display: flex !important; }
+        }
+      `}</style>
+
+      {mobileMenuOpen && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 950, backgroundColor: 'rgba(4,8,10,0.97)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', gap: 0 }}>
+          <button onClick={() => setMobileMenuOpen(false)} style={{ position: 'absolute', top: 20, right: 24, background: 'none', border: 'none', color: MUTED, fontSize: 22, cursor: 'pointer', fontFamily: MONO }}>✕</button>
+          <img src="/zungu-z-mark.png" alt="Zungu" style={{ width: 40, height: 40, objectFit: 'contain', marginBottom: 32, filter: 'drop-shadow(0 0 12px rgba(200,168,75,0.3))' }} />
+          <nav style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0, width: '100%', maxWidth: 320, marginBottom: 32 }}>
+            {NAV_LINKS.map((link, i) => {
+              const id = SECTION_IDS[i + 1];
+              return (
+                <button key={link} onClick={() => { scrollTo(id); setMobileMenuOpen(false); }} style={{ fontFamily: MONO, fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.25em', color: CREAM, background: 'none', border: 'none', borderBottom: `1px solid rgba(242,235,217,0.08)`, cursor: 'pointer', padding: '16px 0', width: '100%', textAlign: 'center', transition: 'color 0.2s' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = GOLD)}
+                  onMouseLeave={e => (e.currentTarget.style.color = CREAM)}>
+                  {link}
+                </button>
+              );
+            })}
+          </nav>
+          <a href={`/deck?role=${safeRole}`} style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: MUTED, textDecoration: 'none', fontWeight: 700 }}>← Back to Deck</a>
+        </div>
+      )}
 
       {/* ── Hero ── */}
       <section id="section-hero" style={{ width: '100%', minHeight: '85vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', position: 'relative', overflow: 'hidden', padding: '0 8vw 80px', boxSizing: 'border-box' }}>
@@ -386,7 +416,7 @@ function ActivitiesPageInner() {
             <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 40 }}>
               Every zone serves five purposes: experience, revenue, movement, sponsorship, and local operator opportunity.
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 2, marginBottom: 48 }}>
+            <div className="grid-5" style={{ gap: 2, marginBottom: 48 }}>
               {[
                 { num: '1', label: 'Experience', sub: 'Creating moments beyond the stages.' },
                 { num: '2', label: 'Movement', sub: 'Pulling guests through the island safely.' },
@@ -437,7 +467,7 @@ function ActivitiesPageInner() {
           </p>
           <div style={{ display: 'grid', gap: 2, marginBottom: 60 }}>
             {COMMERCIAL_LINES.map(({ cat, items, model }) => (
-              <div key={cat} style={{ display: 'grid', gridTemplateColumns: '200px 1fr 280px', gap: 0, border: `1px solid ${DIM}`, overflow: 'hidden' }}>
+              <div key={cat} className="commercial-matrix" style={{ display: 'grid', gridTemplateColumns: '200px 1fr 280px', gap: 0, border: `1px solid ${DIM}`, overflow: 'hidden' }}>
                 <div style={{ padding: '24px 20px', borderRight: `1px solid ${DIM}`, backgroundColor: 'rgba(200,168,75,0.03)' }}>
                   <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, fontWeight: 700 }}>{cat}</span>
                 </div>
@@ -452,7 +482,7 @@ function ActivitiesPageInner() {
           </div>
 
           <SLabel>// Included vs Paid</SLabel>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2 }}>
+          <div className="grid-3" style={{ gap: 2 }}>
             {[
               { label: 'Included in Festival Access', color: DIM, items: ['All stages', 'Basic island programming', 'The Trail', 'Selected talks / culture sessions', 'Market access', 'General lounge spaces', 'Basic water/refill access', 'Some sponsor activations'] },
               { label: 'Paid Add-Ons', color: GOLD, items: ['Premium wellness treatments', 'Massage + IV hydration', 'Private boat trips', 'Catamaran + deep sea fishing', 'Guided excursions', 'The Ambush', 'Premium workshops', 'Chef dinners + premium tastings', 'Merchandise'] },
@@ -484,7 +514,7 @@ function ActivitiesPageInner() {
           <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
             Selected activations should move through Port Antonio. Mainland programming reduces pressure on the island, creates additional revenue for local operators, gives guests a reason to arrive earlier and stay longer, and makes Port Antonio part of the festival week.
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2 }}>
+          <div className="grid-2" style={{ gap: 2 }}>
             {MAINLAND.map(({ name, sub, body }) => (
               <div key={name} style={{ border: `1px solid ${DIM}`, padding: '32px 28px' }}>
                 <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: MUTED, marginBottom: 8 }}>{sub}</div>
@@ -509,7 +539,7 @@ function ActivitiesPageInner() {
           <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
             This is not charity language. It is business logic. The stronger Port Antonio is inside the model, the more locally defensible Zungu becomes.
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2, marginBottom: 48 }}>
+          <div className="grid-3" style={{ gap: 2, marginBottom: 48 }}>
             {BENEFIT_ITEMS.map(({ cat, items }) => (
               <div key={cat} style={{ border: `1px solid ${DIM}`, padding: '28px 24px', backgroundColor: 'rgba(13,32,24,0.5)' }}>
                 <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, marginBottom: 14 }}>{cat}</div>
@@ -536,7 +566,7 @@ function ActivitiesPageInner() {
           <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
             The activity programme is not isolated from guest logistics. Arrivals, check-in, marine transfers, accommodation access, and departures are integrated into the zone operating model. The fuller the guest journey, the higher the spend per head and the stronger the case for premium packages.
           </p>
-          <div style={{ display: 'flex', gap: 2, marginBottom: 40, overflowX: 'auto' }}>
+          <div className="journey-steps" style={{ display: 'flex', gap: 2, marginBottom: 40, overflowX: 'auto' }}>
             {[
               { step: '01', label: 'International Arrival', sub: 'Kingston or Montego Bay. Transfer to Port Antonio.' },
               { step: '02', label: 'Check-In', sub: 'Port Antonio. Accommodation, ferry boarding, briefing.' },
@@ -544,7 +574,7 @@ function ActivitiesPageInner() {
               { step: '04', label: 'Stay', sub: 'On-island accommodation or off-island villa / hotel. Full access.' },
               { step: '05', label: 'Departure', sub: 'June 23. Ferry return. Transfer to airport.' },
             ].map(({ step, label, sub }, i, arr) => (
-              <div key={step} style={{ flex: '1 1 160px', border: `1px solid ${DIM}`, padding: '24px 20px', position: 'relative', minWidth: 140 }}>
+              <div key={step} style={{ flex: '1 1 160px', border: `1px solid ${DIM}`, padding: '24px 20px', position: 'relative', minWidth: 0 }}>
                 <div style={{ fontFamily: DISPLAY, fontSize: 32, fontWeight: 900, color: 'rgba(200,168,75,0.08)', lineHeight: 1, marginBottom: 12 }}>{step}</div>
                 <div style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, color: GOLD, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 8 }}>{label}</div>
                 <div style={{ fontFamily: MONO, fontSize: 9, color: MUTED, lineHeight: 1.7 }}>{sub}</div>
@@ -554,7 +584,7 @@ function ActivitiesPageInner() {
               </div>
             ))}
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2, marginBottom: 40 }}>
+          <div className="grid-2" style={{ gap: 2, marginBottom: 40 }}>
             {[
               { label: 'Festival Access Only', items: ['Ferry transfer included', 'Island zone access', 'Stage access', 'General Market + Trail'] },
               { label: 'VIP Package', items: ['Priority transfer included', 'VIP bars and viewing', 'Meal and drink credits', 'Concierge service', 'Priority activity booking'] },
@@ -593,7 +623,7 @@ function ActivitiesPageInner() {
           <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, maxWidth: 680, marginBottom: 48 }}>
             Environmental and community protocol is not a marketing position. For Zungu, sustainability is tied to site access, reef protection, waste removal, local employment, harm reduction, marine licensing, demobilisation, and post-event reporting.
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2 }}>
+          <div className="grid-2" style={{ gap: 2 }}>
             {SUSTAIN.map(({ label, body }) => (
               <div key={label} style={{ border: `1px solid ${DIM}`, padding: '28px 24px' }}>
                 <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.35em', textTransform: 'uppercase', color: GOLD, fontWeight: 700, marginBottom: 12 }}>{label}</div>

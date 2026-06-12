@@ -792,16 +792,16 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
                     key={id}
                     onClick={() => { scrollToSection(id); setMobileMenuOpen(false); }}
                     style={{
-                      fontFamily: fontDisplay,
-                      fontSize: 'clamp(1.1rem, 5vw, 1.6rem)',
-                      fontWeight: 900,
+                      fontFamily: fontMono,
+                      fontSize: 11,
+                      fontWeight: 700,
                       textTransform: 'uppercase',
-                      letterSpacing: '-0.02em',
+                      letterSpacing: '0.25em',
                       color: cream,
                       background: 'none',
                       border: 'none',
                       cursor: 'pointer',
-                      padding: '8px 0',
+                      padding: '10px 0',
                       width: '100%',
                       textAlign: 'center',
                       transition: 'color 0.2s',
@@ -899,6 +899,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
 
         {/* Hero content — centered */}
         <div
+          className="deck-hero-content"
           style={{
             position: 'relative',
             zIndex: 2,
@@ -1052,6 +1053,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
 
         {/* Stats bar — absolutely pinned to hero bottom */}
         <div
+          className="deck-hero-stats"
           style={{
             position: 'absolute',
             bottom: 0,
@@ -1113,7 +1115,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
                   </span>
                 </div>
                 {i < arr.length - 1 && (
-                  <div style={{ width: 1, height: 32, background: 'rgba(200,168,75,0.1)', flexShrink: 0 }} />
+                  <div className="stat-divider" style={{ width: 1, height: 32, background: 'rgba(200,168,75,0.1)', flexShrink: 0 }} />
                 )}
               </React.Fragment>
             ))}
@@ -1284,7 +1286,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
         <Section id="stages" sectionBg={CHAPTERS['06'].bg} accent={CHAPTERS['06'].accent} rgb={CHAPTERS['06'].rgb}>
           <SectionHead label="The Stages" title="Three stages." goldLine="One island." accent={CHAPTERS['06'].accent} />
           <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 680, marginBottom: 40 }}>The stages are not just places to perform. They are the rhythm of the island.</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2 }}>
+          <div className="grid-3" style={{ gap: 2 }}>
             {[
               { name: 'ORIGINS', accent: rust, pos: 'Sunrise Stage', tags: ['Earth sound', 'Tribal fusion', 'Organic electronic', 'Deep percussion'], body: 'Faces the sunrise. Origins carries the first movement of the island: earth sound, tribal percussion, organic electronic music, fusion, deep drums, and music that feels rooted before it becomes electronic. It is the source stage.' },
               { name: 'REBIRTH', accent: '#9B5FC0', pos: 'Sunset Stage', tags: ['Tribal house', 'Tech house', 'Underground house', 'Hypnotic grooves'], body: 'Faces the sunset. As the island shifts from day to night, Rebirth carries the deeper pulse: tribal house, tech house, underground house, hypnotic grooves, warm percussion, and music built for golden hour. The transformation.' },
@@ -1343,7 +1345,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
               ? 'The following artists represent Zungu\'s curatorial direction. These are not confirmed bookings. They are the artistic thesis the programme is being built around.'
               : 'The following artists represent Zungu\'s Year One curatorial targets — the booking thesis behind the programme. None of these bookings are confirmed. All are strategic fits for what Zungu is building and why.'}
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2 }}>
+          <div className="grid-2" style={{ gap: 2 }}>
             {[
               {
                 name: 'Black Coffee',
@@ -1381,7 +1383,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
               const why = safeRole === 'press' ? whyPress : whyInvPrt;
               return (
                 <div key={name} style={{ border: `1px solid ${strategic ? 'rgba(58,175,122,0.4)' : 'rgba(58,175,122,0.12)'}`, padding: '36px 32px', background: strategic ? 'rgba(58,175,122,0.04)' : 'rgba(13,31,20,0.4)', position: 'relative' }}>
-                  {strategic && <div style={{ position: 'absolute', top: 20, right: 20, fontFamily: fontMono, fontSize: 7, letterSpacing: '0.4em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, fontWeight: 700, border: `1px solid rgba(58,175,122,0.4)`, padding: '3px 8px' }}>STRATEGIC TARGET</div>}
+                  {strategic && <div className="artist-badge" style={{ position: 'absolute', top: 20, right: 20, fontFamily: fontMono, fontSize: 7, letterSpacing: '0.4em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, fontWeight: 700, border: `1px solid rgba(58,175,122,0.4)`, padding: '3px 8px' }}>STRATEGIC TARGET</div>}
                   <div style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 28px)', fontWeight: 900, color: cream, marginBottom: 6, lineHeight: 1.1 }}>{name}</div>
                   <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, marginBottom: 16 }}>{tags}</div>
                   <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.75, marginBottom: 16 }}>{bio}</p>
@@ -1548,7 +1550,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
             {/* Access Products Table */}
             <SectionHead label="Access Products" title="Five tiers." accent={CHAPTERS['11'].accent} />
             <div style={{ overflowX: 'auto', marginBottom: 48 }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: fontMono, fontSize: 12, minWidth: 500, maxWidth: 800 }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: fontMono, fontSize: 12, maxWidth: 800 }}>
                 <thead>
                   <tr style={{ borderBottom: `1px solid rgba(155,95,192,0.2)` }}>
                     {['Product', 'Price', 'Allocation', 'Notes'].map(h => (
@@ -1761,7 +1763,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
             <SectionHead label="Year One Revenue Model" title="The base case at 5,000 guests." accent={CHAPTERS['13'].accent} />
             <p style={{ fontFamily: fontMono, fontSize: 15, color: muted, lineHeight: 1.9, maxWidth: 780, marginBottom: 32 }}>Year One is modelled around 5,000 guests, controlled capacity, premium yield, and multiple revenue lines. Access revenue is the base. Accommodation, F&B, brand partnerships, media, retail, vendor fees, and activities all compound it.</p>
             <div style={{ overflowX: 'auto', marginBottom: 16 }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: fontMono, fontSize: 12, minWidth: 500, maxWidth: 800 }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: fontMono, fontSize: 12, maxWidth: 800 }}>
                 <tbody>
                   {[
                     ['Full Week Pass', '3,500 × US$600', 'US$2,100,000'],
@@ -1793,7 +1795,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
               ))}
             </div>
             <SectionHead label="Financial Discipline" title="Four gates. Non-negotiable." accent={CHAPTERS['13'].accent} />
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2, marginBottom: 36 }}>
+            <div className="grid-2" style={{ gap: 2, marginBottom: 36 }}>
               {[
                 { title: 'Seed Capital Floor', sub: 'Before ticket sales open', body: 'Ticket sales should not open until minimum capital requirements, insurance path, production budget, legal structure, and site pathway are confirmed.' },
                 { title: '70% Presale Trigger', sub: 'Planning gate', body: 'Full production commitment should not proceed below the agreed presale threshold. Hard go/no-go. Protects every party in the structure.' },

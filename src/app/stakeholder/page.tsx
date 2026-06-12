@@ -35,8 +35,8 @@ const NAV_LINKS = [
 // ── ChapterDivider ─────────────────────────────────────────────────────────────
 function ChapterDivider({ num, eye, title, sub }: { num: string; eye: string; title: string; sub: string }) {
   return (
-    <div style={{ width: '100%', boxSizing: 'border-box', backgroundColor: BG, padding: '80px 8vw 40px', borderTop: `1px solid ${BORDER}`, display: 'flex', alignItems: 'flex-start', gap: '3rem', position: 'relative', overflow: 'hidden' }}>
-      <div style={{ fontFamily: DISPLAY, fontSize: 'clamp(4rem, 9vw, 8rem)', fontWeight: 900, color: 'rgba(200,168,75,0.06)', lineHeight: 1, flexShrink: 0, marginTop: '-0.1em', userSelect: 'none', pointerEvents: 'none' }}>
+    <div className="chapter-divider-inner" style={{ width: '100%', boxSizing: 'border-box', backgroundColor: BG, padding: '80px 8vw 40px', borderTop: `1px solid ${BORDER}`, display: 'flex', alignItems: 'flex-start', gap: '3rem', position: 'relative', overflow: 'hidden' }}>
+      <div className="chapter-ghost-num" style={{ fontFamily: DISPLAY, fontSize: 'clamp(4rem, 9vw, 8rem)', fontWeight: 900, color: 'rgba(200,168,75,0.06)', lineHeight: 1, flexShrink: 0, marginTop: '-0.1em', userSelect: 'none', pointerEvents: 'none' }}>
         {num}
       </div>
       <div style={{ flex: 1 }}>
@@ -104,7 +104,7 @@ function FactCard({ rows, accent = GOLD }: { rows: { l: string; v: string }[]; a
   return (
     <div style={{ backgroundColor: 'rgba(0,0,0,0.4)', border: `1px solid ${BORDER_MID}`, borderTop: `3px solid ${accent}`, padding: '1.5rem' }}>
       {rows.map(({ l, v }) => (
-        <div key={l} style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: 12, padding: '10px 0', borderBottom: `1px solid ${BORDER}` }}>
+        <div key={l} className="fact-row" style={{ borderBottom: `1px solid ${BORDER}` }}>
           <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700, paddingTop: 2 }}>{l}</span>
           <span style={{ fontFamily: MONO, fontSize: 12, color: MUTED, lineHeight: 1.6 }}>{v}</span>
         </div>
@@ -215,7 +215,7 @@ function StakeholderPageInner() {
       </nav>
 
       {/* ── Side dots ── */}
-      <div style={{ position: 'fixed', right: 20, top: '50%', transform: 'translateY(-50%)', zIndex: 800, display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div className="side-dots">
         {SECTION_IDS.map((id) => (
           <button key={id} onClick={() => scrollTo(id)} title={id}
             style={{ width: activeSection === id ? 8 : 6, height: activeSection === id ? 8 : 6, borderRadius: '50%', border: 'none', cursor: 'pointer', padding: 0, backgroundColor: activeSection === id ? GOLD : GOLD_DIM, transition: 'all 0.3s' }} />
@@ -274,7 +274,7 @@ function StakeholderPageInner() {
           </p>
 
           {/* Stats */}
-          <div style={{ display: 'flex', gap: 0, borderTop: `1px solid rgba(200,168,75,0.2)`, paddingTop: 24, flexWrap: 'wrap', marginBottom: 32, justifyContent: 'center' }}>
+          <div className="hero-stats-row" style={{ display: 'flex', gap: 0, borderTop: `1px solid rgba(200,168,75,0.2)`, paddingTop: 24, flexWrap: 'wrap', marginBottom: 32, justifyContent: 'center' }}>
             {[
               { label: 'Navy Island', value: 'Proposed Site' },
               { label: 'Port Antonio', value: 'Mainland Base' },
@@ -320,7 +320,7 @@ function StakeholderPageInner() {
             Zungu is not a mass-attendance event. It is a destination festival — designed for a specific audience, a specific place, and a specific purpose.
           </p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 48, alignItems: 'start' }}>
+          <div className="col-layout">
             <div>
               <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 Zungu is a proposed five-to-seven day international festival on Navy Island, Port Antonio Harbour. Year One target capacity is 5,000 guests. The programme centres on electronic music with curated cultural, wellness, and environmental programming shaped by Jamaica's natural landscape and cultural heritage.
@@ -360,7 +360,7 @@ function StakeholderPageInner() {
             Every marine operator, food vendor, cultural contributor, and site-services provider is sourced from Portland Parish first.
           </p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 48, alignItems: 'start' }}>
+          <div className="col-layout">
             <div>
               <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 Port Antonio is one of the Caribbean's most historically significant and currently underserved tourism destinations. The town has an international reputation — Errol Flynn, Ian Fleming, the Blue Lagoon — but has not benefited from a tourism model that converts that reputation into sustained local economic participation.
@@ -384,7 +384,7 @@ function StakeholderPageInner() {
                   { area: 'Site services', v: 'Local contractors · cleaning · logistics' },
                   { area: 'Guides & experiences', v: 'Local guide network · Portland Parish day programme' },
                 ].map(({ area, v }) => (
-                  <div key={area} style={{ display: 'grid', gridTemplateColumns: '130px 1fr', gap: 12, padding: '10px 0', borderBottom: `1px solid ${BORDER}` }}>
+                  <div key={area} className="fact-row fact-row--130" style={{ borderBottom: `1px solid ${BORDER}` }}>
                     <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700, paddingTop: 2 }}>{area}</span>
                     <span style={{ fontFamily: MONO, fontSize: 12, color: MUTED, lineHeight: 1.6 }}>{v}</span>
                   </div>
@@ -413,7 +413,7 @@ function StakeholderPageInner() {
             Three stage positions respond to the island's natural geography. All structures are temporary. No permanent modification to the island is proposed.
           </p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 48, alignItems: 'start' }}>
+          <div className="col-layout">
             <div>
               <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 Navy Island sits in Port Antonio Harbour, approximately 500 metres from the Port Antonio waterfront. It is a 64-acre island of forest, shoreline, and open sky. It has no permanent infrastructure of the kind required for a festival operation — power, water, sanitation, and all production structures must be brought in and removed.
@@ -457,7 +457,7 @@ function StakeholderPageInner() {
             The Zungu sound identity is anchored in Jamaica's global music contribution — not imported and placed on the island, but drawn from it.
           </p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 48, alignItems: 'start' }}>
+          <div className="col-layout">
             <div>
               <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 The musical programme positions Zungu in the intersection of Jamaica's sound system heritage and contemporary global electronic music culture. Curation is built around that crossover — not a generic international festival programme placed on a Jamaican island.
@@ -499,7 +499,7 @@ function StakeholderPageInner() {
           <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.8, maxWidth: 500, marginBottom: 48 }}>
             During festival week, Zungu creates a private creative programme alongside the main event — bringing selected international artists and Jamaican producers into studios, listening rooms, and creative sessions across Port Antonio.
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 48, alignItems: 'start' }}>
+          <div className="col-layout">
             <div>
               <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 The programme is designed to:
@@ -551,7 +551,7 @@ function StakeholderPageInner() {
             The Zungu audience is self-selecting for quality, experience, and destination. They travel specifically for the event — and they stay for the place.
           </p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 48, alignItems: 'start' }}>
+          <div className="col-layout">
             <div>
               <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 Zungu's controlled-capacity model, island setting, and premium positioning attract a specific audience profile: international cultural travellers, predominantly 25–45, with travel and discretionary spend patterns that align with extended-stay, experience-first tourism.
@@ -598,7 +598,7 @@ function StakeholderPageInner() {
             View Stage Architecture →
           </a>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 48, alignItems: 'start' }}>
+          <div className="col-layout">
             <div>
               <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 Zungu Main (south-centre) is the headline stage — open sky, facing south, built for the full production weight of international headliners. Origins (east) is the forest stage — intimate, enclosed, a canopy environment that serves as the spiritual heart of the festival. Rebirth (west) is the beach stage — minimal, facing the sunset, built for the beginning and end of each day.
@@ -642,7 +642,7 @@ function StakeholderPageInner() {
             View Activity Programme →
           </a>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 48, alignItems: 'start' }}>
+          <div className="col-layout">
             <div>
               <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 The daytime activity programme takes guests through the island and into Port Antonio. Forest trails, beach swimming, kayaking and paddle boarding, guided cultural and heritage tours, wellness programming, a local food market, art and craft spaces, and sound system culture workshops are all part of the festival week.
@@ -680,7 +680,7 @@ function StakeholderPageInner() {
             The festival week is designed for extended dwell — on the island, in the town, across Portland Parish.
           </p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 48, alignItems: 'start' }}>
+          <div className="col-layout">
             <div>
               <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 Zungu is structured as a destination event, not a day-trip. The guest journey begins in Port Antonio: accommodation, orientation, marine transfer to the island. The festival week moves between the island (music and evening programming) and Portland Parish (daytime activities, guided experiences, local dining).
@@ -722,7 +722,7 @@ function StakeholderPageInner() {
             The economic model is not aspirational. Local participation is contractual — written into the event's operational structure from the start.
           </p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 48, alignItems: 'start' }}>
+          <div className="col-layout">
             <div>
               <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 32 }}>
                 Every operational contract for Zungu is written with a Portland Parish priority clause. Marine operations, catering supply, site workforce, accommodation referrals, cultural programming, and guide services are all tendered locally before going beyond the parish. This is not a goodwill gesture. It is how the event is designed to work.
@@ -814,7 +814,7 @@ function StakeholderPageInner() {
             The project is being prepared for early stakeholder dialogue. This brief is the beginning of that conversation, not the end.
           </p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 48, alignItems: 'start' }}>
+          <div className="col-layout">
             <div>
               <p style={{ fontFamily: MONO, fontSize: 15, color: MUTED, lineHeight: 1.9, marginBottom: 20 }}>
                 Zungu is being developed with full awareness that an event on Navy Island requires engagement across multiple institutional, community, environmental, and regulatory stakeholders. The organisers are not seeking to proceed by exception. They are seeking to proceed by consent.
@@ -838,7 +838,7 @@ function StakeholderPageInner() {
                   { area: 'Community consultation', v: 'Open to formal consultation process' },
                   { area: 'Site reinstatement', v: 'Full demobilisation plan to be submitted' },
                 ].map(({ area, v }) => (
-                  <div key={area} style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: 12, padding: '10px 0', borderBottom: `1px solid ${BORDER}` }}>
+                  <div key={area} className="fact-row" style={{ borderBottom: `1px solid ${BORDER}` }}>
                     <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: GOLD, fontWeight: 700, paddingTop: 2 }}>{area}</span>
                     <span style={{ fontFamily: MONO, fontSize: 12, color: MUTED, lineHeight: 1.6 }}>{v}</span>
                   </div>
