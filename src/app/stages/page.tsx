@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import dynamic from 'next/dynamic';
+import { LightboxImage } from '../../components/LightboxImage';
 
 const StageMap = dynamic(() => import('../deck/maps/StageMap'), { ssr: false });
 
@@ -582,11 +583,14 @@ function StagesPageInner() {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
                 <div>
-                  <div style={{ position: 'relative', overflow: 'hidden', marginBottom: 24, height: 280 }}>
-                    <img src={stage.img} alt={stage.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', filter: 'brightness(0.75) saturate(0.9)', display: 'block' }} />
-                    <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to top, ${stage.bg}cc 0%, transparent 60%)` }} />
-                    <div style={{ position: 'absolute', bottom: 12, left: 16, fontFamily: MONO, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: stage.accent, opacity: 0.8 }}>{stage.title} · Navy Island</div>
-                  </div>
+                  <LightboxImage src={stage.img} alt={stage.title} label={`${stage.title} · Navy Island`}
+                    containerStyle={{ marginBottom: 24 }}>
+                    <div style={{ position: 'relative', overflow: 'hidden', height: 280 }}>
+                      <img src={stage.img} alt={stage.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', filter: 'brightness(0.75) saturate(0.9)', display: 'block' }} />
+                      <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to top, ${stage.bg}cc 0%, transparent 60%)` }} />
+                      <div style={{ position: 'absolute', bottom: 12, left: 16, fontFamily: MONO, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: stage.accent, opacity: 0.8 }}>{stage.title} · Navy Island</div>
+                    </div>
+                  </LightboxImage>
                   <div style={{ fontFamily: MONO, fontSize: 15, lineHeight: 1.9, color: MUTED }}>
                     {stage.narr.map((p, i) => (
                       <p key={i} style={{ marginTop: i > 0 ? 14 : 0 }} dangerouslySetInnerHTML={{ __html: p.replace(/<strong>/g, `<strong style="color:${CREAM}">`) }} />
@@ -644,11 +648,14 @@ function StagesPageInner() {
               <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
                 <div>
                   {night.num === '01' && (
-                    <div style={{ position: 'relative', overflow: 'hidden', marginBottom: 24, height: 200 }}>
-                      <img src="/photos/zungu-glamping-luxe.png" alt="On-island accommodation" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', filter: 'brightness(0.7) saturate(0.85)', display: 'block' }} />
-                      <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to top, ${night.bg}cc 0%, transparent 60%)` }} />
-                      <div style={{ position: 'absolute', bottom: 12, left: 16, fontFamily: MONO, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: GOLD, opacity: 0.8 }}>Accommodation · Navy Island</div>
-                    </div>
+                    <LightboxImage src="/photos/zungu-glamping-luxe.png" alt="On-island accommodation"
+                      label="Accommodation · Navy Island" containerStyle={{ marginBottom: 24 }}>
+                      <div style={{ position: 'relative', overflow: 'hidden', height: 200 }}>
+                        <img src="/photos/zungu-glamping-luxe.png" alt="On-island accommodation" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', filter: 'brightness(0.7) saturate(0.85)', display: 'block' }} />
+                        <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to top, ${night.bg}cc 0%, transparent 60%)` }} />
+                        <div style={{ position: 'absolute', bottom: 12, left: 16, fontFamily: MONO, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: GOLD, opacity: 0.8 }}>Accommodation · Navy Island</div>
+                      </div>
+                    </LightboxImage>
                   )}
                   <div style={{ fontFamily: MONO, fontSize: 15, lineHeight: 1.9, color: MUTED }}>
                     {night.narr.map((p, i) => (
