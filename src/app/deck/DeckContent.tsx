@@ -4,6 +4,7 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
+import { LightboxImage } from '../../components/LightboxImage';
 
 const IslandOverviewMap = dynamic(() => import('./maps/IslandOverviewMap'), { ssr: false });
 const StageMap = dynamic(() => import('./maps/StageMap'), { ssr: false });
@@ -1241,13 +1242,9 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
             { src: '/photos/navy-island-satellite.png', label: 'NAVY ISLAND — Satellite Overview', sub: 'Caribbean · Portland Parish' },
             { src: '/photos/navy-island-port-antonio.jpeg', label: 'NAVY ISLAND — From Port Antonio', sub: '5-min crossing from Errol Flynn Marina' },
           ].map(({ src, label, sub }) => (
-            <div key={src} style={{ position: 'relative', marginBottom: 4 }}>
-              <img src={src} style={{ width: '100%', display: 'block', filter: 'saturate(0.75) brightness(0.9)' }} alt={label} />
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '12px 16px', background: 'linear-gradient(to top, rgba(6,8,8,0.85) 0%, rgba(6,8,8,0) 100%)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-                <span style={{ fontFamily: fontMono, fontSize: 9, color: cream, letterSpacing: '0.2em', textTransform: 'uppercase' }}>{label}</span>
-                <span style={{ fontFamily: fontMono, fontSize: 8, color: muted, letterSpacing: '0.15em' }}>{sub}</span>
-              </div>
-            </div>
+            <LightboxImage key={src} src={src} alt={label} label={label} sub={sub}
+              imgStyle={{ width: '100%', display: 'block', filter: 'saturate(0.75) brightness(0.9)' }}
+              containerStyle={{ marginBottom: 4 }} />
           ))}
           <div style={{ marginTop: 40, paddingTop: 32, borderTop: `1px solid ${dim}` }}>
             <a href="/stages" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, fontFamily: fontMono, fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', fontWeight: 700, color: gold, textDecoration: 'none', border: `1px solid rgba(200,168,75,0.3)`, padding: '12px 24px' }}>Full Stage Breakdown →</a>
@@ -1309,13 +1306,8 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
               { src: 'https://res.cloudinary.com/elektricbangaz/image/upload/v1780459512/stage-rebirth-aerial_ruosnd.png', label: 'REBIRTH — Underground House · Sunset Stage', sub: 'West point · Golden hour' },
               { src: 'https://res.cloudinary.com/elektricbangaz/image/upload/v1780459528/stage-beach-aerial_ra09bb.png', label: 'ZUNGU MAIN — Centre Island · Mainstage', sub: 'Full production · Faces the Caribbean' },
             ].map(({ src, label, sub }) => (
-              <div key={src} style={{ position: 'relative' }}>
-                <img src={src} style={{ width: '100%', display: 'block', filter: 'saturate(0.75) brightness(0.9)' }} alt={label} />
-                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '12px 16px', background: 'linear-gradient(to top, rgba(6,8,8,0.85) 0%, rgba(6,8,8,0) 100%)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-                  <span style={{ fontFamily: fontMono, fontSize: 9, color: cream, letterSpacing: '0.2em', textTransform: 'uppercase' }}>{label}</span>
-                  <span style={{ fontFamily: fontMono, fontSize: 8, color: muted, letterSpacing: '0.15em' }}>{sub}</span>
-                </div>
-              </div>
+              <LightboxImage key={src} src={src} alt={label} label={label} sub={sub}
+                imgStyle={{ width: '100%', display: 'block', filter: 'saturate(0.75) brightness(0.9)' }} />
             ))}
           </div>
         </Section>
@@ -1463,13 +1455,8 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
               { src: 'https://res.cloudinary.com/elektricbangaz/image/upload/v1780459516/zungu-glamping-pods_iiwdwk.png', label: 'NAVY OBSIDIAN — Island Accommodation', sub: 'On-island · Premium pods · Full service' },
               { src: 'https://res.cloudinary.com/elektricbangaz/image/upload/v1780459528/stage-beach-activities_tnmqx6.png', label: 'THE ISLAND BETWEEN SETS', sub: 'Caribbean water · Daytime programme' },
             ].map(({ src, label, sub }) => (
-              <div key={src} style={{ position: 'relative' }}>
-                <img src={src} style={{ width: '100%', display: 'block', filter: 'saturate(0.75) brightness(0.9)' }} alt={label} />
-                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '12px 16px', background: 'linear-gradient(to top, rgba(6,8,8,0.85) 0%, rgba(6,8,8,0) 100%)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-                  <span style={{ fontFamily: fontMono, fontSize: 9, color: cream, letterSpacing: '0.2em', textTransform: 'uppercase' }}>{label}</span>
-                  <span style={{ fontFamily: fontMono, fontSize: 8, color: muted, letterSpacing: '0.15em' }}>{sub}</span>
-                </div>
-              </div>
+              <LightboxImage key={src} src={src} alt={label} label={label} sub={sub}
+                imgStyle={{ width: '100%', display: 'block', filter: 'saturate(0.75) brightness(0.9)' }} />
             ))}
           </div>
         </Section>
