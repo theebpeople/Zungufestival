@@ -248,6 +248,52 @@ body::after {
 /* Footer */
 .site-footer { background: var(--bg); padding: 40px var(--gutter); border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px; }
 
+/* ─── Tablet band: 769–1180px ─────────────────────────────────────────────
+   iPad landscape and small laptops should not use full desktop composition.
+   Three behavior bands: desktop 1181px+, tablet 769–1180px, mobile ≤768px. */
+@media (max-width: 1180px) {
+  /* Side dots / dot rails — hidden on tablet, not just mobile */
+  .side-dots,
+  [class*="side-dots"],
+  .dot-rail {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* Wide card grids reduce to 2 columns on tablet */
+  .grid-5, .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+
+  /* Dense two/three-column content layouts go single-column on tablet */
+  .stage-card__content { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .col-layout { grid-template-columns: 1fr !important; gap: 36px !important; }
+  .night-grid { grid-template-columns: 1fr !important; }
+
+  /* Deck hero — CTA row must not crowd the pinned stats bar */
+  .deck-hero-content { padding-bottom: 200px !important; }
+  .deck-hero-stats { padding: 16px 5vw !important; }
+
+  /* Tablet-safe gutters */
+  .section, .night-section, .chapter-divider, .site-footer {
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* Inline-styled grids collapse at tablet width, not just 768px */
+  [style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+  }
+
+  /* Portal / sign-in cards: 2-up so labels (e.g. STAKEHOLDER) never clip.
+     Placed after the catch-all so it wins at equal specificity. */
+  .portal-grid, .portal-grid--compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
 /* ─── Responsive: stack night grid on mobile ──────────────────────────────── */
 @media (max-width: 768px) {
   /* ── Catch-all: force EVERY inline-styled grid to a single column.
@@ -294,6 +340,34 @@ body::after {
 
   /* Artist card grid */
   .artist-card-grid { grid-template-columns: 1fr !important; }
+
+  /* Artist card badge — stack above the name instead of floating top-right */
+  .artist-badge {
+    position: static !important;
+    display: inline-block !important;
+    margin-bottom: 14px;
+  }
+
+  /* Portal / sign-in cards stack on phone */
+  .portal-grid, .portal-grid--compact { grid-template-columns: 1fr !important; }
+
+  /* Deck hero — stats become a static 2×2 block below the CTAs */
+  .deck-hero-content { padding-bottom: 48px !important; }
+  .deck-hero-stats {
+    position: static !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 16px;
+    text-align: left;
+    padding: 24px 24px 32px !important;
+  }
+  .stat-divider { display: none !important; }
+
+  /* Dense body paragraphs — rein in the oversized/airy mobile feel */
+  p[style*="font-size:15px"], p[style*="font-size:16px"],
+  p[style*="font-size: 15px"], p[style*="font-size: 16px"] { font-size: 14px !important; }
+  [style*="line-height:1.9"], [style*="line-height: 1.9"] { line-height: 1.7 !important; }
+  [style*="line-height:1.8"], [style*="line-height: 1.8"] { line-height: 1.65 !important; }
 
   /* Mobile card body safety */
   .mobile-card-body { font-size: 14px !important; line-height: 1.6 !important; }

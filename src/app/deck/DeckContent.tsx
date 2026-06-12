@@ -899,6 +899,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
 
         {/* Hero content — centered */}
         <div
+          className="deck-hero-content"
           style={{
             position: 'relative',
             zIndex: 2,
@@ -1052,6 +1053,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
 
         {/* Stats bar — absolutely pinned to hero bottom */}
         <div
+          className="deck-hero-stats"
           style={{
             position: 'absolute',
             bottom: 0,
@@ -1113,7 +1115,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
                   </span>
                 </div>
                 {i < arr.length - 1 && (
-                  <div style={{ width: 1, height: 32, background: 'rgba(200,168,75,0.1)', flexShrink: 0 }} />
+                  <div className="stat-divider" style={{ width: 1, height: 32, background: 'rgba(200,168,75,0.1)', flexShrink: 0 }} />
                 )}
               </React.Fragment>
             ))}
@@ -1381,7 +1383,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
               const why = safeRole === 'press' ? whyPress : whyInvPrt;
               return (
                 <div key={name} style={{ border: `1px solid ${strategic ? 'rgba(58,175,122,0.4)' : 'rgba(58,175,122,0.12)'}`, padding: '36px 32px', background: strategic ? 'rgba(58,175,122,0.04)' : 'rgba(13,31,20,0.4)', position: 'relative' }}>
-                  {strategic && <div style={{ position: 'absolute', top: 20, right: 20, fontFamily: fontMono, fontSize: 7, letterSpacing: '0.4em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, fontWeight: 700, border: `1px solid rgba(58,175,122,0.4)`, padding: '3px 8px' }}>STRATEGIC TARGET</div>}
+                  {strategic && <div className="artist-badge" style={{ position: 'absolute', top: 20, right: 20, fontFamily: fontMono, fontSize: 7, letterSpacing: '0.4em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, fontWeight: 700, border: `1px solid rgba(58,175,122,0.4)`, padding: '3px 8px' }}>STRATEGIC TARGET</div>}
                   <div style={{ fontFamily: fontDisplay, fontSize: 'clamp(18px, 2.5vw, 28px)', fontWeight: 900, color: cream, marginBottom: 6, lineHeight: 1.1 }}>{name}</div>
                   <div style={{ fontFamily: fontMono, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: CHAPTERS['07'].accent, marginBottom: 16 }}>{tags}</div>
                   <p style={{ fontFamily: fontMono, fontSize: 13, color: muted, lineHeight: 1.75, marginBottom: 16 }}>{bio}</p>

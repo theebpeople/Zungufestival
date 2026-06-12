@@ -225,6 +225,7 @@ function RequestAccess({ onSelect }: { onSelect: (role: string) => void }) {
           Already have an account? Select your portal.
         </p>
         <div
+          className="portal-grid--compact"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
@@ -364,6 +365,7 @@ function PortalChooser({ onSelect }: { onSelect: (role: string) => void }) {
 
         {/* Portal grid */}
         <div
+          className="portal-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
