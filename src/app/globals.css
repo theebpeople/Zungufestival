@@ -44,6 +44,7 @@
   /* Type */
   --font-display: 'Unbounded', 'Helvetica Neue', sans-serif;
   --font-mono:    'Space Mono', ui-monospace, monospace;
+  --font-body:    'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
   /* Type ramp */
   --h1-size: clamp(3rem,11vw,9rem);
@@ -91,7 +92,7 @@ html, body {
   font-size: 16px;
   background-color: #04080A;
   color: #F7F3EC;
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-body);
   cursor: crosshair;
   overflow-x: hidden;
   scroll-behavior: smooth;
@@ -163,13 +164,13 @@ body::after {
 .t-mono     { font-family: var(--font-mono); font-weight: 700; }
 .t-label    { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
 .t-micro    { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; }
-.t-body     { font-family: var(--font-mono); font-size: 14px; line-height: 1.9; color: var(--muted-cream); }
+.t-body     { font-family: var(--font-body); font-size: 15px; line-height: 1.75; letter-spacing: 0; color: var(--muted-cream); }
 .t-h1       { font-size: var(--h1-size); font-weight: 900; line-height: 0.9; letter-spacing: -0.02em; }
 .t-h2       { font-size: var(--h2-size); font-weight: 700; line-height: 1.1; }
 .t-h3       { font-size: var(--h3-size); font-weight: 700; line-height: 1.1; }
 
 /* Page wrapper */
-.page       { background: var(--bg); min-height: 100vh; font-family: var(--font-mono); color: var(--fg-2); }
+.page       { background: var(--bg); min-height: 100vh; font-family: var(--font-body); color: var(--fg-2); }
 
 /* Section wrappers */
 .section          { padding: 60px var(--gutter); border-bottom: 1px solid var(--border); background: var(--bg); }

@@ -40,7 +40,7 @@ export default function NotAuthorizedPage() {
       >
         Not<br />Authorized
       </h1>
-      <p style={{ fontSize: 11, color: muted, maxWidth: 400, lineHeight: 1.8, marginBottom: '2rem' }}>
+      <p style={{ fontFamily: "'Inter', 'Helvetica Neue', sans-serif", fontSize: 13, color: muted, maxWidth: 400, lineHeight: 1.7, marginBottom: '2rem' }}>
         Your email address is not authorized for this briefing portal. If you received an invite, sign in with the exact email address assigned to your access link. For access issues, contact partnership@zungufestival.com
       </p>
       <a

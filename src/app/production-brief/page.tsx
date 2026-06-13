@@ -59,7 +59,7 @@ function Head({ children, size = 'clamp(1.8rem,5vw,3.2rem)' }: { children: React
 }
 function Body({ children }: { children: React.ReactNode }) {
   return (
-    <p style={{ fontSize: '0.95rem', lineHeight: 1.75, color: 'rgba(247,243,236,0.72)', marginBottom: '1.25rem', maxWidth: 680 }}>
+    <p style={{ fontFamily: "'Inter', 'Helvetica Neue', sans-serif", fontSize: '0.95rem', lineHeight: 1.75, color: 'rgba(247,243,236,0.72)', marginBottom: '1.25rem', maxWidth: 680 }}>
       {children}
     </p>
   );
