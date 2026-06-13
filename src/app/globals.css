@@ -269,8 +269,10 @@ body::after {
   .col-layout { grid-template-columns: 1fr !important; gap: 36px !important; }
   .night-grid { grid-template-columns: 1fr !important; }
 
-  /* Deck hero — CTA row must not crowd the pinned stats bar */
-  .deck-hero-content { padding-bottom: 200px !important; }
+  /* Deck hero — CTA row must not crowd the pinned stats bar.
+     100px clears the ~80px stats bar; 200px was pushing the eyebrow
+     off the top of the viewport on iPad landscape (768–820px tall). */
+  .deck-hero-content { padding-bottom: 100px !important; }
   .deck-hero-stats { padding: 16px 5vw !important; }
 
   /* Tablet-safe gutters */
@@ -278,6 +280,27 @@ body::after {
     padding-left: 40px !important;
     padding-right: 40px !important;
   }
+}
+
+/* ─── Deck hero — short-viewport fix (any width, viewport height ≤ 820px) ─────
+   Applies to iPad landscape (768–820px) AND short laptop windows (e.g. 1440×768).
+   The hero content stack is ~785–870px depending on viewport width. With
+   justify-content:center and height:100vh, overflow is split equally — the
+   eyebrow clips behind the fixed nav at top, CTAs into the stats bar at bottom.
+   Fix: flex-start so content flows from the top; height:auto so the hero can
+   expand past 100vh without clipping; stats bar (position:absolute;bottom:0)
+   stays anchored to the hero bottom, which remains within the initial viewport. */
+@media (max-height: 820px) {
+  .deck-hero {
+    justify-content: flex-start !important;
+    height: auto !important;
+    min-height: 100vh !important;
+  }
+  .deck-hero-content {
+    padding-top: 68px !important;
+    padding-bottom: 110px !important;
+  }
+  .deck-hero-content img { margin-bottom: 28px !important; }
 }
 
 @media (max-width: 1024px) {
@@ -374,7 +397,7 @@ body::after {
   .mobile-label { letter-spacing: 0.12em !important; }
 
   /* Safe section gutters — sections use var(--gutter) and inline 8vw padding */
-  :root { --gutter: 24px; }
+  :root { --gutter: 24px; --h2-size: clamp(1.6rem, 5vw, 4.8rem); }
   .section, .night-section, .chapter-divider, .site-footer {
     padding-left: 24px !important;
     padding-right: 24px !important;
@@ -387,9 +410,10 @@ body::after {
   .journey-steps { flex-direction: column !important; overflow-x: visible !important; gap: 8px !important; }
   .journey-steps > div { flex: none !important; }
 
-  /* ChapterDivider — collapse flex row, hide ghost number */
+  /* ChapterDivider — collapse flex row, hide ghost numbers */
   .chapter-divider-inner { flex-direction: column !important; gap: 12px !important; padding: 40px 24px 24px !important; }
   .chapter-ghost-num { display: none !important; }
+  .chapter-ghost { display: none !important; }
 
   /* Stakeholder hero stats — 2×2 grid, strip inline separators */
   .hero-stats-row { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 16px !important; }

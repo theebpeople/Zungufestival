@@ -863,6 +863,7 @@ export default function DeckContent({ navLabel = 'INVESTOR DECK', role = 'invest
           HERO
       ═══════════════════════════════════════════════════════════════════ */}
       <section
+        className="deck-hero"
         style={{
           width: '100%',
           boxSizing: 'border-box',
