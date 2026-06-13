@@ -282,16 +282,22 @@ body::after {
   }
 }
 
-/* ─── Deck hero — short-viewport fix (iPad landscape: 768–840px tall) ─────────
-   At these heights the hero content stack (~785px) exceeds the viewport.
-   justify-content:center splits the overflow equally, pushing the eyebrow
-   behind the fixed nav at the top and the CTAs into the stats bar at the
-   bottom. Switch to flex-start so content flows from the top with explicit
-   nav-clearance padding, and trim the Z-mark margin so everything fits. */
-@media (max-width: 1180px) and (max-height: 840px) {
-  .deck-hero { justify-content: flex-start !important; }
+/* ─── Deck hero — short-viewport fix (any width, viewport height ≤ 820px) ─────
+   Applies to iPad landscape (768–820px) AND short laptop windows (e.g. 1440×768).
+   The hero content stack is ~785–870px depending on viewport width. With
+   justify-content:center and height:100vh, overflow is split equally — the
+   eyebrow clips behind the fixed nav at top, CTAs into the stats bar at bottom.
+   Fix: flex-start so content flows from the top; height:auto so the hero can
+   expand past 100vh without clipping; stats bar (position:absolute;bottom:0)
+   stays anchored to the hero bottom, which remains within the initial viewport. */
+@media (max-height: 820px) {
+  .deck-hero {
+    justify-content: flex-start !important;
+    height: auto !important;
+    min-height: 100vh !important;
+  }
   .deck-hero-content {
-    padding-top: 60px !important;
+    padding-top: 68px !important;
     padding-bottom: 90px !important;
   }
   .deck-hero-content img { margin-bottom: 28px !important; }
