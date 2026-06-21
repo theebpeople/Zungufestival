@@ -12,7 +12,7 @@
   --rust:      #C45A2A;
   --teal:      #4AAFA0;
   --muted:     #6B6355;
-  --muted-cream: rgba(242,235,217,0.45);
+  --muted-cream: rgba(242,235,217,0.65);
   --dim:       rgba(242,235,217,0.18);
 
   /* Stage / night accents */
@@ -162,7 +162,7 @@ body::after {
 .t-display  { font-family: var(--font-display); font-weight: 900; }
 .t-mono     { font-family: var(--font-mono); font-weight: 700; }
 .t-label    { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
-.t-micro    { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; }
+.t-micro    { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; }
 .t-body     { font-family: var(--font-mono); font-size: 14px; line-height: 1.9; color: var(--muted-cream); }
 .t-h1       { font-size: var(--h1-size); font-weight: 900; line-height: 0.9; letter-spacing: -0.02em; }
 .t-h2       { font-size: var(--h2-size); font-weight: 700; line-height: 1.1; }
@@ -381,7 +381,7 @@ body::after {
   }
 
   /* Letter-spacing on labels squeezes badly at 390px */
-  .t-label, .nav-link { letter-spacing: 0.12em; }
+  .t-label, .nav-link { letter-spacing: 0.12em; font-size: 12px; }
 
   /* Journey steps — flex column, no horizontal scroll */
   .journey-steps { flex-direction: column !important; overflow-x: visible !important; gap: 8px !important; }

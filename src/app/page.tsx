@@ -134,7 +134,6 @@ export default function LandingPage() {
               color: 'rgba(200,168,75,0.85)',
               textTransform: 'uppercase',
               fontWeight: 700,
-              whiteSpace: 'nowrap',
             }}
           >
             Navy Island &nbsp;·&nbsp; Port Antonio &nbsp;·&nbsp; Jamaica &nbsp;·&nbsp; June 17–23, 2027
@@ -146,7 +145,7 @@ export default function LandingPage() {
         <h1
           style={{
             fontFamily: "'Unbounded', sans-serif",
-            fontSize: 'clamp(4.5rem, 14vw, 11rem)',
+            fontSize: 'clamp(3rem, 14vw, 11rem)',
             fontWeight: 900,
             letterSpacing: '-0.03em',
             color: CREAM,
@@ -160,7 +159,7 @@ export default function LandingPage() {
         <h2
           style={{
             fontFamily: "'Unbounded', sans-serif",
-            fontSize: 'clamp(4.5rem, 14vw, 11rem)',
+            fontSize: 'clamp(3rem, 14vw, 11rem)',
             fontWeight: 900,
             letterSpacing: '-0.03em',
             color: GOLD,
