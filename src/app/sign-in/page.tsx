@@ -228,7 +228,7 @@ function RequestAccess({ onSelect }: { onSelect: (role: string) => void }) {
           className="portal-grid--compact"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
             gap: 1,
             width: '100%',
           }}
