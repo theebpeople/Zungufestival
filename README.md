@@ -34,7 +34,7 @@ Audiences are routed through a **gated portal** with three roles:
 
 | Source | Path / URL |
 |---|---|
-| Codebase (Next.js + static HTML) | `github.com/elektricbangaz/Zungufestival` (default branch `main`) |
+| Codebase (Next.js + static HTML) | `github.com/theebpeople/Zungufestival` (default branch `main`) |
 | Canonical handoff doc | `uploads/ZUNGU HANDOFF.pdf` (extracted: `uploads/ZUNGU_HANDOFF_text.txt`) |
 | Logo (gold Z with leaf accents) | `uploads/Elegant golden _Z_ with leaf accents.png` → `assets/zungu-z-mark.png` |
 | Navy Island imagery (10 plates) | `uploads/NAVY ISLAND *.png` → `assets/navy-island-*.png` |
