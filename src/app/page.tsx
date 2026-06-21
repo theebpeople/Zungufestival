@@ -176,10 +176,10 @@ export default function LandingPage() {
         <p
           style={{
             fontFamily: "'Unbounded', sans-serif",
-            fontSize: 'clamp(0.6rem, 1vw, 0.8rem)',
+            fontSize: 'clamp(0.65rem, 1vw, 0.8rem)',
             fontWeight: 300,
             letterSpacing: '0.4em',
-            color: 'rgba(247,243,236,0.38)',
+            color: 'rgba(247,243,236,0.55)',
             textTransform: 'uppercase',
             marginBottom: '2rem',
           }}
@@ -193,9 +193,9 @@ export default function LandingPage() {
             href="mailto:partnership@zungufestival.com?subject=Access%20Request"
             style={{
               fontFamily: "'Space Mono', monospace",
-              fontSize: 9,
+              fontSize: 11,
               letterSpacing: '0.35em',
-              padding: '13px 28px',
+              padding: '16px 28px',
               backgroundColor: 'rgba(200,168,75,0.15)',
               border: `1px solid rgba(200,168,75,0.6)`,
               color: GOLD,
@@ -222,9 +222,9 @@ export default function LandingPage() {
             href="/sign-in"
             style={{
               fontFamily: "'Space Mono', monospace",
-              fontSize: 9,
+              fontSize: 11,
               letterSpacing: '0.35em',
-              padding: '13px 28px',
+              padding: '16px 28px',
               backgroundColor: GOLD,
               color: BLACK,
               textDecoration: 'none',
@@ -252,7 +252,7 @@ export default function LandingPage() {
           zIndex: 10,
           fontSize: 9,
           letterSpacing: '0.25em',
-          color: 'rgba(200,168,75,0.4)',
+          color: 'rgba(200,168,75,0.65)',
           textTransform: 'lowercase',
         }}
       >

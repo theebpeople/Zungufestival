@@ -103,7 +103,7 @@ function PortalCard({
       <div style={{ position: 'relative', zIndex: 2 }}>
         <p
           style={{
-            fontSize: 8,
+            fontSize: 10,
             letterSpacing: '0.3em',
             color: muted,
             textTransform: 'uppercase',
@@ -209,7 +209,7 @@ function RequestAccess({ onSelect }: { onSelect: (role: string) => void }) {
           This portal is available to invited partners, investors, press, and institutional stakeholders. If you have received an invitation link, please use it to access your portal.
         </p>
         <div style={{ width: 40, height: 1, background: 'rgba(200,168,75,0.4)', margin: '0 auto 2rem' }} />
-        <p style={{ fontSize: 9, letterSpacing: '0.2em', color: 'rgba(200,168,75,0.5)', textTransform: 'lowercase', marginBottom: '3rem' }}>
+        <p style={{ fontSize: 9, letterSpacing: '0.2em', color: 'rgba(200,168,75,0.75)', textTransform: 'lowercase', marginBottom: '3rem' }}>
           For access requests:{' '}
           <a
             href="mailto:partnership@zungufestival.com?subject=Access%20Request"
@@ -221,7 +221,7 @@ function RequestAccess({ onSelect }: { onSelect: (role: string) => void }) {
 
         {/* Sign-in for returning users */}
         <div style={{ width: 40, height: 1, background: 'rgba(200,168,75,0.15)', margin: '0 auto 2rem' }} />
-        <p style={{ fontSize: 9, letterSpacing: '0.35em', color: 'rgba(242,235,217,0.3)', textTransform: 'uppercase', fontWeight: 700, marginBottom: '1.5rem' }}>
+        <p style={{ fontSize: 9, letterSpacing: '0.35em', color: 'rgba(242,235,217,0.5)', textTransform: 'uppercase', fontWeight: 700, marginBottom: '1.5rem' }}>
           Already have an account? Select your portal.
         </p>
         <div
@@ -442,7 +442,7 @@ function SignInForm({ role, inviteToken }: { role: string; inviteToken?: string 
 
         [class*="cl-formFieldLabel"],[class*="cl-label"] {
           font-family: 'Space Mono', monospace !important;
-          font-size: 9px !important;
+          font-size: 11px !important;
           letter-spacing: 0.4em !important;
           text-transform: uppercase !important;
           color: #C8A84B !important;
@@ -477,7 +477,7 @@ function SignInForm({ role, inviteToken }: { role: string; inviteToken?: string 
           background: #C8A84B !important;
           color: #060808 !important;
           font-family: 'Space Mono', monospace !important;
-          font-size: 9px !important;
+          font-size: 11px !important;
           font-weight: 700 !important;
           letter-spacing: 0.4em !important;
           text-transform: uppercase !important;
@@ -515,11 +515,11 @@ function SignInForm({ role, inviteToken }: { role: string; inviteToken?: string 
         }
         [class*="cl-footer"] { background: transparent !important; border: none !important; padding-top: 1.5rem !important; }
         [class*="cl-footerActionText"] {
-          font-family: 'Space Mono', monospace !important; font-size: 9px !important;
+          font-family: 'Space Mono', monospace !important; font-size: 11px !important;
           color: rgba(242,235,217,0.35) !important; letter-spacing: 0.15em !important;
         }
         [class*="cl-footerActionLink"] {
-          font-family: 'Space Mono', monospace !important; font-size: 9px !important;
+          font-family: 'Space Mono', monospace !important; font-size: 11px !important;
           color: #C8A84B !important; font-weight: 700 !important; letter-spacing: 0.15em !important; text-decoration: none !important;
         }
         [class*="cl-footerActionLink"]:hover { color: #dab84e !important; }
@@ -589,7 +589,7 @@ function SignInForm({ role, inviteToken }: { role: string; inviteToken?: string 
           background: 'none',
           border: 'none',
           cursor: 'pointer',
-          fontSize: 9,
+          fontSize: 11,
           letterSpacing: '0.3em',
           color: 'rgba(242,235,217,0.55)',
           textTransform: 'uppercase',
